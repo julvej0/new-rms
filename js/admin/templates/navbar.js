@@ -60,3 +60,21 @@ toggleSidebar.addEventListener('click', function () {
 })
 
 
+// NAVLINKS
+var path = window.location.pathname;
+
+if(path.includes("dashboard.php")){
+	document.getElementById('dashboard-link').classList.add('active');
+}
+
+if(path.includes("publications.php")){
+	document.getElementById('publication-link').classList.add('active');
+}
+
+if(path.includes("ip-assets.php")){
+	document.getElementById('ip-assets-link').classList.add('active');
+}
+
+if(path.includes("authors.php")){
+	document.getElementById('author-link').classList.add('active');
+}

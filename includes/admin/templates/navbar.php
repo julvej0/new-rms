@@ -14,11 +14,20 @@
         <h4 class="logo-title">Research Management Services</h4>
     </div>
     <ul class="side-menu">
-        <li><a href="#" class='active'><i class='bx bxs-dashboard icon'></i>Dashboard</a></li>
+        <li><a href="../../../views/admin/dashboard/dashboard.php" id='dashboard-link'>
+            <i class='bx bxs-dashboard icon'></i>Dashboard</a>
+        </li>
         <li class="divider" data-text="Main">Main</li>
-        <li><a href="#"><i class='bx bxs-book-open icon' ></i>Publications</a></li>
-        <li><a href="#"><i class='bx bxs-folder icon' ></i>IP assets</a></li>
-        <li><a href="#"><i class='bx bxs-group icon' ></i>Authors</a></li>
+        <li><a href="../../../views/admin/publications/publications.php" id='publication-link'>
+            <i class='bx bxs-book-open icon' ></i>Publications</a>
+        </li>
+        <li>
+            <a href="../../../views/admin/ip-assets/ip-assets.php" id='ip-assets-link'>
+            <i class='bx bxs-folder icon' ></i>IP assets</a>
+        </li>
+        <li><a href="../../../views/admin/authors/authors.php" id='author-link'>
+            <i class='bx bxs-group icon' ></i>Authors</a>
+        </li>
         <li class="divider" data-text="Account">Account</li>
         <li>
             <a href="#">
