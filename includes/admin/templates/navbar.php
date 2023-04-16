@@ -37,7 +37,7 @@
                 <li><a href="#">Security</a></li>
             </ul>
             <a href="#">
-            <i class='bx bx-log-out icon'></i>Sign Out</a>
+            <i class='bx bx-log-out icon rotate'></i>Sign Out</a>
         </li>
     </ul>
 </section>
