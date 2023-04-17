@@ -42,6 +42,7 @@
     </ul>
 </section>
 <!-- SIDEBAR -->
+
 <!-- APPBAR -->
 <section id='appbar-content'>
     <!-- NAVBAR -->
@@ -59,6 +60,7 @@
         </div>
     </nav>
     <!-- NAVBAR -->
-</section>
 <!-- APPBAR -->
+
+<!-- Script -->
 <script src="../../../js/admin/templates/navbar.js"></script>
