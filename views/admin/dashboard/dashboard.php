@@ -25,7 +25,21 @@
                 <div class="content-card">
                     <div class="head">
                         <div>
-                            <h2>250</h2>
+                            <?php
+                            require_once "../../../db/db.php";
+                            $query = "SELECT user_id FROM table_user;";
+                            $query_run = pg_query($conn, $query);
+                            if (!$query_run) {
+                                echo "Query failed: " . pg_last_error($conn);
+                            } else {
+                                $row_count = pg_num_rows($query_run);
+                                if ($row_count == 0) {
+                                    echo '<h2>0</h2>';
+                                } else {
+                                    echo '<h2>'.$row_count.'</h2>';
+                                }
+                            }
+                            ?>
                             <p>Users</p>
                         </div>
                         <i class='bx bx-group icon' ></i>
@@ -34,7 +48,21 @@
                 <div class="content-card">
                     <div class="head">
                         <div>
-                            <h2>250</h2>
+                            <?php
+                            require_once "../../../db/db.php";
+                            $query = "SELECT author_id FROM table_authors;";
+                            $query_run = pg_query($conn, $query);
+                            if (!$query_run) {
+                                echo "Query failed: " . pg_last_error($conn);
+                            } else {
+                                $row_count = pg_num_rows($query_run);
+                                if ($row_count == 0) {
+                                    echo '<h2>0</h2>';
+                                } else {
+                                    echo '<h2>'.$row_count.'</h2>';
+                                }
+                            }
+                            ?>
                             <p>Contributors</p>
                         </div>
                         <i class='bx bxs-group icon' ></i>
@@ -43,7 +71,21 @@
                 <div class="content-card">
                     <div class="head">
                         <div>
-                            <h2>250</h2>
+                            <?php
+                            require_once "../../../db/db.php";
+                            $query = "SELECT title_of_work FROM table_ipassets;";
+                            $query_run = pg_query($conn, $query);
+                            if (!$query_run) {
+                                echo "Query failed: " . pg_last_error($conn);
+                            } else {
+                                $row_count = pg_num_rows($query_run);
+                                if ($row_count == 0) {
+                                    echo '<h2>0</h2>';
+                                } else {
+                                    echo '<h2>'.$row_count.'</h2>';
+                                }
+                            }
+                            ?>
                             <p>Articles</p>
                         </div>
                         <i class='bx bxs-book-open' ></i>
@@ -52,7 +94,21 @@
                 <div class="content-card">
                     <div class="head">
                         <div>
-                            <h2>250</h2>
+                            <?php
+                            require_once "../../../db/db.php";
+                            $query = "SELECT title_of_paper FROM table_publications;";
+                            $query_run = pg_query($conn, $query);
+                            if (!$query_run) {
+                                echo "Query failed: " . pg_last_error($conn);
+                            } else {
+                                $row_count = pg_num_rows($query_run);
+                                if ($row_count == 0) {
+                                    echo '<h2>0</h2>';
+                                } else {
+                                    echo '<h2>'.$row_count.'</h2>';
+                                }
+                            }
+                            ?>
                             <p>Unregistered Articles</p>
                         </div>
                         <i class='bx bx-book-alt' ></i>
