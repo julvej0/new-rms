@@ -202,6 +202,15 @@
                         <i class='bx bxs-book-open' ></i>
                     </div>
                 </div>
+                <div class="content-card">
+                    <div class="head">
+                        <div>
+                            <h2>250</h2>
+                            <p>Unregistered Articles</p>
+                        </div>
+                        <i class='bx bx-book-alt' ></i>
+                    </div>
+                </div>
             </div>
             <div class="data">
                 <div class="main-content-data">
