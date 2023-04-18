@@ -23,8 +23,7 @@ main {
     padding: 24px 20px 20px 20px;
 }
 
-main .title {
+main .header .title {
     font-size: 28px;
     font-weight: 600;
-    margin-bottom: 10px;
 }
