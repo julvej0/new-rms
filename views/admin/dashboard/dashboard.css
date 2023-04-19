@@ -6,7 +6,7 @@
     --dark: #000;
     --primary: #EF1F3B;
     --accent: #FA9D25;
-    --blue: #00558C;
+    --blue: #22ADF1;
     --light-blue: #D0E4FF;
 }
 
@@ -39,7 +39,7 @@ main .routes .nav-button {
     border-radius: 5px;
     text-align: center;
     color: black;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -104,6 +104,6 @@ main .main-content-data table {
 }
 
 main table td, th {
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
