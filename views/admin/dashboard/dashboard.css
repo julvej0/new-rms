@@ -6,12 +6,12 @@
     --dark: #000;
     --primary: #EF1F3B;
     --accent: #FA9D25;
-    --blue: #00558C;
+    --blue: #22ADF1;
     --light-blue: #D0E4FF;
 }
 
 main .content-data {
-    margin-top: 36px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-gap: 20px;
@@ -39,7 +39,7 @@ main .routes .nav-button {
     border-radius: 5px;
     text-align: center;
     color: black;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     transition: all 0.3s ease;
