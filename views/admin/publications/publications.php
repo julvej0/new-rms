@@ -10,7 +10,15 @@
     <main>
         <div class="header">
             <h1 class="title">Publications</h1>
-            <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+            <div class="left">
+                <form action="#">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search...">
+                        <i class='bx bx-search icon' ></i>
+                    </div>
+                </form>
+                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+            </div>
         </div>
         <section>
             <div class="table-container">

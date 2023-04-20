@@ -1,7 +1,7 @@
 :root {
     --sidenav-size: 270px;
     --grey: #f1f0f6;
-    --dark-grey: #8D8D8D;
+    --dark-grey: #AEBDCA;
     --light: #fff;
     --dark: #000;
     --primary: #EF1F3B;
@@ -182,7 +182,7 @@ nav {
     padding: 0 20px;
     display: flex;
     align-items: center;
-    grid-gap: 28px;
+    justify-content: space-between;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 nav .toggle-sidebar {
@@ -190,7 +190,7 @@ nav .toggle-sidebar {
     cursor: pointer;
     color: var(--light);
 }
-nav form {
+/* nav form {
     max-width: 400px;
     width: 100%;
     margin-right: auto;
@@ -220,7 +220,7 @@ nav .form-group .icon {
     transform: translateY(-50%);
     right: 16px;
     color: var(--dark-grey);
-}
+} */
 
 nav .profile {
     padding: 10px 16px;
