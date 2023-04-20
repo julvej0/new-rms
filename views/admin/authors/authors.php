@@ -30,14 +30,14 @@
                     <tbody>
                         <?php
                             include_once 'functionalities/php/display_authors.php';
-                            include_once 'functionalities/php/pagination_authors.php';
+                           
                         ?>
                     </tbody>
                 </table>
             </div>
-            <div class="table-footer">
-                <p><?=countAuthors($conn)?></p>
-            </div>
+                <?php
+                    include_once 'functionalities/php/pagination_authors.php';
+                ?>
         </section>
     </main>
 
