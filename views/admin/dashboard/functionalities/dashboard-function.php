@@ -51,7 +51,7 @@ function getArticleCount($conn, $reuse_stmt = false) {
     }
 }
 
-function getContributors($conn) {
+function getPublicationsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $result = pg_query($conn, $sql);
 
@@ -72,6 +72,54 @@ function getContributors($conn) {
                     }
                 }
             }
+            // $total_count = $count1 + $count2;
+            $total_count = $count1;
+            if ($total_count > 0) {
+                $contributors[] = array(
+                    'author_name' => $row['author_name'],
+                    'total_publications' => $total_count
+                );
+            }
+        }
+
+        // Sort contributors by number of publications in descending order
+        usort($contributors, function($a, $b) {
+            return $b['total_publications'] - $a['total_publications'];
+        });
+
+        // Display top 5 contributors
+        $count = 0;
+        ?>
+        <table>
+        <tr>
+            <th>Authors</th>
+            <th>Number of Publications</th>
+        </tr>
+        <?php
+        foreach ($contributors as $contributor) {
+            $count++;
+            if ($count > 7) {
+                break;
+            }
+            ?>
+            <tr>
+                <td><?=$contributor['author_name'];?></td>
+                <td><?=$contributor['total_publications'];?></td>
+            </tr>
+            <?php
+        }
+    }
+    ?>
+    </table>
+    <?php
+}
+function getIpAssetsContributors($conn) {
+    $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
+    $result = pg_query($conn, $sql);
+
+    if(pg_num_rows($result) > 0){
+        $contributors = array();
+        while ($row = pg_fetch_assoc($result)) {
 
             $count2=0;
             $getAuthors = "SELECT authors FROM table_ipassets";
@@ -88,7 +136,8 @@ function getContributors($conn) {
                 }
             }
 
-            $total_count = $count1 + $count2;
+            // $total_count = $count1 + $count2;
+            $total_count = $count2;
             if ($total_count > 0) {
                 $contributors[] = array(
                     'author_name' => $row['author_name'],

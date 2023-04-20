@@ -88,7 +88,7 @@
                     </div>
                     <div>
                         <?php 
-                        echo getContributors($conn);
+                        echo getPublicationsContributors($conn);
                         ?>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                     </div>
                     <div>
                         <?php 
-                        echo getContributors($conn);
+                        echo getIpAssetsContributors($conn);
                         ?>
                     </div>
                 </div>
