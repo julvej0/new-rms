@@ -62,19 +62,19 @@
                 <p>Article Count : 1</p>
                 <div class="pagination">
                     <li>
-                        <a href="#"><i class='bx bx-chevrons-left icon' ></i>First</a>
+                        <a href="#"><i class='bx bx-chevrons-left icon' ></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class='bx bx-chevron-left icon' ></i>Prev</a>
+                        <a href="#"><i class='bx bx-chevron-left icon' ></i></a>
                     </li>
                     <li>
                         <span class="current-page">1</span>
                     </li>
                     <li>
-                        <a href="#">Next<i class='bx bx-chevron-right icon' ></i></a>
+                        <a href="#"><i class='bx bx-chevron-right icon' ></i></a>
                     </li>
                     <li>
-                        <a href="#">Last<i class='bx bx-chevrons-right icon' ></i></a>
+                        <a href="#"><i class='bx bx-chevrons-right icon' ></i></a>
                     </li>
                 </div>
             </div>
