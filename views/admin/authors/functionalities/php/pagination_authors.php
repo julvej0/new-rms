@@ -1,17 +1,17 @@
-<tr>
-    <?php
-        $count_sql = "SELECT COUNT(*) FROM table_authors WHERE author_name ILIKE '%$search_query%'";
-        $count_result = pg_query($conn, $count_sql);
-        $total_items = pg_fetch_result($count_result, 0, 0);
 
-        $total_pages = ceil($total_items / $items_per_page);
+<div class="table-footer">
+    <p><?=countAuthors($conn)?></p>
+    <div class="pagination">
+        <?php
+            $count_sql = "SELECT COUNT(*) FROM table_authors WHERE author_name ILIKE '%$search_query%'";
+            $count_result = pg_query($conn, $count_sql);
+            $total_items = pg_fetch_result($count_result, 0, 0);
 
-        $prev = $page_number - 1;
-        $next = $page_number + 1;
-        ?>
-    <td colspan="6" >
-        <div class="pagination">
-            <?php if ($total_pages > 1) {
+            $total_pages = ceil($total_items / $items_per_page);
+
+            $prev = $page_number - 1;
+            $next = $page_number + 1;
+            if ($total_pages > 1) {
                 $link = "";
                 if (isset($_GET['search'])){
                     $link = "?search=".$_GET['search']."&page=";
@@ -21,21 +21,30 @@
 
                 $max_pages_to_show = 1000; // maximum number of pages to show in the pagination
                 $start_page = max(1, $page_number - (int)($max_pages_to_show / 2));
-                $end_page = min($start_page + $max_pages_to_show - 1, $total_pages); ?>
-                
-                <div class="pagination-controls">
-                    <a href="<?php echo $link.($start_page); ?>" class="prev-btn" <?php echo ($page_number==1 ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>><i class="fa fa-angle-double-left"></i> FIRST</a>
+                $end_page = min($start_page + $max_pages_to_show - 1, $total_pages); 
+        ?>
+        <li>
+            <a href="<?php echo $link.(1);?>" <?php echo ($page_number==1 ? "style='pointer-events: none; background-color: #c5c5c5;'" : ""); ?>><i class='bx bx-chevrons-left icon' ></i>First</a>
+        </li>
+        <li>
+            <a href="<?php echo $link.($page_number-1); ?>" <?php echo ($page_number==1 ? "style='pointer-events: none; background-color: #c5c5c5;'" : ""); ?>><i class='bx bx-chevron-left icon' ></i>Prev</a>
+        </li>
+        <li>
+            <span class="current-page"><?=$page_number?></span>
+        </li>
+        <li>
+            <a href="<?php echo $link.($page_number+1); ?>" <?php echo ($page_number==$total_pages ? "style='pointer-events: none; background-color: #c5c5c5;'" : ""); ?>>Next<i class='bx bx-chevron-right icon' ></i></a>
+        </li>
+        <li>
+            <a href="<?php echo $link.($end_page); ?>" <?php echo ($page_number==$total_pages ? "style='pointer-events: none; background-color: #c5c5c5;'" : ""); ?>>Last<i class='bx bx-chevrons-right icon' ></i></a>
+        </li>
+        <?php } ?>
+    </div>
+</div>
+    
+            
+    
+    
 
-                    <a href="<?php echo $link.($page_number-1); ?>" class="prev-btn" <?php echo ($page_number==1 ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>><i class="fa fa-angle-left"></i> Previous</a>
-                    <?php if ($total_pages > 1) { ?>
-                        <div class="page-num"><span class="current-page"><?php echo $page_number; ?></span></div>
-                    <?php } ?>
-                    <a href="<?php echo $link.($page_number+1); ?>" class="next-btn" <?php echo ($page_number==$total_pages ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>>Next <i class="fa fa-angle-right"></i></a>
 
-                    <a href="<?php echo $link.($end_page); ?>" class="next-btn" <?php echo ($page_number==$total_pages ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>>LAST <i class="fa fa-angle-double-right"></i></a>
-                </div>
-                
-            <?php } ?>
-        </div>
-    </td>
-</tr>
+
