@@ -8,7 +8,6 @@
     --accent: #FA9D25;
     --blue: #22ADF1;
     --light-blue: #D0E4FF;
-    --green: #06FF00;
 }
 
 main .header {
@@ -27,7 +26,7 @@ main .header .addBtn {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     outline: none;
     border: none;
-    background: var(--green);
+    background: green;
     color: var(--light);
     text-transform: uppercase;
     display: flex;
@@ -94,7 +93,7 @@ main section .table-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 0 0 20px;
     border-top: 1px solid var(--grey);
 }
 
@@ -167,8 +166,10 @@ main table .edit-btn, .delete-btn {
     height: 100%;
     width: 380px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    padding: 0;
+    grid-gap: 5px;
 }
 
 .table-footer .pagination li a {
@@ -194,9 +195,10 @@ main table .edit-btn, .delete-btn {
     font-size: 16px;
     font-weight: 600;
     border: 1px solid var(--dark);
-    padding: 8px 20px;
+    padding: 8px 30px;
     border: 2px solid var(--grey);
     border-radius: 2px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .table-footer .pagination li a .icon {
