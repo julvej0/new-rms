@@ -78,6 +78,33 @@ navBtns.forEach(navlinks => {
     var chart = new ApexCharts(document.querySelector("#pb-bar-chart"), options);
     chart.render();
 
+    // $.ajax({
+    //     url: './functionalities/data.php',
+    //     type: 'GET',
+    //     dataType: 'json',
+    //     success: function(data) {
+    //         // data contains the response from your PHP script
+    //         // you can use it to render the chart
+    //         var options = {
+    //             chart: {
+    //                 type: 'donut',
+    //             },
+    //             series: [{
+    //                 name: 'Publications',
+    //                 data: data.year_data
+    //             }],
+    //             xaxis: {
+    //                 categories: data.year
+    //             }
+    //         };
+    
+    //         var chart = new ApexCharts(document.querySelector('#pb-pie-chart'), options);
+    //         chart.render();
+    //         console.log(data)
+    //     }
+      
+    // });
+    
     // Pie Chart
     var options = {
         series: [44, 55, 41, 17, 15],
