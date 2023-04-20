@@ -8,6 +8,7 @@
     --accent: #FA9D25;
     --blue: #22ADF1;
     --light-blue: #D0E4FF;
+    --green: #06FF00;
 }
 
 main .header {
@@ -20,19 +21,26 @@ main .header .addBtn {
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-    color: black;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     outline: none;
     border: none;
-    background: var(--primary);
+    background: var(--green);
     color: var(--light);
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    grid-gap: 5px;
+    transition: all 0.5s ease;
+}
+main .header .addBtn .icon {
+    font-size: 14px;
+    transition: all 0.5s ease;
 }
 main .header .addBtn:hover {
-    opacity: 80%;
+    opacity: 60%;
 }
 
 main .table-container {
@@ -80,12 +88,12 @@ main table tbody td {
 }
 
 main section .table-footer {
-    height: 60px;
+    height: 80px;
     width: 100%;
     background: var(--light);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 0 20px;
     border-top: 1px solid var(--grey);
 }
@@ -95,7 +103,7 @@ main section .table-footer p {
     font-weight: 500;
 }
 
-.stickey-col {
+main table .stickey-col {
     position: sticky;
     top: 0;
     left: 0;
@@ -109,7 +117,7 @@ main section .table-footer p {
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
     background-color: #fff;
 }
-.stickey-col-header {
+main table .stickey-col-header {
     position: sticky;
     top: 0;
     left: 0;
@@ -120,7 +128,7 @@ main section .table-footer p {
     background-color: #fff;
 }
 
-.pb-action-btns {
+main table .pb-action-btns {
     display: flex;
     /* flex-direction: column; */
     gap: 5px;
@@ -128,7 +136,7 @@ main section .table-footer p {
     align-items: center;
 }
 
-.edit-btn, .delete-btn {
+main table .edit-btn, .delete-btn {
     border: none;
     color: #ffffff;
     width: 100%;
@@ -153,4 +161,45 @@ main section .table-footer p {
 
 .delete-btn{
     background-color: var(--primary);
+}
+
+.table-footer .pagination {
+    height: 100%;
+    width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.table-footer .pagination li a {
+    border: 2px solid var(--dark);
+    padding: 10px;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px solid var(--grey);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    font-size: 10px;
+    color: var(--dark);
+    flex-wrap: wrap;
+}
+
+.table-footer .pagination li a:hover {
+    background: var(--grey);
+}
+
+.table-footer .pagination li .current-page {
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid var(--dark);
+    padding: 8px 20px;
+    border: 2px solid var(--grey);
+    border-radius: 2px;
+}
+
+.table-footer .pagination li a .icon {
+    font-size: 20px;
 }
