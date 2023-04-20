@@ -98,7 +98,6 @@ main .main-content-data .head {
 }
 
 main .main-content-data table {
-    position: relative  ;
     border-collapse: collapse;
     width: 100%;
 }

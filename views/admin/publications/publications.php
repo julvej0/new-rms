@@ -10,7 +10,7 @@
     <main>
         <div class="header">
             <h1 class="title">Publications</h1>
-            <a class="addBtn"><i class='bx bx-folder-plus icon'></i>New Article</a>
+            <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
         </div>
         <section>
             <div class="table-container">

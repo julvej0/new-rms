@@ -33,14 +33,14 @@ main .header .addBtn {
     display: flex;
     align-items: center;
     grid-gap: 5px;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }
 main .header .addBtn .icon {
-    font-size: 14px;
+    font-size: 20px;
     transition: all 0.5s ease;
 }
 main .header .addBtn:hover {
-    opacity: 60%;
+    opacity: 50%;
 }
 
 main .table-container {
@@ -167,9 +167,8 @@ main table .edit-btn, .delete-btn {
     height: 100%;
     width: 380px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    grid-gap: 5px;
 }
 
 .table-footer .pagination li a {
