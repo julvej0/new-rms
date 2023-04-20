@@ -194,16 +194,9 @@
                         <h3>Recently Added Articles</h3>
                     </div>
                     <div>
-                        <table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Date added</th>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
+                        <?php
+                        getRecentIpAssets($conn, 5);
+                        ?>
                     </div>
                 </div>
             </div>

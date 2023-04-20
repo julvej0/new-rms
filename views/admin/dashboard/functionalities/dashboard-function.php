@@ -236,7 +236,7 @@ function getProcessingIpAssets($conn, $reuse_stmt = false) {
     }
 }
 function getRecentIpAssets($conn, $limit) {
-    $query = "SELECT title_of_work, author, date_registered FROM table_ipassets ORDER BY date_registered DESC LIMIT $1";
+    $query = "SELECT title_of_work, date_registered FROM table_ipassets ORDER BY date_registered DESC LIMIT $1";
     $params = array($limit);
 
     $query_run = pg_prepare($conn, "recent_assets_query", $query);
@@ -252,14 +252,16 @@ function getRecentIpAssets($conn, $limit) {
                 echo "<p>No data found</p>";
             } else {
                 echo "<table>";
-                echo "<tr><th>Title</th><th>Author</th><th>Date Registered</th></tr>";
+                echo "<tr><th>Title</th><th>Date Registered</th></tr>";
                 foreach($rows as $row) {
-                    echo "<tr><td>".$row['title_of_work']."</td><td>".$row['author']."</td><td>".$row['date_registered']."</td></tr>";
+                    $date = date('F d, Y', strtotime($row['date_registered']));
+                    echo "<tr><td>".$row['title_of_work']."</td><td>".$date."</td></tr>";
                 }
                 echo "</table>";
             }
         }
     }
 }
+
 
 ?>
