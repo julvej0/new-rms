@@ -10,7 +10,7 @@
     <main>
         <div class="header">
             <h1 class="title">Publications</h1>
-            <button class="addBtn">New Article</button>
+            <a class="addBtn"><i class='bx bx-folder-plus icon'></i>New Article</a>
         </div>
         <section>
             <div class="table-container">
@@ -60,6 +60,23 @@
             </div>
             <div class="table-footer">
                 <p>Article Count : 1</p>
+                <div class="pagination">
+                    <li>
+                        <a href="#"><i class='bx bx-chevrons-left icon' ></i>First</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class='bx bx-chevron-left icon' ></i>Prev</a>
+                    </li>
+                    <li>
+                        <span class="current-page">1</span>
+                    </li>
+                    <li>
+                        <a href="#">Next<i class='bx bx-chevron-right icon' ></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Last<i class='bx bx-chevrons-right icon' ></i></a>
+                    </li>
+                </div>
             </div>
         </section>
     </main>

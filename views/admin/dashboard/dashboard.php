@@ -191,17 +191,17 @@
                 </div>
                 <div class="main-content-data">
                     <div class="head">
-                        <h3>Most Cited Articles</h3>
+                        <h3>Recently Added Articles</h3>
                     </div>
                     <div>
                         <table>
                             <tr>
                                 <th>Title</th>
-                                <th>Citations</th>
+                                <th>Date added</th>
                             </tr>
                             <tr>
-                                <td>Article ni Lloyd</td>
-                                <td>350</td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>
