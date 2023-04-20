@@ -104,6 +104,6 @@ main .main-content-data table {
 }
 
 main table td, th {
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
