@@ -1,7 +1,7 @@
 :root {
     --sidenav-size: 270px;
     --grey: #f1f0f6;
-    --dark-grey: #AEBDCA;
+    --dark-grey: #B7B7B7;
     --light: #fff;
     --dark: #000;
     --primary: #EF1F3B;
@@ -15,6 +15,7 @@ main .header {
     justify-content: space-between;
     align-items: center;
 }
+
 
 main .header .left .addBtn {
     padding: 10px;
@@ -190,7 +191,7 @@ main table .edit-btn, .delete-btn {
     padding: 8px;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     font-weight: 600;
     text-align: center;
 }
@@ -218,7 +219,6 @@ main table .edit-btn, .delete-btn {
 }
 
 .table-footer .pagination li a {
-    border: 2px solid var(--dark);
     padding: 10px;
     height: 100%;
     cursor: pointer;
@@ -230,6 +230,7 @@ main table .edit-btn, .delete-btn {
     font-size: 10px;
     color: var(--dark);
     flex-wrap: wrap;
+    background: var(--light);
 }
 
 .table-footer .pagination li a:hover {
