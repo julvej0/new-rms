@@ -235,5 +235,31 @@ function getProcessingIpAssets($conn, $reuse_stmt = false) {
         }
     }
 }
+function getRecentIpAssets($conn, $limit) {
+    $query = "SELECT title_of_work, author, date_registered FROM table_ipassets ORDER BY date_registered DESC LIMIT $1";
+    $params = array($limit);
+
+    $query_run = pg_prepare($conn, "recent_assets_query", $query);
+    if(!$query_run) {
+        echo "Prepared statement creation failed: " . pg_last_error($conn);
+    } else {
+        $result = pg_execute($conn, "recent_assets_query", $params);
+        if(!$result) {
+            echo "Query execution failed: " . pg_last_error($conn);
+        } else {
+            $rows = pg_fetch_all($result);
+            if(!$rows) {
+                echo "<p>No data found</p>";
+            } else {
+                echo "<table>";
+                echo "<tr><th>Title</th><th>Author</th><th>Date Registered</th></tr>";
+                foreach($rows as $row) {
+                    echo "<tr><td>".$row['title_of_work']."</td><td>".$row['author']."</td><td>".$row['date_registered']."</td></tr>";
+                }
+                echo "</table>";
+            }
+        }
+    }
+}
 
 ?>
