@@ -87,6 +87,7 @@ main section .table-footer {
     align-items: center;
     justify-content: flex-start;
     padding: 0 20px;
+    border-top: 1px solid var(--grey);
 }
 
 main section .table-footer p {

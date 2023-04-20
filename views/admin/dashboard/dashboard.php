@@ -91,29 +91,6 @@
                         <i class='bx bxs-book-open' ></i>
                     </div>
                 </div>
-                <div class="content-card">
-                    <div class="head">
-                        <div>
-                            <?php
-                            require_once "../../../db/db.php";
-                            $query = "SELECT title_of_paper FROM table_publications;";
-                            $query_run = pg_query($conn, $query);
-                            if (!$query_run) {
-                                echo "Query failed: " . pg_last_error($conn);
-                            } else {
-                                $row_count = pg_num_rows($query_run);
-                                if ($row_count == 0) {
-                                    echo '<h2>0</h2>';
-                                } else {
-                                    echo '<h2>'.$row_count.'</h2>';
-                                }
-                            }
-                            ?>
-                            <p>Unregistered Articles</p>
-                        </div>
-                        <i class='bx bx-book-alt' ></i>
-                    </div>
-                </div>
             </div>
             <div class="data">
                 <div class="main-content-data">
