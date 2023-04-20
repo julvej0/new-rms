@@ -1,0 +1,133 @@
+:root {
+    --sidenav-size: 270px;
+    --grey: #f1f0f6;
+    --dark-grey: #8D8D8D;
+    --light: #fff;
+    --dark: #000;
+    --primary: #EF1F3B;
+    --accent: #FA9D25;
+    --blue: #22ADF1;
+    --light-blue: #D0E4FF;
+}
+
+main .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .header .addBtn {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+    border: none;
+    background: var(--primary);
+    color: var(--light);
+    text-transform: uppercase;
+}
+main .header .addBtn:hover {
+    opacity: 80%;
+}
+
+main .table-container {
+    margin-top: 20px;
+    height: 600px;
+    overflow: auto;
+    background: var(--light);
+    border-radius: 5px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    overflow-x: scroll;
+}
+
+main .table-container table {
+    width: 100%;
+    table-layout: auto;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+main .table-container table, th, td {
+    border-collapse: collapse;
+    border-bottom: 2.5px solid var(--grey);
+}
+
+main table thead tr {
+    background: var(--light);
+}
+
+main table thead th {
+    top: 0;
+    min-width: 150px;
+    max-width: 200px;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;    
+}
+
+main table tbody td {
+    font-size: 11px;
+    top: 0;
+    font-size: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+main section .table-footer {
+    height: 60px;
+    width: 100%;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px;
+    border-top: 1px solid var(--grey);
+}
+
+main section .table-footer p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.a-action-btns {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.edit-btn, .delete-btn {
+    border: none;
+    color: #ffffff;
+    width: 100%;
+    height: 30px;
+    font-size: 10px;
+    border-radius: 3px;
+    padding: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    opacity: 80%;
+}
+
+.edit-btn {
+    background-color: #22ADF1;
+}
+
+.delete-btn{
+    background-color: var(--primary);
+}
