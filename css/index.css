@@ -1,16 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-:root{
-    --clr-primary-300: #EF1F3B;
-    --clr-secondary-300: #00558C;
-    --clr-accent-300: #FA9D25;
-    --clr-green-300: #75D773;
-    --clr-bgcolor: #dfe0eb;
-
-    --font-large-head: 24px;
-    --font-medium-head: 15px;
-    --font-small-head: 11px;
-}
 * {
     padding: 0;
     margin: 0;

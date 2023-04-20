@@ -10,7 +10,15 @@
     <main>
         <div class="header">
             <h1 class="title">Publications</h1>
-            <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+            <div class="left">
+                <form action="#">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search...">
+                        <i class='bx bx-search icon' ></i>
+                    </div>
+                </form>
+                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+            </div>
         </div>
         <section>
             <div class="table-container">
@@ -62,19 +70,19 @@
                 <p>Article Count : 1</p>
                 <div class="pagination">
                     <li>
-                        <a href="#"><i class='bx bx-chevrons-left icon' ></i>First</a>
+                        <a href="#"><i class='bx bx-chevrons-left icon' ></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class='bx bx-chevron-left icon' ></i>Prev</a>
+                        <a href="#"><i class='bx bx-chevron-left icon' ></i></a>
                     </li>
                     <li>
                         <span class="current-page">1</span>
                     </li>
                     <li>
-                        <a href="#">Next<i class='bx bx-chevron-right icon' ></i></a>
+                        <a href="#"><i class='bx bx-chevron-right icon' ></i></a>
                     </li>
                     <li>
-                        <a href="#">Last<i class='bx bx-chevrons-right icon' ></i></a>
+                        <a href="#"><i class='bx bx-chevrons-right icon' ></i></a>
                     </li>
                 </div>
             </div>
