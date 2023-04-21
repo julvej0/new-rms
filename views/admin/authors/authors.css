@@ -42,7 +42,7 @@ main .table-container {
     background: var(--light);
     border-radius: 5px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
 main .table-container table {

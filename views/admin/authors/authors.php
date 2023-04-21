@@ -12,7 +12,7 @@
     <main>
         <div class="header">
             <h1 class="title">Authors</h1>
-            <button class="addBtn">New Article</button>
+            <button class="addBtn">New Author</button>
         </div>
         <section>
             <div class="table-container">
