@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-type">Type of Document</label>
-                                    <select name="pb-type" id="pb-type" required>
+                                    <select name="pb-type" id="pb-type">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -229,48 +229,91 @@
                             <hr>
                         </div>
                         <div class="form-col">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-control">
-                                                <label class="pb-label" for="pb-author-name">Name</label>
-                                                <input type="text" id="pb-author-name" name="pb-author-name" placeholder="Author Name">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-control">
-                                                <label class="pb-label" for="pb-author-type">Type</label>
-                                                <select name="pb-authorname" id="pb-author-name" required>
-                                                    <option value="" hidden>--Choose from the options--</option>
-                                                    <option value="Main Author">Main Author</option>
-                                                    <option value="Co-author">Co-author</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-control">
-                                                <label class="pb-label" for="pb-author-gender">Gender</label>
-                                                <select name="pb-authorname" id="pb-author-gender" required>
-                                                    <option value="" hidden>--Choose from the options--</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-control">
-                                                <label class="pb-label" for="pb-author-affil">Affiliation</label>
-                                                <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Gender">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button id="add-author-btn">Add New</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="author-table-container">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-control author-name">
+                                                    <label class="pb-label" for="pb-author-name">Name</label>
+                                                    <input type="text" id="pb-author-name" name="pb-author-name" placeholder="Author Name">
+                                                </div>
+                                                <div class="form-control author-details">
+                                                    <label class="pb-label" for="pb-author-type">Role</label>
+                                                    <select name="pb-author-type" id="pb-author-type" required>
+                                                        <option value="" hidden>--Choose from the options--</option>
+                                                        <option value="Main Author">Main Author</option>
+                                                        <option value="Co-Author">Co-Author</option>
+                                                        <option value="Student">Student</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-control author-details">
+                                                    <label class="pb-label" for="pb-author-gender">Gender</label>
+                                                    <select name="pb-author-gender" id="pb-author-gender" required>
+                                                        <option value="" hidden>--Choose from the options--</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-control author-details">
+                                                    <label class="pb-label" for="pb-author-affil">Affiliation(s)</label>
+                                                    <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Affiliation(s)">
+                                                </div>
+                                                <button id="pb-add-btn">+</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                    </div>
+                    <div class="sub-container">
+                        <div class="title">
+                            <h3>Funding Details</h3>
+                            <hr>
+                        </div>
+                        <div class="form-col">
+                            <div class="funding-form-container">
+                                <label class="funding-titles">Funding Nature </label>
+                                <div class="form-control">
+                                    <div class="funded">
+                                        <input type="radio" name="nature_of_funding" id="funded" value="funded">
+                                        <label for="funded" class="funding-choices">Funded</label>
+                                    </div>
+                                    <div class="non-funded">
+                                        <input type="radio" name="nature_of_funding" id="non-funded" value="non-funded" checked="checked">
+                                        <label for="non-funded" class="funding-choices">Non-funded</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="if-funded">If funded : </h4>
+                            <div class="funding-form-container">
+                                <label class="funding-titles">Fund type </label>
+                                <div class="form-control">
+                                    <div class="internal">
+                                        <input type="radio" name="funding_type" id="internal" value="internal">
+                                        <label for="internal" class="funding-choices">Internal</label>
+                                    </div>
+                                    <div class="external">
+                                        <input type="radio" name="funding_type" id="external" value="external">
+                                        <label for="external" class="funding-choices">External</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="if-external">If external : </h4>
+                            <div class="funding-form-container2">
+                                <div class="form-control">
+                                    <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
+                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency"
+                                    placeholder="Funding Agency">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-footer">
+                        <input type="submit" class="submit-btn" name="submitPB" value="Submit">
+                        <input type="button" class="cancel-btn" value="Cancel" onclick="history.back(-1)">
                     </div>
                 </form>
             </div>
