@@ -276,11 +276,11 @@
                             <div class="funding-form-container">
                                 <label class="funding-titles">Funding Nature </label>
                                 <div class="form-control">
-                                    <div class="funded">
+                                    <div class="choices">
                                         <input type="radio" name="nature_of_funding" id="funded" value="funded">
                                         <label for="funded" class="funding-choices">Funded</label>
                                     </div>
-                                    <div class="non-funded">
+                                    <div class="choices">
                                         <input type="radio" name="nature_of_funding" id="non-funded" value="non-funded" checked="checked">
                                         <label for="non-funded" class="funding-choices">Non-funded</label>
                                     </div>
@@ -290,11 +290,11 @@
                             <div class="funding-form-container">
                                 <label class="funding-titles">Fund type </label>
                                 <div class="form-control">
-                                    <div class="internal">
+                                    <div class="choices">
                                         <input type="radio" name="funding_type" id="internal" value="internal">
                                         <label for="internal" class="funding-choices">Internal</label>
                                     </div>
-                                    <div class="external">
+                                    <div class="choices">
                                         <input type="radio" name="funding_type" id="external" value="external">
                                         <label for="external" class="funding-choices">External</label>
                                     </div>

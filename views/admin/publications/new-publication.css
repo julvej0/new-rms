@@ -306,7 +306,19 @@ main .form-col .funding-form-container .funding-titles {
 
 main .sub-container .form-col .funding-form-container .form-control {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main .funding-form-container .form-control .choices {
+    width: 250px;
+    display: flex;
+    grid-gap: 10px;
+}
+
+main .funding-form-container .form-control .choices input[type='radio'],
+main .funding-form-container .form-control .choices label {
+    cursor: pointer;
 }
 
 main .sub-container .form-col .funding-form-container2 .form-control {
