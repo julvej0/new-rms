@@ -46,6 +46,7 @@ main .routes .nav-button {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+
 main .routes .nav-button.focused {
     background-color: var(--primary);
     color: var(--light);
@@ -85,7 +86,7 @@ main .data {
 }
 
 main .data .main-content-data {
-    flex-grow: 4;
+    flex-grow: 1;
     flex-basis: 400px;
     padding: 20px;
     background: var(--light);
@@ -98,7 +99,6 @@ main .main-content-data .head {
 }
 
 main .main-content-data table {
-    position: relative  ;
     border-collapse: collapse;
     width: 100%;
 }

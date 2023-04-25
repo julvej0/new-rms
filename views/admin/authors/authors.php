@@ -12,7 +12,7 @@
     <main>
         <div class="header">
             <h1 class="title">Authors</h1>
-            <button class="addBtn">New Article</button>
+            <button class="addBtn">New Author</button>
         </div>
         <section>
             <div class="table-container">
@@ -30,14 +30,14 @@
                     <tbody>
                         <?php
                             include_once 'functionalities/php/display_authors.php';
-                            include_once 'functionalities/php/pagination_authors.php';
+                           
                         ?>
                     </tbody>
                 </table>
             </div>
-            <div class="table-footer">
-                <p><?=countAuthors($conn)?></p>
-            </div>
+                <?php
+                    include_once 'functionalities/php/pagination_authors.php';
+                ?>
         </section>
     </main>
 
