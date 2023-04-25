@@ -1,14 +1,3 @@
-:root {
-    --sidenav-size: 270px;
-    --grey: #f1f0f6;
-    --dark-grey: #B7B7B7;
-    --light: #fff;
-    --dark: #000;
-    --primary: #EF1F3B;
-    --accent: #FA9D25;
-    --blue: #00558C;
-    --light-blue: #D0E4FF;
-}
 
 a {
     text-decoration: none;

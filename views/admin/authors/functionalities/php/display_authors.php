@@ -48,7 +48,7 @@
                 }
             ?>
         </td>
-        <td id="white-side" class="a-action-btns">
+        <td id="white-side" class="a-action-btns" style="width: 200px; ">
             <button class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </button>
             
             <button type="button" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="window.location.href='<?php echo $deleteURL.'&id='.$row['author_id'];?>'">Delete</button>
