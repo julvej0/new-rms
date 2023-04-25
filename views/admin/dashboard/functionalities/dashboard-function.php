@@ -87,7 +87,7 @@ function getPublicationsContributors($conn) {
             return $b['total_publications'] - $a['total_publications'];
         });
 
-        // Display top 5 contributors
+        // Display top 9 contributors
         $count = 0;
         ?>
         <table>
@@ -98,7 +98,7 @@ function getPublicationsContributors($conn) {
         <?php
         foreach ($contributors as $contributor) {
             $count++;
-            if ($count > 7) {
+            if ($count > 9) {
                 break;
             }
             ?>
@@ -151,7 +151,7 @@ function getIpAssetsContributors($conn) {
             return $b['total_publications'] - $a['total_publications'];
         });
 
-        // Display top 5 contributors
+        // Display top 9 contributors
         $count = 0;
         ?>
         <table>
@@ -162,7 +162,7 @@ function getIpAssetsContributors($conn) {
         <?php
         foreach ($contributors as $contributor) {
             $count++;
-            if ($count > 7) {
+            if ($count > 9) {
                 break;
             }
             ?>
