@@ -250,7 +250,7 @@
                 }
             }]
         };
-       
+        console.log(data);
         var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
         chart.render();
     </script>
