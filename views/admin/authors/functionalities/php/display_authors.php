@@ -49,9 +49,9 @@
             ?>
         </td>
         <td id="white-side" class="a-action-btns">
-            <button class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </button>
+            <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </a>
             
-            <button type="button" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="window.location.href='<?php echo $deleteURL.'&id='.$row['author_id'];?>'">Delete</button>
+            <a type="button" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="window.location.href='<?php echo $deleteURL.'&id='.$row['author_id'];?>'">Delete</a>
         </td>
         
         <?php
