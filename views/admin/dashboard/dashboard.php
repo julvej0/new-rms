@@ -180,25 +180,18 @@
                             // Execute SQL query
                             $query = "SELECT campus, COUNT(*) as dataset FROM table_ipassets WHERE campus IS NOT NULL GROUP BY campus";
                             $result = pg_query($conn, $query);
-
+                            
                             // Process query result
                             $data = array();
                             $labels = array();
                             while ($row = pg_fetch_assoc($result)) {
                                 $labels[] = $row["campus"];
-                                $data[] = array(
-                                    "name" => $row["campus"],
-                                    "data" => intval($row["dataset"])
-                                );
+                                $data[] = intval($row["dataset"]);
+
                             }
                             $json_data = json_encode($data);
                             $json_labels = json_encode($labels);
-
-                            // Check for JSON encoding errors
-                            if (json_last_error() !== JSON_ERROR_NONE) {
-                                echo 'JSON encoding error: ' . json_last_error_msg();
-                            }
-                        ?>                 
+                        ?>                    
                         <div id="ipa-pie-chart">
                         </div>
                     </div>
@@ -229,6 +222,7 @@
     <!-- Section closing tag from navbar -->
     </section>
     <script src="dashboard.js"></script>
+    
     <script>
         var data = <?php echo $json_data; ?>;
         var labels = <?php echo $json_labels; ?>;
@@ -236,8 +230,8 @@
             chart: {
                 type: 'donut'
             },
-            series: JSON.parse(JSON.stringify(data)),
-            labels: JSON.parse(JSON.stringify(labels)),
+            series: data,
+            labels: labels,
             responsive: [{
                 breakpoint: 480,
                 options: {
@@ -253,6 +247,7 @@
         console.log(data);
         var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
         chart.render();
+
     </script>
 
 </body>
