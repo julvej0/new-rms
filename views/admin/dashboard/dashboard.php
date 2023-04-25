@@ -186,10 +186,7 @@
                             $labels = array();
                             while ($row = pg_fetch_assoc($result)) {
                                 $labels[] = $row["campus"];
-                                $data[] = array(
-                                    "name" => $row["campus"],
-                                    "data" => intval($row["dataset"])
-                                );
+                                $data[] = $row["dataset"];
                             }
                             $json_data = json_encode($data);
                             $json_labels = json_encode($labels);
@@ -230,8 +227,11 @@
     </section>
     <script src="dashboard.js"></script>
     <script>
+
         var data = <?php echo $json_data; ?>;
         var labels = <?php echo $json_labels; ?>;
+    
+
         var options = {
             chart: {
                 type: 'donut'
@@ -239,7 +239,7 @@
             series: JSON.parse(JSON.stringify(data)),
             labels: JSON.parse(JSON.stringify(labels)),
             responsive: [{
-                breakpoint: 480,
+                breakpoint: 500,
                 options: {
                     chart: {
                         width: 300
@@ -250,7 +250,7 @@
                 }
             }]
         };
-        console.log(data);
+       
         var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
         chart.render();
     </script>
