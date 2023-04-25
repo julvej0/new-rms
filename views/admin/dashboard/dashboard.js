@@ -283,3 +283,35 @@ navBtns.forEach(navlinks => {
 
     //     var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
     //     chart.render();
+    // $.ajax({
+    //     url: 'dashboard.php',
+    //     dataType: 'json',
+    //     success: function(response) {
+    //       var data = response.data;
+    //       var labels = response.labels;
+    //       var options = {
+    //         chart: {
+    //           type: 'donut'
+    //         },
+    //         series: data,
+    //         labels: labels,
+    //         responsive: [{
+    //           breakpoint: 480,
+    //           options: {
+    //             chart: {
+    //               width: 300
+    //             },
+    //             legend: {
+    //               position: 'bottom'
+    //             }
+    //           }
+    //         }]
+    //       };
+    //       var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
+    //       chart.render();
+    //     },
+    //     error: function(xhr, status, error) {
+    //       console.log('Error: ' + error.message);
+    //     }
+    //   });
+    
