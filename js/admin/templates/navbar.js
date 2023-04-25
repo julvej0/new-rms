@@ -67,7 +67,7 @@ if(path.includes("dashboard.php")){
 	document.getElementById('dashboard-link').classList.add('active');
 }
 
-if(path.includes("publications.php")){
+if(path.includes("publications.php") || path.includes("new-publication.php")){
 	document.getElementById('publication-link').classList.add('active');
 }
 

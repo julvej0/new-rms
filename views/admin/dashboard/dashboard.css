@@ -86,7 +86,7 @@ main .data {
 }
 
 main .data .main-content-data {
-    flex-grow: 4;
+    flex-grow: 1;
     flex-basis: 400px;
     padding: 20px;
     background: var(--light);
