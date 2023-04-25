@@ -252,7 +252,7 @@ function getRecentIpAssets($conn, $limit) {
                 echo "<p>No data found</p>";
             } else {
                 echo "<table>";
-                echo "<tr><th>Title</th><th>Date Registered</th></tr>";
+                echo "<tr><th>Title</th><th>Date Registered </th></tr>";    
                 foreach($rows as $row) {
                     $date = date('F d, Y', strtotime($row['date_registered']));
                     echo "<tr><td>".$row['title_of_work']."</td><td>".$date."</td></tr>";
