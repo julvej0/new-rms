@@ -224,8 +224,11 @@
     <script src="dashboard.js"></script>
     
     <script>
+
         var data = <?php echo $json_data; ?>;
         var labels = <?php echo $json_labels; ?>;
+    
+
         var options = {
             chart: {
                 type: 'donut'
@@ -233,7 +236,7 @@
             series: data,
             labels: labels,
             responsive: [{
-                breakpoint: 480,
+                breakpoint: 500,
                 options: {
                     chart: {
                         width: 300
@@ -244,7 +247,7 @@
                 }
             }]
         };
-        console.log(data);
+       
         var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
         chart.render();
 
