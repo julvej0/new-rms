@@ -27,16 +27,17 @@ $program_options = array(
 
 );
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var max = 16; // max number of affiliations is 15
 
     function addInternalRow() {
         if ($('#affiliation-tbl-body td').length < max) {
-            var internalRow = '
+            var internalRow = '\
                 <td>\
                     <div class="form-control aff-info">\
                         <label class="a-label" for="a-aff-dept">Department</label>\
-                        <input type="text" id="a-aff-dept" name="a-aff-dept[]" placeholder="Department">\
+                        <input type="text" id="a-aff-dept" name="a-aff-dept[]" placeholder="Department" required>\
                     </div>\
                     <div class="form-control aff-categ">\
                         <label class="a-label" for="a-aff-prog">Program</label>\
@@ -65,6 +66,9 @@ $program_options = array(
                     </td>';
             $('#affiliation-tbl-body').append(internalRow);
         }
+        else{
+            alert('You reached maximum number of affiliation')
+        }
     }
     
     function addExternalRow() {
@@ -72,19 +76,22 @@ $program_options = array(
             var externalRow = '<td>\
                     <div class="form-control aff-info">\
                         <label class="a-label" for="a-ex-aff">External Affiliation</label>\
-                        <input type="text" id="a-ex-aff" name="a-ex-aff" placeholder="Affiliation">\
+                        <input type="text" id="a-ex-aff" name="a-ex-aff" placeholder="Affiliation" required>\
                     </div>\
                     <button class="a-remove-btn" type="button">x</button>\
                     </td>';
             $('#affiliation-tbl-body').append(externalRow);
+        }
+        else{
+            alert('You reached maximum number of affiliation')
         }
     }
 
     function removeAffiliationRow() {
         $(this).closest('td').remove();
     }
-
+  
     $('#affiliation-tbl').on('click', '#internal-btn', addInternalRow);
     $('#affiliation-tbl').on('click', '#external-btn', addExternalRow);
-    $('#affiliation-tbl').on('click', 'a-remove-btn', removeAffiliationRow);
-<script>
+    $('#affiliation-tbl').on('click', '.a-remove-btn', removeAffiliationRow);
+</script>
