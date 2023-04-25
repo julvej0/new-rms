@@ -187,10 +187,11 @@ main .form-control .checkbox-container input[type=checkbox]:checked+label.sdg-ch
 }
 
 .error {
+    position: absolute;
     display: none;
     color: red;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 241px;
 }
 
 /* AUTHOR DETAILS TABLE */
@@ -208,7 +209,7 @@ main .author-table-container table {
 }
 
 main .author-table-container table tr td {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -265,7 +266,7 @@ main table tr td button {
     height: 50px;
     border-radius: 5px;
     border: none;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     padding: 0 20px;
     background: var(--accent-blue);
     color: var(--light);

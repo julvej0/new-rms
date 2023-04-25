@@ -19,7 +19,7 @@
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
-                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
+                <a href="./new-author.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
             </div>
         </div>
         <section>

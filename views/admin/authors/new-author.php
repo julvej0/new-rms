@@ -7,6 +7,7 @@
 <body>
 <?php
     include '../../../includes/admin/templates/navbar.php';
+   
 ?>
     <main>
         <div class="header">
@@ -23,14 +24,14 @@
                         <div class="form-col">
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-title">Author Name</label>
-                                    <input type="text" placeholder="Author Name" id="pb-title" />
+                                    <label class="a-label" for="a-name">Author Name</label>
+                                    <input type="text" placeholder="Author Name" id="a-name" />
                                 </div>
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-type">Role</label>
-                                    <select name="pb-type" id="pb-type">
+                                    <label class="a-label" for="a-role">Role</label>
+                                    <select name="a-role" id="a-role">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Faculty">Faculty</option>
                                         <option value="Student">Student</option>
@@ -39,8 +40,8 @@
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-college">Gender</label>
-                                        <select name="pb-college" class="pb-input-field" id="pb-college" required>
+                                    <label class="a-label" for="a-gender">Gender</label>
+                                        <select name="a-gender" class="a-input-field" id="a-gender">
                                             <option value="" hidden>--Choose from the options--</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -56,38 +57,53 @@
                         </div>
                         <div class="form-col">
                             <div class="author-table-container">
-                                <table>
-                                    <tbody>
-                                        <tr>
+                                <table >
+                                    <tbody id='affiliation-tbl'>
+                                        <tr id="affiliation-tbl-body">
                                             <td>
-                                                <div class="form-control author-name">
-                                                    <label class="pb-label" for="pb-author-name">Name</label>
-                                                    <input type="text" id="pb-author-name" name="pb-author-name" placeholder="Author Name">
+                                            <div class="affiliation-main-menu">
+                                                <div class="affiliation-main-menu">
+                                                    <button type="button" id="a-add-btn">+</button>  
+                                                    <div class="affiliation-sub-menu">
+                                                        <button type="button" class="affiliation-sub-button" id="internal-btn">Internal</button>
+                                                        <button type="button" class="affiliation-sub-button"id="external-btn">External</button>
+                                                    </div>
+                                                </div>        
+                                            </td>
+                                            <td>
+                                                <div class="form-control aff-info">
+                                                    <label class="a-label" for="a-aff-dept">Department</label>
+                                                    <input type="text" id="a-aff-dept" name="a-aff-dept" placeholder="Department">
                                                 </div>
-                                                <div class="form-control author-details">
-                                                    <label class="pb-label" for="pb-author-type">Role</label>
-                                                    <select name="pb-author-type" id="pb-author-type" required>
+                                                <div class="form-control aff-categ">
+                                                    <label class="a-label" for="a-aff-prog">Program</label>
+                                                    <select name="a-aff-prog" id="a-aff-prog" >
                                                         <option value="" hidden>--Choose from the options--</option>
                                                         <option value="Main Author">Main Author</option>
                                                         <option value="Co-Author">Co-Author</option>
                                                         <option value="Student">Student</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-control author-details">
-                                                    <label class="pb-label" for="pb-author-gender">Gender</label>
-                                                    <select name="pb-author-gender" id="pb-author-gender" required>
+                                                <div class="form-control aff-categ">
+                                                    <label class="a-label" for="a-aff-camp">Campus</label>
+                                                    <select name="a-aff-camp" id="a-aff-camp" >
                                                         <option value="" hidden>--Choose from the options--</option>
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-control author-details">
-                                                    <label class="pb-label" for="pb-author-affil">Affiliation(s)</label>
-                                                    <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Affiliation(s)">
-                                                </div>
-                                                <button id="pb-add-btn">+</button>
+                                                <button type="button" class="a-remove-btn">x</button>
+                                                
+                                            </td>
+                                            <td>
+                                                <div class="form-control aff-info">
+                                                    <label class="a-label" for="a-ex-aff">External Affiliation</label>
+                                                    <input  type="text" id="a-ex-aff" name="a-ex-aff" placeholder="Affiliation">
+                                                </div>                                               
+                                                <button type="button" class="a-remove-btn">x</button>
                                             </td>
                                         </tr>
+                                        <tr></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -96,7 +112,7 @@
                     
                     <br>
                     <div class="form-footer">
-                        <input type="submit" class="submit-btn" name="submitPB" value="Submit">
+                        <input type="submit" class="submit-btn" name="submita" value="Submit">
                         <input type="button" class="cancel-btn" value="Cancel" onclick="history.back(-1)">
                     </div>
                 </form>
@@ -104,5 +120,8 @@
         </section>
     </main>
 </section>
-<script src="./new-publication.js"></script>
+<?php
+    include  'functionalities/php/affiliations.php';
+?>
 </body>
+
