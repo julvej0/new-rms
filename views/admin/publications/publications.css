@@ -171,7 +171,7 @@ main table .pb-action-btns {
     align-items: center;
 }
 
-main table .edit-btn, .delete-btn {
+main table .edit-btn, .delete-btn, .gdrive-btn{
     border: none;
     color: var(--light);
     width: 100%;
@@ -190,6 +190,9 @@ main table .edit-btn, .delete-btn {
     opacity: 80%;
 }
 
+.gdrive-btn{
+    background-color: var(--accent);
+}
 .edit-btn {
     background-color: var(--blue);
 }

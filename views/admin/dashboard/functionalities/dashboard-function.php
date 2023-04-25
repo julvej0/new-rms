@@ -178,7 +178,7 @@ function getIpAssetsContributors($conn) {
     <?php
 }
 function getMostViewedPapers($conn, $reuse_stmt = false) {
-    $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 3;";
+    $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 4;";
     if (!$reuse_stmt) {
         $stmt = pg_prepare($conn, "get_most_viewed_papers", $sql);
     }
@@ -262,6 +262,91 @@ function getRecentIpAssets($conn, $limit) {
         }
     }
 }
+function getIpAssetsCampus($conn) {
+    $query = "SELECT campus, COUNT(*) as dataset FROM table_ipassets WHERE campus IS NOT NULL GROUP BY campus";
+    $result = pg_query($conn, $query);
 
+    $data = array();
+    $labels = array();
+    while ($row = pg_fetch_assoc($result)) {
+        $labels[] = $row["campus"];
+        $data[] = intval($row["dataset"]);
+    }
 
+    return array(
+        "data" => json_encode($data),
+        "labels" => json_encode($labels)
+    );
+}
+function getPublicationsStatus($conn){
+    $query = "SELECT status, COUNT(*) as dataset FROM table_publications WHERE status is NOT NULL GROUP BY status";
+    $result = pg_query($conn, $query);
+
+    $data = array();
+    $labels = array();
+    while ($row = pg_fetch_assoc($result)) {
+        $labels[] = $row["status"];
+        $data[] = intval($row["dataset"]);
+    }
+
+    return array(
+        "data" => json_encode($data),
+        "labels" => json_encode($labels)
+    );
+
+}
+function getIPAssetsPerYear($conn) {
+    $query = "SELECT EXTRACT(YEAR FROM date_registered) AS year, COUNT(*) AS count
+    FROM table_ipassets
+    WHERE date_registered IS NOT NULL
+    GROUP BY EXTRACT(YEAR FROM date_registered)
+    ORDER BY EXTRACT(YEAR FROM date_registered) ASC;
+    ";
+    $result = pg_query($conn, $query);
+
+    $year = array();
+    $year_data = array();
+
+    if (pg_num_rows($result) > 0) {
+        while($data = pg_fetch_array($result)){
+            $year[] = $data['year'];
+            $year_data[] = intval($data['count']);
+        }
+    }
+
+    $ipyear_data = json_encode($year_data);
+    $ipyear_labels = json_encode($year);
+
+    return array(
+        'data' => $ipyear_data,
+        'labels' => $ipyear_labels
+    );
+}
+function getPublicationsPerYear($conn) {
+    $query = "SELECT EXTRACT(YEAR FROM date_published) AS year, COUNT(*) AS count
+    FROM table_publications
+    WHERE date_published IS NOT NULL
+    GROUP BY EXTRACT(YEAR FROM date_published)
+    ORDER BY EXTRACT(YEAR FROM date_published) ASC;
+    ";
+    $result = pg_query($conn, $query);
+
+    $year = array();
+    $year_data = array();
+
+    if (pg_num_rows($result) > 0) {
+        while($data = pg_fetch_array($result)){
+            $year[] = $data['year'];
+            $year_data[] = intval($data['count']);
+        }
+    }
+
+    $publications_year = json_encode($year);
+    $publications_data = json_encode($year_data);
+
+    return array(
+        'data' => $publications_data,
+        'labels' => $publications_year
+    );
+}
 ?>

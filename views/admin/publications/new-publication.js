@@ -44,30 +44,30 @@ function limitSelection() {
 }
 
 // ADD AUTHOR
-const addBtn = document.getElementById("pb-add-btn");
+// const addBtn = document.getElementById("pb-add-btn");
 
-  addBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const firstTd = document.querySelector(".author-table-container td");
+//   addBtn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     const firstTd = document.querySelector(".author-table-container td");
 
-    const newTd = firstTd.cloneNode(true);
+//     const newTd = firstTd.cloneNode(true);
 
-    const addBtnInNewTd = newTd.querySelector("#pb-add-btn");
+//     const addBtnInNewTd = newTd.querySelector("#pb-add-btn");
 
-    const removeBtn = document.createElement("button");
-    removeBtn.id = "pb-remove-btn";
-    removeBtn.textContent = "-";
-    removeBtn.style.background = 'red';
-    removeBtn.addEventListener("click", () => {
-      newTd.remove();
-    });
-    addBtnInNewTd.replaceWith(removeBtn);
+//     const removeBtn = document.createElement("button");
+//     removeBtn.id = "pb-remove-btn";
+//     removeBtn.textContent = "-";
+//     removeBtn.style.background = 'red';
+//     removeBtn.addEventListener("click", () => {
+//       newTd.remove();
+//     });
+//     addBtnInNewTd.replaceWith(removeBtn);
 
-    const tableBody = document.querySelector(".author-table-container tbody");
-    const newRow = document.createElement("tr");
-    newRow.appendChild(newTd);
-    tableBody.appendChild(newRow);
-  });
+//     const tableBody = document.querySelector(".author-table-container tbody");
+//     const newRow = document.createElement("tr");
+//     newRow.appendChild(newTd);
+//     tableBody.appendChild(newRow);
+//   });
 
 
 
