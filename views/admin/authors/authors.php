@@ -12,7 +12,15 @@
     <main>
         <div class="header">
             <h1 class="title">Authors</h1>
-            <button class="addBtn">New Author</button>
+            <div class="left">
+                <form action="#">
+                    <div class="form-group">
+                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
+                        <i class='bx bx-search icon' ></i>
+                    </div>
+                </form>
+                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
+            </div>
         </div>
         <section>
             <div class="table-container">
