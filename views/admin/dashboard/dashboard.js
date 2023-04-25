@@ -126,6 +126,7 @@ navBtns.forEach(navlinks => {
 
     var chart = new ApexCharts(document.querySelector("#pb-pie-chart"), options);
     chart.render();
+    
 
 // IP-assets charts
     var options = {
@@ -262,23 +263,23 @@ navBtns.forEach(navlinks => {
     chart.render();
 
     // IP-assets Pie Chart
-    var options = {
-          series: [44, 55, 41, 17, 15],
-          chart: {
-          type: 'donut',
-        },
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-        };
+    // var options = {
+    //       series: [44, 55, 41, 17, 15],
+    //       chart: {
+    //       type: 'donut',
+    //     },
+    //     responsive: [{
+    //       breakpoint: 480,
+    //       options: {
+    //         chart: {
+    //           width: 200
+    //         },
+    //         legend: {
+    //           position: 'bottom'
+    //         }
+    //       }
+    //     }]
+    //     };
 
-        var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
-        chart.render();
+    //     var chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), options);
+    //     chart.render();
