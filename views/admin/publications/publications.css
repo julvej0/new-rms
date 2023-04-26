@@ -107,7 +107,6 @@ main table thead tr {
 main table thead tr th {
     position: sticky;
     top: 0;
-    top: 0;
     min-width: 150px;
     max-width: 200px;
     font-size: 14px;
@@ -115,6 +114,7 @@ main table thead tr th {
     text-align: center;    
     background: var(--light);
     z-index: 100;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
 
 main table tbody td {
@@ -152,7 +152,7 @@ main table .stickey-col {
     justify-content: center;
     padding: 10px;
     align-items: center;
-    min-height: 100px;
+    height: 100%;
     width: 80px; 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
     background: var(--grey);
@@ -165,7 +165,7 @@ main table .stickey-col-header {
     bottom: 0;
     min-width: 80px;
     padding: 10px;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
 
 main table .pb-action-btns {
@@ -220,7 +220,6 @@ main table tr td .icon {
 
 .table-footer .pagination li a {
     padding: 10px;
-    height: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;

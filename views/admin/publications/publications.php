@@ -46,7 +46,7 @@
                             <th class="th-header">Fund Type</th>
                             <th class="th-header">Fund Source</th>
                             <th class="th-header">Citations</th>
-                            <th class='stickey-col-header' style="background-color: var(--grey);"></th>
+                            <th class='stickey-col-header' style="background-color: var(--grey);">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,7 +135,7 @@
                     $end_page = min($start_page + $max_pages_to_show - 1, $total_pages); ?>
                     
                         <li>
-                            <a href="?pageno=<?php echo ($start_page); ?>" class="prev-btn" <?php echo ($current_page==1 ? "style='pointer-events: none;'" : ""); ?>><i class='bx bx-chevrons-left icon'></i></a>
+                            <a href="?pageno=<?php echo ($start_page); ?>" class="prev-btn" <?php echo ($current_page==1 ? "style='pointer-events: none; cursor: ' not-allowed;'" : ""); ?>><i class='bx bx-chevrons-left icon'></i></a>
                         </li>
                         <li>
                             <a href="?pageno=<?php echo ($current_page-1); ?>" class="prev-btn" <?php echo ($current_page==1 ? "style='pointer-events: none;'" : ""); ?>><i class='bx bx-chevron-left icon'></i></a>
@@ -146,10 +146,10 @@
                             <?php } ?>
                         </li>
                         <li>
-                            <a href="?pageno=<?php echo ($current_page+1); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none;" : ""); ?>><i class='bx bx-chevron-right icon' ></i></a>
+                            <a href="?pageno=<?php echo ($current_page+1); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none;'" : ""); ?>><i class='bx bx-chevron-right icon' ></i></a>
                         </li>
                         <li>
-                            <a href="?pageno=<?php echo ($end_page); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none;" : ""); ?>><i class='bx bxs-chevrons-right icon' ></i></a>
+                            <a href="?pageno=<?php echo ($end_page); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none;'" : ""); ?>><i class='bx bxs-chevrons-right icon' ></i></a>
                         </li>
             
                     
