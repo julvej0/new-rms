@@ -1,8 +1,7 @@
-<?php include "./header.php" ?>
+
 
 <!-- css -->
-<link rel="stylesheet" href="../../../../css/index.css">
-<link rel="stylesheet" href="./user-navbar.css">
+<link rel="stylesheet" href="../../../includes/public-user/templates/user-navbar.css">
 
 <section>
     <div class="navbar-container">
@@ -25,4 +24,3 @@
 </section>
 
 
-<?php include "./footer.php" ?>
