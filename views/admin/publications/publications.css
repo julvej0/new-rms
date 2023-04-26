@@ -80,7 +80,7 @@ main .header .form-group input:focus {
 
 main .table-container {
     margin-top: 20px;
-    height: 600px;
+    height: 100vh;
     overflow: auto;
     background: var(--light);
     border-radius: 5px;

@@ -79,7 +79,7 @@ main .header .form-group input:focus {
 
 main .table-container {
     margin-top: 20px;
-    height: 600px;
+    height: 100vh;
     overflow: auto;
     background: var(--light);
     border-radius: 5px;
@@ -155,7 +155,7 @@ main table .stickey-col {
     padding: 10px;
     align-items: center;
     min-height: 100px;
-    width: 80px; 
+    width: 100%; 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
     background: var(--grey);
 }
@@ -268,9 +268,13 @@ main .table-footer .download button {
     cursor: pointer;
 }
 
+main .table-footer .download button:hover {
+    opacity: 80%;
+}
+
 main .table-footer .download .dl-link {
     position: absolute;
-    top: calc(80%);
+    top: calc(80% + 30px);
     margin: auto;
     width: 115px;
     background: var(--light);
@@ -285,7 +289,7 @@ main .table-footer .download .dl-link {
 }
 
 main .table-footer .download .dl-link.show {
-    top: 80%;
+    top: calc(80% + 20px);
     opacity: 1;
     pointer-events: visible;
 }
@@ -300,4 +304,13 @@ main .table-footer .download .dl-link a {
 
 main .table-footer .download .dl-link a:hover {
     background: var(--grey);
+}
+
+@media screen and (min-width: 20in) {
+  main .table-footer .download .dl-link {
+    top: calc(85% + 25px);
+  }
+  main .table-footer .download .dl-link.show {
+    top: calc(85%);
+  }
 }
