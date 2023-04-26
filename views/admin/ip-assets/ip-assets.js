@@ -23,3 +23,29 @@ deleteBtn.addEventListener('click', (e) => {
     }
     })
 })
+
+// SHOW DOWNLOAD MENU
+const allMenu = document.querySelectorAll('main .table-footer .download');
+
+allMenu.forEach(item => {
+    const downloadBtn = item.querySelector('.download-btn');
+    const dlLink = item.querySelector('.dl-link');
+
+    downloadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dlLink.classList.toggle('show');
+    })
+})
+
+// HIDE DROPDOWN WHEN CLICKED OUTSIDE
+window.addEventListener('click', (e) => {
+    allMenu.forEach(item => {
+        const downloadBtn = item.querySelector('.download-btn');
+        const dlLink = item.querySelector('.dl-link');
+        if(e.target !== downloadBtn){
+            if(dlLink.classList.contains('show')){
+                dlLink.classList.remove('show');
+            }
+        }
+    })
+})

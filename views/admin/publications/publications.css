@@ -121,9 +121,10 @@ main table tbody td {
     font-size: 11px;
     top: 0;
     max-width: 200px;
-    font-size: 12px;
+    font-size: 13px;
     padding: 10px 10px;
     text-align: center;
+    min-height: 180px;
 }
 
 main section .table-footer {
