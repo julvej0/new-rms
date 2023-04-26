@@ -110,90 +110,94 @@
                                 <div class="form-control">
                                     <label class="pb-label" for="sdg_no">SDG (choose at least 5):</label>
                                     <div class="checkbox-container">
+                                        <?php
+                                        $sdg_array = explode(",", $row['sdg_no']);
+                                        ?>
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="1" id="sdg1" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="1" id="sdg1" onclick="limitSelection()" <?php if (in_array('1', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg1">SDG 1</label>
                                         </div>
                                         
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="2" id="sdg2" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="2" id="sdg2" onclick="limitSelection()" <?php if (in_array('2', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg2">SDG 2</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="3" id="sdg3" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="3" id="sdg3" onclick="limitSelection()" <?php if (in_array('3', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg3">SDG 3</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="4" id="sdg4" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="4" id="sdg4" onclick="limitSelection()" <?php if (in_array('4', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg4">SDG 4</label>
                                         </div>
-                                        
+
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="5" id="sdg5" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="5" id="sdg5" onclick="limitSelection()" <?php if (in_array('5', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg5">SDG 5</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="6" id="sdg6" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="6" id="sdg6" onclick="limitSelection()" <?php if (in_array('6', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg6">SDG 6</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="7" id="sdg7" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="7" id="sdg7" onclick="limitSelection()" <?php if (in_array('7', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg7">SDG 7</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="8" id="sdg8" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="8" id="sdg8" onclick="limitSelection()" <?php if (in_array('8', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg8">SDG 8</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="9" id="sdg9" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="9" id="sdg9" onclick="limitSelection()" <?php if (in_array('9', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg9">SDG 9</label>
                                         </div>
-                                        
+
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="10" id="sdg10" onclick="limitSelection()">
+                                            <input type="checkbox" name="sdg_no[]" value="10" id="sdg10" onclick="limitSelection()" <?php if (in_array('10', $sdg_array)) echo 'checked="checked"'; ?>>
                                             <label class="sdg-checkbox" for="sdg10">SDG 10</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="11" id="sdg11" onclick="limitSelection()">
-                                            <label class="sdg-checkbox" for="sdg11">SDG 11</label>
+                                        <input type="checkbox" name="sdg_no[]" value="11" id="sdg11" onclick="limitSelection()" <?= in_array('11', $sdg_array) ? 'checked' : ''; ?>>
+                                        <label class="sdg-checkbox" for="sdg11">SDG 11</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="12" id="sdg12" onclick="limitSelection()">
-                                            <label class="sdg-checkbox" for="sdg12">SDG 12</label>
+                                        <input type="checkbox" name="sdg_no[]" value="12" id="sdg12" onclick="limitSelection()" <?= in_array('12', $sdg_array) ? 'checked' : ''; ?>>
+                                        <label class="sdg-checkbox" for="sdg12">SDG 12</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="13" id="sdg13" onclick="limitSelection()">
-                                            <label class="sdg-checkbox" for="sdg13">SDG 13</label>
+                                        <input type="checkbox" name="sdg_no[]" value="13" id="sdg13" onclick="limitSelection()" <?= in_array('13', $sdg_array) ? 'checked' : ''; ?>>
+                                        <label class="sdg-checkbox" for="sdg13">SDG 13</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="14" id="sdg14" onclick="limitSelection()">
-                                            <label class="sdg-checkbox" for="sdg14">SDG 14</label>
+                                        <input type="checkbox" name="sdg_no[]" value="14" id="sdg14" onclick="limitSelection()" <?= in_array('14', $sdg_array) ? 'checked' : ''; ?>>
+                                        <label class="sdg-checkbox" for="sdg14">SDG 14</label>
                                         </div>
 
                                         <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="15" id="sdg15" onclick="limitSelection()">
-                                            <label class="sdg-checkbox" for="sdg15">SDG 15</label>
+                                        <input type="checkbox" name="sdg_no[]" value="15" id="sdg15" onclick="limitSelection()" <?= in_array('15', $sdg_array) ? 'checked' : ''; ?>>
+                                        <label class="sdg-checkbox" for="sdg15">SDG 15</label>
+                                        </div>
+
+                                        <div class="checkbox-col">
+                                        <input type="checkbox" name="sdg_no[]" value="16" id="sdg16" onclick="limitSelection()" <?= in_array('16', $sdg_array) ? 'checked' : ''; ?>>
+                                        <label class="sdg-checkbox" for="sdg16">SDG 16</label>
+                                        </div>
+
+                                        <div class="checkbox-col">
+                                        <input type="checkbox" name="sdg_no[]" value="17" id="sdg17" onclick="limitSelection()" <?= in_array('17', $sdg_array) ? 'checked' : ''; ?>>
+                                        <label class="sdg-checkbox" for="sdg17">SDG 17</label>
                                         </div>
                                         
-                                        <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="16" id="sdg16" onclick="limitSelection()">
-                                            <label class="sdg-checkbox" for="sdg16">SDG 16</label>
-                                        </div>
-                                        
-                                        <div class="checkbox-col">
-                                            <input type="checkbox" name="sdg_no[]" value="17" id="sdg17" onclick="limitSelection()">
-                                            <label class="sdg-checkbox" for="sdg17">SDG 17</label>
-                                        </div>
                                         <div class="error"></div>
                                     </div>
                                 </div>
@@ -242,33 +246,39 @@
                                 </tr>
                             </thead>
                             <tbody id="author-tbl-body">
-                                <tr>
-                                    <td class="ipa-author-field">
-                                        <?php
-                                        $query = "SELECT author_id, author_name FROM table_authors";
-                                        $params = array();
-                                        $result = pg_query_params($conn, $query, $params);
-                                                                            
-                                        echo '<input list="authors" name="author_name[]"
-                                        style="
-                                        width: 100%;
-                                        height: 50px;
-                                        padding: 10px 36px 10px 16px;
-                                        border-radius: 5px;
-                                        border: 1px solid var(--dark-grey);"
-                                        onchange="showAuthorId(this)">';
-                                        echo '<datalist id="authors">';
-                                        while ($author_row = pg_fetch_assoc($result)) {
-                                            echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
-                                        }
-                                        echo '</datalist>';
-                                        ?>
-                                        <input type="hidden" name="author_id[]" class="author-id-input">
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <button type="button" class="add-row-btn" style="height: 50px;">+</button>
-                                    </td>
-                                </tr>
+                        <tr>
+                            <td class="ipa-author-field">
+                                <?php
+                                $query = "SELECT author_id, author_name FROM table_authors";
+                                $params = array();
+                                $result = pg_query_params($conn, $query, $params);
+                                
+                                $author_list = $row["authors"];
+                                $authors = explode(",", $author_list);
+
+                                foreach ($authors as $author) {
+                                    echo '<input list="authors" name="author_name[]"
+                                    style="
+                                    width: 100%;
+                                    height: 50px;
+                                    padding: 10px 36px 10px 16px;
+                                    border-radius: 5px;
+                                    border: 1px solid var(--dark-grey);"
+                                    onchange="showAuthorId(this)"
+                                    value="' . $author . '">';
+                                }
+                                echo '<datalist id="authors">';
+                                while ($author_row = pg_fetch_assoc($result)) {
+                                    echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
+                                }
+                                echo '</datalist>';
+                                ?>
+                                <input type="hidden" name="author_id[]" class="author-id-input">
+                            </td>
+                            <td style="text-align: center;">
+                                <button type="button" class="add-row-btn" style="height: 50px;">+</button>
+                            </td>
+                        </tr>
                             </tbody>
                             </table>
                             </div>
