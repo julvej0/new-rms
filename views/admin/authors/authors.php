@@ -19,7 +19,7 @@
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
-                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
+                <a href="./new-author.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
             </div>
         </div>
         <section>
@@ -32,7 +32,7 @@
                             <th>Type</th>
                             <th>Gender</th>
                             <th>Affiliations</th>
-                            <th>Actions</th>
+                            <th >Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,8 +48,13 @@
                 ?>
         </section>
     </main>
-
 </section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+
+<script src="./authors.js"></script>
 </body>
 <?php
     include '../../../includes/admin/templates/footer.php';

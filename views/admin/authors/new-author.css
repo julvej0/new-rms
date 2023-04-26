@@ -59,7 +59,7 @@ main .form-container .form-control {
     grid-gap: 7px;
 }
 
-main .form-container .form-control #pb-title {
+main .form-container .form-control #a-title {
     height: 50px;
     padding: 10px 36px 10px 16px;
     border-radius: 5px;
@@ -68,7 +68,7 @@ main .form-container .form-control #pb-title {
     transition: all 0.3s ease;
 }
 
-main .form-container .form-control #pb-title:focus {
+main .form-container .form-control #a-title:focus {
     box-shadow: 0 0 0 4px var(--light-blue);
 }
 
@@ -216,12 +216,12 @@ main .author-table-container table tr td {
     margin-bottom: 10px;
 }
 
-main table tr td .author-name {
+main table tr td .aff-info{
     flex-grow: 1;
     flex-basis: 200px;
 }
 
-main  table tr td .author-details {
+main  table tr td .aff-categ {
     flex: 2;
     width: 180px;
 }
@@ -261,12 +261,12 @@ main table .form-control select:focus {
     box-shadow: 0 0 0 4px var(--light-blue);
 }
 
-main table tr td button {
+main table tr td #a-add-btn {
     height: 50px;
+    width: 3.5rem;
     border-radius: 5px;
     border: none;
-    margin-top: 30px;
-    padding: 0 20px;
+    margin-top: 10px;
     background: var(--accent-blue);
     color: var(--light);
     text-transform: uppercase;
@@ -275,9 +275,31 @@ main table tr td button {
     cursor: pointer;
     letter-spacing: 1px;
     font-weight: 600;
+    
 }
 
-main table tr td button:hover {
+main table tr td #a-add-btn:hover {
+    opacity: 80%;
+}
+
+main table tr td .a-remove-btn {
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 30px;
+    padding: 0 20px;
+    background: var(--primary);
+    color: var(--light);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: 600;
+
+    
+}
+
+main table tr td .a-remove-btn:hover {
     opacity: 80%;
 }
 
@@ -381,3 +403,41 @@ main .container .form-footer .submit-btn {
 main .container .form-footer .cancel-btn {
     background: red;
 }
+
+
+.affiliation-main-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  
+.affiliation-sub-menu {
+position: absolute;
+left: 3.5rem;
+top: 0;
+width: 10rem;
+display: none;
+background-color: white;
+border: 1px solid black;
+margin-top: 30px;
+}
+
+.affiliation-sub-button {
+display: block;
+width: 100%;
+border: none;
+background-color: transparent;
+cursor: pointer;
+font-size: 1rem;
+
+}
+
+.affiliation-sub-button:hover {
+    background-color: lightblue;
+}
+
+.affiliation-main-menu:hover .affiliation-sub-menu {
+display: block;
+}
+
+  

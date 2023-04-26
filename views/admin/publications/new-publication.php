@@ -341,13 +341,17 @@
                     <hr>
                     <div class="form-footer">
                         <input type="submit" class="submit-btn" name="submitPB" value="Submit">
-                        <input type="button" class="cancel-btn" value="Cancel" onclick="history.back(-1)">
+                        <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>
             </div>
         </section>
     </main>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <script>
             //Author ID table workaround.
             function showAuthorId(input) {
