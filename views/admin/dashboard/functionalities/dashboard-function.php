@@ -72,7 +72,7 @@ function getPublicationsContributors($conn) {
                     }
                 }
             }
-            // $total_count = $count1 + $count2;
+    
             $total_count = $count1;
             if ($total_count > 0) {
                 $contributors[] = array(
@@ -136,7 +136,7 @@ function getIpAssetsContributors($conn) {
                 }
             }
 
-            // $total_count = $count1 + $count2;
+   
             $total_count = $count2;
             if ($total_count > 0) {
                 $contributors[] = array(

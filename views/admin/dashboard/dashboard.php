@@ -1,3 +1,4 @@
+<title>RMS | DASHBOARD</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     require_once "../../../db/db.php";
@@ -351,7 +352,7 @@
                 }
             }]
         };
-        // console.log(pub_data);
+
         var pub_chart = new ApexCharts(document.querySelector("#pb-bar-chart"), pub_options);
         pub_chart.render();
     </script>

@@ -1,17 +1,4 @@
-:root {
-    --sidenav-size: 270px;
-    --grey: #f1f0f6;
-    --dark-grey: #8D8D8D;
-    --light: #fff;
-    --dark: #000;
-    --primary: #EF1F3B;
-    --accent: #FA9D25;
-    --blue: blue;
-    --accent-blue: #22ADF1;
-    --light-blue: #D0E4FF;
-    --green: #06FF00;
-    --text-color: #555;
-}
+
 
 main section .container {
     min-height: 1000px;
@@ -397,11 +384,11 @@ main .container .form-footer .cancel-btn:hover {
 }
 
 main .container .form-footer .submit-btn {
-    background: var(--accent-blue);
+    background: var(--blue);
 }
 
 main .container .form-footer .cancel-btn {
-    background: red;
+    background: var(--danger);
 }
 
 
@@ -417,8 +404,8 @@ left: 3.5rem;
 top: 0;
 width: 10rem;
 display: none;
-background-color: white;
-border: 1px solid black;
+background-color: var(--light);
+border: 1px solid var(--dark);
 margin-top: 30px;
 }
 
@@ -433,11 +420,11 @@ font-size: 1rem;
 }
 
 .affiliation-sub-button:hover {
-    background-color: lightblue;
+    opacity: 80%;
 }
 
 .affiliation-main-menu:hover .affiliation-sub-menu {
-display: block;
+    display: block;
 }
 
   

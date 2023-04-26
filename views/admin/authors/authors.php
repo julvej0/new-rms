@@ -1,3 +1,4 @@
+<title>RMS | AUTHORS</title>
 <?php 
     include_once '../../../db/db.php';
 ?>
@@ -32,7 +33,7 @@
                             <th>Type</th>
                             <th>Gender</th>
                             <th>Affiliations</th>
-                            <th>Actions</th>
+                            <th class="stickey-col-header" style="background-color: var(--grey); width: 10px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,8 +49,13 @@
                 ?>
         </section>
     </main>
-
 </section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+
+<script src="./authors.js"></script>
 </body>
 <?php
     include '../../../includes/admin/templates/footer.php';
