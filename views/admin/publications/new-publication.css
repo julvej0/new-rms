@@ -336,6 +336,7 @@ main .funding-form-container2 input[type="text"] {
     border: 1px solid var(--dark-grey);
     transition: all 0.3s ease;
     position: relative;
+    cursor: text;
 }
 
 main .funding-form-container2 input[type="text"]:focus {
