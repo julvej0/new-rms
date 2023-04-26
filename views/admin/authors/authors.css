@@ -78,7 +78,7 @@ main .header .form-group input:focus {
 
 main .table-container {
     margin-top: 20px;
-    height: 600px;
+    height: 100vh;
     overflow: auto;
     background: var(--light);
     border-radius: 5px;
@@ -152,7 +152,7 @@ main table .stickey-col {
     padding: 10px;
     align-items: center;
     height: 100%;
-    width: 80px; 
+    width: 100%; 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
     background: var(--grey);
 }
@@ -162,7 +162,6 @@ main table .stickey-col-header {
     left: 0;
     right: 0;
     bottom: 0;
-    min-width: 80px;
     padding: 10px;
     box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }

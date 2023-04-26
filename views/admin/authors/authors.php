@@ -33,7 +33,7 @@
                             <th>Type</th>
                             <th>Gender</th>
                             <th>Affiliations</th>
-                            <th class="stickey-col-header" style="background-color: var(--grey);">Actions</th>
+                            <th class="stickey-col-header" style="background-color: var(--grey); width: 10px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

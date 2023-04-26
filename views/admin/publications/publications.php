@@ -34,14 +34,14 @@
                         <tr>
                             <th style="min-width: 350px;">Title</th>
                             <th>Type</th>
-                            <th>Publisher</th>
+                            <th style="min-width: 190px;">Publisher</th>
                             <th>Research Area</th>
                             <th>College</th>
                             <th>Quartile</th>
                             <th>Campus</th>
                             <th>SDG's</th>
                             <th>Date Published</th>
-                            <th>Authors</th>
+                            <th style="min-width: 190px;">Authors</th>
                             <th>Funding</th>
                             <th>Fund Type</th>
                             <th>Fund Source</th>
