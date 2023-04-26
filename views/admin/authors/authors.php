@@ -1,3 +1,4 @@
+<title>RMS | AUTHORS</title>
 <?php 
     include_once '../../../db/db.php';
 ?>

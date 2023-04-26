@@ -1,3 +1,4 @@
+<title>RMS | DASHBOARD</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     require_once "../../../db/db.php";
