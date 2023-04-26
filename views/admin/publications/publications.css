@@ -196,7 +196,7 @@ main table .edit-btn, .delete-btn, .gdrive-btn{
 }
 
 .gdrive-btn{
-    background-color: var(--accent);
+    background-color: var(--green);
 }
 .edit-btn {
     background-color: var(--blue);

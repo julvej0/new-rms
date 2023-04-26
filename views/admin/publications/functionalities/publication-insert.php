@@ -2,6 +2,12 @@
 include_once '../../../../db/db.php';
 if (isset($_POST['submitPB'])) {
     $date_published = $_POST["date_published"];
+    $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;
+    if (!$date_published) {
+        $date_published = null;
+    }else{
+        $date_published = $_POST["date_published"];
+    }
     $quartile_sem = $_POST["quartile"];
     $quartile_year = $_POST["quartile_year"];
     $authors = $_POST["author_id"];
@@ -12,12 +18,19 @@ if (isset($_POST['submitPB'])) {
     $type = $_POST["type_of_publication"];
     $url = $_POST["google_scholar_details"];
     $sdg = $_POST["sdg_no"];
-    $if_funded = $_POST["funding_type"];
+    $if_funded = isset($_POST['funding_type']) ? $_POST['funding_type'] : null;
+    if (!$if_funded) {
+        $if_funded = "";
+    }else{
+        $if_funded = $_POST["funding_type"];
+    }
+    
     $funding_nature = $_POST["nature_of_funding"];
     $publisher = $_POST["publisher"]; 
 
     $authors_string = implode(", ", $authors); // join the array values with a comma delimiter
     $sdg_string = implode(", ", $sdg);
+
     $quartile_sem = $_POST["quartile"];
     $quartile_year = $_POST["quartile_year"];
     
@@ -30,7 +43,12 @@ if (isset($_POST['submitPB'])) {
     if ($if_funded == "internal") {
         $if_external = "BatState-U Research Fund";
       } else {
-        $if_external = $_POST["funding_source"];
+        $if_external = isset($_POST['funding_source']) ? $_POST['funding_source'] : null;
+        if (!$if_external) {
+            $if_external = "";
+        }else{
+            $if_external = $_POST["funding_source"];
+        }
       }
     
 
