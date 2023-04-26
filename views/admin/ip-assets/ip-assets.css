@@ -105,13 +105,17 @@ main table thead tr {
     background: var(--light);
 }
 
-main table thead th {
+main table thead tr th {
+    position: sticky;
     top: 0;
     min-width: 150px;
     max-width: 200px;
     font-size: 14px;
     padding: 20px;
-    text-align: center;
+    text-align: center;    
+    background: var(--light);
+    z-index: 100;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
 
 main table tbody td {
@@ -147,11 +151,12 @@ main table .stickey-col {
     bottom: 0;
     display: flex;
     justify-content: center;
+    padding: 10px;
     align-items: center;
     min-height: 100px;
-    width: 100%;
+    width: 80px; 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
-    background-color: #fff;
+    background: var(--grey);
 }
 
 main table .stickey-col-header {
@@ -160,9 +165,9 @@ main table .stickey-col-header {
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    min-width: 80px;
+    padding: 10px;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
 
 main table .pb-action-btns {
@@ -214,7 +219,6 @@ main table .edit-btn,
 
 .table-footer .pagination li a {
     padding: 10px;
-    height: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;

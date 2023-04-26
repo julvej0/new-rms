@@ -1,3 +1,4 @@
+<title>RMS | IP ASSETS</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
 ?>
@@ -35,7 +36,7 @@
                             <th>College</th>
                             <th>Programs</th>
                             <th>Authors</th>
-                            <th class='stickey-col-header' style="background-color: #fff;">Actions</th>
+                            <th class='stickey-col-header'  style="background-color: var(--grey);">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

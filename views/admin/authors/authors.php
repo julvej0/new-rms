@@ -1,3 +1,4 @@
+<title>RMS | AUTHORS</title>
 <?php 
     include_once '../../../db/db.php';
 ?>
@@ -32,7 +33,7 @@
                             <th>Type</th>
                             <th>Gender</th>
                             <th>Affiliations</th>
-                            <th >Actions</th>
+                            <th class="stickey-col-header" style="background-color: var(--grey);">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
