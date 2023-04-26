@@ -44,7 +44,8 @@
                             <th class="th-header">Funding</th>
                             <th class="th-header">Fund Type</th>
                             <th class="th-header">Fund Source</th>
-                            <th class='stickey-col-header' style="background-color: #fff;">Actions</th>
+                            <th class="th-header">Citations</th>
+                            <th class='stickey-col-header' style="background-color: var(--grey);"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,24 +78,18 @@
                             <td class="publication-col col-fund-agency"><?=$row['funding_source'];?></td>
                             <td class="publication-col col-citations"><?=$row['number_of_citation'];?></td>
                             <td class='pb-action-btns stickey-col'>
-
                             <!-- Open certificate in a new tab-->
-                            <div>
-                                <a href="<?=$row['google_scholar_details'];?>" target="_blank">
-                                    <div class="gdrive-btn">
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </div>
+                                <a href="<?=$row['google_scholar_details'];?>" target="_blank" class="gdrive-btn">
+                                        <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                                 </a>
                                 <form action="pb_edit_page.php" method="POST">
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
-                                    <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon"></i></button>
                                 </form>
                                 <form action="include/publication_delete.php" method="POST">
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
-                                    <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
-                            </div>
-                            
+                                    <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can icon"></i></button>
+                                </form>                            
                         </td>
                     </tr>
                     <?php
@@ -138,16 +133,23 @@
                     $start_page = max(1, $current_page - (int)($max_pages_to_show / 2));
                     $end_page = min($start_page + $max_pages_to_show - 1, $total_pages); ?>
                     
-                    
-                        <a href="?pageno=<?php echo ($start_page); ?>" class="prev-btn" <?php echo ($current_page==1 ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>><i class="fa fa-angle-double-left"></i> FIRST</a>
-
-                        <a href="?pageno=<?php echo ($current_page-1); ?>" class="prev-btn" <?php echo ($current_page==1 ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>><i class="fa fa-angle-left"></i> Previous</a>
-                        <?php if ($total_pages > 1) { ?>
-                            <div class="page-num"><span class="current-page"><?php echo $current_page; ?></span></div>
-                        <?php } ?>
-                        <a href="?pageno=<?php echo ($current_page+1); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>>Next <i class="fa fa-angle-right"></i></a>
-
-                        <a href="?pageno=<?php echo ($end_page); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none; background-color: gray;'" : "style='background-color: #EF1F3B;'"); ?>>LAST <i class="fa fa-angle-double-right"></i></a>
+                        <li>
+                            <a href="?pageno=<?php echo ($start_page); ?>" class="prev-btn" <?php echo ($current_page==1 ? "style='pointer-events: none;'" : ""); ?>><i class='bx bx-chevrons-left icon'></i></a>
+                        </li>
+                        <li>
+                            <a href="?pageno=<?php echo ($current_page-1); ?>" class="prev-btn" <?php echo ($current_page==1 ? "style='pointer-events: none;'" : ""); ?>><i class='bx bx-chevron-left icon'></i></a>
+                        </li>
+                        <li>
+                            <?php if ($total_pages > 1) { ?>
+                                <div class="page-num"><span class="current-page"><?php echo $current_page; ?></span></div>
+                            <?php } ?>
+                        </li>
+                        <li>
+                            <a href="?pageno=<?php echo ($current_page+1); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none;" : ""); ?>><i class='bx bx-chevron-right icon' ></i></a>
+                        </li>
+                        <li>
+                            <a href="?pageno=<?php echo ($end_page); ?>" class="next-btn" <?php echo ($current_page==$total_pages ? "style='pointer-events: none;" : ""); ?>><i class='bx bxs-chevrons-right icon' ></i></a>
+                        </li>
             
                     
                 <?php } ?>

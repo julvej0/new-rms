@@ -12,6 +12,7 @@
     --text-color: #555;
     --danger: #dc3545;
     --green:green;
+    --accent: #FBBC05;
 }
 
 * {
@@ -38,7 +39,7 @@ main .header .title {
 
 ::-webkit-scrollbar {
   width: 10px;
-  height: 10px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
