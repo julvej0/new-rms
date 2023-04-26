@@ -1,14 +1,3 @@
-:root {
-    --sidenav-size: 270px;
-    --grey: #f1f0f6;
-    --dark-grey: #8D8D8D;
-    --light: #fff;
-    --dark: #000;
-    --primary: #EF1F3B;
-    --accent: #FA9D25;
-    --blue: #22ADF1;
-    --light-blue: #D0E4FF;
-}
 
 main .header {
     display: flex;
@@ -16,28 +5,80 @@ main .header {
     align-items: center;
 }
 
-main .header .addBtn {
+main .header .left .addBtn {
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-    color: black;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
     outline: none;
     border: none;
-    background: var(--primary);
+    background: green;
     color: var(--light);
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    grid-gap: 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+main .header .addBtn .icon {
+    font-size: 20px;
+    transition: all 0.5s ease;
+}
+
 main .header .addBtn:hover {
-    opacity: 80%;
+    opacity: 50%;
+}
+
+main .header .left {
+    display: flex;
+    width: 550px;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 5px;
+}
+
+main .header .left form {
+    max-width: 400px;
+    width: 100%;
+}
+
+main .header .left .form-group {
+    position: relative;
+}
+
+main .header .left .form-group input {
+    width: 100%;
+    height: 100%;
+    background: var(--light);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 10px 36px 10px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+main .left .form-group .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--dark-grey);
+}
+
+main .header .form-group input:focus {
+    box-shadow: 0 0 0 4px var(--light-blue);
 }
 
 main .table-container {
     margin-top: 20px;
-    height: 600px;
+    height: 100vh;
     overflow: auto;
     background: var(--light);
     border-radius: 5px;
@@ -61,23 +102,28 @@ main table thead tr {
     background: var(--light);
 }
 
-main table thead th {
+main table thead tr th {
+    position: sticky;
     top: 0;
     min-width: 150px;
     max-width: 200px;
     font-size: 14px;
     padding: 20px;
     text-align: center;    
+    background: var(--light);
+    z-index: 100;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
 
 main table tbody td {
     font-size: 11px;
     top: 0;
+    width: 19rem;
     font-size: 12px;
-    padding: 20px;
+    padding: 10px 10px;
     text-align: center;
+    height: 80px;
 }
-
 
 main section .table-footer {
     height: 80px;
@@ -86,7 +132,7 @@ main section .table-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 0 15px 20px;
+    padding: 17px 0 17px 20px;
     border-top: 1px solid var(--grey);
 }
 
@@ -95,15 +141,38 @@ main section .table-footer p {
     font-weight: 500;
 }
 
-
-.a-action-btns {
+main table .stickey-col {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
-    /* flex-direction: column; */
+    justify-content: center;
+    padding: 10px;
+    align-items: center;
+    height: 100%;
+    width: 100%; 
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
+    background: var(--grey);
+}
+main table .stickey-col-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
+}
+
+main table .a-action-btns {
+    display: flex;
+    flex-direction: column;
     gap: 5px;
     justify-content: center;
     align-items: center;
 }
-
 
 .edit-btn, .delete-btn {
     border: none;
@@ -118,6 +187,8 @@ main section .table-footer p {
     letter-spacing: 0.5px;
     font-weight: 600;
     text-align: center;
+    gap: 5px;
+    margin: 0 2px 0 2px;
 }
 
 .edit-btn:hover, .delete-btn:hover {
@@ -125,17 +196,16 @@ main section .table-footer p {
 }
 
 .edit-btn {
-    background-color: #22ADF1;
+    background-color: var(--blue);
 }
 
 .delete-btn{
-    background-color: var(--primary);
+    background-color: var(--danger);
 }
-
 
 .table-footer .pagination {
     height: 100%;
-    width: 380px;
+    width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,13 +216,12 @@ main section .table-footer p {
 .table-footer .pagination li a {
     border: 2px solid var(--dark);
     padding: 10px;
-    height: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;
     border-radius: 2px;
     border: 2px solid var(--grey);
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
     font-size: 10px;
     color: var(--dark);
     flex-wrap: wrap;
@@ -169,7 +238,8 @@ main section .table-footer p {
     padding: 8px 30px;
     border: 2px solid var(--grey);
     border-radius: 2px;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    cursor: text;
 }
 
 .table-footer .pagination li a .icon {

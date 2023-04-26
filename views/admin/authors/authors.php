@@ -1,3 +1,4 @@
+<title>RMS | AUTHORS</title>
 <?php 
     include_once '../../../db/db.php';
 ?>
@@ -12,7 +13,15 @@
     <main>
         <div class="header">
             <h1 class="title">Authors</h1>
-            <button class="addBtn">New Author</button>
+            <div class="left">
+                <form action="#">
+                    <div class="form-group">
+                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
+                        <i class='bx bx-search icon' ></i>
+                    </div>
+                </form>
+                <a href="./new-author.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
+            </div>
         </div>
         <section>
             <div class="table-container">
@@ -24,7 +33,7 @@
                             <th>Type</th>
                             <th>Gender</th>
                             <th>Affiliations</th>
-                            <th>Actions</th>
+                            <th class="stickey-col-header" style="background-color: var(--grey); width: 10px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,8 +49,13 @@
                 ?>
         </section>
     </main>
-
 </section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+
+<script src="./authors.js"></script>
 </body>
 <?php
     include '../../../includes/admin/templates/footer.php';

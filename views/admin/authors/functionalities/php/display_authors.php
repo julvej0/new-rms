@@ -1,5 +1,5 @@
 <?php
-    $items_per_page = 8;
+    $items_per_page = 10;
     $search_query = isset($_GET['search']) ? $_GET['search'] : '';
     $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $offset = ($page_number - 1) * $items_per_page;
@@ -35,21 +35,48 @@
             ?>
         </td>
         <td><?php
-                if (is_null($row['affiliation'])) {
-                    echo 'Not yet Set';
-                } else {
-                    $affiliation = explode(' || ', $row['affiliation']);
-                    $affiliation2 = implode('<br>', $affiliation);
-                    $affiliation3 = explode('_', $affiliation2);
-                    $affiliation4 = implode(',<br> ', $affiliation3);
-                    
-                    
-                    echo $affiliation4;
+                if (is_null($row['affiliation'])){
+                    echo "Not Yet Set";
                 }
+                else{
+                    $affiliation = explode(' || ', $row['affiliation']);
+                    $internal_affiliation = "";
+                    $external_affiliation = "";
+                    if (count($affiliation)>0){
+                        
+                        foreach (explode('_', $affiliation[0]) as $in_aff){
+                            if ($in_aff != ""){
+                                $internal_affiliation .= $in_aff . ", BatStateU <br>";
+
+                            }
+                            else{
+                                $internal_affiliation = "";
+                            }
+                            
+                        }
+                    }
+
+                    if (count($affiliation)>1){
+                        foreach (explode('_', $affiliation[1]) as $ex_aff){
+                            $external_affiliation = $ex_aff . "<br>";
+                        }
+                    }
+
+                    if ($internal_affiliation == "" && $external_affiliation == "" ){
+                        echo "Not Yet Set";
+                    }
+                    else{
+                        $all_affiliation =array($internal_affiliation, $external_affiliation);
+                        echo implode('', $all_affiliation);
+                    }
+                
+                    
+            }
+                
             ?>
         </td>
-        <td id="white-side" class="a-action-btns">
-            <button class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </button>
+        <td id="white-side" class="a-action-btns stickey-col">
+            <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </a>
             
             <button type="button" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="window.location.href='<?php echo $deleteURL.'&id='.$row['author_id'];?>'">Delete</button>
         </td>

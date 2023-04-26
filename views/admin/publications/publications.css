@@ -1,14 +1,4 @@
-:root {
-    --sidenav-size: 270px;
-    --grey: #f1f0f6;
-    --dark-grey: #B7B7B7;
-    --light: #fff;
-    --dark: #000;
-    --primary: #EF1F3B;
-    --accent: #FA9D25;
-    --blue: #22ADF1;
-    --light-blue: #D0E4FF;
-}
+
 
 main .header {
     display: flex;
@@ -90,7 +80,7 @@ main .header .form-group input:focus {
 
 main .table-container {
     margin-top: 20px;
-    height: 600px;
+    height: 100vh;
     overflow: auto;
     background: var(--light);
     border-radius: 5px;
@@ -114,22 +104,27 @@ main table thead tr {
     background: var(--light);
 }
 
-main table thead th {
+main table thead tr th {
+    position: sticky;
     top: 0;
     min-width: 150px;
     max-width: 200px;
     font-size: 14px;
     padding: 20px;
     text-align: center;    
+    background: var(--light);
+    z-index: 100;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
 
 main table tbody td {
     font-size: 11px;
     top: 0;
     max-width: 200px;
-    font-size: 12px;
+    font-size: 13px;
     padding: 10px 10px;
     text-align: center;
+    min-height: 180px;
 }
 
 main section .table-footer {
@@ -156,35 +151,35 @@ main table .stickey-col {
     bottom: 0;
     display: flex;
     justify-content: center;
+    padding: 10px;
     align-items: center;
-    min-height: 100px;
-    width: 100%;    
+    height: 100%;
+    width: 80px; 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
-    background-color: #fff;
+    background: var(--grey);
 }
 main table .stickey-col-header {
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0   ;
-    width: 100%;    
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    bottom: 0;
+    min-width: 80px;
+    padding: 10px;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
 
 main table .pb-action-btns {
     display: flex;
-    /* flex-direction: column; */
-    gap: 5px;
+    gap: 7px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-main table .edit-btn, .delete-btn {
+main table .edit-btn, .delete-btn, .gdrive-btn{
     border: none;
-    color: #ffffff;
-    width: 100%;
+    color: var(--light);
     height: 30px;
     font-size: 10px;
     border-radius: 3px;
@@ -196,16 +191,22 @@ main table .edit-btn, .delete-btn {
     text-align: center;
 }
 
-.edit-btn:hover, .delete-btn:hover {
+.edit-btn:hover, .delete-btn:hover, .gdrive-btn:hover {
     opacity: 80%;
 }
 
+.gdrive-btn{
+    background-color: var(--green);
+}
 .edit-btn {
-    background-color: #22ADF1;
+    background-color: var(--blue);
 }
 
 .delete-btn{
-    background-color: var(--primary);
+    background-color: var(--danger);
+}
+main table tr td .icon {
+    font-size: 10px;
 }
 
 .table-footer .pagination {
@@ -220,7 +221,6 @@ main table .edit-btn, .delete-btn {
 
 .table-footer .pagination li a {
     padding: 10px;
-    height: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;
