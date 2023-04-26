@@ -332,7 +332,7 @@
                             <div class="funding-form-container2">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
-                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency">
+                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency" required>
                                 </div>
                             </div>
                         </div>

@@ -94,52 +94,56 @@ function limitSelection() {
 
   // DISABLE INPUT
 
-  const fundedRadio = document.getElementById("funded");
-  const nonFundedRadio = document.getElementById("non-funded");
-  const internalFundingRadio = document.getElementById("internal");
-  const externalFundingRadio = document.getElementById("external");
+  //FUNDING SCRIPTS
+const fundedRadio = document.getElementById("funded");
+const nonFundedRadio = document.getElementById("non-funded");
+const internalFundingRadio = document.getElementById("internal");
+const externalFundingRadio = document.getElementById("external");
 
-  const typeOfFundingLabel = document.getElementById("fund-type-label");
-  const fundingAgencyField = document.getElementById("pb-funding-agency");
+const typeOfFundingLabel = document.getElementById("fund-type-label");
+const fundingAgencyField = document.getElementById("pb-funding-agency");
 
-  function disableFields() {
-    typeOfFundingLabel.style.color = "gray";
-    disableFundingAgency();
-    
-    if (fundingAgencyField.value === '') {
-      fundingAgencyField.disabled = true;
-      internalFundingRadio.disabled = true;
-      externalFundingRadio.disabled = true;
-      fundingAgencyField.value = "";
-    } else {
-      fundingAgencyField.disabled = false;
-      internalFundingRadio.disabled = false;
-      externalFundingRadio.disabled = false;
-    }
-  }
+function disableFields() {
+  typeOfFundingLabel.style.color = "gray";
 
-  function enableTypeOfFunding() {
-    typeOfFundingLabel.style.color = "black";
+  // internalFundingRadio.disabled = true;
+  // externalFundingRadio.disabled = true;
+  // fundingAgencyField.disabled = true;
+  // fundingAgencyField.value = "";
+  if (fundingAgencyField.value !== '') {
+    fundingAgencyField.disabled = false;
     internalFundingRadio.disabled = false;
     externalFundingRadio.disabled = false;
+  } else {
     fundingAgencyField.disabled = true;
-    fundingAgencyField.value = "";  // clear the field
-  }
-
-
-  function disableFundingAgency() {
-    fundingAgencyField.disabled = true;
+    internalFundingRadio.disabled = true;
+    externalFundingRadio.disabled = true;
     fundingAgencyField.value = "";
   }
+}
 
-  function enableFundingAgency() {
-    fundingAgencyField.disabled = false;
-    fundingAgencyField.value = "";
-  }
+function enableTypeOfFunding() {
+  typeOfFundingLabel.style.color = "black";
+  internalFundingRadio.disabled = false;
+  externalFundingRadio.disabled = false;
+  // fundingAgencyField.disabled = true;
+  fundingAgencyField.value = "";  // clear the field
+}
 
-  nonFundedRadio.addEventListener("click", disableFields);
-  fundedRadio.addEventListener("click", enableTypeOfFunding);
-  internalFundingRadio.addEventListener("click", disableFundingAgency);
-  externalFundingRadio.addEventListener("click", enableFundingAgency);
 
-  disableFields();
+function disableFundingAgency() {
+  fundingAgencyField.disabled = true;
+  fundingAgencyField.value = "";
+}
+
+function enableFundingAgency() {
+  fundingAgencyField.disabled = false;
+  fundingAgencyField.value = "";
+}
+
+nonFundedRadio.addEventListener("click", disableFields);
+fundedRadio.addEventListener("click", enableTypeOfFunding);
+internalFundingRadio.addEventListener("click", disableFundingAgency);
+externalFundingRadio.addEventListener("click", enableFundingAgency);
+
+disableFields();  // disable the fields on page load
