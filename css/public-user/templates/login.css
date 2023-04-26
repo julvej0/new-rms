@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: Poppins;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#whole_page {
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#login_container {
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 450px;
+    height: 500px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.3);
+    
+}
+
+#container-header {
+    background-color:#EF1F3B;
+    height: 100px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin:0;
+    display: flex;
+    justify-content: center; /* center the content horizontally */
+    align-items: center; /* center the content vertically */
+}
+
+#h2Login {
+  margin-top: 45px;
+  color: white;
+}
+
+#h2pass {
+  color:white
+}
+
+form {
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
+.labelSubHeader{
+    font-size: .75rem;
+    font-weight: bold;
+    color: gray;
+    margin-bottom: 2px;
+}
+
+#labelSignUp {
+    text-align: center;
+    font-size: x-small;
+}
+
+#email, .passwordInput {
+    height: 50px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 250px;
+  }
+
+#email:hover, .passwordInput:hover {
+    height: 50px;
+    border-style: solid;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border-width: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 250px;
+    border-color: greenyellow;
+}
+
+#password_container {
+    position: relative;
+  }
+  
+#passwordToggle {
+    position: absolute;
+    top: 50%;
+    right: 0.5em;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color:gray;
+}
+
+#show-password-toggle:hover {
+    position: absolute;
+    top: 50%;
+    right: 0.5em;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color:#cc0000;
+}
+  
+
+input[type="submit"], input[type="button"] {
+    background-color: #EF1F3B;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+  
+  input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: white;
+    color: #EF1F3B;
+    transition: all 0.3s ease-out;
+    transform: scale(1.1);
+  }
+
+  #a_SignUp {
+    font-weight: bold;
+    color: blue;
+  }
+  #a_SignUp:hover {
+    font-weight: bold;
+    color: #EF1F3B;
+  }
+
+/* modal */
+/* CSS code for popup modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.modal-container {
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200%);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 38em;
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
+} 
+
+.modal.show {
+  display: block;
+}
+
+.modal.show .modal-container {
+  transform: translate(-50%, -50%);
+}
+
+
+.modal-container.fade-out {
+  transform: translate(-50%, -200%);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+/* Style the close button */
+.close {
+  color: #aaaaaa;
+  margin-right: 10px;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-container form label {
+margin-top: 15px;
+display: block;
+}
+
+.modal-container h2 {
+  text-align: center;
+  background-color: #EF1F3B;
+  color: white;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding: 20px
+}
+
+.modal-container #submit-password {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+  background-color: #EF1F3B;
+  color: white;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.modal-container #submit-password:hover {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+  background-color: white;
+  color: #EF1F3B;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+
+.modal-container form input[type=password],  .modal-container form input[type=text]
+,  .modal-container form input[type=email]{
+  display: block;
+  width: 100%;
+}
+
+.modal-container .oldPasswordInput, .modal-container .passwordInput, 
+.modal-container #confirmPasswordInput, .modal-container #userEmailAddressInput  {
+  padding: 10px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  border: 2px solid lightgray;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.modal-container .oldPasswordInput:focus, 
+.modal-container .passwordInput:focus, 
+.modal-container #confirmPasswordInput:focus, 
+.modal-container #userEmailAddressInput:focus, 
+.modal-container .oldPasswordInput:hover, 
+.modal-container .passwordInput:hover, 
+.modal-container #confirmPasswordInput:hover, 
+.modal-container #userEmailAddressInput:hover{
+    border-color: greenyellow; /* change the border color when input is in focus */
+    outline: none; /* remove default outline */
+    box-shadow: 0 0 5px greenyellow; /* add custom box-shadow when input is in focus */
+    transition: all 0.3s ease;
+}
+
+
+
+.password-container {
+display: flex;
+flex-direction: row;
+}
+
+.toggle-password {
+margin-top: 10px;
+margin-left: 415px;
+position: absolute;
+}
+
+.toggle-password2 {
+  margin-top: 16px;
+  margin-left: 5px;
+  position: absolute;
+}
+
+#passwordTooltip, #emailTooltip {
+  font-size: 12px;
+}
+
+#otpVerification {
+  margin-top: 10px;
+  height: 40px;
+  border: 2px solid gray;
+  background-color: lightgray;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+
+#otpVerification:hover, #otpVerification:focus {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  margin-top: 10px;
+  height: 40px;
+  border: 2px solid greenyellow;
+  background-color: lightgray;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+#sendOtpLink {
+  font-size: small;
+  border: solid 2px #EF1F3B;
+  color: #EF1F3B;
+  background-color: White;
+  transition: all 0.3s ease-out;
+  font-weight: bold;
+}
+
+#sendOtpLink:hover {
+  font-size: small;
+  border: none;
+  color: white;
+  background-color: #EF1F3B;
+  border: solid 2px #EF1F3B;
+  transition: all 0.3s ease-out;
+  font-weight: bold;
+
+}

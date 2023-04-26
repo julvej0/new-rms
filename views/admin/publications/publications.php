@@ -1,4 +1,4 @@
-<title>RMS | PUBLICATIONS</title>
+<title>RMS | EDIT PUBLICATION</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../db/db.php';
@@ -83,7 +83,7 @@
                                 <a href="<?=$row['google_scholar_details'];?>" target="_blank" class="gdrive-btn">
                                         <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                                 </a>
-                                <form action="pb_edit_page.php" method="POST">
+                                <form action="edit-publication.php" method="POST">
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                                     <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon"></i></button>
                                 </form>
