@@ -105,13 +105,15 @@ main table thead tr {
     background: var(--light);
 }
 
-main table thead th {
+main table thead tr th {
     top: 0;
     min-width: 150px;
     max-width: 200px;
     font-size: 14px;
     padding: 20px;
     text-align: center;
+    position: sticky;
+    top: 0;
 }
 
 main table tbody td {
