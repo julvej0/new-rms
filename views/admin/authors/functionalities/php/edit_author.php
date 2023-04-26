@@ -1,9 +1,10 @@
 <?php
 include_once '../../../../../db/db.php';
-if (isset($_POST['insert'])) {
+if (isset($_POST['edit'])) {
     $author_name = $_POST['a-name'];
     $gender = $_POST['a-gender'];
     $types = $_POST['a-role'];
+    $id = $_POST['a-id'];
 
     if(isset($_POST['a-aff-dept']) && isset($_POST['a-aff-prog']) && isset($_POST['a-aff-camp'])){
         $department_affiliations = $_POST['a-aff-dept'];
@@ -50,16 +51,16 @@ if (isset($_POST['insert'])) {
         header("Location: ../../new-author.php?error=incomplete");
     }
     else{
-        $insert_query = "INSERT INTO table_authors (author_name, gender, type_of_author, affiliation) VALUES ($1, $2 ,$3,$4)";
-        $insert_stmt = pg_prepare($conn,"insert_author", $insert_query);
-        $insert_result = pg_execute($conn,"insert_author",array($author_name, $gender, $types, $affiliation));
+        $update_query = "UPDATE table_authors SET author_name=$1, gender=$2, type_of_author=$3, affiliation=$4 WHERE author_id=$5";
+        $update_stmt = pg_prepare($conn,"edit_author", $update_query);
+        $update_result = pg_execute($conn,"edit_author",array($author_name, $gender, $types, $affiliation, $id));
 
-        if ($insert_result) {
+        if ($update_result) {
             echo "Insert successful.";
-            header("Location: ../../authors.php?add=success");
+            header("Location: ../../authors.php?update=success");
         } else {
             echo "Insert failed.";
-            header("Location: ../../authors.php?add=failed");
+            header("Location: ../../authors.php?update=failed");
         }
        
 

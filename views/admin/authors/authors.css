@@ -173,18 +173,11 @@ main table .stickey-col-header {
     background-color: #fff;
 }
 
-main table .a-action-btns {
-    display: flex;
-    /* flex-direction: column; */
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-}
 
-main table .edit-btn, .delete-btn {
+.edit-btn, .delete-btn {
     border: none;
     color: #ffffff;
-    width: 100%;
+    width: 45%;
     height: 30px;
     font-size: 10px;
     border-radius: 3px;
@@ -194,6 +187,8 @@ main table .edit-btn, .delete-btn {
     letter-spacing: 0.5px;
     font-weight: 600;
     text-align: center;
+    gap: 5px;
+    margin: 0 2px 0 2px;
 }
 
 .edit-btn:hover, .delete-btn:hover {
