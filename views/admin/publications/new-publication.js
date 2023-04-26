@@ -21,6 +21,27 @@ cancelBtn.addEventListener('click', (e) => {
 
 
 // sdg limit selection
+
+function chooseOneSDG() {
+  var checkboxes = document.getElementsByName('sdg_no[]');
+  var isChecked = false;
+  for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+          isChecked = true;
+          break;
+      }
+  }
+  if (!isChecked) {
+      // alert('Please select at least one SDG.');
+      var errorMessage = document.querySelector(".error");
+      errorMessage.style.display = "block";
+      errorMessage.innerHTML = 'Please select at least one SDG.';
+      errorMessage.style.color = 'red'; // optional styling
+      return false;
+  }
+  return true;
+}
+
 function limitSelection() {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const errorMessage = document.querySelector(".error");

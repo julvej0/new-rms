@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="new-publication.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -19,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-                <form action="functionalities/publication-insert.php" method="POST">
+                <form action="functionalities/publication-insert.php" method="POST" onsubmit="return chooseOneSDG()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -29,11 +28,11 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-title">Work Title</label>
-                                    <input type="text" placeholder="Work Title" id="pb-title" name="title_of_paper"/>
+                                    <input type="text" placeholder="Work Title" id="pb-title" name="title_of_paper" required/>
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-type">Type of Document</label>
-                                    <select  name="type_of_publication" id="pb-type">
+                                    <select  name="type_of_publication" id="pb-type" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -77,7 +76,7 @@
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-campus">Campus</label>
                                     <select name="campus" id="pb-campus" required>
-                                        <option value="pb-campus" hidden>--Choose from the options--</option>
+                                        <option value="" hidden>--Choose from the options--</option>
                                         <option value="Alangilan">Alangilan</option>
                                         <option value="Balayan">Balayan</option>
                                         <option value="Lemery">Lemery</option>
@@ -288,7 +287,7 @@
                                         <input type="hidden" name="author_id[]" class="author-id-input">
                                     </td>
                                     <td style="text-align: center;">
-                                        <button type="button" class="add-row-btn" style="height: 50px">+</button>
+                                        <button type="button" class="add-row-btn" style="height: 50px;">+</button>
                                     </td>
                                 </tr>
                             </tbody>

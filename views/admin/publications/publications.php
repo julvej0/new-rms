@@ -89,7 +89,7 @@
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                                     <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square"></i></button>
                                 </form>
-                                <form action="include/publication_delete.php" method="POST">
+                                <form action="functionalities/publication-delete.php" method="POST" class="delete-form">
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                                     <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
