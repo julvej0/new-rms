@@ -1,3 +1,4 @@
+<title>RMS | PUBLICATIONS</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../db/db.php';

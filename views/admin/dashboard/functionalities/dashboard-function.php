@@ -279,7 +279,11 @@ function getIpAssetsCampus($conn) {
     );
 }
 function getPublicationsStatus($conn){
-    $query = "SELECT status, COUNT(*) as dataset FROM table_publications WHERE status is NOT NULL GROUP BY status";
+    $query = "SELECT status, COUNT(*) as dataset FROM table_publications WHERE status is NOT NUA
+    
+    
+    
+    LL GROUP BY status";
     $result = pg_query($conn, $query);
 
     $data = array();

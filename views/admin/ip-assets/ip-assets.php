@@ -1,3 +1,4 @@
+<title>RMS | IP ASSETS</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
 ?>
