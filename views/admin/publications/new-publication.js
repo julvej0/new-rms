@@ -61,6 +61,7 @@ function limitSelection() {
 
   function disableFields() {
     typeOfFundingLabel.style.color = "gray";
+    disableFundingAgency();
     
     if (fundingAgencyField.value === '') {
       fundingAgencyField.disabled = true;
@@ -73,8 +74,6 @@ function limitSelection() {
       externalFundingRadio.disabled = false;
     }
   }
-
-
 
   function enableTypeOfFunding() {
     typeOfFundingLabel.style.color = "black";

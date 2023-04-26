@@ -4,6 +4,8 @@
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="new-publication.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -17,7 +19,7 @@
         </div>
         <section>
             <div class="container">
-                <form>
+                <form action="functionalities/publication-insert.php" method="POST">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -233,14 +235,6 @@
                         </div>
                         <div class="form-col">
                             <div class="author-table-container">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-control author-name">
-                                                    <label class="pb-label" for="pb-author-name">Name</label>
-                                                    <input type="text" id="pb-author-name" name="pb-author-name" placeholder="Author Name">
-                                                </div>
                                                 <!-- <div class="form-control author-details">
                                                     <label class="pb-label" for="pb-author-type">Role</label>
                                                     <select name="pb-author-type" id="pb-author-type" required>
@@ -262,19 +256,14 @@
                                                     <label class="pb-label" for="pb-author-affil">Affiliation(s)</label>
                                                     <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Affiliation(s)">
                                                 </div> -->
-                                                <button id="pb-add-btn">+</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            <table id="fam-tbl">
+                            <table id="author-tbl">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="fam-tbl-body">
+                            <tbody id="author-tbl-body">
                                 <tr>
                                     <td class="ipa-author-field">
                                         <?php
@@ -328,10 +317,10 @@
                             </div>
                             <h4 class="if-funded">If funded : </h4>
                             <div class="funding-form-container">
-                                <label class="funding-titles">Fund type </label>
+                                <label class="funding-titles" id="fund-type-label">Fund type </label>
                                 <div class="form-control">
                                     <div class="choices">
-                                        <input type="radio" name="funding_type" id="internal" value="internal">
+                                        <input type="radio" name="funding_type" id="internal" value="internal" checked="checked">
                                         <label for="internal" class="funding-choices">Internal</label>
                                     </div>
                                     <div class="choices">
@@ -344,8 +333,7 @@
                             <div class="funding-form-container2">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
-                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency"
-                                    placeholder="Funding Agency">
+                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency">
                                 </div>
                             </div>
                         </div>
@@ -360,7 +348,6 @@
         </section>
     </main>
 </section>
-<script src="./new-publication.js"></script>
 <script>
             //Author ID table workaround.
             function showAuthorId(input) {
@@ -385,8 +372,7 @@
                                         $query = "SELECT author_id, author_name FROM table_authors";
                                         $params = array();
                                         $result = pg_query_params($conn, $query, $params);
-                                                                            
-                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px;" onchange="showAuthorId(this)">';
+                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)">';
                                         echo '<datalist id="authors">';
                                         while ($row = pg_fetch_assoc($result)) {
                                             echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
@@ -395,19 +381,20 @@
                                         ?>
                                         <input type="hidden" name="author_id[]" class="author-id-input">\
                                     </td>\
-                                    <td class="ipa-author-field"><input type="button" name="remove"  value="Remove" style="width: 90%; text-align: center; background-color: white; height: 2rem"id="remove"> </td>\
+                                    <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button> </td>\
                                 </tr>';
             $('.add-row-btn').click(function(){
                 if (x < max) {
-                $('#fam-tbl-body').append(rowHtml);
+                $('#author-tbl-body').append(rowHtml);
                 x++;
                     }
 
                 //Remove row function
-                $('#fam-tbl').on('click','#remove',function(){
+                $('#author-tbl').on('click','#remove',function(){
                     $(this).closest('tr').remove();
                     x--;
                 });
             });
         </script>
+        <script src="new-publication.js"></script>
 </body>
