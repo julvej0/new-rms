@@ -352,7 +352,7 @@
                 }
             }]
         };
-        // console.log(pub_data);
+
         var pub_chart = new ApexCharts(document.querySelector("#pb-bar-chart"), pub_options);
         pub_chart.render();
     </script>
