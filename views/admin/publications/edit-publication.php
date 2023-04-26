@@ -288,7 +288,7 @@
                                         <label for="funded" class="funding-choices">Funded</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" name="fundNature" id="non-funded" value="non-funded" <?=($row['nature_of_funding'] == 'funded') ? 'checked="checked"' : ''; ?>>
+                                        <input type="radio" name="fundNature" id="non-funded" value="non-funded" <?=($row['nature_of_funding'] == 'non-funded') ? 'checked="checked"' : ''; ?>>
                                         <label for="non-funded" class="funding-choices">Non-funded</label>
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@
                             <div class="funding-form-container2">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
-                                    <input type="text"name="pb-funding-agency" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency" value="<?=$row['funding_source']?>">
+                                    <input type="text"name="pb-funding-agency" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency" value="<?=$row['funding_source']?>" required>
                                 </div>
                             </div>
                         </div>
