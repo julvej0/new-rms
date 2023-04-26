@@ -62,6 +62,10 @@
                 <p>Article Count : 1</p>
                 <div class="download">
                     <button class="download-btn">Download <i class='bx bx-chevron-down'></i></button>
+                    <ul class="dl-link">
+                        <li><a href="#">Excel File</a></li>
+                        <li><a href="#">PDF File</a></li>
+                    </ul>
                 </div>
                 <div class="pagination">
                     <li>

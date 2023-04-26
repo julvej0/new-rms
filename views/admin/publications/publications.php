@@ -32,20 +32,20 @@
                 <table>
                     <thead>
                         <tr>
-                            <th class="th-header">Title</th>
-                            <th class="th-header">Type</th>
-                            <th class="th-header">Publisher</th>
-                            <th class="th-header">Research Area</th>
-                            <th class="th-header">College</th>
-                            <th class="th-header">Quartile</th>
-                            <th class="th-header">Campus</th>
-                            <th class="th-header">SDG's</th>
-                            <th class="th-header">Date Published</th>
-                            <th class="th-header">Authors</th>
-                            <th class="th-header">Funding</th>
-                            <th class="th-header">Fund Type</th>
-                            <th class="th-header">Fund Source</th>
-                            <th class="th-header">Citations</th>
+                            <th style="min-width: 350px;">Title</th>
+                            <th>Type</th>
+                            <th>Publisher</th>
+                            <th>Research Area</th>
+                            <th>College</th>
+                            <th>Quartile</th>
+                            <th>Campus</th>
+                            <th>SDG's</th>
+                            <th>Date Published</th>
+                            <th>Authors</th>
+                            <th>Funding</th>
+                            <th>Fund Type</th>
+                            <th>Fund Source</th>
+                            <th>Citations</th>
                             <th class='stickey-col-header' style="background-color: var(--grey);">Actions</th>
                         </tr>
                     </thead>
