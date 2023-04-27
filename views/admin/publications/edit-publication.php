@@ -112,7 +112,6 @@
                                     <div class="checkbox-container">
                                         <?php
                                         $sdg_array = explode(",", $row['sdg_no']);
-                                        print_r($sdg_array);
                                         ?>
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="1" id="sdg1" onclick="limitSelection()" <?php if (in_array('1', $sdg_array)) echo 'checked="checked"'; ?>>
@@ -274,8 +273,9 @@
                                                 border-radius: 5px;
                                                 border: 1px solid var(--dark-grey);"
                                                 onchange="showAuthorId(this)"
-                                                value="' . $author_list_row['author_name'] . '">
-                                                <input type="text" name="author_id[]" class="author-id-input" value="' . $author_list_row['author_id'] . '">
+                                                value="' . $author_list_row['author_name'] . '"
+                                                placeholder="Author Name...">
+                                                <input type="hidden" name="author_id[]" class="author-id-input" value="' . $author_list_row['author_id'] . '">
                                                 </td>                                                
                                                 <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
                                                 </tr>';
@@ -381,14 +381,14 @@
                                     $query = "SELECT author_id, author_name FROM table_authors";
                                     $params = array();
                                     $result = pg_query_params($conn, $query, $params);
-                                    echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)">';
+                                    echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)" placeholder="Author Name...">';
                                     echo '<datalist id="authors">';
                                     while ($row = pg_fetch_assoc($result)) {
                                         echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
                                     }
                                     echo '</datalist>';
                                     ?>
-                                    <input type="text" name="author_id[]" class="author-id-input">\
+                                    <input type="hidden" name="author_id[]" class="author-id-input">\
                                 </td>\
                                 <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>\
                             </tr>';
