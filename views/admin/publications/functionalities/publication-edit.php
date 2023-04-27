@@ -8,15 +8,25 @@ if (isset($_POST['updatePB'])) {
     }else{
         $date_published = $_POST["date_published"];
     }
+
     $if_funded = isset($_POST['funding_type']) ? $_POST['funding_type'] : null;
     if (!$if_funded) {
         $if_funded = "";
     }else{
         $if_funded = $_POST["funding_type"];
     }
+
+    $authors = isset($_POST['author_id']) ? $_POST['author_id'] : null;
+    if (!$authors) {
+        $authors = "";
+        $authors_string = ""; // join the array values with a comma delimiter
+    }else{
+        $authors = $_POST["author_id"];
+        $authors_string = implode(",", $authors); // join the array values with a comma delimiter
+    }
+
     $quartile = $_POST["pb-quartile"];
     $pubID = $_POST['pubID'];
-    $authors = $_POST["author_id"];
     $department = $_POST["research_area"]; 
     $college = $_POST["college"];
     $campus = $_POST["campus"];
@@ -27,7 +37,6 @@ if (isset($_POST['updatePB'])) {
     $funding_nature = $_POST["nature_of_funding"];
     $publisher = $_POST["publisher"]; 
 
-    $authors_string = implode(",", $authors); // join the array values with a comma delimiter
     $sdg_string = implode(", ", $sdg);
 
     if ($if_funded == "internal") {
@@ -49,7 +58,7 @@ if (isset($_POST['updatePB'])) {
     $update_stmt = pg_prepare($conn, "update_pb_details", $update_query);
 
     // Execute the prepared statement with the input values
-    $update_result = pg_execute($conn, "update_pb_details", array($title, $type, $publisher, $department, $college, $quartile, $campus, $sdg_str, $date_published, $url, $authors_string, $funding_nature, $if_funded, $if_external, $pubID));
+    $update_result = pg_execute($conn, "update_pb_details", array($title, $type, $publisher, $department, $college, $quartile, $campus, $sdg_string, $date_published, $url, $authors_string, $funding_nature, $if_funded, $if_external, $pubID));
 
     if (!$update_result) {
         die("Error in SQL query: " . pg_last_error());

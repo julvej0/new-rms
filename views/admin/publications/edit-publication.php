@@ -112,6 +112,7 @@
                                     <div class="checkbox-container">
                                         <?php
                                         $sdg_array = explode(",", $row['sdg_no']);
+                                        print_r($sdg_array);
                                         ?>
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="1" id="sdg1" onclick="limitSelection()" <?php if (in_array('1', $sdg_array)) echo 'checked="checked"'; ?>>
@@ -239,12 +240,12 @@
                                                     <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Affiliation(s)">
                                                 </div> -->
                             <table id="author-tbl">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
                                 <tbody id="author-tbl-body">
                                             <?php
                                             $query = "SELECT author_id, author_name FROM table_authors";
@@ -274,7 +275,8 @@
                                                 border: 1px solid var(--dark-grey);"
                                                 onchange="showAuthorId(this)"
                                                 value="' . $author_list_row['author_name'] . '">
-                                                </td>
+                                                <input type="text" name="author_id[]" class="author-id-input" value="' . $author_list_row['author_id'] . '">
+                                                </td>                                                
                                                 <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
                                                 </tr>';
                                             }
@@ -285,7 +287,6 @@
                                             }
                                             echo '</datalist>';
                                             ?>
-                                            <input type="hidden" name="author_id[]" class="author-id-input">
                                 </tbody>
                                             <td style="text-align: center;" colspan="2">
                                                 <button type="button" class="add-row-btn" style="height: 50px; width: 10%;">+</button>
@@ -387,22 +388,23 @@
                                     }
                                     echo '</datalist>';
                                     ?>
-                                    <input type="hidden" name="author_id[]" class="author-id-input">\
+                                    <input type="text" name="author_id[]" class="author-id-input">\
                                 </td>\
                                 <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>\
                             </tr>';
-            $('.add-row-btn').click(function(){
-                if (x < max) {
-                $('#author-tbl-body').append(rowHtml);
-                x++;
-                    }
+                            $('.add-row-btn').click(function(){
+    if (x < max) {
+        $('#author-tbl-body').append(rowHtml);
+        x++;
+    }
+});
 
-                //Remove row function
-                $('#author-tbl').on('click','#remove',function(){
-                    $(this).closest('tr').remove();
-                    x--;
-                });
-            });
+// Remove row function (outside of .add-row-btn click handler)
+$('#author-tbl').on('click', '#remove', function() {
+    $(this).closest('tr').remove();
+    x--;
+});
+
         </script>
 </body>
 <?php
