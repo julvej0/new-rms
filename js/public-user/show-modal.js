@@ -28,7 +28,7 @@ function showModal() {
        passwordTooltip.style.display = "block";
        emailTooltip.style.display = "none";
 
-       // check for existing SR code and email
+       // check for existing SR code and email 
        const xhr = new XMLHttpRequest();
        const url = `../account/functionalities/create-account.php?srcode=${srCode}&email=${emailAddress}`;
        xhr.open("GET", url, true);
