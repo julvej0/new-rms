@@ -320,7 +320,6 @@
                                 <div class="form-control">
                                     <div class="choices">
                                         <input type="radio" name="funding_type" id="internal" value="internal" checked="checked">
-                                        <input type="radio" name="funding_type" id="internal" value="Batangas State University">
                                         <label for="internal" class="funding-choices">Internal</label>
                                     </div>
                                     <div class="choices">

@@ -19,7 +19,7 @@
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
-                <a href="#" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+                <a href="./new-ip-asset.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
             </div>
         </div>
         <section>
