@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_publications WHERE publication_id = '$publicationID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-                <form action="functionalities/publication-insert.php" method="POST" onsubmit="return chooseOneSDG()">
+                <form action="functionalities/publication-edit.php" method="POST" onsubmit="return chooseOneSDG()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -239,47 +239,58 @@
                                                     <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Affiliation(s)">
                                                 </div> -->
                             <table id="author-tbl">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="author-tbl-body">
-                        <tr>
-                            <td class="ipa-author-field">
-                                <?php
-                                $query = "SELECT author_id, author_name FROM table_authors";
-                                $params = array();
-                                $result = pg_query_params($conn, $query, $params);
-                                
-                                $author_list = $row["authors"];
-                                $authors = explode(",", $author_list);
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="author-tbl-body">
+                                            <?php
+                                            $query = "SELECT author_id, author_name FROM table_authors";
+                                            $params = array();
+                                            $result = pg_query_params($conn, $query, $params);
 
-                                foreach ($authors as $author) {
-                                    echo '<input list="authors" name="author_name[]"
-                                    style="
-                                    width: 100%;
-                                    height: 50px;
-                                    padding: 10px 36px 10px 16px;
-                                    border-radius: 5px;
-                                    border: 1px solid var(--dark-grey);"
-                                    onchange="showAuthorId(this)"
-                                    value="' . $author . '">';
-                                }
-                                echo '<datalist id="authors">';
-                                while ($author_row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
-                                }
-                                echo '</datalist>';
-                                ?>
-                                <input type="hidden" name="author_id[]" class="author-id-input">
-                            </td>
-                            <td style="text-align: center;">
-                                <button type="button" class="add-row-btn" style="height: 50px;">+</button>
-                            </td>
-                        </tr>
-                            </tbody>
+
+                                            $author_list = $row["authors"];
+
+                                            $authors = explode(",", $author_list);
+                                            foreach ($authors as $author) {
+
+                                            $authorData = pg_query($conn, "SELECT author_id, author_name FROM table_authors WHERE author_id = '$author'");
+                                            
+                                            while($author_list_row = pg_fetch_assoc($authorData)){
+
+                                            
+                                                echo '
+                                                <tr>
+                                                <td class="ipa-author-field">
+                                                <input list="authors" name="author_name[]"
+                                                style="
+                                                width: 100%;
+                                                height: 50px;
+                                                padding: 10px 36px 10px 16px;
+                                                border-radius: 5px;
+                                                border: 1px solid var(--dark-grey);"
+                                                onchange="showAuthorId(this)"
+                                                value="' . $author_list_row['author_name'] . '"
+                                                placeholder="Author Name...">
+                                                <input type="hidden" name="author_id[]" class="author-id-input" value="' . $author_list_row['author_id'] . '">
+                                                </td>                                                
+                                                <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
+                                                </tr>';
+                                            }
+                                        }
+                                            echo '<datalist id="authors">';
+                                            while ($author_row = pg_fetch_assoc($result)) {
+                                                echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
+                                            }
+                                            echo '</datalist>';
+                                            ?>
+                                </tbody>
+                                            <td style="text-align: center;" colspan="2">
+                                                <button type="button" class="add-row-btn" style="height: 50px; width: 10%;">+</button>
+                                            </td>
                             </table>
                             </div>
                         </div>
@@ -294,11 +305,11 @@
                                 <label class="funding-titles">Funding Nature</label>
                                 <div class="form-control">
                                     <div class="choices">
-                                        <input type="radio" name="fundNature" id="funded" value="funded" <?=($row['nature_of_funding'] == 'funded') ? 'checked="checked"' : ''; ?>>
+                                        <input type="radio" name="nature_of_funding" id="funded" value="funded" <?=($row['nature_of_funding'] == 'funded') ? 'checked="checked"' : ''; ?>>
                                         <label for="funded" class="funding-choices">Funded</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" name="fundNature" id="non-funded" value="non-funded" <?=($row['nature_of_funding'] == 'non-funded') ? 'checked="checked"' : ''; ?>>
+                                        <input type="radio" name="nature_of_funding" id="non-funded" value="non-funded" <?=($row['nature_of_funding'] == 'non-funded') ? 'checked="checked"' : ''; ?>>
                                         <label for="non-funded" class="funding-choices">Non-funded</label>
                                     </div>
                                 </div>
@@ -308,11 +319,11 @@
                                 <label class="funding-titles" id="fund-type-label">Fund type </label>
                                 <div class="form-control">
                                     <div class="choices">
-                                        <input type="radio" name="pb-fund-type" id="internal" value="internal" <?=($row['funding_type'] == 'internal') ? 'checked="checked"' : ''; ?>>
+                                        <input type="radio" name="funding_type" id="internal" value="internal" <?=($row['funding_type'] == 'internal') ? 'checked="checked"' : ''; ?>>
                                         <label for="internal" class="funding-choices">Internal</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" name="pb-fund-type" id="external" value="external" <?=($row['funding_type'] == 'external') ? 'checked="checked"' : ''; ?>>
+                                        <input type="radio" name="funding_type" id="external" value="external" <?=($row['funding_type'] == 'external') ? 'checked="checked"' : ''; ?>>
                                         <label for="external" class="funding-choices">External</label>
                                     </div>
                                 </div>
@@ -321,14 +332,15 @@
                             <div class="funding-form-container2">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
-                                    <input type="text"name="pb-funding-agency" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency" value="<?=$row['funding_source']?>" required>
+                                    <input type="text"name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency" value="<?=$row['funding_source']?>" required>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr>
                     <div class="form-footer">
-                        <input type="submit" class="submit-btn" name="submitPB" value="Submit">
+                        <input type="hidden" name="pubID" value="<?=$row['publication_id']?>">
+                        <input type="submit" class="submit-btn" name="updatePB" value="Submit">
                         <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>
@@ -364,34 +376,35 @@
             var max =15; //max number of Authors
             var x =1; //represents the 1st author field
             var rowHtml = '<tr>\
-                                    <td class="ipa-author-field">\
-                                        <?php
-                                        $query = "SELECT author_id, author_name FROM table_authors";
-                                        $params = array();
-                                        $result = pg_query_params($conn, $query, $params);
-                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)">';
-                                        echo '<datalist id="authors">';
-                                        while ($row = pg_fetch_assoc($result)) {
-                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
-                                        }
-                                        echo '</datalist>';
-                                        ?>
-                                        <input type="hidden" name="author_id[]" class="author-id-input">\
-                                    </td>\
-                                    <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>\
-                                </tr>';
-            $('.add-row-btn').click(function(){
-                if (x < max) {
-                $('#author-tbl-body').append(rowHtml);
-                x++;
-                    }
+                                <td class="ipa-author-field">\
+                                    <?php
+                                    $query = "SELECT author_id, author_name FROM table_authors";
+                                    $params = array();
+                                    $result = pg_query_params($conn, $query, $params);
+                                    echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)" placeholder="Author Name...">';
+                                    echo '<datalist id="authors">';
+                                    while ($row = pg_fetch_assoc($result)) {
+                                        echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                    }
+                                    echo '</datalist>';
+                                    ?>
+                                    <input type="hidden" name="author_id[]" class="author-id-input">\
+                                </td>\
+                                <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>\
+                            </tr>';
+                            $('.add-row-btn').click(function(){
+    if (x < max) {
+        $('#author-tbl-body').append(rowHtml);
+        x++;
+    }
+});
 
-                //Remove row function
-                $('#author-tbl').on('click','#remove',function(){
-                    $(this).closest('tr').remove();
-                    x--;
-                });
-            });
+// Remove row function (outside of .add-row-btn click handler)
+$('#author-tbl').on('click', '#remove', function() {
+    $(this).closest('tr').remove();
+    x--;
+});
+
         </script>
 </body>
 <?php

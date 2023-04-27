@@ -29,7 +29,7 @@ function get_data($conn) {
                     $authorNames[] = $authorRow['author_name'];
                 }
             }
-            $authorNamesString = implode(', ', $authorNames);
+            $authorNamesString = implode(',', $authorNames);
 
             $table_rows[] = array(
                 'publication_id' => $row['publication_id'],

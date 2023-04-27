@@ -19,7 +19,7 @@
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
-                <a href="#" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+                <a href="./new-ip-asset.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
             </div>
         </div>
         <section>
@@ -62,10 +62,6 @@
                 <p>Article Count : 1</p>
                 <div class="download">
                     <button class="download-btn">Download <i class='bx bx-chevron-down'></i></button>
-                    <ul class="dl-link">
-                        <li><a href="#">Excel File</a></li>
-                        <li><a href="#">PDF File</a></li>
-                    </ul>
                 </div>
                 <div class="pagination">
                     <li>
