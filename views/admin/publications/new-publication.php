@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="quarter-year">
                                             <label class="pb-label" for="pb-quarter-year">Year</label>
-                                            <select name="quartile_year" id="pb-quarter-year" required>
+                                            <select name="quartile_year[]" id="pb-quarter-year" required>
                                                 <option value="" hidden>-- Select Year --</option>
                                                 <option value="2023">2023</option>
                                                 <option value="2022">2022</option>
@@ -276,8 +276,9 @@
                                         height: 50px;
                                         padding: 10px 36px 10px 16px;
                                         border-radius: 5px;
-                                        border: 1px solid var(--dark-grey);
-                                        onchange="showAuthorId(this)">';
+                                        border: 1px solid var(--dark-grey);"
+                                        onchange="showAuthorId(this)"
+                                        placeholder="Author Name...">';
                                         echo '<datalist id="authors">';
                                         while ($row = pg_fetch_assoc($result)) {
                                             echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';

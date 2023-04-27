@@ -1,6 +1,5 @@
 <?php
 include_once '../../../../db/db.php';
-// include "include/publication_get_display.php";
 
 if (isset($_POST['delete'])) {
     $pub_id = $_POST['row_id'];
