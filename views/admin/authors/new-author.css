@@ -254,7 +254,7 @@ main table tr td #a-add-btn {
     border-radius: 5px;
     border: none;
     margin-top: 10px;
-    background: var(--accent-blue);
+    background: var(--blue);
     color: var(--light);
     text-transform: uppercase;
     font-size: 25px;
@@ -305,51 +305,6 @@ main .sub-container .form-col .funding-form-container2 {
     width: 100%;
 }
 
-main .form-col .funding-form-container .funding-titles {
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    padding: 0 10px;
-    background-color: var(--light);
-}
-
-main .sub-container .form-col .funding-form-container .form-control {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-main .funding-form-container .form-control .choices {
-    width: 250px;
-    display: flex;
-    grid-gap: 10px;
-}
-
-main .funding-form-container .form-control .choices input[type='radio'],
-main .funding-form-container .form-control .choices label {
-    cursor: pointer;
-}
-
-main .sub-container .form-col .funding-form-container2 .form-control {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 7px;
-}
-
-main .funding-form-container2 input[type="text"] {
-    height: 50px;
-    width: 100%;
-    padding: 10px 36px 10px 16px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid var(--dark-grey);
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-main .funding-form-container2 input[type="text"]:focus {
-        box-shadow: 0 0 0 4px var(--light-blue);
-}
 
 main .sub-container .form-col .funding-form-container2 label {
     font-weight: 500;
@@ -406,7 +361,7 @@ width: 10rem;
 display: none;
 background-color: var(--light);
 border: 1px solid var(--dark);
-margin-top: 30px;
+margin-top: 10px;
 }
 
 .affiliation-sub-button {
@@ -420,11 +375,10 @@ font-size: 1rem;
 }
 
 .affiliation-sub-button:hover {
-    opacity: 80%;
+    background-color: rgb(185, 185, 192);
 }
 
 .affiliation-main-menu:hover .affiliation-sub-menu {
     display: block;
 }
 
-  
