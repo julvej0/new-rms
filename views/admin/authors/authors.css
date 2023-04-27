@@ -168,11 +168,12 @@ main table .stickey-col-header {
 
 main table .a-action-btns {
     display: flex;
-    /* flex-direction: column; */
-    gap: 5px;
+    gap: 7px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 
 .edit-btn, .delete-btn {
     border: none;
