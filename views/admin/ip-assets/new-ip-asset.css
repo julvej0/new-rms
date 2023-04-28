@@ -1,5 +1,4 @@
 
-
 main section .container {
     min-height: 1000px;
     background: var(--light);
@@ -31,6 +30,7 @@ main section .sub-container .form-container {
     flex-direction: column;
     grid-gap: 15px;
     margin-top: 10px;
+    /* border: 1px solid red; */
 }
 main .sub-container .title h3 {
     font-size: 25px;
@@ -46,7 +46,7 @@ main .form-container .form-control {
     grid-gap: 7px;
 }
 
-main .form-container .form-control #a-title {
+main .form-container .form-control #pb-title {
     height: 50px;
     padding: 10px 36px 10px 16px;
     border-radius: 5px;
@@ -55,7 +55,7 @@ main .form-container .form-control #a-title {
     transition: all 0.3s ease;
 }
 
-main .form-container .form-control #a-title:focus {
+main .form-container .form-control #pb-title:focus {
     box-shadow: 0 0 0 4px var(--light-blue);
 }
 
@@ -165,8 +165,8 @@ main .form-control .checkbox-container label.sdg-checkbox:hover {
 }
 
 main .form-control .checkbox-container input[type=checkbox]:checked + label.sdg-checkbox {
-    background: var(--accent-blue);
-    color: white;
+    background: var(--blue);
+    color: var(--light);
 }
 
 main .form-control .checkbox-container input[type=checkbox]:checked+label.sdg-checkbox:hover {
@@ -174,10 +174,11 @@ main .form-control .checkbox-container input[type=checkbox]:checked+label.sdg-ch
 }
 
 .error {
+    position: absolute;
     display: none;
-    color: red;
+    color: var(--danger);
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 241px;
 }
 
 /* AUTHOR DETAILS TABLE */
@@ -195,7 +196,7 @@ main .author-table-container table {
 }
 
 main .author-table-container table tr td {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -203,12 +204,12 @@ main .author-table-container table tr td {
     margin-bottom: 10px;
 }
 
-main table tr td .aff-info{
+main table tr td .author-name {
     flex-grow: 1;
     flex-basis: 200px;
 }
 
-main  table tr td .aff-categ {
+main  table tr td .author-details {
     flex: 2;
     width: 180px;
 }
@@ -248,13 +249,13 @@ main table .form-control select:focus {
     box-shadow: 0 0 0 4px var(--light-blue);
 }
 
-main table tr td #a-add-btn {
+main table tr td button {
     height: 50px;
-    width: 3.5rem;
     border-radius: 5px;
     border: none;
-    margin-top: 10px;
-    background: var(--blue);
+    /* margin-top: 30px; */
+    padding: 0 20px;
+    background-color: var(--blue);
     color: var(--light);
     text-transform: uppercase;
     font-size: 25px;
@@ -262,37 +263,15 @@ main table tr td #a-add-btn {
     cursor: pointer;
     letter-spacing: 1px;
     font-weight: 600;
-    
 }
 
-main table tr td #a-add-btn:hover {
+main table tr td button:hover {
     opacity: 80%;
 }
 
-main table tr td .a-remove-btn {
-    height: 50px;
-    border-radius: 5px;
-    border: none;
-    margin-top: 30px;
-    padding: 0 20px;
-    background: var(--primary);
-    color: var(--light);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 1px;
-    font-weight: 600;
+/* Registration */
 
-    
-}
-
-main table tr td .a-remove-btn:hover {
-    opacity: 80%;
-}
-
-/* FUNDING */
-
-main .sub-container .form-col .funding-form-container {
+main .sub-container .form-col .reg-form-container {
     border: 1px solid var(--dark-grey);
     width: 100%;
     padding: 20px;
@@ -301,12 +280,64 @@ main .sub-container .form-col .funding-form-container {
     margin-top: 10px;
 }
 
-main .sub-container .form-col .funding-form-container2 {
+main .sub-container .form-col .reg-form-container2 {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
 }
 
+main .form-col .reg-form-container .reg-titles {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    padding: 0 10px;
+    background-color: var(--light);
+}
 
-main .sub-container .form-col .funding-form-container2 label {
+main .sub-container .form-col .reg-form-container .form-control {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main .reg-form-container .form-control .choices {
+    width: 250px;
+    display: flex;
+    grid-gap: 10px;
+}
+
+main .reg-form-container .form-control .choices input[type='radio'],
+main .reg-form-container .form-control .choices label {
+    cursor: pointer;
+}
+
+main .sub-container .form-col .reg-form-container2 .form-control {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 7px;
+}
+
+main .reg-form-container2 input[type="date"],
+main .reg-form-container2 input[type="file"]
+ {
+    height: 50px;
+    width: 100%;
+    padding: 10px 36px 10px 16px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid var(--dark-grey);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: text;
+}
+
+main .reg-form-container2 input[type="date"]:focus,
+main .reg-form-container2 input[type="file"]:focus {
+        box-shadow: 0 0 0 4px var(--light-blue);
+}
+
+main .sub-container .form-col .reg-form-container2 label {
     font-weight: 500;
     font-size: 16px;
     color: var(--text-color);
@@ -345,40 +376,3 @@ main .container .form-footer .submit-btn {
 main .container .form-footer .cancel-btn {
     background: var(--danger);
 }
-
-
-.affiliation-main-menu {
-    position: relative;
-    display: inline-block;
-  }
-  
-  
-.affiliation-sub-menu {
-position: absolute;
-left: 3.5rem;
-top: 0;
-width: 10rem;
-display: none;
-background-color: var(--light);
-border: 1px solid var(--dark);
-margin-top: 10px;
-}
-
-.affiliation-sub-button {
-display: block;
-width: 100%;
-border: none;
-background-color: transparent;
-cursor: pointer;
-font-size: 1rem;
-
-}
-
-.affiliation-sub-button:hover {
-    background-color: rgb(185, 185, 192);
-}
-
-.affiliation-main-menu:hover .affiliation-sub-menu {
-    display: block;
-}
-

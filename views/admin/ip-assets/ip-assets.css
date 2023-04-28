@@ -272,7 +272,7 @@ main .table-footer .download button:hover {
     opacity: 80%;
 }
 
-main .table-footer .download .dl-link {
+/* main .table-footer .download .dl-link {
     position: absolute;
     top: calc(80% + 30px);
     margin: auto;
@@ -286,9 +286,9 @@ main .table-footer .download .dl-link {
     pointer-events: none;
     transition: all 0.3s ease;
     letter-spacing: 1px;
-}
+} */
 
-main .table-footer .download .dl-link.show {
+/* main .table-footer .download .dl-link.show {
     top: calc(80% + 20px);
     opacity: 1;
     pointer-events: visible;
@@ -313,4 +313,4 @@ main .table-footer .download .dl-link a:hover {
   main .table-footer .download .dl-link.show {
     top: calc(85%);
   }
-}
+} */
