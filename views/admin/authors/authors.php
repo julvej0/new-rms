@@ -5,6 +5,7 @@
 ?>
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="authors.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
     <?php
         include_once '../../../includes/admin/templates/navbar.php';
