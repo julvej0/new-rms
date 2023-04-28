@@ -1,11 +1,11 @@
 <?php
 include_once "../../../includes/admin/templates/header.php";
-include_once 'functionalities/modals.php';
 ?>
+
 <link rel="stylesheet" href="login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div id="whole_page">
-    <img src='../../../assets/images/background_img.jpg' style='opacity: 0.7; max-width: 100%; height: 100%;'/>
+    <img src='../../../assets/images/background_img.jpg' style='opacity: 0.7; width: 100%; height: 100%; position:fixed;'/>
     <img src='../../../assets/images/batStateUNeu-logo.png' style='width: 100px; height: 100px; position: fixed; border:solid 3px #EF1F3B; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -300%); top: 50%; left: 50%;'/>
 
         <div id="login_container">
@@ -13,7 +13,7 @@ include_once 'functionalities/modals.php';
             <h2 id='h2Login'>SIGN IN</h2>
             </div>
             <br>
-            <form id='user_input' action='functionalities/login-account.php' method='POST'>
+            <form id='user_input'>
                 <label class='labelSubHeader'>EMAIL</label>
                 <input id="email" name="emailAddress" placeholder="example@g.batstate-u.edu.ph" type="text"><br>
                 <label class='labelSubHeader'>PASSWORD</label>
@@ -22,14 +22,14 @@ include_once 'functionalities/modals.php';
                     <i class="toggle-password2 fas fa-eye-slash"></i>
                 </div>  
                 <br>
-                <input name="submit" type="submit" value=" Login ">
+                <input name="submit" type="button" value=" LOGIN " onclick='loginBtn()'>
                 <div style="display: flex; align-items: center; margin-top: 10px; margin-bottom: 10px;">
                     <hr style="flex: 1; margin-right: 10px; border-top: 1px solid gray;">
                     <label style="text-align: center; color: gray;">OR</label>
                     <hr style="flex: 1; margin-left: 10px; border-top: 1px solid gray;">
                 </div>
 
-                <input name="submit" type="button" onclick="window.location.href='sign-up.php'" value="Sign Up">
+                <input name="submit" type="button" onclick="window.location.href='sign-up.php'" value="SIGN UP">
                 <label id='labelSignUp' style='margin-top: 10px;'>Forgot Password?<a id='a_SignUp' onclick="showModal()">&nbsp;Click Here!</a></label>
                 <br>
             </div>
@@ -65,9 +65,16 @@ include_once 'functionalities/modals.php';
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <script src='show-hide-password.js'></script>
 <script src='close-modal.js'></script>
 <script src='send-otp.js'></script>
+<script src='submit-password.js'></script>
+<script src='login.js'></script>
+
+
 
 <script>
 
@@ -114,60 +121,6 @@ function showModal() {
 
 ///////////////////////////////////////////////////////////submit button password///////////////////////////////////////////////////////
 
-function submitPss() {
-    var emailAddress = document.getElementById("userEmailAddressInput").value;
-    var passwordInput = document.getElementsByClassName('passwordInput')[1].value;
-    var confirmPasswordInput = document.getElementById('confirmPasswordInput').value;
-    var emailTooltip = document.getElementById("emailTooltip");
-    var passwordTooltip = document.getElementById("passwordTooltip");
-    var otpTextBox = document.getElementById("otpVerification").value;
-
-    
-    if (!/^[^@\s]+@g.batstate-u.edu.ph$/.test(emailAddress)) {
-        emailTooltip.innerHTML = "Please use a valid email address!";
-        emailTooltip.style.display = "inline-block";
-        passwordTooltip.style.display = "none"; // hide password tooltip
-        return;
-    }
-
-    if (passwordInput !== confirmPasswordInput) {
-        passwordTooltip.innerHTML = 'Password does not match.';
-        passwordTooltip.style.display = "block";
-        emailTooltip.style.display = "none";
-    } 
-    else if ( passwordInput === '' || confirmPasswordInput ==='' ){
-        passwordTooltip.innerHTML = 'Passwords cannot be Empty.';
-        passwordTooltip.style.display = "block";
-        emailTooltip.style.display = "none";
-    }
-    else {
-        passwordTooltip.innerHTML = 'Passwords match.';
-        passwordTooltip.style.display = "block";
-        emailTooltip.style.display = "none";
-
-        // send the OTP and email address to verify_otp.php
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../account/functionalities/change-password.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-            if (xhr.responseText === "successful") {
-                // redirect the user to a success page
-                window.location.href = "login.php?edit=successful";
-                console.log(otpTextBox);
-
-            } else {
-                // display an error message
-                window.location.href = "login.php?error=wrong";
-                console.log(otpTextBox);
-
-            }
-            }
-        };
-        xhr.send("email=" + encodeURIComponent(emailAddress) + "&otp=" + encodeURIComponent(otpTextBox) + "&password=" + encodeURIComponent(confirmPasswordInput));
-    }
-
-}
 
 
 </script>
