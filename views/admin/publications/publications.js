@@ -1,3 +1,5 @@
+console.log("Hello from publications.js");
+
 // // DELETE MODAL
 // const deleteBtn = document.querySelector('.delete-btn');
 

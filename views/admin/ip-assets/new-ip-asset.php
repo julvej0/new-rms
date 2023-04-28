@@ -1,9 +1,12 @@
 <?php
+    include '../../../db/db.php';
     include '../../../includes/admin/templates/header.php';
 ?>
-
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./new-ip-asset.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <body>
     <?php
@@ -15,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-                <form>
+            <form action="functionalities/ipa-insert.php" method="POST">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -138,6 +141,26 @@
                             <tbody id="author-tbl-body">
                                 <tr>
                                     <td class="ipa-author-field">
+                                        <?php
+                                        $query = "SELECT author_id, author_name FROM table_authors";
+                                        $params = array();
+                                        $result = pg_query_params($conn, $query, $params);
+                                                                            
+                                        echo '<input list="authors" name="author_name[]"
+                                        style="
+                                        width: 100%;
+                                        height: 50px;
+                                        padding: 10px 36px 10px 16px;
+                                        border-radius: 5px;
+                                        border: 1px solid var(--dark-grey);"
+                                        onchange="showAuthorId(this)"
+                                        placeholder="Author Name...">';
+                                        echo '<datalist id="authors">';
+                                        while ($row = pg_fetch_assoc($result)) {
+                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                        }
+                                        echo '</datalist>';
+                                        ?>
                                         <input type="hidden" name="author_id[]" class="author-id-input">
                                     </td>
                                     <td style="text-align: center;">
@@ -151,7 +174,7 @@
                     </div>
                     <div class="sub-container">
                         <div class="title">
-                            <h3>Funding Details</h3>
+                            <h3>Registration Details</h3>
                             <hr>
                         </div>
                         <div class="form-col">

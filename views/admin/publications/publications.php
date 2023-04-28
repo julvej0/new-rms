@@ -124,7 +124,7 @@
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                                     <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can icon"></i></button>
                                 </form>                            
-                        </td>
+                            </td>
                     </tr>
                     <?php
                     }
@@ -151,11 +151,11 @@
                     $total_pages = ceil($total_records / $no_of_records_per_page);
 
                     if (isset($_GET['search'])){
-                        return "Author Count for \"".$_GET['search']."\" : ".$total_records;
+                        return "Search Count for \"".$_GET['search']."\" : ".$total_records;
 
                     }
                     else{
-                        return "Author Count : ".$total_records;
+                        return "Publications Count : ".$total_records;
                     }
                 }
             ?>
@@ -196,10 +196,10 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
-<script src="./publications.js"></script>
+<script src="publications.js"></script>
 <script>
-            // Floating action rotate
-            let isRotated = false;
+           // Floating action rotate
+           let isRotated = false;
             const checkboxContainer = document.getElementById("checkbox-container");
 
             function rotateButton() {
@@ -285,7 +285,7 @@
                 });
             });
 
-            </script>
+</script>
 </body>
 
 <?php
