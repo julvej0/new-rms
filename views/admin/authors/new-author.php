@@ -24,7 +24,7 @@
         </div>
         <section>
             <div class="container">
-                <form action = "<?php echo isset($_GET['id']) ? 'functionalities\php\edit_author.php' : 'functionalities\php\insert_author.php' ?>" method="POST">
+                <form onsubmit="return checkData()" action = "<?php echo isset($_GET['id']) ? 'functionalities\php\edit_author.php' : 'functionalities\php\insert_author.php' ?>" method="POST">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Author Details</h3>
@@ -95,7 +95,7 @@
                     
                     <br>
                     <div class="form-footer">
-                        <input type="submit" class="submit-btn" name="submita" value="Submit">
+                        <input type="submit" class="submit-btn" name="<?php echo isset($_GET['id']) ? 'edit' : 'insert' ?>" value="Submit">
                         <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>
@@ -107,6 +107,7 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+
 <script src="./new-author.js"></script>
 <?php
     include  'functionalities/php/affiliations.php';
