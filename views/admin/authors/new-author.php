@@ -34,7 +34,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="a-label" for="a-name">Author Name</label>
-                                    <input type="text" placeholder="Author Name" id="a-name" name="a-name" value ="<?php echo $table_rows[0]['author_name']?>">
+                                    <input type="text" placeholder="Author Name" id="a-name" name="a-name" value ="<?php echo isset($_POST['a-name']) ? $_POST['a-name'] : $table_rows[0]['author_name'] ?>">
                                     <input type="text" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden>
                                 </div>
                             </div>

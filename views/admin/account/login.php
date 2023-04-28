@@ -1,8 +1,8 @@
 <?php
-include_once "../../../includes/public-user/templates/header.php";
+include_once "../../../includes/admin/templates/header.php";
 include_once 'functionalities/modals.php';
 ?>
-<link rel="stylesheet" href="../../../css/public-user/templates/login.css">
+<link rel="stylesheet" href="login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div id="whole_page">
     <img src='../../../assets/images/background_img.jpg' style='opacity: 0.7; max-width: 100%; height: 100%;'/>
@@ -65,9 +65,9 @@ include_once 'functionalities/modals.php';
     </div>
 </div>
 
-<script src='../../../js/public-user/show-hide-password.js'></script>
-<script src='../../../js/public-user/close-modal.js'></script>
-<script src='../../../js/public-user/send-otp.js'></script>
+<script src='show-hide-password.js'></script>
+<script src='close-modal.js'></script>
+<script src='send-otp.js'></script>
 
 <script>
 
@@ -174,5 +174,5 @@ function submitPss() {
 
 
 <?php
-include_once "../../../includes/public-user/templates/footer.php";
+include_once "../../../includes/admin/templates/footer.php";
 ?>

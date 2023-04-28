@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../../css/public-user/templates/popup-modal.css">
+<link rel="stylesheet" href="popup-modal.css">
 <?php
     $errorType = "";
     $errorMessage = "";
