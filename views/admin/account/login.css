@@ -144,10 +144,10 @@ input[type="submit"], input[type="button"] {
   }
   
   input[type="submit"]:hover, input[type="button"]:hover {
-    background-color: white;
-    color: #EF1F3B;
+    background-color: #EF1F3B;
+    color: white;
     transition: all 0.3s ease-out;
-    transform: scale(1.1);
+    opacity: 0.5 ;
   }
 
   #a_SignUp {
@@ -228,7 +228,7 @@ display: block;
 
 .modal-container h2 {
   text-align: center;
-  background-color: #EF1F3B;
+  background-color: #cf102d;
   color: white;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
@@ -240,7 +240,7 @@ display: block;
   margin-top: 20px;
   margin-bottom: 20px;
   height: 40px;
-  background-color: #EF1F3B;
+  background-color: #cf102d;
   color: white;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -255,7 +255,7 @@ display: block;
   margin-bottom: 20px;
   height: 40px;
   background-color: white;
-  color: #EF1F3B;
+  color: #cf102d;
   transform: scale(1.1);
   transition: all 0.3s ease;
   border: none;
@@ -345,8 +345,8 @@ position: absolute;
 
 #sendOtpLink {
   font-size: small;
-  border: solid 2px #EF1F3B;
-  color: #EF1F3B;
+  border: solid 2px #cf102d;
+  color: #cf102d;
   background-color: White;
   transition: all 0.3s ease-out;
   font-weight: bold;
@@ -356,8 +356,8 @@ position: absolute;
   font-size: small;
   border: none;
   color: white;
-  background-color: #EF1F3B;
-  border: solid 2px #EF1F3B;
+  background-color: #cf102d;
+  border: solid 2px #cf102d;
   transition: all 0.3s ease-out;
   font-weight: bold;
 

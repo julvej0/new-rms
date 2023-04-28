@@ -188,5 +188,10 @@ nav .profile {
     color: var(--light);
     align-items: center;
 }
+
+#account-settings.active {
+    background-color: #e9e9e9;
+    color: #333;
+  }
 /* APPBAR */
 /* APPBAR CONTENT */

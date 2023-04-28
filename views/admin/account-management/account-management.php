@@ -29,7 +29,7 @@ include_once "../account-management/functionalities/user-session.php";
         <div class="profile-details">
         <div class="profile-row">
             <label for="name">Name:</label>
-            <input type="text" id="user_name" value="<?php echo $user['user_name'];?>" readonly>
+            <input type="text" id="user_name" style="text-transform:uppercase;" value="<?php echo $user['user_name'];?>" readonly>
             <button class="edit-button" onclick="editField('user_name')">EDIT</button>
         </div>
         <div class="profile-row">

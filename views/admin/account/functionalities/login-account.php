@@ -2,8 +2,8 @@
 session_start();
 include_once "../../../../db/db.php";
 
-if (isset($_POST['submit'])) {
-    $email = $_POST['emailAddress'];
+if (isset($_POST['email'], $_POST['password'] )) {
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     // fetch existing account
@@ -23,16 +23,18 @@ if (isset($_POST['submit'])) {
 
             // check account type and redirect accordingly
             if ($user['account_type'] == 'admin') {
-                header("Location: ../../../../admin/publications/publications.php/");
+                header("Location: ../../../../account-management/user-profile.php");
             } else {
-                header("Location: ../../account-management/account-management.php?auth=success");
+                echo 'success';
+                
             }
             exit();
         } else {
-            header("Location: ../login.php?error=wrong");
+            //sweetalert here saying Account Doesn't Exist.
+            header("Location: ../login.php");
         }
     } else {
-        header("Location: ../login.php?error=wrong");
+        header("Location: ../login.php");
     }
 }
 ?>
