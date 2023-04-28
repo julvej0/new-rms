@@ -8,6 +8,12 @@ if (isset($_POST['submitPB'])) {
     }else{
         $date_published = $_POST["date_published"];
     }
+    $if_funded = isset($_POST['funding_type']) ? $_POST['funding_type'] : null;
+    if (!$if_funded) {
+        $if_funded = "";
+    }else{
+        $if_funded = $_POST["funding_type"];
+    }
     $quartile_sem = $_POST["quartile"];
     $quartile_year = $_POST["quartile_year"];
     $authors = $_POST["author_id"];
@@ -18,21 +24,11 @@ if (isset($_POST['submitPB'])) {
     $type = $_POST["type_of_publication"];
     $url = $_POST["google_scholar_details"];
     $sdg = $_POST["sdg_no"];
-    $if_funded = isset($_POST['funding_type']) ? $_POST['funding_type'] : null;
-    if (!$if_funded) {
-        $if_funded = "";
-    }else{
-        $if_funded = $_POST["funding_type"];
-    }
-    
     $funding_nature = $_POST["nature_of_funding"];
     $publisher = $_POST["publisher"]; 
 
-    $authors_string = implode(", ", $authors); // join the array values with a comma delimiter
+    $authors_string = implode(",", $authors); // join the array values with a comma delimiter
     $sdg_string = implode(", ", $sdg);
-
-    $quartile_sem = $_POST["quartile"];
-    $quartile_year = $_POST["quartile_year"];
     
     $quartileJoin = array();
     foreach ($quartile_sem as $index => $value) {
