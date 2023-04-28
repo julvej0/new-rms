@@ -6,10 +6,10 @@
     $sql = "SELECT * FROM table_authors WHERE author_name ILIKE '%$search_query%' ORDER BY author_id LIMIT $items_per_page OFFSET $offset";
     $result = pg_query($conn, $sql);
     if (isset($_GET['search'])){
-    $deleteURL = '?search='.$search_query.'&page='.$page_number;
+        $deleteURL = '?search='.$search_query.'&page='.$page_number;
     }
     else{
-    $deleteURL = '?page='.$page_number;
+        $deleteURL = '?page='.$page_number;
     }
 
     if(pg_num_rows($result) > 0){
@@ -78,7 +78,11 @@
         <td id="white-side" class="a-action-btns stickey-col">
             <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </a>
             
-            <button type="button" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="window.location.href='<?php echo $deleteURL.'&id='.$row['author_id'];?>'">Delete</button>
+            <form onsubmit="ConfirmDelete()" action = "" method="post">
+                <input type='text' value="<?php echo $row['author_id'];?>" name="id" hidden disable>
+                <input type='text' value="<?=$_GET['page']?>" name="page" hidden disable>
+                <button type="submit" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="window.location.href='<?php echo $deleteURL.'&id='.$row['author_id'];?>'">Delete</button>
+            </form>
         </td>
         
         <?php

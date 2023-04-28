@@ -1,5 +1,5 @@
-// DELETE MODAL
-// const deleteBtn = document.querySelector('.delete-btn');
+//DELETE MODAL
+const deleteBtn = document.querySelector('.delete-btn');
 
 // deleteBtn.addEventListener('click', (e) => {
 //     e.preventDefault();
