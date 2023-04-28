@@ -34,7 +34,7 @@ function checkData(){
     //External Affiliation
     var external_aff = document.getElementsByClassName("a-ex-aff").length;
 
-    if (internal_dept == 0 && internal_prog == 0 && internal_camp==0 && external_aff == 0){
+    if (internal_dept == 0 && internal_prog == 0 && internal_camp == 0 && external_aff == 0){
       
         Swal.fire({
         title: 'Error',
@@ -45,7 +45,7 @@ function checkData(){
       return false;
     }
 
-    else if (name == "" || gender == "" || role == ""){
+    else if(name == "" || gender == "" || role == ""){
       Swal.fire({
         title: 'Error',
         text: "Incomplete Author Details",
