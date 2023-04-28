@@ -1,9 +1,9 @@
 <?php
-include_once "../../../includes/public-user/templates/header.php";
-include_once "../../../includes/public-user/templates/navbar.php";
-include_once "functionalities/user-session.php";
+include_once "../../../includes/admin/templates/header.php";
+include_once "../../../includes/admin/templates/navbar.php";
+include_once "../account-management/functionalities/user-session.php";
 ?>
-<link rel="stylesheet" href="../../../css/public-user/templates/account-management.css">
+<link rel="stylesheet" href="account-management.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div id='whole-page'>
     <!-- navigation bar -->
@@ -92,9 +92,9 @@ include_once "functionalities/user-session.php";
     
 </div>
 
-<script src='../../../js/public-user/change-pass-and-email.js'></script>
-<script src='../../../js/public-user/show-hide-password.js'></script>
-<script src='../../../js/public-user/edit-info.js'></script>
+<script src='change-pass-and-email.js'></script>
+<script src='show-hide-password.js'></script>
+<script src='edit-info.js'></script>
 <script>
 
 
@@ -162,7 +162,7 @@ function changePss() {
     }
     
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'change-password-no-otp.php', true);
+    xhr.open('POST', 'functionalities/change-password-no-otp.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -188,5 +188,5 @@ function changePss() {
 
 
 <?php
-include_once "../../../includes/public-user/templates/footer.php";
+include_once "../../../includes/admin/templates/footer.php";
 ?>

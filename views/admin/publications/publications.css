@@ -251,3 +251,75 @@ main table tr td .icon {
 .table-footer .pagination li a .icon {
     font-size: 20px;
 }
+
+/*SELECT COLUMN*/
+.select-columns-btn {
+    border: transparent;
+    background-color: transparent;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+    background-color: #EF1F3B;
+    color: white;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    padding: .4rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .select-col-div {
+    position: absolute;
+    width: 13rem;
+    top: 5.5rem;
+    transition: top 0.1s ease;
+    white-space: nowrap;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .checkbox-button{
+    width: 10.8%;
+  }
+  #checkbox-container {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+  .btn-container {
+    position: absolute;
+    top: 5rem;
+    left: 62rem;
+    width: 100%;
+    z-index: 101;
+  }
+  
+  /*COLUMN*/
+  input[type=checkbox] {
+    display: none;
+  }
+  
+  label.checkbox-button {
+    width: 12.85rem;
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  label.checkbox-button:hover {
+    background-color: #dbdbdb;
+  }
+  
+  input[type=checkbox]:checked + label.checkbox-button {
+    background-color: #EF1F3B;
+    color: white;
+  }
+  input[type=checkbox]:checked + label.checkbox-button:hover {
+    background-color: #fcd0d0;
+  }
+  .checkbox-columns {
+    width: 12.85rem;
+    top:-1rem;
+  }

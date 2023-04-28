@@ -1,8 +1,8 @@
 <?php
-include_once "../../../includes/public-user/templates/header.php";
+include_once "../../../includes/admin/templates/header.php";
 include_once 'functionalities/modals.php';
 ?>
-<link rel="stylesheet" href="../../../css/public-user/templates/sign-up.css">
+<link rel="stylesheet" href="sign-up.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div id="whole_page">
         <div id="signup-container">
@@ -66,11 +66,11 @@ include_once 'functionalities/modals.php';
 
         </div>
 </div>
-<script src='../../../js/public-user/show-hide-password.js'></script>
-<script src='../../../js/public-user/show-modal.js'></script>
-<script src='../../../js/public-user/close-modal.js'></script>
-<script src='../../../js/public-user/add-user-btn.js'></script>
-<script src='../../../js/public-user/send-otp.js'></script>
+<script src='show-hide-password.js'></script>
+<script src='show-modal.js'></script>
+<script src='close-modal.js'></script>
+<script src='add-user-btn.js'></script>
+<script src='send-otp.js'></script>
 
 <!-- modal function -->
 
@@ -113,5 +113,5 @@ disableotpInput.addEventListener("input", () => {
 
 
 <?php
-include_once "../../../includes/public-user/templates/footer.php";
+include_once "../../../includes/admin/templates/footer.php";
 ?>

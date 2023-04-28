@@ -1,3 +1,6 @@
+<?php
+include_once "../../../views/admin/account-management/functionalities/user-session.php";
+?>
 <!-- STYLES -->
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="../../../css/admin/templates/navbar.css">
@@ -33,10 +36,10 @@
             <a href="#">
             <i class='bx bxs-cog icon' ></i>Account Settings<i class='bx bx-chevron-right icon-right' ></i></a>
             <ul class='side-dropdown'>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Security</a></li>
+                <li><a href="../../../views/admin/account-management/user-profile.php">Profile</a></li>
+                <li><a href="../../../views/admin/account-management/user-security.php">Change Password</a></li>
             </ul>
-            <a href="#">
+            <a href="../../../views/admin/account/login.php">
             <i class='bx bx-log-out icon rotate'></i>Sign Out</a>
         </li>
     </ul>
@@ -50,7 +53,7 @@
         <i class='bx bx-menu toggle-sidebar' ></i>
         <span class="divider"></span>
         <div class="profile">
-            <p class="user-name">Juan Dela Cruz</p>
+            <p class="user-name"><?php echo $user['user_name'];?></p>
         </div>
     </nav>
     <!-- NAVBAR -->

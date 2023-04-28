@@ -61,7 +61,7 @@
             <div class="table-footer">
                 <p>Article Count : 1</p>
                 <div class="download">
-                    <button class="download-btn">Download <i class='bx bx-chevron-down'></i></button>
+                    <button class="download-btn">Download</button>
                 </div>
                 <div class="pagination">
                     <li>
