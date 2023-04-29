@@ -73,12 +73,12 @@
                         <td class="authors-col col-authors"><?=$row['authors'];?></td>
 
 
-                        <td class="action-col">
+                        <td class='pb-action-btns stickey-col'>
                             <!-- Open certificate in a new tab-->
                             <a href="<?=$row['hyperlink'];?>" target="<?php echo strpos($row['hyperlink'], 'drive.google.com') !== false ? '_blank' : ''; ?>" class="gdrive-btn">
                                 <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                             </a>
-                            <form action="functionalities/ipa-edit.php" method="POST">
+                            <form action="edit-ipa.php" method="POST">
                                 <input type="hidden" name="row_id" value="<?=$row['registration_number']?>">
                                 <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square"></i></button>
                             </form>

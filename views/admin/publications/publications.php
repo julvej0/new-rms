@@ -18,7 +18,7 @@
         <div class="header">
             <h1 class="title">Publications</h1>
             <div class='left'>
-                <div class="btn-container">
+                <!-- <div class="btn-container">
                     <button class="select-columns-btn" onclick="rotateButton()" id="button-icon">+</button>   
                     <div class="checkbox-container" id="checkbox-container">
                         <input type="checkbox" name="col-title" id="col-title" checked>
@@ -50,7 +50,7 @@
                         <input type="checkbox" name="col-citations" id="col-citations" checked >
                         <label class="checkbox-button" for="col-citations">Citations</label>
                     </div>
-                </div>
+                </div> -->
                 <form action='' method='get'>
                     <div class="form-group">
                         <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >
