@@ -104,7 +104,7 @@
             <div class="table-footer">
                 <p>Article Count : 1</p>
                 <div class="download">
-                    <button class="download-btn">Download</button>
+                    <button onclick="openModal()" class="download-btn">Download</button>
                 </div>
                 <div class="pagination">
                 <?php if ($total_pages > 1) {
@@ -150,8 +150,6 @@
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script src="./ip-assets.js"></script>
 <script src="./download_button.js"></script>
-
-</script>
 </body>
 
 <?php
