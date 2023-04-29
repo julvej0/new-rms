@@ -102,26 +102,10 @@
                 </table>
             </div>
             <div class="table-footer">
-
-            <?php
-                function countIPA($conn){
-                    $search_query = isset($_GET['search']) ? $_GET['search'] : '';
-                    $no_of_records_per_page = 10;
-                    // Get total number of records
-                    $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%';");
-                    $total_records = pg_fetch_result($result_count, 0, 0);
-                    $total_pages = ceil($total_records / $no_of_records_per_page);
-
-                    if (isset($_GET['search'])){
-                        return "Search Count for \"".$_GET['search']."\" : ".$total_records;
-
-                    }
-                    else{
-                        return "IP Asset Count : ".$total_records;
-                    }
-                }
-            ?>
-                <p><?=countIPA($conn)?></p>
+                <p>Article Count : 1</p>
+                <div class="download">
+                    <button onclick="openModal()" class="download-btn">Download</button>
+                </div>
                 <div class="pagination">
                 <?php if ($total_pages > 1) {
                     $current_page = isset($_GET['pageno']) ? $_GET['pageno'] : 1;
@@ -151,15 +135,21 @@
                 <?php } ?>
                 </div>
             </div>
-        </section>
     </main>
-
-</section>
+    </section>
+        <!-- Modal Popup -->
+     <div id="myModal" class="modal">
+        <div class="modal-content1">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <iframe src="download_ip-assets.php"></iframe>
+        </div>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script src="./ip-assets.js"></script>
+<script src="./download_button.js"></script>
 </body>
 
 <?php
