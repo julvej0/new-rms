@@ -179,11 +179,9 @@ main table .pb-action-btns {
     align-items: center;
 }
 
-main table .edit-btn,
-.delete-btn {
+main table .edit-btn, .delete-btn, .gdrive-btn{
     border: none;
-    color: #ffffff;
-    width: 100%;
+    color: var(--light);
     height: 30px;
     font-size: 10px;
     border-radius: 3px;
@@ -195,16 +193,18 @@ main table .edit-btn,
     text-align: center;
 }
 
-.edit-btn:hover,
-.delete-btn:hover {
+.edit-btn:hover, .delete-btn:hover, .gdrive-btn:hover {
     opacity: 80%;
 }
 
+.gdrive-btn{
+    background-color: var(--green);
+}
 .edit-btn {
     background-color: var(--blue);
 }
 
-.delete-btn {
+.delete-btn{
     background-color: var(--danger);
 }
 

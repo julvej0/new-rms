@@ -9,9 +9,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <body>
-<?php
-    include '../../../includes/admin/templates/navbar.php';
-?>
+    <?php
+        include '../../../includes/admin/templates/navbar.php';
+    ?>
     <main>
         <div class="header">
             <h1 class="title">New Publication</h1>
