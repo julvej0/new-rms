@@ -4,43 +4,6 @@
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./ip-assets.css">
-<style>
-    /*style for download modal */
-  
-
-   /*style for download modal */
-   .modal-content1 {
-    background-color: #fff;
-    margin: 5% auto;
-    margin-left: 30%;
-    padding: 30px;
-    padding-top: 80px;
-    width: 60%;
-    height: 75%;
-    text-align: center;
-    border-radius: 20px;
-    position: relative;
-    opacity: 2;
-}
-
-.modal-content1 iframe {
-    width: 100%;
-    height: calc(100% - 5px); /* Subtract height of close button */
-    /* border: 2px solid black; */
-}
-
-
-    .close {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            cursor: pointer;
-            z-index: 9999;
-            pointer-events: auto !important;
-            color: black;
-            height: 30px;
-        }
-</style>
 <body>
     <?php
         include '../../../includes/admin/templates/navbar.php';
@@ -98,7 +61,7 @@
             <div class="table-footer">
                 <p>Article Count : 1</p>
                 <div class="download">
-                    <button class="download-btn">Download</button>
+                    <button class="download-btn" onclick="openModal()">Download</button>
                 </div>
                 <div class="pagination">
                     <li>
@@ -120,11 +83,21 @@
             </div>
     </main>
     </section>
+        <!-- Modal Popup -->
+     <div id="myModal" class="modal">
+        <div class="modal-content1">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <iframe src="download_ip-assets.php"></iframe>
+        </div>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script src="./ip-assets.js"></script>
+<script src="./download_button.js"></script>
+
+</script>
 </body>
 
 <?php

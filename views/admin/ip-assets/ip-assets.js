@@ -50,5 +50,3 @@ deleteBtn.addEventListener('click', (e) => {
 //     })
 // })
 
-
-
