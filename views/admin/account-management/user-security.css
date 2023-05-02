@@ -239,8 +239,8 @@ body {
 
 .modal-content {
     position: fixed;
-    top: 27%;
-    left: 42%;
+    top: 26%;
+    left: 40%;
     transform: translate(-50%, -50%);
     background-color: #fefefe;
     border: 1px solid #888;

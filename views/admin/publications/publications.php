@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="publications.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!--Font Awesome CDN-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <body>
 <?php
     include '../../../includes/admin/templates/navbar.php';
@@ -196,96 +201,7 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
-<script src="publications.js"></script>
-<script>
-           // Floating action rotate
-           let isRotated = false;
-            const checkboxContainer = document.getElementById("checkbox-container");
-
-            function rotateButton() {
-                const buttonIcon = document.getElementById("button-icon");
-                if (isRotated) {
-                    buttonIcon.style.transform = "rotate(0deg)";
-                    checkboxContainer.style.opacity = 0;
-                    setTimeout(() => {
-                        checkboxContainer.style.display = "none";
-                    }, 300); // wait for transition to complete before hiding container
-                    isRotated = false;
-                } else {
-                    buttonIcon.style.transform = "rotate(135deg)";
-                    checkboxContainer.style.display = "block";
-                    setTimeout(() => {
-                        checkboxContainer.style.opacity = 1;
-                    }, 0); // wait for display to update before starting transition
-                    isRotated = true;
-                }
-            }
-
-
-
-
-
-            // get all the checkboxes
-            var checkboxes = document.querySelectorAll('input[type=checkbox]');
-
-            // loop through each checkbox
-            checkboxes.forEach(function(checkbox) {
-
-            // Hide cells that correspond to unchecked checkboxes by default
-            var colName = checkbox.name;
-            var cells = document.querySelectorAll('.' + colName);
-            cells.forEach(function(cell) {
-            cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-            });
-
-            // add event listener for when the checkbox state changes
-            checkbox.addEventListener('change', function() {
-                // get the name of the checkbox
-                var colName = this.name;
-                // get the table cells that correspond to this column name
-                var cells = document.querySelectorAll('.' + colName);
-                // loop through each cell and hide/show it based on checkbox state
-                cells.forEach(function(cell) {
-                cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-                });
-            });
-            });
-
-            // loop through each checkbox
-            checkboxes.forEach(function(checkbox) {
-
-                // get the stored state of the checkbox
-                var storedState = sessionStorage.getItem(checkbox.name);
-
-                // if there is a stored state, update the checkbox state to match it
-                if (storedState !== null) {
-                checkbox.checked = storedState === 'true';
-                }
-
-                // add event listener for when the checkbox state changes
-                checkbox.addEventListener('change', function() {
-                // store the state of the checkbox in session storage
-                sessionStorage.setItem(checkbox.name, checkbox.checked);
-                
-                // get the name of the checkbox
-                var colName = this.name;
-                // get the table cells that correspond to this column name
-                var cells = document.querySelectorAll('.' + colName);
-                // loop through each cell and hide/show it based on checkbox state
-                cells.forEach(function(cell) {
-                    cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-                });
-                });
-
-                // Hide cells that correspond to unchecked checkboxes by default
-                var colName = checkbox.name;
-                var cells = document.querySelectorAll('.' + colName);
-                cells.forEach(function(cell) {
-                cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-                });
-            });
-
-</script>
+<script src="./publications.js"></script>
 </body>
 
 <?php

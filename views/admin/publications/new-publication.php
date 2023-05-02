@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                             <div class="form-container">
-                                <div class="form-control">
+                                <div class="form-control" id="sdg">
                                     <label class="pb-label" for="sdg_no">SDG (choose at least 5):</label>
                                     <div class="checkbox-container">
                                         <div class="checkbox-col">

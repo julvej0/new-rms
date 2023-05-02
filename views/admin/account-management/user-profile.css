@@ -26,50 +26,6 @@ body {
     flex-direction: column;
 }
 
-/* Navigation Bar */
-
-.navigation-bar {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    height: 60px;
-    top: 100px;
-}
-
-.nav-button {
-    padding: 10px 100px;
-    margin: 0 20px;
-    border-radius: 5px;
-    transform: skewX(-45deg);
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.nav-button:hover,
-.nav-button:focus {
-    background-color: #EF1F3B;
-    transform: skewX(-45deg) scale(1.1);
-    cursor: pointer;
-    color: white;
-}
-
-.nav-button.focused {
-    background-color: #EF1F3B;
-    transform: skewX(-45deg) scale(1.1);
-    color: white;
-}
-
-.nav-button span {
-    display: inline-block;
-    transform: skewX(45deg);
-}
 
 /* mini-pages */
 
@@ -110,7 +66,7 @@ body {
     height: 260px;
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin-right: 20px;
     transition: all 0.3s ease;
 }
@@ -157,11 +113,12 @@ body {
     font-size: 16px;
     width: 400px;
     height: 40px;
+    box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.3);
 }
 
 .profile-row input[type="text"]:focus {
     outline: none;
-    box-shadow: 0 0 2px 2px #aaa;
+    box-shadow: 0 0 2px 2px greenyellow;
 }
 
 .edit-button {
