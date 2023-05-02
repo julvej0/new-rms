@@ -34,7 +34,9 @@ include_once "functionalities/user-session.php";
         </div>
     </div>
 </div>
-
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src='change-pass-and-email.js'></script>
 <script src='show-hide-password.js'></script>
 <script src='edit-info.js'></script>
@@ -48,7 +50,22 @@ include_once "functionalities/user-session.php";
     var changePasswordModal = document.getElementById('myModal')
     
     if (newPassword !== confirmPassword) {
-        alert("New password and confirm password don't match.");
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+        
+        Toast.fire({
+            icon: 'error',
+            title: 'Passwords Do Not Match, Please Try Again!'
+        })
         return;
     }
     
@@ -59,14 +76,63 @@ include_once "functionalities/user-session.php";
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 if (xhr.responseText === 'successful') {
-                    alert('Password changed successfully!');
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Password Changed Successfully'
+                })
+                // Redirect to login page after 3 seconds
+                setTimeout(() => {
                     changePasswordModal.style.display = "none";
                     document.getElementById("change-password-form").reset();
+                    window.location.href = "user-profile.php";
+                }, 3000);
                 } else {
-                    alert('Password change failed!');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+                    
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Password Change Fail!'
+                    })
                 }
             } else {
-                alert('There was a problem with the request.');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+                    
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'There Was a Problem With The Request!'
+                    })
             }
         }
     };
