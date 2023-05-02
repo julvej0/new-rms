@@ -319,7 +319,8 @@ main .sub-container .form-col .reg-form-container2 .form-control {
 }
 
 main .reg-form-container2 input[type="date"],
-main .reg-form-container2 input[type="file"]
+main .reg-form-container2 input[type="file"],
+main .reg-form-container2 input[type="text"]
  {
     height: 50px;
     width: 100%;

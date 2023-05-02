@@ -9,9 +9,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <body>
-<?php
-    include '../../../includes/admin/templates/navbar.php';
-?>
+    <?php
+        include '../../../includes/admin/templates/navbar.php';
+    ?>
     <main>
         <div class="header">
             <h1 class="title">New Publication</h1>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                             <div class="form-container">
-                                <div class="form-control">
+                                <div class="form-control" id="sdg">
                                     <label class="pb-label" for="sdg_no">SDG (choose at least 5):</label>
                                     <div class="checkbox-container">
                                         <div class="checkbox-col">

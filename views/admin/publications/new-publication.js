@@ -56,10 +56,13 @@ function limitSelection() {
     } else {
       checkboxes[i].disabled = false;
     }
-  }
   if (max <= 5) {
     errorMessage.innerHTML = "";
   }
+  }
+  if(errorMessage.innerHTML === "Please select at least one SDG."){
+      document.location.href = "#sdg";
+    }
 }
 
 // ADD AUTHOR
