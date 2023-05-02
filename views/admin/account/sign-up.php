@@ -7,10 +7,12 @@ include_once "../../../includes/admin/templates/header.php";
 
 <!----------------------------------------------------------- sign up page ---------------------------------------------------------->
 <div id="whole_page">
-        <div id="signup-container">
+<img src="../../../assets/images/redspartan_logo.png" style="width: 150px; height: 160px; position: fixed; bottom: 0; right: 0; margin-bottom: 50px; margin-right: 25px; z-index: 2; border-radius: 50% / 20%;">
+<img src='../../../assets/images/batStateUNeu-logo.png' style='width: 100px; height: 100px; position: fixed; border:solid 3px #EF1F3B; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -350%); top: 50%; left: 50%;'/>
 <!----------------------------------------------------------- sign up header -------------------------------------------------------->
+        <div id="signup-container">
             <div id='container-header'>
-                <h2>Create Account</h2>
+                <h2 id='h2Login'>Create Account</h2>
             </div>
             <br>
 
@@ -51,10 +53,10 @@ include_once "../../../includes/admin/templates/header.php";
                     </div> 
                     <form id="form-container" action='email_ver/page/sendcode.php' method='POST'> 
                         <span class="close">&times;</span>
-                        <label>SR Code:</label>
+                        <label class='labelSubHeader'>SR Code:</label>
                         <input id="userSrCode" type='text' value=''></input>
                         <br>
-                        <label>Email</label>
+                        <label class='labelSubHeader'>Email:</label>
                         <input id="userEmailAddressInput" type="text" name="email" value=''>
                         <input id="confirmedPassword" type="hidden" name="password" value=''>
                         <br>
