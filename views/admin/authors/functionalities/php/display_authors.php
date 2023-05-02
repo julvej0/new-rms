@@ -16,8 +16,8 @@
     while ($row = pg_fetch_assoc($result)) {
     ?>
     <tr>
-        <td><?=$row['author_id'];?></td>
-        <td><?=$row['author_name'];?></td>
+        <td ><?=$row['author_id'];?></td>
+        <td ><?=$row['author_name'];?></td>
         <td><?php
                 if (is_null($row['gender'])) {
                     echo 'Not yet Set';
@@ -77,12 +77,12 @@
         </td>
         <td id="white-side" class="a-action-btns stickey-col">
             <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </a>
-            
-            <form onsubmit="ConfirmDelete()" action = "" method="post">
-                <input type='text' value="<?php echo $row['author_id'];?>" name="id" hidden disable>
-                <input type='text' value="<?=$_GET['page']?>" name="page" hidden disable>
-                <button type="submit" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="window.location.href='<?php echo $deleteURL.'&id='.$row['author_id'];?>'">Delete</button>
+            <form onsubmit="return confirmDelete('<?php echo $row['author_name'];?>')" action = "functionalities\php\delete_author.php" method="POST">
+                <input type="text" value="<?php echo $row['author_id'];?>" name="id" hidden disable>
+                <input type="text" value="<?php echo isset($_GET['page']) ? $_GET['page'] : 1?>" name="page" hidden disable>
+                <button type="submit" class="delete-btn" id="ipa-delete-btn" name="delete">Delete</button>
             </form>
+            
         </td>
         
         <?php
@@ -93,3 +93,6 @@
         }
         ?>
     </tr>
+
+    
+    
