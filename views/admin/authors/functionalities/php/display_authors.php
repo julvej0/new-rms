@@ -77,11 +77,8 @@
         </td>
         <td id="white-side" class="a-action-btns stickey-col">
             <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </a>
-            <form onsubmit="return confirmDelete('<?php echo $row['author_name'];?>')" action = "functionalities\php\delete_author.php" method="POST">
-                <input type="text" value="<?php echo $row['author_id'];?>" name="id" hidden disable>
-                <input type="text" value="<?php echo isset($_GET['page']) ? $_GET['page'] : 1?>" name="page" hidden disable>
-                <button type="submit" class="delete-btn" id="ipa-delete-btn" name="delete">Delete</button>
-            </form>
+            <button type="button" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?php echo $row['author_name'];?>', '<?php echo $row['author_id'];?>', <?php echo isset($_GET['page']) ? $_GET['page'] : 1 ;?>, '<?php echo isset($_GET['search']) ? $_GET['search'] : 'empty_search' ;?>')">Delete</button>
+           
             
         </td>
         

@@ -164,7 +164,7 @@
      <div id="myModal" class="modal">
         <div class="modal-content1">
         <span class="close" onclick="closeModal()">&times;</span>
-        <iframe src="download_ip-assets.php"></iframe>
+        <iframe src="functionalities/download/download_ip-assets.php"></iframe>
         </div>
     </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -172,7 +172,7 @@
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script src="./ip-assets.js"></script>
-<script src="./download_button.js"></script>
+<script src="functionalities/download//download_button.js"></script>
 </body>
 
 <?php

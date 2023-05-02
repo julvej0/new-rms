@@ -4,7 +4,7 @@ include_once "../../../db/db.php";
 
 // check if user is logged in
 if (!isset($_SESSION['user_email'])) {
-    header("Location: ../../../../../admin/account/login.php");
+    header("Location: ../../../../../../../new-rms-webdev/views/admin/account/login.php");
     exit();
 }
 
