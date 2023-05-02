@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                             <div class="form-container">
-                                <div class="form-control">
+                                <div class="form-control" id="sdg">
                                     <label class="pb-label" for="sdg_no">SDG (choose at least 5):</label>
                                     <div class="checkbox-container">
                                         <div class="checkbox-col">
@@ -340,7 +340,7 @@
                     </div>
                     <hr>
                     <div class="form-footer">
-                        <input type="submit" class="submit-btn" name="submitPB" value="Submit">
+                        <input type="submit" id="submit-btn" class="submit-btn" name="submitPB" value="Submit">
                         <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>

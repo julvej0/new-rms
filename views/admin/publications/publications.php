@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="publications.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!--Font Awesome CDN-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <body>
 <?php
     include '../../../includes/admin/templates/navbar.php';
@@ -87,10 +92,7 @@
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                                     <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon"></i></button>
                                 </form>
-                                <form action="functionalities/publication-delete.php" method="POST" class="delete-form">
-                                    <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
-                                    <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can icon"></i></button>
-                                </form>                            
+                                <button class="delete-btn" data-publication-id="<?php echo $row['publication_id']; ?>"><i class="fa-solid fa-trash-can icon"></i></button>
                         </td>
                     </tr>
                     <?php
@@ -159,10 +161,7 @@
         </section>
     </main>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
+
 <script src="./publications.js"></script>
 </body>
 
