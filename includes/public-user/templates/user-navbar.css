@@ -144,6 +144,35 @@ body {
     color: var(--light);
     letter-spacing: 1px;
     font-weight: 400;
+    position: relative;
+    display: inline-block;
+}
+
+.navbar-container .right-content .nav-links a::before,
+.navbar-container .right-content .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: var(--light);
+    height: 2px;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+}
+
+.navbar-container .right-content .nav-links a::before {
+    top: -3px;
+    transform-origin: left;
+}
+
+.navbar-container .right-content .nav-links a::after {
+    bottom: -3px;
+    transform-origin: right;
+}
+
+.navbar-container .right-content .nav-links a:hover::before,
+.navbar-container .right-content .nav-links a:hover::after {
+    transform: scaleX(1);
 }
 
 
