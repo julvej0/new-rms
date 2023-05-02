@@ -1,4 +1,37 @@
-function confirmDelete(event, name){
+function submitDelete(id, page, search){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "functionalities/php/delete_author.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+
+            if (xhr.responseText === "Error") {
+                // display an error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Delete was Unsuccessful',
+                    text: 'Something went wrong! Please try again later!',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                    });
+                    console.log(xhr.responseText)
+            }
+            else if(xhr.responseText === "Success"){
+                if (search == "empty_search"){
+                    window.location.href="authors.php?page="+page+"&delete=success";
+                }
+                else{
+                    window.location.href="authors.php?page="+page+"&search="+search+"&delete=success";
+                }
+            }
+        }
+    };
+    xhr.send("id=" + id + "&page=" + page + "&search=" + search);
+
+}
+
+
+function confirmDelete(name, id, page, search){
     
     Swal.fire({
         title: 'Are you sure?',
@@ -11,12 +44,39 @@ function confirmDelete(event, name){
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            return true
-        } else if (result.isDenied) {
-            return false
-        }
-      })
-      event.preventDefault();
+            submitDelete(id, page, search)
+        } 
+      });
+
    
 
 }
+
+let isRotated = false;
+const buttonIcon = document.getElementById("button-icon");
+const rbdContainer = document.getElementById("rdb-container");
+
+function rotateButton() {
+    
+    
+
+    if (isRotated) {
+        buttonIcon.style.transform = "rotate(0deg)";
+        rbdContainer.style.opacity = 0;
+        setTimeout(() => {
+            rbdContainer.style.display = "none";
+        }, 300); // wait for transition to complete before hiding container
+        isRotated = false;
+    } else {
+        buttonIcon.style.transform = "rotate(135deg)";
+        rbdContainer.style.display = "block";
+        setTimeout(() => {
+            rbdContainer.style.opacity = 1;
+        }, 0); // wait for display to update before starting transition
+        isRotated = true;
+    }
+}
+
+
+
+  
