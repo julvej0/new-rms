@@ -1,18 +1,21 @@
 <?php
 include_once "../../../includes/admin/templates/header.php";
-include_once 'functionalities/modals.php';
 ?>
 <link rel="stylesheet" href="sign-up.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+<!----------------------------------------------------------- sign up page ---------------------------------------------------------->
 <div id="whole_page">
         <div id="signup-container">
-            <!-- sign up header -->
+<!----------------------------------------------------------- sign up header -------------------------------------------------------->
             <div id='container-header'>
                 <h2>Create Account</h2>
             </div>
             <br>
 
-            <!-- sign-up content -->
+<!----------------------------------------------------------- sign-up content ------------------------------------------------------->
+            
             <form id='user_input' action='sample_db/create-account.php' method='POST' >
                 <label class='labelSubHeader'>SR CODE</label>
                 <input id="srcode" name="srcode" placeholder="SR Code" type="text"><br>
@@ -33,13 +36,13 @@ include_once 'functionalities/modals.php';
                 </div>    
                 <span id="passwordTooltip" style="display:none;color:red"></span>
                 <br>
-                <input name="submit" type="button" value="Sign Up" onclick='showModal()'>
+                <input name="submit" type="button" value="SIGN UP" onclick='showModal()'>
                 <br>
                 <label id='labelSignUp'>Already have an account?<a id='a_SignUp' href='login.php'>&nbsp;Sign In</a></label>
                 <br>
             </form>
 
-            <!-- popup modal -->
+<!------------------------------------------------ popup modal ---------------------------------------------------------------------->
 
             <div id="myModal" class="modal">  
                 <div class="modal-container">
@@ -66,17 +69,23 @@ include_once 'functionalities/modals.php';
 
         </div>
 </div>
+
+
+
+<!--------------------------------------------------------- script files ------------------------------------------------------------->
+
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src='show-hide-password.js'></script>
 <script src='show-modal.js'></script>
 <script src='close-modal.js'></script>
 <script src='add-user-btn.js'></script>
 <script src='send-otp.js'></script>
 
-<!-- modal function -->
 
+<!-------------------------------------------------------- disable buttons on modal -------------------------------------------------->
 <script> 
-
-
 var disableotpInput = document.getElementById("otpVerification");
 var disableconfirmBtn = document.getElementById("btnSubmit");
 var disableEmailAddress = document.getElementById('userEmailAddressInput');
@@ -101,12 +110,6 @@ disableotpInput.addEventListener("input", () => {
     disableconfirmBtn.style.pointerEvents = "auto";
   }
 });
-
-
-
-
-
-    
 
 </script>
 

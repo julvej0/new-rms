@@ -10,7 +10,13 @@ function showModal() {
     const passwordTooltip = document.getElementById("passwordTooltip");
 
    if (!srCode || !emailAddress || !passwordInput || !confirmPasswordInput) {
-       alert('Please input all required fields!');
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Input Fields Are Empty, Please Try Again!',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
        return;
    }
    if (!/^[^@\s]+@g.batstate-u.edu.ph$/.test(emailAddress)) {
@@ -24,7 +30,6 @@ function showModal() {
        passwordTooltip.style.display = "block";
        emailTooltip.style.display = "none";
    } else {
-       passwordTooltip.innerHTML = 'Passwords match.';
        passwordTooltip.style.display = "block";
        emailTooltip.style.display = "none";
 
@@ -37,7 +42,14 @@ function showModal() {
            if (xhr.readyState === 4 && xhr.status === 200) {
                const response = xhr.responseText;
                if (response === 'exists') {
-                   alert('An account with the same SR code or Email Address already exists!');
+                    // display an error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Existing SR Code or Email! Please Try Again',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
                } else {
                    document.getElementById('userEmailAddressInput').setAttribute('value', emailAddress);
                    document.getElementById("userSrCode").setAttribute('value', srCode);

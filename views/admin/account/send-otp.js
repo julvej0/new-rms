@@ -8,7 +8,13 @@ function sendOtp() {
 
 
   if (emailInput === '') {
-    alert('Please Enter Your Email Address!')
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please Enter Your Email Address',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'OK'
+  });
   } 
   else {
   // disable the send OTP button
@@ -38,7 +44,13 @@ function sendOtp() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            alert("Verification has sent to your email " + emailInput);
+          Swal.fire({
+            icon: 'success',
+            title: 'OTP Sent',
+            text: 'OTP has been sent to your email ' + emailInput,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
         }
        
     };

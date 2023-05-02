@@ -4,10 +4,12 @@ include_once "../../../includes/admin/templates/header.php";
 
 <link rel="stylesheet" href="login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!----------------------------------------------------------- login page ---------------------------------------------------------->
 <div id="whole_page">
     <img src='../../../assets/images/background_img.jpg' style='opacity: 0.7; width: 100%; height: 100%; position:fixed;'/>
     <img src='../../../assets/images/batStateUNeu-logo.png' style='width: 100px; height: 100px; position: fixed; border:solid 3px #EF1F3B; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -300%); top: 50%; left: 50%;'/>
-
+<!----------------------------------------------------------- login header ---------------------------------------------------------->
         <div id="login_container">
             <div id='container-header'>
             <h2 id='h2Login'>SIGN IN</h2>
@@ -36,7 +38,7 @@ include_once "../../../includes/admin/templates/header.php";
             </form>
         </div>
 </div>
-<!-- HTML code for change password modal -->
+<!------------------------------------------------- HTML code for change password modal ---------------------------------------------->
 <div id="myModal" class="modal">
     <div class="modal-container">
         <span class="close">&times;</span>
@@ -65,6 +67,7 @@ include_once "../../../includes/admin/templates/header.php";
     </div>
 </div>
 
+<!----------------------------------------------------------- SCRIPTS --------------------------------------------------------------->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
@@ -73,11 +76,7 @@ include_once "../../../includes/admin/templates/header.php";
 <script src='send-otp.js'></script>
 <script src='submit-password.js'></script>
 <script src='login.js'></script>
-
-
-
 <script>
-
 var disableotpInput = document.getElementById("otpVerification");
 var disableSubmitBtn = document.getElementById('submit-password');
 var email = document.getElementById("userEmailAddressInput");
@@ -107,6 +106,8 @@ function validateForm() {
 
 window.onload = validateForm;
 
+//<!-------------------------------------------- SHOW MODAL PASSWORD --------------------------------------------------------------->
+
 function showModal() {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
@@ -114,14 +115,6 @@ function showModal() {
         modal.querySelector(".modal-container").style.transform = "translate(-50%, -50%)";
     }, 10);
 }
-
-
-
-
-
-///////////////////////////////////////////////////////////submit button password///////////////////////////////////////////////////////
-
-
 
 </script>
 
