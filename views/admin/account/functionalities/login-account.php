@@ -26,7 +26,6 @@ if (isset($_POST['email'], $_POST['password'] )) {
                 header("Location: ../../../../account-management/user-profile.php");
             } else {
                 echo 'success';
-                
             }
             exit();
         } else {
