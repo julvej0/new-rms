@@ -246,3 +246,45 @@ main table .a-action-btns {
 .table-footer .pagination li a .icon {
     font-size: 20px;
 }
+
+
+/*SELECT filter*/
+/* .select-filter-btn {
+    border: transparent;
+    background-color: transparent;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+    background-color: #EF1F3B;
+    color: white;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    padding: .4rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .select-col-div {
+    position: absolute;
+    width: 13rem;
+    top: 5.5rem;
+    transition: top 0.1s ease;
+    white-space: nowrap;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .rdb-button{
+    width: 10.8%;
+  }
+  #rdb-container {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+  .rdb-container {
+    position: absolute;
+    top: 5rem;
+    left: 62rem;
+    width: 100%;
+    z-index: 101;
+  } */
