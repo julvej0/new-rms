@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="date-of-creation">Date of Creation</label>
-                                    <input type="date" id="date-of-creation" name="date_of_creation" required value="<?=$row['date_of_creation']?>">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation" required value="<?=$row['date_of_creation']?>">
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="hyperlink">Hyperlink</label>
@@ -218,12 +218,12 @@
                             <h4 class="if-funded">If Registered : </h4>
                             <div class="reg-form-container2">
                                 <div class="form-control">
-                                    <label class="ip-label" for="reg-num" id="reg-num">Registration Number:</label>
-                                    <input type="text" name="registration_number" id="reg-num" placeholder="Registration Number..." required  value="<?=$row['registration_number']?>">
+                                    <label class="ip-label" for="reg-num" id="reg_num">Registration Number:</label>
+                                    <input type="text" name="registration_number" id="reg_num" placeholder="Registration Number..." required  value="<?=$row['registration_number']?>" disabled>
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="reg-date">Date of Registration</label>
-                                    <input type="date" name="date_registered" id="reg-date" required  value="<?=$row['date_registered']?>">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" required  value="<?=$row['date_registered']?>">
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate</label>
