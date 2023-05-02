@@ -1,17 +1,18 @@
 
 
 <?php 
-    include '../../../db/db.php';
-    require_once('functionalities/ipa-get-info-download.php');
+    include '../../../../../db/db.php';
+    require_once('../ipa-get-info-download.php');
     $additionalQuery= authorSearch($conn);
     $table_rows = get_data($conn, $additionalQuery);
 ?>
 
-<link rel="stylesheet" href="./ip-assets.css">
+<link rel="stylesheet" href="../../ip-assets.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
 <script src="package/html2pdf.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!--Font Awesome CDN-->
 
 <!--download as PDF package -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,28 +26,58 @@
 
 <style>
 /* CSS styles for the button */
-  .btn {
-    display: inline-block;
-    padding: 10px;
-    border: none;
+
+main .btn {
+    padding: 23px;
+    border-radius: 3px;
+    outline: none;
+    background: var(--green);
+    color: var(--light);
+    letter-spacing: 1px;
     cursor: pointer;
-    background-color: #ffff;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
 }
-.btn img {
-    width: 40px;
-    height: 40px;
-    margin-right: 5px;
-    vertical-align: middle;
-    background-color: #ffff;
+
+.form-group{
+    position: relative;
+    background-color: #f1f0f6
 }
+
+ .form-group input {
+    width: 30%;
+    height: 8%;
+    background: var(--light);
+    border-radius: 5px;
+    border: 1px white;
+    outline: none;
+    padding: 10px 36px 10px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin-top: -30;
+    float: right;
+}
+
+main .form-group .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--dark-grey);
+}
+
+main .form-group input:focus {
+    box-shadow: 0 0 0 5px var(blue);
+}
+
 </style>
 
 <body>
 
     <main>
-    <button onclick="downloadExcelFile()" class="btn" style="cursor: pointer;">Excel</button>
-    <button onclick="downloadTableAsPDF()" class="btn" style="cursor: pointer;">PDF</button>
-    <button onclick="exportTableToWord()" class="btn" style="cursor: pointer;">Word</button>
+    <button onclick="downloadExcelFile()" class="btn" style="cursor: pointer;"><i class="fas fa-file-excel fa-lg" style="color: #01792f; font-size: 30px;"></i></button>
+    <button onclick="downloadTableAsPDF()" class="btn" style="cursor: pointer;"><i class="fas fa-file-pdf fa-lg" style="color: #f60909; font-size: 30px;"></i></button>
+    <button onclick="exportTableToWord()" class="btn" style="cursor: pointer;"><i class="fas fa-file-word fa-lg" style="color: #2d43e6; font-size: 30px;"></i></button>
     <form action='' method='get'>
         <div class="form-group">
             <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >
@@ -178,5 +209,5 @@ function exportTableToWord() {
 
 </script>
 <?php
-    include '../../../includes/admin/templates/footer.php';
+    include '../../../../../includes/admin/templates/footer.php';
 ?>
