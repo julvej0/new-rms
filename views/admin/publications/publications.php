@@ -23,6 +23,39 @@
         <div class="header">
             <h1 class="title">Publications</h1>
             <div class='left'>
+                <!-- <div class="btn-container">
+                    <button class="select-columns-btn" onclick="rotateButton()" id="button-icon">+</button>   
+                    <div class="checkbox-container" id="checkbox-container">
+                        <input type="checkbox" name="col-title" id="col-title" checked>
+                        <label class="checkbox-button" for="col-title">Title</label><br>
+                        <input type="checkbox" name="col-type" id="col-type">
+                        <label class="checkbox-button" for="col-type">Type</label><br>              
+                        <input type="checkbox" name="col-publisher" id="col-publisher">
+                        <label class="checkbox-button" for="col-publisher">Publisher</label><br>
+                        <input type="checkbox" name="col-research-area" id="col-research-area">
+                        <label class="checkbox-button" for="col-research-area">Research Area</label><br>
+                        <input type="checkbox" name="col-college" id="col-college" checked >
+                        <label class="checkbox-button" for="col-college">College</label><br>
+                        <input type="checkbox" name="col-quartile" id="col-quartile">
+                        <label class="checkbox-button" for="col-quartile">Quartile</label><br>
+                        <input type="checkbox" name="col-campus" id="col-campus" checked>
+                        <label class="checkbox-button" for="col-campus">Campus</label><br>
+                        <input type="checkbox" name="col-sdg" id="col-sdg">
+                        <label class="checkbox-button" for="col-sdg">SDG</label><br>
+                        <input type="checkbox" name="col-date-published" id="col-date-published" checked >
+                        <label class="checkbox-button" for="col-date-published">Date Published</label><br>
+                        <input type="checkbox" name="col-authors" id="col-authors" checked >
+                        <label class="checkbox-button" for="col-authors">Authors</label><br>
+                        <input type="checkbox" name="col-funding" id="col-funding">
+                        <label class="checkbox-button" for="col-funding">Funding</label><br>
+                        <input type="checkbox" name="col-fund-type" id="col-fund-type">
+                        <label class="checkbox-button" for="col-fund-type">Fund Type</label><br>
+                        <input type="checkbox" name="col-fund-agency" id="col-fund-agency" >
+                        <label class="checkbox-button" for="col-fund-agency">Fund Agency</label><br>
+                        <input type="checkbox" name="col-citations" id="col-citations" checked >
+                        <label class="checkbox-button" for="col-citations">Citations</label>
+                    </div>
+                </div> -->
                 <form action='' method='get'>
                     <div class="form-group">
                         <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >
@@ -37,20 +70,20 @@
                 <table>
                     <thead>
                         <tr>
-                            <th style="min-width: 350px;">Title</th>
-                            <th>Type</th>
-                            <th style="min-width: 190px;">Publisher</th>
-                            <th>Research Area</th>
-                            <th>College</th>
-                            <th>Quartile</th>
-                            <th>Campus</th>
-                            <th>SDG's</th>
-                            <th>Date Published</th>
-                            <th style="min-width: 190px;">Authors</th>
-                            <th>Funding</th>
-                            <th>Fund Type</th>
-                            <th>Fund Source</th>
-                            <th>Citations</th>
+                            <th class="col-title" style="min-width: 350px;">Title</th>
+                            <th class="col-type">Type</th>
+                            <th class="col-publisher" style="min-width: 190px;">Publisher</th>
+                            <th class="col-research-area">Research Area</th>
+                            <th class="col-college">College</th>
+                            <th class="col-quartile">Quartile</th>
+                            <th class="col-campus">Campus</th>
+                            <th class="col-sdg">SDG's</th>
+                            <th class="col-date-published">Date Published</th>
+                            <th class="col-authors" style="min-width: 190px;">Authors</th>
+                            <th class="col-funding">Funding</th>
+                            <th class="col-fund-type">Fund Type</th>
+                            <th class="col-fund-agency">Fund Source</th>
+                            <th class="col-citations">Citations</th>
                             <th class='stickey-col-header' style="background-color: var(--grey);">Actions</th>
                         </tr>
                     </thead>
@@ -92,8 +125,11 @@
                                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                                     <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon"></i></button>
                                 </form>
-                                <button class="delete-btn" data-publication-id="<?php echo $row['publication_id']; ?>"><i class="fa-solid fa-trash-can icon"></i></button>
-                        </td>
+                                <form action="functionalities/publication-delete.php" method="POST" class="delete-form">
+                                    <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
+                                    <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can icon"></i></button>
+                                </form>                            
+                            </td>
                     </tr>
                     <?php
                     }
@@ -120,11 +156,11 @@
                     $total_pages = ceil($total_records / $no_of_records_per_page);
 
                     if (isset($_GET['search'])){
-                        return "Author Count for \"".$_GET['search']."\" : ".$total_records;
+                        return "Search Count for \"".$_GET['search']."\" : ".$total_records;
 
                     }
                     else{
-                        return "Author Count : ".$total_records;
+                        return "Publications Count : ".$total_records;
                     }
                 }
             ?>
@@ -161,7 +197,10 @@
         </section>
     </main>
 </section>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <script src="./publications.js"></script>
 </body>
 

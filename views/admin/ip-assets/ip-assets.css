@@ -179,11 +179,9 @@ main table .pb-action-btns {
     align-items: center;
 }
 
-main table .edit-btn,
-.delete-btn {
+main table .edit-btn, .delete-btn, .gdrive-btn{
     border: none;
-    color: #ffffff;
-    width: 100%;
+    color: var(--light);
     height: 30px;
     font-size: 10px;
     border-radius: 3px;
@@ -195,16 +193,18 @@ main table .edit-btn,
     text-align: center;
 }
 
-.edit-btn:hover,
-.delete-btn:hover {
+.edit-btn:hover, .delete-btn:hover, .gdrive-btn:hover {
     opacity: 80%;
 }
 
+.gdrive-btn{
+    background-color: var(--green);
+}
 .edit-btn {
     background-color: var(--blue);
 }
 
-.delete-btn {
+.delete-btn{
     background-color: var(--danger);
 }
 
@@ -314,3 +314,49 @@ main .table-footer .download .dl-link a:hover {
     top: calc(85%);
   }
 } */
+
+ /*style for download modal */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 101; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+/*style for download modal */
+.modal-content1 {
+background-color: #fff;
+margin: 5% auto;
+margin-left: 30%;
+padding: 30px;
+padding-top: 80px;
+width: 60%;
+height: 75%;
+text-align: center;
+border-radius: 20px;
+position: relative;
+opacity: 2;
+}
+.modal-content1 iframe {
+width: 100%;
+height: calc(100% - 5px); /* Subtract height of close button */
+/* border: 2px solid black; */
+}
+.close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 9999;
+        pointer-events: auto !important;
+        color: black;
+        height: 30px;
+        font-weight: bold;
+        font-size: 28px;
+    }
+  

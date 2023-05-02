@@ -56,12 +56,12 @@ function display_edit_aff($table_rows, $campus_options, $program_options){
                     <td>
                         <div class="form-control aff-info">
                             <label class="a-label" for="a-aff-dept">Department</label>
-                            <input type="text" id="a-aff-dept" name="a-aff-dept[]" placeholder="Department" required value="'.
+                            <input type="text" class="a-aff-dept" name="a-aff-dept[]" placeholder="Department" required value="'.
                                 $department_affiliations[$i].'">
                         </div>
                         <div class="form-control aff-categ">
                             <label class="a-label" for="a-aff-prog">Program</label>
-                            <select name="a-aff-prog[]" id="a-aff-prog" required>';
+                            <select name="a-aff-prog[]" class="a-aff-prog" required>';
                                 foreach ($program_options as $option) {
                                     if ($option == $program_affiliations[$i]) {
                                         echo '<option value="'.$option.'" selected>'.$option.'</option>';
@@ -73,7 +73,7 @@ function display_edit_aff($table_rows, $campus_options, $program_options){
                     </div>
                     <div class="form-control aff-categ">
                         <label class="a-label" for="a-aff-camp">Campus</label>
-                        <select name="a-aff-camp[]" id="a-aff-camp" required>';
+                        <select name="a-aff-camp[]" class="a-aff-camp" required>';
                             foreach ($campus_options as $option) {
                                 if ($option == $campus_affiliations[$i]) {
                                     echo '<option value="'.$option.'" selected>'.$option.'</option>';
@@ -94,7 +94,7 @@ function display_edit_aff($table_rows, $campus_options, $program_options){
                 echo '<td>
                     <div class="form-control aff-info">
                         <label class="a-label" for="a-ex-aff">External Affiliation</label>
-                        <input type="text" id="a-ex-aff" name="a-ex-aff" placeholder="Affiliation" value="'.$affiliation.'"required>
+                        <input type="text" class="a-ex-aff" name="a-ex-aff" placeholder="Affiliation" value="'.$affiliation.'"required>
                     </div>
                     <button class="a-remove-btn" type="button">x</button>
                 </td>';
