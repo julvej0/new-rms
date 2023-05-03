@@ -45,7 +45,7 @@ main .header .left {
 
 main .header .left .filter button {
     height: 100%;
-    width: 100px;
+    width: 120px;
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -70,7 +70,7 @@ main .header .filter .filter-link {
     position: absolute;
     top: calc(100% - 10px);
     right: 0;
-    width: 100px;
+    width: 120px;
     background: var(--light);
     border-radius: 5px;
     padding: 10px 0;
