@@ -57,7 +57,34 @@
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
-                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+                <div class="filter">
+                    <button class="btn">Type<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">Original</a></li>
+                        <li><a href="#">Review</a></li>
+                        <li><a href="#">Proceedings</a></li>
+                        <li><a href="#">Communication</a></li>
+                        <li><a href="#">International</a></li>
+                    </ul>
+                </div>
+                <div class="filter">
+                    <button class="btn">Fund<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">Funded</a></li>
+                        <li><a href="#">Non-funded</a></li>
+                    </ul>
+                </div>
+                <div class="filter">
+                    <button class="btn">Year<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">2015</a></li>
+                        <li><a href="#">2016</a></li>
+                        <li><a href="#">2017</a></li>
+                        <li><a href="#">2018</a></li>
+                        <li><a href="#">2019</a></li>
+                    </ul>
+                </div>
+                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
             </div>
         </div>
         <section>

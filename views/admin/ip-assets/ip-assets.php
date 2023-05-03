@@ -26,7 +26,31 @@
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
-                <a href="./new-ip-asset.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Article</a>
+                <div class="filter">
+                    <button class="btn">Type<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">Copyright</a></li>
+                        <li><a href="#">Original</a></li>
+                    </ul>
+                </div>
+                <div class="filter">
+                    <button class="btn">Class<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">Class A</a></li>
+                        <li><a href="#">Class O</a></li>
+                    </ul>
+                </div>
+                <div class="filter">
+                    <button class="btn">Year<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">2015</a></li>
+                        <li><a href="#">2016</a></li>
+                        <li><a href="#">2017</a></li>
+                        <li><a href="#">2018</a></li>
+                        <li><a href="#">2019</a></li>
+                    </ul>
+                </div>
+                <a href="./new-ip-asset.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
             </div>
         </div>
         <section>
@@ -63,7 +87,6 @@
                         foreach ($table_rows as $row) {
                     ?>
                     <tr>
-                        <td><img src='<?=$dir.$row['certificate'];?>' width='200px' height='200px' ></td>
                         <td class="reg-num-col col-registration"><?=$row['registration_number'];?></td>
                         <td class="title-col col-title"><?=$row['title_of_work'];?></td>
                         <td class="type-col col-type"><?=$row['type_of_document'];?></td>
