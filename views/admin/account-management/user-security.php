@@ -46,8 +46,12 @@ include_once "functionalities/user-session.php";
     var currentPassword = document.querySelector('.oldPasswordInput').value;
     var newPassword = document.getElementsByClassName("passwordInput")[0].value;
     var confirmPassword = document.getElementById("confirmPasswordInput").value;
-    var userEmail = "<?php echo $user['email'];?>"
-    var changePasswordModal = document.getElementById('myModal')
+    var userEmail = "<?php echo $user['email'];?>";
+    var changePasswordModal = document.getElementById('myModal');
+    var disableSubmitPassword = document.getElementById('submit-password');
+
+
+    
     
     if (newPassword !== confirmPassword) {
         const Toast = Swal.mixin({
@@ -76,6 +80,7 @@ include_once "functionalities/user-session.php";
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 if (xhr.responseText === 'successful') {
+                disableSubmitPassword.disabled = true;
                 const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
