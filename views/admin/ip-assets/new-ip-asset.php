@@ -204,7 +204,6 @@
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate</label>
                                     <input type="file" name="ip-certificate" id="ip-certificate" required accept=".png, .jpg, .jpeg">
-                                    <span class="file-error"></span>
                                 </div>
                             </div>
                         </div>
