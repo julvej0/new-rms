@@ -189,7 +189,7 @@ input[type="button"] {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 1000; /* Sit on top */
   left: -1000em;
   top: -1000em;
   width: 2000em; /* Full width */
@@ -214,6 +214,7 @@ input[type="button"] {
   margin-left: -200px;
   border-radius: 5px;
   animation: slide-in 0.3s ease-out;
+  z-index: 2000; 
 }
 
 /* modal animation */
