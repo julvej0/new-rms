@@ -1,8 +1,10 @@
 
-
 <!-- css -->
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="../../../includes/public-user/templates/user-navbar.css">
+<link rel="stylesheet" href="../../../css/public-user/user-navbar.css">
+
+<!-- CDN -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <section>
     <div class="navbar-container">
@@ -31,12 +33,15 @@
                             <li><a href="#">IP ASSETS</a></li>
                             <li><a href="#">ABOUT</a></li>
                         </ul>
-                        <a href="#">SIGN IN</a>
+                        <a class="signin-btn" href="#">SIGN IN</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!-- CONTENT -->
+<main id="main-content">
+
 
 

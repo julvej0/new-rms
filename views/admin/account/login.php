@@ -80,6 +80,7 @@ include_once "../../../includes/admin/templates/header.php";
 <script src='send-otp.js'></script>
 <script src='submit-password.js'></script>
 <script src='login.js'></script>
+<script src='change-pass-with-otp.js'></script>
 <script>
 var disableotpInput = document.getElementById("otpVerification");
 var disableSubmitBtn = document.getElementById('submit-password');
