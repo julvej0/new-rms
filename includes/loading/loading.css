@@ -1,0 +1,32 @@
+
+.loading-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 80%;
+    z-index: 100;
+}
+
+.loading-container .loading-img {
+    animation: load 1s ease-in-out infinite;
+}
+
+@keyframes load {
+    0% {
+        opacity: 0%;
+    }
+    25% {
+        opacity: 25%;
+    }
+    50% {
+        opacity: 50%;
+    }
+    75% {
+        opacity: 75%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}

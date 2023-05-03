@@ -33,15 +33,16 @@ if (isset($_POST['updateIPA'])) {
     $college = $_POST['college'];
     $program = $_POST['program'];
     $hyperlink = $_POST['hyperlink'];
+    $status = $_POST['registerInfo'];
 
     // Create SQL UPDATE statement
-    $update_query = "UPDATE table_ipassets SET registration_number=$1, title_of_work=$2, type_of_document=$3, class_of_work=$4, date_of_creation=$5, date_registered=$6, campus=$7, college=$8, program=$9, authors=$10, hyperlink=$11 WHERE registration_number=$12";
+    $update_query = "UPDATE table_ipassets SET title_of_work=$1, type_of_document=$2, class_of_work=$3, date_of_creation=$4, date_registered=$5, campus=$6, college=$7, program=$8, authors=$9, hyperlink=$10, status=$11 WHERE registration_number=$12";
 
     // Prepare the SQL statement
     $update_stmt = pg_prepare($conn, "update_ipa_details", $update_query);
 
     // Execute the prepared statement with the input values
-    $update_result = pg_execute($conn, "update_ipa_details", array($registration_number, $title_of_work, $type_of_document, $class_of_work, $date_of_creation, $date_registered, $campus, $college, $program, $authors_string, $hyperlink, $registration_number));
+    $update_result = pg_execute($conn, "update_ipa_details", array($title_of_work, $type_of_document, $class_of_work, $date_of_creation, $date_registered, $campus, $college, $program, $authors_string, $hyperlink, $status, $registration_number));
 
     if (!$update_result) {
         die("Error in SQL query: " . pg_last_error());

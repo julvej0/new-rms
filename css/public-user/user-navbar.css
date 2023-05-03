@@ -4,6 +4,7 @@ body {
     background: var(--grey);
     position: relative;
     overflow-x: hidden;
+    height: 150px;
 }
 
 .navbar-container {
@@ -74,6 +75,10 @@ body {
     object-fit: contain;
 }
 
+.navbar-container .left-content .header-title {
+    height: 115px;
+}
+
 .navbar-container .left-content .header-title h4 {
     font-family: 'Playfair Display', serif;
     color: var(--light);
@@ -126,7 +131,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-gap: 28px;
+    grid-gap: 20px;
+}
+
+.navbar-container .right-content .signin-btn {
+    background: var(--primary);
+    width: 110px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.navbar-container .right-content .signin-btn:hover {
+    opacity: 80%;
 }
 
 .navbar-container .right-content ul {
@@ -136,7 +154,7 @@ body {
 
 .navbar-container .right-content .nav-links li {
     list-style-type: none;
-    margin-right: 50px;
+    margin-right: 70px;
 }
 
 .navbar-container .right-content a {
@@ -173,6 +191,15 @@ body {
 .navbar-container .right-content .nav-links a:hover::before,
 .navbar-container .right-content .nav-links a:hover::after {
     transform: scaleX(1);
+}
+
+
+#main-content {
+    position: relative;
+    height: 100vh;
+    top: 150px;
+    padding: 0;
+    overflow-y: hidden;
 }
 
 
