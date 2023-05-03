@@ -24,6 +24,6 @@ navBtns.forEach(navlinks => {
     document.querySelector('.nav-button[data-target="#pb-page"]').classList.add('focused');
     
 
-// CHART
+
     
     
