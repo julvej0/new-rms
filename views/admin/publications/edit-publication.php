@@ -64,7 +64,7 @@
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-college">College</label>
                                     <select name="college" class="pb-input-field" id="pb-college" required>
-                                        <option value="<?=$row['department']?>" hidden><?=$row['department']?></option>
+                                        <option value="<?=$row['college']?>" hidden><?=$row['college']?></option>
                                         <option value="Accountancy, Business, and International Hospitality">Accountancy, Business, and International Hospitality</option>
                                         <option value="Agriculture and Forestry">Agriculture and Forestry</option>
                                         <option value="Arts and Sciences">Arts and Sciences</option>

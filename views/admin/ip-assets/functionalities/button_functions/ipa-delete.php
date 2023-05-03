@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../db/db.php';
+include_once '../../../../../db/db.php';
 
 if (isset($_POST['delete'])) {
     $reg_num = $_POST['row_id'];
@@ -31,10 +31,10 @@ if (isset($_POST['delete'])) {
 
     // Check if the delete was successful
     if (pg_affected_rows($delete_result) > 0) {
-        header("Location: ../ip-assets.php?delete=applied");
+        header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?delete=applied");
     } else {
-        header("Location: ../ip-assets.php?delete=!deleted");
+        header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?delete=!applied");
     }
 } else {
-    header("Location: ../ip-assets.php");
+    header("Location: ../../../../../views/admin/ip-assets/ip-assets.php");
 }

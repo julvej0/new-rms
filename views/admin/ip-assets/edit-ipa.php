@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-            <form action="functionalities/ipa-edit.php" method="POST" enctype="multipart/form-data">
+            <form action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -229,7 +229,7 @@
                                     <label class="ip-label" for="ip-certificate">Upload Certificate</label>
                                     <input type="file" name="ip-certificate" id="ip-certificate" accept=".png, .jpg, .jpeg">
 
-                                        <?php if (!empty($row['certificate'])): $dir="functionalities/"?>
+                                        <?php if (!empty($row['certificate'])): $dir="functionalities/button_functions/"?>
                                             <div>File uploaded: <a href="<?=$dir.$row['certificate']?>" target="_blank"><?=basename($row['certificate'])?></a></div>
                                         <?php else: ?>
                                             <div>File uploaded: None</div>

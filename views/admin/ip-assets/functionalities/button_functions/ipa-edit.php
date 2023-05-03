@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../db/db.php';
+include_once '../../../../../db/db.php';
 if (isset($_POST['updateIPA'])) {
     $date_of_creation = $_POST["date_of_creation"];
     $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
@@ -82,14 +82,14 @@ if (isset($_POST['updateIPA'])) {
 
                             // Check if the update was successful
                             if (pg_affected_rows($update_result) > 0) {
-                                header("Location: ../ip-assets.php?update=applied");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
                             } else {
-                                header("Location: ../ip-assets.php?update=!update");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=!update");
                             }
     
                                 if ($insert_result) {
                                     echo "Insert successful.";
-                                    header("Location: ../ip-assets.php?success");
+                                    header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?success");
                                 } else {
                                     echo "Insert failed.";
                                 }
@@ -106,10 +106,28 @@ if (isset($_POST['updateIPA'])) {
                         }
             }
         } else {
-            echo "Error: " . $cert["error"];
+            $update_query = "UPDATE table_ipassets SET title_of_work=$1, type_of_document=$2, class_of_work=$3, date_of_creation=$4, date_registered=$5, campus=$6, college=$7, program=$8, authors=$9, hyperlink=$10, status=$11, certificate=$12 WHERE registration_number=$13";
+            $update_stmt = pg_prepare($conn, "update_ipa_details", $update_query);
+            $update_result = pg_execute($conn, "update_ipa_details", array($title_of_work, $type_of_document, $class_of_work, $date_of_creation, $date_registered, $campus, $college, $program, $authors_string, $hyperlink, $status, $certificate_file, $registration_number));
+
+            if (!$update_result) {
+                die("Error in SQL query: " . pg_last_error());
+            }
+            if (pg_affected_rows($update_result) > 0) {
+                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+            } else {
+                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=!update");
+            }
+
+                if ($insert_result) {
+                    echo "Insert successful.";
+                    header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?success");
+                } else {
+                    echo "Insert failed.";
+                }
         }
 } else {
-    header("Location: ../ip-assets.php");
+    header("Location: ../../../../../views/admin/ip-assets/ip-assets.php");
 }
 
 ?>

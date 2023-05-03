@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-            <form action="functionalities/ipa-insert.php" method="POST" enctype="multipart/form-data">
+            <form action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
