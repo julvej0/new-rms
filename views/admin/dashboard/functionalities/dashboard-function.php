@@ -216,7 +216,7 @@ function getPublishedIPAssets($conn) {
 }
 function getProcessingIpAssets($conn, $reuse_stmt = false) {
     $query = "SELECT title_of_work FROM table_ipassets WHERE status = $1";
-    $params = array("processing");
+    $params = array("not-registered");
 
     if (!$reuse_stmt) {
         $stmt = pg_prepare($conn, "proc_query", $query);
