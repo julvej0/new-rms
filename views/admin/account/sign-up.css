@@ -42,22 +42,19 @@ html, body {
 }
 
 #container-header {
-    background-color:#EF1F3B;
-    height: 70px;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    margin:0;
-    display: flex;
-    justify-content: center; /* center the content horizontally */
-    align-items: center; /* center the content vertically */
+  background-color:#EF1F3B;
+  height: 100px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  margin:0;
+  display: flex;
+  justify-content: center; /* center the content horizontally */
+  align-items: center; /* center the content vertically */
 }
 
-h2 {
-    text-align: center;
-    font-size: 23px;
-    font-weight: bold;
-    color:white;
-
+#h2Login {
+  margin-top: 45px;
+  color: white;
 }
 
 h1 {
@@ -148,10 +145,10 @@ input[type="button"] {
   }
   
   input[type="button"]:hover {
-    background-color: white;
-    color: #EF1F3B;
-    transform: scale(1.1);
+    background-color: #EF1F3B;
+    color: white;
     transition: all 0.3s ease-out;
+    opacity: 0.7 ;
     
   }
 
@@ -192,7 +189,7 @@ input[type="button"] {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 1000; /* Sit on top */
   left: -1000em;
   top: -1000em;
   width: 2000em; /* Full width */
@@ -217,6 +214,7 @@ input[type="button"] {
   margin-left: -200px;
   border-radius: 5px;
   animation: slide-in 0.3s ease-out;
+  z-index: 2000; 
 }
 
 /* modal animation */

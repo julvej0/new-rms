@@ -20,6 +20,8 @@ if (isset($_POST['email'], $_POST['otp'], $_POST['srcode'], $_POST['password']))
     $insert_stmt = pg_prepare($conn, "insert_user", $insert_query);
     $insert_result = pg_execute($conn, "insert_user", array($srcode, $email, $hashedPassword, $accountType));
 
+   
+
 
     if ($insert_result) {
         echo "success";

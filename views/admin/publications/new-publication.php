@@ -1,20 +1,24 @@
-<?php 
+<?php
+    include '../../../db/db.php';
     include '../../../includes/admin/templates/header.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="new-publication.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <body>
-<?php
-    include '../../../includes/admin/templates/navbar.php';
-?>
+    <?php
+        include '../../../includes/admin/templates/navbar.php';
+    ?>
     <main>
         <div class="header">
             <h1 class="title">New Publication</h1>
         </div>
         <section>
             <div class="container">
-                <form>
+                <form action="functionalities/publication-insert.php" method="POST" onsubmit="return chooseOneSDG()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -24,11 +28,11 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-title">Work Title</label>
-                                    <input type="text" placeholder="Work Title" id="pb-title" />
+                                    <input type="text" placeholder="Work Title" id="pb-title" name="title_of_paper" required/>
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-type">Type of Document</label>
-                                    <select name="pb-type" id="pb-type">
+                                    <select  name="type_of_publication" id="pb-type" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -47,13 +51,13 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-research-area">Research Area</label>
-                                    <input type="text" id="pb-research-area" name="research" placeholder="Research Area">
+                                    <input type="text" id="pb-research-area" name="research_area" placeholder="Research Area">
                                 </div>
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-college">College</label>
-                                    <select name="pb-college" class="pb-input-field" id="pb-college" required>
+                                    <select name="college" class="pb-input-field" id="pb-college" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Accountancy, Business, and International Hospitality">Accountancy, Business, and International Hospitality</option>
                                         <option value="Agriculture and Forestry">Agriculture and Forestry</option>
@@ -71,8 +75,8 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-campus">Campus</label>
-                                    <select name="pb-campus" id="pb-campus" required>
-                                        <option value="pb-campus" hidden>--Choose from the options--</option>
+                                    <select name="campus" id="pb-campus" required>
+                                        <option value="" hidden>--Choose from the options--</option>
                                         <option value="Alangilan">Alangilan</option>
                                         <option value="Balayan">Balayan</option>
                                         <option value="Lemery">Lemery</option>
@@ -91,7 +95,7 @@
                                     <div class="quartile-row">
                                         <div class="quarter">
                                             <label class="pb-label" for="pb-quarter">Quarter</label>
-                                            <select name="pb-quarter" id="pb-quarter" required>
+                                            <select name="quartile[]" id="pb-quarter" required>
                                                 <option value="pb-quartile" hidden>--Choose from the options--</option>
                                                 <option value="Q1">Quartile 1</option>
                                                 <option value="Q2">Quartile 2</option>
@@ -101,7 +105,7 @@
                                         </div>
                                         <div class="quarter-year">
                                             <label class="pb-label" for="pb-quarter-year">Year</label>
-                                            <select name="pb-quarter-year" id="pb-quarter-year" required>
+                                            <select name="quartile_year[]" id="pb-quarter-year" required>
                                                 <option value="" hidden>-- Select Year --</option>
                                                 <option value="2023">2023</option>
                                                 <option value="2022">2022</option>
@@ -120,11 +124,11 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-date-published">Date Published</label>
-                                    <input type="date" id="pb-date-published" name="pb-date" placeholder="Date Published">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="pb-date-published" name="date_published" placeholder="Date Published">
                                 </div>
                             </div>
                             <div class="form-container">
-                                <div class="form-control">
+                                <div class="form-control" id="sdg">
                                     <label class="pb-label" for="sdg_no">SDG (choose at least 5):</label>
                                     <div class="checkbox-container">
                                         <div class="checkbox-col">
@@ -218,7 +222,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-url">Document Url</label>
-                                    <input type="url" id="pb-url" name="pb-url" placeholder="Document Url">
+                                    <input type="url" id="pb-url" name="google_scholar_details" placeholder="Document Url">
                                 </div>
                             </div>
                         </div>
@@ -230,15 +234,7 @@
                         </div>
                         <div class="form-col">
                             <div class="author-table-container">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-control author-name">
-                                                    <label class="pb-label" for="pb-author-name">Name</label>
-                                                    <input type="text" id="pb-author-name" name="pb-author-name" placeholder="Author Name">
-                                                </div>
-                                                <div class="form-control author-details">
+                                                <!-- <div class="form-control author-details">
                                                     <label class="pb-label" for="pb-author-type">Role</label>
                                                     <select name="pb-author-type" id="pb-author-type" required>
                                                         <option value="" hidden>--Choose from the options--</option>
@@ -258,12 +254,45 @@
                                                 <div class="form-control author-details">
                                                     <label class="pb-label" for="pb-author-affil">Affiliation(s)</label>
                                                     <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Affiliation(s)">
-                                                </div>
-                                                <button id="pb-add-btn">+</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                </div> -->
+                            <table id="author-tbl">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="author-tbl-body">
+                                <tr>
+                                    <td class="ipa-author-field">
+                                        <?php
+                                        $query = "SELECT author_id, author_name FROM table_authors";
+                                        $params = array();
+                                        $result = pg_query_params($conn, $query, $params);
+                                                                            
+                                        echo '<input list="authors" name="author_name[]"
+                                        style="
+                                        width: 100%;
+                                        height: 50px;
+                                        padding: 10px 36px 10px 16px;
+                                        border-radius: 5px;
+                                        border: 1px solid var(--dark-grey);"
+                                        onchange="showAuthorId(this)"
+                                        placeholder="Author Name...">';
+                                        echo '<datalist id="authors">';
+                                        while ($row = pg_fetch_assoc($result)) {
+                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                        }
+                                        echo '</datalist>';
+                                        ?>
+                                        <input type="hidden" name="author_id[]" class="author-id-input">
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="add-row-btn" style="height: 50px;">+</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
                             </div>
                         </div>
                     </div>
@@ -276,11 +305,11 @@
                             <div class="funding-form-container">
                                 <label class="funding-titles">Funding Nature </label>
                                 <div class="form-control">
-                                    <div class="funded">
+                                    <div class="choices">
                                         <input type="radio" name="nature_of_funding" id="funded" value="funded">
                                         <label for="funded" class="funding-choices">Funded</label>
                                     </div>
-                                    <div class="non-funded">
+                                    <div class="choices">
                                         <input type="radio" name="nature_of_funding" id="non-funded" value="non-funded" checked="checked">
                                         <label for="non-funded" class="funding-choices">Non-funded</label>
                                     </div>
@@ -288,13 +317,13 @@
                             </div>
                             <h4 class="if-funded">If funded : </h4>
                             <div class="funding-form-container">
-                                <label class="funding-titles">Fund type </label>
+                                <label class="funding-titles" id="fund-type-label">Fund type </label>
                                 <div class="form-control">
-                                    <div class="internal">
-                                        <input type="radio" name="funding_type" id="internal" value="internal">
+                                    <div class="choices">
+                                        <input type="radio" name="funding_type" id="internal" value="internal" checked="checked">
                                         <label for="internal" class="funding-choices">Internal</label>
                                     </div>
-                                    <div class="external">
+                                    <div class="choices">
                                         <input type="radio" name="funding_type" id="external" value="external">
                                         <label for="external" class="funding-choices">External</label>
                                     </div>
@@ -304,8 +333,7 @@
                             <div class="funding-form-container2">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
-                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency"
-                                    placeholder="Funding Agency">
+                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency" required>
                                 </div>
                             </div>
                         </div>
@@ -313,12 +341,64 @@
                     <hr>
                     <div class="form-footer">
                         <input type="submit" class="submit-btn" name="submitPB" value="Submit">
-                        <input type="button" class="cancel-btn" value="Cancel" onclick="history.back(-1)">
+                        <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>
             </div>
         </section>
     </main>
 </section>
-<script src="./new-publication.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script>
+            //Author ID table workaround.
+            function showAuthorId(input) {
+                var authorName = input.value;
+                var authorId = "";
+                var options = input.list.options;
+                for (var i = 0; i < options.length; i++) {
+                    var option = options[i];
+                    if (option.value === authorName) {
+                        authorId = option.text;
+                        break;
+                    }
+                }
+                $(input).closest('tr').find('.author-id-input').val(authorId);
+            }
+
+            var max =15; //max number of Authors
+            var x =1; //represents the 1st author field
+            var rowHtml = '<tr>\
+                                    <td class="ipa-author-field">\
+                                        <?php
+                                        $query = "SELECT author_id, author_name FROM table_authors";
+                                        $params = array();
+                                        $result = pg_query_params($conn, $query, $params);
+                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)">';
+                                        echo '<datalist id="authors">';
+                                        while ($row = pg_fetch_assoc($result)) {
+                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                        }
+                                        echo '</datalist>';
+                                        ?>
+                                        <input type="hidden" name="author_id[]" class="author-id-input">\
+                                    </td>\
+                                    <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button> </td>\
+                                </tr>';
+            $('.add-row-btn').click(function(){
+                if (x < max) {
+                $('#author-tbl-body').append(rowHtml);
+                x++;
+                    }
+
+                //Remove row function
+                $('#author-tbl').on('click','#remove',function(){
+                    $(this).closest('tr').remove();
+                    x--;
+                });
+            });
+        </script>
+        <script src="new-publication.js"></script>
 </body>

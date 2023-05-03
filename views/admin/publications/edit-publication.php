@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-date-published">Date Published</label>
-                                    <input type="date" id="pb-date-published" name="date_published" placeholder="Date Published" value="<?=$row['date_published']?>">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="pb-date-published" name="date_published" placeholder="Date Published" value="<?=$row['date_published']?>">
                                 </div>
                             </div>
                             <div class="form-container">

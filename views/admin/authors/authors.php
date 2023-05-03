@@ -10,12 +10,33 @@
     <?php
         include_once '../../../includes/admin/templates/navbar.php';
         include_once 'functionalities/php/count_authors.php';
-    ?>
 
+        //for filtering
+       if (isset($_GET['gender'])){
+
+       }
+    ?>
+    
     <main>
         <div class="header">
             <h1 class="title">Authors</h1>
-            <div class="left">
+
+            
+            <div class='left'>
+                <!-- <div class="btn-container">
+                    <button class="select-filter-btn" onclick="rotateButton()" id="button-icon">+</button>   
+                    <div class="rdb-container" id="rdb-container">
+                        Gender:<br>
+                        <a href="<?php //isset($_GET['gender']).'gender=male'?>">Male</a><br>
+                        <a href="<?php //echo $currentUrl.'gender=female'?>">Female</a><br>
+                
+                        Role:<br>
+                        <input type="radio" name="fil-role" id="fil-faculty" checked>
+                        <label class="rbd-button" for="fil-faculty">Faculty</label><br>
+                        <input type="radio" name="fil-role" id="fil-student" checked>
+                        <label class="rbd-button" for="fil-student">Faculty</label><br>             
+                    </div>
+                </div> -->
                 <form action="#">
                     <div class="form-group">
                         <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
@@ -52,6 +73,9 @@
         </section>
     </main>
 </section>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
@@ -60,5 +84,6 @@
 <script src="./authors.js"></script>
 </body>
 <?php
+    include_once 'functionalities/php/delete_success.php';
     include '../../../includes/admin/templates/footer.php';
 ?>

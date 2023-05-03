@@ -22,7 +22,7 @@ function loginBtn () {
                 text: 'Incorrect Email or Password',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'OK'
-                });
+            });
                 console.log(xhr.responseText)
         }
         }

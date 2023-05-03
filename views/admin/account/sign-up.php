@@ -1,18 +1,23 @@
 <?php
 include_once "../../../includes/admin/templates/header.php";
-include_once 'functionalities/modals.php';
 ?>
 <link rel="stylesheet" href="sign-up.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+<!----------------------------------------------------------- sign up page ---------------------------------------------------------->
 <div id="whole_page">
+<img src="../../../assets/images/redspartan_logo.png" style="width: 150px; height: 160px; position: fixed; bottom: 0; right: 0; margin-bottom: 50px; margin-right: 25px; border-radius: 50% / 20%;">
+<img src='../../../assets/images/batStateUNeu-logo.png' style='width: 100px; height: 100px; position: fixed; border:solid 3px #EF1F3B; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -350%); top: 50%; left: 50%;'/>
+<!----------------------------------------------------------- sign up header -------------------------------------------------------->
         <div id="signup-container">
-            <!-- sign up header -->
             <div id='container-header'>
-                <h2>Create Account</h2>
+                <h2 id='h2Login'>Create Account</h2>
             </div>
             <br>
 
-            <!-- sign-up content -->
+<!----------------------------------------------------------- sign-up content ------------------------------------------------------->
+            
             <form id='user_input' action='sample_db/create-account.php' method='POST' >
                 <label class='labelSubHeader'>SR CODE</label>
                 <input id="srcode" name="srcode" placeholder="SR Code" type="text"><br>
@@ -33,13 +38,13 @@ include_once 'functionalities/modals.php';
                 </div>    
                 <span id="passwordTooltip" style="display:none;color:red"></span>
                 <br>
-                <input name="submit" type="button" value="Sign Up" onclick='showModal()'>
+                <input name="submit" type="button" value="SIGN UP" onclick='showModal()'>
                 <br>
                 <label id='labelSignUp'>Already have an account?<a id='a_SignUp' href='login.php'>&nbsp;Sign In</a></label>
                 <br>
             </form>
 
-            <!-- popup modal -->
+<!------------------------------------------------ popup modal ---------------------------------------------------------------------->
 
             <div id="myModal" class="modal">  
                 <div class="modal-container">
@@ -48,10 +53,10 @@ include_once 'functionalities/modals.php';
                     </div> 
                     <form id="form-container" action='email_ver/page/sendcode.php' method='POST'> 
                         <span class="close">&times;</span>
-                        <label>SR Code:</label>
+                        <label class='labelSubHeader'>SR Code:</label>
                         <input id="userSrCode" type='text' value=''></input>
                         <br>
-                        <label>Email</label>
+                        <label class='labelSubHeader'>Email:</label>
                         <input id="userEmailAddressInput" type="text" name="email" value=''>
                         <input id="confirmedPassword" type="hidden" name="password" value=''>
                         <br>
@@ -66,17 +71,23 @@ include_once 'functionalities/modals.php';
 
         </div>
 </div>
+
+
+
+<!--------------------------------------------------------- script files ------------------------------------------------------------->
+
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src='show-hide-password.js'></script>
 <script src='show-modal.js'></script>
 <script src='close-modal.js'></script>
 <script src='add-user-btn.js'></script>
 <script src='send-otp.js'></script>
 
-<!-- modal function -->
 
+<!-------------------------------------------------------- disable buttons on modal -------------------------------------------------->
 <script> 
-
-
 var disableotpInput = document.getElementById("otpVerification");
 var disableconfirmBtn = document.getElementById("btnSubmit");
 var disableEmailAddress = document.getElementById('userEmailAddressInput');
@@ -101,12 +112,6 @@ disableotpInput.addEventListener("input", () => {
     disableconfirmBtn.style.pointerEvents = "auto";
   }
 });
-
-
-
-
-
-    
 
 </script>
 

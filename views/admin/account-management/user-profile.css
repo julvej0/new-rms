@@ -26,50 +26,6 @@ body {
     flex-direction: column;
 }
 
-/* Navigation Bar */
-
-.navigation-bar {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    height: 60px;
-    top: 100px;
-}
-
-.nav-button {
-    padding: 10px 100px;
-    margin: 0 20px;
-    border-radius: 5px;
-    transform: skewX(-45deg);
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.nav-button:hover,
-.nav-button:focus {
-    background-color: #EF1F3B;
-    transform: skewX(-45deg) scale(1.1);
-    cursor: pointer;
-    color: white;
-}
-
-.nav-button.focused {
-    background-color: #EF1F3B;
-    transform: skewX(-45deg) scale(1.1);
-    color: white;
-}
-
-.nav-button span {
-    display: inline-block;
-    transform: skewX(45deg);
-}
 
 /* mini-pages */
 
@@ -106,11 +62,12 @@ body {
 }
 
 .profile-photo {
+    position: relative;
     width: 150px;
     height: 260px;
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin-right: 20px;
     transition: all 0.3s ease;
 }
@@ -120,6 +77,15 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+.profile-photo .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: black;
+  }
 
 .profile-photo:hover {
     border-color: greenyellow;
@@ -132,6 +98,8 @@ body {
 }
 
 .profile-photo img {
+    display: block;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -157,11 +125,12 @@ body {
     font-size: 16px;
     width: 400px;
     height: 40px;
+    box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.3);
 }
 
 .profile-row input[type="text"]:focus {
     outline: none;
-    box-shadow: 0 0 2px 2px #aaa;
+    box-shadow: 0 0 2px 2px greenyellow;
 }
 
 .edit-button {
@@ -186,6 +155,31 @@ body {
     border-color: #EF1F3B;
 }
 
+
+
+.upload-button {
+    position:fixed;
+    top: 550px;
+    margin-left: -62px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #EF1F3B;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 75px;
+    transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+    border: solid;
+    background-color: white;
+    color: #EF1F3B;
+    transition: all 0.3s ease;
+    border-color: #EF1F3B;
+}
 /* security-page */
 
 #security-page {
