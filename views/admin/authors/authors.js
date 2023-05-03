@@ -92,8 +92,11 @@ allFilter.forEach(item => {
 
     dropdownItems.forEach(choices => {
         choices.addEventListener('click', () => {
+            var icon = document.querySelector('.icon');
             const selected = choices.textContent;
-            filterBtn.innerHTML = selected;
+            iconString = icon.toString();
+
+            filterBtn.innerHTML = selected + "<i class='bx bx-chevron-down icon'></i>";
         });
     });
 });
