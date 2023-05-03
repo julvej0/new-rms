@@ -84,7 +84,7 @@ body {
     font-family: 'Playfair Display', serif;
     color: var(--light);
     font-size: 50px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .navbar-container .left-content .header-title p {
