@@ -56,14 +56,11 @@
                         $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status) ILIKE '%$search_query%'".$additionalQuery.";");
                         $total_records = pg_fetch_result($result_count, 0, 0);
                         $total_pages = ceil($total_records / $no_of_records_per_page);
-
-                        $dir = "functionalities/";
                         
                         if ($table_rows !== null) {
                         foreach ($table_rows as $row) {
                     ?>
                     <tr>
-                        <td><img src='<?=$dir.$row['certificate'];?>' width='200px' height='200px' ></td>
                         <td class="reg-num-col col-registration"><?=$row['registration_number'];?></td>
                         <td class="title-col col-title"><?=$row['title_of_work'];?></td>
                         <td class="type-col col-type"><?=$row['type_of_document'];?></td>
@@ -76,10 +73,21 @@
                         <td class="authors-col col-authors"><?=$row['authors'];?></td>
                         <td class="status-col col-status"><?=$row['status'];?></td>
 
-
+                        
                         <td class='pb-action-btns stickey-col'>
-                            <!-- Open certificate in a new tab-->
-                            <a href="<?=$row['hyperlink'];?>" target="<?php echo strpos($row['hyperlink'], 'drive.google.com') !== false ? '_blank' : ''; ?>" class="gdrive-btn">
+                        <?php
+                            // assuming $row is the row from the database that contains the certificate and hyperlink data
+                            $dir = "functionalities/";
+                            $certificate = $row['certificate'];
+                            $hyperlink = $row['hyperlink'];
+
+                            if (empty($hyperlink)) {
+                                // if hyperlink value is missing, set href attribute of <a> tag to the src attribute of <img> tag
+                                $hyperlink = $dir . $certificate;
+                            }
+                            ?>
+
+                            <a href="<?=$hyperlink;?>" target="<?php echo strpos($hyperlink, 'drive.google.com') !== false ? '_blank' : '_blank'; ?>" class="gdrive-btn">
                                 <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                             </a>
                             <form action="edit-ipa.php" method="POST">
