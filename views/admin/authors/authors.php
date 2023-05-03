@@ -20,29 +20,27 @@
     <main>
         <div class="header">
             <h1 class="title">Authors</h1>
-
-            
             <div class='left'>
-                <!-- <div class="btn-container">
-                    <button class="select-filter-btn" onclick="rotateButton()" id="button-icon">+</button>   
-                    <div class="rdb-container" id="rdb-container">
-                        Gender:<br>
-                        <a href="<?php //isset($_GET['gender']).'gender=male'?>">Male</a><br>
-                        <a href="<?php //echo $currentUrl.'gender=female'?>">Female</a><br>
-                
-                        Role:<br>
-                        <input type="radio" name="fil-role" id="fil-faculty" checked>
-                        <label class="rbd-button" for="fil-faculty">Faculty</label><br>
-                        <input type="radio" name="fil-role" id="fil-student" checked>
-                        <label class="rbd-button" for="fil-student">Faculty</label><br>             
-                    </div>
-                </div> -->
                 <form action="#">
                     <div class="form-group">
                         <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
+                <div class="filter">
+                    <button class="btn">Role<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">Student</a></li>
+                        <li><a href="#">Faculty</a></li>
+                    </ul>
+                </div>
+                <div class="filter">
+                    <button class="btn">Gender<i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="#">Male</a></li>
+                        <li><a href="#">Female</a></li>
+                    </ul>
+                </div>
                 <a href="./new-author.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
             </div>
         </div>

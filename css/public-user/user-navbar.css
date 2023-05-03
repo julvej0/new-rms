@@ -5,6 +5,7 @@ body {
     position: relative;
     overflow-x: hidden;
     height: 150px;
+    resize: none;
 }
 
 .navbar-container {
@@ -203,8 +204,20 @@ body {
 }
 
 
-@media (min-width: 1920px) {
+@media screen and (min-width: 1920px) {
   .navbar-container {
     width: 2300px;
   }
+}
+
+@media screen and (min-width: 1980px) {
+  .navbar-container {
+    width: 2600px;
+  }
+}
+
+@media screen and (min-width: 24in) {
+    .navbar-container {
+        width: 2600px;
+    }
 }
