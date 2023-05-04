@@ -7,7 +7,7 @@
     $table_rows = get_data($conn, $additionalQuery);
 ?>
 
-<link rel="stylesheet" href="../../ip-assets.css">
+<!-- <link rel="stylesheet" href="../../ip-assets.css"> -->
 <link rel="stylesheet" href="../download/download_button.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
@@ -25,11 +25,16 @@
 
 <!-- download as Word document -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<style>
+    .btn{
+        margin-left: 50px;
+    }
+</style>
 
 <body>
 
     <main>
+    <div class="sticky-div">
     <button onclick="downloadExcelFile()" class="btn" style="cursor: pointer;"><i class="fas fa-file-excel fa-lg" style="color: #01792f; font-size: 30px;"></i></button>
     <button onclick="downloadTableAsPDF()" class="btn" style="cursor: pointer;"><i class="fas fa-file-pdf fa-lg" style="color: #f60909; font-size: 30px;"></i></button>
     <button onclick="exportTableToWord()" class="btn" style="cursor: pointer;"><i class="fas fa-file-word fa-lg" style="color: #2d43e6; font-size: 30px;"></i></button>
@@ -39,9 +44,10 @@
             <i class='bx bx-search icon' ></i>
         </div>
     </form>
+    </div>
     <section>
                 <table id="mytable">
-                    <thead>
+                    <thead class="sticky-header">
                         <tr>
                             <th class="col-registration">Registration Number</th>
                             <th class="col-title" style="min-width: 350px;">Title</th>
