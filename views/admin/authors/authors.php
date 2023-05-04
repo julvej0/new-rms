@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="authors.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <body>
     <?php
         include_once '../../../includes/admin/templates/navbar.php';
@@ -42,7 +43,7 @@
                         <li><a href="<?php echo filterAuthor($search, $role, 'Female')?>">Female</a></li>
                     </ul>
                 </div>
-                <a href="./new-author.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New Author</a>
+                <a href="./new-author.php" class="addBtn"><i class='bx bx-user-plus icon'></i></i>New</a>
             </div>
         </div>
         <section>

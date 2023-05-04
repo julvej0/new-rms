@@ -78,3 +78,7 @@ if(path.includes("ip-assets.php")){
 if(path.includes("authors.php") || path.includes("new-author.php")){
 	document.getElementById('author-link').classList.add('active');
 }
+
+if(path.includes("user-security.php") || path.includes("user-profile.php")){
+	document.getElementById('account-link').classList.add("active");
+}

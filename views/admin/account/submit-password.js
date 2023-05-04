@@ -26,7 +26,6 @@ function submitPss() {
         emailTooltip.style.display = "none";
     }
     else {
-        passwordTooltip.innerHTML = 'Passwords match.';
         passwordTooltip.style.display = "block";
         emailTooltip.style.display = "none";
 

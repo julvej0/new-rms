@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-                <form action="functionalities/publication-insert.php" method="POST" onsubmit="return chooseOneSDG()">
+                <form action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return chooseOneSDG()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>

@@ -78,10 +78,8 @@
             ?>
         </td>
         <td id="white-side" class="a-action-btns stickey-col">
-            <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"> Edit </a>
-            <button type="button" class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?php echo $row['author_name'];?>', '<?php echo $row['author_id'];?>', <?php echo isset($_GET['page']) ? $_GET['page'] : 1 ;?>, '<?php echo isset($_GET['search']) ? $_GET['search'] : 'empty_search' ;?>')">Delete</button>
-           
-            
+            <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"><i class="fa-solid fa-pen-to-square icon"></i></a>
+            <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?php echo $row['author_name'];?>', '<?php echo $row['author_id'];?>', <?php echo isset($_GET['page']) ? $_GET['page'] : 1 ;?>, '<?php echo isset($_GET['search']) ? $_GET['search'] : 'empty_search' ;?>')"><i class="fa-solid fa-trash-can icon"></i></button>
         </td>
         
         <?php

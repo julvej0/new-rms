@@ -1,8 +1,8 @@
 <title>RMS | DASHBOARD</title>
-<?php 
+<?php
     include '../../../includes/admin/templates/header.php';
     require_once "../../../db/db.php";
-    include_once './functionalities/dashboard-function.php'; 
+    include './functionalities/dashboard-function.php'; 
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="dashboard.css">

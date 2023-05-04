@@ -33,12 +33,12 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         </li>
         <li class="divider" data-text="Account">Account</li>
         <li id="account-settings">
-            <a href="#">
+            <a href="#" id="account-link">
                 <i class='bx bxs-cog icon' ></i>Account Settings<i class='bx bx-chevron-right icon-right' ></i>
             </a>
             <ul class='side-dropdown'>
-                <li><a href="../../../views/admin/account-management/user-profile.php">Profile</a></li>
-                <li><a href="../../../views/admin/account-management/user-security.php">Change Password</a></li>
+                <li><a href="../../../views/admin/account-management/user-profile.php" id="user-link">Profile</a></li>
+                <li><a href="../../../views/admin/account-management/user-security.php" id="security-link">Change Password</a></li>
             </ul>
             <a href="../../../views/admin/account/login.php">
                 <i class='bx bx-log-out icon rotate'></i>Sign Out
@@ -57,6 +57,7 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         <span class="divider"></span>
         <div class="profile">
             <p class="user-name" style="font-weight: bold;<?php echo isset($user['user_name']) ? 'text-transform: uppercase;' : ''; ?>"><?php echo $user['user_name'] ? $user['user_name'] : $user['email']; ?></p>
+            <small>Admin</small>
         </div>
     </nav>
     <!-- NAVBAR -->

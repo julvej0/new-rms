@@ -82,7 +82,7 @@ if (emailInput !== null) {
 
   emailInput.addEventListener('blur', () => {
     if (emailInput.value === '') {
-      emailInput.style.borderColor = '#EF1F3B'; // set the border color to red when the input field is blurred and empty
+      emailInput.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
     } else {
       emailInput.style.borderColor = 'greenyellow'; // set the border color to the default when the input field is blurred and has a value
     }
@@ -98,7 +98,7 @@ if (srCode !== null) {
 
   srCode.addEventListener('blur', () => {
     if (srCode.value === '') {
-      srCode.style.borderColor = '#EF1F3B'; // set the border color to red when the input field is blurred and empty
+      srCode.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
     } else {
       srCode.style.borderColor = 'greenyellow'; // set the border color to the default when the input field is blurred and has a value
     }
@@ -114,7 +114,7 @@ if(passwordInput) {
   
   passwordInput.addEventListener('blur', () => {
     if (passwordInput.value === '') {
-      passwordInput.style.borderColor = '#EF1F3B'; // set the border color to red when the input field is blurred and empty
+      passwordInput.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
     } else {
       passwordInput.style.borderColor = 'greenyellow'; // set the border color to the default when the input field is blurred and has a value
     }
@@ -130,7 +130,7 @@ if(passwordInput2) {
   
   passwordInput2.addEventListener('blur', () => {
     if (passwordInput2.value === '') {
-      passwordInput2.style.borderColor = '#EF1F3B'; // set the border color to red when the input field is blurred and empty
+      passwordInput2.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
     } else {
       passwordInput2.style.borderColor = 'greenyellow'; // set the border color to the default when the input field is blurred and has a value
     }
@@ -146,19 +146,19 @@ if (confirmPasswordInput) {
   
   confirmPasswordInput.addEventListener('blur', () => {
     if (confirmPasswordInput.value === '') {
-      confirmPasswordInput.style.borderColor = '#EF1F3B'; // set the border color to red when the input field is blurred and empty
+      confirmPasswordInput.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
     } 
     else if (confirmPasswordInput.value === passwordInput.value) {
       confirmPasswordInput.style.borderColor = 'greenyellow'; // set the border color to red when the confirm password input does not match the password input
     } 
     else if (confirmPasswordInput.value === '' && passwordInput.value ==='' ) {
-      confirmPasswordInput.style.borderColor = '#EF1F3B'; // set the border color to red when the confirm password input does not match the password input
+      confirmPasswordInput.style.borderColor = '#cf102d'; // set the border color to red when the confirm password input does not match the password input
     } 
     else if (passwordInput2 && confirmPasswordInput.value === passwordInput2.value) {
       confirmPasswordInput.style.borderColor = 'greenyellow'; // set the border color to green when the confirm password input matches the password input2
     } 
     else {
-      confirmPasswordInput.style.borderColor = '#EF1F3B'; // set the border color to the default when the input field is blurred and has a value
+      confirmPasswordInput.style.borderColor = '#cf102d'; // set the border color to the default when the input field is blurred and has a value
     }
   });
 }

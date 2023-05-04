@@ -3,6 +3,7 @@ main .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 
@@ -22,6 +23,7 @@ main .header .left .addBtn {
     display: flex;
     align-items: center;
     grid-gap: 5px;
+    width: 100px;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -38,10 +40,72 @@ main .header .addBtn:hover {
 
 main .header .left {
     display: flex;
-    width: 550px;
+    width: 950px;
     align-items: center;
     justify-content: space-between;
-    grid-gap: 5px;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+}
+
+main .header .left .filter button {
+    height: 100%;
+    width: 130px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: var(--light);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+    color: var(--text-color);
+}
+
+main .header .left .filter {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .header .filter .filter-link {
+    position: absolute;
+    top: calc(100% - 10px);
+    right: 0;
+    width: 130px;
+    background: var(--light);
+    border-radius: 5px;
+    padding: 10px 0;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+main .header .filter .filter-link.show {
+    top: calc(100%);
+    opacity: 1;
+    pointer-events: visible;
+    margin-top: 5px;
+}
+
+main .header .filter .filter-link a:hover {
+    background: var(--grey);
+}
+
+main .header .filter .filter-link a {
+    display: block;
+    padding: 6px 16px;
+    font-size: 14px;
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+main .header .left .filter button .icon {
+    font-size: 18px;
 }
 
 main .header .left form {
@@ -122,9 +186,10 @@ main table tbody td {
     font-size: 11px;
     top: 0;
     max-width: 200px;
-    font-size: 12px;
+    font-size: 13px;
     padding: 10px 10px;
     text-align: center;
+    min-height: 180px;
 }
 
 main section .table-footer {
@@ -154,8 +219,8 @@ main table .stickey-col {
     justify-content: center;
     padding: 10px;
     align-items: center;
-    min-height: 100px;
-    width: 100%; 
+    height: 100%;
+    width: 80px; 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
     background: var(--grey);
 }
@@ -173,8 +238,8 @@ main table .stickey-col-header {
 
 main table .pb-action-btns {
     display: flex;
+    gap: 7px;
     flex-direction: column;
-    gap: 5px;
     justify-content: center;
     align-items: center;
 }
@@ -338,7 +403,7 @@ padding-top: 80px;
 width: 60%;
 height: 75%;
 text-align: center;
-border-radius: 20px;
+border-radius: 10px;
 position: relative;
 opacity: 2;
 }

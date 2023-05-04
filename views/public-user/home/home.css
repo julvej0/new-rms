@@ -5,6 +5,7 @@
      rgba(0, 0, 0, .4)), url('../../../assets//images/background_img.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
