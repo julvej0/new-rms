@@ -22,6 +22,7 @@
             <th class="col-fund-type">Fund Type</th>
             <th class="col-fund-agency">Fund Source</th>
             <th class="col-citations">Citations</th>
+            <th class="col-status">Status</th>
             <th class='stickey-col-header' style="background-color: var(--grey);">Actions</th>
         </tr>
     </thead>
@@ -32,7 +33,7 @@
             $search_query = isset($_GET['search']) ? $_GET['search'] : '';
             $no_of_records_per_page = 10;
             // Get total number of records
-            $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_publications WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search_query%';");
+            $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_publications WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher, status) ILIKE '%$search_query%';");
             $total_records = pg_fetch_result($result_count, 0, 0);
             $total_pages = ceil($total_records / $no_of_records_per_page);
         
@@ -54,6 +55,7 @@
             <td class="publication-col col-fund-type"><?=$row['funding_type'];?></td>
             <td class="publication-col col-fund-agency"><?=$row['funding_source'];?></td>
             <td class="publication-col col-citations"><?=$row['number_of_citation'];?></td>
+            <td class="publication-col col-status"><?=$row['status'];?></td>
             <td class='pb-action-btns stickey-col'>
             <!-- Open certificate in a new tab-->
                 <a href="<?=$row['google_scholar_details'];?>" target="_blank" class="gdrive-btn">

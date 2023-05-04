@@ -137,11 +137,6 @@
                     isRotated = true;
                 }
             }
-
-
-
-
-
             // get all the checkboxes
             var checkboxes = document.querySelectorAll('input[type=checkbox]');
 

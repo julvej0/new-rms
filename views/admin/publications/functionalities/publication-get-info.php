@@ -12,7 +12,7 @@ function get_data($conn, $additionalQuery) {
     //offset
     $offset = ($pageno-1) * $no_of_records_per_page;
 
-    $result = pg_query($conn, "SELECT * FROM table_publications WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher)
+    $result = pg_query($conn, "SELECT * FROM table_publications WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher, status)
     ILIKE '%$search_query%'".$additionalQuery." ORDER BY publication_id DESC OFFSET $offset LIMIT $no_of_records_per_page;");
     $resultCheck = pg_num_rows($result);
 
@@ -48,6 +48,7 @@ function get_data($conn, $additionalQuery) {
                 'publisher' => $row['publisher'],
                 'campus' => $row['campus'],
                 'college' => $row['college'],
+                'status' => $row['status'],
             );
         }
         return $table_rows;
