@@ -60,7 +60,7 @@
                     include_once 'functionalities/ipa_include/ipa_count.php';
                 ?>
 
-                <p><?=countIPA($conn)?></p>
+                <p><?=countIPA($conn, $additionalQuery)?></p>
                 <div class="download">
                     <button onclick="openModal()" class="download-btn">Download</button>
                 </div>
