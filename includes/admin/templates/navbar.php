@@ -57,6 +57,7 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         <span class="divider"></span>
         <div class="profile">
             <p class="user-name" style="font-weight: bold;<?php echo isset($user['user_name']) ? 'text-transform: uppercase;' : ''; ?>"><?php echo $user['user_name'] ? $user['user_name'] : $user['email']; ?></p>
+            <small>Admin</small>
         </div>
     </nav>
     <!-- NAVBAR -->
