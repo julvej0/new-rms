@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../db/db.php';
+include_once '../../../../../db/db.php';
 if (isset($_POST['submitPB'])) {
     $date_published = $_POST["date_published"];
     $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;
@@ -54,11 +54,11 @@ if (isset($_POST['submitPB'])) {
     
     if ($insert_result) {
         echo "Insert successful.";
-        header("Location: ../publications.php");
+        header("Location: ../../publications.php");
     } else {
         echo "Insert failed.";
     }
 } else {
-    header("Location: ../publications.php");
+    header("Location: ../../publications.php");
 }   
 ?>
