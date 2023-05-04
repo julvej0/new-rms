@@ -1,8 +1,8 @@
 <title>RMS | DASHBOARD</title>
-<?php 
+<?php
     include '../../../includes/admin/templates/header.php';
     require_once "../../../db/db.php";
-    include_once './functionalities/dashboard-function.php'; 
+    include './functionalities/dashboard-function.php'; 
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="dashboard.css">
@@ -122,8 +122,7 @@
                 <div class="content-card">
                     <div class="head">
                         <div>
-                            <?php                
-                            include_once './functionalities/dashboard-function.php';   
+                            <?php                   
                             $user_count = getUserCount($conn, true);
                             echo '<h2>'.$user_count.'</h2>';
                             ?>
@@ -136,7 +135,6 @@
                     <div class="head">
                         <div>
                             <?php
-                            include_once './functionalities/dashboard-function.php';   
                             $author_count = getAuthorCount($conn, true);
                             echo '<h2>'.$author_count.'</h2>';
                             ?>
@@ -320,7 +318,7 @@
         var pub_labels = <?php echo $publications_year;?>;
         var pub_options = {
             chart: {
-                type: 'bar'
+                type: 'line'
             },
             series: [{
                 data: pub_data

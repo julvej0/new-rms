@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-            <form action="functionalities/ipa-insert.php" method="POST">
+            <form action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="class_of_work">Class of Work</label>
-                                    <select class="ipa-input-field" id="class_of_work" name="class_of_work">
+                                    <select class="ipa-input-field" id="class_of_work" name="class_of_work" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="A">Class A</option>
                                         <option value="G">Class G</option>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="date-of-creation">Date of Creation</label>
-                                    <input type="date" id="date-of-creation" name="date_of_creation" required>
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation" required>
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="hyperlink">Hyperlink</label>
@@ -194,16 +194,16 @@
                             <h4 class="if-funded">If Registered : </h4>
                             <div class="reg-form-container2">
                                 <div class="form-control">
-                                    <label class="ip-label" for="reg-num" id="reg-num">Registration Number:</label>
-                                    <input type="text" name="registration_number" id="reg-num" placeholder="Registration Number..." required>
+                                    <label class="ip-label" for="reg_num">Registration Number:</label>
+                                    <input type="text" name="registration_number" id="reg_num" placeholder="Registration Number..." required>
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="reg-date">Date of Registration</label>
-                                    <input type="date" name="date_registered" id="reg-date" required>
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" required>
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate</label>
-                                    <input type="file" name="ip-certificate" id="ip-certificate" required>
+                                    <input type="file" name="ip-certificate" id="ip-certificate" required accept=".png, .jpg, .jpeg">
                                 </div>
                             </div>
                         </div>
@@ -269,7 +269,36 @@
                     x--;
                 });
             });
-        </script>
+
+            $(document).ready(function(){
+                // Get the input fields
+                const classOfWork = document.getElementById('class_of_work');
+                var today = new Date();
+                var year = today.getFullYear();
+
+                // Get the registration number field
+                const registrationNumber = document.getElementById('reg_num');
+
+                // Listen for changes to the IPA registration radio buttons
+                const ipaRegistration = document.getElementsByName('registerInfo');
+                ipaRegistration.forEach(function (radio) {
+                    radio.addEventListener('change', function () {
+                        if (this.value === 'not-registered') {
+                            // Generate the registration number
+                            const classOW = classOfWork.value.split(' ').join('');
+                            const yearNow = year.toString();
+                            const registration = classOW + yearNow + '-';
+                            
+                            // Set the registration number field value
+                            reg_num.value = registration;
+                        } else {
+                            // Clear the registration number field value
+                            reg_num.value = '';
+                        }
+                    });
+                });
+            });
+</script>
 </body>
 <?php
     include '../../../includes/admin/templates/footer.php';

@@ -4,6 +4,8 @@ body {
     background: var(--grey);
     position: relative;
     overflow-x: hidden;
+    height: 150px;
+    resize: none;
 }
 
 .navbar-container {
@@ -74,11 +76,15 @@ body {
     object-fit: contain;
 }
 
+.navbar-container .left-content .header-title {
+    height: 100px;
+}
+
 .navbar-container .left-content .header-title h4 {
     font-family: 'Playfair Display', serif;
     color: var(--light);
     font-size: 50px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .navbar-container .left-content .header-title p {
@@ -126,7 +132,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-gap: 28px;
+    grid-gap: 20px;
+}
+
+.navbar-container .right-content .signin-btn {
+    background: var(--primary);
+    width: 110px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.navbar-container .right-content .signin-btn:hover {
+    opacity: 80%;
 }
 
 .navbar-container .right-content ul {
@@ -136,7 +155,7 @@ body {
 
 .navbar-container .right-content .nav-links li {
     list-style-type: none;
-    margin-right: 50px;
+    margin-right: 70px;
 }
 
 .navbar-container .right-content a {
@@ -176,8 +195,29 @@ body {
 }
 
 
-@media (min-width: 1920px) {
+#main-content {
+    position: relative;
+    height: 100vh;
+    top: 150px;
+    padding: 0;
+    overflow-y: hidden;
+}
+
+
+@media screen and (min-width: 1920px) {
   .navbar-container {
     width: 2300px;
   }
+}
+
+@media screen and (min-width: 1980px) {
+  .navbar-container {
+    width: 2600px;
+  }
+}
+
+@media screen and (min-width: 24in) {
+    .navbar-container {
+        width: 2600px;
+    }
 }

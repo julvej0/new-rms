@@ -5,6 +5,9 @@ function submitPss() {
     var emailTooltip = document.getElementById("emailTooltip");
     var passwordTooltip = document.getElementById("passwordTooltip");
     var otpTextBox = document.getElementById("otpVerification").value;
+    var disableSubmitPassword = document.getElementById('submit-password');
+
+    disableSubmitPassword.disabled = true;
 
     
     if (!/^[^@\s]+@g.batstate-u.edu.ph$/.test(emailAddress)) {
@@ -25,7 +28,7 @@ function submitPss() {
         emailTooltip.style.display = "none";
     }
     else {
-        passwordTooltip.innerHTML = 'Passwords match.';
+    
         passwordTooltip.style.display = "block";
         emailTooltip.style.display = "none";
 
@@ -37,12 +40,38 @@ function submitPss() {
             if (xhr.readyState === 4 && xhr.status === 200) {
             if (xhr.responseText === "successful") {
                 // redirect the user to a success page
-                window.location.href = "login.php?edit=successful";
-                console.log(otpTextBox);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            Toast.fire({
+                icon: 'success',
+                title: 'Password Changed Successfully'
+            })
+            // Redirect to login page after 3 seconds
+            setTimeout(() => {
+                window.location.href = "login.php";
+            }, 3000);
+            console.log(otpTextBox);
 
             } else {
                 // display an error message
-                window.location.href = "login.php?error=wrong";
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Wrong OTP, Please Try Again.',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                  });
+                window.location.href = "login.php";
                 console.log(otpTextBox);
 
             }

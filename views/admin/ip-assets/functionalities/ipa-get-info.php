@@ -13,7 +13,7 @@ function get_data($conn, $additionalQuery) {
     $offset = ($pageno-1) * $no_of_records_per_page;
 
     //Search Query
-    $sqlSearchQuery = "SELECT * FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'".$additionalQuery." ORDER BY date_registered DESC OFFSET $offset LIMIT $no_of_records_per_page;";
+    $sqlSearchQuery = "SELECT * FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status, certificate) ILIKE '%$search_query%'".$additionalQuery." ORDER BY registration_number ASC OFFSET $offset LIMIT $no_of_records_per_page;";
     $result = pg_query($conn, $sqlSearchQuery);
     $resultCheck = pg_num_rows($result);
 
@@ -44,6 +44,8 @@ function get_data($conn, $additionalQuery) {
                 'program' => $row['program'],
                 'authors' => $authorNamesString,
                 'hyperlink' => $row['hyperlink'],
+                'status' => $row['status'],
+                'certificate' => $row['certificate'],
             );
         }
         return $table_rows;

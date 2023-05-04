@@ -26,7 +26,9 @@ body {
     flex-direction: column;
 }
 
-
+#userh2 {
+    color:#EF1F3B;
+}
 /* mini-pages */
 
 .mini-page {
@@ -62,6 +64,7 @@ body {
 }
 
 .profile-photo {
+    position: relative;
     width: 150px;
     height: 260px;
     overflow: hidden;
@@ -77,6 +80,15 @@ body {
     transition: all 0.3s ease;
 }
 
+.profile-photo .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: black;
+  }
+
 .profile-photo:hover {
     border-color: greenyellow;
     /* change the border color when input is in focus */
@@ -88,6 +100,8 @@ body {
 }
 
 .profile-photo img {
+    display: block;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -100,7 +114,7 @@ body {
 }
 
 .profile-row label {
-    width: 100px;
+    width: 150px;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -108,7 +122,7 @@ body {
 .profile-row input[type="text"] {
     border: none;
     background-color: #f5f5f5;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
     font-size: 16px;
     width: 400px;
@@ -143,6 +157,31 @@ body {
     border-color: #EF1F3B;
 }
 
+
+
+.upload-button {
+    position:fixed;
+    top: 550px;
+    margin-left: -62px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #EF1F3B;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 75px;
+    transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+    border: solid;
+    background-color: white;
+    color: #EF1F3B;
+    transition: all 0.3s ease;
+    border-color: #EF1F3B;
+}
 /* security-page */
 
 #security-page {
