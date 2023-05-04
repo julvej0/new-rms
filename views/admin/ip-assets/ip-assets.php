@@ -159,6 +159,7 @@
         <!-- Modal Popup -->
      <div id="myModal" class="modal">
         <div class="modal-content1">
+            <h3 style="float: left; position: relative; margin-top: -35px;">Download</h3>
         <span class="close" onclick="closeModal()">&times;</span>
         <iframe src="functionalities/download/download_ip-assets.php"></iframe>
         </div>
