@@ -56,7 +56,8 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         <i class='bx bx-menu toggle-sidebar' ></i>
         <span class="divider"></span>
         <div class="profile">
-            <p class="user-name" style="font-weight: bold;<?php echo isset($user['user_name']) ? 'text-transform: uppercase;' : ''; ?>"><?php echo $user['user_name'] ? $user['user_name'] : $user['email']; ?></p>
+        <p class="user-name" style="font-weight: bold;<?php echo isset($user['user_fname']) || isset($user['user_mname']) || isset($user['user_lname'])  ? 'text-transform: uppercase;' : ''; ?>"><?php echo $user['user_fname'] ? $user['user_fname'] . ' ' . $user['user_mname'] . ' ' . $user['user_lname'] : $user['email']; ?></p>
+
         </div>
     </nav>
     <!-- NAVBAR -->
