@@ -3,16 +3,23 @@
 
 //password input is the new password input
 
+
+//user password
 const passwordInput = document.getElementsByClassName('passwordInput')[0];
 const passwordInput2 = document.getElementsByClassName('passwordInput')[1];
-
 const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+
+//user details
 const emailInput = document.getElementById('email');
 const srCode = document.getElementById('srcode');
+const fname = document.getElementById('fName');
+const lname = document.getElementById('lName'); 
+const mname = document.getElementById('mName'); 
 
+
+//show hide password
 const toggleShowButton = document.getElementById('passwordToggle');
 const toggleShowButton2 = document.getElementById('passwordToggle2');
-
 const showHidePassword = document.querySelectorAll('.toggle-password');
 const showHidePassword2 = document.querySelectorAll('.toggle-password2');
 
@@ -74,6 +81,9 @@ toggleShowButton.addEventListener('click', function() {
 }
 
 
+
+// error handling
+
 //email address
 if (emailInput !== null) {
   emailInput.addEventListener('focus', () => {
@@ -104,6 +114,54 @@ if (srCode !== null) {
     }
   });
 }
+
+
+//First Name
+if (fname !== null) {
+  fname.addEventListener('focus', () => {
+    fname.style.borderColor = 'greenyellow'; // set the border color to green when the input field is focused
+  });
+
+  fname.addEventListener('blur', () => {
+    if (fname.value === '') {
+      fname.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
+    } else {
+      fname.style.borderColor = 'greenyellow'; // set the border color to the default when the input field is blurred and has a value
+    }
+  });
+}
+
+
+//Last Name
+if (lname !== null) {
+  lname.addEventListener('focus', () => {
+    lname.style.borderColor = 'greenyellow'; // set the border color to green when the input field is focused
+  });
+
+  lname.addEventListener('blur', () => {
+    if (lname.value === '') {
+      lname.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
+    } else {
+      lname.style.borderColor = 'greenyellow'; // set the border color to the default when the input field is blurred and has a value
+    }
+  });
+}
+
+//Middle Initial
+if (mname !== null) {
+  mname.addEventListener('focus', () => {
+    mname.style.borderColor = 'greenyellow'; // set the border color to green when the input field is focused
+  });
+
+  mname.addEventListener('blur', () => {
+    if (mname.value === '') {
+      mname.style.borderColor = '#cf102d'; // set the border color to red when the input field is blurred and empty
+    } else {
+      mname.style.borderColor = 'greenyellow'; // set the border color to the default when the input field is blurred and has a value
+    }
+  });
+}
+
 
 //password index 0
 

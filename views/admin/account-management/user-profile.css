@@ -65,8 +65,8 @@ body {
 
 .profile-photo {
     position: relative;
-    width: 150px;
-    height: 260px;
+    width: 250px;
+    height: 360px;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -139,7 +139,7 @@ body {
     margin-left: 10px;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: #EF1F3B;
+    background-color: #cf102d;
     color: white;
     font-weight: bold;
     border: none;
@@ -152,9 +152,9 @@ body {
 .edit-button:hover {
     border: solid;
     background-color: white;
-    color: #EF1F3B;
+    color: #cf102d;
     transition: all 0.3s ease;
-    border-color: #EF1F3B;
+    border-color: #cf102d;
 }
 
 
@@ -165,7 +165,7 @@ body {
     margin-left: -62px;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: #EF1F3B;
+    background-color: #cf102d;
     color: white;
     font-weight: bold;
     border: none;
@@ -178,37 +178,14 @@ body {
 .upload-button:hover {
     border: solid;
     background-color: white;
-    color: #EF1F3B;
+    color: #cf102d;
     transition: all 0.3s ease;
-    border-color: #EF1F3B;
+    border-color: #cf102d;
 }
 /* security-page */
 
 #security-page {
     text-align: center;
-}
-
-#security-page button {
-    background-color: white;
-    padding: 10px 100px;
-    margin: 0 20px;
-    margin-top: 30px;
-    border-radius: 5px;
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border: none;
-    height: 60px;
-}
-
-#security-page button:hover {
-    background-color: #EF1F3B;
-    transform: scale(1.1);
-    cursor: pointer;
-    color: white;
 }
 
 
@@ -283,7 +260,7 @@ body {
 
 .modal-content h2 {
     text-align: center;
-    background-color: #EF1F3B;
+    background-color: #cf102d;
     color: white;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -297,7 +274,7 @@ body {
     margin-bottom: 20px;
     width: 60%;
     height: 40px;
-    background-color: #EF1F3B;
+    background-color: #cf102d;
     color: white;
     border: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -314,10 +291,10 @@ body {
     width: 60%;
     height: 40px;
     background-color: white;
-    color: #EF1F3B;
-    transform: scale(1.1);
+    color: #cf102d;
     transition: all 0.3s ease;
     border: none;
+    opacity: 0.7;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     border-radius: 5px;
@@ -371,6 +348,7 @@ body {
 .toggle-password {
     margin-top: 10px;
     margin-left: 5px;
+    cursor: pointer;
 }
 
 /* 
@@ -398,38 +376,4 @@ change email modal */
     box-shadow: 0 0 5px greenyellow;
     /* add custom box-shadow when input is in focus */
     transition: all 0.3s ease;
-}
-
-
-.modal-content #submit-email {
-    display: block;
-    margin-left: 9em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 60%;
-    height: 40px;
-    background-color: #EF1F3B;
-    color: white;
-    border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.modal-content #submit-email:hover {
-    display: block;
-    margin-left: 9em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 60%;
-    height: 40px;
-    background-color: white;
-    color: #EF1F3B;
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-    border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    border-radius: 5px;
 }

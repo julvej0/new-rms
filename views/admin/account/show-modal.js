@@ -1,19 +1,28 @@
 
 function showModal() {
 
-    const modal = document.getElementById("myModal");
-    const srCode = document.getElementById("srcode").value;
-    const emailAddress = document.getElementById("email").value;
-    const passwordInput = document.getElementsByClassName('passwordInput')[0].value;
-    const confirmPasswordInput = document.getElementById('confirmPasswordInput').value;
-    const emailTooltip = document.getElementById("emailTooltip");
-    const passwordTooltip = document.getElementById("passwordTooltip");
+    var modal = document.getElementById("myModal");
+    var srCode = document.getElementById("srcode").value;
+    var emailAddress = document.getElementById("email").value;
+    var passwordInput = document.getElementsByClassName('passwordInput')[0].value;
+    var confirmPasswordInput = document.getElementById('confirmPasswordInput').value;
+    var emailTooltip = document.getElementById("emailTooltip");
+    var passwordTooltip = document.getElementById("passwordTooltip");
+    var fname = document.getElementById('fName').value;
+    var lname = document.getElementById('lName').value;
+    var mname = document.getElementById('mName').value;
+    var fullName = fname + ' ' + mname + ' ' + lname;
+    var capitalizedFullName = fullName.split(' ').map(word => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join(' ');
 
-   if (!srCode || !emailAddress || !passwordInput || !confirmPasswordInput) {
+
+
+   if (!srCode || !emailAddress || !passwordInput || !confirmPasswordInput || !fname || !lname ) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Input Fields Are Empty, Please Try Again!',
+            text: 'Some Inputs are Empty, Please Try Again!',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'OK'
         });
@@ -51,10 +60,11 @@ function showModal() {
                         confirmButtonText: 'OK'
                     });
                } else {
-                   document.getElementById('userEmailAddressInput').setAttribute('value', emailAddress);
-                   document.getElementById("userSrCode").setAttribute('value', srCode);
-                   document.getElementById("confirmedPassword").value = confirmPasswordInput;
-                   modal.style.display = "block";
+                    document.getElementById('userFullName').value = capitalizedFullName;
+                    document.getElementById('userEmailAddressInput').setAttribute('value', emailAddress);
+                    document.getElementById("userSrCode").setAttribute('value', srCode);
+                    document.getElementById("confirmedPassword").value = confirmPasswordInput;
+                    modal.style.display = "block";
                }
            }
        };

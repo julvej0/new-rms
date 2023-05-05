@@ -52,7 +52,7 @@ function downloadTableAsPDF() {
   // Set the page orientation to landscape
   var options = {
     filename: 'table_example.pdf',
-    jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+    jsPDF: {orientation: 'landscape' }
   };
 
   // Clone the table element and add it to a new div element

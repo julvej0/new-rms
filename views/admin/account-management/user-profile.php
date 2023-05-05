@@ -19,28 +19,42 @@ include_once "functionalities/user-session.php";
             </label>
             <input type="file" id="photo-upload" name="file" style="display:none">
         </div>
+        <div class="profile-details">
 
-            <div class="profile-details">
                 <div class="profile-row">
-                    <label for="name">Name:</label>
-                    <input type="text" id="user_name" value="<?php echo $user['user_name'];?>" readonly>
-                    <button class="edit-button" onclick="editField('user_name')">EDIT</button>
+                    <label for="name">Given Name:</label>
+                    <input type="text" id="user_fname" value="<?php echo $user['user_fname']; ?>" readonly>
+                    <button class="edit-button" onclick="editField('user_fname')">EDIT</button>
                 </div>
                 <div class="profile-row">
-                    <label for="address">SR Code:</label>
-                    <input type="text" id="sr_code" value="<?php echo $user['sr_code'];?>" readonly>
-                    <button class="edit-button" onclick="editField('sr_code')">EDIT</button>
+                    <label for="name">Middle Name:</label>
+                    <input type="text" id="user_mname" value="<?php echo $user['user_mname']; ?>" readonly>
+                    <button class="edit-button" onclick="editField('user_mname')">EDIT</button>
                 </div>
+                <div class="profile-row">
+                    <label for="name">Surname:</label>
+                    <input type="text" id="user_lname" value="<?php echo $user['user_lname']; ?>" readonly>
+                    <button class="edit-button" onclick="editField('user_lname')">EDIT</button>
+                </div>
+                
                 <div class="profile-row">
                     <label for="contact">Contact Number:</label>
                     <input type="text" id="user_contact" maxlength='11' value="<?php echo $user['user_contact'];?>" readonly>
                     <button class="edit-button" onclick="editField('user_contact')">EDIT</button>
                 </div>
+
+                <div class="profile-row">
+                    <label for="address">SR Code:</label>
+                    <input type="text" id="sr_code" value="<?php echo $user['sr_code'];?>" readonly>
+                </div>
+
                 <div class="profile-row">
                     <label for="affiliation">Email:</label>
                     <input type="text" id="email" name='email' value="<?php echo $user['email'];?>" readonly>
-                    <button class="edit-button" onclick="editField('email')">EDIT</button>
                 </div>
+            
+                
+                
                 <div class="profile-row">
                     <label for="occupation">Account:</label>
                     <input type="text" id="occupation" value="<?php echo $user['account_type'];?>" readonly>
@@ -75,7 +89,9 @@ $(document).ready(function() {
                     icon: 'success',
                     title: 'Success',
                     text: 'Image uploaded successfully!',
-                });
+                    }).then((result) => {
+                        location.reload(true);
+                    });
             },
             error: function(response) {
                 Swal.fire({
