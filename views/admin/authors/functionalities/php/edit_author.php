@@ -55,12 +55,12 @@ if (isset($_POST['edit'])) {
         $update_stmt = pg_prepare($conn,"edit_author", $update_query);
         $update_result = pg_execute($conn,"edit_author",array($author_name, $gender, $types, $affiliation, $id));
 
+        $queryString = $_SERVER['QUERY_STRING'];
+    
         if ($update_result) {
-            echo "Insert successful.";
-            header("Location: ../../authors.php?update=success");
+            header("Location: ../../authors.php?".$queryString."update=success");
         } else {
-            echo "Insert failed.";
-            header("Location: ../../authors.php?update=failed");
+            header("Location: ../../authors.php?".$queryString."update=failed");
         }
        
 

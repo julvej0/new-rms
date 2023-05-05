@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../db/db.php';
+include_once '../../../../../db/db.php';
 if (isset($_POST['submitIPA'])) {
     $date_of_creation = $_POST["date_of_creation"];
     $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
@@ -55,7 +55,7 @@ if (isset($_POST['submitIPA'])) {
 
                             if ($insert_result) {
                                 echo "Insert successful.";
-                                header("Location: ../ip-assets.php?success");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?success");
                             } else {
                                 echo "Insert failed.";
                             }
@@ -76,6 +76,6 @@ if (isset($_POST['submitIPA'])) {
     }
     
 } else {
-    header("Location: ../ip-assets.php?failed");
+    header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?failed");
 }   
 ?>

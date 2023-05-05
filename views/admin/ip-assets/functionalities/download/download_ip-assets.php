@@ -2,12 +2,13 @@
 
 <?php 
     include '../../../../../db/db.php';
-    require_once('../ipa-get-info-download.php');
+    require_once('../download/ipa-get-info-download.php');
     $additionalQuery= authorSearch($conn);
     $table_rows = get_data($conn, $additionalQuery);
 ?>
 
-<link rel="stylesheet" href="../../ip-assets.css">
+<!-- <link rel="stylesheet" href="../../ip-assets.css"> -->
+<link rel="stylesheet" href="../download/download_button.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
 <script src="package/html2pdf.bundle.min.js"></script>
@@ -21,60 +22,19 @@
 <!-- download as excel -->
 <script src="https://unpkg.com/xlsx@0.15.6/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 <!-- download as Word document -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <style>
-/* CSS styles for the button */
-
-main .btn {
-    padding: 23px;
-    border-radius: 3px;
-    outline: none;
-    background: var(--green);
-    color: var(--light);
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.form-group{
-    position: relative;
-    background-color: #f1f0f6
-}
-
- .form-group input {
-    width: 30%;
-    height: 8%;
-    background: var(--light);
-    border-radius: 5px;
-    border: 1px white;
-    outline: none;
-    padding: 10px 36px 10px 16px;
-    transition: all 0.3s ease;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5);
-    position: relative;
-    margin-top: -30;
-    float: right;
-}
-
-main .form-group .icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 16px;
-    color: var(--dark-grey);
-}
-
-main .form-group input:focus {
-    box-shadow: 0 0 0 5px var(blue);
-}
-
+    .btn{
+        margin-left: 50px;
+    }
 </style>
 
 <body>
 
     <main>
+    <div class="sticky-div">
     <button onclick="downloadExcelFile()" class="btn" style="cursor: pointer;"><i class="fas fa-file-excel fa-lg" style="color: #01792f; font-size: 30px;"></i></button>
     <button onclick="downloadTableAsPDF()" class="btn" style="cursor: pointer;"><i class="fas fa-file-pdf fa-lg" style="color: #f60909; font-size: 30px;"></i></button>
     <button onclick="exportTableToWord()" class="btn" style="cursor: pointer;"><i class="fas fa-file-word fa-lg" style="color: #2d43e6; font-size: 30px;"></i></button>
@@ -84,9 +44,10 @@ main .form-group input:focus {
             <i class='bx bx-search icon' ></i>
         </div>
     </form>
+    </div>
     <section>
                 <table id="mytable">
-                    <thead>
+                    <thead class="sticky-header">
                         <tr>
                             <th class="col-registration">Registration Number</th>
                             <th class="col-title" style="min-width: 350px;">Title</th>
@@ -140,74 +101,8 @@ main .form-group input:focus {
     </section>
     </main>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
-<script src="./ip-assets.js"></script>
+<script src="./download_button.js"></script>
 </body>
-<script>
-    // Function to download the excel file
-    function downloadExcelFile() {
-        // Get the table element by its ID
-        var table = document.getElementById("mytable");
-
-        // Convert the table to a worksheet object
-        var worksheet = XLSX.utils.table_to_sheet(table);
-
-        // Create a workbook object
-        var workbook = XLSX.utils.book_new();
-
-        // Add the worksheet to the workbook
-        XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
-        // Convert the workbook to a binary string
-        var excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
-
-        // Convert a string to an ArrayBuffer
-        function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i < s.length; i++) {
-                view[i] = s.charCodeAt(i) & 0xFF;
-            }
-            return buf;
-        }
-
-        // Trigger download
-        var blob = new Blob([s2ab(excelData)], { type: "application/octet-stream" });
-        saveAs(blob, "IPASSETS_list.xlsx");
-    }
-
-  // download as pdf
-  function downloadTableAsPDF() {
-            var table = document.getElementById('mytable');
-            
-            html2pdf()
-                .from(table)
-                .save('table_example.pdf');
-        }
-
-// download as word document
-function exportTableToWord() {
-  var table = document.getElementById('mytable');
-  var html = table.outerHTML;
-
-  // Set page orientation and size
-  var style = "<style>@media print { @page { size: landscape; } }</style>";
-  html = style + html;
-
-  var blob = new Blob(['\ufeff', html], { type: 'application/vnd.ms-word;charset=utf-8' });
-  var url = URL.createObjectURL(blob);
-  var link = document.createElement('a');
-  link.href = url;
-  link.download = 'table.doc';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-</script>
 <?php
     include '../../../../../includes/admin/templates/footer.php';
 ?>
