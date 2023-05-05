@@ -58,7 +58,7 @@ main .header .left .filter button {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     z-index: 1000;
     color: var(--text-color);
 }
