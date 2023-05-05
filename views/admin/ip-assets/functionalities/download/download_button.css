@@ -18,7 +18,7 @@ main .btn {
     background-color: #f1f0f6;
 }
 
- .form-group input {
+ .form-group input{
     width: 30%;
     height: 8%;
     background: var(--light);
@@ -31,6 +31,7 @@ main .btn {
     position: relative;
     margin-top: -45;
     float: right;
+
 }
 
 main .form-group .icon {
