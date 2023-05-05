@@ -10,9 +10,12 @@ main .btn {
     border: none;
 }
 
+.btn{
+    margin-left:50px;
+}
 .form-group{
     position: relative;
-    background-color: #f1f0f6
+    background-color: #f1f0f6;
 }
 
  .form-group input {
@@ -26,7 +29,7 @@ main .btn {
     transition: all 0.3s ease;
     box-shadow: 3px 3px 10px rgba(52, 52, 52, 0.2);
     position: relative;
-    margin-top: -30;
+    margin-top: -45;
     float: right;
 }
 
@@ -40,3 +43,126 @@ main .form-group .icon {
 main .form-group input:focus {
     box-shadow: 0 0 0 5px var(blue);
 }
+
+
+/* like an ip assets button */
+
+main .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+main .left .form-group .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--dark-grey);
+}
+
+main .header .form-group input:focus {
+    box-shadow: 0 0 0 4px var(--light-blue);
+}
+
+main .table-container {
+    margin-top: 20px;
+    height: 100vh;
+    overflow: auto;
+    background: var(--light);
+    border-radius: 5px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    overflow-x: scroll;
+}
+
+main .table-container table {
+    width: 100%;
+    table-layout: auto;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+main .table-container table,
+th,
+td {
+    border-collapse: collapse;
+    border-bottom: 2.5px solid var(--grey);
+}
+
+main table thead tr {
+    background: var(--light);
+}
+
+main table thead tr th {
+    position: sticky;
+    top: 0;
+    min-width: 150px;
+    max-width: 200px;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;    
+    background: lightgray;
+    z-index: 100;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
+}
+
+main table tbody td {
+    font-size: 11px;
+    top: 0;
+    max-width: 200px;
+    font-size: 13px;
+    padding: 10px 10px;
+    text-align: center;
+    min-height: 180px;
+}
+
+main section .table-footer {
+    height: 80px;
+    width: 100%;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 0 20px;
+    border-top: 1px solid var(--grey);
+}
+
+main section .table-footer p {
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+}
+
+main table .stickey-col {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    align-items: center;
+    height: 100%;
+    width: 80px; 
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
+    background: var(--grey);
+}
+
+main table .stickey-col-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 80px;
+    padding: 10px;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
+    background: var(--dark-grey);
+}
+
+
+

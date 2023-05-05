@@ -26,51 +26,6 @@ body {
     flex-direction: column;
 }
 
-/* Navigation Bar */
-
-.navigation-bar {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    height: 60px;
-    top: 100px;
-}
-
-.nav-button {
-    padding: 10px 100px;
-    margin: 0 20px;
-    border-radius: 5px;
-    transform: skewX(-45deg);
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.nav-button:hover,
-.nav-button:focus {
-    background-color: #EF1F3B;
-    transform: skewX(-45deg) scale(1.1);
-    cursor: pointer;
-    color: white;
-}
-
-.nav-button.focused {
-    background-color: #EF1F3B;
-    transform: skewX(-45deg) scale(1.1);
-    color: white;
-}
-
-.nav-button span {
-    display: inline-block;
-    transform: skewX(45deg);
-}
-
 /* mini-pages */
 
 .mini-page {
@@ -168,7 +123,7 @@ body {
     margin-left: 10px;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: #EF1F3B;
+    background-color: #cf102d;
     color: white;
     font-weight: bold;
     border: none;
@@ -181,39 +136,12 @@ body {
 .edit-button:hover {
     border: solid;
     background-color: white;
-    color: #EF1F3B;
+    color: #cf102d;
     transition: all 0.3s ease;
-    border-color: #EF1F3B;
+    border-color: #cf102d;
 }
 
-/* security-page */
 
-#security-page {
-    text-align: center;
-}
-
-#security-page button {
-    background-color: white;
-    padding: 10px 100px;
-    margin: 0 20px;
-    margin-top: 30px;
-    border-radius: 5px;
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border: none;
-    height: 60px;
-}
-
-#security-page button:hover {
-    background-color: #EF1F3B;
-    transform: scale(1.1);
-    cursor: pointer;
-    color: white;
-}
 
 
 /* modal */
@@ -268,7 +196,7 @@ body {
 
 .modal-content h2 {
     text-align: center;
-    background-color: #EF1F3B;
+    background-color: #cf102d;
     color: white;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -282,7 +210,7 @@ body {
     margin-bottom: 20px;
     width: 60%;
     height: 40px;
-    background-color: #EF1F3B;
+    background-color: #cf102d;
     color: white;
     border: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -298,14 +226,13 @@ body {
     margin-bottom: 20px;
     width: 60%;
     height: 40px;
-    background-color: white;
-    color: #EF1F3B;
-    transform: scale(1.1);
+    opacity: 0.7;
     transition: all 0.3s ease;
     border: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 
@@ -357,6 +284,7 @@ body {
     position: absolute;
     margin-top: 10px;
     margin-left: 455px;
+    cursor: pointer;
 
 }
 
@@ -388,35 +316,3 @@ change email modal */
 }
 
 
-.modal-content #submit-email {
-    display: block;
-    margin-left: 9em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 60%;
-    height: 40px;
-    background-color: #EF1F3B;
-    color: white;
-    border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.modal-content #submit-email:hover {
-    display: block;
-    margin-left: 9em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 60%;
-    height: 40px;
-    background-color: white;
-    color: #EF1F3B;
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-    border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    border-radius: 5px;
-}
