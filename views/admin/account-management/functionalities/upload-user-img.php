@@ -2,7 +2,7 @@
 include_once '../../../../db/db.php';
 // Check if file was uploaded without errors
 if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
-    $target_dir = "../../../../../new-rms-webdev/views/admin/account-management/uploads/";
+    $target_dir = "uploads/";
     $user_email = $_POST['email'];
     $user_img_name = $target_dir . $user_email . "_userimage.png";
     
