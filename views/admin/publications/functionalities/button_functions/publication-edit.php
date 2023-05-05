@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../db/db.php';
+include_once '../../../../../db/db.php';
 if (isset($_POST['updatePB'])) {
     $date_published = $_POST["date_published"];
     $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;
@@ -66,12 +66,12 @@ if (isset($_POST['updatePB'])) {
 
     // Check if the update was successful
     if (pg_affected_rows($update_result) > 0) {
-        header("Location: ../publications.php?update=applied");
+        header("Location: ../../publications.php?update=applied");
     } else {
-        header("Location: ../publications.php?update=!update");
+        header("Location: ../../publications.php?update=!update");
     }
 } else {
-    header("Location: ../publications.php");
+    header("Location: ../../publications.php");
 }
 
 ?>

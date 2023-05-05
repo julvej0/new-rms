@@ -1,9 +1,8 @@
 <?php
+    require_once('functionalities/ipa-get-info.php');
 
-require_once('functionalities/ipa-get-info.php');
-
-$additionalQuery= authorSearch($conn);
-$table_rows = get_data($conn, $additionalQuery);
+    $additionalQuery= authorSearch($conn);
+    $table_rows = get_data($conn, $additionalQuery);
 ?>
 
 <table>

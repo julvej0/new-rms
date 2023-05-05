@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_publications WHERE publication_id = '$publicationID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-                <form action="functionalities/publication-edit.php" method="POST" onsubmit="return chooseOneSDG()">
+                <form action="functionalities/button_functions/publication-edit.php" method="POST" onsubmit="return chooseOneSDG()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -356,7 +356,7 @@
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 
-        <script src="new-publication.js"></script>
+<script src="edit-publication.js"></script>
         <script>
             //Author ID table workaround.
             function showAuthorId(input) {
@@ -409,6 +409,6 @@ $('#author-tbl').on('click', '#remove', function() {
 </body>
 <?php
     }else{
-        header("Location: ../publications/publications.php");
+        header("Location: ./publications.php");
     }
 ?>
