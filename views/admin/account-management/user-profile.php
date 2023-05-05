@@ -90,7 +90,7 @@ $(document).ready(function() {
                     title: 'Success',
                     text: 'Image uploaded successfully!',
                     }).then((result) => {
-                        location.reload(true);
+                        
                     });
             },
             error: function(response) {
