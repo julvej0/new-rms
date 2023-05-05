@@ -64,7 +64,7 @@
                     <tbody>
                     <?php
 
-                         $search_query = isset($_GET['search']) ? $_GET['search'] : '';
+                        $search_query = isset($_GET['search']) ? $_GET['search'] : '';
                        $result_count = pg_query($conn, "SELECT * FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'".$additionalQuery.";");
                        $total_records = pg_fetch_result($result_count, 0, 0);
                        
