@@ -28,9 +28,9 @@
                 <div class="right-sm-container">
                     <div class="right-content">
                         <ul class="nav-links">
-                            <li><a href="#">HOME</a></li>
+                            <li><a href="../../../views/public-user/home/home.php">HOME</a></li>
                             <li><a href="#">PUBLICATIONS</a></li>
-                            <li><a href="#">IP ASSETS</a></li>
+                            <li><a href="../../../views/public-user/articles/articles.php">ARTICLES</a></li>
                             <li><a href="#">ABOUT</a></li>
                         </ul>
                         <a class="signin-btn" href="#">SIGN IN</a>

@@ -14,7 +14,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 #whole_page {
@@ -22,8 +21,8 @@ html, body {
     height: 100%;
     background-color: white;
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column;   
+    zoom: 0.8; /* Scale the page by 80% */
 }
 
 #signup-container {
@@ -31,14 +30,13 @@ html, body {
     justify-content: center;
     position: fixed;
     width: 600px;
-    height: 600px;
+    height: 800px;
     background-color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.3);
-    
 }
 
 #container-header {
@@ -102,6 +100,7 @@ h1 {
     padding-left: 10px;
     padding-right: 10px;
     width: 400px;
+    transition: all 0.3s ease-out;
   }
 
 #email:hover, .passwordInput:hover, #confirmPasswordInput:hover, #srcode:hover {
@@ -114,7 +113,70 @@ h1 {
     padding-right: 10px;
     width: 400px;
     border-color: greenyellow;
+    transition: all 0.3s ease-out;
 }
+.user-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.labelSubHeader2 {
+  font-size: .75rem;
+  font-weight: bold;
+  color: gray;
+  margin-bottom: 2px;
+  display: block;
+}
+
+#fName, #lName {
+  height: 50px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 195px;
+  transition: all 0.3s ease-out;
+}
+#mName {
+  height: 50px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: all 0.3s ease-out;
+}
+
+#fName:hover, #lName:hover {
+  height: 50px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 195px;
+  border-color: greenyellow;
+  transition: all 0.3s ease-out;
+}
+
+#mName:hover {
+  height: 50px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-color: greenyellow;
+  transition: all 0.3s ease-out;
+}
+
+
 
 
 .password-container {
@@ -201,7 +263,7 @@ input[type="button"] {
   flex-direction: column;
   position: fixed;
   width: 400px;
-  height: 450px;
+  height: 470px;
   background-color: white;
   top: 50%;
   left: 50%;
@@ -271,7 +333,6 @@ input[type="button"] {
     height: 40px;
     width: 300px;
     position: relative;
-    top: 20px;
 }
 
 #btnSubmit:hover {
@@ -291,7 +352,7 @@ input[type="button"] {
 }
 
 
-#userEmailAddressInput {
+#userEmailAddressInput, #userFullName {
   width: 300px;
   border: 2px solid white;
   padding: 10px;

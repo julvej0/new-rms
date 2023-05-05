@@ -321,41 +321,33 @@ main table tr td .icon {
 /*SELECT COLUMN*/
 .select-columns-btn {
     border: transparent;
-    background-color: transparent;
-    height: 4rem;
-    width: 4rem;
+    height: 2.6rem;
+    width: 2.6rem;
+    margin-top: 0.5rem;
     border-radius: 100%;
     background-color: #EF1F3B;
     color: white;
     font-size: 2rem;
-    justify-content: center;
-    align-items: center;
     padding: .4rem;
     cursor: pointer;
     transition: 0.3s ease-in-out;
-  }
-  
-  .select-col-div {
-    position: absolute;
-    width: 13rem;
-    top: 5.5rem;
-    transition: top 0.1s ease;
-    white-space: nowrap;
-    z-index: 2;
-    overflow: hidden;
+    text-align: center;
+    line-height: 2.5rem;
   }
   .checkbox-button{
     width: 10.8%;
   }
   #checkbox-container {
+    position: absolute;
+    padding: 1rem 0rem 1rem 0rem;
+    background-color: var(--light);
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
   .btn-container {
-    position: absolute;
-    top: 5rem;
-    left: 62rem;
-    width: 100%;
+    position: relative;
+    width: 12.85rem;
     z-index: 101;
   }
   
@@ -375,17 +367,19 @@ main table tr td .icon {
   }
   
   label.checkbox-button:hover {
-    background-color: #dbdbdb;
+    background: rgb(190, 190, 190);
+    color: var(--light);
+    transform: scale(1.05, 1.1);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
   }
   
   input[type=checkbox]:checked + label.checkbox-button {
-    background-color: #EF1F3B;
-    color: white;
+    background-color: rgb(190, 190, 190);
+    color: var(--light);
   }
   input[type=checkbox]:checked + label.checkbox-button:hover {
-    background-color: #fcd0d0;
-  }
-  .checkbox-columns {
-    width: 12.85rem;
-    top:-1rem;
+    background-color: rgb(190, 190, 190);
+    color: var(--dark);
+    transform: scale(1.05, 1.1);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
   }

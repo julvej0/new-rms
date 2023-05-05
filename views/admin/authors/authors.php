@@ -10,8 +10,8 @@
 <body>
     <?php
         include_once '../../../includes/admin/templates/navbar.php';
-        include_once 'functionalities/php/count_authors.php';
-        include_once 'functionalities/php/filter_function.php';
+        include_once 'functionalities/authors_include/count_authors.php';
+        include_once 'functionalities/authors_include/filter_function.php';
 
         $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
         $gender = isset($_GET['gender']) ? $_GET['gender']: 'empty_gender';
@@ -61,14 +61,14 @@
                     </thead>
                     <tbody>
                         <?php
-                            include_once 'functionalities/php/display_authors.php';
+                            include_once 'functionalities/authors_include/display_authors.php';
                            
                         ?>
                     </tbody>
                 </table>
             </div>
                 <?php
-                    include_once 'functionalities/php/pagination_authors.php';
+                    include_once 'functionalities/authors_include/pagination_authors.php';
                 ?>
         </section>
     </main>
@@ -84,6 +84,6 @@
 <script src="./authors.js"></script>
 </body>
 <?php
-    include_once 'functionalities/php/pop_modal.php';
+    include_once 'functionalities/authors_include/pop_modal.php';
     include '../../../includes/admin/templates/footer.php';
 ?>

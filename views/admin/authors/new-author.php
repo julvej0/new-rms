@@ -12,9 +12,9 @@
 <body>
 <?php
     include '../../../includes/admin/templates/navbar.php';
-    include_once 'functionalities/php/display_edit_author.php';
+    include_once 'functionalities/new-author_include/display_edit_author.php';
     
-    include_once 'functionalities/php/options.php';
+    include_once 'functionalities/new-author_include/options.php';
    
    
 ?>
@@ -24,7 +24,7 @@
         </div>
         <section>
             <div class="container">
-                <form onsubmit="return checkData()" action = "<?php echo isset($_GET['id']) ? 'functionalities\php\edit_author.php' : 'functionalities\php\insert_author.php' ?>" method="POST">
+                <form onsubmit="return checkData()" action = "<?php echo isset($_GET['id']) ? 'functionalities\authors_query\edit_author.php' : 'functionalities\authors_query\insert_author.php' ?>" method="POST">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Author Details</h3>
@@ -110,7 +110,7 @@
 
 <script src="./new-author.js"></script>
 <?php
-    include  'functionalities/php/affiliations.php';
+    include  'functionalities/new-author_include/affiliations.php';
 ?>
 </body>
 
