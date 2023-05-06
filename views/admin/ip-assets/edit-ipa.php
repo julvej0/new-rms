@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-            <form action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data">
+            <form action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -256,6 +256,31 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+
+<script>
+    function checkDuplicateAuthors() {
+        var authors = {};
+        var duplicate = false;
+        $('input[name="author_name[]"]').each(function() {
+            var name = $(this).val().toLowerCase();
+            if (name in authors) {
+                duplicate = true;
+                return false; // exit the loop if duplicate is found
+            } else {
+                authors[name] = true;
+            }
+        });
+        if (duplicate) {
+            alert('Duplicate author names are not allowed');
+            return false; // prevent form submission
+        }
+        return true; // allow form submission
+    }
+
+    $('#your-form').submit(function() {
+        return checkDuplicateAuthors();
+    });
+</script>
 <script>
              //Author ID table workaround.
              function showAuthorId(input) {
