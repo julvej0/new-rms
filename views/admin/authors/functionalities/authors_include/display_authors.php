@@ -8,14 +8,11 @@
     
     $offset = ($page_number - 1) * $items_per_page;
     $sql = "SELECT * FROM table_authors WHERE author_name ILIKE '%$search_query%' ";
-    $params = [];
     if ($gender_filter !== null) {
         $sql .= " AND gender = '$gender_filter' ";
-        $params[] = $gender_filter;
     }
     if ($role_filter !== null) {
         $sql .= " AND type_of_author = '$role_filter' ";
-        $params[] = $role_filter;
     }
     $sql .= "ORDER BY author_id DESC LIMIT $items_per_page OFFSET $offset";
     $result = pg_query($conn, $sql);

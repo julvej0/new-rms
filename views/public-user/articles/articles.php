@@ -9,8 +9,8 @@
 <div class='table-container'>
     <table class='main-table'>
         <tr>
-            <td>BITCH</td>
-            <td>HOE</td>
+            <td>HI</td>
+            <td>Hello World</td>
         </tr>
     </table>
 </div>
