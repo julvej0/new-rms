@@ -23,6 +23,33 @@
     <main>
         <div class="header">
             <h1 class="title">IP-assets</h1>
+            <div class="btn-container">
+            <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
+                    <div class="checkbox-container" id="checkbox-container">
+                        <input type="checkbox" name="col-registration" id="col-registration" checked>
+                        <label class="checkbox-button" for="col-registration">Registration Number</label><br>
+                        <input type="checkbox" name="col-title" id="col-title" checked >
+                        <label class="checkbox-button" for="col-title">Title</label><br>
+                        <input type="checkbox" name="col-type" id="col-type">
+                        <label class="checkbox-button" for="col-type">Type</label><br>
+                        <input type="checkbox" name="col-cow" id="col-cow" >
+                        <label class="checkbox-button" for="col-cow">Class of Work</label><br>
+                        <input type="checkbox" name="col-date-cre" id="col-date-cre" checked >
+                        <label class="checkbox-button" for="col-date-cre">Date of Creation</label><br>
+                        <input type="checkbox" name="col-date-reg" id="col-date-reg" checked >
+                        <label class="checkbox-button" for="col-date-reg">Date Registered</label><br>
+                        <input type="checkbox" name="col-campus" id="col-campus" checked >
+                        <label class="checkbox-button" for="col-campus">Campus</label><br>
+                        <input type="checkbox" name="col-college" id="col-college" >
+                        <label class="checkbox-button" for="col-college">College</label><br>
+                        <input type="checkbox" name="col-program" id="col-program" >
+                        <label class="checkbox-button" for="col-program">Program</label><br>
+                        <input type="checkbox" name="col-authors" id="col-authors" checked >
+                        <label class="checkbox-button" for="col-authors">Authors</label>
+                        <input type="checkbox" name="col-status" id="col-status" checked >
+                        <label class="checkbox-button" for="col-status">Status</label>
+                </div>
+            </div>
             <div class="left">
                 <form action='' method='get'>
                     <div class="form-group">
@@ -84,6 +111,101 @@
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script src="./ip-assets.js"></script>
 <script src="functionalities/download//download_button.js"></script>
+
+<script>
+           // Floating action rotate
+           let isRotated = false;
+            const checkboxContainer = document.getElementById("checkbox-container");
+
+            function rotateButton() {
+                const buttonIcon = document.getElementById("button-icon");
+                if (isRotated) {
+                    buttonIcon.style.transform = "rotate(0deg)";
+                    checkboxContainer.style.transition = "margin-top 0.3s ease-out, opacity 0.4s ease-in-out";
+                    checkboxContainer.style.opacity = 0;
+                    setTimeout(() => {
+                        checkboxContainer.style.marginTop = "0rem";
+                    
+                    setTimeout(() => {
+                        checkboxContainer.style.display = "none";
+                    }, 100); // wait for opacity transition to complete before hiding container
+                    }, 150); // wait for margin-top transition to complete before setting opacity to 0
+                    isRotated = false;
+                } else {
+                    buttonIcon.style.transform = "rotate(135deg)";
+                    checkboxContainer.style.transition = "margin-top 0.3s ease-in-out, opacity 0.4s ease-in-out";
+                    checkboxContainer.style.display = "block";
+                    setTimeout(() => {
+                    checkboxContainer.style.opacity = 1;
+                    checkboxContainer.style.marginTop = "0.5rem";
+                    }, 10); // wait for margin-top transition to complete before setting opacity to 1
+                    isRotated = true;
+                }
+                }
+
+
+
+            // get all the checkboxes
+            var checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+            // loop through each checkbox
+            checkboxes.forEach(function(checkbox) {
+
+            // Hide cells that correspond to unchecked checkboxes by default
+            var colName = checkbox.name;
+            var cells = document.querySelectorAll('.' + colName);
+            cells.forEach(function(cell) {
+            cell.style.display = checkbox.checked ? 'table-cell' : 'none';
+            });
+
+            // add event listener for when the checkbox state changes
+            checkbox.addEventListener('change', function() {
+                // get the name of the checkbox
+                var colName = this.name;
+                // get the table cells that correspond to this column name
+                var cells = document.querySelectorAll('.' + colName);
+                // loop through each cell and hide/show it based on checkbox state
+                cells.forEach(function(cell) {
+                cell.style.display = checkbox.checked ? 'table-cell' : 'none';
+                });
+            });
+            });
+
+            // loop through each checkbox
+            checkboxes.forEach(function(checkbox) {
+
+                // get the stored state of the checkbox
+                var storedState = sessionStorage.getItem(checkbox.name);
+
+                // if there is a stored state, update the checkbox state to match it
+                if (storedState !== null) {
+                checkbox.checked = storedState === 'true';
+                }
+
+                // add event listener for when the checkbox state changes
+                checkbox.addEventListener('change', function() {
+                // store the state of the checkbox in session storage
+                sessionStorage.setItem(checkbox.name, checkbox.checked);
+                
+                // get the name of the checkbox
+                var colName = this.name;
+                // get the table cells that correspond to this column name
+                var cells = document.querySelectorAll('.' + colName);
+                // loop through each cell and hide/show it based on checkbox state
+                cells.forEach(function(cell) {
+                    cell.style.display = checkbox.checked ? 'table-cell' : 'none';
+                });
+                });
+
+                // Hide cells that correspond to unchecked checkboxes by default
+                var colName = checkbox.name;
+                var cells = document.querySelectorAll('.' + colName);
+                cells.forEach(function(cell) {
+                cell.style.display = checkbox.checked ? 'table-cell' : 'none';
+                });
+            });
+
+</script>
 </body>
 
 <?php

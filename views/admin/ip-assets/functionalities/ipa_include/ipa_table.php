@@ -64,7 +64,7 @@
         <td class="title-col col-title"><?=$row['title_of_work'];?></td>
         <td class="type-col col-type"><?=$row['type_of_document'];?></td>
         <td class="cow-col col-cow"><?=$row['class_of_work'];?></td>
-        <td class="tbl-col"><?=$row['date_of_creation'];?></td>
+        <td class="cre-col col-date-cre"><?=$row['date_of_creation'];?></td>
         <td class="date-reg-col col-date-reg"><?=$row['date_registered'];?></td>
         <td class="campus-col col-campus"><?=$row['campus'];?></td>
         <td class="college-col col-college"><?=$row['college'];?></td>

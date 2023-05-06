@@ -58,7 +58,7 @@ main .header .left .filter button {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     z-index: 1000;
     color: var(--text-color);
 }
@@ -336,6 +336,72 @@ main .table-footer .download button {
 main .table-footer .download button:hover {
     opacity: 80%;
 }
+
+/*SELECT COLUMN*/
+.select-columns-btn {
+    border: transparent;
+    height: 2.6rem;
+    width: 2.6rem;
+    margin-top: 0.5rem;
+    border-radius: 100%;
+    background-color: #EF1F3B;
+    color: white;
+    font-size: 2rem;
+    padding: .4rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-align: center;
+    line-height: 2.5rem;
+  }
+  .checkbox-button{
+    width: 10.8%;
+  }
+  #checkbox-container {
+    position: absolute;
+    padding: 1rem 0rem 1rem 0rem;
+    background-color: var(--light);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+}
+  .btn-container {
+    position: relative;
+    width: 12.85rem;
+    z-index: 101;
+  }
+  
+  /*COLUMN*/
+  input[type=checkbox] {
+    display: none;
+  }
+  
+  label.checkbox-button {
+    width: 12.85rem;
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  label.checkbox-button:hover {
+    background: rgb(190, 190, 190);
+    color: var(--light);
+    transform: scale(1.05, 1.1);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  input[type=checkbox]:checked + label.checkbox-button {
+    background-color: rgb(190, 190, 190);
+    color: var(--light);
+  }
+  input[type=checkbox]:checked + label.checkbox-button:hover {
+    background-color: rgb(190, 190, 190);
+    color: var(--dark);
+    transform: scale(1.05, 1.1);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+  }
 
 /* main .table-footer .download .dl-link {
     position: absolute;

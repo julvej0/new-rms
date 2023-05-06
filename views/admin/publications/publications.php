@@ -14,9 +14,8 @@
     <main>
         <div class="header">
             <h1 class="title">Publications</h1>
-            <div class='left'>
-                <!-- <div class="btn-container">
-                    <button class="select-columns-btn" onclick="rotateButton()" id="button-icon">+</button>   
+            <div class="btn-container">
+                    <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>   
                     <div class="checkbox-container" id="checkbox-container">
                         <input type="checkbox" name="col-title" id="col-title" checked>
                         <label class="checkbox-button" for="col-title">Title</label><br>
@@ -46,8 +45,12 @@
                         <label class="checkbox-button" for="col-fund-agency">Fund Agency</label><br>
                         <input type="checkbox" name="col-citations" id="col-citations" checked >
                         <label class="checkbox-button" for="col-citations">Citations</label>
+                        <input type="checkbox" name="col-status" id="col-status" checked >
+                        <label class="checkbox-button" for="col-status">Status</label>
                     </div>
-                </div> -->
+                </div>
+            <div class='left'>
+            
                 <form action='' method='get'>
                     <div class="form-group">
                         <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >
@@ -123,20 +126,30 @@
                 const buttonIcon = document.getElementById("button-icon");
                 if (isRotated) {
                     buttonIcon.style.transform = "rotate(0deg)";
+                    checkboxContainer.style.transition = "margin-top 0.3s ease-out, opacity 0.4s ease-in-out";
                     checkboxContainer.style.opacity = 0;
                     setTimeout(() => {
+                        checkboxContainer.style.marginTop = "0rem";
+                    
+                    setTimeout(() => {
                         checkboxContainer.style.display = "none";
-                    }, 300); // wait for transition to complete before hiding container
+                    }, 100); // wait for opacity transition to complete before hiding container
+                    }, 150); // wait for margin-top transition to complete before setting opacity to 0
                     isRotated = false;
                 } else {
                     buttonIcon.style.transform = "rotate(135deg)";
+                    checkboxContainer.style.transition = "margin-top 0.3s ease-in-out, opacity 0.4s ease-in-out";
                     checkboxContainer.style.display = "block";
                     setTimeout(() => {
-                        checkboxContainer.style.opacity = 1;
-                    }, 0); // wait for display to update before starting transition
+                    checkboxContainer.style.opacity = 1;
+                    checkboxContainer.style.marginTop = "0.5rem";
+                    }, 10); // wait for margin-top transition to complete before setting opacity to 1
                     isRotated = true;
                 }
-            }
+                }
+
+
+
             // get all the checkboxes
             var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
