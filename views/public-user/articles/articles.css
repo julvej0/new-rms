@@ -1,12 +1,134 @@
 
+
 .table-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    
+
   }
-  
+
 .main-table {
-    width: 300px;
+    width: 500px;
     height: 500px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-width: 0px 2px 2px 2px ;
+    border-style: solid;
+    border-color: black;
 }
+
+.table-header-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    border: solid 2px;
+    width: 50rem;
+    align-items: center;
+}
+
+.table-header{
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 15px;
+}
+
+.table-search{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#search-table {
+    width: 350px;
+    margin: 10px;
+    border-radius: 50px;
+    padding: 5px;
+    padding-left: 20px;
+    font-size: 15px;
+    border: 2px solid gainsboro;
+}
+
+.search-button {
+    display: flex;
+    align-items: center;
+}
+
+#btn-search {
+    width: 20px;
+    height: 20px;
+    border:none;
+    cursor: pointer;
+    position: absolute;
+    margin-left: -50px;
+    background-color: transparent;
+  }
+  
+#btn-search img {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%);
+}
+
+.sort-button {
+    display: flex;
+    align-items: center;
+}
+
+#btn-sort {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+   
+    
+}
+
+#btn-sort i {
+    font-size: 15px;
+    color: gray;
+}
+.filter-button {
+    display: flex;
+    align-items: center;
+}
+
+#btn-filter {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+   
+    
+}
+
+#btn-filter i {
+    font-size: 12px;
+    color: gray;
+}
+
+span {
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+
+#article-data {
+    font-size: 12px;
+    width: 700px;
+  }
+
+
