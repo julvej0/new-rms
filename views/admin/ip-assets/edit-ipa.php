@@ -190,6 +190,7 @@
                                             <td style="text-align: center;" colspan="2">
                                                 <button type="button" class="add-row-btn" style="height: 50px; width: 10%;">+</button>
                                             </td>
+                                            <div id="error-msg" style="display: none; color: red;">Duplicate author names are not allowed!</div>
                             </table>
                             </div>
                         </div>
@@ -258,28 +259,32 @@
 <link rel="stylesheet" href="sweetalert2.min.css">
 
 <script>
+    $(document).ready(function() {
+    // listen for changes to the input fields
+    $(document).on('input', 'input[name="author_name[]"]', function() {
+        checkDuplicateAuthors(); // call the comparison function
+    });
+    });
+
     function checkDuplicateAuthors() {
         var authors = {};
         var duplicate = false;
         $('input[name="author_name[]"]').each(function() {
             var name = $(this).val().toLowerCase();
             if (name in authors) {
-                duplicate = true;
-                return false; // exit the loop if duplicate is found
+            duplicate = true;
+            $(this).focus(); // focus on the input field with duplicate value
+            $('#error-msg').show(); // show the error message
+            return false; // exit the loop if duplicate is found
             } else {
-                authors[name] = true;
+            authors[name] = true;
             }
         });
-        if (duplicate) {
-            alert('Duplicate author names are not allowed');
-            return false; // prevent form submission
+        if (!duplicate) {
+            $('#error-msg').hide(); // hide the error message if no duplicates found
         }
-        return true; // allow form submission
-    }
-
-    $('#your-form').submit(function() {
-        return checkDuplicateAuthors();
-    });
+        return !duplicate; // return false to prevent form submission if duplicate found
+        }
 </script>
 <script>
              //Author ID table workaround.
