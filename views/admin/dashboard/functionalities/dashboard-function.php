@@ -278,14 +278,14 @@ function getIpAssetsCampus($conn) {
         "labels" => json_encode($labels)
     );
 }
-function getPublicationsStatus($conn){
-    $query = "SELECT status, COUNT(*) as dataset FROM table_publications WHERE status is NOT NULL GROUP BY status";
+function getPublicationType($conn){
+    $query = "SELECT type_of_publication, COUNT(*) as dataset FROM table_publications WHERE type_of_publication is NOT NULL GROUP BY type_of_publication";
     $result = pg_query($conn, $query);
 
     $data = array();
     $labels = array();
     while ($row = pg_fetch_assoc($result)) {
-        $labels[] = $row["status"];
+        $labels[] = $row["type_of_publication"];
         $data[] = intval($row["dataset"]);
     }
 

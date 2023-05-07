@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-                <form action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return chooseOneSDG()">
+                <form action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return chooseOneSDG(); checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -352,6 +352,31 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+
+<script>
+    function checkDuplicateAuthors() {
+        var authors = {};
+        var duplicate = false;
+        $('input[name="author_name[]"]').each(function() {
+            var name = $(this).val().toLowerCase();
+            if (name in authors) {
+                duplicate = true;
+                return false; // exit the loop if duplicate is found
+            } else {
+                authors[name] = true;
+            }
+        });
+        if (duplicate) {
+            alert('Duplicate author names are not allowed');
+            return false; // prevent form submission
+        }
+        return true; // allow form submission
+    }
+
+    $('#your-form').submit(function() {
+        return checkDuplicateAuthors();
+    });
+</script>
 <script>
             //Author ID table workaround.
             function showAuthorId(input) {
@@ -376,7 +401,7 @@
                                         $query = "SELECT author_id, author_name FROM table_authors";
                                         $params = array();
                                         $result = pg_query_params($conn, $query, $params);
-                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)">';
+                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name..." onchange="showAuthorId(this)">';
                                         echo '<datalist id="authors">';
                                         while ($row = pg_fetch_assoc($result)) {
                                             echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';

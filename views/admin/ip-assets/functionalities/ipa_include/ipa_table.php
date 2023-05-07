@@ -3,6 +3,7 @@
 
     $additionalQuery= authorSearch($conn);
     $table_rows = get_data($conn, $additionalQuery);
+    $items_per_page = 10;
 ?>
 
 <table>
@@ -27,10 +28,34 @@
         $search_query = isset($_GET['search']) ? $_GET['search'] : '';
         $no_of_records_per_page = 10;
         // Get total number of records
-        $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status) ILIKE '%$search_query%'".$additionalQuery.";");
+        $ipa_search = "SELECT COUNT(*)
+                            FROM (
+                                SELECT * 
+                                FROM table_ipassets 
+                                WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status, certificate) ILIKE '%$search_query%' ";
+
+            if ($additionalQuery !== null) {
+            $ipa_search .= $additionalQuery;
+            }
+
+            $ipa_search .= " )AS searched_ipa WHERE 1=1 ";
+
+            if ($type !== "empty_type") {
+            $ipa_search .= " AND searched_ipa.type_of_document = '$type' ";
+            }
+            if ($class !== "empty_class") {
+            $ipa_search .= " AND searched_ipa.class_of_work = '$class' ";
+            }
+            if ($year !== "empty_year") {
+            $ipa_search .= " AND EXTRACT(YEAR FROM searched_ipa.date_registered) = '$year' ";
+            }
+
+        $result_count = pg_query($conn,$ipa_search);
         $total_records = pg_fetch_result($result_count, 0, 0);
         $total_pages = ceil($total_records / $no_of_records_per_page);
         
+        
+
         if ($table_rows !== null) {
         foreach ($table_rows as $row) {
     ?>
@@ -39,7 +64,7 @@
         <td class="title-col col-title"><?=$row['title_of_work'];?></td>
         <td class="type-col col-type"><?=$row['type_of_document'];?></td>
         <td class="cow-col col-cow"><?=$row['class_of_work'];?></td>
-        <td class="tbl-col"><?=$row['date_of_creation'];?></td>
+        <td class="cre-col col-date-cre"><?=$row['date_of_creation'];?></td>
         <td class="date-reg-col col-date-reg"><?=$row['date_registered'];?></td>
         <td class="campus-col col-campus"><?=$row['campus'];?></td>
         <td class="college-col col-college"><?=$row['college'];?></td>
