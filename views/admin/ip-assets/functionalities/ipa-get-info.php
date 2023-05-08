@@ -1,6 +1,11 @@
 <?php
 function get_data($conn, $additionalQuery) {
     $search_query = isset($_GET['search']) ? $_GET['search'] : '';
+    $type_filter = isset($_GET['type']) ? $_GET['type'] : null;
+    $class_filter = isset($_GET['class']) ? $_GET['class'] : null;
+    $year_filter = isset($_GET['year']) ? $_GET['year']: null;
+    $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
     $no_of_records_per_page = 10;
     
     if (isset($_GET['pageno'])) {
@@ -13,7 +18,30 @@ function get_data($conn, $additionalQuery) {
     $offset = ($pageno-1) * $no_of_records_per_page;
 
     //Search Query
-    $sqlSearchQuery = "SELECT * FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status, certificate) ILIKE '%$search_query%'".$additionalQuery." ORDER BY registration_number ASC OFFSET $offset LIMIT $no_of_records_per_page;";
+    $sqlSearchQuery = "SELECT * 
+                        FROM (
+                            SELECT * 
+                            FROM table_ipassets 
+                            WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status, certificate) ILIKE '%$search_query%' ";
+    
+    if ($additionalQuery !== null) {
+        $sqlSearchQuery .= $additionalQuery;
+    }
+
+    $sqlSearchQuery .= " )AS searched_ipa WHERE 1=1 ";
+
+    if ($type_filter !== null) {
+        $sqlSearchQuery .= " AND searched_ipa.type_of_document = '$type_filter' ";
+    }
+    if ($class_filter !== null) {
+        $sqlSearchQuery .= " AND searched_ipa.class_of_work = '$class_filter' ";
+    }
+    if ($year_filter !== null) {
+        $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_ipa.date_registered) = '$year_filter' ";
+    }
+    
+    $sqlSearchQuery .= "ORDER BY registration_number ASC OFFSET $offset LIMIT $no_of_records_per_page";
+   
     $result = pg_query($conn, $sqlSearchQuery);
     $resultCheck = pg_num_rows($result);
 
@@ -55,7 +83,7 @@ function get_data($conn, $additionalQuery) {
 }
 
 function authorSearch($conn) {
-    $additionalQuery = "";
+    $additionalQuery = "OR ( ";
     if(isset($_GET['search'])){
         $search_query = $_GET['search'];
         //Select Author Ids that matches the search
@@ -67,8 +95,16 @@ function authorSearch($conn) {
                 $author_id[] = $row['author'];    
             }//Additional query for search
             foreach ($author_id as $a_id){
-                $additionalQuery .= " OR authors ILIKE '%$a_id%' ";
+                if ( $a_id == $author_id[0]){
+                    $additionalQuery .= " authors ILIKE '%$a_id%' ";
+                }
+                else{
+                    $additionalQuery .= " OR authors ILIKE '%$a_id%' ";
+                }
+                
             }
+
+            $additionalQuery .= " ) ";
 
         }
 
@@ -80,4 +116,7 @@ function authorSearch($conn) {
     
 
 }
+
+
+
 ?>

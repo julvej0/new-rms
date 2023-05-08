@@ -10,6 +10,14 @@
 <body>
     <?php
         include '../../../includes/admin/templates/navbar.php';
+        include_once 'functionalities/ipa_include/ipa_filter.php';
+        include_once 'functionalities/ipa_include/ipa_year.php';
+        include_once 'functionalities/ipa_include/ipa_count.php';
+
+        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+        $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
+        $class = isset($_GET['class']) ? $_GET['class']: 'empty_class';
+        $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
     ?>
 
     <main>
@@ -49,28 +57,25 @@
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
+                
                 <div class="filter">
-                    <button class="btn">Type<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?php echo $type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">Copyright</a></li>
-                        <li><a href="#">Original</a></li>
+                        <li><a href="<?php echo filterIPA($search, 'Copyright', $class, $year);?>">Copyright</a></li>
+                        <li><a href="<?php echo filterIPA($search, 'Original', $class, $year);?>">Original</a></li>
                     </ul>
                 </div>
                 <div class="filter">
-                    <button class="btn">Class<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?php echo $class!="empty_class" ? 'Class '.$class: 'Class'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">Class A</a></li>
-                        <li><a href="#">Class O</a></li>
+                        <li><a href="<?php echo filterIPA($search, $type, 'A', $year);?>">Class A</a></li>
+                        <li><a href="<?php echo filterIPA($search, $type, 'O', $year);?>">Class O</a></li>
                     </ul>
                 </div>
                 <div class="filter">
-                    <button class="btn">Year<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?php echo $year!="empty_year" ? $year: 'Year'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">2015</a></li>
-                        <li><a href="#">2016</a></li>
-                        <li><a href="#">2017</a></li>
-                        <li><a href="#">2018</a></li>
-                        <li><a href="#">2019</a></li>
+                        <?php include_once 'functionalities/ipa_include/ipa_year_filter.php' ?>
                     </ul>
                 </div>
                 <a href="./new-ip-asset.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
@@ -82,23 +87,15 @@
                     include_once 'functionalities/ipa_include/ipa_table.php';
                 ?>
             </div>
-            <div class="table-footer">
+        
                 <?php
-                    include_once 'functionalities/ipa_include/ipa_count.php';
+                    include_once 'functionalities/ipa_include/pagination.php';
                 ?>
-
-                <p><?=countIPA($conn, $additionalQuery)?></p>
-                <div class="download">
-                    <button onclick="openModal()" class="download-btn">Download</button>
-                </div>
-                <div class="pagination">
-                    <?php
-                        include_once 'functionalities/ipa_include/pagination.php';
-                    ?>
-                </div>
+            
             </div>
+            </section>
     </main>
-    </section>
+    
         <!-- Modal Popup -->
      <div id="myModal" class="modal">
         <div class="modal-content1">
