@@ -13,10 +13,10 @@
 
     <!-- Start of Table -->
 
-    <table class='main-table'>
+    <div class='main-table'>
 
         <!-- Table Header -->
-        <tr>
+        <div>
             <div class='table-header-container'>
                 <div class='table-header'>
                     <p>LIST OF ARTICLES</p>
@@ -42,30 +42,30 @@
                     <span>FILTER</span>
                 </div>
             </div>
-        </tr>
-
-        <!-- main table content -->
-
-        <tr>
-            <thead>
-                <th>Title</th>
-                <th>Date Registered</th>
-                <th>Campus</th>
-                <th>Authors</th>
-            </thead>
-        </tr>
-        <tr>
-            <td><?php echo $user['title_of_paper']; ?></td>
-            <td><?php echo $user['date_published']; ?></td>
-            <td><?php echo $user['campus']; ?></td>
-            <td><?php echo $user['authors']; ?></td>
-        </tr>
-    </table>
+        </div>
+        
+    </div>
+    <section>
+        <!-- Content of the Table-->
+        <div id='table-data'>
+            <?php
+                include_once "functionalities/articles-data.php";
+            ?>   
+        </div>
+    </section>
+    
 </div>
 
+
+<script>
+    //make every row in table clickable
+    function clickableRow() {
+        const rowData = document.getElementById
+    }
+</script>
 
 
 
 <?php 
-    include '../../../includes/admin/templates/header.php';
+    include '../../../includes/admin/templates/footer.php';
 ?>
