@@ -17,7 +17,7 @@
 
 <!--download as PDF package -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script><
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- download as excel -->
 <script src="https://unpkg.com/xlsx@0.15.6/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -99,23 +99,6 @@
     </main>
 </section>
 <script src="./download_button.js"></script>
-<script>
-    // download as pdf
-window.jsPDF = window.jspdf.jsPDF;
-var docPDF = new jsPDF('landscape');
-function print() {
-  var elementHTML = document.querySelector("#mytable");
-  docPDF.html(elementHTML, {
-    callback: function() {
-      docPDF.save('HTML Linuxhint web page.pdf');
-    },
-    x: 15,
-    y: 15,
-    width: 170,
-    windowWidth: 650
-  });
-}
-</script>
 </body>
 <?php
     include '../../../../../includes/admin/templates/footer.php';

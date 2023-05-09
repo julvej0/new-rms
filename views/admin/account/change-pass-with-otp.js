@@ -22,8 +22,14 @@ function submitPss() {
         passwordTooltip.style.display = "block";
         emailTooltip.style.display = "none";
     } 
+    else if (passwordInput.length < 8 || confirmPasswordInput.length < 8) {
+        passwordTooltip.innerHTML = 'Please enter atleast 8 characters.';
+        passwordTooltip.style.display = "block";
+        emailTooltip.style.display = "none";
+    }
+
     else if ( passwordInput === '' || confirmPasswordInput ==='' ){
-        passwordTooltip.innerHTML = 'Passwords cannot be Empty.';
+        passwordTooltip.innerHTML = 'Passwords cannot be empty.';
         passwordTooltip.style.display = "block";
         emailTooltip.style.display = "none";
     }

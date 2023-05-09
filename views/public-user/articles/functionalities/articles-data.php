@@ -1,5 +1,6 @@
 <?php
 include_once "../../../db/db.php";
+require_once "config.php";
 
 // Select or Retrieve Data from Database
 $sql_data = "SELECT * FROM table_publications";
@@ -43,16 +44,20 @@ if ($sql_result) {
     } else {
       $author_implode = ""; // Set an empty string if no author names found
     }
-
-    echo "<tr id='css-tr'>";
-    echo "<td class='css-td'> " . $row['title_of_paper'] . "</td>";
-    echo "<td class='css-td'>" . $row['date_published'] . "</td>";
-    echo "<td class='css-td'>" . $row['campus'] . "</td>";
-    echo "<td class='css-td'>" . $author_implode . "</td>";
-    echo '</tr>';
-    echo "<tr id='spacer-row'></tr>"; // Add a spacer row after each data row
+    $encrypted_ID = encryptor('encrypt',$row['publication_id']);
+    ?>
+    <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
+      <td class='css-td'><?=$row['title_of_paper']?></td>
+      <td class='css-td'><?=$row['date_published']?></td>
+      <td class='css-td'><?=$row['campus']?></td>
+      <td class='css-td'><?=$author_implode?></td>
+    </tr>
+    <tr id='spacer-row'></tr> <!-- Add a spacer row after each data row -->
+  <?php
   }
+  ?>
 
-  echo "</table>";
+  </table>
+  <?php
 }
 ?>
