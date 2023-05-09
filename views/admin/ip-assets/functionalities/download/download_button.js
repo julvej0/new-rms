@@ -38,7 +38,7 @@ function closeModal() {
         }
         // Generate unique filename with timestamp
         var timestamp = new Date().getTime();
-        var filename = "table_" + timestamp + ".xlsx";
+        var filename = "ipassets_" + timestamp + ".xlsx";
         // Trigger download
         var blob = new Blob([s2ab(excelData)], { type: "application/octet-stream" });
         saveAs(blob, filename);
@@ -52,15 +52,17 @@ function print() {
   var elementHTML = document.querySelector("#mytable");
   docPDF.html(elementHTML, {
     callback: function() {
-      docPDF.save('HTML Linuxhint web page.pdf');
+      docPDF.save('ipassets.pdf');
+
     },
-    x: 15,
-    y: 15,
+    margin: [10, 5, 10, 5],
+    autoPaging: 'text',
+    x: 0,
+    y: 0,
     width: 170,
     windowWidth: 650
   });
 }
-
   
 
 //download as Word document
@@ -84,7 +86,7 @@ function exportTableToWord() {
   var url = window.URL.createObjectURL(data);
   var link = document.createElement('a');
   link.href = url;
-  link.download = 'table.doc';
+  link.download = 'ipassets.doc';
   document.body.appendChild(link);
   
   // Download file
