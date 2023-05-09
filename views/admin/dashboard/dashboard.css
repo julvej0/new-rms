@@ -76,8 +76,7 @@ main .data {
 }
 
 main .data .main-content-data {
-    flex: 1;
-    flex-basis: 500px;
+    flex: 1 0 450px;
     padding: 20px;
     background: var(--light);
     border-radius: 10px;

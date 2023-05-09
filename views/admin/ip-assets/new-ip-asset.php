@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-            <form action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data">
+            <form action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors();">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -110,27 +110,6 @@
                         </div>
                         <div class="form-col">
                             <div class="author-table-container">
-                                                <!-- <div class="form-control author-details">
-                                                    <label class="pb-label" for="pb-author-type">Role</label>
-                                                    <select name="pb-author-type" id="pb-author-type" required>
-                                                        <option value="" hidden>--Choose from the options--</option>
-                                                        <option value="Main Author">Main Author</option>
-                                                        <option value="Co-Author">Co-Author</option>
-                                                        <option value="Student">Student</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-control author-details">
-                                                    <label class="pb-label" for="pb-author-gender">Gender</label>
-                                                    <select name="pb-author-gender" id="pb-author-gender" required>
-                                                        <option value="" hidden>--Choose from the options--</option>
-                                                        <option value="Male">Male</option>
-                                                        <option value="Female">Female</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-control author-details">
-                                                    <label class="pb-label" for="pb-author-affil">Affiliation(s)</label>
-                                                    <input type="text" id="pb-author-affil" name="pb-author-affil" placeholder="Author Affiliation(s)">
-                                                </div> -->
                             <table id="author-tbl">
                             <thead>
                                 <tr>
@@ -167,6 +146,7 @@
                                         <button type="button" class="add-row-btn" style="height: 50px;">+</button>
                                     </td>
                                 </tr>
+                                <div id="error-msg" style="display: none; color: red;">Duplicate author names are not allowed!</div>
                             </tbody>
                             </table>
                             </div>
@@ -222,6 +202,35 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+
+<script>
+    $(document).ready(function() {
+    // listen for changes to the input fields
+    $(document).on('input', 'input[name="author_name[]"]', function() {
+        checkDuplicateAuthors(); // call the comparison function
+    });
+    });
+
+    function checkDuplicateAuthors() {
+        var authors = {};
+        var duplicate = false;
+        $('input[name="author_name[]"]').each(function() {
+            var name = $(this).val().toLowerCase();
+            if (name in authors) {
+            duplicate = true;
+            $(this).focus(); // focus on the input field with duplicate value
+            $('#error-msg').show(); // show the error message
+            return false; // exit the loop if duplicate is found
+            } else {
+            authors[name] = true;
+            }
+        });
+        if (!duplicate) {
+            $('#error-msg').hide(); // hide the error message if no duplicates found
+        }
+        return !duplicate; // return false to prevent form submission if duplicate found
+        }
+</script>
 <script>
             //Author ID table workaround.
             function showAuthorId(input) {
@@ -246,7 +255,7 @@
                                         $query = "SELECT author_id, author_name FROM table_authors";
                                         $params = array();
                                         $result = pg_query_params($conn, $query, $params);
-                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)">';
+                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name..." onchange="showAuthorId(this)">';
                                         echo '<datalist id="authors">';
                                         while ($row = pg_fetch_assoc($result)) {
                                             echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
@@ -270,6 +279,7 @@
                 });
             });
 
+            //Auto Registration Number
             $(document).ready(function(){
                 // Get the input fields
                 const classOfWork = document.getElementById('class_of_work');

@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../db/db.php';
+include_once '../../../../../db/db.php';
 
 if (isset($_POST['delete'])) {
     $pub_num = $_POST['row_id'];
@@ -11,7 +11,7 @@ if (isset($_POST['delete'])) {
     $delete_stmt = pg_prepare($conn, "delete_pub_details", $delete_query);
 
     // Execute the prepared statement with the input values
-    $delete_result = pg_execute($conn, "delete_pub_details", array($ub_num));
+    $delete_result = pg_execute($conn, "delete_pub_details", array($pub_num));
 
     if (!$delete_result) {
         die("Error in SQL query: " . pg_last_error());
@@ -19,10 +19,10 @@ if (isset($_POST['delete'])) {
 
     // Check if the delete was successful
     if (pg_affected_rows($delete_result) > 0) {
-        header("Location: ../publications.php?delete=applied");
+        header("Location: ../../publications.php?delete=applied");
     } else {
-        header("Location: ../../../../../views/admin/publications/publications.php?delete=applied");
+        header("Location: ../../publications.php?delete=applied");
     }
 } else {
-    header("Location: ../../../../../views/admin/publications/publications.php?delete=applied");
+    header("Location: ../../publications.php?delete=applied");
 }

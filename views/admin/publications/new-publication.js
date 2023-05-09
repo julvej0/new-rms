@@ -106,11 +106,6 @@ const fundingAgencyField = document.getElementById("pb-funding-agency");
 
 function disableFields() {
   typeOfFundingLabel.style.color = "gray";
-
-  // internalFundingRadio.disabled = true;
-  // externalFundingRadio.disabled = true;
-  // fundingAgencyField.disabled = true;
-  // fundingAgencyField.value = "";
   if (fundingAgencyField.value !== '') {
     fundingAgencyField.disabled = false;
     internalFundingRadio.disabled = false;
@@ -121,6 +116,16 @@ function disableFields() {
     externalFundingRadio.disabled = true;
     fundingAgencyField.value = "";
   }
+}
+
+function nonFundedClick() {
+  typeOfFundingLabel.style.color = "gray";
+  fundingAgencyField.style.color = "gray";
+  internalFundingRadio.disabled = true;
+  externalFundingRadio.disabled = true;
+  fundingAgencyField.disabled = true;
+  fundingAgencyField.value = "";
+
 }
 
 function enableTypeOfFunding() {
@@ -142,7 +147,7 @@ function enableFundingAgency() {
   fundingAgencyField.value = "";
 }
 
-nonFundedRadio.addEventListener("click", disableFields);
+nonFundedRadio.addEventListener("click", nonFundedClick);
 fundedRadio.addEventListener("click", enableTypeOfFunding);
 internalFundingRadio.addEventListener("click", disableFundingAgency);
 externalFundingRadio.addEventListener("click", enableFundingAgency);

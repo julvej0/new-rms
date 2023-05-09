@@ -82,11 +82,11 @@
                 </div>
                 <div class="main-content-data">
                     <div class="head">
-                        <h3>Publications Status Report</h3>
+                        <h3>Type of Publications Report</h3>
                     </div>
                     <div class="chart">
                         <?php
-                        $pb_status = getPublicationsStatus($conn);
+                        $pb_status = getPublicationType($conn);
                         $status_data = $pb_status['data'];
                         $status_labels = $pb_status['labels'];
                         ?>
@@ -278,7 +278,9 @@
         var year_labels = <?php echo $ipyear_labels;?>;
         var year_options = {
             chart: {
-                type: 'bar'
+                type: 'line',
+                height: 350, // set the height of the chart
+                foreColor: '#263238', // set the text color of the chart
             },
             series: [{
                 data: year_data
@@ -298,6 +300,7 @@
                 color:  '#263238'
                 },
             },
+            colors: ['#03C988'], // set the chart color
             responsive: [{
                 breakpoint: 500,
                 options: {
@@ -314,19 +317,21 @@
         year_chart.render();
     </script>
     <script>
-        var pub_data = <?php echo $publications_data;?>;
-        var pub_labels = <?php echo $publications_year;?>;
-        var pub_options = {
-            chart: {
-                type: 'line'
-            },
-            series: [{
-                data: pub_data
-            }],
-            xaxis: {
-                categories: pub_labels
-            },
-            title: {
+    var pub_data = <?php echo $publications_data;?>;
+    var pub_labels = <?php echo $publications_year;?>;
+    var pub_options = {
+        chart: {
+            type: 'line',
+            height: 350, // set the height of the chart
+            foreColor: '#263238', // set the text color of the chart
+        },
+        series: [{
+            data: pub_data
+        }],
+        xaxis: {
+            categories: pub_labels
+        },
+        title: {
             text: 'Publications Per Year',
             align: 'center',
             margin: 10,
@@ -336,24 +341,26 @@
                 fontWeight:  'bold',
                 fontFamily:  undefined,
                 color:  '#263238'
-                },
             },
-            responsive: [{
-                breakpoint: 500,
-                options: {
-                    chart: {
-                        width: 300
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
+        },
+        colors: ['#03C988'], // set the chart color
+        responsive: [{
+            breakpoint: 500,
+            options: {
+                chart: {
+                    width: 300
+                },
+                legend: {
+                    position: 'bottom'
                 }
-            }]
-        };
+            }
+        }]
+    };
 
-        var pub_chart = new ApexCharts(document.querySelector("#pb-bar-chart"), pub_options);
-        pub_chart.render();
-    </script>
+    var pub_chart = new ApexCharts(document.querySelector("#pb-bar-chart"), pub_options);
+    pub_chart.render();
+</script>
+
 
 </body>
 

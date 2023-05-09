@@ -1,10 +1,23 @@
 <?php
     $items_per_page = 10;
-    $search_query = isset($_GET['search']) ? $_GET['search'] : '';
+    $search_query = $search != 'empty_search' ? $search : '';
+    $gender_filter = $gender != 'empty_gender' ? $gender : null;
+    $role_filter = $role != 'empty_role' ? $role : null;
     $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+    
     $offset = ($page_number - 1) * $items_per_page;
-    $sql = "SELECT * FROM table_authors WHERE author_name ILIKE '%$search_query%' ORDER BY author_id LIMIT $items_per_page OFFSET $offset";
+    $sql = "SELECT * FROM table_authors WHERE author_name ILIKE '%$search_query%' ";
+    if ($gender_filter !== null) {
+        $sql .= " AND gender = '$gender_filter' ";
+    }
+    if ($role_filter !== null) {
+        $sql .= " AND type_of_author = '$role_filter' ";
+    }
+    $sql .= "ORDER BY author_id DESC LIMIT $items_per_page OFFSET $offset";
     $result = pg_query($conn, $sql);
+
+
     if (isset($_GET['search'])){
         $deleteURL = '?search='.$search_query.'&page='.$page_number;
     }
@@ -18,22 +31,8 @@
     <tr>
         <td ><?=$row['author_id'];?></td>
         <td ><?=$row['author_name'];?></td>
-        <td><?php
-                if (is_null($row['gender'])) {
-                    echo 'Not yet Set';
-                } else {
-                    echo $row['gender'];
-                }
-            ?>
-        </td>
-        <td><?php
-                if (is_null($row['type_of_author'])) {
-                    echo 'Not yet Set';
-                } else {
-                    echo $row['type_of_author'];
-                }
-            ?>
-        </td>
+        <td><?=$row['type_of_author']== '' ? 'Not Yet Set' :   $row['type_of_author']; ?></td>
+        <td><?=$row['gender']== '' ? 'Not Yet Set' :   $row['gender']; ?></td>
         <td><?php
                 if (is_null($row['affiliation'])){
                     echo "Not Yet Set";

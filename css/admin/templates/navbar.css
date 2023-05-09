@@ -183,10 +183,11 @@ nav .toggle-sidebar {
 nav .profile {
     padding: 10px 16px;
     display: flex;
-    grid-gap: 10px;
+    flex-direction: column;
+    grid-gap: 2px;
     font-size: 14px;
     color: var(--light);
-    align-items: center;
+    align-items: flex-end;
 }
 
 #account-settings.active {

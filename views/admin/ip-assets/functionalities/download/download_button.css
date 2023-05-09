@@ -1,42 +1,129 @@
-/* CSS styles of download */
+#dl-modal-container {
+    background: var(--grey);
+    padding: 0;
+}
+main section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-x: auto;
+    padding:0;
+    height: 100%;
+}
+main section .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 10px; 
+    width: 100%;
+    position: sticky;
+    left: 0;
+    z-index: 100;
+    background: var(--grey);
+}
 
-main .btn {
-    padding: 23px;
-    outline: none;
-    color: var(--light);
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 3px 3px 10px rgba(52, 52, 52, 0.2);
+main section .header .dl-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 250px;
+    height: 100%;
+}
+
+main .header .dl-buttons .btn {
+    font-size: 25px;
+    width: 60px;
+    background: var(--light);
     border: none;
+    border-radius: 5px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
 }
 
-.form-group{
+main .header .dl-buttons .btn:hover {
+    transform: translateY(-5px);
+}
+
+main section .left {
+    width: 350px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+main section .left .form-group {
     position: relative;
-    background-color: #f1f0f6
 }
 
- .form-group input {
-    width: 30%;
-    height: 8%;
+main section .left .form-group input {
+    width: 320px;
+    height: 50px;
     background: var(--light);
     border-radius: 5px;
-    border: 1px white;
+    border: none;
     outline: none;
     padding: 10px 36px 10px 16px;
     transition: all 0.3s ease;
-    box-shadow: 3px 3px 10px rgba(52, 52, 52, 0.2);
-    position: relative;
-    margin-top: -30;
-    float: right;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-main .form-group .icon {
+main section .left .form-group input:focus {
+    box-shadow: 0 0 0 4px var(--light-blue);
+}
+
+main .left .form-group .icon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 16px;
+    color: var(--dark-grey);
 }
 
-main .form-group input:focus {
-    box-shadow: 0 0 0 5px var(blue);
+
+main section table {
+    width: 100%;
+    table-layout: auto;
+    min-width: 1000px;
+    border-collapse: collapse;
 }
+
+main section table,
+th,
+td {
+    border-collapse: collapse;
+    border-bottom: 2.5px solid var(--grey);
+}
+
+main section table thead tr {
+    background: var(--light);
+}
+
+
+main section table thead tr th {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-width: 150px;
+    max-width: 200px;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;    
+    background: lightgray;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
+}
+
+main section table tbody td {
+    font-size: 11px;
+    top: 0;
+    max-width: 200px;
+    font-size: 13px;
+    padding: 10px 10px;
+    text-align: center;
+    min-height: 180px;
+    background: var(--light);
+}
+
+

@@ -1,4 +1,5 @@
 <?php
+// getting the total number of users account
 function getUserCount($conn, $reuse_stmt = false) {
     $query = "SELECT user_id FROM table_user;";
     if (!$reuse_stmt) {
@@ -16,6 +17,7 @@ function getUserCount($conn, $reuse_stmt = false) {
         }
     }
 }
+// getting the total number of authors 
 function getAuthorCount($conn, $reuse_stmt = false) {
     $query = "SELECT author_id FROM table_authors;";
     if (!$reuse_stmt) {
@@ -33,6 +35,7 @@ function getAuthorCount($conn, $reuse_stmt = false) {
         }
     }
 }
+// getting the total number of articles in publications
 function getArticleCount($conn, $reuse_stmt = false) {
     $query = "SELECT title_of_paper FROM table_publications;";
     if (!$reuse_stmt) {
@@ -50,7 +53,7 @@ function getArticleCount($conn, $reuse_stmt = false) {
         }
     }
 }
-
+// getting the number o authors with most contributions in publications
 function getPublicationsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $result = pg_query($conn, $sql);
@@ -113,6 +116,7 @@ function getPublicationsContributors($conn) {
     </table>
     <?php
 }
+// getting the number o authors with most contributions in ip assets
 function getIpAssetsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $result = pg_query($conn, $sql);
@@ -177,6 +181,7 @@ function getIpAssetsContributors($conn) {
     </table>
     <?php
 }
+// getting the most cited articles in publications
 function getMostViewedPapers($conn, $reuse_stmt = false) {
     $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 4;";
     if (!$reuse_stmt) {
@@ -193,6 +198,7 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
 
     return $output;
 }
+// getting the number of published articles
 function getPublishedIPAssets($conn) {
     $query = "SELECT title_of_work FROM table_ipassets WHERE status = $1";
     $params = array("published");
@@ -214,6 +220,7 @@ function getPublishedIPAssets($conn) {
         }
     }
 }
+// getting the number of not-registered articles
 function getProcessingIpAssets($conn, $reuse_stmt = false) {
     $query = "SELECT title_of_work FROM table_ipassets WHERE status = $1";
     $params = array("not-registered");
@@ -235,6 +242,7 @@ function getProcessingIpAssets($conn, $reuse_stmt = false) {
         }
     }
 }
+// getting the recently added articles
 function getRecentIpAssets($conn, $limit) {
     $query = "SELECT title_of_work, date_registered FROM table_ipassets ORDER BY date_registered DESC LIMIT $1";
     $params = array($limit);
@@ -262,6 +270,7 @@ function getRecentIpAssets($conn, $limit) {
         }
     }
 }
+// getting the ip assets per campus
 function getIpAssetsCampus($conn) {
     $query = "SELECT campus, COUNT(*) as dataset FROM table_ipassets WHERE campus IS NOT NULL GROUP BY campus";
     $result = pg_query($conn, $query);
@@ -278,14 +287,15 @@ function getIpAssetsCampus($conn) {
         "labels" => json_encode($labels)
     );
 }
-function getPublicationsStatus($conn){
-    $query = "SELECT status, COUNT(*) as dataset FROM table_publications WHERE status is NOT NULL GROUP BY status";
+// getting the type of publication in table publication
+function getPublicationType($conn){
+    $query = "SELECT type_of_publication, COUNT(*) as dataset FROM table_publications WHERE type_of_publication is NOT NULL GROUP BY type_of_publication";
     $result = pg_query($conn, $query);
 
     $data = array();
     $labels = array();
     while ($row = pg_fetch_assoc($result)) {
-        $labels[] = $row["status"];
+        $labels[] = $row["type_of_publication"];
         $data[] = intval($row["dataset"]);
     }
 
@@ -295,6 +305,7 @@ function getPublicationsStatus($conn){
     );
 
 }
+// getting the ip assets per year
 function getIPAssetsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_registered) AS year, COUNT(*) AS count
     FROM table_ipassets
@@ -322,6 +333,7 @@ function getIPAssetsPerYear($conn) {
         'labels' => $ipyear_labels
     );
 }
+// getting the publicatons per year
 function getPublicationsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_published) AS year, COUNT(*) AS count
     FROM table_publications

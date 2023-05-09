@@ -39,25 +39,23 @@ if (isset($_POST['updateIPA'])) {
     $target_dir = "uploads/";
     $certificate_file = $target_dir . $registration_number . "_certificate.png";
 
-    if (file_exists($certificate_file)) { // check if the file exists
-        if (unlink($certificate_file)) { // delete the file
-            echo "File deleted successfully";
-        } else {
-            echo "Error deleting file";
-        }
-    } else {
-        echo "File does not exist";
-    }
-
         // Check if file was uploaded without errors
         if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {            
             // Check if file already exists
             if (file_exists($certificate_file)) {
-                echo "
-                <script>
-                alert('Sorry, file already exists.');
-                window.history.back();
-                </script>";
+                    if (unlink($certificate_file)) { // delete the file
+                        $allowed_types = array('image/png', 'image/jpg', 'image/jpeg');
+                        $file_type = $_FILES["ip-certificate"]["type"];
+                        if (in_array($file_type, $allowed_types)) {
+                                    // Upload file to server
+                            if (move_uploaded_file($_FILES["ip-certificate"]["tmp_name"], $certificate_file)) {
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+                            }
+                        }
+                    } else {
+                        echo "Error deleting file";
+                    }
+                    
             } else {
                     // Check if uploaded file is a PNG or JPG
                         $allowed_types = array('image/png', 'image/jpg', 'image/jpeg');

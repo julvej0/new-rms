@@ -10,12 +10,13 @@
 <body>
     <?php
         include_once '../../../includes/admin/templates/navbar.php';
-        include_once 'functionalities/php/count_authors.php';
+        include_once 'functionalities/authors_include/count_authors.php';
+        include_once 'functionalities/authors_include/filter_function.php';
 
-        //for filtering
-       if (isset($_GET['gender'])){
-
-       }
+        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+        $gender = isset($_GET['gender']) ? $_GET['gender']: 'empty_gender';
+        $role = isset($_GET['role']) ? $_GET['role']: 'empty_role';
+       
     ?>
     
     <main>
@@ -31,15 +32,15 @@
                 <div class="filter">
                     <button class="btn">Role<i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">Student</a></li>
-                        <li><a href="#">Faculty</a></li>
+                        <li><a href="<?php echo filterAuthor($search, 'Student', $gender)?>">Student</a></li>
+                        <li><a href="<?php echo filterAuthor($search, 'Faculty', $gender)?>">Faculty</a></li>
                     </ul>
                 </div>
                 <div class="filter">
                     <button class="btn">Gender<i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">Male</a></li>
-                        <li><a href="#">Female</a></li>
+                        <li><a href="<?php echo filterAuthor($search, $role, 'Male')?>">Male</a></li>
+                        <li><a href="<?php echo filterAuthor($search, $role, 'Female')?>">Female</a></li>
                     </ul>
                 </div>
                 <a href="./new-author.php" class="addBtn"><i class='bx bx-user-plus icon'></i></i>New</a>
@@ -60,14 +61,14 @@
                     </thead>
                     <tbody>
                         <?php
-                            include_once 'functionalities/php/display_authors.php';
+                            include_once 'functionalities/authors_include/display_authors.php';
                            
                         ?>
                     </tbody>
                 </table>
             </div>
                 <?php
-                    include_once 'functionalities/php/pagination_authors.php';
+                    include_once 'functionalities/authors_include/pagination_authors.php';
                 ?>
         </section>
     </main>
@@ -83,6 +84,6 @@
 <script src="./authors.js"></script>
 </body>
 <?php
-    include_once 'functionalities/php/delete_success.php';
+    include_once 'functionalities/authors_include/pop_modal.php';
     include '../../../includes/admin/templates/footer.php';
 ?>

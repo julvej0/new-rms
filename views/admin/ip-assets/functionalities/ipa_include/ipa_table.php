@@ -1,9 +1,10 @@
 <?php
+    require_once('functionalities/ipa-get-info.php');
+    require_once('functionalities/ipa_include/ipa_count.php');
 
-require_once('functionalities/ipa-get-info.php');
-
-$additionalQuery= authorSearch($conn);
-$table_rows = get_data($conn, $additionalQuery);
+    $additionalQuery = authorSearch($conn, $search);
+    $table_rows = get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_number);
+    $total_records = countIPA($conn, $additionalQuery, $search, $type, $class, $year);
 ?>
 
 <table>
@@ -25,13 +26,6 @@ $table_rows = get_data($conn, $additionalQuery);
     </thead>
     <tbody>
     <?php
-        $search_query = isset($_GET['search']) ? $_GET['search'] : '';
-        $no_of_records_per_page = 10;
-        // Get total number of records
-        $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status) ILIKE '%$search_query%'".$additionalQuery.";");
-        $total_records = pg_fetch_result($result_count, 0, 0);
-        $total_pages = ceil($total_records / $no_of_records_per_page);
-        
         if ($table_rows !== null) {
         foreach ($table_rows as $row) {
     ?>
@@ -40,7 +34,7 @@ $table_rows = get_data($conn, $additionalQuery);
         <td class="title-col col-title"><?=$row['title_of_work'];?></td>
         <td class="type-col col-type"><?=$row['type_of_document'];?></td>
         <td class="cow-col col-cow"><?=$row['class_of_work'];?></td>
-        <td class="tbl-col"><?=$row['date_of_creation'];?></td>
+        <td class="cre-col col-date-cre"><?=$row['date_of_creation'];?></td>
         <td class="date-reg-col col-date-reg"><?=$row['date_registered'];?></td>
         <td class="campus-col col-campus"><?=$row['campus'];?></td>
         <td class="college-col col-college"><?=$row['college'];?></td>

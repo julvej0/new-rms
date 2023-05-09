@@ -46,36 +46,21 @@ function closeModal() {
       
 
 // download as pdf
-function downloadTableAsPDF() {
-  var table = document.getElementById('mytable');
-  
-  // Set the page orientation to landscape
-  var options = {
-    filename: 'table_example.pdf',
-    orientation: 'landscape'
-  };
+window.jsPDF = window.jspdf.jsPDF;
+var docPDF = new jsPDF('landscape');
+function print() {
+  var elementHTML = document.querySelector("#mytable");
+  docPDF.html(elementHTML, {
+    callback: function() {
+      docPDF.save('HTML Linuxhint web page.pdf');
+    },
+    x: 15,
+    y: 15,
+    width: 170,
+    windowWidth: 650
+  });
+}
 
-  // Clone the table element and add it to a new div element
-  var clonedTable = table.cloneNode(true);
-  var wrapperDiv = document.createElement('div');
-  wrapperDiv.appendChild(clonedTable);
-  
-  // Set the CSS styles for the cloned table
-  clonedTable.style.width = "100%";
-  clonedTable.style.maxWidth = "none";
-  clonedTable.style.transform = "rotate(270deg)";
-
-  // Convert the cloned table to PDF using html2pdf
-  html2pdf()
-    .set(options)
-    .from(wrapperDiv)
-    .save();
-
-  // Reset the CSS styles for the cloned table
-  clonedTable.style.width = "";
-  clonedTable.style.maxWidth = "";
-  clonedTable.style.transform = "";
-  }
   
 
 //download as Word document

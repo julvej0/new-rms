@@ -16,13 +16,10 @@ function submitDelete(id, page, search){
                     });
                     console.log(xhr.responseText)
             }
-            else if(xhr.responseText === "Success"){
-                if (search == "empty_search"){
-                    window.location.href="authors.php?page="+page+"&delete=success";
-                }
-                else{
-                    window.location.href="authors.php?page="+page+"&search="+search+"&delete=success";
-                }
+            else {
+                
+                    window.location.href=window.location.search+"&delete=success";
+                
             }
         }
     };

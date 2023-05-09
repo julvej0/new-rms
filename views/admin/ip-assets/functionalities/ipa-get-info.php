@@ -1,19 +1,37 @@
 <?php
-function get_data($conn, $additionalQuery) {
-    $search_query = isset($_GET['search']) ? $_GET['search'] : '';
+function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_number) {
+    $search_query = $search != "empty_search" ? $search : '';
+   
     $no_of_records_per_page = 10;
-    
-    if (isset($_GET['pageno'])) {
-        $pageno = $_GET['pageno'];
-    } else{
-        $pageno=1;
-    }
 
     //offset
-    $offset = ($pageno-1) * $no_of_records_per_page;
+    $offset = ($page_number-1) * $no_of_records_per_page;
 
     //Search Query
-    $sqlSearchQuery = "SELECT * FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status, certificate) ILIKE '%$search_query%'".$additionalQuery." ORDER BY registration_number ASC OFFSET $offset LIMIT $no_of_records_per_page;";
+    $sqlSearchQuery = "SELECT * 
+                        FROM (
+                            SELECT * 
+                            FROM table_ipassets 
+                            WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status, certificate) ILIKE '%$search_query%' ";
+    
+    if ($additionalQuery !== "empty_search") {
+        $sqlSearchQuery .= $additionalQuery;
+    }
+
+    $sqlSearchQuery .= " )AS searched_ipa WHERE 1=1 ";
+
+    if ($type !== 'empty_type') {
+        $sqlSearchQuery .= " AND searched_ipa.type_of_document = '$type' ";
+    }
+    if ($class !== 'empty_class') {
+        $sqlSearchQuery .= " AND searched_ipa.class_of_work = '$class' ";
+    }
+    if ($year !== 'empty_year') {
+        $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_ipa.date_registered) = '$year' ";
+    }
+    
+    $sqlSearchQuery .= "ORDER BY registration_number DESC OFFSET $offset LIMIT $no_of_records_per_page";
+   
     $result = pg_query($conn, $sqlSearchQuery);
     $resultCheck = pg_num_rows($result);
 
@@ -54,30 +72,40 @@ function get_data($conn, $additionalQuery) {
     }
 }
 
-function authorSearch($conn) {
-    $additionalQuery = "";
-    if(isset($_GET['search'])){
-        $search_query = $_GET['search'];
+function authorSearch($conn, $search) {
+    if($search != 'empty_search'){
         //Select Author Ids that matches the search
-        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%$search_query%'";
+        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%$search%'";
         $result = pg_query($conn, $select_authors);
 
         if(pg_num_rows($result) > 0){
+            $additionalQuery = "OR ( ";
             while ($row = pg_fetch_assoc($result)) {
                 $author_id[] = $row['author'];    
             }//Additional query for search
             foreach ($author_id as $a_id){
-                $additionalQuery .= " OR authors ILIKE '%$a_id%' ";
+                if ( $a_id == $author_id[0]){
+                    $additionalQuery .= " authors ILIKE '%$a_id%' ";
+                }
+                else{
+                    $additionalQuery .= " OR authors ILIKE '%$a_id%' ";
+                }
+                
             }
 
+            $additionalQuery .= " ) ";
+            return $additionalQuery;
         }
 
         
-        return $additionalQuery;
+        
     }else{
-        return null;
+        return "empty_search";
     }
     
 
 }
+
+
+
 ?>
