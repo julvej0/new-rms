@@ -54,6 +54,13 @@ if ($sql_result) {
     </tr>
     <tr id='spacer-row'></tr> <!-- Add a spacer row after each data row -->
   <?php
+    echo "<tr id='css-tr'>";
+      echo "<td class='css-td'> " . $row['title_of_paper'] . "</td>";
+      echo "<td class='css-td'>" . $row['date_published'] . "</td>";
+      echo "<td class='css-td'>" . $row['campus'] . "</td>";
+      echo "<td class='css-td'>" . $author_implode . "</td>";
+      echo '</tr>';
+    echo "<tr id='spacer-row'></tr>"; // Add a spacer row after each data row
   }
   ?>
 

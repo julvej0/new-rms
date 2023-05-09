@@ -7,7 +7,7 @@ include_once "../../../includes/admin/templates/header.php";
 
 <!----------------------------------------------------------- sign up page ---------------------------------------------------------->
 <div id="whole_page">
-<img src="../../../assets/images/redspartan_logo.png" style="width: 150px; height: 170px; position: fixed; bottom: 0; right: 0; margin-bottom: 50px; margin-right: 25px; border-radius: 50% / 20%;">
+<!-- <img src="../../../assets/images/redspartan_logo.png" style="width: 150px; height: 170px; position: fixed; bottom: 0; right: 0; margin-bottom: 50px; margin-right: 25px; border-radius: 50% / 20%;"> -->
 
 <!----------------------------------------------------------- sign up header -------------------------------------------------------->
         <div id="signup-container">
@@ -40,14 +40,14 @@ include_once "../../../includes/admin/templates/header.php";
                 <span id="emailTooltip" style="display:none;color:red"></span><br>
                 <label class='labelSubHeader'>PASSWORD</label>
                 <div class='password_container'>
-                    <input class="passwordInput" name="password1" placeholder="Password" type="password" maxlength='16'>
+                    <input class="passwordInput" name="password1" placeholder="Password" type="password" minlength="8" maxlength='16'>
                     <i class="toggle-password2 fas fa-eye-slash"></i>
 
                 </div>
                 <br>
                 <label class='labelSubHeader'>CONFIRM PASSWORD</label>
                 <div class='password_container'>
-                    <input id="confirmPasswordInput" name="password" placeholder="Confirm Password" type="password" maxlength='16'>
+                    <input id="confirmPasswordInput" name="password" placeholder="Confirm Password" type="password" minlength="8" maxlength='16'>
                     <i class="toggle-password2 fas fa-eye-slash"></i>
                 </div>    
                 <span id="passwordTooltip" style="display:none;color:red"></span>

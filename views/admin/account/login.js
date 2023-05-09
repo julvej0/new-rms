@@ -3,6 +3,8 @@ function loginBtn () {
     var emailAddress = document.getElementById('email').value;
     var passwordInput = document.getElementsByClassName('passwordInput')[0].value;
 
+    
+
       // send the OTP and email address to verify_otp.php
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "functionalities/login-account.php", true);
