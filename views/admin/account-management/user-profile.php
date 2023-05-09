@@ -13,12 +13,12 @@ include_once "functionalities/user-session.php";
     <div id="profile-page" class="mini-page">
         <h2 id='userh2'>Profile Information</h2>
         <div class="profile-info">
-        <div class="profile-photo">
-            <label for="photo-upload">
-                <img id="user-image" src="<?php echo $user['user_img']; ?>" alt="User Image">
-            </label>
-            <input type="file" id="photo-upload" name="file" style="display:none">
-        </div>
+            <div class="profile-photo">
+                <label for="photo-upload">
+                    <img id="user-image" src="<?php echo $user['user_img']; ?>" alt="User Image">
+                </label>
+                <input type="file" id="photo-upload" name="file" style="display:none">
+            </div>
         <div class="profile-details">
 
                 <div class="profile-row">
@@ -90,7 +90,7 @@ $(document).ready(function() {
                     title: 'Success',
                     text: 'Image uploaded successfully!',
                     }).then((result) => {
-                        
+                        location.reload(true);
                     });
             },
             error: function(response) {

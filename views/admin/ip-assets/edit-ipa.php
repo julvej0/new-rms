@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-            <form action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data">
+            <form action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -190,6 +190,7 @@
                                             <td style="text-align: center;" colspan="2">
                                                 <button type="button" class="add-row-btn" style="height: 50px; width: 10%;">+</button>
                                             </td>
+                                            <div id="error-msg" style="display: none; color: red;">Duplicate author names are not allowed!</div>
                             </table>
                             </div>
                         </div>
@@ -256,6 +257,35 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+
+<script>
+    $(document).ready(function() {
+    // listen for changes to the input fields
+    $(document).on('input', 'input[name="author_name[]"]', function() {
+        checkDuplicateAuthors(); // call the comparison function
+    });
+    });
+
+    function checkDuplicateAuthors() {
+        var authors = {};
+        var duplicate = false;
+        $('input[name="author_name[]"]').each(function() {
+            var name = $(this).val().toLowerCase();
+            if (name in authors) {
+            duplicate = true;
+            $(this).focus(); // focus on the input field with duplicate value
+            $('#error-msg').show(); // show the error message
+            return false; // exit the loop if duplicate is found
+            } else {
+            authors[name] = true;
+            }
+        });
+        if (!duplicate) {
+            $('#error-msg').hide(); // hide the error message if no duplicates found
+        }
+        return !duplicate; // return false to prevent form submission if duplicate found
+        }
+</script>
 <script>
              //Author ID table workaround.
              function showAuthorId(input) {
