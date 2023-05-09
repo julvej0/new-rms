@@ -95,10 +95,6 @@
                 <?php
                     include_once 'functionalities/ipa_include/pagination.php';
                 ?>
-            
-            <div class="download">
-                <button onclick="openModal()" class="download-btn">Download</button>
-            </div>
             </section>
     </main>
     
