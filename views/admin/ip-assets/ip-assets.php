@@ -18,6 +18,9 @@
         $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
         $class = isset($_GET['class']) ? $_GET['class']: 'empty_class';
         $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
+
+        $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
     ?>
 
     <main>
@@ -87,11 +90,14 @@
                     include_once 'functionalities/ipa_include/ipa_table.php';
                 ?>
             </div>
+            
         
                 <?php
                     include_once 'functionalities/ipa_include/pagination.php';
                 ?>
             
+            <div class="download">
+                <button onclick="openModal()" class="download-btn">Download</button>
             </div>
             </section>
     </main>

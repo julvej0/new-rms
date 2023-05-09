@@ -153,11 +153,11 @@ span {
     height: 20px;
 }
 
-#css-tr {
+.css-tr {
     background-color: white;
     transition: all 0.3s ease;
 }
-#css-tr:hover {
+.css-tr:hover {
     background-color: #cf102d;
     color: white;
     cursor: pointer;

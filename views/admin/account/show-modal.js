@@ -38,7 +38,13 @@ function showModal() {
        passwordTooltip.innerHTML = 'Password does not match.';
        passwordTooltip.style.display = "block";
        emailTooltip.style.display = "none";
-   } else {
+   } 
+   else if (passwordInput.length < 8 || confirmPasswordInput.length < 8) {
+        passwordTooltip.innerHTML = 'Please enter atleast 8 characters.';
+        passwordTooltip.style.display = "block";
+        emailTooltip.style.display = "none";
+    }
+   else {
        passwordTooltip.style.display = "block";
        emailTooltip.style.display = "none";
 

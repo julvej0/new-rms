@@ -8,9 +8,9 @@ include_once "../../../includes/admin/templates/header.php";
 <!----------------------------------------------------------- login page ---------------------------------------------------------->
 <div id="whole_page">
     <img src='../../../assets/images/background_img.jpg' style='opacity: 0.7; width: 100%; height: 100%; position:fixed;'/>
-    <div style="width: 155px; height: 230px; background-color: white; position: fixed; bottom: 0; right: 0; margin-bottom: 20px; margin-right: 20px; z-index: 1; padding: 20px; border-radius: 50% / 20%;">
+    <!-- <div style="width: 155px; height: 230px; background-color: white; position: fixed; bottom: 0; right: 0; margin-bottom: 20px; margin-right: 20px; z-index: 1; padding: 20px; border-radius: 50% / 20%;">
         <img src="../../../assets/images/redspartan_logo.png" style="width: 150px; height: 160px; position: fixed; bottom: 0; right: 0; margin-bottom: 50px; margin-right: 25px; z-index: 2; border-radius: 50% / 20%;">
-    </div>
+    </div> -->
 
     <img src='../../../assets/images/batStateUNeu-logo.png' style='width: 100px; height: 100px; position: fixed; border:solid 3px #cf102d; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -300%); top: 50%; left: 50%;'/>
 <!----------------------------------------------------------- login header ---------------------------------------------------------->
@@ -24,7 +24,7 @@ include_once "../../../includes/admin/templates/header.php";
                 <input id="email" name="emailAddress" placeholder="example@g.batstate-u.edu.ph" type="text"><br>
                 <label class='labelSubHeader'>PASSWORD</label>
                 <div id='password_container'>
-                    <input class="passwordInput" name="password" placeholder="Password" type="password" maxlength='8'>
+                    <input class="passwordInput" name="password" placeholder="Password" type="password" minlength='8' maxlength='16'>
                     <i class="toggle-password2 fas fa-eye-slash"></i>
                 </div>  
                 <br>
@@ -57,12 +57,12 @@ include_once "../../../includes/admin/templates/header.php";
             <span id="emailTooltip" style="display:none;color:red"></span>
             <label for="new-password" class='labelSubHeader'>New Password:</label>
             <div class='password-container'>
-                <input type="password" class="passwordInput" name="new-password"  maxlength='8' required>
+                <input type="password" class="passwordInput" name="new-password" minlength='8' maxlength='16' required>
                 <i class="toggle-password fas fa-eye-slash"></i>
             </div>  
             <label for="confirm-password" class='labelSubHeader'>Confirm Password:</label>
             <div class='password-container'>
-                <input type="password" id="confirmPasswordInput" name="confirm-password"  maxlength='8' required>
+                <input type="password" id="confirmPasswordInput" name="confirm-password" minlength='8' maxlength='16' required>
                 <i class="toggle-password fas fa-eye-slash"></i>
             </div>
             <span id="passwordTooltip" style="display:none;color:red"></span>  
