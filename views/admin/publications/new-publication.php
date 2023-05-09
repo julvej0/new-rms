@@ -225,6 +225,12 @@
                                     <input type="url" id="pb-url" name="google_scholar_details" placeholder="Document Url">
                                 </div>
                             </div>
+                            <div class="form-container">
+                                <div class="form-control"></div>
+                                    <label class="pb-label" for="pb-abstract">Abstract</label>
+                                    <input type="url" id="pb-abstract" name="abstract" placeholder="Abstract...">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="sub-container">
