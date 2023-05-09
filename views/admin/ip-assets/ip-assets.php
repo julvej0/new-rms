@@ -62,21 +62,21 @@
                 </form>
                 
                 <div class="filter">
-                    <button class="btn"><?php echo $type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="<?php echo filterIPA($search, 'Copyright', $class, $year);?>">Copyright</a></li>
-                        <li><a href="<?php echo filterIPA($search, 'Original', $class, $year);?>">Original</a></li>
+                        <li><a href="<?=filterIPA($search, 'Copyright', $class, $year);?>">Copyright</a></li>
+                        <li><a href="<?=filterIPA($search, 'Original', $class, $year);?>">Original</a></li>
                     </ul>
                 </div>
                 <div class="filter">
-                    <button class="btn"><?php echo $class!="empty_class" ? 'Class '.$class: 'Class'  ?><i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$class!="empty_class" ? 'Class '.$class: 'Class'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="<?php echo filterIPA($search, $type, 'A', $year);?>">Class A</a></li>
-                        <li><a href="<?php echo filterIPA($search, $type, 'O', $year);?>">Class O</a></li>
+                        <li><a href="<?=filterIPA($search, $type, 'A', $year);?>">Class A</a></li>
+                        <li><a href="<?=filterIPA($search, $type, 'O', $year);?>">Class O</a></li>
                     </ul>
                 </div>
                 <div class="filter">
-                    <button class="btn"><?php echo $year!="empty_year" ? $year: 'Year'  ?><i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$year!="empty_year" ? $year: 'Year'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
                         <?php include_once 'functionalities/ipa_include/ipa_year_filter.php' ?>
                     </ul>
@@ -95,10 +95,6 @@
                 <?php
                     include_once 'functionalities/ipa_include/pagination.php';
                 ?>
-            
-            <div class="download">
-                <button onclick="openModal()" class="download-btn">Download</button>
-            </div>
             </section>
     </main>
     

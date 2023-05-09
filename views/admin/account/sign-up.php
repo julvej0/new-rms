@@ -52,7 +52,7 @@ include_once "../../../includes/admin/templates/header.php";
                 </div>    
                 <span id="passwordTooltip" style="display:none;color:red"></span>
                 <br>
-                <input name="submit" type="button" value="SIGN UP" onclick='showModal()'>
+                <input name="submit" type="button" id="pass" value="SIGN UP" onclick='showModal()'>
                 <br>
                 <label id='labelSignUp'>Already have an account?<a id='a_SignUp' href='login.php'>&nbsp;Sign In</a></label>
                 <br>
