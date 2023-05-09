@@ -1,6 +1,9 @@
 
 <div class="table-footer">
     <p><?=countIPA($conn, $additionalQuery)?></p>
+    <div class="download">
+                    <button onclick="openModal()" class="download-btn">Download</button>
+                </div>
     <div class="pagination">
         <?php
             $search_query = isset($_GET['search']) ? $_GET['search'] : '';
