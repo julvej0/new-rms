@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-                <form action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return chooseOneSDG(); checkDuplicateAuthors()">
+                <form action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return chooseOneSDG(); checkDuplicateAuthors();">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -355,32 +355,37 @@
 <link rel="stylesheet" href="sweetalert2.min.css">
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
     // listen for changes to the input fields
     $(document).on('input', 'input[name="author_name[]"]', function() {
         checkDuplicateAuthors(); // call the comparison function
     });
-    });
+});
 
-    function checkDuplicateAuthors() {
-        var authors = {};
-        var duplicate = false;
-        $('input[name="author_name[]"]').each(function() {
-            var name = $(this).val().toLowerCase();
-            if (name in authors) {
+function checkDuplicateAuthors() {
+    var authors = {};
+    var duplicate = false;
+    $('input[name="author_name[]"]').each(function() {
+        var name = $(this).val().toLowerCase();
+        if (name in authors) {
             duplicate = true;
             $(this).focus(); // focus on the input field with duplicate value
             $('#error-msg').show(); // show the error message
             return false; // exit the loop if duplicate is found
-            } else {
+        } else {
             authors[name] = true;
-            }
-        });
-        if (!duplicate) {
-            $('#error-msg').hide(); // hide the error message if no duplicates found
         }
-        return !duplicate; // return false to prevent form submission if duplicate found
-        }
+    });
+    if (!duplicate) {
+        $('#error-msg').hide(); // hide the error message if no duplicates found
+    }
+    return !duplicate; // return false to prevent form submission if duplicate found
+}
+
+$('form').on('submit', function() {
+    return checkDuplicateAuthors();
+});
+
 </script>
 <script>
             //Author ID table workaround.

@@ -6,13 +6,15 @@ $sql_data = "SELECT * FROM table_publications";
 $sql_result = pg_query($conn, $sql_data);
 
 if ($sql_result) {
-  echo "<table id='css-table'>";
-    echo "<tr id='css-header-container'>";
-    echo "<th class='css-header'> Title </th>";
-    echo "<th class='css-header'> Date Published </th>";
-    echo "<th class='css-header'> Campus </th>";
-    echo "<th class='css-header'> Author </th>";
-  echo '</tr>';
+  ?>
+  <table id='css-table'>
+  <tr id='css-header-container'>
+  <th class='css-header'> Title </th>
+  <th class='css-header'> Date Published </th>
+  <th class='css-header'> Campus </th>
+  <th class='css-header'> Author </th>
+  </tr>;
+  <?php
 
   while ($row = pg_fetch_assoc($sql_result)) {
     // Get the author IDs from the publication row

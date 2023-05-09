@@ -12,15 +12,12 @@
 <link rel="stylesheet" href="../../../../../css/index.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-<script src="package/html2pdf.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!--Font Awesome CDN-->
 
 <!--download as PDF package -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.9.3/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script><
 <!-- download as excel -->
 <script src="https://unpkg.com/xlsx@0.15.6/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -34,7 +31,7 @@
         <div class="header">
             <div class="dl-buttons">
                 <button onclick="downloadExcelFile()" class="btn"><i class="fas fa-file-excel fa-lg" style="color: green"></i></button>
-                <button onclick="downloadTableAsPDF()" class="btn"><i class="fas fa-file-pdf fa-lg" style="color: red"></i></button>
+                <button id="printButton" onclick="print()" class="btn"><i class="fas fa-file-pdf fa-lg" style="color: red"></i></button>
                 <button onclick="exportTableToWord()" class="btn"><i class="fas fa-file-word fa-lg" style="color: blue"></i></button>
             </div>
             <div class="left">
@@ -102,6 +99,23 @@
     </main>
 </section>
 <script src="./download_button.js"></script>
+<script>
+    // download as pdf
+window.jsPDF = window.jspdf.jsPDF;
+var docPDF = new jsPDF('landscape');
+function print() {
+  var elementHTML = document.querySelector("#mytable");
+  docPDF.html(elementHTML, {
+    callback: function() {
+      docPDF.save('HTML Linuxhint web page.pdf');
+    },
+    x: 15,
+    y: 15,
+    width: 170,
+    windowWidth: 650
+  });
+}
+</script>
 </body>
 <?php
     include '../../../../../includes/admin/templates/footer.php';
