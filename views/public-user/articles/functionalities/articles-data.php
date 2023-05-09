@@ -7,11 +7,11 @@ $sql_result = pg_query($conn, $sql_data);
 
 if ($sql_result) {
   echo "<table id='css-table'>";
-  echo "<tr id='css-header-container'>";
-  echo "<th class='css-header'> Title </th>";
-  echo "<th class='css-header'> Date Published </th>";
-  echo "<th class='css-header'> Campus </th>";
-  echo "<th class='css-header'> Author </th>";
+    echo "<tr id='css-header-container'>";
+    echo "<th class='css-header'> Title </th>";
+    echo "<th class='css-header'> Date Published </th>";
+    echo "<th class='css-header'> Campus </th>";
+    echo "<th class='css-header'> Author </th>";
   echo '</tr>';
 
   while ($row = pg_fetch_assoc($sql_result)) {
@@ -43,11 +43,11 @@ if ($sql_result) {
     }
 
     echo "<tr id='css-tr'>";
-    echo "<td class='css-td'> " . $row['title_of_paper'] . "</td>";
-    echo "<td class='css-td'>" . $row['date_published'] . "</td>";
-    echo "<td class='css-td'>" . $row['campus'] . "</td>";
-    echo "<td class='css-td'>" . $author_implode . "</td>";
-    echo '</tr>';
+      echo "<td class='css-td'> " . $row['title_of_paper'] . "</td>";
+      echo "<td class='css-td'>" . $row['date_published'] . "</td>";
+      echo "<td class='css-td'>" . $row['campus'] . "</td>";
+      echo "<td class='css-td'>" . $author_implode . "</td>";
+      echo '</tr>';
     echo "<tr id='spacer-row'></tr>"; // Add a spacer row after each data row
   }
 

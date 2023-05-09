@@ -12,7 +12,7 @@ if (isset($_POST['email'], $_POST['otp'], $_POST['srcode'], $_POST['password'],$
     $email = $_POST['email'];
     $password = $_POST['password'];
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $accountType = 'default';
+    $accountType = 'Regular';
 
   // check if the OTP entered by the user matches the one sent to their email
   if ($otp == $_SESSION['verification_code']) {
