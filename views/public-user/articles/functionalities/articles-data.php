@@ -13,7 +13,7 @@ if ($sql_result) {
   <th class='css-header'> Date Published </th>
   <th class='css-header'> Campus </th>
   <th class='css-header'> Author </th>
-  </tr>;
+  </tr>
   <?php
 
   while ($row = pg_fetch_assoc($sql_result)) {
