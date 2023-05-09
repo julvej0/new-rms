@@ -1,5 +1,6 @@
 <?php
 include_once "../../../db/db.php";
+require_once "config.php";
 
 // Select or Retrieve Data from Database
 $sql_data = "SELECT * FROM table_publications";
@@ -43,9 +44,9 @@ if ($sql_result) {
     } else {
       $author_implode = ""; // Set an empty string if no author names found
     }
-    $encrypted_ID="";
+    $encrypted_ID = encryptor('encrypt',$row['publication_id']);
     ?>
-    <tr class='css-tr' onclick="window.location='./article_view.php?<?=$row['publication_id']?>'">
+    <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
       <td class='css-td'><?=$row['title_of_paper']?></td>
       <td class='css-td'><?=$row['date_published']?></td>
       <td class='css-td'><?=$row['campus']?></td>
