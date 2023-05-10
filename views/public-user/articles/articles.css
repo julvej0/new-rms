@@ -194,9 +194,11 @@ span {
     background-color: #ffffff;
     margin: 0 auto;
     margin-top: 5%;
+    /* margin-bottom: 5%; */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     padding: 2%;
     border-radius: 10px;
+    text-align: justify;
     
 }
 .article-title{
@@ -231,4 +233,7 @@ span {
 }
 .download-cert-btn:hover{
     background-color: #ef3450;
+}
+.abstract-cont{
+    font-size: .9rem;
 }
