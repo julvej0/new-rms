@@ -36,6 +36,10 @@ if (isset($_POST['login'] )) {
                 exit();
             }
         }
+        else{
+            header("Location: ../../../../views/admin/account/login.php?login=incorrect");
+            exit();
+        }
     }
     else{
         header("Location: ../../../../views/admin/account/login.php?login=error");
