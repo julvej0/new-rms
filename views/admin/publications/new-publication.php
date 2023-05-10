@@ -228,7 +228,7 @@
                             <div class="form-container">
                                 <div class="form-control"></div>
                                     <label class="pb-label" for="pb-abstract">Abstract</label>
-                                    <textarea cols="30" rows="10" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..."></textarea>
+                                    <textarea cols="5" rows="10" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..."></textarea>
                             </div>
                         </div>
                     </div>
