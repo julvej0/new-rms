@@ -10,7 +10,9 @@ session_start();
 
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+<body>
+    
+<div class="container">
 <section>
     <div class="navbar-container">
         <div class="left">
@@ -33,10 +35,10 @@ session_start();
                 <div class="right-sm-container">
                     <div class="right-content">
                         <ul class="nav-links">
-                            <li><a href="../../../views/public-user/home/home.php">HOME</a></li>
-                            <li><a href="#">PUBLICATIONS</a></li>
-                            <li><a href="../../../views/public-user/articles/articles.php">ARTICLES</a></li>
-                            <li><a href="#">ABOUT</a></li>
+                            <li><a href="../../../views/public-user/home/home.php" id='home-link'>HOME</a></li>
+                            <li><a href="#" id='pb-link'>PUBLICATIONS</a></li>
+                            <li><a href="../../../views/public-user/articles/articles.php" id='ip-link'>IP ASSETS</a></li>
+                            <li><a href="#" id='abt-link'>ABOUT</a></li>
                         </ul>
                         <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php' :  '../../../views/admin/account/login.php'?>"><?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?></a>
                    
@@ -46,8 +48,10 @@ session_start();
         </div>
     </div>
 </section>
+</div>
+<!-- SCRIPT -->
+<script src="../../../js/public-user/user-navbar.js"></script>
 <!-- CONTENT -->
-<main id="main-content">
 
 
 
