@@ -3,7 +3,12 @@
     $count_text = $search != "empty_search" ? "Total Patented Docs for \"". $search. "\" : " : "Total Patented Docs :";
 ?>
 <div class="table-footer">
+    
     <p><?=$count_text.' '.$total_records?></p>
+    <div class="download">
+                <button onclick="openModal()" class="download-btn">Download</button>
+            </div>
+    
     <div class="pagination">
         <?php
             $items_per_page = 10;
