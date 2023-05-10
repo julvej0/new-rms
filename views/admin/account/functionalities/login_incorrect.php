@@ -18,7 +18,7 @@ if(isset($_GET['login'])){
             <script>
                 Swal.fire({
                     title: "Error",
-                    text: "Accoutn does not exist",
+                    text: "Account does not exist",
                     icon: "error"
                     });
             </script>
