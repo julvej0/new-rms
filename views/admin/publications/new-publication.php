@@ -228,7 +228,8 @@
                             <div class="form-container">
                                 <div class="form-control"></div>
                                     <label class="pb-label" for="pb-abstract">Abstract</label>
-                                    <input type="url" id="pb-abstract" name="abstract" placeholder="Abstract...">
+                                    <input type="url" textarea id="pb-abstract" name="abstract" placeholder="Abstract...">
+                                    <textarea type="url" textarea id="pb-abstract" name="abstract" placeholder="Abstract..."></textarea>
                                 </div>
                             </div>
                         </div>
