@@ -380,3 +380,9 @@ main .container .form-footer .submit-btn {
 main .container .form-footer .cancel-btn {
     background: var(--danger);
 }
+
+@media screen and (min-width: 24in) {
+    .full {
+        flex: 1 0 500px;
+    }
+}
