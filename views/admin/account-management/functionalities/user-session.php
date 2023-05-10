@@ -2,14 +2,13 @@
 session_start();
 include_once "../../../db/db.php";
 
-// check if user is logged in
-if (!isset($_SESSION['user_email'])) {
-    header("Location: ../../admin/account/login.php");
-    session_destroy();
-    exit();
+// Check if the user is logged in as an admin
+if ($_SESSION['account_type'] != 'admin') {
+    header("Location: ../../../views/public-user/home/home.php");
+    exit;
 }
 
-// fetch user details from database
+// Fetch user details from the database
 $user_query = "SELECT * FROM table_user WHERE email = $1";
 $user_result = pg_query_params($conn, $user_query, array($_SESSION['user_email']));
 if (!$user_result) {

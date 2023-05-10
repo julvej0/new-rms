@@ -19,23 +19,23 @@ include_once "../../../includes/admin/templates/header.php";
             <h2 id='h2Login'>SIGN IN</h2>
             </div>
             <br>
-            <form id='user_input'>
+            <form onsubmit = "return checkdata()" id='user_input' action = "functionalities/login-account.php" method = "POST" >
                 <label class='labelSubHeader'>EMAIL</label>
-                <input id="email" name="emailAddress" placeholder="example@g.batstate-u.edu.ph" type="text"><br>
+                <input id="login_email" name="emailAddress" placeholder="example@g.batstate-u.edu.ph" type="text"><br>
                 <label class='labelSubHeader'>PASSWORD</label>
                 <div id='password_container'>
-                    <input class="passwordInput" name="password" placeholder="Password" type="password" minlength='8' maxlength='16'>
+                    <input id="login_password" class="passwordInput" name="password" placeholder="Password" type="password" minlength='8' maxlength='16'>
                     <i class="toggle-password2 fas fa-eye-slash"></i>
                 </div>  
                 <br>
-                <input name="submit" type="button" value=" LOGIN " onclick='loginBtn()'>
+                <input name="login" type="submit" value=" LOGIN ">
                 <div style="display: flex; align-items: center; margin-top: 10px; margin-bottom: 10px;">
                     <hr style="flex: 1; margin-right: 10px; border-top: 1px solid gray;">
                     <label style="text-align: center; color: gray;">OR</label>
                     <hr style="flex: 1; margin-left: 10px; border-top: 1px solid gray;">
                 </div>
 
-                <input name="submit" type="button" onclick="window.location.href='sign-up.php'" value="SIGN UP">
+                <input type="button" onclick="window.location.href='sign-up.php'" value="SIGN UP">
                 <label id='labelSignUp' style='margin-top: 10px;'>Forgot Password?<a id='a_SignUp' onclick="showModal()">&nbsp;Click Here!</a></label>
                 <br>
             </div>

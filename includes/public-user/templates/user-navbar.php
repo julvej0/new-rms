@@ -1,7 +1,12 @@
 
+<?php
+session_start();
+?>
+
 <!-- css -->
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="../../../css/public-user/user-navbar.css">
+
 
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -33,7 +38,8 @@
                             <li><a href="../../../views/public-user/articles/articles.php">ARTICLES</a></li>
                             <li><a href="#">ABOUT</a></li>
                         </ul>
-                        <a class="signin-btn" href="../../../views/admin/account/login.php">SIGN IN</a>
+                        <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php' :  '../../../views/admin/account/login.php'?>"><?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?></a>
+                   
                     </div>
                 </div>
             </div>
