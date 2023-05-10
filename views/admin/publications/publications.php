@@ -10,6 +10,17 @@
 <body>
 <?php
     include '../../../includes/admin/templates/navbar.php';
+    include_once 'functionalities/publications_include/publication_filter_extract.php';
+    
+    include_once 'functionalities/publications_include/publication_filter.php';
+    
+    $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+
+    $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
+    $fund = isset($_GET['fund']) ? $_GET['fund']: 'empty_fund';
+    $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
+
+    $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
 ?>
     <main>
         <div class="header">
@@ -58,30 +69,29 @@
                     </div>
                 </form>
                 <div class="filter">
-                    <button class="btn">Type<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">Original</a></li>
-                        <li><a href="#">Review</a></li>
-                        <li><a href="#">Proceedings</a></li>
-                        <li><a href="#">Communication</a></li>
-                        <li><a href="#">International</a></li>
+                        <li><a href="<?=filterPublication($search, 'Original', $fund, $year)?>">Original</a></li>
+                        <li><a href="<?=filterPublication($search, 'Review', $fund, $year)?>">Review</a></li>
+                        <li><a href="<?=filterPublication($search, 'Proceedings', $fund, $year)?>">Proceedings</a></li>
+                        <li><a href="<?=filterPublication($search, 'Communication', $fund, $year)?>">Communication</a></li>
+                        <li><a href="<?=filterPublication($search, 'International', $fund, $year)?>">International</a></li>
                     </ul>
                 </div>
                 <div class="filter">
-                    <button class="btn">Fund<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$fund!="empty_fund" ? $fund: 'Fund'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">Funded</a></li>
-                        <li><a href="#">Non-funded</a></li>
+                        <li><a href="<?=filterPublication($search, $type, 'funded', $year)?>">Funded</a></li>
+                        <li><a href="<?=filterPublication($search, $type, 'non-funded', $year)?>">Non-funded</a></li>
                     </ul>
                 </div>
                 <div class="filter">
-                    <button class="btn">Year<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$year!="empty_year" ? $year: 'Year'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="#">2015</a></li>
-                        <li><a href="#">2016</a></li>
-                        <li><a href="#">2017</a></li>
-                        <li><a href="#">2018</a></li>
-                        <li><a href="#">2019</a></li>
+                        <?php
+                            include_once 'functionalities/publications_include/publication_filter_display.php';
+                        ?>
+                       
                     </ul>
                 </div>
                 <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
@@ -89,26 +99,16 @@
         </div>
         <section>
 
-            <div class="table-container">
+        <div class="table-container">
                 <?php
                     include_once 'functionalities/publications_include/publication_table.php';
                 ?>
             </div>
-
-            <div class="table-footer">
+            
+        
                 <?php
-                    include_once 'functionalities/publications_include/publication_count.php';
+                    include_once 'functionalities/publications_include/pagination.php';
                 ?>
-
-                <p><?=countPublications($conn, $additionalQuery)?></p>
-
-                <div class="pagination">
-                    <?php
-                        include_once 'functionalities/publications_include/pagination.php';
-                    ?>
-                </div>
-
-            </div>
         </section>
     </main>
 </section>
@@ -117,100 +117,6 @@
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script src="publications.js"></script>
-<script>
-           // Floating action rotate
-           let isRotated = false;
-            const checkboxContainer = document.getElementById("checkbox-container");
-
-            function rotateButton() {
-                const buttonIcon = document.getElementById("button-icon");
-                if (isRotated) {
-                    buttonIcon.style.transform = "rotate(0deg)";
-                    checkboxContainer.style.transition = "margin-top 0.3s ease-out, opacity 0.4s ease-in-out";
-                    checkboxContainer.style.opacity = 0;
-                    setTimeout(() => {
-                        checkboxContainer.style.marginTop = "0rem";
-                    
-                    setTimeout(() => {
-                        checkboxContainer.style.display = "none";
-                    }, 100); // wait for opacity transition to complete before hiding container
-                    }, 150); // wait for margin-top transition to complete before setting opacity to 0
-                    isRotated = false;
-                } else {
-                    buttonIcon.style.transform = "rotate(135deg)";
-                    checkboxContainer.style.transition = "margin-top 0.3s ease-in-out, opacity 0.4s ease-in-out";
-                    checkboxContainer.style.display = "block";
-                    setTimeout(() => {
-                    checkboxContainer.style.opacity = 1;
-                    checkboxContainer.style.marginTop = "0.5rem";
-                    }, 10); // wait for margin-top transition to complete before setting opacity to 1
-                    isRotated = true;
-                }
-                }
-
-
-
-            // get all the checkboxes
-            var checkboxes = document.querySelectorAll('input[type=checkbox]');
-
-            // loop through each checkbox
-            checkboxes.forEach(function(checkbox) {
-
-            // Hide cells that correspond to unchecked checkboxes by default
-            var colName = checkbox.name;
-            var cells = document.querySelectorAll('.' + colName);
-            cells.forEach(function(cell) {
-            cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-            });
-
-            // add event listener for when the checkbox state changes
-            checkbox.addEventListener('change', function() {
-                // get the name of the checkbox
-                var colName = this.name;
-                // get the table cells that correspond to this column name
-                var cells = document.querySelectorAll('.' + colName);
-                // loop through each cell and hide/show it based on checkbox state
-                cells.forEach(function(cell) {
-                cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-                });
-            });
-            });
-
-            // loop through each checkbox
-            checkboxes.forEach(function(checkbox) {
-
-                // get the stored state of the checkbox
-                var storedState = sessionStorage.getItem(checkbox.name);
-
-                // if there is a stored state, update the checkbox state to match it
-                if (storedState !== null) {
-                checkbox.checked = storedState === 'true';
-                }
-
-                // add event listener for when the checkbox state changes
-                checkbox.addEventListener('change', function() {
-                // store the state of the checkbox in session storage
-                sessionStorage.setItem(checkbox.name, checkbox.checked);
-                
-                // get the name of the checkbox
-                var colName = this.name;
-                // get the table cells that correspond to this column name
-                var cells = document.querySelectorAll('.' + colName);
-                // loop through each cell and hide/show it based on checkbox state
-                cells.forEach(function(cell) {
-                    cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-                });
-                });
-
-                // Hide cells that correspond to unchecked checkboxes by default
-                var colName = checkbox.name;
-                var cells = document.querySelectorAll('.' + colName);
-                cells.forEach(function(cell) {
-                cell.style.display = checkbox.checked ? 'table-cell' : 'none';
-                });
-            });
-
-</script>
 </body>
 
 <?php
