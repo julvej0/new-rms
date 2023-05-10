@@ -200,7 +200,11 @@ body {
     height: 100vh;
     top: 150px;
     padding: 0;
-    overflow-y: hidden;
+    overflow-y: scroll;
+}
+
+#main-content::-webkit-scrollbar {
+    display: none;
 }
 
 
