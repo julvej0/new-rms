@@ -82,7 +82,7 @@ form {
     font-size: x-small;
 }
 
-#email, .passwordInput {
+#login_email, .passwordInput {
     height: 50px;
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -93,7 +93,7 @@ form {
     width: 250px;
   }
 
-#email:hover, .passwordInput:hover {
+#login_email:hover, .passwordInput:hover {
     height: 50px;
     border-style: solid;
     background-color: #f9f9f9;
