@@ -43,8 +43,8 @@ function displayPublicationData($row, $conn) {
         // Join the author names and display them
         echo '<label>Authors:</label>';
         echo '<div class="article-authors">';
-        echo '&#8226';
-        echo implode('<br>&#8226;', $author_names);
+        echo '&#8226 ';
+        echo implode('<br>&#8226; ', $author_names);
         echo '</div>';
     } else {
         // Display only the label "Authors:"

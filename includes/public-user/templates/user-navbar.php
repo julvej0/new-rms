@@ -33,7 +33,7 @@
                             <li><a href="../../../views/public-user/articles/articles.php">ARTICLES</a></li>
                             <li><a href="#">ABOUT</a></li>
                         </ul>
-                        <a class="signin-btn" href="#">SIGN IN</a>
+                        <a class="signin-btn" href="../../../views/admin/account/login.php">SIGN IN</a>
                     </div>
                 </div>
             </div>
