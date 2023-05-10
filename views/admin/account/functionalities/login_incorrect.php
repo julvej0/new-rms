@@ -13,5 +13,18 @@ if(isset($_GET['login'])){
         
         ';
     }
+    else if ($_GET['login'] == "notexist"){
+        echo '
+            <script>
+                Swal.fire({
+                    title: "Error",
+                    text: "Accoutn does not exist",
+                    icon: "error"
+                    });
+            </script>
+        
+        
+        ';
+    }
 }
 ?>

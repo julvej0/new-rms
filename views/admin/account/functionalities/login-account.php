@@ -42,7 +42,7 @@ if (isset($_POST['login'] )) {
         }
     }
     else{
-        header("Location: ../../../../views/admin/account/login.php?login=error");
+        header("Location: ../../../../views/admin/account/login.php?login=notexist");
         exit();
     }
 }
