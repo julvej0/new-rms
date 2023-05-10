@@ -1,4 +1,9 @@
-
+body {
+    background: var(--grey);
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 .table-container {
     display: flex;
@@ -6,7 +11,6 @@
     justify-content: center;
     align-items: center;
     overflow: auto;
-
   }
 
 
