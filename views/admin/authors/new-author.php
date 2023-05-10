@@ -12,9 +12,9 @@
 <body>
 <?php
     include '../../../includes/admin/templates/navbar.php';
-    include_once 'functionalities/new-author_include/display_edit_author.php';
+    include_once 'functionalities/new-author_includes/display_edit_author.php';
     
-    include_once 'functionalities/new-author_include/options.php';
+    include_once 'functionalities/new-author_includes/options.php';
    
    
 ?>
