@@ -35,7 +35,8 @@ if (isset($_POST['updatePB'])) {
     $url = $_POST["google_scholar_details"];
     $sdg = $_POST["sdg_no"];
     $funding_nature = $_POST["nature_of_funding"];
-    $publisher = $_POST["publisher"]; 
+    $publisher = $_POST["publisher"];
+    $abstract = $_POST["abstract"];
 
     $sdg_string = implode(", ", $sdg);
 
@@ -52,13 +53,13 @@ if (isset($_POST['updatePB'])) {
 
 
     // Create SQL UPDATE statement
-    $update_query = "UPDATE table_publications SET title_of_paper=$1, type_of_publication=$2, publisher=$3, department=$4, college=$5, quartile=$6, campus=$7, sdg_no=$8, date_published=$9, google_scholar_details=$10, authors=$11, nature_of_funding=$12, funding_type=$13, funding_source=$14 WHERE publication_id=$15";
+    $update_query = "UPDATE table_publications SET title_of_paper=$1, type_of_publication=$2, publisher=$3, department=$4, college=$5, quartile=$6, campus=$7, sdg_no=$8, date_published=$9, google_scholar_details=$10, authors=$11, nature_of_funding=$12, funding_type=$13, funding_source=$14, abstract=$15 WHERE publication_id=$16";
 
     // Prepare the SQL statement
     $update_stmt = pg_prepare($conn, "update_pb_details", $update_query);
 
     // Execute the prepared statement with the input values
-    $update_result = pg_execute($conn, "update_pb_details", array($title, $type, $publisher, $department, $college, $quartile, $campus, $sdg_string, $date_published, $url, $authors_string, $funding_nature, $if_funded, $if_external, $pubID));
+    $update_result = pg_execute($conn, "update_pb_details", array($title, $type, $publisher, $department, $college, $quartile, $campus, $sdg_string, $date_published, $url, $authors_string, $funding_nature, $if_funded, $if_external, $abstract, $pubID));
 
     if (!$update_result) {
         die("Error in SQL query: " . pg_last_error());

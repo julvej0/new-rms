@@ -208,6 +208,11 @@
                                     <input type="url" id="pb-url" name="google_scholar_details" placeholder="Document Url" value="<?=$row['google_scholar_details']?>">
                                 </div>
                             </div>
+                            <div class="form-container">
+                                <div class="form-control"></div>
+                                    <label class="pb-label" for="pb-abstract">Abstract</label>
+                                    <textarea cols="30" rows="10" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..." value="<?=$row['abstract']?>"></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="sub-container">

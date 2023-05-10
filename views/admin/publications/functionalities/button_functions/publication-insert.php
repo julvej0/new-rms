@@ -26,6 +26,7 @@ if (isset($_POST['submitPB'])) {
     $sdg = $_POST["sdg_no"];
     $funding_nature = $_POST["nature_of_funding"];
     $publisher = $_POST["publisher"]; 
+    $abstract = $_POST["abstract"];
 
     $authors_string = implode(",", $authors); // join the array values with a comma delimiter
     $sdg_string = implode(", ", $sdg);
@@ -48,9 +49,9 @@ if (isset($_POST['submitPB'])) {
       }
     
 
-    $insert_query = "INSERT INTO table_publications (date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)";
+    $insert_query = "INSERT INTO table_publications (date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher, abstract) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)";
     $insert_stmt = pg_prepare($conn, "insert_publication_details", $insert_query);
-    $insert_result = pg_execute($conn, "insert_publication_details", array($date_published, $quartile, $authors_string, $department, $college, $campus, $title, $type, $if_external, $url, $sdg_string, $if_funded, $funding_nature, $publisher));
+    $insert_result = pg_execute($conn, "insert_publication_details", array($date_published, $quartile, $authors_string, $department, $college, $campus, $title, $type, $if_external, $url, $sdg_string, $if_funded, $funding_nature, $publisher, $abstract));
     
     if ($insert_result) {
         echo "Insert successful.";

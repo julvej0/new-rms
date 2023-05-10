@@ -1,4 +1,8 @@
 
+<?php
+session_start();
+?>
+
 <!-- css -->
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="../../../css/public-user/user-navbar.css">
@@ -36,7 +40,8 @@
                             <li><a href="../../../views/public-user/articles/articles.php" id='ip-link'>IP ASSETS</a></li>
                             <li><a href="#" id='abt-link'>ABOUT</a></li>
                         </ul>
-                        <a class="signin-btn" href="#">SIGN IN</a>
+                        <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php' :  '../../../views/admin/account/login.php'?>"><?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?></a>
+                   
                     </div>
                 </div>
             </div>
