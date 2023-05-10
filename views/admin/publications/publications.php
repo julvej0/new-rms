@@ -56,8 +56,6 @@
                         <label class="checkbox-button" for="col-fund-agency">Fund Agency</label><br>
                         <input type="checkbox" name="col-citations" id="col-citations" checked >
                         <label class="checkbox-button" for="col-citations">Citations</label>
-                        <input type="checkbox" name="col-status" id="col-status" checked >
-                        <label class="checkbox-button" for="col-status">Status</label>
                     </div>
                 </div>
             <div class='left'>
