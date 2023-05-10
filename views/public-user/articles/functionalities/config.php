@@ -6,8 +6,8 @@ function encryptor($action, $string) {
     $output = false;
     $encrypt_method = "AES-256-CBC";
     
-    $secret_key = 'Tech Area';
-    $secret_iv = 'tech@12345678';
+    $secret_key = 's2ec53r38et63n5gR55MS8';
+    $secret_iv = 'se82c6re59t3ng26R3MS864';
 
    
     $key = hash('sha256', $secret_key);

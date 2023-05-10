@@ -1,8 +1,10 @@
 <?php
     require_once('functionalities/publication-get-info.php');
+    require_once('functionalities/publications_include/publication_count.php');
 
-    $additionalQuery= authorSearch($conn);
-    $table_rows = get_data($conn, $additionalQuery);
+    $additionalQuery = authorSearch($conn, $search);
+    $table_rows = get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number);
+    $total_records = countPublications($conn, $additionalQuery, $search, $type, $fund, $year );
 ?>
 
 <table>
@@ -29,13 +31,6 @@
     <tbody>
         <tr>
         <?php
-            //Search Query
-            $search_query = isset($_GET['search']) ? $_GET['search'] : '';
-            $no_of_records_per_page = 10;
-            // Get total number of records
-            $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_publications WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher, status) ILIKE '%$search_query%';");
-            $total_records = pg_fetch_result($result_count, 0, 0);
-            $total_pages = ceil($total_records / $no_of_records_per_page);
         
         if ($table_rows !== null) {
         foreach ($table_rows as $row) {
