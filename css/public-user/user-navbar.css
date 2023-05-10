@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
 
-body {
-    background: var(--grey);
-    position: relative;
-    overflow-x: hidden;
+.container {
+    width: 100vw;
     height: 150px;
-    resize: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .navbar-container {
@@ -15,7 +14,7 @@ body {
     gap: 10px;
     height: 150px;
     padding: 5px 0;
-    background: var(--grey);
+    background: transparent;
     position: absolute;
     left: -220px;
 }
@@ -189,8 +188,10 @@ body {
     transform-origin: right;
 }
 
-.navbar-container .right-content .nav-links a:hover::before,
-.navbar-container .right-content .nav-links a:hover::after {
+.navbar-container .right-content .nav-links > li > a:hover::before,
+.navbar-container .right-content .nav-links > li > a:hover::after,
+.navbar-container .right-content .nav-links > li > a.active::before,
+.navbar-container .right-content .nav-links > li > a.active::after {
     transform: scaleX(1);
 }
 

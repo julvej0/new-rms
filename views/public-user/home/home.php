@@ -8,6 +8,7 @@
     <?php 
     include '../../../includes/public-user/templates/user-navbar.php'; 
     ?>
+<div class="home-content">
     <section id="hero-img">
         <div class="rms-title">
             <h1>Research Management Services</h1>
@@ -21,12 +22,7 @@
             </form>
         </div>
     </section>
-    <section id="publication">
-        <div class="title">
-            <h3>Publications</h3>
-        </div>
-    </section>
-</main>
+</div>
 </body>
 <?php 
     include '../../../includes/admin/templates/header.php';

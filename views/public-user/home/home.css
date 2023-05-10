@@ -1,3 +1,11 @@
+body {
+    background: var(--grey);
+    position: relative;
+    overflow-x: hidden;
+}
+.home-content {
+    height: auto;
+}
 #hero-img {
     width: 100%;
     height: 550px;
@@ -53,24 +61,15 @@
 
 /* PUBLICATIONS */
 
-#publication {
-    padding: 30px;
-    width: 100%;
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    grid-gap: 50px;
-}
-
-#publication .title h3 {
+/* 
+#main .main-content-wrapper .title h3 {
     font-size: 30px;
     color: var(--text-color);
     letter-spacing: 1px;
     position: relative;
 }
 
-#publication .title h3::after {
+#main .main-content-wrapper .title h3::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -79,4 +78,4 @@
     width: 50%;
     height: 2px;
     bottom: -4px;
-}
+} */

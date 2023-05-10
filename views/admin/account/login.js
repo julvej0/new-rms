@@ -1,35 +1,26 @@
 
-function loginBtn () {
-    var emailAddress = document.getElementById('email').value;
-    var passwordInput = document.getElementsByClassName('passwordInput')[0].value;
+function checkdata() {
+    var emailAddress = document.getElementById('login_email').value;
+    var passwordInput = document.getElementById('login_password').value;
 
-    
+    console.log(emailAddress);
 
-      // send the OTP and email address to verify_otp.php
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "functionalities/login-account.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-        if (xhr.responseText === "success") {
-            // redirect the user to a success page
-            window.location.href = "../../../views/admin/account-management/user-profile.php";
-            console.log(xhr.responseText)
+    if (emailAddress == '' || passwordInput == ''){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please enter your email/password',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
 
-        } else {
-            // display an error message
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Incorrect Email or Password',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
-                console.log(xhr.responseText)
-        }
-        }
-    };
-    xhr.send("email=" + encodeURIComponent(emailAddress) + "&password=" + encodeURIComponent(passwordInput));
+        return false;
+    }
+    else{
+        return true;
+    }
+
+
 }
 
   
