@@ -22,6 +22,24 @@
             </form>
         </div>
     </section>
+    <div class="main-container">
+        <div class="content">
+            <div class="title">
+                <h3>Publications</h3>
+            </div>
+            <div class="card-container">
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <?php 
