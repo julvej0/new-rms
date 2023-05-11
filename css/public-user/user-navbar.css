@@ -15,7 +15,7 @@
     height: 150px;
     padding: 5px 0;
     background: transparent;
-    position: absolute;
+    position: fixed;
     left: -220px;
     z-index: 5;
 }
@@ -29,6 +29,7 @@
     left: 0;
     padding: 3px 5px;
     background: var(--primary);
+    z-index: 5;
 }
 
 .navbar-container .left .left-md-container {
@@ -100,6 +101,7 @@
     transform-origin: left;
     right: 0;
     padding: 3px 5px;
+    z-index: 5;
 }
 
 .navbar-container .right .right-md-container {
@@ -199,12 +201,16 @@
     transform-origin: right;
 }
 
-.navbar-container .right-content .nav-links a:not(.signin-btn):hover::before > li > a:hover::before ,
-.navbar-container .right-content .nav-links a:not(.signin-btn):hover::after > li > a:hover::after , 
+.navbar-container .right-content .nav-links > li > a:hover::before ,
+.navbar-container .right-content .nav-links > li > a:hover::after , 
 .navbar-container .right-content .nav-links > li > a.active::before,
 .navbar-container .right-content .nav-links > li > a.active::after
+ {
+    transform: scaleX(1);
+}
+
 .dropdown a:hover::before,
-.dropdown a:hover::after {
+.dropdown a:hover::after{
     transform: scaleX(1);
 }
 
