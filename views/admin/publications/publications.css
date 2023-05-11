@@ -383,3 +383,25 @@ main table tr td .icon {
     transform: scale(1.05, 1.1);
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
   }
+
+
+main .table-footer .download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .table-footer .download button {
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    background: var(--green);
+    color: var(--light);
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+main .table-footer .download button:hover {
+    opacity: 80%;
+}

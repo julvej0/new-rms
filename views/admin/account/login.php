@@ -1,5 +1,7 @@
 <?php
 include_once "../../../includes/admin/templates/header.php";
+
+
 ?>
 
 <link rel="stylesheet" href="login.css">
@@ -125,5 +127,6 @@ function showModal() {
 
 
 <?php
+include_once "functionalities/login_incorrect.php";
 include_once "../../../includes/admin/templates/footer.php";
 ?>

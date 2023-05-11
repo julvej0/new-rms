@@ -4,10 +4,14 @@
 ?>
 <div class="table-footer">
     <p><?=$count_text.' '.$total_records?></p>
+    <div class="download">
+        <button onclick="openModal()" class="download-btn">Download</button>
+    </div>
     <div class="pagination">
         <?php
             $items_per_page = 10;
             $total_pages = ceil($total_records / $items_per_page);
+
             
 
             if ($total_pages > 1) {
