@@ -12,7 +12,7 @@ function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_
                         FROM (
                             SELECT * 
                             FROM table_ipassets 
-                            WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors, status, certificate) ILIKE '%$search_query%' ";
+                            WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, date_registered, campus, college, program, authors, status, certificate) ILIKE '%$search_query%' ";
     
     if ($additionalQuery !== "empty_search") {
         $sqlSearchQuery .= $additionalQuery;
