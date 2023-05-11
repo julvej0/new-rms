@@ -24,7 +24,6 @@
             <th class="col-fund-type">Fund Type</th>
             <th class="col-fund-agency">Fund Source</th>
             <th class="col-citations">Citations</th>
-            <th class="col-status">Status</th>
             <th class='stickey-col-header' style="background-color: var(--grey);">Actions</th>
         </tr>
     </thead>
@@ -50,7 +49,6 @@
             <td class="publication-col col-fund-type"><?=$row['funding_type'];?></td>
             <td class="publication-col col-fund-agency"><?=$row['funding_source'];?></td>
             <td class="publication-col col-citations"><?=$row['number_of_citation'];?></td>
-            <td class="publication-col col-status"><?=$row['status'];?></td>
             <td class='pb-action-btns stickey-col'>
             <!-- Open certificate in a new tab-->
                 <a href="<?=$row['google_scholar_details'];?>" target="_blank" class="gdrive-btn">

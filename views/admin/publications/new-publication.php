@@ -221,15 +221,14 @@
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-url">Document Url</label>
-                                    <input type="url" id="pb-url" name="google_scholar_details" placeholder="Document Url">
+                                    <label class="pb-label" for="pb-abstract">Abstract</label>
+                                    <textarea cols="25" rows="13" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..."></textarea>
                                 </div>
                             </div>
                             <div class="form-container">
-                                <div class="form-control"></div>
-                                    <label class="pb-label" for="pb-abstract">Abstract</label>
-                                    <input type="url" textarea id="pb-abstract" name="abstract" placeholder="Abstract...">
-                                    <textarea type="url" textarea id="pb-abstract" name="abstract" placeholder="Abstract..."></textarea>
+                                <div class="form-control">
+                                    <label class="pb-label" for="pb-url">Document Url</label>
+                                    <input type="url" id="pb-url" name="google_scholar_details" placeholder="Document Url">
                                 </div>
                             </div>
                         </div>

@@ -108,6 +108,7 @@ body {
     margin: 4px 0;
     white-space: nowrap;
 }
+
 #sidebar .side-menu > li > a:hover {
     background: var(--grey);
 }
@@ -117,7 +118,7 @@ body {
 }
 
 #sidebar .side-menu > li > a.active,
-#sidebar .side-men > li > a.active:hover {
+#sidebar .side-menu > li > a.active:hover {
     background: var(--primary);
     color: var(--light);
 }

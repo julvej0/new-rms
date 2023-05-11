@@ -1,8 +1,13 @@
+body {
+    background: var(--light);
+    position: relative;
+    overflow-x: hidden;
+}
 #hero-img {
     width: 100%;
     height: 550px;
     background-image: radial-gradient(rgba(0, 0, 0, .315),
-     rgba(0, 0, 0, .4)), url('../../../assets//images/background_img.jpg');
+     rgba(0, 0, 0, .4)), url('../../../assets//images/background_img.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -11,6 +16,7 @@
     justify-content: center;
     align-items: center;
     grid-gap: 50px;
+    border: 3px solid #555;
 }
 
 #hero-img .rms-title h1 {
@@ -53,24 +59,71 @@
 
 /* PUBLICATIONS */
 
-#publication {
+.home-content {
+    background: var(--light);
+}
+
+.home-content .main-container {
+    height: 100%;
     padding: 30px;
-    width: 100%;
-    height: 450px;
+    background: var(--grey);
+    width: 85%;
+    margin: auto;
+}
+
+.home-content .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    grid-gap: 50px;
+    gap: 30px;
 }
 
-#publication .title h3 {
+.home-content .content .title h3 {
+    letter-spacing: 1px;
+    font-size: 30px;
+    color: var(--text-color);
+    position: relative;
+}
+
+.home-content .content .title h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary);
+    width: 60%;
+    height: 3px;
+    bottom: -4px;
+    border-radius: 5px;
+}
+
+.home-content .content .card-container {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.home-content .content .card-container .card {
+    width: 380px;
+    height: 500px;
+    border-radius: 3px;
+    background: var(--light);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, .1);
+}
+
+
+/* 
+#main .main-content-wrapper .title h3 {
     font-size: 30px;
     color: var(--text-color);
     letter-spacing: 1px;
     position: relative;
 }
 
-#publication .title h3::after {
+#main .main-content-wrapper .title h3::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -79,4 +132,4 @@
     width: 50%;
     height: 2px;
     bottom: -4px;
-}
+} */

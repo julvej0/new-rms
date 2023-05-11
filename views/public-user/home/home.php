@@ -1,3 +1,4 @@
+<title>RMS | Home</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
 ?>
@@ -8,6 +9,7 @@
     <?php 
     include '../../../includes/public-user/templates/user-navbar.php'; 
     ?>
+<div class="home-content">
     <section id="hero-img">
         <div class="rms-title">
             <h1>Research Management Services</h1>
@@ -21,12 +23,25 @@
             </form>
         </div>
     </section>
-    <section id="publication">
-        <div class="title">
-            <h3>Publications</h3>
+    <div class="main-container">
+        <div class="content">
+            <div class="title">
+                <h3>Publications</h3>
+            </div>
+            <div class="card-container">
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+            </div>
         </div>
-    </section>
-</main>
+    </div>
+</div>
 </body>
 <?php 
     include '../../../includes/admin/templates/header.php';
