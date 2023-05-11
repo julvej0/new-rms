@@ -1,13 +1,15 @@
+<title>RMS | Home</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
+<?php 
+    include '../../../includes/public-user/templates/user-navbar.php'; 
+?>
 
 <body>
-    <?php 
-    include '../../../includes/public-user/templates/user-navbar.php'; 
-    ?>
+    
 <div class="home-content">
     <section id="hero-img">
         <div class="rms-title">
@@ -29,13 +31,19 @@
             </div>
             <div class="card-container">
                 <div class="card">
-
+                    <div>
+                        <h3>Top Contributors</h3>
+                    </div>
                 </div>
                 <div class="card">
-
+                    <div>
+                        <h3>Most Cited Articles</h3>
+                    </div>
                 </div>
                 <div class="card">
-
+                    <div>
+                        <h3>Recently Added Articles</h3>
+                    </div>
                 </div>
             </div>
             <div class="see-more-btn">

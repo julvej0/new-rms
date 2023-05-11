@@ -3,13 +3,24 @@
 session_start();
 ?>
 
+
+
 <!-- css -->
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="../../../css/public-user/user-navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+
 
 
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="sweetalert2.min.css">
+
+
+
+
 <body>
     
 <div class="container">
@@ -39,9 +50,36 @@ session_start();
                             <li><a href="#" id='pb-link'>PUBLICATIONS</a></li>
                             <li><a href="../../../views/public-user/articles/articles.php" id='ip-link'>IP ASSETS</a></li>
                             <li><a href="#" id='abt-link'>ABOUT</a></li>
+                            <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php?logout=1' :  '../../../views/admin/account/login.php'?>" onclick="<?=isset($_SESSION['user_email']) ? 'return showLogoutAlert()' : ''?>">
+                                <?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?>
+                            </a>
                         </ul>
-                        <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php' :  '../../../views/admin/account/login.php'?>"><?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?></a>
-                   
+                        <?php
+                            $sessionActive = isset($_SESSION['user_email']);
+                            $accountType = isset($_SESSION['account_type']) ? $_SESSION['account_type'] : '';
+
+                            // Check if the user is an author
+                            $isAuthor = $accountType == 'author';
+                        ?>
+
+                        <div class="dropdown-container <?= $sessionActive ? 'show' : '' ?>" >
+                            <?php if ($sessionActive): ?>
+                                <i class="fas fa-cog" onclick="toggleDropdown()"></i>
+                                <div class="dropdown" id="dropdown">
+                                    <a style='margin-right: 30px;' href="../../../views/public-user/profile/user-profile.php">
+                                        <i class="fas fa-user"></i> PROFILE
+                                    </a>
+                                    <?php if ($isAuthor): ?>
+                                        <a style='margin-right: 30px;' href="author-info.php">
+                                            <i class="fas fa-info-circle"></i> AUTHOR INFORMATION
+                                        </a>
+                                    <?php endif; ?>
+                                    <a href="../../../views/public-user/profile/user-security.php">
+                                        <i class="fas fa-lock"></i> CHANGE PASSWORD
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,6 +89,28 @@ session_start();
 </div>
 <!-- SCRIPT -->
 <script src="../../../js/public-user/user-navbar.js"></script>
+<script src="../../../js/public-user/profile-dropdown.js"></script>
+<script>
+    function showLogoutAlert() {
+        Swal.fire({
+            icon: 'question',
+            title: 'Logout Confirmation',
+            text: 'Are you sure you want to logout?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Logout',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to the logout page
+                window.location.href = '../../../views/admin/account/functionalities/logout.php?logout=1';
+            }
+        });
+
+        return false; // Prevent the default behavior of the anchor tag
+    }
+</script>
 <!-- CONTENT -->
 
 
