@@ -15,7 +15,7 @@
     height: 150px;
     padding: 5px 0;
     background: transparent;
-    position: fixed;
+    position: absolute;
     left: -220px;
     z-index: 5;
 }

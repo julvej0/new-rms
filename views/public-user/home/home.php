@@ -4,11 +4,12 @@
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
+<?php 
+    include '../../../includes/public-user/templates/user-navbar.php'; 
+?>
 
 <body>
-    <?php 
-    include '../../../includes/public-user/templates/user-navbar.php'; 
-    ?>
+    
 <div class="home-content">
     <section id="hero-img">
         <div class="rms-title">
