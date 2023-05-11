@@ -4,7 +4,7 @@
         $gender_filter = isset($_GET['gender']) ? $_GET['gender'] : null;
         $role_filter = isset($_GET['role']) ? $_GET['role'] : null;
 
-        $count_sql = "SELECT COUNT(*) FROM table_authors WHERE author_name ILIKE '%$search_query%'";
+        $count_sql = "SELECT COUNT(*) FROM table_authors WHERE CONCAT(author_id, author_name, affiliation) ILIKE '%$search_query%'";
         if ($gender_filter !== null) {
             $count_sql .= " AND gender = '$gender_filter' ";
         }
