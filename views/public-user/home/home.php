@@ -31,13 +31,19 @@
             </div>
             <div class="card-container">
                 <div class="card">
-
+                    <div>
+                        <h3>Top Contributors</h3>
+                    </div>
                 </div>
                 <div class="card">
-
+                    <div>
+                        <h3>Most Cited Articles</h3>
+                    </div>
                 </div>
                 <div class="card">
-
+                    <div>
+                        <h3>Recently Added Articles</h3>
+                    </div>
                 </div>
             </div>
         </div>
