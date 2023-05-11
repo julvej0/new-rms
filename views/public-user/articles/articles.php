@@ -1,3 +1,4 @@
+<title>RMS | Patented Articles</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../includes/public-user/templates/user-navbar.php'; 

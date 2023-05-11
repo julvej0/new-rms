@@ -10,7 +10,7 @@ body {
     width: 100%;
     height: 550px;
     background-image: radial-gradient(rgba(0, 0, 0, .315),
-     rgba(0, 0, 0, .4)), url('../../../assets//images/background_img.jpg');
+     rgba(0, 0, 0, .4)), url('../../../assets//images/background_img.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

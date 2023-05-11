@@ -1,3 +1,4 @@
+<title>RMS | Home</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
 ?>

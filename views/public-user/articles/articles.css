@@ -204,7 +204,7 @@ span {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     padding: 2%;
     border-radius: 10px;
-    text-align: justify;
+   
     
 }
 .article-title{
@@ -229,7 +229,7 @@ span {
     background-color: #cf102d;
     color: white;
     border: none;
-    width: 200px;
+    width: 250px;
     text-align: center;
     padding: 10px;
     margin-top: 2%;
@@ -242,4 +242,5 @@ span {
 }
 .abstract-cont{
     font-size: .9rem;
+    text-align: justify;
 }
