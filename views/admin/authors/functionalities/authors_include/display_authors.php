@@ -7,7 +7,7 @@
 
     
     $offset = ($page_number - 1) * $items_per_page;
-    $sql = "SELECT * FROM table_authors WHERE author_name ILIKE '%$search_query%' ";
+    $sql = "SELECT * FROM table_authors WHERE CONCAT(author_id, author_name, affiliation) ILIKE '%$search_query%' ";
     if ($gender_filter !== null) {
         $sql .= " AND gender = '$gender_filter' ";
     }
