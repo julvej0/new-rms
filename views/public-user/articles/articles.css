@@ -163,12 +163,12 @@ span {
     transition: all 0.3s ease;
 }
 .css-tr:hover {
-    background-color: #cf102d;
+    background-color: hsl(350, 250%, 30%);
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    
 }
+
 
 .css-header {
     background-color: white; /* Add a background color to make it visible */

@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: Poppins;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+#whole-page {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* mini-pages */
+
+.mini-page {
+    display: none;
+    position: absolute;
+    top: 160px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #ccc;
+    height: 100%;
+    border: none;
+}
+
+.mini-page.active {
+    display: block;
+}
+
+/* profile-page */
+#profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-right: 20px;
+    transition: all 0.3s ease;
+}
+
+.profile-photo:hover img {
+    filter: blur(1.2px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-photo:hover {
+    border-color: greenyellow;
+    /* change the border color when input is in focus */
+    outline: none;
+    /* remove default outline */
+    box-shadow: 5px 5px 10px greenyellow;
+    /* add custom box-shadow when input is in focus */
+    transition: all 0.3s ease;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-row {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.profile-row label {
+    width: 100px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.profile-row input[type="text"] {
+    border: none;
+    background-color: #f5f5f5;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 400px;
+    height: 40px;
+}
+
+.profile-row input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px #aaa;
+}
+
+.edit-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #cf102d;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 65px;
+    transition: all 0.3s ease;
+}
+
+.edit-button:hover {
+    border: solid;
+    background-color: white;
+    color: #cf102d;
+    transition: all 0.3s ease;
+    border-color: #cf102d;
+}
+
+
+
+
+/* modal */
+/* CSS code for popup modal */
+.modal-content {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 30%;
+    left: 32%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    width: 38em;
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Style the close button */
+.close {
+    color: #aaaaaa;
+    margin-right: 10px;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content form label {
+    display: block;
+    margin-left: 7.5em;
+    width: 60%;
+}
+
+.modal-content h2 {
+    text-align: center;
+    background-color: #cf102d;
+    color: white;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 20px
+}
+
+.modal-content #submit-password {
+    display: block;
+    margin-left: 9em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60%;
+    height: 40px;
+    background-color: #cf102d;
+    color: white;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.modal-content #submit-password:hover {
+    display: block;
+    margin-left: 9em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60%;
+    height: 40px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.modal-content form input[type=password],
+.modal-content form input[type=text],
+.modal-content form input[type=email] {
+    display: block;
+    margin-left: 9em;
+    width: 60%;
+}
+
+.modal-content .oldPasswordInput,
+.modal-content .passwordInput,
+.modal-content #confirmPasswordInput {
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    border: 2px solid lightgray;
+    transition: all 0.3s ease;
+}
+
+.modal-content .oldPasswordInput:focus,
+.modal-content .passwordInput:focus,
+.modal-content #confirmPasswordInput:focus,
+.modal-content .oldPasswordInput:hover,
+.modal-content .passwordInput:hover,
+.modal-content #confirmPasswordInput:hover {
+    border-color: greenyellow;
+    /* change the border color when input is in focus */
+    outline: none;
+    /* remove default outline */
+    box-shadow: 0 0 5px greenyellow;
+    /* add custom box-shadow when input is in focus */
+    transition: all 0.3s ease;
+}
+
+.modal-content label {
+    padding-top: 20px;
+}
+
+
+.password-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.toggle-password {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 455px;
+    cursor: pointer;
+
+}
+
+/* 
+change email modal */
+
+
+.modal-content #new-email,
+.modal-content #confirm-email {
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    border: 2px solid lightgray;
+    transition: all 0.3s ease;
+}
+
+.modal-content #new-email:focus,
+.modal-content #confirm-email:focus,
+.modal-content #new-email:hover,
+.modal-content #confirm-email:hover {
+    border-color: greenyellow;
+    /* change the border color when input is in focus */
+    outline: none;
+    /* remove default outline */
+    box-shadow: 0 0 5px greenyellow;
+    /* add custom box-shadow when input is in focus */
+    transition: all 0.3s ease;
+}
+
+

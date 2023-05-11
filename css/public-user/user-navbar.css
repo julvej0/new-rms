@@ -18,6 +18,7 @@ body {
     background: var(--grey);
     position: absolute;
     left: -220px;
+    z-index: 5;
 }
 
 .navbar-container .left {
@@ -127,7 +128,7 @@ body {
     transform: skewX(50deg);
     position: absolute;
     width: 78%;
-    right: 15%;
+    right: 17%;
     transform: translateX(-50%, -50%);
     display: flex;
     align-items: center;
@@ -156,6 +157,10 @@ body {
 .navbar-container .right-content .nav-links li {
     list-style-type: none;
     margin-right: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .navbar-container .right-content a {
@@ -167,8 +172,10 @@ body {
     display: inline-block;
 }
 
-.navbar-container .right-content .nav-links a::before,
-.navbar-container .right-content .nav-links a::after {
+.navbar-container .right-content .nav-links a:not(.signin-btn)::before,
+.navbar-container .right-content .nav-links a:not(.signin-btn)::after, 
+.dropdown a::before,
+.dropdown a::after{
     content: '';
     position: absolute;
     left: 0;
@@ -179,20 +186,27 @@ body {
     transition: all 0.3s ease;
 }
 
-.navbar-container .right-content .nav-links a::before {
+.navbar-container .right-content .nav-links a:not(.signin-btn)::before,
+.dropdown a::before,
+.dropdown a::after{
     top: -3px;
     transform-origin: left;
 }
 
-.navbar-container .right-content .nav-links a::after {
+.navbar-container .right-content .nav-links a:not(.signin-btn)::after,
+.dropdown a::before,
+.dropdown a::after {
     bottom: -3px;
     transform-origin: right;
 }
 
-.navbar-container .right-content .nav-links a:hover::before,
-.navbar-container .right-content .nav-links a:hover::after {
+.navbar-container .right-content .nav-links a:not(.signin-btn):hover::before,
+.navbar-container .right-content .nav-links a:not(.signin-btn):hover::after, 
+.dropdown a:hover::before,
+.dropdown a:hover::after{
     transform: scaleX(1);
 }
+
 
 
 #main-content {
@@ -221,3 +235,80 @@ body {
         width: 2600px;
     }
 }
+
+/* dropdown settings */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-container i {
+    color: #fff;
+    margin-left: 30px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown i {
+    font-size: 12px;
+    margin-left: -1px;
+  }
+  
+  .rotate {
+    transform: rotate(180deg);
+  }
+  
+  .rotate-back {
+    transform: rotate(0);
+  }
+  
+  
+  
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 200%;
+    right:-30px;
+    background-color: var(--primary);
+    padding: 10px;
+    border-radius: 10px;
+    flex-direction: row;
+    animation: fadeSlideDown 0.3s ease forwards;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 570px;
+    height: 60px;
+    padding: 10px;
+  }
+  
+  .show {
+    display: flex;
+
+  }
+  
+  @keyframes fadeSlideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  .dropdown a {
+    transition: opacity 0.3s ease;
+    font-size: 14px;
+  }
+  
+  .show a {
+    opacity: 1;
+  }
+  
+  
+
+  

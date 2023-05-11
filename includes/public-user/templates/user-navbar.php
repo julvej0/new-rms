@@ -6,10 +6,18 @@ session_start();
 <!-- css -->
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="../../../css/public-user/user-navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+
 
 
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="sweetalert2.min.css">
+
+
+
 
 <section>
     <div class="navbar-container">
@@ -37,15 +45,44 @@ session_start();
                             <li><a href="#">PUBLICATIONS</a></li>
                             <li><a href="../../../views/public-user/articles/articles.php">ARTICLES</a></li>
                             <li><a href="#">ABOUT</a></li>
+                            <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php' :  '../../../views/admin/account/login.php'?>">
+                                <?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?>
+                            </a>
                         </ul>
-                        <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php' :  '../../../views/admin/account/login.php'?>"><?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?></a>
-                   
+                        <?php
+                            $sessionActive = isset($_SESSION['user_email']);
+                        ?>
+
+                        <div class="dropdown-container <?= $sessionActive ? 'show' : '' ?>" >
+                            <?php if ($sessionActive): ?>
+                                <i class="fas fa-cog" onclick="toggleDropdown()"></i>
+                                <div class="dropdown" id="dropdown">
+                                    <a style='margin-right: 30px;' href="../../../views/public-user/profile/user-profile.php">
+                                        <i class="fas fa-user"></i> PROFILE
+                                    </a>
+                                    <a style='margin-right: 30px;' href="author-info.php">
+                                        <i class="fas fa-info-circle"></i> AUTHOR INFORMATION
+                                    </a>
+                                    <a href="../../../views/public-user/profile/user-security.php">
+                                        <i class="fas fa-lock"></i> CHANGE PASSWORD
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- JS -->
+<script src="../../../js/public-user/profile-dropdown.js"></script>
+
+<script>
+    
+</script>
+
 <!-- CONTENT -->
 <main id="main-content">
 
