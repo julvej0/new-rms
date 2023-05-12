@@ -1,6 +1,6 @@
 <?php
 include_once '../../../../../db/db.php';
-if (isset($_POST['edit'])) {
+if (isset($_POST['a-name'],$_POST['a-gender'],$_POST['a-role'],$_POST['a-id'])) {
     $author_name = $_POST['a-name'];
     $gender = $_POST['a-gender'];
     $types = $_POST['a-role'];
@@ -54,13 +54,11 @@ if (isset($_POST['edit'])) {
         $update_query = "UPDATE table_authors SET author_name=$1, gender=$2, type_of_author=$3, affiliation=$4 WHERE author_id=$5";
         $update_stmt = pg_prepare($conn,"edit_author", $update_query);
         $update_result = pg_execute($conn,"edit_author",array($author_name, $gender, $types, $affiliation, $id));
-
-        $queryString = $_SERVER['QUERY_STRING'];
     
         if ($update_result) {
-            header("Location: ../../authors.php?".$queryString."update=success");
+            header("Location: ../../authors.php?search=".$author_name."&update=success");
         } else {
-            header("Location: ../../authors.php?".$queryString."update=failed");
+            header("Location: ../../authors.php?search=".$author_name."&update=failed");
         }
        
 
