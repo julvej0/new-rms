@@ -125,7 +125,7 @@
                                         $params = array();
                                         $result = pg_query_params($conn, $query, $params);
                                                                             
-                                        echo '<input list="authors" name="author_name[]"
+                                        echo '<select list="authors" name="author_id[]"
                                         style="
                                         width: 100%;
                                         height: 50px;
@@ -133,14 +133,14 @@
                                         border-radius: 5px;
                                         border: 1px solid var(--dark-grey);"
                                         onchange="showAuthorId(this)"
-                                        placeholder="Author Name..." required>';
+                                        required>';
                                         echo '<datalist id="authors">';
+                                        echo '<option hidden name="author_id[]" value="">Select an Author...</option>';
                                         while ($row = pg_fetch_assoc($result)) {
-                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                            echo '<option name="author_id[]" value="' . $row['author_id'] . '">' . $row['author_name'] . '</option>';
                                         }
                                         echo '</datalist>';
                                         ?>
-                                        <input type="hidden" name="author_id[]" class="author-id-input">
                                     </td>
                                     <td style="text-align: center;">
                                         <button type="button" class="add-row-btn" style="height: 50px;">+</button>
