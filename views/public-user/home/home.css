@@ -62,9 +62,9 @@ body {
 
 
 .home-content .main-container {
-    padding: 30px;
+    padding: 50px 30px;
     background: var(--grey);
-    width: 85%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -122,7 +122,7 @@ body {
 }
 
 .home-content .content .card-container .abt-card {
-    width: 90%;
+    width: 80%;
     padding: 30px;
 }
 
