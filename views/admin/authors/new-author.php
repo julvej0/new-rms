@@ -110,7 +110,7 @@
 
 <script src="./new-author.js"></script>
 <?php
-    include  'functionalities/new-author_include/affiliations.php';
+    include  'functionalities/new-author_includes/affiliations.php';
 ?>
 </body>
 

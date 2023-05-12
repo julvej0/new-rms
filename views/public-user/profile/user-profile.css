@@ -15,6 +15,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    
 }
 
 
@@ -24,6 +25,7 @@ body {
     background-color: white;
     display: flex;
     flex-direction: column;
+    
 }
 
 #userh2 {
