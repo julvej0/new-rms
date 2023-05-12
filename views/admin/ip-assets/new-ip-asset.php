@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="ipa-campus">Campus</label>
-                                    <select name="campus" class="ipa-input-field">
+                                    <select name="campus" class="ipa-input-field" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Alangilan">Alangilan</option>
                                         <option value="Balayan">Balayan</option>
@@ -72,7 +72,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="ipa-label" for="program">Program</label>
-                                    <select name="program" class="ipa-input-field">
+                                    <select name="program" class="ipa-input-field" required>
                                             <option value="" hidden>--Choose from the options--</option>
                                             <option value="Accountancy, Business, and International Hospitality">Accountancy, Business, and International Hospitality</option>
                                             <option value="Agriculture and Forestry">Agriculture and Forestry</option>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="college">College</label>
-                                    <input type="text" class="ipa-input-field" id="college" name="college" placeholder="College...">
+                                    <input type="text" class="ipa-input-field" id="college" name="college" placeholder="College..." required>
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="date-of-creation">Date of Creation</label>
@@ -133,7 +133,7 @@
                                         border-radius: 5px;
                                         border: 1px solid var(--dark-grey);"
                                         onchange="showAuthorId(this)"
-                                        placeholder="Author Name...">';
+                                        placeholder="Author Name..." required>';
                                         echo '<datalist id="authors">';
                                         while ($row = pg_fetch_assoc($result)) {
                                             echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
@@ -162,11 +162,11 @@
                                 <label class="reg-titles">Registered?</label>
                                 <div class="form-control">
                                     <div class="choices">
-                                        <input type="radio" name="registerInfo" id="registered" value="registered">
+                                        <input type="radio" name="registerInfo" id="registered" value="registered" required>
                                         <label for="registered" class="reg-choices">Yes</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" name="registerInfo" id="not-registered" value="not-registered" checked="checked">
+                                        <input type="radio" name="registerInfo" id="not-registered" value="not-registered" required>
                                         <label for="not-registered" class="reg-choices">No</label>
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate</label>
-                                    <input type="file" name="ip-certificate" id="ip-certificate" required accept=".png, .jpg, .jpeg">
+                                    <input type="file" name="ip-certificate" id="ip-certificate" accept=".png, .jpg, .jpeg">
                                 </div>
                             </div>
                         </div>

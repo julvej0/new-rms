@@ -181,3 +181,77 @@ window.addEventListener('click', (e) => {
     })
 })
 
+//Redirect Certificate
+
+function redirect(url){
+    if (url == 'no_url'){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          })
+
+          Toast.fire({
+            icon: 'info',
+            title: 'Certificate not set!'
+          })
+    }
+    else{
+        window.open(url, "_blank");
+    }
+
+}
+function submitDelete(id){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "functionalities/button_functions/ipa-delete.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+
+            if (xhr.responseText === "Error") {
+                // display an error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Delete was Unsuccessful',
+                    text: 'Something went wrong! Please try again later!',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                    });
+                    console.log(xhr.responseText)
+            }
+            else {
+                
+                    window.location.href=window.location.search+"&delete=success";
+                
+            }
+        }
+    };
+    xhr.send("id=" + id );
+
+}
+
+function confirmDelete(id){
+    
+    Swal.fire({
+        title: 'Are you sure?',
+        text: id + " will be deleted from Patented chuchu. You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            submitDelete(id)
+        } 
+      });
+
+   
+
+}
+
+
+
