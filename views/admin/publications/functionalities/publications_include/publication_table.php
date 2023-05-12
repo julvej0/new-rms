@@ -57,11 +57,8 @@
                 <form action="edit-publication.php" method="POST">
                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                     <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon"></i></button>
-                </form>
-                <form action="functionalities/button_functions/publication-delete.php" method="POST" class="delete-form">
-                    <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
-                    <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can icon"></i></button>
-                </form>                            
+                </form>      
+                <button class="delete-btn" name="delete" onclick="confirmDelete('<?=$row['publication_id']?>')"><i class="fa-solid fa-trash-can"></i></button>                   
             </td>
     </tr>
     <?php

@@ -1,6 +1,6 @@
 <?php
 include_once '../../../../../db/db.php';
-if (isset($_POST['insert'])) {
+if (isset($_POST['a-name'],$_POST['a-gender'],$_POST['a-role'])) {
     $author_name = $_POST['a-name'];
     $gender = $_POST['a-gender'];
     $types = $_POST['a-role'];
