@@ -49,23 +49,23 @@
             $certificate = $row['certificate'];
             $hyperlink = $row['hyperlink'];
 
-            if (empty($hyperlink)) {
-                // if hyperlink value is missing, set href attribute of <a> tag to the src attribute of <img> tag
-                $hyperlink = $dir . $certificate;
+            if (empty($hyperlink)){
+                $hyperlink = $dir. $certificate;
             }
             ?>
 
-            <a href="<?=$hyperlink;?>" target="<?php echo strpos($hyperlink, 'drive.google.com') !== false ? '_blank' : '_blank'; ?>" class="gdrive-btn">
+
+            
+            <a onclick="redirect('<?=$hyperlink != null? $hyperlink : 'no_url';?>')"  class="gdrive-btn">
                 <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
             </a>
             <form action="edit-ipa.php" method="POST">
                 <input type="hidden" name="row_id" value="<?=$row['registration_number']?>">
                 <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square"></i></button>
             </form>
-            <form action="functionalities/button_functions/ipa-delete.php" method="POST">
-                <input type="hidden" name="row_id" value="<?=$row['registration_number']?>">
-                <button type="submit" class="delete-btn" name="delete"><i class="fa-solid fa-trash-can"></i></button>
-            </form>
+           
+            <button class="delete-btn" name="delete" onclick="confirmDelete('<?=$row['registration_number']?>')"><i class="fa-solid fa-trash-can"></i></button>
+           
         </td>
     </tr>
     <?php

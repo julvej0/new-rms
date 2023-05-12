@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
 
+
+
 .container {
     width: 100vw;
     height: 150px;
     position: relative;
     overflow: hidden;
+    z-index: 1; /* Set a higher z-index value for the container */
 }
 
 .navbar-container {
@@ -16,9 +19,11 @@
     padding: 5px 0;
     background: transparent;
     position: absolute;
+    top: 0;
     left: -220px;
-    z-index: 5;
+    z-index: 2; /* Set a higher z-index value for the navbar-container */
 }
+
 
 .navbar-container .left {
     position: relative;
@@ -199,12 +204,16 @@
     transform-origin: right;
 }
 
-.navbar-container .right-content .nav-links a:not(.signin-btn):hover::before > li > a:hover::before ,
-.navbar-container .right-content .nav-links a:not(.signin-btn):hover::after > li > a:hover::after , 
+.navbar-container .right-content .nav-links > li > a:hover::before ,
+.navbar-container .right-content .nav-links > li > a:hover::after , 
 .navbar-container .right-content .nav-links > li > a.active::before,
 .navbar-container .right-content .nav-links > li > a.active::after
+ {
+    transform: scaleX(1);
+}
+
 .dropdown a:hover::before,
-.dropdown a:hover::after {
+.dropdown a:hover::after{
     transform: scaleX(1);
 }
 
@@ -256,7 +265,7 @@
   }
   
   .rotate {
-    transform: rotate(180deg);
+    transform: rotate(360deg);
   }
   
   .rotate-back {

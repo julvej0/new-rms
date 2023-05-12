@@ -72,7 +72,17 @@ if (isset($_POST['submitIPA'])) {
                     }
         }
     } else {
-        echo "Error: " . $_FILES["ip-certificate"]["error"];
+        $insert_query = "INSERT INTO table_ipassets (registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, date_registered, campus, college, program, authors, hyperlink, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)";
+                            $insert_stmt = pg_prepare($conn, "insert_ipa_details", $insert_query);
+                            $insert_result = pg_execute($conn, "insert_ipa_details", array($registration_number, $title_of_work, $type_of_document, $class_of_work, $date_of_creation, $date_registered, $campus, $college, $program, $authors_string, $hyperlink, $status));
+
+                            if ($insert_result) {
+                                echo "Insert successful.";
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?success");
+                            } else {
+                                echo "Insert failed.";
+                            }
+
     }
     
 } else {
