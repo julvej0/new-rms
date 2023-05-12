@@ -33,9 +33,9 @@
             </div>
             <div class="card-container">
                 <div class="card">
-                    <div>
+                    <div class="card-content">
                         <h3>Top Contributors</h3>
-                        <div>
+                        <div class="table">
                             <?php 
                             echo getPublicationsContributors($conn);
                             ?>
@@ -43,9 +43,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div>
-                        <h3>Most Cited Articles</h3>
-                        <div>
+                    <div class="card-content">
+                        <h3>Most Cited </h3>
+                        <div class="table">
                             <?php
                             echo getMostViewedPapers($conn);
                             ?>
@@ -53,9 +53,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div>
-                        <h3>Recently Added Articles</h3>
-                        <div>
+                    <div class="card-content">
+                        <h3>Recently Added </h3>
+                        <div class="table">
                             <?php
                             getRecentPublications($conn, 3)
                             ?>
@@ -111,5 +111,5 @@
 </div>
 </body>
 <?php 
-    include '../../../includes/admin/templates/header.php';
+    include '../../../includes/admin/templates/footer.php';
 ?>
