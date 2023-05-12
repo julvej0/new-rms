@@ -2,7 +2,7 @@
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../db/db.php';
-    include_once './functionalities/home-functions.php';
+    include_once './functionalities/home-publication-functions.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
