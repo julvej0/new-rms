@@ -150,9 +150,9 @@
                                                 border: 1px solid var(--dark-grey);"
                                                 onchange="showAuthorId(this)"                                                
                                                 placeholder="Author Name...">
-                                                <option type="hidden" class="author-id-input" value="' . $author_list_row['author_id'] . '">'.$author_list_row['author_name'].'</option>';
+                                                <option hidden class="author-id-input" value="' . $author_list_row['author_id'] . '">'.$author_list_row['author_name'].'</option>';
                                                 echo '<datalist id="authors">';
-                                                $query = "SELECT author_id, author_name FROM table_authors";
+                                                $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
                                                 $params = array();
                                                 $result = pg_query_params($conn, $query, $params);
                                                 while ($author_row = pg_fetch_assoc($result)) {
