@@ -1,6 +1,8 @@
 <title>RMS | Home</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
+    include '../../../db/db.php';
+    include_once './functionalities/home-functions.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
@@ -33,16 +35,31 @@
                 <div class="card">
                     <div>
                         <h3>Top Contributors</h3>
+                        <div>
+                            <?php 
+                            echo getPublicationsContributors($conn);
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
                     <div>
                         <h3>Most Cited Articles</h3>
+                        <div>
+                            <?php
+                            echo getMostViewedPapers($conn);
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
                     <div>
                         <h3>Recently Added Articles</h3>
+                        <div>
+                            <?php
+                            getRecentPublications($conn, 3)
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
