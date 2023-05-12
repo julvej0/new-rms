@@ -163,8 +163,18 @@ function submitDelete(id){
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
 
-            if (xhr.responseText === "Error") {
-                // display an error message
+            if (xhr.responseText === "Success") {
+                let queryString = window.location.search;
+                const searchParams = new URLSearchParams(queryString);
+                if (searchParams.has('delete')) {
+                    searchParams.delete('delete');
+                }
+
+                window.location.href="?"+searchParams+"&delete=success";
+              
+            }
+            else {
+                
                 Swal.fire({
                     icon: 'error',
                     title: 'Delete was Unsuccessful',
@@ -173,10 +183,6 @@ function submitDelete(id){
                     confirmButtonText: 'OK'
                     });
                     console.log(xhr.responseText)
-            }
-            else {
-                
-                    window.location.href=window.location.search+"&delete=success";
                 
             }
         }
