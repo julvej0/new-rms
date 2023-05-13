@@ -2,7 +2,6 @@
 include_once "../../../db/db.php";
 require_once "config.php";
 
-// Check if the search query is set
 if (isset($_GET['search-table'])) {
   // Sanitize the search query to prevent SQL injection
   $search_query = pg_escape_string($conn, $_GET['search-table']);
@@ -14,6 +13,11 @@ if (isset($_GET['search-table'])) {
                WHERE table_authors.author_name ILIKE '%{$search_query}%'
                OR table_publications.title_of_paper ILIKE '%{$search_query}%'
                OR table_publications.campus ILIKE '%{$search_query}%'";
+
+  // Check if the search query is a valid year
+  if (is_numeric($search_query)) {
+    $sql_data .= " OR EXTRACT(YEAR FROM table_publications.date_published) = '{$search_query}'";
+  }
 } else {
   // Select or Retrieve all Data from Database if no search query is set
   $sql_data = "SELECT table_publications.*, table_authors.author_name
@@ -21,9 +25,10 @@ if (isset($_GET['search-table'])) {
                LEFT JOIN table_authors ON table_publications.authors LIKE '%' || table_authors.author_id || '%'";
 }
 
+
 $sql_result = pg_query($conn, $sql_data);
 
-if ($sql_result) {
+if ($sql_result && pg_num_rows($sql_result) > 0) {
   ?>
   <table id='css-table'>
   <tr id='css-header-container'>
@@ -73,6 +78,23 @@ if ($sql_result) {
   }
   ?>
   </table>
+  <?php
+}
+else {
+  // No results found
+
+  ?>
+  <script>
+    Swal.fire({
+      icon: 'warning',
+      title: 'No results found',
+      text: 'Your search query did not match any records.',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      // Clear the search query and reload the page
+      window.location.href = 'articles.php';
+    });
+  </script>
   <?php
 }
 ?>
