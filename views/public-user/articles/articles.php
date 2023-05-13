@@ -22,14 +22,17 @@
                 <div class='table-header'>
                     <p>LIST OF ARTICLES</p>
                 </div>
-                <div class='table-search'>
-                    <input type='text' id='search-table' name='search-table' placeholder='Search Article'>
-                </div>
-                <div class='search-button'>
-                    <button id='btn-search'>
-                        <img src='https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png' alt='Search'>
-                    </button>
-                </div>
+                <form method="GET" action="">
+                    <div class='table-search'>
+                        <input type='text' id='search-table' name='search-table' placeholder='Search Article' value="<?= isset($search) ? htmlentities($search) : '' ?>">
+                    </div>
+                    <div class='search-button'>
+                        <button id='btn-search' type='submit'>
+                            <img src='https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png' alt='Search'>
+                        </button>
+                    </div>
+                </form>
+                
                 <div class='sort-button'>
                     <button id='btn-sort'>
                         <i class="fas fa-sort-amount-up"></i>
@@ -58,12 +61,6 @@
 </div>
 
 
-<script>
-    //make every row in table clickable
-    function clickableRow() {
-        const rowData = document.getElementById
-    }
-</script>
 
 
 

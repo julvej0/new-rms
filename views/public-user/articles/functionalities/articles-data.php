@@ -2,8 +2,25 @@
 include_once "../../../db/db.php";
 require_once "config.php";
 
-// Select or Retrieve Data from Database
-$sql_data = "SELECT * FROM table_publications";
+// Check if the search query is set
+if (isset($_GET['search-table'])) {
+  // Sanitize the search query to prevent SQL injection
+  $search_query = pg_escape_string($conn, $_GET['search-table']);
+
+  // Select or Retrieve Data from Database with the search query
+  $sql_data = "SELECT table_publications.*, table_authors.author_name
+               FROM table_publications
+               LEFT JOIN table_authors ON table_publications.authors LIKE '%' || table_authors.author_id || '%'
+               WHERE table_authors.author_name ILIKE '%{$search_query}%'
+               OR table_publications.title_of_paper ILIKE '%{$search_query}%'
+               OR table_publications.campus ILIKE '%{$search_query}%'";
+} else {
+  // Select or Retrieve all Data from Database if no search query is set
+  $sql_data = "SELECT table_publications.*, table_authors.author_name
+               FROM table_publications
+               LEFT JOIN table_authors ON table_publications.authors LIKE '%' || table_authors.author_id || '%'";
+}
+
 $sql_result = pg_query($conn, $sql_data);
 
 if ($sql_result) {
@@ -13,38 +30,35 @@ if ($sql_result) {
   <th class='css-header'> Title </th>
   <th class='css-header'> Date Published </th>
   <th class='css-header'> Campus </th>
-  <th class='css-header'> Author </th>
+  <th class='css-header'> Authors </th>
   </tr>
   <?php
 
+  $previous_row = null;
   while ($row = pg_fetch_assoc($sql_result)) {
-    // Get the author IDs from the publication row
-    $author_ids = explode(',', $row['authors']);
-
-
-    //other way around instead of using IN(operator) on selecting multiple values in a column.
-    $conditions = [];
-    foreach ($author_ids as $author_id) {
-      $conditions[] = "author_id = '$author_id'";
+    if ($previous_row && $row['publication_id'] === $previous_row['publication_id']) {
+      // Skip this row since it belongs to the same publication as the previous row
+      continue;
     }
 
-    $where_clause = implode(' OR ', $conditions);
+    // Get all the authors for the publication
+    $author_ids = explode(",", $row['authors']);
+    $author_names = array();
 
-    //check if the author ID from table_authors is simlar to authors column in table_publication
-    $sql_author_data = "SELECT author_name FROM table_authors WHERE $where_clause";
-    $sql_author_result = pg_query($conn, $sql_author_data);
+    foreach ($author_ids as $author_id) {
+      $author_id = trim($author_id);
+      $sql_author_data = "SELECT author_name FROM table_authors WHERE author_id ILIKE '{$author_id}'";
+      $sql_author_result = pg_query($conn, $sql_author_data);
 
-
-    if ($sql_author_result) {
-      $author_names = array();
-      while ($author_row = pg_fetch_assoc($sql_author_result)) {
+      if ($sql_author_result && pg_num_rows($sql_author_result) > 0) {
+        $author_row = pg_fetch_assoc($sql_author_result);
         $author_names[] = $author_row['author_name'];
       }
-      $author_implode = implode(', ', $author_names);
-    } else {
-      $author_implode = ""; // Set an empty string if no author names found
     }
-    $encrypted_ID = encryptor('encrypt',$row['publication_id']);
+
+    $author_implode = implode(', ', $author_names);
+
+    $encrypted_ID = encryptor('encrypt', $row['publication_id']);
     ?>
     <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
       <td class='css-td'><?=$row['title_of_paper']?></td>
@@ -53,10 +67,11 @@ if ($sql_result) {
       <td class='css-td'><?=$author_implode?></td>
     </tr>
     <tr id='spacer-row'></tr> <!-- Add a spacer row after each data row -->
-  <?php
+
+    <?php
+    $previous_row = $row;
   }
   ?>
-
   </table>
   <?php
 }
