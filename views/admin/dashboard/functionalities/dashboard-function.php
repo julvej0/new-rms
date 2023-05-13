@@ -305,7 +305,7 @@ function getPublicationType($conn){
     );
 
 }
-// getting the ip assets per year
+// getting the number ip assets per year
 function getIPAssetsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_registered) AS year, COUNT(*) AS count
     FROM table_ipassets
@@ -333,7 +333,7 @@ function getIPAssetsPerYear($conn) {
         'labels' => $ipyear_labels
     );
 }
-// getting the publicatons per year
+// getting the number of publicatons per year
 function getPublicationsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_published) AS year, COUNT(*) AS count
     FROM table_publications
