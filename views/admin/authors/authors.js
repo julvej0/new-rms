@@ -1,12 +1,21 @@
-function submitDelete(id, page, search){
+console.log(window.location.search);
+function submitDelete(id){
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "functionalities/php/delete_author.php", true);
+    xhr.open("POST", "functionalities/authors_query/delete_author.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
 
-            if (xhr.responseText === "Error") {
-                // display an error message
+            if (xhr.responseText === "Success") {
+                let queryString = window.location.search;
+                const searchParams = new URLSearchParams(queryString);
+                if (searchParams.has('delete')) {
+                    searchParams.delete('delete');
+                }
+                window.location.href="?"+searchParams+"&delete=success";
+               
+            }
+            else{
                 Swal.fire({
                     icon: 'error',
                     title: 'Delete was Unsuccessful',
@@ -16,19 +25,14 @@ function submitDelete(id, page, search){
                     });
                     console.log(xhr.responseText)
             }
-            else {
-                
-                    window.location.href=window.location.search+"&delete=success";
-                
-            }
         }
     };
-    xhr.send("id=" + id + "&page=" + page + "&search=" + search);
+    xhr.send("id=" + id );
 
 }
 
 
-function confirmDelete(name, id, page, search){
+function confirmDelete(name, id){
     
     Swal.fire({
         title: 'Are you sure?',
@@ -41,7 +45,7 @@ function confirmDelete(name, id, page, search){
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            submitDelete(id, page, search)
+            submitDelete(id)
         } 
       });
 

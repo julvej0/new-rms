@@ -81,14 +81,15 @@ main .form-container .form-control input[type="url"]:focus {
     box-shadow: 0 0 0 4px var(--light-blue);
 }
 
-textarea {
+main .form-container .form-control #pb-abstract {
+    width: 40rem;
     padding: 10px 36px 10px 16px;
     border-radius: 5px;
     outline: none;
     border: 1px solid var(--dark-grey);
     transition: all 0.3s ease;
 }
-textarea:focus{
+main .form-container .form-control #pb-abstract:focus{
     box-shadow: 0 0 0 4px var(--light-blue);
 }
 
@@ -346,6 +347,8 @@ main .sub-container .form-col .funding-form-container2 label {
     font-size: 16px;
     color: var(--text-color);
 }
+
+
 
 /* FORM FOOTER */
 

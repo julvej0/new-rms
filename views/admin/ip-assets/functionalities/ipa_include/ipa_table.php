@@ -48,8 +48,10 @@
             $dir = "functionalities/button_functions/";
             $certificate = $row['certificate'];
             $hyperlink = $row['hyperlink'];
-    
 
+            if (empty($hyperlink)){
+                $hyperlink = $dir. $certificate;
+            }
             ?>
 
 
@@ -78,7 +80,3 @@
     ?>
     </tbody>
 </table>
-
-<script>
-   
-</script>

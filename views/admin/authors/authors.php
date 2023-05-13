@@ -48,7 +48,7 @@
         </div>
         <section>
             <div class="table-container">
-                <table>
+                <table id="author_table">
                     <thead>
                         <tr>
                             <th>ID</th>

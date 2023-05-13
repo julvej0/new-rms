@@ -1,6 +1,8 @@
 <title>RMS | Home</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
+    include '../../../db/db.php';
+    include_once './functionalities/home-publication-functions.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
@@ -31,23 +33,38 @@
             </div>
             <div class="card-container">
                 <div class="card">
-                    <div>
+                    <div class="card-content">
                         <h3>Top Contributors</h3>
+                        <div class="table">
+                            <?php 
+                            echo getPublicationsContributors($conn);
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div>
-                        <h3>Most Cited Articles</h3>
+                    <div class="card-content">
+                        <h3>Most Cited </h3>
+                        <div class="table">
+                            <?php
+                            echo getMostViewedPapers($conn);
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div>
-                        <h3>Recently Added Articles</h3>
+                    <div class="card-content">
+                        <h3>Recently Added </h3>
+                        <div class="table">
+                            <?php
+                            getRecentPublications($conn, 3)
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="see-more-btn">
-                <a href="#">See More<i class='bx bx-right-arrow-alt icon'></i></a>
+                <a href="../articles/articles.php">See More<i class='bx bx-right-arrow-alt icon'></i></a>
             </div>
         </div>
         <div class="content">
@@ -56,13 +73,16 @@
             </div>
             <div class="card-container">
                 <div class="card">
-
+                    <h3>Top Contributors</h3>
+                    <div></div>
                 </div>
                 <div class="card">
-
+                    <h3>Top Campus</h3>
+                    <div></div>
                 </div>
                 <div class="card">
-
+                    <h3>Recently Added</h3>
+                    <div></div>
                 </div>
             </div>
             <div class="see-more-btn">
@@ -92,7 +112,8 @@
         </div>
     </div>
 </div>
+<?php include "../../../includes/public-user/templates/user-footer.php"; ?>
 </body>
 <?php 
-    include '../../../includes/admin/templates/header.php';
+    include '../../../includes/admin/templates/footer.php';
 ?>
