@@ -73,13 +73,13 @@
             </div>
             <div class="card-container">
                 <div class="card">
-
+                    <h3>Top Contributors</h3>
                 </div>
                 <div class="card">
-
+                    <h3>Top Campus</h3>
                 </div>
                 <div class="card">
-
+                    <h3>Recently Added</h3>
                 </div>
             </div>
             <div class="see-more-btn">
