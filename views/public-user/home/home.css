@@ -122,8 +122,10 @@ body {
 }
 
 .home-content .content .card-container .abt-card {
-    width: 80%;
+    width: 1200px;
     padding: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .home-content .content .card-container .abt-card .abt-img  {
