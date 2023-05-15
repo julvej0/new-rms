@@ -16,12 +16,14 @@
         $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
         $gender = isset($_GET['gender']) ? $_GET['gender']: 'empty_gender';
         $role = isset($_GET['role']) ? $_GET['role']: 'empty_role';
+
+        $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
        
     ?>
     
     <main>
         <div class="header">
-            <h1 class="title">Authors</h1>
+            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'Authors'; ?></h1>
             <div class='left'>
                 <form action="#">
                     <div class="form-group">
@@ -30,15 +32,17 @@
                     </div>
                 </form>
                 <div class="filter">
-                    <button class="btn">Role<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$role!="empty_role" ? $role: 'Role'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
+                        <li><a href="<?php echo filterAuthor($search, 'empty_role', $gender)?>">All</a></li>
                         <li><a href="<?php echo filterAuthor($search, 'Student', $gender)?>">Student</a></li>
                         <li><a href="<?php echo filterAuthor($search, 'Faculty', $gender)?>">Faculty</a></li>
                     </ul>
                 </div>
                 <div class="filter">
-                    <button class="btn">Gender<i class='bx bx-chevron-down icon'></i></button>
+                    <button class="btn"><?=$gender!="empty_gender" ? $gender: 'Gender'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
+                        <li><a href="<?php echo filterAuthor($search, $role, 'empty_gender')?>">All</a></li>
                         <li><a href="<?php echo filterAuthor($search, $role, 'Male')?>">Male</a></li>
                         <li><a href="<?php echo filterAuthor($search, $role, 'Female')?>">Female</a></li>
                     </ul>
