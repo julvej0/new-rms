@@ -231,9 +231,7 @@
                                 </thead>
                                 <tbody id="author-tbl-body">
                                             <?php
-                                            $query = "SELECT author_id, author_name FROM table_authors";
-                                            $params = array();
-                                            $result = pg_query_params($conn, $query, $params);
+                                            
 
 
                                             $author_list = $row["authors"];
@@ -249,27 +247,31 @@
                                                 echo '
                                                 <tr>
                                                 <td class="ipa-author-field">
-                                                <input list="authors" name="author_name[]"
+                                                <select list="authors" name="author_id[]"
                                                 style="
                                                 width: 100%;
                                                 height: 50px;
                                                 padding: 10px 36px 10px 16px;
                                                 border-radius: 5px;
                                                 border: 1px solid var(--dark-grey);"
-                                                onchange="showAuthorId(this)"
-                                                value="' . $author_list_row['author_name'] . '"
+                                                onchange="showAuthorId(this)"                                                
                                                 placeholder="Author Name...">
-                                                <input type="hidden" name="author_id[]" class="author-id-input" value="' . $author_list_row['author_id'] . '">
+                                                <option hidden class="author-id-input" value="' . $author_list_row['author_id'] . '">'.$author_list_row['author_name'].'</option>';
+                                                echo '<datalist id="authors">';
+                                                $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
+                                                $params = array();
+                                                $result = pg_query_params($conn, $query, $params);
+                                                while ($author_row = pg_fetch_assoc($result)) {
+                                                    echo '<option value="' . $author_row['author_id'] . '">' . $author_row['author_name'] . '</option>';
+                                                }
+                                                echo '</datalist>';
+                                                echo'
                                                 </td>                                                
                                                 <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
                                                 </tr>';
                                             }
                                         }
-                                            echo '<datalist id="authors">';
-                                            while ($author_row = pg_fetch_assoc($result)) {
-                                                echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
-                                            }
-                                            echo '</datalist>';
+                                            
                                             ?>
                                 </tbody>
                                             <td style="text-align: center;" colspan="2">
