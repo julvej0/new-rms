@@ -26,11 +26,12 @@
     border-top-right-radius: 95%;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
 }
 
 .footer-second-layer .socials {
-    border: 1px solid white;
     width: 120px;
+    padding: 10px;
 }
 
 .footer-second-layer .socials .socials-list {
@@ -43,13 +44,14 @@
     list-style-type: none;
 }
 
-.footer-second-layer .socials .socials-list li a {
+.footer-second-layer .socials li a {
     color: var(--light);
     font-size: 24px;
-    transition: all 0.5s ease;
+    transition: all 1s ease;
+    width: 100%;
 }
 
-.footer-second-layer .socials .socials-list li a:hover {
+.footer-second-layer .socials li a:hover{
     transform: translateY(-10px);
 }
 
