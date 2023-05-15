@@ -199,6 +199,7 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
     return $output;
 }
 // getting the number of published articles
+
 function getPublishedIPAssets($conn) {
     $query = "SELECT title_of_work FROM table_ipassets WHERE status = $1";
     $params = array("published");
@@ -243,6 +244,7 @@ function getProcessingIpAssets($conn, $reuse_stmt = false) {
     }
 }
 // getting the recently added articles
+
 function getRecentIpAssets($conn, $limit) {
     $query = "SELECT title_of_work, date_registered FROM table_ipassets ORDER BY date_registered DESC LIMIT $1";
     $params = array($limit);
@@ -271,6 +273,7 @@ function getRecentIpAssets($conn, $limit) {
     }
 }
 // getting the ip assets per campus
+
 function getIpAssetsCampus($conn) {
     $query = "SELECT campus, COUNT(*) as dataset FROM table_ipassets WHERE campus IS NOT NULL GROUP BY campus";
     $result = pg_query($conn, $query);
@@ -288,6 +291,7 @@ function getIpAssetsCampus($conn) {
     );
 }
 // getting the type of publication in table publication
+
 function getPublicationType($conn){
     $query = "SELECT type_of_publication, COUNT(*) as dataset FROM table_publications WHERE type_of_publication is NOT NULL GROUP BY type_of_publication";
     $result = pg_query($conn, $query);
@@ -305,7 +309,8 @@ function getPublicationType($conn){
     );
 
 }
-// getting the ip assets per year
+// getting the number ip assets per year
+
 function getIPAssetsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_registered) AS year, COUNT(*) AS count
     FROM table_ipassets
@@ -333,7 +338,8 @@ function getIPAssetsPerYear($conn) {
         'labels' => $ipyear_labels
     );
 }
-// getting the publicatons per year
+// getting the number of publicatons per year 
+
 function getPublicationsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_published) AS year, COUNT(*) AS count
     FROM table_publications

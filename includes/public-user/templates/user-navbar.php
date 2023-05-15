@@ -23,7 +23,7 @@ session_start();
 
 <body>
     
-<div class="container">
+
 <section>
     <div class="navbar-container">
         <div class="left">
@@ -86,7 +86,7 @@ session_start();
         </div>
     </div>
 </section>
-</div>
+
 <!-- SCRIPT -->
 <script src="../../../js/public-user/user-navbar.js"></script>
 <script src="../../../js/public-user/profile-dropdown.js"></script>

@@ -1,7 +1,6 @@
 <?php
 include_once "../../../includes/admin/templates/header.php";
 
-
 ?>
 
 <link rel="stylesheet" href="login.css">

@@ -64,8 +64,9 @@ body {
     border:none;
     cursor: pointer;
     position: absolute;
-    margin-left: -50px;
     background-color: transparent;
+    margin-left: 485px;
+    margin-top: -75px;
   }
   
 #btn-search img {
@@ -78,6 +79,7 @@ body {
     display: flex;
     align-items: center;
 }
+
 
 #btn-sort {
     width: 35px;

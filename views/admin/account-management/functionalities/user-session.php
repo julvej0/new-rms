@@ -2,10 +2,16 @@
 session_start();
 include_once "../../../db/db.php";
 
-// Check if the user is logged in as an admin
-if ($_SESSION['account_type'] != 'admin') {
-    header("Location: ../../../views/public-user/home/home.php");
-    exit;
+// Check if the user is logged in
+if (isset($_SESSION['user_email'])) {
+    // Check if the user is logged in as an admin
+    if ($_SESSION['account_type'] == 'admin') {
+        header("Location: ../../../views/admin/dashboard/dashboard.php");
+        exit;
+    } else {
+        header("Location: ../../../views/public-user/home/home.php");
+        exit;
+    }
 }
 
 // Fetch user details from the database
@@ -19,8 +25,10 @@ $user = pg_fetch_assoc($user_result);
 
 if (!$user) {
     echo "User not found.";
-    header("Location: ../../admin/account/login.php");
+    header("Location: ../../../views/admin/account/login.php");
     exit;
 }
 
+header("Location: ../../../views/admin/account/login.php");
+exit;
 ?>

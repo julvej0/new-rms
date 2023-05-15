@@ -65,6 +65,7 @@ function getPublicationsContributors($conn) {
     <?php
 
 }
+
 function getMostViewedPapers($conn, $reuse_stmt = false) {
     $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 4;";
     if (!$reuse_stmt) {
@@ -81,6 +82,7 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
 
     return $output;
 }
+
 function getRecentPublications($conn, $limit) {
     $query = "SELECT title_of_paper, date_published FROM table_publications ORDER BY date_published DESC LIMIT $1";
     $params = array($limit);
