@@ -1,6 +1,6 @@
 
 <?php
-    $count_text = $search != "empty_search" ? "Total Authors for \"". $search. "\" : " : "Total Authors :";
+    $count_text = $search != "empty_search" ? "Total Users for \"". $search. "\" : " : "Total Users :";
 ?>
 <div class="table-footer">
     

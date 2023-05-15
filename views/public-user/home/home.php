@@ -96,7 +96,7 @@
             <div class="card-container">
                 <div class="card abt-card">
                      <div class="abt-img">
-                        <img src="../../../assets/images/vipcorals.jpg" alt="">
+                        <img src="../../../assets/images/vipcorals.webp" alt="">
                      </div>
                      <div class="abt-text">
                         <div class="title">

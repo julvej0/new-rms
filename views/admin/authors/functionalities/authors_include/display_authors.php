@@ -1,29 +1,19 @@
 <?php
     $items_per_page = 10;
     $search_query = $search != 'empty_search' ? $search : '';
-    $gender_filter = $gender != 'empty_gender' ? $gender : null;
-    $role_filter = $role != 'empty_role' ? $role : null;
-    $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $total_records = countAuthors($conn, $search, $gender, $role);
 
     
     $offset = ($page_number - 1) * $items_per_page;
     $sql = "SELECT * FROM table_authors WHERE CONCAT(author_id, author_name, affiliation) ILIKE '%$search_query%' ";
-    if ($gender_filter !== null) {
-        $sql .= " AND gender = '$gender_filter' ";
+    if ($gender !== "empty_gender") {
+        $sql .= " AND gender = '$gender' ";
     }
-    if ($role_filter !== null) {
-        $sql .= " AND type_of_author = '$role_filter' ";
+    if ($role !== "empty_role") {
+        $sql .= " AND type_of_author = '$role' ";
     }
     $sql .= "ORDER BY author_id DESC LIMIT $items_per_page OFFSET $offset";
     $result = pg_query($conn, $sql);
-
-
-    if (isset($_GET['search'])){
-        $deleteURL = '?search='.$search_query.'&page='.$page_number;
-    }
-    else{
-        $deleteURL = '?page='.$page_number;
-    }
 
     if(pg_num_rows($result) > 0){
     while ($row = pg_fetch_assoc($result)) {
