@@ -1,6 +1,5 @@
 <?php
 function countIPA($conn, $additionalQuery, $search, $type, $class, $year ){
-    $no_of_records_per_page = 10;
     $search_query = $search != "empty_search" ? $search : '';
     // Get total number of records
     $count_sql = "SELECT COUNT(*)

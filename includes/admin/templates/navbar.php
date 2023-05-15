@@ -31,6 +31,9 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         <li><a href="../../../views/admin/authors/authors.php" id='author-link'>
             <i class='bx bxs-group icon' ></i>Authors</a>
         </li>
+        <li><a href="../../../views/admin/user-accounts/user-accounts.php" id='user-accounts-link'>
+            <i class='bx bxs-group icon' ></i>User Accounts</a>
+        </li>
         <li class="divider" data-text="Account">Account</li>
         <li id="account-settings">
             <a href="#" id="account-link">

@@ -2,6 +2,7 @@
 include_once "../../../includes/public-user/templates/user-navbar.php";
 include_once "functionalities/user-session.php";
 ?>
+<link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="user-security.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div id='whole-page'>
@@ -145,3 +146,6 @@ include_once "functionalities/user-session.php";
 
 </script>
 
+<?php 
+include '../../../includes/admin/templates/header.php';
+?>
