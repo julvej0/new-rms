@@ -29,30 +29,45 @@
     justify-content: center;
 }
 
-.footer-second-layer .socials {
+#footer-container .footer .footer-second-layer .mid-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-second-layer .mid-content .socials {
     width: 120px;
     padding: 10px;
 }
 
-.footer-second-layer .socials .socials-list {
+.footer-second-layer .mid-content .socials .socials-list {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 5px;
 }
 
-.footer-second-layer .socials .socials-list li {
+.footer-second-layer .mid-content .socials .socials-list li {
     list-style-type: none;
 }
 
-.footer-second-layer .socials li a {
+.footer-second-layer .mid-content .socials .socials-list li a {
     color: var(--light);
-    font-size: 24px;
-    transition: all 1s ease;
-    width: 100%;
 }
 
-.footer-second-layer .socials li a:hover{
-    transform: translateY(-10px);
+.footer-second-layer .mid-content .socials-list li a .icon {
+    font-size: 30px;
+    transition: all 0.5s ease;
+}
+
+.footer-second-layer .mid-content .socials-list li a .icon:hover{
+    transform: translateY(-8px);
+}
+
+.footer-second-layer .mid-content .bsu-logo img {
+    width: 150px;
 }
 
 #footer-container .footer .logo img {
