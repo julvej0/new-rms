@@ -11,8 +11,10 @@
     <?php
         include_once '../../../includes/admin/templates/navbar.php';
         include_once 'functionalities/userAccounts_include/userAccounts_count.php';
+        include_once 'functionalities/userAccounts_include/userAccounts_filter.php';
 
         $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+        $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
 
         $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
        
@@ -22,13 +24,21 @@
         <div class="header">
             <h1 class="title">User Accounts</h1>
             <div class='left'>
-                <form action="#">
+                <form action="">
                     <div class="form-group">
                         <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
-                <a href="#" class="addBtn"><i class='bx bx-user-plus icon'></i></i>New</a>
+                <div class="filter">
+                    <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
+                    <ul class="filter-link">
+                        <li><a href="<?=filterUserAccounts($search, 'empty_type')?>">All</a></li>
+                        <li><a href="<?=filterUserAccounts($search, "Regular")?>">Regular</a></li>
+                        <li><a href="<?=filterUserAccounts($search, "Author")?>">Author</a></li>
+                        <li><a href="<?=filterUserAccounts($search, "Admin")?>">Admin</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <section>
@@ -37,10 +47,10 @@
                     <thead>
                         <tr>
                             <th>SR-Code</th>
-                            <th>Name</th>
+                            <th>Profile Image</th>
+                            <th>Full Name</th>
                             <th>Contact Number</th>
                             <th>Email</th>
-                            <th class="stickey-col-header" style="background-color: var(--grey); width: 10px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
