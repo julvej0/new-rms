@@ -1,7 +1,8 @@
 body {
-    background: var(--light);
+    background: var(--grey);
     position: relative;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -131,7 +132,6 @@ span {
 #table-data {
     overflow-y: auto;
     max-height: 620px;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .css-td {
@@ -140,8 +140,8 @@ span {
     font-size: 12px;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
     border-top-style: solid;
     border-bottom-style: solid;
     border-color: gray;
@@ -156,9 +156,8 @@ span {
     justify-content: center;
     align-items: center;
     border-spacing: 0;
-    border: solid 1px gray;
+    border: solid 2px gray;
     top: 0;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
     
 }
 

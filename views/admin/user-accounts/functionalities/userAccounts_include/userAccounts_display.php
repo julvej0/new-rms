@@ -2,9 +2,13 @@
     $items_per_page = 10;
     $total_records = countUserAccounts($conn);
 
-    
+    $search_query = $search != "empty_search"? $_GET['search'] : "";
     $offset = ($page_number - 1) * $items_per_page;
-    $sql = "SELECT * FROM table_user ";
+    $sql = "SELECT * FROM table_user WHERE CONCAT(sr_code, user_fname, user_mname, user_lname, email, user_contact) ILIKE '%$search_query%'";
+    if ($type !== "empty_type") {
+        $sql .= " AND account_type = '$type' ";
+    }
+
     $sql .= "ORDER BY user_id DESC LIMIT $items_per_page OFFSET $offset";
     $result = pg_query($conn, $sql);
 
@@ -13,14 +17,11 @@
     ?>
     <tr>
         <td ><?=$row['sr_code'];?></td>
+        <td ><img id="user-image" src="<?=$row['user_img']; ?>" alt="User Image"></td>
         <td ><?=$row['user_fname']." ".$row['user_mname']." ".$row['user_lname'];?></td>
         <td><?=$row['user_contact']; ?></td>
         <td><?=$row['email']; ?></td>
        
-        </td>
-        <td id="white-side" class="a-action-btns stickey-col">
-            <a class="edit-btn" id="a-edit-btn" name="edit" ></i></a>
-            <button class="delete-btn" id="ipa-delete-btn" name="delete"></i></button>
         </td>
         
         <?php

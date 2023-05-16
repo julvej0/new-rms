@@ -5,5 +5,5 @@ if (path.includes('home.php')){
 }
 
 if (path.includes('articles.php') || (path.includes('article_view.php'))){
-    document.getElementById('ip-link').classList.add('active');
+    document.getElementById('pb-link').classList.add('active');
 }
