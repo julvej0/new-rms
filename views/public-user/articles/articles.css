@@ -131,6 +131,7 @@ span {
 #table-data {
     overflow-y: auto;
     max-height: 620px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .css-td {
@@ -139,8 +140,8 @@ span {
     font-size: 12px;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
     border-top-style: solid;
     border-bottom-style: solid;
     border-color: gray;
@@ -155,8 +156,9 @@ span {
     justify-content: center;
     align-items: center;
     border-spacing: 0;
-    border: solid 2px gray;
+    border: solid 1px gray;
     top: 0;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
     
 }
 
