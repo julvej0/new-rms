@@ -40,10 +40,10 @@ main .header .addBtn:hover {
 
 main .header .left {
     display: flex;
-    width: 950px;
+    width: 1200px;
     align-items: center;
     justify-content: space-between;
-    grid-gap: 10px;
+    grid-gap: 5px;
     flex-wrap: wrap;
 }
 
@@ -360,6 +360,7 @@ main .table-footer .download button:hover {
   #checkbox-container {
     position: absolute;
     padding: 1rem 0rem 1rem 0rem;
+    border-radius: 5px;
     background-color: var(--light);
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -383,26 +384,20 @@ main .table-footer .download button:hover {
     padding: 6px 12px;
     background-color: white;
     cursor: pointer;
-    font-size: 16px;
-    text-align: center;
+    font-size: 14px;
+    text-align: left;
   }
   
   label.checkbox-button:hover {
-    background: rgb(190, 190, 190);
-    color: var(--light);
-    transform: scale(1.05, 1.1);
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    color: var(--grey);
   }
   
   input[type=checkbox]:checked + label.checkbox-button {
-    background-color: rgb(190, 190, 190);
-    color: var(--light);
+    color: var(--dark);
   }
   input[type=checkbox]:checked + label.checkbox-button:hover {
-    background-color: rgb(190, 190, 190);
     color: var(--dark);
-    transform: scale(1.05, 1.1);
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    background: var(--grey);
   }
 
 /* main .table-footer .download .dl-link {
