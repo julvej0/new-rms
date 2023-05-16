@@ -4,16 +4,17 @@
 <section id="footer-container">
     <div class="footer">
         <div class="footer-second-layer">
-            <div class="bsu-logo">
-
-            </div>
-            <div class="socials">
-                <p>Socials :</p>
-                <ul class="socials-list">
-                    <li><a href="#"><i class='bx bxl-facebook-circle icon' ></i></a></li>
-                    <li><a href="#"><i class='bx bxl-instagram-alt icon' ></i></i></a></li>
-                    <li><a href="#"><i class='bx bxl-twitter icon' ></i></i></a></li>
-                </ul>
+            <div class="mid-content">
+                <div class="bsu-logo">
+                <img src="../../../assets/images/batStateUNeu-logo.png" alt="">
+                </div>
+                <div class="socials">
+                    <ul class="socials-list">
+                        <li><a href="#"><i class='bx bxl-facebook-circle icon' ></i></a></li>
+                        <li><a href="#"><i class='bx bxl-instagram-alt icon' ></i></a></li>
+                        <li><a href="#"><i class='bx bxl-twitter icon' ></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="logo">
@@ -21,6 +22,6 @@
         </div>
     </div>
     <div class="bottom">
-        <p>© 2023 Batangas State University | RMS - All rights reserved.</p>
+        <p>© 2023 Batangas State University | RMS - All Rights Reserved.</p>
     </div>
 </section>
