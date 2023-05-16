@@ -64,9 +64,8 @@ function displayPublicationData($row, $conn) {
     }
     echo '<p>'.$row['abstract'].'</p>';
     echo '</div>';
-    echo '<input type="button" class="download-cert-btn" value="GOOGLE SCHOLAR DETAILS" onclick="location.href=\''.$row['google_scholar_details'].'\'">';
+    echo '<button onclick="window.open(\'' . $row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
     echo '</div>';
-
     echo '</div>';
 }
 ?>
