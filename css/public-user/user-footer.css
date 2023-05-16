@@ -1,6 +1,4 @@
-body {
-    height: 350px;
-}
+
 #footer-container {
     height: 350px;
     width: 100%;
@@ -14,7 +12,7 @@ body {
 
 #footer-container .footer{
     width: 100%;
-    height: 85%;
+    height: 100%;
     background: var(--accent);
     border-top-right-radius: 95%;
     padding: 10px 4px 0 0;
@@ -26,6 +24,50 @@ body {
     width: 100%;
     height: 100%;
     border-top-right-radius: 95%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#footer-container .footer .footer-second-layer .mid-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-second-layer .mid-content .socials {
+    width: 120px;
+    padding: 10px;
+}
+
+.footer-second-layer .mid-content .socials .socials-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-second-layer .mid-content .socials .socials-list li {
+    list-style-type: none;
+}
+
+.footer-second-layer .mid-content .socials .socials-list li a {
+    color: var(--light);
+}
+
+.footer-second-layer .mid-content .socials-list li a .icon {
+    font-size: 30px;
+    transition: all 0.5s ease;
+}
+
+.footer-second-layer .mid-content .socials-list li a .icon:hover{
+    transform: translateY(-8px);
+}
+
+.footer-second-layer .mid-content .bsu-logo img {
+    width: 150px;
 }
 
 #footer-container .footer .logo img {
@@ -39,7 +81,7 @@ body {
     top: 20;
 }
 #footer-container .bottom {
-    height: 35px;
+    height: 30px;
     width: 100%;
     background: #555;
     border-right: 4px solid var(--accent);

@@ -1,0 +1,32 @@
+<?php
+//ENCRYPT AND DECRYPT FUNCTION
+// youtube link: https://www.youtube.com/watch?v=vty6EyeW9LY
+// source: https://techareatutorials.com/how-to-encrypt-decrypt-id-for-url-in-php/
+function encryptor($action, $string) {
+    $output = false;
+    $encrypt_method = "AES-256-CBC";
+    
+    $secret_key = 's2ec53r38et63n5gR55MS8';
+    $secret_iv = 'se82c6re59t3ng26R3MS864';
+
+   
+    $key = hash('sha256', $secret_key);
+    
+   
+    $iv = substr(hash('sha256', $secret_iv), 0, 16);
+
+    
+    if( $action == 'encrypt' ) 
+    {
+        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+        $output = base64_encode($output);
+    }
+    else if( $action == 'decrypt' )
+    {
+    	
+        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+    }
+
+    return $output;
+}
+?>

@@ -16,17 +16,17 @@ include_once "functionalities/user-session.php";
             <form id="change-password-form">
                 <label for="current-password">Current Password:</label>
                 <div class='password-container'>
-                    <input type="password" class="oldPasswordInput" name="current-password"  maxlength='8' required>
+                    <input type="password" class="oldPasswordInput" name="current-password" minlength='8' maxlength='16' required>
                     <i class="toggle-password fas fa-eye-slash"></i>
                 </div>
                 <label for="new-password">New Password:</label>
                 <div class='password-container'>
-                    <input type="password" class="passwordInput" name="new-password"  maxlength='8' required>
+                    <input type="password" class="passwordInput" name="new-password" minlength='8' maxlength='16' required>
                     <i class="toggle-password fas fa-eye-slash"></i>
                 </div>  
                 <label for="confirm-password">Confirm Password:</label>
                 <div class='password-container'>
-                    <input type="password" id="confirmPasswordInput" name="confirm-password"  maxlength='8' required>
+                    <input type="password" id="confirmPasswordInput" name="confirm-password" minlength='8' maxlength='16' required>
                     <i class="toggle-password fas fa-eye-slash"></i>
                 </div>  
                 <button type="button" id="submit-password" onclick='changePss()'>Submit</button>

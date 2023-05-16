@@ -1,8 +1,8 @@
 <?php
 function getPublicationsContributors($conn) {
     $sqlAuthors = "SELECT * FROM table_authors ORDER BY author_id ASC";
-    $resultAuthors = pg_prepare($conn, "getAuthors", $sqlAuthors);
-    $resultAuthors = pg_execute($conn, "getAuthors", array());
+    $resultAuthors = pg_prepare($conn, "getAuthorsPublications", $sqlAuthors);
+    $resultAuthors = pg_execute($conn, "getAuthorsPublications", array());
 
     $sqlPublications = "SELECT authors FROM table_publications";
     $resultPublications = pg_prepare($conn, "getPublications", $sqlPublications);
