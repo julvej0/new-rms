@@ -125,6 +125,7 @@
         </div>
     </div>
 </div>
+<?php include "../../../includes/public-user/templates/user-footer.php"; ?>
 </body>
 <?php 
     include '../../../includes/admin/templates/footer.php';

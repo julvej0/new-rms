@@ -30,6 +30,8 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
     if ($year !== 'empty_year') {
         $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_pub.date_published) = '$year' ";
     }
+
+    
     $sqlSearchQuery .= "ORDER BY publication_id DESC OFFSET $offset LIMIT $no_of_records_per_page";
    
     $result = pg_query($conn, $sqlSearchQuery);

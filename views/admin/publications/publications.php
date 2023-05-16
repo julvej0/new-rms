@@ -11,7 +11,7 @@
 <?php
     include '../../../includes/admin/templates/navbar.php';
     include_once 'functionalities/publications_include/publication_filter_extract.php';
-    
+    include_once 'functionalities/publications_include/publication_filter_display.php';
     include_once 'functionalities/publications_include/publication_filter.php';
     
     $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
@@ -24,7 +24,7 @@
 ?>
     <main>
         <div class="header">
-            <h1 class="title">Publications</h1>
+            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'Publications'; ?></h1>
             <div class="btn-container">
                     <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>   
                     <div class="checkbox-container" id="checkbox-container">
@@ -69,11 +69,9 @@
                 <div class="filter">
                     <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="<?=filterPublication($search, 'Original', $fund, $year)?>">Original</a></li>
-                        <li><a href="<?=filterPublication($search, 'Review', $fund, $year)?>">Review</a></li>
-                        <li><a href="<?=filterPublication($search, 'Proceedings', $fund, $year)?>">Proceedings</a></li>
-                        <li><a href="<?=filterPublication($search, 'Communication', $fund, $year)?>">Communication</a></li>
-                        <li><a href="<?=filterPublication($search, 'International', $fund, $year)?>">International</a></li>
+                        <?php
+                            displayTypeFilter($conn, $search, $fund, $year);
+                        ?>
                     </ul>
                 </div>
                 <div class="filter">
@@ -87,7 +85,8 @@
                     <button class="btn"><?=$year!="empty_year" ? $year: 'Year'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
                         <?php
-                            include_once 'functionalities/publications_include/publication_filter_display.php';
+                            
+                            displayYearFilter($conn, $search, $type, $fund);
                         ?>
                        
                     </ul>
@@ -119,4 +118,52 @@
 
 <?php
     include '../../../includes/admin/templates/footer.php';
+?>
+<?php
+    if(isset($_GET['delete'])){
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+          })
+          
+          Toast.fire({
+            icon: "success",
+            title: "Patented chuchu Deleted!"
+          })
+    
+        </script>
+        
+        ';
+        
+    }elseif(isset($_GET['update'])){
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+          })
+          
+          Toast.fire({
+            icon: "success",
+            title: "Patented chuchu Edited!"
+          })
+    
+        </script>
+        
+        ';
+    }
 ?>

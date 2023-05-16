@@ -2,6 +2,7 @@
 include_once "../../../includes/public-user/templates/user-navbar.php";
 include_once "functionalities/user-session.php";
 ?>
+<link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="user-security.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div id='whole-page'>
@@ -15,17 +16,17 @@ include_once "functionalities/user-session.php";
             <form id="change-password-form">
                 <label for="current-password">Current Password:</label>
                 <div class='password-container'>
-                    <input type="password" class="oldPasswordInput" name="current-password"  maxlength='8' required>
+                    <input type="password" class="oldPasswordInput" name="current-password" minlength='8' maxlength='16' required>
                     <i class="toggle-password fas fa-eye-slash"></i>
                 </div>
                 <label for="new-password">New Password:</label>
                 <div class='password-container'>
-                    <input type="password" class="passwordInput" name="new-password"  maxlength='8' required>
+                    <input type="password" class="passwordInput" name="new-password" minlength='8' maxlength='16' required>
                     <i class="toggle-password fas fa-eye-slash"></i>
                 </div>  
                 <label for="confirm-password">Confirm Password:</label>
                 <div class='password-container'>
-                    <input type="password" id="confirmPasswordInput" name="confirm-password"  maxlength='8' required>
+                    <input type="password" id="confirmPasswordInput" name="confirm-password" minlength='8' maxlength='16' required>
                     <i class="toggle-password fas fa-eye-slash"></i>
                 </div>  
                 <button type="button" id="submit-password" onclick='changePss()'>Submit</button>
@@ -145,3 +146,6 @@ include_once "functionalities/user-session.php";
 
 </script>
 
+<?php 
+include '../../../includes/admin/templates/header.php';
+?>
