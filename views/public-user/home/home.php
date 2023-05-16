@@ -3,6 +3,7 @@
     include '../../../includes/admin/templates/header.php';
     include '../../../db/db.php';
     include_once './functionalities/home-publication-functions.php';
+    include_once './functionalities/home-ipassets-functions.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
@@ -74,15 +75,27 @@
             <div class="card-container">
                 <div class="card">
                     <h3>Top Contributors</h3>
-                    <div></div>
+                    <div>
+                        <?php
+                        getIpAssetsContributors($conn)
+                        ?>
+                    </div>
                 </div>
                 <div class="card">
-                    <h3>Top Campus</h3>
-                    <div></div>
+                    <h3>Top Campus with IP Assets</h3>
+                    <div>
+                        <?php
+                        getTopCampus($conn, 11)
+                        ?>
+                    </div>
                 </div>
                 <div class="card">
                     <h3>Recently Added</h3>
-                    <div></div>
+                    <div>
+                        <?php
+                        getRecentIpAssets($conn, 3)
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="see-more-btn">
