@@ -40,6 +40,17 @@
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
+
+                                    <label class="a-label" for="a-name">Email</label>
+                                    <input type="text" placeholder="Email" id="a-name" name="a-name" value ="<?php echo isset($_POST['a-name']) ? $_POST['a-name'] : $table_rows[0]['author_name'] ?>">
+                                    <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-container">
+                                <div class="form-control">
                                     <label class="a-label" for="a-role">Role</label>
                                     <select name="a-role" id="a-role" required>
                                         <option value="" hidden>--Choose from the options--</option>

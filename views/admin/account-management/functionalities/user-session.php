@@ -3,7 +3,7 @@ session_start();
 include_once "../../../db/db.php";
 
 // Check if the user is logged in as an admin
-if ($_SESSION['account_type'] != 'admin') {
+if ($_SESSION['account_type'] != 'Admin') {
     header("Location: ../../../views/public-user/home/home.php");
     exit;
 }

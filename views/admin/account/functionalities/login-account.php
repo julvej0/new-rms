@@ -28,7 +28,7 @@ if (isset($_POST['login'] )) {
             
 
             // check account type and redirect accordingly
-            if ($user['account_type'] === 'admin') {
+            if ($user['account_type'] === 'Admin') {
                 header("Location: ../../../../views/admin/dashboard/dashboard.php");
                 exit();
             } else {
