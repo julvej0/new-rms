@@ -71,7 +71,6 @@ if ($sql_result && pg_num_rows($sql_result) > 0) {
       <td class='css-td'><?=$row['campus']?></td>
       <td class='css-td'><?=$author_implode?></td>
     </tr>
-    <tr id='spacer-row'></tr> <!-- Add a spacer row after each data row -->
 
     <?php
     $previous_row = $row;

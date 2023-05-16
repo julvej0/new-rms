@@ -57,7 +57,7 @@ session_start();
                             $accountType = isset($_SESSION['account_type']) ? $_SESSION['account_type'] : '';
 
                             // Check if the user is an author
-                            $isAuthor = $accountType == 'author';
+                            $isAuthor = $accountType == 'Author';
                         ?>
 
                         <div class="dropdown-container <?= $sessionActive ? 'show' : '' ?>" >
