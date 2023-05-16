@@ -74,27 +74,33 @@
             </div>
             <div class="card-container">
                 <div class="card">
-                    <h3>Top Contributors</h3>
-                    <div>
-                        <?php
-                        getIpAssetsContributors($conn)
-                        ?>
+                    <div class="card-content">
+                        <h3>Top Contributors</h3>
+                        <div class="table">
+                            <?php
+                            getIpAssetsContributors($conn)
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
-                    <h3>Top Campus with IP Assets</h3>
-                    <div>
-                        <?php
-                        getTopCampus($conn, 12)
-                        ?>
+                    <div class="card-content">
+                        <h3>Top Campus with IP Assets</h3>
+                        <div class="table">
+                            <?php
+                            getTopCampus($conn, 12)
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
-                    <h3>Recently Added</h3>
-                    <div>
-                        <?php
-                        getRecentIpAssets($conn, 3)
-                        ?>
+                    <div class="card-content">
+                        <h3>Recently Added</h3>
+                        <div class="table">
+                            <?php
+                            getRecentIpAssets($conn, 3)
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
