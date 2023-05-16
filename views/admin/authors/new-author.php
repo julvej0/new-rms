@@ -42,7 +42,29 @@
                                 <div class="form-control">
 
                                     <label class="a-label" for="a-name">Email</label>
-                                    <input type="text" placeholder="Email" id="a-name" name="a-name" value ="<?php echo isset($_POST['a-name']) ? $_POST['a-name'] : $table_rows[0]['author_name'] ?>">
+<!--------------------------------------------------------------------------------------------->                                    
+                                    
+                                    <select list="user-email" name="author_id[]"
+                                    style="
+                                    width: 100%;
+                                    height: 50px;
+                                    padding: 10px 36px 10px 16px;
+                                    border-radius: 5px;
+                                    border: 1px solid var(--dark-grey);"
+                                    onchange="showAuthorId(this)"                                                
+                                    placeholder="Email...">';
+                                    <datalist id="user-email">';
+                                    <option value="" hidden>Choose an email...</option>
+                                    <?php
+                                    $userQuery = "SELECT email FROM table_user ORDER BY email";
+                                    $params = array();
+                                    $result = pg_query_params($conn, $userQuery, $params);
+                                    while($userData = pg_fetch_assoc($result )){
+                                        echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';                                       
+                                    }
+                                    echo '</datalist></select>';
+                                    ?>
+<!--------------------------------------------------------------------------------------------->                                  
                                     <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
                                     
                                 </div>
