@@ -155,18 +155,6 @@
                         <i class='bx bxs-book-open' ></i>
                     </div>
                 </div>
-                <div class="content-card">
-                    <div class="head">
-                        <div>
-                            <?php
-                            $processing_ipassets = getProcessingIpAssets($conn);
-                            echo '<h2>'.$processing_ipassets.'</h2>'
-                            ?>
-                            <p>Unregistered Articles</p>
-                        </div>
-                        <i class='bx bx-book-alt' ></i>
-                    </div>
-                </div>
             </div>
             <div class="data">
                 <div class="main-content-data">

@@ -65,7 +65,6 @@ function getPublicationsContributors($conn) {
     <?php
 
 }
-
 function getMostViewedPapers($conn, $reuse_stmt = false) {
     $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 4;";
     if (!$reuse_stmt) {
@@ -82,9 +81,12 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
 
     return $output;
 }
-
 function getRecentPublications($conn, $limit) {
-    $query = "SELECT title_of_paper, date_published FROM table_publications ORDER BY date_published DESC LIMIT $1";
+    $query = "SELECT title_of_paper, date_published
+    FROM table_publications
+    WHERE date_published IS NOT NULL
+    ORDER BY date_published DESC
+    LIMIT $1";
     $params = array($limit);
 
     $query_run = pg_prepare($conn, "recent_assets_query", $query);
@@ -102,7 +104,11 @@ function getRecentPublications($conn, $limit) {
                 echo "<table>";
                 echo "<tr><th>Title</th><th>Date Registered </th></tr>";    
                 foreach($rows as $row) {
-                    $date = date('F d, Y', strtotime($row['date_published']));
+                    if(!empty($row['date_published']) && strtotime($row['date_published']) !== false) {
+                        $date = date('F d, Y', strtotime($row['date_published']));
+                    } else {
+                        $date = "N/A";
+                    }
                     echo "<tr><td>".$row['title_of_paper']."</td><td>".$date."</td></tr>";
                 }
                 echo "</table>";

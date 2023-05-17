@@ -88,7 +88,7 @@
                         <h3>Top Campus with IP Assets</h3>
                         <div class="table">
                             <?php
-                            getTopCampus($conn, 12)
+                            getTopCampus($conn, 11)
                             ?>
                         </div>
                     </div>

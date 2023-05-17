@@ -12,7 +12,7 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
                         FROM (
                             SELECT * 
                             FROM table_publications 
-                            WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher, status) ILIKE '%$search_query%' ";
+                            WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search_query%' ";
     
     
     if ($additionalQuery !== "empty_search") {
@@ -69,7 +69,6 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
                 'publisher' => $row['publisher'],
                 'campus' => $row['campus'],
                 'college' => $row['college'],
-                'status' => $row['status'],
             );
         }
         return $table_rows;
