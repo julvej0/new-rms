@@ -14,6 +14,7 @@ if (isset($_GET['id'])){
             'gender' => $row['gender'],
             'type_of_author' => $row['type_of_author'],
             'affiliation' => $row['affiliation'],
+            'email' => $row['email']
             
         );
     }
@@ -26,6 +27,7 @@ else{
         'gender' => '',
         'type_of_author' => '',
         'affiliation' => '',
+        'email' => ''
         
     );
 }

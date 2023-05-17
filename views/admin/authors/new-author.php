@@ -34,7 +34,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="a-label" for="a-name">Author Name</label>
-                                    <input type="text" placeholder="Author Name" id="a-name" name="a-name" value ="<?php echo isset($_POST['a-name']) ? $_POST['a-name'] : $table_rows[0]['author_name'] ?>">
+                                    <input required type="text" placeholder="Author Name" id="a-name" name="a-name" value ="<?php echo isset($_POST['a-name']) ? $_POST['a-name'] : $table_rows[0]['author_name'] ?>">
                                     <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
                                 </div>
                             </div>
@@ -43,26 +43,36 @@
 
                                     <label class="a-label" for="a-name">Email</label>
 <!--------------------------------------------------------------------------------------------->                                    
-                                    
-                                    <select list="user-email" name="author_id[]"
+                                    <!-- error handling, pagnagupdate -->
+                                    <select list="user-email" id ="a-email" name="a-email"
                                     style="
                                     width: 100%;
                                     height: 50px;
                                     padding: 10px 36px 10px 16px;
                                     border-radius: 5px;
                                     border: 1px solid var(--dark-grey);"
-                                    onchange="showAuthorId(this)"                                                
-                                    placeholder="Email...">';
-                                    <datalist id="user-email">';
+                                                                            
+                                    placeholder="Email...">
+                                    <datalist id="user-email">
                                     <option value="" hidden>Choose an email...</option>
                                     <?php
-                                    $userQuery = "SELECT email FROM table_user ORDER BY email";
+                                    $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
                                     $params = array();
                                     $result = pg_query_params($conn, $userQuery, $params);
                                     while($userData = pg_fetch_assoc($result )){
-                                        echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';                                       
+                                        if ($table_rows[0]['email'] == $userData['email']){
+                                            echo '<option value="' . $userData['email'] . '" selected>' . $userData['email'] . '</option>'; 
+                                        }
+                                        else{
+                                            if ($userData['account_type'] == "Regular"){
+                                                echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';
+                                            }
+                                             
+                                        }
+                                                                             
                                     }
-                                    echo '</datalist></select>';
+                                    
+                                    echo '</datalist></select>' ;
                                     ?>
 <!--------------------------------------------------------------------------------------------->                                  
                                     <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
@@ -74,7 +84,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="a-label" for="a-role">Role</label>
-                                    <select name="a-role" id="a-role" required>
+                                    <select name="a-role" id="a-role" >
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Faculty" <?php echo $table_rows[0]['type_of_author'] == 'Faculty' ? 'selected': ''?>>Faculty</option>
                                         <option value="Student" <?php echo $table_rows[0]['type_of_author'] == 'Student' ? 'selected': ''?>>Student</option>
@@ -84,7 +94,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="a-label" for="a-gender">Gender</label>
-                                        <select name="a-gender" class="a-input-field" id="a-gender" required>
+                                        <select name="a-gender" class="a-input-field" id="a-gender" >
                                             <option value="" hidden>--Choose from the options--</option>
                                             <option value="Male"  <?php echo $table_rows[0]['gender']== 'Male' ? 'selected' : ''?>>Male</option>
                                             <option value="Female"  <?php echo $table_rows[0]['gender']== 'Female' ? 'selected' : ''?>>Female</option>

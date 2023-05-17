@@ -92,7 +92,11 @@ function getTopCampus($conn, $limit) {
 }
 
 function getRecentIpAssets($conn, $limit) {
-    $query = "SELECT title_of_work, date_registered FROM table_ipassets ORDER BY date_registered DESC LIMIT $1";
+    $query = "SELECT title_of_work, date_registered 
+    FROM table_ipassets
+    WHERE date_registered IS NOT NULL
+    ORDER BY date_registered 
+    DESC LIMIT $1";
     $params = array($limit);
 
     $query_run = pg_prepare($conn, "recent_ipassets_query", $query);
@@ -110,7 +114,11 @@ function getRecentIpAssets($conn, $limit) {
                 echo "<table>";
                 echo "<tr><th>Title</th><th>Date Registered</th></tr>";    
                 foreach($rows as $row) {
-                    $date = date('F d, Y', strtotime($row['date_registered']));
+                    if(!empty($row['date_registered']) && strtotime($row['date_registered']) !== false) {
+                        $date = date('F d, Y', strtotime($row['date_registered']));
+                    } else {
+                        $date = "N/A";
+                    }
                     echo "<tr><td>".$row['title_of_work']."</td><td>".$date."</td></tr>";
                 }
                 echo "</table>";
