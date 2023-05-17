@@ -140,7 +140,6 @@
                                         }
                                         echo '</datalist>';
                                         ?>
-                                        <input type="hidden" name="author_id[]" class="author-id-input">
                                     </td>
                                     <td style="text-align: center;">
                                         <button type="button" class="add-row-btn" style="height: 50px;">+</button>

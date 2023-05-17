@@ -141,7 +141,7 @@
                                                 echo '
                                                 <tr>
                                                 <td class="ipa-author-field">
-                                                <select list="authors" name="author_id[]"
+                                                <input list="authors" name="author_name[]"
                                                 style="
                                                 width: 100%;
                                                 height: 50px;
@@ -149,14 +149,14 @@
                                                 border-radius: 5px;
                                                 border: 1px solid var(--dark-grey);"
                                                 onchange="showAuthorId(this)"                                                
-                                                placeholder="Author Name...">
-                                                <option hidden class="author-id-input" value="' . $author_list_row['author_id'] . '">'.$author_list_row['author_name'].'</option>';
+                                                placeholder="Author Name..."
+                                                value="' . $author_list_row['author_name'] . '">';
                                                 echo '<datalist id="authors">';
                                                 $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
                                                 $params = array();
                                                 $result = pg_query_params($conn, $query, $params);
                                                 while ($author_row = pg_fetch_assoc($result)) {
-                                                    echo '<option value="' . $author_row['author_id'] . '">' . $author_row['author_name'] . '</option>';
+                                                    echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
                                                 }
                                                 echo '</datalist>';
                                                 echo'
