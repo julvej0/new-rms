@@ -71,7 +71,7 @@ if(path.includes("publications.php") || path.includes("new-publication.php")){
 	document.getElementById('publication-link').classList.add('active');
 }
 
-if(path.includes("ip-assets.php")){
+if(path.includes("ip-assets.php") || path.includes("new-ip-asset.php")){
 	document.getElementById('ip-assets-link').classList.add('active');
 }
 
@@ -81,4 +81,8 @@ if(path.includes("authors.php") || path.includes("new-author.php")){
 
 if(path.includes("user-security.php") || path.includes("user-profile.php")){
 	document.getElementById('account-link').classList.add("active");
+}
+
+if(path.includes("user-accounts.php")){
+	document.getElementById('user-accounts-link').classList.add("active");
 }

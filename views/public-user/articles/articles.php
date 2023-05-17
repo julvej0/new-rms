@@ -28,7 +28,6 @@
                             </button>
                         </div>
                     </form>
-                    
                     <div class='sort-button'>
                         <button id='btn-sort'>
                             <i class="fas fa-sort-amount-up"></i>
