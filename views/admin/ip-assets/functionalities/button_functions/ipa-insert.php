@@ -26,16 +26,23 @@ if (isset($_POST['submitIPA'])) {
     $status = $_POST['registerInfo'];
     $authors = $_POST['author_id']; 
     $author_name = $_POST['author_name'];
+
     
+    
+
+    foreach ($author_name as $name) {
+        $name = pg_escape_string($conn, $name);
+        $sql = "INSERT INTO table_authors (author_name)
+                SELECT '$name'
+                WHERE NOT EXISTS (SELECT 1 FROM table_authors WHERE author_name = '$name')";
+        pg_query($conn, $sql);
+    }
+    
+    $query = "SELECT author_id FROM table_authors WHERE author_name = $1 "; // run this query
+
     $authors_string = implode(",", $authors); // join the array values with a comma delimiter
 
-
-    $insert_query = "INSERT INTO table_authors (author_name) VALUES ($1)";
-    $insert_stmt = pg_prepare($conn, "insert_author", $insert_query);
-    
-    foreach ($author_name as $name) {
-        $insert_result = pg_execute($conn, "insert_author", array($name));
-    }
+   
 
 
     

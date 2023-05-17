@@ -1,5 +1,5 @@
 body {
-    background: var(--light);
+    background: var(--grey);
     position: relative;
     overflow-x: hidden;
 }
