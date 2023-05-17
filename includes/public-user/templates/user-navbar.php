@@ -68,7 +68,7 @@ session_start();
                                         <i class="fas fa-user"></i> PROFILE
                                     </a>
                                     <?php if ($isAuthor): ?>
-                                        <a style='margin-right: 30px;' href="author-info.php">
+                                        <a style='margin-right: 30px;' href="../../../views/public-user/author-info/author-profile.php">
                                             <i class="fas fa-info-circle"></i> AUTHOR INFORMATION
                                         </a>
                                     <?php endif; ?>
