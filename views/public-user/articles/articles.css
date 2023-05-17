@@ -246,3 +246,91 @@ span {
     font-size: .9rem;
     text-align: justify;
 }
+
+.filter-button {
+    position: relative;
+}
+
+.filter-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -180;
+    width: 250px;
+    background-color: #fefefe;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+    z-index: 4;
+    padding: 15px;
+}
+
+.filter-options input[type='submit'] {
+    display: block;
+    margin: 0 auto;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.filter-options label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.campus-bsu {
+    margin-left: 20px;
+}
+
+
+.sort-button {
+    position: relative;
+}
+
+.sort-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -70;
+    width: 150px;
+    background-color: #fefefe;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+    z-index: 4;
+    padding: 15px;
+    height: 120px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.sort-options li {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: black;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #cf102d;
+    text-decoration: none;
+}

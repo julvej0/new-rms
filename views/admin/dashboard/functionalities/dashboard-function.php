@@ -199,7 +199,6 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
     return $output;
 }
 // getting the number of published articles
-
 function getPublishedIPAssets($conn) {
     $query = "SELECT title_of_work FROM table_ipassets WHERE status = $1";
     $params = array("published");
@@ -221,32 +220,9 @@ function getPublishedIPAssets($conn) {
         }
     }
 }
-// getting the number of not-registered articles
-function getProcessingIpAssets($conn, $reuse_stmt = false) {
-    $query = "SELECT title_of_work FROM table_ipassets WHERE status = $1";
-    $params = array("not-registered");
-
-    if (!$reuse_stmt) {
-        $stmt = pg_prepare($conn, "proc_query", $query);
-    }
-
-    $result = pg_execute($conn, "proc_query", $params);
-
-    if (!$result) {
-        return "Query execution failed: " . pg_last_error($conn);
-    } else {
-        $row_count = pg_num_rows($result);
-        if ($row_count == 0) {
-            return '0';
-        } else {
-            return $row_count;
-        }
-    }
-}
 // getting the recently added articles
-
 function getRecentIpAssets($conn, $limit) {
-    $query = "SELECT title_of_work, date_registered FROM table_ipassets ORDER BY date_registered DESC LIMIT $1";
+    $query = "SELECT title_of_work, date_registered FROM table_ipassets WHERE date_registered IS NOT NULL ORDER BY date_registered DESC LIMIT $1";
     $params = array($limit);
 
     $query_run = pg_prepare($conn, "recent_assets_query", $query);
@@ -273,7 +249,6 @@ function getRecentIpAssets($conn, $limit) {
     }
 }
 // getting the ip assets per campus
-
 function getIpAssetsCampus($conn) {
     $query = "SELECT campus, COUNT(*) as dataset FROM table_ipassets WHERE campus IS NOT NULL GROUP BY campus";
     $result = pg_query($conn, $query);
@@ -291,7 +266,6 @@ function getIpAssetsCampus($conn) {
     );
 }
 // getting the type of publication in table publication
-
 function getPublicationType($conn){
     $query = "SELECT type_of_publication, COUNT(*) as dataset FROM table_publications WHERE type_of_publication is NOT NULL GROUP BY type_of_publication";
     $result = pg_query($conn, $query);
@@ -310,7 +284,6 @@ function getPublicationType($conn){
 
 }
 // getting the number ip assets per year
-
 function getIPAssetsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_registered) AS year, COUNT(*) AS count
     FROM table_ipassets
@@ -339,7 +312,6 @@ function getIPAssetsPerYear($conn) {
     );
 }
 // getting the number of publicatons per year 
-
 function getPublicationsPerYear($conn) {
     $query = "SELECT EXTRACT(YEAR FROM date_published) AS year, COUNT(*) AS count
     FROM table_publications
