@@ -246,3 +246,40 @@ span {
     font-size: .9rem;
     text-align: justify;
 }
+
+.filter-button {
+    position: relative;
+}
+
+.filter-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -180;
+    width: 250px;
+    background-color: #fefefe;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+    z-index: 4;
+    padding: 15px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.filter-options label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.campus-bsu {
+    margin-left: 20px;
+}
