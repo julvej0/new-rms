@@ -48,7 +48,9 @@ function checkData(event){
   var gender = document.getElementById("a-gender").value;
   var role = document.getElementById("a-role").value;
   var id = document.getElementById("a-id").value;
+  var email = document.getElementById("a-email").value;
 
+  console.log(id);
 
   //Internal Affiliation
   var internal_dept = document.getElementsByClassName("a-aff-dept").length;
@@ -58,47 +60,52 @@ function checkData(event){
   //External Affiliation
   var external_aff = document.getElementsByClassName("a-ex-aff").length;
 
-  if (internal_dept == 0 && internal_prog == 0 && internal_camp == 0 && external_aff == 0){
+  if ((internal_dept == 0 && internal_prog == 0 && internal_camp == 0 && external_aff == 0)|| (gender == "" || role == "" || email == "")){
     Swal.fire({
-      title: 'Error',
-      text: "Incomplete Author Details",
-      icon: 'error'
-    });
-    return false;
-  }
-
-  else if(name == "" || gender == "" || role == ""){
-    Swal.fire({
-      title: 'Error',
-      text: "Incomplete Author Details",
-      icon: 'error'
-    });
-    return false;
-  }
-  else{
-    if (id==""){
-      //pop up when exist
-      checkIfExist(name, function(exists){
-        if(exists){
-          Swal.fire({
-            title: 'Error',
-            text: "The author name you are trying to add is already existing!",
-            icon: 'error'
+      title: 'Are you sure?',
+      text: "The author information you provided is incomplete. Save anyways?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+    
+      if (result.isConfirmed) {
+        if (id==""){
+          //pop up when exist
+          checkIfExist(name, function(exists){
+            if(exists){
+              Swal.fire({
+                title: 'Error',
+                text: "The author name you are trying to add is already existing!",
+                icon: 'error'
+              });
+            }
+            else{
+              document.forms["form-author"].submit(); // submit the form when author does not exist
+            }
           });
         }
         else{
-          document.forms["form-author"].submit(); // submit the form when author does not exist
+          document.forms["form-author"].submit(); // submit the form when edit
         }
-      });
-      return false; // return false to prevent form submission
-    }
-    else{
-      document.forms["form-author"].submit(); // submit the form when edit
-    }
+       
+      } 
+      else{
+        return false;
+      }
+    });
+  }
+  else{
+    document.forms["form-author"].submit();
+  }
+  
+  
     
 
     
-  }
+  
 }
 
   

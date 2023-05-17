@@ -261,7 +261,9 @@
                                         height: 50px;
                                         padding: 10px 36px 10px 16px;
                                         border-radius: 5px;
-                                        border: 1px solid var(--dark-grey);"
+                                        border: 1px solid var(--dark-grey);
+                                        margin-top: 10px;
+                                        "
                                         onchange="showAuthorId(this)"
                                         required>';
                                         echo '<datalist id="authors">';

@@ -1,10 +1,11 @@
 <?php
 include_once '../../../../../db/db.php';
-if (isset($_POST['a-name'],$_POST['a-gender'],$_POST['a-role'],$_POST['a-id'])) {
+if (isset($_POST['a-name'],$_POST['a-gender'],$_POST['a-role'],$_POST['a-id'],$_POST['a-email'])) {
     $author_name = $_POST['a-name'];
-    $gender = $_POST['a-gender'];
-    $types = $_POST['a-role'];
     $id = $_POST['a-id'];
+    $gender = $_POST['a-gender'] != "" ? $_POST['a-gender'] : null;
+    $email = $_POST['a-email'] != "" ? $_POST['a-email'] : null;
+    $types = $_POST['a-role'] != "" ? $_POST['a-role'] : null;
 
     if(isset($_POST['a-aff-dept']) && isset($_POST['a-aff-prog']) && isset($_POST['a-aff-camp'])){
         $department_affiliations = $_POST['a-aff-dept'];
@@ -15,59 +16,81 @@ if (isset($_POST['a-name'],$_POST['a-gender'],$_POST['a-role'],$_POST['a-id'])) 
         for ($i = 0; $i < count($campus_affiliations); $i++) {
             $internal_affiliations[] = $department_affiliations[$i] . ", ". $program_affiliations[$i] . ", ". $campus_affiliations[$i];
         }
-        $arrayString1 = implode('_ ', $internal_affiliations);
+        $arrayInternal = implode('_ ', $internal_affiliations);
     
     }
     else{
-        $arrayString1 ='';
+        $arrayInternal ='';
     }
 
     if(isset($_POST['a-ex-aff'])){
         $external_affiliations = $_POST['a-ex-aff'];
         if (is_array($external_affiliations)){
-            $arrayString2 = implode('_ ', $external_affiliations);
+            $arrayExternal = implode('_ ', $external_affiliations);
         }
         else{
-            $arrayString2 = $external_affiliations;
+            $arrayExternal = $external_affiliations;
         }
         
     }
     else{
-        $arrayString2 = '';
+        $arrayExternal = '';
     }
     
-    if ($arrayString1!='' || $arrayString2!='' ){
-        $array3 = array($arrayString1, $arrayString2);                                                                                                                                                                                                                                    
-        $affiliation = implode(' || ', $array3);
+    if ($arrayInternal!='' || $arrayExternal!='' ){
+        $arrayCombined = array($arrayInternal, $arrayExternal);                                                                                                                                                                                                                                    
+        $affiliation = implode(' || ', $arrayCombined);
     } 
     else{
-        $affiliation = '';
+        $affiliation = null;
     }
-    
-    
-    
 
-    if(empty($author_name)||$gender==''||$types==''||$affiliation==''){
-        header("Location: ../../new-author.php?error=incomplete");
-    }
-    else{
-        $update_query = "UPDATE table_authors SET author_name=$1, gender=$2, type_of_author=$3, affiliation=$4 WHERE author_id=$5";
-        $update_stmt = pg_prepare($conn,"edit_author", $update_query);
-        $update_result = pg_execute($conn,"edit_author",array($author_name, $gender, $types, $affiliation, $id));
-    
-        if ($update_result) {
+    $update_query = "UPDATE table_authors SET author_name=$1, gender=$2, type_of_author=$3, affiliation=$4, email=$6 WHERE author_id=$5";
+    $update_stmt = pg_prepare($conn,"edit_author", $update_query);
+    $update_result = pg_execute($conn,"edit_author",array($author_name, $gender, $types, $affiliation, $id, $email));
+
+    if ($update_result) {
+        //update user type
+        $update_type_query = "UPDATE table_user SET account_type=$1 WHERE email = $2;";
+        $update_type_stmt = pg_prepare($conn,"edit_accType", $update_type_query);
+        $update_type_result = pg_execute($conn,"edit_accType",array("Author", $email));
+
+        
+        if ($update_type_result && updateAccountType($conn)) {
+
             header("Location: ../../authors.php?search=".$author_name."&update=success");
-        } else {
-            header("Location: ../../authors.php?search=".$author_name."&update=failed");
+            exit();
         }
-       
+        else{
+            header("Location: ../../authors.php?search=".$author_name."&update=failed");
+            exit();
+        }
 
+
+       
+    } else {
+        header("Location: ../../authors.php?search=".$author_name."&update=failed");
+        exit();
     }
+    
 }
 else {
     header("Location: ../../authors.php");
+    exit();
 }   
     
 
+function updateAccountType($conn){
+    $update_query = "UPDATE table_user SET account_type = $1 WHERE email NOT IN (SELECT email FROM table_authors WHERE email IS NOT NULL) AND account_type <> 'Admin';";
+    $update_stmt = pg_prepare($conn,"update_account", $update_query);
+    $update_result = pg_execute($conn,"update_account",array("Regular"));
 
+    if ($update_result){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
 ?>

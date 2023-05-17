@@ -1,5 +1,5 @@
 body {
-    background: var(--light);
+    background: var(--grey);
     position: relative;
     overflow-x: hidden;
 }
@@ -11,6 +11,7 @@ body {
     box-sizing: border-box;
     font-family: Poppins;
 }
+
 .table-container {
     display: flex;
     flex-direction: column;
@@ -196,56 +197,6 @@ span {
     top: 0;
   }
 
-.article-container{
-    width: 1000px;
-    height: auto; 
-    background-color: #ffffff;
-    margin: 0 auto;
-    margin-top: 5%;
-    /* margin-bottom: 5%; */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    padding: 2%;
-    border-radius: 10px;
-   
-    
-}
-.article-title{
-    font-weight: 580;
-    margin-bottom: 2%;
-}
-.article-date-published{
-    font-size: .8rem;
-    font-weight: 480;
-    margin-bottom: 2%;
-}
-.article-container label{
-    font-weight: 500;
-}
-.article-authors{
-    font-size: .8rem;
-    font-weight: 400;
-    margin-bottom: 2%;
-
-}
-.download-cert-btn{
-    background-color: #cf102d;
-    color: white;
-    border: none;
-    width: 250px;
-    text-align: center;
-    padding: 10px;
-    margin-top: 2%;
-    border-radius: 20px;
-    font-size: 14px;
-    cursor: pointer;
-}
-.download-cert-btn:hover{
-    background-color: #ef3450;
-}
-.abstract-cont{
-    font-size: .9rem;
-    text-align: justify;
-}
 
 .filter-button {
     position: relative;
