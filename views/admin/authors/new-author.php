@@ -43,16 +43,7 @@
 
                                     <label class="a-label" for="a-name">Email</label>
 <!--------------------------------------------------------------------------------------------->                                    
-                                    <!-- error handling, pagnagupdate -->
-                                    <select list="user-email" id ="a-email" name="a-email"
-                                    style="
-                                    width: 100%;
-                                    height: 50px;
-                                    padding: 10px 36px 10px 16px;
-                                    border-radius: 5px;
-                                    border: 1px solid var(--dark-grey);"
-                                                                            
-                                    placeholder="Email...">
+                                    <select list="user-email" id ="a-email" name="a-email" placeholder="Email...">
                                     <datalist id="user-email">
                                     <option value="" hidden>Choose an email...</option>
                                     <?php
