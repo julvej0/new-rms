@@ -20,7 +20,7 @@
                     </div>
                     <form method="GET" action="">
                         <div class='table-search'>
-                            <input type='text' id='search-table' name='search-table' placeholder='Search Article' value="<?= isset($search) ? htmlentities($search) : '' ?>">
+                            <input type='text' id='search-table' name='search-table' placeholder='Search Article or Author' value="<?= isset($search) ? htmlentities($search) : '' ?>">
                         </div>
                         <div class='search-button'>
                             <button id='btn-search' type='submit'>
@@ -34,12 +34,47 @@
                             <i class="fas fa-sort-amount-up"></i>
                         </button>
                         <span>SORT</span>
+                        <div class="sort-options">
+                            <ul>
+                                <li><a href="?sort=title">Sort by Title</a></li>
+                                <li><a href="?sort=date">Sort by Date</a></li>
+                                <li><a href="?sort=campus">Sort by Campus</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class='filter-button'>
-                        <button id='btn-filter'>
+                    <div class="filter-button">
+                        <button id="btn-filter">
                             <i class="fas fa-filter"></i>
                         </button>
                         <span>FILTER</span>
+                        <form method="GET" action="">
+                            <div class="filter-options">
+                                <label>Date Published</label>
+                                    <div class="nested-options">
+                                        <label><input type="number" name='date-start' placeholder="FROM" > </label>
+                                        <label><input type="number" name='date-end' placeholder="TO" > </label>
+                                        <!-- Add more nested options as needed -->
+                                    </div>
+                                </label>
+                                <label>
+                                    <input type="checkbox"  name="select-campus[]" id='select-campus' value="All Campus"> Campus
+                                        <div class="nested-options">
+                                            <label><input type="checkbox" name="select-campus[]" id='alangilan'class='campus-bsu'value="Alangilan"> Alangilan </label>
+                                            <label><input type="checkbox" name="select-campus[]" id='balayan' class='campus-bsu'value="Balayan"> Balayan </label>
+                                            <label><input type="checkbox" name="select-campus[]" id='lemery'  class='campus-bsu'value="Lemery"> Lemery </label>
+                                            <label><input type="checkbox" name="select-campus[]" id='lipa'    class='campus-bsu' value="Lipa"> Lipa</label>
+                                            <label><input type="checkbox" name="select-campus[]" id='lobo'    class='campus-bsu'value="Lobo"> Lobo</label>
+                                            <label><input type="checkbox" name="select-campus[]" id='malvar'  class='campus-bsu'value="Malvar"> Malvar</label>
+                                            <label><input type="checkbox" name="select-campus[]" id='mabini'  class='campus-bsu' value="Mabini"> Mabini</label>
+                                            <label><input type="checkbox" name="select-campus[]" id='nasugbu' class='campus-bsu'value="Nasugbu"> Nasugbu</label>
+                                            <label><input type="checkbox" name="select-campus[]" id='alangilan'class='campus-bsu'value="Pablo Borbon"> Pablo Borbon </label>
+                                            <label><input type="checkbox" name="select-campus[]" id='sanjuan' class='campus-bsu'value="San Juan"> San Juan</label>
+                                            <!-- Add more nested options as needed -->
+                                        </div>
+                                </label>
+                                <input type="submit" id='filter-btn' value="FILTER">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,6 +92,49 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+<script>
+    //show the filter box
+    const filterButton = document.getElementById('btn-filter');
+    const filterOptions = document.querySelector('.filter-options');
+
+    filterButton.addEventListener('click', function() {
+        filterOptions.style.display = filterOptions.style.display === 'none' ? 'block' : 'none';
+        sortOptions.style.display = sortOptions.style.display === 'block' ? 'none' : 'none';
+    });
+
+    //check all campuses
+    let checkAll = document.querySelector('input[id=select-campus]');
+    let campuses = document.querySelectorAll('input[class=campus-bsu]');
+
+    checkAll.addEventListener('change', function() {
+        if (this.checked) {
+            campuses.forEach(function(checkbox){
+                checkbox.checked = true;
+            });
+        } else{
+            campuses.forEach(function(checkbox){
+                checkbox.checked = false;
+            });
+        }
+    });
+
+    //show the sort box
+
+    const sortButton = document.getElementById('btn-sort');
+    const sortOptions = document.querySelector('.sort-options');
+
+    sortButton.addEventListener('click', function() {
+        sortOptions.style.display = sortOptions.style.display === 'none' ? 'block' : 'none';
+        filterOptions.style.display = filterOptions.style.display === 'block' ? 'none' : 'none';
+    });
+
+
+    
+    
+
+
+
+</script>
 </body>
 <?php 
     include '../../../includes/admin/templates/footer.php';
