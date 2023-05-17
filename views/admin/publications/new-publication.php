@@ -254,22 +254,19 @@
                                         $query = "SELECT author_id, author_name FROM table_authors";
                                         $params = array();
                                         $result = pg_query_params($conn, $query, $params);
-                                                                            
-                                        echo '<select list="authors" name="author_id[]"
+                                                ?>                            
+                                        <input list="authors" name="author_name[]"
                                         style="
                                         width: 100%;
                                         height: 50px;
                                         padding: 10px 36px 10px 16px;
                                         border-radius: 5px;
-                                        border: 1px solid var(--dark-grey);
-                                        margin-top: 10px;
-                                        "
-                                        onchange="showAuthorId(this)"
-                                        required>';
-                                        echo '<datalist id="authors">';
-                                        echo '<option hidden name="author_id[]" value="">Select an Author...</option>';
+                                        border: 1px solid var(--dark-grey);"                                        
+                                        placeholder="Author Name...">
+                                        <datalist id="authors">
+                                            <?php
                                         while ($row = pg_fetch_assoc($result)) {
-                                            echo '<option name="author_id[]" value="' . $row['author_id'] . '">' . $row['author_name'] . '</option>';
+                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
                                         }
                                         echo '</datalist>';
                                         ?>

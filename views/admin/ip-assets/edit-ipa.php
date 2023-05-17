@@ -124,50 +124,40 @@
                                 </tr>
                             </thead>
                             <tbody id="author-tbl-body">
-                                            <?php
-                                            
-
-
-                                            $author_list = $row["authors"];
-
-                                            $authors = explode(",", $author_list);
-                                            foreach ($authors as $author) {
-
-                                            $authorData = pg_query($conn, "SELECT author_id, author_name FROM table_authors WHERE author_id = '$author'");
-                                            
-                                            while($author_list_row = pg_fetch_assoc($authorData)){
-
-                                            
-                                                echo '
-                                                <tr>
-                                                <td class="ipa-author-field">
-                                                <input list="authors" name="author_name[]"
-                                                style="
-                                                width: 100%;
-                                                height: 50px;
-                                                padding: 10px 36px 10px 16px;
-                                                border-radius: 5px;
-                                                border: 1px solid var(--dark-grey);"
-                                                onchange="showAuthorId(this)"                                                
-                                                placeholder="Author Name..."
-                                                value="' . $author_list_row['author_name'] . '">';
-                                                echo '<datalist id="authors">';
-                                                $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
-                                                $params = array();
-                                                $result = pg_query_params($conn, $query, $params);
-                                                while ($author_row = pg_fetch_assoc($result)) {
-                                                    echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
-                                                }
-                                                echo '</datalist>';
-                                                echo'
-                                                </td>                                                
-                                                <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
-                                                </tr>';
-                                            }
+                                <?php                                        
+                                $author_list = $row["authors"];
+                                $authors = explode(",", $author_list);
+                                foreach ($authors as $author) {
+                                    $authorData = pg_query($conn, "SELECT author_id, author_name FROM table_authors WHERE author_id = '$author'");                                            
+                                    while($author_list_row = pg_fetch_assoc($authorData)){                                            
+                                        echo '
+                                        <tr>
+                                        <td class="ipa-author-field">
+                                        <input list="authors" name="author_name[]"
+                                        style="
+                                        width: 100%;
+                                        height: 50px;
+                                        padding: 10px 36px 10px 16px;
+                                        border-radius: 5px;
+                                        border: 1px solid var(--dark-grey);"                                                                                        
+                                        placeholder="Author Name..."
+                                        value="' . $author_list_row['author_name'] . '">';
+                                        echo '<datalist id="authors">';
+                                        $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
+                                        $params = array();
+                                        $result = pg_query_params($conn, $query, $params);
+                                        while ($author_row = pg_fetch_assoc($result)) {
+                                            echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
                                         }
-                                            
-                                            ?>
-                                </tbody>
+                                        echo '</datalist>';
+                                        echo'
+                                        </td>                                                
+                                        <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
+                                        </tr>';
+                                    }
+                                }                                            
+                                ?>
+                            </tbody>
                                             <td style="text-align: center;" colspan="2">
                                                 <button type="button" class="add-row-btn" style="height: 50px; width: 10%;">+</button>
                                             </td>

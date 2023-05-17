@@ -7,21 +7,6 @@ $(document).ready(function() {
   });
 });
 
- //Author ID table workaround.
- function showAuthorId(input) {
-                var authorName = input.value;
-                var authorId = "";
-                var options = input.list.options;
-                for (var i = 0; i < options.length; i++) {
-                    var option = options[i];
-                    if (option.value === authorName) {
-                        authorId = option.text;
-                        break;
-                    }
-                }
-                $(input).closest('tr').find('.author-id-input').val(authorId);
-            }
-
 function checkDuplicateAuthors() {
   var authors = {};
   var duplicate = false;
