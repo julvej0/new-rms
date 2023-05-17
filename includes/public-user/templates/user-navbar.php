@@ -12,14 +12,9 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.min.js"></script>
 
-
-
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="sweetalert2.min.css">
-
-
-
 
 <body>
 <section>
@@ -45,7 +40,7 @@ session_start();
                     <div class="right-content">
                         <ul class="nav-links">
                             <li><a href="../../../views/public-user/home/home.php" id='home-link'>HOME</a></li>
-                            <li><a href="../../../views/public-user/ipa/ipa.php" id='ip-link'>IP ASSETS</a></li>
+                            <li><a href="../../../views/public-user/ipa/ipa.php" id='ipa-link'>IP ASSETS</a></li>
                             <li><a href="../../../views/public-user/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
                             <li><a href="#" id='abt-link'>ABOUT</a></li>
                             <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php?logout=1' :  '../../../views/admin/account/login.php'?>" onclick="<?=isset($_SESSION['user_email']) ? 'return showLogoutAlert()' : ''?>">
@@ -84,7 +79,6 @@ session_start();
         </div>
     </div>
 </section>
-
 <!-- SCRIPT -->
 <script src="../../../js/public-user/user-navbar.js"></script>
 <script src="../../../js/public-user/profile-dropdown.js"></script>

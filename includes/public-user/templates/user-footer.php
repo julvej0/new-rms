@@ -10,7 +10,7 @@
                 </div>
                 <div class="socials">
                     <ul class="socials-list">
-                        <li><a href="#"><i class='bx bxl-facebook-circle icon' ></i></a></li>
+                        <li><a href="https://www.facebook.com/BatStateU.RMS"><i class='bx bxl-facebook-circle icon' ></i></a></li>
                         <li><a href="#"><i class='bx bxl-instagram-alt icon' ></i></a></li>
                         <li><a href="#"><i class='bx bxl-twitter icon' ></i></a></li>
                     </ul>

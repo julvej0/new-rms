@@ -7,6 +7,7 @@
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <?php 
     include '../../../includes/public-user/templates/user-navbar.php'; 
 ?>
@@ -33,7 +34,7 @@
                 <h3>Publications</h3>
             </div>
             <div class="card-container">
-                <div class="card">
+                <div class="card" id="card">
                     <div class="card-content">
                         <h3>Top Contributors</h3>
                         <div class="table">
@@ -43,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" id="card">
                     <div class="card-content">
                         <h3>Most Cited </h3>
                         <div class="table">
@@ -53,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" id="card">
                     <div class="card-content">
                         <h3>Recently Added </h3>
                         <div class="table">
@@ -133,6 +134,7 @@
 </div>
 <?php include "../../../includes/public-user/templates/user-footer.php"; ?>
 </body>
+<script src="./home.js"></script>
 <?php 
     include '../../../includes/admin/templates/footer.php';
 ?>

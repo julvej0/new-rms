@@ -25,9 +25,10 @@
 
     <main>
         <div class="header">
-            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'Patented Documents'; ?></h1>
-            <div class="btn-container">
-            <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
+            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'IP-ASSETS'; ?></h1>
+            <div class="left">
+                <div class="btn-container">
+                <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
                     <div class="checkbox-container" id="checkbox-container">
                         <input type="checkbox" name="col-registration" id="col-registration" checked>
                         <label class="checkbox-button" for="col-registration">Registration Number</label><br>
@@ -51,9 +52,8 @@
                         <label class="checkbox-button" for="col-authors">Authors</label>
                         <input type="checkbox" name="col-status" id="col-status" checked >
                         <label class="checkbox-button" for="col-status">Status</label>
+                    </div>
                 </div>
-            </div>
-            <div class="left">
                 <form action='' method='get'>
                     <div class="form-group">
                         <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >

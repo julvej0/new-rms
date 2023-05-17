@@ -3,12 +3,13 @@ include_once '../../../../../db/db.php';
 if (isset($_POST['id'])) {
     $id=$_POST['id'];
 
-    if (updateIpasset($conn, $id) == "Task Completed" && updatePublication($conn, $id) == "Task Completed") {
+    if (updateIpasset($conn, $id) == "Task Completed" && updatePublication($conn, $id) == "Task Completed" && updateAccountType($conn, $id)== "Task Completed")  {
         $delete_query = "DELETE FROM table_authors WHERE author_id=$1";
         $delete_stmt = pg_prepare($conn,"delete_author", $delete_query);
         $delete_result = pg_execute($conn,"delete_author",array($id));
 
         if($delete_result){
+           
             echo "Success";
             exit();
         }
@@ -105,6 +106,20 @@ function updatePublication($conn, $id){
         return "Task Completed";
     }
     
+
+}
+
+function updateAccountType($conn, $id){
+    $update_query = "UPDATE table_user SET account_type = $1 WHERE email IN (SELECT email FROM table_authors WHERE author_id = $2)";
+    $update_stmt = pg_prepare($conn,"update_account", $update_query);
+    $update_result = pg_execute($conn,"update_account",array("Regular", $id));
+
+    if ($update_result){
+        return "Task Completed";
+    }
+    else{
+        return "Not Updated";
+    }
 
 }
 

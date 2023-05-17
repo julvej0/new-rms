@@ -79,7 +79,8 @@ function rotateButton() {
         }, 10); // wait for margin-top transition to complete before setting opacity to 1
         isRotated = true;
     }
-    }
+}
+
 
 
 
@@ -165,6 +166,7 @@ allFilter.forEach(item => {
         });
     });
 });
+
 
 window.addEventListener('click', (e) => {
     allFilter.forEach(item => {
