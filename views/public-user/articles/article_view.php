@@ -6,11 +6,17 @@
     include_once "functionalities/articles-functions.php";
 ?>
 
-<?php
-if (isset($_GET['pubID']) && !empty($_GET['pubID'])) {
-    $row = getPublicationData($_GET['pubID'], $conn);
-    if ($row) {
-        displayPublicationData($row, $conn);
-    }
-}
-?>
+<body>
+    <section id="main-content">
+        <div class="content-container">
+            <?php
+                if (isset($_GET['pubID']) && !empty($_GET['pubID'])) {
+                    $row = getPublicationData($_GET['pubID'], $conn);
+                    if ($row) {
+                        displayPublicationData($row, $conn);
+                    }
+                }
+            ?>
+        </div>
+    </section>   
+</body>
