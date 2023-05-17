@@ -61,7 +61,7 @@
                 </div>
                 <form action='' method='get'>
                     <div class="form-group">
-                        <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >
+                        <input type='text' name='search' value='<?php $search_query?>' placeholder="Search..." >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>

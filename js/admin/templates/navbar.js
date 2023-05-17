@@ -84,5 +84,5 @@ if(path.includes("user-security.php") || path.includes("user-profile.php")){
 }
 
 if(path.includes("user-accounts.php")){
-	document.getElementById('account-link').classList.add("active");
+	document.getElementById('user-accounts-link').classList.add("active");
 }
