@@ -1,5 +1,6 @@
 <?php
 include_once "../../../views/admin/account-management/functionalities/user-session.php";
+
 ?>
 <!-- STYLES -->
 <link rel="stylesheet" href="../../../css/index.css">
@@ -43,8 +44,8 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
                 <li><a href="../../../views/admin/account-management/user-profile.php" id="user-link">Profile</a></li>
                 <li><a href="../../../views/admin/account-management/user-security.php" id="security-link">Change Password</a></li>
             </ul>
-            <a href="../../../views/admin/account/functionalities/logout.php?logout=true">
-                <i class='bx bx-log-out icon rotate' name='logout'></i>Sign Out
+            <a onclick = 'return showLogoutAlert()'>
+                <i class='bx bx-log-out icon rotate' name='logout' ></i>Sign Out
             </a>
         </li>
 
@@ -68,3 +69,25 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
  
 <!-- Script -->
 <script src="../../../js/admin/templates/navbar.js"></script>
+
+<script>
+    function showLogoutAlert() {
+        Swal.fire({
+            icon: 'question',
+            title: 'Logout Confirmation',
+            text: 'Are you sure you want to logout?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Logout',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to the logout page
+                window.location.href = '../../../views/admin/account/functionalities/logout.php?logout=1';
+            }
+        });
+
+        return false; // Prevent the default behavior of the anchor tag
+    }
+</script>

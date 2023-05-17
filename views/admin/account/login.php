@@ -1,6 +1,20 @@
 <?php
 include_once "../../../includes/admin/templates/header.php";
+session_start();
 
+if (isset($_SESSION['user_email'])) {
+    if($_SESSION['account_type'] == "Admin"){
+        header("Location: ../../../views/admin/dashboard/dashboard.php");
+        exit;
+
+    }
+    else{
+        header("Location: ../../../views/public-user/home/home.php");
+        exit;
+
+    }
+    
+}
 ?>
 
 <link rel="stylesheet" href="login.css">
