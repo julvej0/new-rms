@@ -68,7 +68,7 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
                 'nature_of_funding' => $row['nature_of_funding'],
                 'publisher' => $row['publisher'],
                 'campus' => $row['campus'],
-                'college' => $row['college']
+                'college' => $row['college'],
             );
         }
         return $table_rows;
