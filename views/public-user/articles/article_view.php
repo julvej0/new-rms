@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../../views/public-user/articles/articles.css">
+<link rel="stylesheet" href="../../../views/public-user/articles/article-view.css">
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../includes/public-user/templates/user-navbar.php'; 
