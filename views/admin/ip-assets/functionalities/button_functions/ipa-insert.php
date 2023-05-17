@@ -22,11 +22,24 @@ if (isset($_POST['submitIPA'])) {
     $campus = $_POST['campus'];
     $college = $_POST['college'];
     $program = $_POST['program'];
-    $authors = $_POST['author_id'];
     $hyperlink = $_POST['hyperlink'];
     $status = $_POST['registerInfo'];
+    $authors = $_POST['author_id']; 
+    $author_name = $_POST['author_name'];
     
     $authors_string = implode(",", $authors); // join the array values with a comma delimiter
+
+
+    $insert_query = "INSERT INTO table_authors (author_name) VALUES ($1)";
+    $insert_stmt = pg_prepare($conn, "insert_author", $insert_query);
+    
+    foreach ($author_name as $name) {
+        $insert_result = pg_execute($conn, "insert_author", array($name));
+    }
+
+
+    
+    
 
     // Check if file was uploaded without errors
     if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {
