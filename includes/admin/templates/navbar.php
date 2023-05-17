@@ -44,7 +44,7 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
                 <li><a href="../../../views/admin/account-management/user-profile.php" id="user-link">Profile</a></li>
                 <li><a href="../../../views/admin/account-management/user-security.php" id="security-link">Change Password</a></li>
             </ul>
-            <a onclick = 'return showLogoutAlert()'>
+            <a class="logout" onclick = 'return showLogoutAlert()'>
                 <i class='bx bx-log-out icon rotate' name='logout' ></i>Sign Out
             </a>
         </li>
