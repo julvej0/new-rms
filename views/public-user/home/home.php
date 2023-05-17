@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" id="card">
+                <div class="card " id="card">
                     <div class="card-content">
                         <h3>Most Cited </h3>
                         <div class="table">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" id="card">
+                <div class="card " id="card">
                     <div class="card-content">
                         <h3>Recently Added </h3>
                         <div class="table">

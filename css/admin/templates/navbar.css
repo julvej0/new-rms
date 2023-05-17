@@ -153,6 +153,9 @@ body {
 
 /* SIDEBAR */
 
+.logout {
+    cursor: pointer;
+}
 
 /* APPBAR CONTENT */
 #appbar-content {
