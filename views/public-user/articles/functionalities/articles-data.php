@@ -10,7 +10,7 @@ if (isset($_GET['search-table'])) {
   $sql_data = "SELECT table_publications.*, table_authors.author_name
              FROM table_publications
              LEFT JOIN table_authors ON table_publications.authors LIKE '%' || table_authors.author_id || '%'
-             AND (table_authors.author_name ILIKE '%$search_query%'
+             WHERE (table_authors.author_name ILIKE '%$search_query%'
              OR table_publications.title_of_paper ILIKE '%$search_query%'
              OR table_publications.campus ILIKE '%$search_query%')";
 
@@ -19,10 +19,14 @@ if (isset($_GET['search-table'])) {
       $sql_data .= " OR EXTRACT(YEAR FROM table_publications.date_published) = '$search_query'";
   }
 } else {
+
+  $sort_by = $_GET['sort'] ?? 'title'; // Get the sorting parameter, defaulting to 'title'
+
   // Select or Retrieve all Data from Database if no search query is set
   $sql_data = "SELECT table_publications.*, table_authors.author_name
                FROM table_publications
                LEFT JOIN table_authors ON table_publications.authors LIKE '%' || table_authors.author_id || '%' WHERE 1=1";
+               
 
   // Date filtration based on the input values
   if (isset($_GET['date-start']) && isset($_GET['date-end'])) {
@@ -54,6 +58,21 @@ if (isset($_GET['search-table'])) {
 
       }
   }
+
+
+  // Set the sort order based on the sorting parameter
+  if ($sort_by === 'date') {
+    $sort_order = 'DESC'; // Sort by date in descending order
+    $sort_column = 'date_published';
+  } elseif ($sort_by === 'campus') {
+    $sort_order = 'ASC'; // Sort by campus in ascending order
+    $sort_column = 'campus';
+  } else {
+    $sort_order = 'ASC'; // Sort by title (default)
+    $sort_column = 'title_of_paper';
+  }
+
+  $sql_data .= " ORDER BY $sort_column $sort_order";
  
 }
 

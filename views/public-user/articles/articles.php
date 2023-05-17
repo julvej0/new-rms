@@ -34,6 +34,13 @@
                             <i class="fas fa-sort-amount-up"></i>
                         </button>
                         <span>SORT</span>
+                        <div class="sort-options">
+                            <ul>
+                                <li><a href="?sort=title">Sort by Title</a></li>
+                                <li><a href="?sort=date">Sort by Date</a></li>
+                                <li><a href="?sort=campus">Sort by Campus</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="filter-button">
                         <button id="btn-filter">
@@ -60,6 +67,7 @@
                                             <label><input type="checkbox" name="select-campus[]" id='malvar'  class='campus-bsu'value="Malvar"> Malvar</label>
                                             <label><input type="checkbox" name="select-campus[]" id='mabini'  class='campus-bsu' value="Mabini"> Mabini</label>
                                             <label><input type="checkbox" name="select-campus[]" id='nasugbu' class='campus-bsu'value="Nasugbu"> Nasugbu</label>
+                                            <label><input type="checkbox" name="select-campus[]" id='alangilan'class='campus-bsu'value="Pablo Borbon"> Pablo Borbon </label>
                                             <label><input type="checkbox" name="select-campus[]" id='sanjuan' class='campus-bsu'value="San Juan"> San Juan</label>
                                             <!-- Add more nested options as needed -->
                                         </div>
@@ -85,14 +93,16 @@
 <script src="sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script>
+    //show the filter box
     const filterButton = document.getElementById('btn-filter');
     const filterOptions = document.querySelector('.filter-options');
 
     filterButton.addEventListener('click', function() {
         filterOptions.style.display = filterOptions.style.display === 'none' ? 'block' : 'none';
+        sortOptions.style.display = sortOptions.style.display === 'block' ? 'none' : 'none';
     });
 
-
+    //check all campuses
     let checkAll = document.querySelector('input[id=select-campus]');
     let campuses = document.querySelectorAll('input[class=campus-bsu]');
 
@@ -107,6 +117,18 @@
             });
         }
     });
+
+    //show the sort box
+
+    const sortButton = document.getElementById('btn-sort');
+    const sortOptions = document.querySelector('.sort-options');
+
+    sortButton.addEventListener('click', function() {
+        sortOptions.style.display = sortOptions.style.display === 'none' ? 'block' : 'none';
+        filterOptions.style.display = filterOptions.style.display === 'block' ? 'none' : 'none';
+    });
+
+
     
     
 
