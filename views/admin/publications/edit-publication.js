@@ -19,7 +19,6 @@ cancelBtn.addEventListener('click', (e) => {
     })
 })
 
-
 // sdg limit selection
 
 function limitSelection() {
