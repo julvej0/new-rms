@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-            <form action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors();">
+            <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors();">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-type">Type of Document</label>
-                                    <select  name="type_of_ipa" id="ip-type" required>
+                                    <select  name="type_of_ipa" id="ip-type">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="class_of_work">Class of Work</label>
-                                    <select class="ipa-input-field" id="class_of_work" name="class_of_work" required>
+                                    <select class="ipa-input-field" id="class_of_work" name="class_of_work">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="A">Class A</option>
                                         <option value="G">Class G</option>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="ipa-campus">Campus</label>
-                                    <select name="campus" class="ipa-input-field" required>
+                                    <select name="campus" class="ipa-input-field">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Alangilan">Alangilan</option>
                                         <option value="Balayan">Balayan</option>
@@ -72,7 +72,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="ipa-label" for="program">Program</label>
-                                    <select name="program" class="ipa-input-field" required>
+                                    <select name="program" class="ipa-input-field">
                                             <option value="" hidden>--Choose from the options--</option>
                                             <option value="Accountancy, Business, and International Hospitality">Accountancy, Business, and International Hospitality</option>
                                             <option value="Agriculture and Forestry">Agriculture and Forestry</option>
@@ -90,11 +90,11 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="college">College</label>
-                                    <input type="text" class="ipa-input-field" id="college" name="college" placeholder="College..." required>
+                                    <input type="text" class="ipa-input-field" id="college" name="college" placeholder="College...">
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="date-of-creation">Date of Creation</label>
-                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation" required>
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation">
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="hyperlink">Hyperlink</label>
@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="reg-date">Date of Registration</label>
-                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" required>
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date">
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate</label>
@@ -190,6 +190,7 @@
                  <hr>
                 <div class="form-footer">
                     <input type="submit" class="submit-btn" name="submitIPA" value="Submit">
+                    <input type="hidden" name="submitIPA" value="true">
                     <input type="button" class="cancel-btn" value="Cancel">
                 </div>
             </form>

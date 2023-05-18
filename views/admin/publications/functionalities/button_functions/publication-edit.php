@@ -44,6 +44,14 @@ if (isset($_POST['updatePB'])) {
         
         $authors_string = implode(",", $author_ids);
     }
+    $sdg = $_POST["sdg_no"];
+    $sdg_no = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
+    if (!$sdg_no) {
+        $sdg_no = null;
+    }else{
+        $sdg_no = $_POST["sdg_no"];
+        $sdg_string = implode(", ", $sdg);
+    }
 
     $quartile = $_POST["pb-quartile"];
     $pubID = $_POST['pubID'];
@@ -53,12 +61,9 @@ if (isset($_POST['updatePB'])) {
     $title = $_POST["title_of_paper"];
     $type = $_POST["type_of_publication"];
     $url = $_POST["google_scholar_details"];
-    $sdg = $_POST["sdg_no"];
     $funding_nature = $_POST["nature_of_funding"];
     $publisher = $_POST["publisher"];
     $abstract = $_POST["abstract"];
-
-    $sdg_string = implode(", ", $sdg);
 
     if ($if_funded == "internal") {
         $if_external = "BatState-U Research Fund";

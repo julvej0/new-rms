@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_publications WHERE publication_id = '$publicationID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-                <form action="functionalities/button_functions/publication-edit.php" method="POST" onsubmit="return chooseOneSDG(); checkDuplicateAuthors();">
+                <form name="form-pb" id="form-pb" action="functionalities/button_functions/publication-edit.php" method="POST" onsubmit="return checkDuplicateAuthors();">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -211,7 +211,7 @@
                             <div class="form-container">
                                 <div class="form-control"></div>
                                     <label class="pb-label" for="pb-abstract">Abstract</label>
-                                    <textarea cols="30" rows="10" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..." value="<?=$row['abstract']?>"></textarea>
+                                    <textarea cols="30" rows="10" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..."><?=$row['abstract']?></textarea>
                             </div>
                         </div>
                     </div>
@@ -316,8 +316,8 @@
                     </div>
                     <hr>
                     <div class="form-footer">
-                        <input type="hidden" name="pubID" value="<?=$row['publication_id']?>">
                         <input type="submit" class="submit-btn" name="updatePB" value="Submit">
+                        <input type="hidden" name="updatePB" value="true">
                         <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>
