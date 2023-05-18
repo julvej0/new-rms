@@ -151,6 +151,9 @@ body {
     color: var(--primary);
 }
 
+#sidebar .side-dropdown > li > a.active {
+    color: var(--primary);
+}
 /* SIDEBAR */
 
 .logout {
