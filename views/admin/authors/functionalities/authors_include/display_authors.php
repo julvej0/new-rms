@@ -21,11 +21,11 @@
     <tr>
         <td ><?=$row['author_id'];?></td>
         <td ><?=$row['author_name'];?></td>
-        <td><?=$row['type_of_author']== '' ? 'Not Yet Set' :   $row['type_of_author']; ?></td>
-        <td><?=$row['gender']== '' ? 'Not Yet Set' :   $row['gender']; ?></td>
+        <td><?=$row['type_of_author']== '' ? 'N/A' :   $row['type_of_author']; ?></td>
+        <td><?=$row['gender']== '' ? 'N/A' :   $row['gender']; ?></td>
         <td><?php
                 if (is_null($row['affiliation'])){
-                    echo "Not Yet Set";
+                    echo "N/A";
                 }
                 else{
                     $affiliation = explode(' || ', $row['affiliation']);
@@ -52,7 +52,7 @@
                     }
 
                     if ($internal_affiliation == "" && $external_affiliation == "" ){
-                        echo "Not Yet Set";
+                        echo "N/A";
                     }
                     else{
                         $all_affiliation =array($internal_affiliation, $external_affiliation);
