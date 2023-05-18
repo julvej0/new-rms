@@ -1,7 +1,7 @@
 <script>
 $(document).ready(function() {
   // Listen for changes to the select fields
-  $(document).on('change', 'select[name="author_id[]"]', function() {
+  $(document).on('change', 'input[name="author_name[]"]', function() {
     checkDuplicateAuthors(); // Call the comparison function
   });
 });
@@ -9,7 +9,7 @@ $(document).ready(function() {
 function checkDuplicateAuthors() {
   var authors = {};
   var duplicate = false;
-  $('select[name="author_id[]"]').each(function() {
+  $('input[name="author_name[]"]').each(function() {
     var id = $(this).val().toLowerCase();
     if (id in authors) {
       duplicate = true;
@@ -42,34 +42,33 @@ function checkDuplicateAuthors() {
     }
 
     var max =15; //max number of Authors
-    var x =1; //represents the 1st author field
-    var rowHtml = '<tr>\
-                    <td class="ipa-author-field">\
-                        <?php
-                        $query = "SELECT author_id, author_name FROM table_authors";
-                        $params = array();
-                        $result = pg_query_params($conn, $query, $params);
-                        echo '<select list="authors" name="author_id[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" onchange="showAuthorId(this)" required>';
-                        echo '<datalist id="authors">';
-                        echo '<option hidden name="author_id[]" value="">Select an Author...</option>';
-                        while ($row = pg_fetch_assoc($result)) {
-                            echo '<option name="author_id[]" value="' . $row['author_id'] . '">' . $row['author_name'] . '</option>';
-                        }
-                        echo '</datalist>';
-                        ?>
-                    </td>\
-                    <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button> </td>\
-                </tr>';
-    $('.add-row-btn').click(function(){
-        if (x < max) {
-        $('#author-tbl-body').append(rowHtml);
-        x++;
-            }
+            var x =1; //represents the 1st author field
+            var rowHtml = '<tr>\
+                                    <td class="ipa-author-field">\
+                                        <?php
+                                        $query = "SELECT author_id, author_name FROM table_authors";
+                                        $params = array();
+                                        $result = pg_query_params($conn, $query, $params);
+                                        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name..." onchange="showAuthorId(this)">';
+                                        echo '<datalist id="authors">';
+                                        while ($row = pg_fetch_assoc($result)) {
+                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                        }
+                                        echo '</datalist>';
+                                        ?>
+                                    </td>\
+                                    <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button> </td>\
+                                </tr>';
+            $('.add-row-btn').click(function(){
+                if (x < max) {
+                $('#author-tbl-body').append(rowHtml);
+                x++;
+                    }
 
-        //Remove row function
-        $('#author-tbl').on('click','#remove',function(){
-            $(this).closest('tr').remove();
-            x--;
-        });
-    });
+                //Remove row function
+                $('#author-tbl').on('click','#remove',function(){
+                    $(this).closest('tr').remove();
+                    x--;
+                });
+            });
 </script>

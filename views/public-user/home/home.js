@@ -1,18 +1,15 @@
 // animate when scroll
-document.addEventListener('DOMContentLoaded', function() {
-    var animatedCards = document.querySelectorAll('.card-container');
-    var animated = false;
+// const cards = document.querySelectorAll('.card-container .card');
 
-    function animateOnScroll() {
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        var windowHeight = window.innerHeight;
+// window.addEventListener('scroll', () => {
+//     const triggerBottom = window.innerHeight / 5 * 4;
 
-        animatedCards.forEach(animateCard => {
-            if (!animated && scrollTop + windowHeight >= animateCard.offsetTop) {
-                animateCard.classList.add('animate__animated', 'animate__fadeIn');
-                animated = true;
-            }
-        })
-    }
-    window.addEventListener('scroll', animateOnScroll);
-});
+//     cards.forEach((card) => {
+//         const boxTop = card.getBoundingClientRect().top;
+//         if(boxTop < triggerBottom) {
+//             card.classList.add('animate__animated', 'animate__fadeInUpBig');
+//         } else {
+//             card.classList.remove('animate__animated');
+//         }
+//     })
+// })

@@ -14,10 +14,11 @@
 
     if(pg_num_rows($result) > 0){
     while ($row = pg_fetch_assoc($result)) {
+        $userPic = '../../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png';
     ?>
     <tr>
         <td ><?=$row['sr_code'];?></td>
-        <td ><img id="user-image" src="<?=$row['user_img']; ?>" alt="User Image"></td>
+        <td><img id="user-image" src="<?=isset($row['user_img']) ? $row['user_img'] : $userPic;?>" alt="User Image" style="width:6.25rem; height:6.25rem;"></td>
         <td ><?=$row['user_fname']." ".$row['user_mname']." ".$row['user_lname'];?></td>
         <td><?=$row['user_contact']; ?></td>
         <td><?=$row['email']; ?></td>

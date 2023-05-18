@@ -94,7 +94,6 @@
             </div>
         </div>
         <section>
-
         <div class="table-container">
                 <?php
                     include_once 'functionalities/publications_include/publication_table.php';
