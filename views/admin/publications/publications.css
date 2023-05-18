@@ -42,7 +42,7 @@ main .header .addBtn:hover {
 
 main .header .left {
     display: flex;
-    width: 1200px;
+    width: 1000px;
     align-items: center;
     justify-content: space-between;
     grid-gap: 5px;
@@ -321,9 +321,8 @@ main table tr td .icon {
 /*SELECT COLUMN*/
 .select-columns-btn {
     border: transparent;
-    height: 2.6rem;
-    width: 2.6rem;
-    margin-top: 0.5rem;
+    height: 2.4rem;
+    width: 2.4rem;
     border-radius: 100%;
     background-color: var(--primary);
     color: white;
@@ -332,8 +331,7 @@ main table tr td .icon {
     cursor: pointer;
     transition: 0.3s ease-in-out;
     text-align: center;
-    line-height: 2.5rem;
-    border: none;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
   }
   .checkbox-button{
     width: 10.8%;
@@ -346,15 +344,16 @@ main table tr td .icon {
     opacity: 0;
     transition: opacity 1s ease-in-out;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
-    display: flex;
     display: none;
 }
   .btn-container {
     position: relative;
+<<<<<<< HEAD
+=======
     /* width: 12.85rem; */
+>>>>>>> 6b7a17c993cc6c4578c09dce508a5f83ac294bd3
     z-index: 101;
   }
-  
     /*COLUMN*/
   input[type=checkbox] {
     display: none;
