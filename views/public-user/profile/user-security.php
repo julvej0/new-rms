@@ -9,8 +9,14 @@ include_once "functionalities/user-session.php";
 
 
 <!-- HTML code for change password modal -->
+        
     <div id="myModal" class="modal">
+        <div class="page-title">
+            <h3 class="animate__animated animate__zoomIn">PROFILE INFORMATION</h3>
+        </div>
+        
         <div class="modal-content">
+            
             <span class="close">&times;</span>
             <h2>Change Password</h2>
             <form id="change-password-form">

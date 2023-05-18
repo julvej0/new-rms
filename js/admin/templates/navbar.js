@@ -86,3 +86,13 @@ if(path.includes("user-security.php") || path.includes("user-profile.php")){
 if(path.includes("user-accounts.php")){
 	document.getElementById('user-accounts-link').classList.add("active");
 }
+
+if(path.includes("user-profile.php")){
+	document.getElementById('user-link').classList.add("active");
+	document.querySelector('#sidebar .side-dropdown').classList.add('show');
+}
+
+if(path.includes("user-security.php")){
+	document.getElementById('security-link').classList.add("active");
+	document.querySelector('#sidebar .side-dropdown').classList.add('show');
+}

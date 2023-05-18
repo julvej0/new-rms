@@ -7,12 +7,15 @@ include_once "functionalities/user-session.php";
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="user-profile.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <div id='whole-page'>
 
 
 <!-- profile page -->
     <div id="profile-page" class="mini-page">
-        <h2 id='userh2'>PROFILE INFORMATION</h2>
+        <div class="page-title">
+            <h3 class="animate__animated animate__zoomIn">CHANGE PASSWORD</h3>
+        </div>
         <div class="profile-info">
             <div class="profile-photo">
                 <label for="photo-upload">

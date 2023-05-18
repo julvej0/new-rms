@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-            <form action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
+            <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-type">Type of Document</label>
-                                    <select  name="type_of_ipa" id="ip-type" required>
+                                    <select  name="type_of_ipa" id="ip-type">
                                         <option value="<?=$row['type_of_document']?>" hidden><?=$row['type_of_document']?></option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="date-of-creation">Date of Creation</label>
-                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation" required value="<?=$row['date_of_creation']?>">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation" value="<?=$row['date_of_creation']?>">
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="hyperlink">Hyperlink</label>
@@ -124,50 +124,40 @@
                                 </tr>
                             </thead>
                             <tbody id="author-tbl-body">
-                                            <?php
-                                            
-
-
-                                            $author_list = $row["authors"];
-
-                                            $authors = explode(",", $author_list);
-                                            foreach ($authors as $author) {
-
-                                            $authorData = pg_query($conn, "SELECT author_id, author_name FROM table_authors WHERE author_id = '$author'");
-                                            
-                                            while($author_list_row = pg_fetch_assoc($authorData)){
-
-                                            
-                                                echo '
-                                                <tr>
-                                                <td class="ipa-author-field">
-                                                <select list="authors" name="author_id[]"
-                                                style="
-                                                width: 100%;
-                                                height: 50px;
-                                                padding: 10px 36px 10px 16px;
-                                                border-radius: 5px;
-                                                border: 1px solid var(--dark-grey);"
-                                                onchange="showAuthorId(this)"                                                
-                                                placeholder="Author Name...">
-                                                <option hidden class="author-id-input" value="' . $author_list_row['author_id'] . '">'.$author_list_row['author_name'].'</option>';
-                                                echo '<datalist id="authors">';
-                                                $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
-                                                $params = array();
-                                                $result = pg_query_params($conn, $query, $params);
-                                                while ($author_row = pg_fetch_assoc($result)) {
-                                                    echo '<option value="' . $author_row['author_id'] . '">' . $author_row['author_name'] . '</option>';
-                                                }
-                                                echo '</datalist>';
-                                                echo'
-                                                </td>                                                
-                                                <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
-                                                </tr>';
-                                            }
+                                <?php                                        
+                                $author_list = $row["authors"];
+                                $authors = explode(",", $author_list);
+                                foreach ($authors as $author) {
+                                    $authorData = pg_query($conn, "SELECT author_id, author_name FROM table_authors WHERE author_id = '$author'");                                            
+                                    while($author_list_row = pg_fetch_assoc($authorData)){                                            
+                                        echo '
+                                        <tr>
+                                        <td class="ipa-author-field">
+                                        <input list="authors" name="author_name[]"
+                                        style="
+                                        width: 100%;
+                                        height: 50px;
+                                        padding: 10px 36px 10px 16px;
+                                        border-radius: 5px;
+                                        border: 1px solid var(--dark-grey);"                                                                                        
+                                        placeholder="Author Name..."
+                                        value="' . $author_list_row['author_name'] . '">';
+                                        echo '<datalist id="authors">';
+                                        $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
+                                        $params = array();
+                                        $result = pg_query_params($conn, $query, $params);
+                                        while ($author_row = pg_fetch_assoc($result)) {
+                                            echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
                                         }
-                                            
-                                            ?>
-                                </tbody>
+                                        echo '</datalist>';
+                                        echo'
+                                        </td>                                                
+                                        <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>
+                                        </tr>';
+                                    }
+                                }                                            
+                                ?>
+                            </tbody>
                                             <td style="text-align: center;" colspan="2">
                                                 <button type="button" class="add-row-btn" style="height: 50px; width: 10%;">+</button>
                                             </td>
@@ -203,7 +193,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="reg-date">Date of Registration</label>
-                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" required  value="<?=$row['date_registered']?>">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" value="<?=$row['date_registered']?>">
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-certificate">Upload Certificate</label>
@@ -222,6 +212,7 @@
                  <hr>
                 <div class="form-footer">
                     <input type="submit" class="submit-btn" name="updateIPA" value="Submit">
+                    <input type="hidden" name="updateIPA" value="true">
                     <input type="button" class="cancel-btn" value="Cancel">
                 </div>
             </form>

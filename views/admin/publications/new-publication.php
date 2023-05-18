@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-                <form action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return chooseOneSDG(); checkDuplicateAuthors();">
+                <form name="form-pb" id="form-pb" action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return checkDuplicateAuthors();">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-type">Type of Document</label>
-                                    <select  name="type_of_publication" id="pb-type" required>
+                                    <select  name="type_of_publication" id="pb-type">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -57,7 +57,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-college">College</label>
-                                    <select name="college" class="pb-input-field" id="pb-college" required>
+                                    <select name="college" class="pb-input-field" id="pb-college">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Accountancy, Business, and International Hospitality">Accountancy, Business, and International Hospitality</option>
                                         <option value="Agriculture and Forestry">Agriculture and Forestry</option>
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-campus">Campus</label>
-                                    <select name="campus" id="pb-campus" required>
+                                    <select name="campus" id="pb-campus">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Alangilan">Alangilan</option>
                                         <option value="Balayan">Balayan</option>
@@ -95,7 +95,7 @@
                                     <div class="quartile-row">
                                         <div class="quarter">
                                             <label class="pb-label" for="pb-quarter">Quarter</label>
-                                            <select name="quartile[]" id="pb-quarter" required>
+                                            <select name="quartile[]" id="pb-quarter">
                                                 <option value="pb-quartile" hidden>--Choose from the options--</option>
                                                 <option value="Q1">Quartile 1</option>
                                                 <option value="Q2">Quartile 2</option>
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="quarter-year">
                                             <label class="pb-label" for="pb-quarter-year">Year</label>
-                                            <select name="quartile_year[]" id="pb-quarter-year" required>
+                                            <select name="quartile_year[]" id="pb-quarter-year">
                                                 <option value="" hidden>-- Select Year --</option>
                                                 <option value="2023">2023</option>
                                                 <option value="2022">2022</option>
@@ -254,22 +254,19 @@
                                         $query = "SELECT author_id, author_name FROM table_authors";
                                         $params = array();
                                         $result = pg_query_params($conn, $query, $params);
-                                                                            
-                                        echo '<select list="authors" name="author_id[]"
+                                                ?>                            
+                                        <input list="authors" name="author_name[]"
                                         style="
                                         width: 100%;
                                         height: 50px;
                                         padding: 10px 36px 10px 16px;
                                         border-radius: 5px;
-                                        border: 1px solid var(--dark-grey);
-                                        margin-top: 10px;
-                                        "
-                                        onchange="showAuthorId(this)"
-                                        required>';
-                                        echo '<datalist id="authors">';
-                                        echo '<option hidden name="author_id[]" value="">Select an Author...</option>';
+                                        border: 1px solid var(--dark-grey);"                                        
+                                        placeholder="Author Name...">
+                                        <datalist id="authors">
+                                            <?php
                                         while ($row = pg_fetch_assoc($result)) {
-                                            echo '<option name="author_id[]" value="' . $row['author_id'] . '">' . $row['author_name'] . '</option>';
+                                            echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
                                         }
                                         echo '</datalist>';
                                         ?>
@@ -321,7 +318,7 @@
                             <div class="funding-form-container2">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
-                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency" required>
+                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency">
                                 </div>
                             </div>
                         </div>
@@ -329,6 +326,7 @@
                     <hr>
                     <div class="form-footer">
                         <input type="submit" class="submit-btn" name="submitPB" value="Submit">
+                        <input type="hidden" name="submitPB" value="true">
                         <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>

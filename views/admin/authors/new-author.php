@@ -41,8 +41,7 @@
                             <div class="form-container">
                                 <div class="form-control">
 
-                                    <label class="a-label" for="a-name">Email</label>
-<!--------------------------------------------------------------------------------------------->                                    
+                                    <label class="a-label" for="a-name">Email</label>                               
                                     <select list="user-email" id ="a-email" name="a-email" placeholder="Email...">
                                     <datalist id="user-email">
                                     <option value="" hidden>Choose an email...</option>
@@ -64,8 +63,7 @@
                                     }
                                     
                                     echo '</datalist></select>' ;
-                                    ?>
-<!--------------------------------------------------------------------------------------------->                                  
+                                    ?>                                
                                     <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
                                     
                                 </div>

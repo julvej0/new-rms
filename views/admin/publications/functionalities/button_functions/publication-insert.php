@@ -14,22 +14,47 @@ if (isset($_POST['submitPB'])) {
     }else{
         $if_funded = $_POST["funding_type"];
     }
+    $sdg = $_POST["sdg_no"];
+    $sdg_no = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
+    if (!$sdg_no) {
+        $sdg_no = null;
+    }else{
+        $sdg_no = $_POST["sdg_no"];
+        $sdg_string = implode(", ", $sdg);
+    }
     $quartile_sem = $_POST["quartile"];
     $quartile_year = $_POST["quartile_year"];
-    $authors = $_POST["author_id"];
+    $author_name = $_POST['author_name'];
     $department = $_POST["research_area"]; 
     $college = $_POST["college"];
     $campus = $_POST["campus"];
     $title = $_POST["title_of_paper"];
     $type = $_POST["type_of_publication"];
     $url = $_POST["google_scholar_details"];
-    $sdg = $_POST["sdg_no"];
     $funding_nature = $_POST["nature_of_funding"];
     $publisher = $_POST["publisher"]; 
     $abstract = $_POST["abstract"];
 
-    $authors_string = implode(",", $authors); // join the array values with a comma delimiter
-    $sdg_string = implode(", ", $sdg);
+    $select_query = "SELECT author_id FROM table_authors WHERE author_name = $1 ";
+    $select_stmt = pg_prepare($conn, "select_author_details", $select_query);
+    
+    $author_ids = array(); // Define the array outside the loop
+    
+    foreach ($author_name as $name) {
+        $auth_name = pg_escape_string($conn, $name);
+        $sql = "INSERT INTO table_authors (author_name)
+                SELECT '$name'
+                WHERE NOT EXISTS (SELECT 1 FROM table_authors WHERE author_name = '$name')";
+        pg_query($conn, $sql);
+    
+        $select_result = pg_execute($conn, "select_author_details", array($name));
+    
+        while ($row = pg_fetch_assoc($select_result)) {
+            $author_ids[] = $row['author_id'];
+        }
+    }
+    
+    $authors_string = implode(",", $author_ids);
     
     $quartileJoin = array();
     foreach ($quartile_sem as $index => $value) {
