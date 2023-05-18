@@ -36,8 +36,40 @@ $(document).ready(function() {
       this.submit();
     }
   });
-});
 
+  var max = 15; // max number of Authors
+  var x = 1; // represents the 1st author field
+  var rowHtml = '<tr>\
+    <td class="ipa-author-field">\
+      <?php
+        $query = "SELECT author_id, author_name FROM table_authors";
+        $params = array();
+        $result = pg_query_params($conn, $query, $params);
+        echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name..." onchange="showAuthorId(this)">';
+        echo '<datalist id="authors">'; 
+        while ($row = pg_fetch_assoc($result)) { 
+          echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>'; 
+        } 
+        echo '</datalist>'; 
+      ?>
+    </td>\
+    <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;" id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button></td>\
+  </tr>';
+
+  // Add row function
+  $('.add-row-btn').click(function() {
+    if (x < max) {
+      $('#author-tbl-body').append(rowHtml);
+      x++;
+    }
+  });
+
+  // Remove row function
+  $('#author-tbl-body').on('click', 'button[name="remove"]', function(event) {
+    $(this).closest('tr').remove();
+    x--;
+  });
+});
 
 function checkDuplicateAuthors() {
   var authors = {};
@@ -59,34 +91,4 @@ function checkDuplicateAuthors() {
   return !duplicate; // Return false to prevent form submission if duplicate found
 }
 
-    var max =15; //max number of Authors
-    var x =1; //represents the 1st author field
-    var rowHtml = '<tr>\
-                            <td class="ipa-author-field">\
-                                <?php
-                                $query = "SELECT author_id, author_name FROM table_authors";
-                                $params = array();
-                                $result = pg_query_params($conn, $query, $params);
-                                echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name..." onchange="showAuthorId(this)">';
-                                echo '<datalist id="authors">';
-                                while ($row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
-                                }
-                                echo '</datalist>';
-                                ?>
-                            </td>\
-                            <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fa-solid fa-xmark fa-xs"></i></button> </td>\
-                        </tr>';
-    $('.add-row-btn').click(function(){
-        if (x < max) {
-        $('#author-tbl-body').append(rowHtml);
-        x++;
-            }
-
-        //Remove row function
-        $('#author-tbl').on('click','#remove',function(){
-            $(this).closest('tr').remove();
-            x--;
-        });
-    });
 </script>
