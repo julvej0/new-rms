@@ -158,6 +158,25 @@ body {
     border-color: #cf102d;
 }
 
+.page-title h3 {
+    letter-spacing: 1px;
+    font-size: 30px;
+    color: var(--text-color);
+    position: relative;
+    text-transform: uppercase;
+}
+.page-title h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary);
+    width: 60%;
+    height: 3px;
+    bottom: -4px;
+    border-radius: 5px;
+}
+
 
 
 .upload-button {
