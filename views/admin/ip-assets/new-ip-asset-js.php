@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   // Listen for changes to the select fields
-  $(document).on('change', 'input[name="author_id[]"]', function() {
+  $(document).on('change', 'input[name="author_name[]"]', function() {
     checkDuplicateAuthors(); // Call the comparison function
   });
 });
@@ -10,7 +10,7 @@ $(document).ready(function() {
 function checkDuplicateAuthors() {
   var authors = {};
   var duplicate = false;
-  $('input[name="author_id[]"]').each(function() {
+  $('input[name="author_name[]"]').each(function() {
     var id = $(this).val().toLowerCase();
     if (id in authors) {
       duplicate = true;
