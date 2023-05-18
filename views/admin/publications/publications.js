@@ -168,7 +168,7 @@ function redirect(url){
 
           Toast.fire({
             icon: 'info',
-            title: 'Certificate not set!'
+            title: 'Google scholar link not set!'
           })
     }
     else{

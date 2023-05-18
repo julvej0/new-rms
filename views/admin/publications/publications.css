@@ -348,6 +348,10 @@ main table tr td .icon {
 }
   .btn-container {
     position: relative;
+<<<<<<< HEAD
+=======
+    /* width: 12.85rem; */
+>>>>>>> 6b7a17c993cc6c4578c09dce508a5f83ac294bd3
     z-index: 101;
   }
     /*COLUMN*/
