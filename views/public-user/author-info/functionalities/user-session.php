@@ -1,27 +1,24 @@
 <?php
-
 include_once "../../../db/db.php";
 
-// Check if the user is logged in
+//check if the session is an author
+if (isset($_SESSION['user_email'])) {
+    $author_session = $_SESSION['user_email'];
 
-if (!isset($_SESSION['user_email'])) {
-    header("Location: ../../../views/public-user/home/home.php");
-    exit;
-}
+    $author_data = "SELECT * FROM table_authors WHERE email = '$author_session'";
+    $author_data_result = pg_query($conn, $author_data);
 
-// Fetch user details from the database
-$user_query = "SELECT * FROM table_user WHERE email = $1";
-$user_result = pg_query_params($conn, $user_query, array($_SESSION['user_email']));
-if (!$user_result) {
-    echo "An error occurred: " . pg_last_error($conn);
-    exit;
-}
-$user = pg_fetch_assoc($user_result);
+    if (!$author_data_result) {
+        echo "An error occurred: " . pg_last_error($conn);
+        exit;
+    }
 
-if (!$user) {
-    echo "User not found.";
-    header("Location: ../../admin/account/login.php");
-    exit;
+    $author_user = pg_fetch_assoc($author_data_result);
+
+    if (!$author_user) {
+        echo "Author not found.";
+        exit;
+    }
 }
 
 ?>
