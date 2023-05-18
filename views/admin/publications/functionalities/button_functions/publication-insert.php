@@ -14,6 +14,14 @@ if (isset($_POST['submitPB'])) {
     }else{
         $if_funded = $_POST["funding_type"];
     }
+    $sdg = $_POST["sdg_no"];
+    $sdg_no = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
+    if (!$sdg_no) {
+        $sdg_no = null;
+    }else{
+        $sdg_no = $_POST["sdg_no"];
+        $sdg_string = implode(", ", $sdg);
+    }
     $quartile_sem = $_POST["quartile"];
     $quartile_year = $_POST["quartile_year"];
     $author_name = $_POST['author_name'];
@@ -23,7 +31,6 @@ if (isset($_POST['submitPB'])) {
     $title = $_POST["title_of_paper"];
     $type = $_POST["type_of_publication"];
     $url = $_POST["google_scholar_details"];
-    $sdg = $_POST["sdg_no"];
     $funding_nature = $_POST["nature_of_funding"];
     $publisher = $_POST["publisher"]; 
     $abstract = $_POST["abstract"];
@@ -48,7 +55,6 @@ if (isset($_POST['submitPB'])) {
     }
     
     $authors_string = implode(",", $author_ids);
-    $sdg_string = implode(", ", $sdg);
     
     $quartileJoin = array();
     foreach ($quartile_sem as $index => $value) {

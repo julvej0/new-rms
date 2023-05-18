@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-            <form action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
+            <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-type">Type of Document</label>
-                                    <select  name="type_of_ipa" id="ip-type" required>
+                                    <select  name="type_of_ipa" id="ip-type">
                                         <option value="<?=$row['type_of_document']?>" hidden><?=$row['type_of_document']?></option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="date-of-creation">Date of Creation</label>
-                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation" required value="<?=$row['date_of_creation']?>">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" name="date_of_creation" value="<?=$row['date_of_creation']?>">
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="hyperlink">Hyperlink</label>
@@ -193,7 +193,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="reg-date">Date of Registration</label>
-                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" required  value="<?=$row['date_registered']?>">
+                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" value="<?=$row['date_registered']?>">
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-certificate">Upload Certificate</label>
@@ -212,6 +212,7 @@
                  <hr>
                 <div class="form-footer">
                     <input type="submit" class="submit-btn" name="updateIPA" value="Submit">
+                    <input type="hidden" name="updateIPA" value="true">
                     <input type="button" class="cancel-btn" value="Cancel">
                 </div>
             </form>

@@ -11,7 +11,7 @@ if (isset($_POST['submitIPA'])) {
     $date_registered = $_POST['date_registered'];
     $date_registered = isset($_POST['date_registered']) ? $_POST['date_registered'] : null;
     if (!$date_registered) {
-        $date_registered = "";
+        $date_registered = null;
     }else{
         $date_registered = $_POST["date_registered"];
     }

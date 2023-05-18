@@ -211,19 +211,15 @@ function submitDelete(id){
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-
             if (xhr.responseText === "Success") {
                 let queryString = window.location.search;
                 const searchParams = new URLSearchParams(queryString);
                 if (searchParams.has('delete')) {
                     searchParams.delete('delete');
                 }
-
-                window.location.href="?"+searchParams+"&delete=success";
-              
+                window.location.href="?"+searchParams+"&delete=success";   
             }
             else {
-                
                 Swal.fire({
                     icon: 'error',
                     title: 'Delete was Unsuccessful',
@@ -231,17 +227,14 @@ function submitDelete(id){
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'OK'
                     });
-                    console.log(xhr.responseText)
-                
+                    console.log(xhr.responseText)             
             }
         }
     };
     xhr.send("id=" + id );
-
 }
 
 function confirmDelete(id){
-    
     Swal.fire({
         title: 'Are you sure?',
         text: id + " will be deleted from Patented chuchu. You won't be able to revert this!",
@@ -256,9 +249,7 @@ function confirmDelete(id){
             submitDelete(id)
         } 
       });
-
-   
-
 }
+  
 
 
