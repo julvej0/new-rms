@@ -50,7 +50,11 @@
             $hyperlink = $row['hyperlink'];
 
             if (empty($hyperlink)){
-                $hyperlink = $dir. $certificate;
+                if(empty($certificate)){
+                    $hyperlink = null;
+                }else{
+                $hyperlink = $dir . $certificate;
+                }
             }
             ?>
 
