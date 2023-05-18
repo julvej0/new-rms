@@ -98,7 +98,7 @@
                                     </select>
                                 </div>
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-quarter">Quartr (e.g. Q1_2023)</label>
+                                    <label class="pb-label" for="pb-quarter">Quarter (e.g. Q1_2023)</label>
                                     <input type ="text" name="pb-quartile" class="pb-select-field" id="pb-quarter" value="<?=$row['quartile']?>"></input>
                                 </div>
                                 <div class="form-control">
