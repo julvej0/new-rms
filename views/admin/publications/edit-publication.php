@@ -24,7 +24,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_publications WHERE publication_id = '$publicationID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-                <form action="functionalities/button_functions/publication-edit.php" method="POST" onsubmit="return chooseOneSDG(); checkDuplicateAuthors();">
+                <form name="form-pb" id="form-pb" action="functionalities/button_functions/publication-edit.php" method="POST" onsubmit="return checkDuplicateAuthors();">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-type">Type of Document</label>
-                                    <select  name="type_of_publication" id="pb-type" required>
+                                    <select  name="type_of_publication" id="pb-type">
                                         <option value="<?=$row['type_of_publication']?>" hidden><?=$row['type_of_publication']?></option>
                                         <option value="Original Article">Original Article</option>
                                         <option value="Review">Review</option>
@@ -63,7 +63,7 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-college">College</label>
-                                    <select name="college" class="pb-input-field" id="pb-college" required>
+                                    <select name="college" class="pb-input-field" id="pb-college">
                                         <option value="<?=$row['college']?>" hidden><?=$row['college']?></option>
                                         <option value="Accountancy, Business, and International Hospitality">Accountancy, Business, and International Hospitality</option>
                                         <option value="Agriculture and Forestry">Agriculture and Forestry</option>
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-campus" value="<?=$row['campus']?>">Campus</label>
-                                    <select name="campus" id="pb-campus" required>
+                                    <select name="campus" id="pb-campus">
                                         <option value="<?=$row['campus']?>" hidden><?=$row['campus']?></option>
                                         <option value="Alangilan">Alangilan</option>
                                         <option value="Balayan">Balayan</option>
@@ -98,8 +98,8 @@
                                     </select>
                                 </div>
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-quarter">Quarter</label>
-                                    <input type ="text" name="pb-quartile" class="pb-select-field" id="pb-quarter" value="<?=$row['quartile']?>" required></input>
+                                    <label class="pb-label" for="pb-quarter">Quarter (e.g. Q1_2023)</label>
+                                    <input type ="text" name="pb-quartile" class="pb-select-field" id="pb-quarter" value="<?=$row['quartile']?>"></input>
                                 </div>
                                 <div class="form-control">
                                     <label class="pb-label" for="pb-date-published">Date Published</label>
@@ -211,7 +211,7 @@
                             <div class="form-container">
                                 <div class="form-control"></div>
                                     <label class="pb-label" for="pb-abstract">Abstract</label>
-                                    <textarea cols="30" rows="10" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..." value="<?=$row['abstract']?>"></textarea>
+                                    <textarea cols="30" rows="10" type textarea id="pb-abstract" name="abstract" placeholder="Abstract..."><?=$row['abstract']?></textarea>
                             </div>
                         </div>
                     </div>
@@ -316,8 +316,9 @@
                     </div>
                     <hr>
                     <div class="form-footer">
-                        <input type="hidden" name="pubID" value="<?=$row['publication_id']?>">
                         <input type="submit" class="submit-btn" name="updatePB" value="Submit">
+                        <input type="hidden" name="pubID" value="<?=$row['publication_id']?>">
+                        <input type="hidden" name="updatePB" value="true">
                         <input type="button" class="cancel-btn" value="Cancel">
                     </div>
                 </form>

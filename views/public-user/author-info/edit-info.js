@@ -2,7 +2,7 @@ function editField(id) {
 
   var field = document.getElementById(id);
   var button = document.querySelector(`#${id} + .edit-button`);
-  var srCode = document.getElementById('sr_code').value;
+  var author_id = document.getElementById('author_id').value;
 
   if (field.hasAttribute('readonly')) {
     // switch to edit mode
@@ -16,15 +16,6 @@ function editField(id) {
 
     // validate the new value
     var newValue = field.value;
-    if (id === 'user_contact' && isNaN(newValue)) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please Enter a Valid Contact Number!',
-      });
-      field.value = ''; // clear the input field
-      return;
-    }
 
     // send the new value to the server
     var xhr = new XMLHttpRequest();
@@ -74,6 +65,6 @@ function editField(id) {
     };
     xhr.open('POST', 'functionalities/update-user.php');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('field=' + id + '&value=' + newValue + '&sr_code=' + srCode);
+    xhr.send('field=' + id + '&value=' + newValue + '&author_id=' + author_id);
   }
 }

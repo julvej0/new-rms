@@ -36,22 +36,29 @@
         ?>
         <tr>
             <td class="publication-col col-title" style="min-width: 15.625rem"><?=$row['title_of_paper'];?></td>
-            <td class="publication-col col-type"><?=$row['type_of_publication'];?></td>
-            <td class="publication-col col-publisher"><?=$row['publisher'];?></td>
-            <td class="publication-col col-research-area"><?=$row['department'];?></td>
-            <td class="publication-col col-college"><?=$row['college'];?></td>
-            <td class="publication-col col-quartile"><?=$row['quartile'];?></td>
-            <td class="publication-col col-campus"><?=$row['campus'];?></td>
-            <td class="publication-col col-sdg"><?=$row['sdg_no'];?></td>
-            <td class="publication-col col-date-published"><?=$row['date_published'];?></td>
-            <td class="publication-col col-authors"><?=$row['authors'];?></td>  
-            <td class="publication-col col-funding"><?=$row['nature_of_funding'];?></td>
-            <td class="publication-col col-fund-type"><?=$row['funding_type'];?></td>
-            <td class="publication-col col-fund-agency"><?=$row['funding_source'];?></td>
-            <td class="publication-col col-citations"><?=$row['number_of_citation'];?></td>
+            <td class="publication-col col-type"><?=$row['type_of_publication'] != null ? $row['type_of_publication'] : "N/A";?></td>
+            <td class="publication-col col-publisher"><?=$row['publisher'] != null ? $row['publisher'] : "N/A";?></td>
+            <td class="publication-col col-research-area"><?=$row['department'] != null ? $row['department'] : "N/A";?></td>
+            <td class="publication-col col-college"><?=$row['college'] != null ? $row['college'] : "N/A";?></td>
+            <td class="publication-col col-quartile"><?=$row['quartile'] != null ? $row['quartile'] : "N/A";?></td>
+            <td class="publication-col col-campus"><?=$row['campus'] != null ? $row['campus'] : "N/A";?></td>
+            <td class="publication-col col-sdg"><?=$row['sdg_no'] != null ? $row['sdg_no'] : "N/A";?></td>
+            <td class="publication-col col-date-published"><?=$row['date_published'] != null ? $row['date_published'] : "N/A";?></td>
+            <td class="publication-col col-authors"><?=$row['authors'] != null ? $row['authors'] : "N/A";?></td>  
+            <td class="publication-col col-funding"><?=$row['nature_of_funding'] != null ? $row['nature_of_funding'] : "N/A";?></td>
+            <td class="publication-col col-fund-type"><?=$row['funding_type'] != null ? $row['funding_type'] : "N/A";?></td>
+            <td class="publication-col col-fund-agency"><?=$row['funding_source'] != null ? $row['funding_source'] : "N/A";?></td>
+            <td class="publication-col col-citations"><?=$row['number_of_citation']!= null ? $row['number_of_citation'] : "N/A";?></td>
+
             <td class='pb-action-btns stickey-col'>
+            <?php
+                $google_link = $row['google_scholar_details'];
+                if (empty($google_link)){
+                        $google_link = null;
+                    }
+            ?>
             <!-- Open certificate in a new tab-->
-                <a href="<?=$row['google_scholar_details'];?>" target="_blank" class="gdrive-btn">
+                <a onclick="redirect('<?=$google_link != null? $google_link : 'no_url';?>')" class="gdrive-btn">
                         <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                 </a>
                 <form action="edit-publication.php" method="POST">

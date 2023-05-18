@@ -14,31 +14,12 @@ cancelBtn.addEventListener('click', (e) => {
     confirmButtonText: 'Yes!'
     }).then((result) => {
     if (result.isConfirmed) {
-        history.back(-1);
+      window.location.href = "publications.php";
     }
     })
 })
 
-
 // sdg limit selection
-
-function chooseOneSDG() {
-  var checkboxes = document.getElementsByName('sdg_no[]');
-  var isChecked = false;
-  for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked) {
-          isChecked = true;
-          break;
-      }
-  }
-  if (!isChecked) {
-      var errorMessage = document.querySelector(".error");
-      errorMessage.style.display = "block";
-      errorMessage.innerHTML = 'Please select at least one SDG.';
-      return false;
-  }
-  return true;
-}
 
 function limitSelection() {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');

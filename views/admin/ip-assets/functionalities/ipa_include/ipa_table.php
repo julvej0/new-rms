@@ -29,18 +29,18 @@
         if ($table_rows !== null) {
         foreach ($table_rows as $row) {
     ?>
-    <tr>
-        <td class="reg-num-col col-registration"><?=$row['registration_number'];?></td>
+    <tr> 
+        <td class="reg-num-col col-registration"><?=$row['registration_number']?></td>
         <td class="title-col col-title"><?=$row['title_of_work'];?></td>
-        <td class="type-col col-type"><?=$row['type_of_document'];?></td>
-        <td class="cow-col col-cow"><?=$row['class_of_work'];?></td>
-        <td class="cre-col col-date-cre"><?=$row['date_of_creation'];?></td>
-        <td class="date-reg-col col-date-reg"><?=$row['date_registered'];?></td>
-        <td class="campus-col col-campus"><?=$row['campus'];?></td>
-        <td class="college-col col-college"><?=$row['college'];?></td>
-        <td class="program-col col-program"><?=$row['program'];?></td>
-        <td class="authors-col col-authors"><?=$row['authors'];?></td>
-        <td class="status-col col-status"><?=$row['status'];?></td>
+        <td class="type-col col-type"><?=$row['type_of_document'] != null ? $row['type_of_document'] : "N/A";?></td>
+        <td class="cow-col col-cow"><?=$row['class_of_work']!= null ? $row['class_of_work'] : "N/A";?></td>
+        <td class="cre-col col-date-cre"><?=$row['date_of_creation']!= null ? $row['date_of_creation'] : "N/A";?></td>
+        <td class="date-reg-col col-date-reg"><?=$row['date_registered']!= null ? $row['date_registered'] : "N/A";?></td>
+        <td class="campus-col col-campus"><?=$row['campus']!= null ? $row['campus'] : "N/A";?></td>
+        <td class="college-col col-college"><?=$row['college']!= null ? $row['college'] : "N/A";?></td>
+        <td class="program-col col-program"><?=$row['program']!= null ? $row['program'] : "N/A";?></td>
+        <td class="authors-col col-authors"><?=$row['authors']!= null ? $row['authors'] : "N/A";?></td>
+        <td class="status-col col-status"><?=$row['status']!= null ? $row['status'] : "N/A";?></td>
 
         
         <td class='pb-action-btns stickey-col'>
@@ -50,7 +50,11 @@
             $hyperlink = $row['hyperlink'];
 
             if (empty($hyperlink)){
-                $hyperlink = $dir. $certificate;
+                if(empty($certificate)){
+                    $hyperlink = null;
+                }else{
+                $hyperlink = $dir . $certificate;
+                }
             }
             ?>
 
