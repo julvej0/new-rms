@@ -22,7 +22,7 @@
                         <div class="form-control">
                             <input type='text' name='search-table' placeholder='Search Article or Author' value="<?= isset($search) ? htmlentities($search) : '' ?>">
                             <i class='bx bx-search icon' ></i>
-                        </div>
+                        </div> 
                         <div class="sort-btn">
                             <button id="btn-sort"><i class='bx bx-sort icon' ></i>Sort</button>
                             <ul class="sort-links">
