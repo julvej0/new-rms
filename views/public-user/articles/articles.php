@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="checkbox-control">
                                         <input type="checkbox" id="lipa" name="select-campus[]" class='campus-bsu' value="Lipa">
-                                        <label for="lipa">Lipa</label>
+                                        <label for="lipa">Lipa</label> 
                                     </div>
                                     <div class="checkbox-control">
                                         <input type="checkbox" id="lobo" name="select-campus[]" class='campus-bsu' value="Lobo">
