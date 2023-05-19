@@ -49,9 +49,16 @@
             <td class="publication-col col-fund-type"><?=$row['funding_type'] != null ? $row['funding_type'] : "N/A";?></td>
             <td class="publication-col col-fund-agency"><?=$row['funding_source'] != null ? $row['funding_source'] : "N/A";?></td>
             <td class="publication-col col-citations"><?=$row['number_of_citation']!= null ? $row['number_of_citation'] : "N/A";?></td>
+
             <td class='pb-action-btns stickey-col'>
+            <?php
+                $google_link = $row['google_scholar_details'];
+                if (empty($google_link)){
+                        $google_link = null;
+                    }
+            ?>
             <!-- Open certificate in a new tab-->
-                <a href="<?=$row['google_scholar_details'];?>" target="_blank" class="gdrive-btn">
+                <a onclick="redirect('<?=$google_link != null? $google_link : 'no_url';?>')" class="gdrive-btn">
                         <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                 </a>
                 <form action="edit-publication.php" method="POST">

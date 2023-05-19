@@ -1,6 +1,94 @@
 <?php
 include_once "../../../db/db.php";
 require_once "config.php";
+?>
+<!-- Add this JavaScript code before the table rendering -->
+<script>
+// Check if local storage is supported by the browser
+if (typeof(Storage) !== "undefined") {
+  // Check if the data is already stored in local storage
+  var localStorageKey = "articleData";
+  var cachedData = localStorage.getItem(localStorageKey);
+
+  if (cachedData) {
+    // Parse the cached data
+    var articles = JSON.parse(cachedData);
+    renderTable(articles); // Call the renderTable function with the cached data
+  } else {
+    // Fetch data from the server
+    fetch("fetch_data.php")
+      .then(response => response.json())
+      .then(data => {
+        // Store the data in local storage
+        localStorage.setItem(localStorageKey, JSON.stringify(data));
+        renderTable(data); // Call the renderTable function with the fetched data
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
+  }
+} else {
+  // Local storage is not supported
+  console.log("Local storage is not supported by the browser");
+}
+
+// Function to render the table
+function renderTable(data) {
+  if (data && data.length > 0) {
+    var table = document.getElementById("css-table");
+    var tbody = table.getElementsByTagName("tbody")[0];
+    
+    // Clear the table body
+    while (tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+    
+    // Loop through the data and create table rows
+    for (var i = 0; i < data.length; i++) {
+      var row = data[i];
+      
+      // Create table cells for each column
+      var titleCell = document.createElement("td");
+      titleCell.className = "css-td";
+      titleCell.textContent = row.title_of_paper;
+      
+      var dateCell = document.createElement("td");
+      dateCell.className = "css-td";
+      dateCell.textContent = row.date_published;
+      
+      var campusCell = document.createElement("td");
+      campusCell.className = "css-td";
+      campusCell.textContent = row.campus;
+      
+      var authorsCell = document.createElement("td");
+      authorsCell.className = "css-td";
+      authorsCell.textContent = row.author_names.join(", ");
+      
+      // Create a table row and append the cells
+      var tableRow = document.createElement("tr");
+      tableRow.className = "css-tr";
+      tableRow.onclick = function() {
+        var encryptedID = encryptor("encrypt", row.publication_id);
+        window.location = "./article_view.php?pubID=" + encryptedID;
+      };
+      
+      tableRow.appendChild(titleCell);
+      tableRow.appendChild(dateCell);
+      tableRow.appendChild(campusCell);
+      tableRow.appendChild(authorsCell);
+      
+      // Append the row to the table body
+      tbody.appendChild(tableRow);
+    }
+  } else {
+    // No results found
+    var noResultsText = document.createElement("p");
+    noResultsText.textContent = "Your search query did not match any records.";
+    document.body.appendChild(noResultsText);
+  }
+}
+</script>
+<?php
 
 if (isset($_GET['search-table'])) {
   // Sanitize the search query to prevent SQL injection

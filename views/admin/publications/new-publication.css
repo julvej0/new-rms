@@ -82,7 +82,8 @@ main .form-container .form-control input[type="url"]:focus {
 }
 
 main .form-container .form-control #pb-abstract {
-    width: 40rem;
+    max-width: 800px;
+    min-width: 550px;
     padding: 10px 36px 10px 16px;
     border-radius: 5px;
     outline: none;

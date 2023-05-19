@@ -12,7 +12,7 @@ include_once "functionalities/user-session.php";
         
     <div id="myModal" class="modal">
         <div class="page-title">
-            <h3 class="animate__animated animate__zoomIn">PROFILE INFORMATION</h3>
+            <h3 class="animate__animated animate__zoomIn">CHANGE PASSWORD</h3>
         </div>
         
         <div class="modal-content">

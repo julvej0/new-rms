@@ -1,5 +1,3 @@
-console.log("Hello from publications.js");
-
 // // DELETE MODAL
 // const deleteBtn = document.querySelector('.delete-btn');
 
@@ -155,6 +153,29 @@ window.addEventListener('click', (e) => {
         }
     })
 })
+
+//Redirect Certificate
+
+function redirect(url){
+    if (url == 'no_url'){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          })
+
+          Toast.fire({
+            icon: 'info',
+            title: 'Google scholar link not set!'
+          })
+    }
+    else{
+        window.open(url, "_blank");
+    }
+
+}
 
 function submitDelete(id){
     var xhr = new XMLHttpRequest();

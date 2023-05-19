@@ -40,7 +40,7 @@
         <td class="college-col col-college"><?=$row['college']!= null ? $row['college'] : "N/A";?></td>
         <td class="program-col col-program"><?=$row['program']!= null ? $row['program'] : "N/A";?></td>
         <td class="authors-col col-authors"><?=$row['authors']!= null ? $row['authors'] : "N/A";?></td>
-        <td class="status-col col-status"><?=$row['status']!= null ? $row['status'] : "N/A";?></td>
+        <td class="status-col col-status" style="text-transform: uppercase;"><?=$row['status']!= null ? $row['status'] : "N/A";?></td>
 
         
         <td class='pb-action-btns stickey-col'>
@@ -50,7 +50,11 @@
             $hyperlink = $row['hyperlink'];
 
             if (empty($hyperlink)){
-                $hyperlink = $dir. $certificate;
+                if(empty($certificate)){
+                    $hyperlink = null;
+                }else{
+                $hyperlink = $dir . $certificate;
+                }
             }
             ?>
 
