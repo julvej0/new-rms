@@ -16,6 +16,21 @@ if (isset($_POST['submitIPA'])) {
         $date_registered = $_POST["date_registered"];
     }
     $registration_number = $_POST['registration_number'];
+
+    // Check if the registration number already exists in the database
+    $select_query = "SELECT registration_number FROM table_ipassets WHERE registration_number = $1";
+    $select_stmt = pg_prepare($conn, "check_regnum", $select_query);
+    $select_result = pg_execute($conn, "check_regnum", array($registration_number));
+    
+    if (pg_num_rows($select_result) > 0) {
+    // Registration number already exists in the database
+    // Display a warning message to the user
+    echo '<script>
+    alert("The registration number \'' . $registration_number . '\' already exists in the database. Please enter a different registration number.");
+    </script>';
+
+    }
+    
     $title_of_work = $_POST['title_of_work'];
     $type_of_document = $_POST['type_of_ipa'];
     $class_of_work = $_POST['class_of_work'];
@@ -24,28 +39,34 @@ if (isset($_POST['submitIPA'])) {
     $program = $_POST['program'];
     $hyperlink = $_POST['hyperlink'];
     $status = $_POST['registerInfo'];
-    $author_name = $_POST['author_name'];
-
-    $select_query = "SELECT author_id FROM table_authors WHERE author_name = $1 ";
-    $select_stmt = pg_prepare($conn, "select_author_details", $select_query);
     
-    $author_ids = array(); // Define the array outside the loop
+    $authors = isset($_POST['author_name']) ? $_POST['author_name'] : null;
+    if (!$authors) {
+        $authors = "";
+        $authors_string = ""; // join the array values with a comma delimiter
+    }else{
+        $select_query = "SELECT author_id FROM table_authors WHERE author_name = $1 ";
+        $select_stmt = pg_prepare($conn, "select_author_details", $select_query);
     
-    foreach ($author_name as $name) {
-        $auth_name = pg_escape_string($conn, $name);
-        $sql = "INSERT INTO table_authors (author_name)
-                SELECT '$name'
-                WHERE NOT EXISTS (SELECT 1 FROM table_authors WHERE author_name = '$name')";
-        pg_query($conn, $sql);
+        $author_ids = array(); // Define the array outside the loop
     
-        $select_result = pg_execute($conn, "select_author_details", array($name));
+        foreach ($author_name as $name) {
+                $auth_name = pg_escape_string($conn, $name);
+                $sql = "INSERT INTO table_authors (author_name)
+                        SELECT '$name'
+                        WHERE NOT EXISTS (SELECT 1 FROM table_authors WHERE author_name = '$name')";
+                pg_query($conn, $sql);
     
-        while ($row = pg_fetch_assoc($select_result)) {
-            $author_ids[] = $row['author_id'];
+                $select_result = pg_execute($conn, "select_author_details", array($name));
+    
+                while ($row = pg_fetch_assoc($select_result)) {
+                    $author_ids[] = $row['author_id'];
+            }
         }
-    }
     
-    $authors_string = implode(",", $author_ids);    
+        $authors_string = implode(",", $author_ids);
+    }
+      
     
     // Check if file was uploaded without errors
     if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {

@@ -173,7 +173,7 @@
                             <h4 class="if-funded">If Registered : </h4>
                             <div class="reg-form-container2">
                                 <div class="form-control">
-                                    <label class="ip-label" for="reg_num">Registration Number:</label>
+                                    <label class="ip-label" for="reg_num">Registration Number: <span id="error-msg" style="display: none; color: red;">This registration number already exists!</span></label>
                                     <input type="text" name="registration_number" id="reg_num" placeholder="Registration Number..." required>
                                 </div>
                                 <div class="form-control">
