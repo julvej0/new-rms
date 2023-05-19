@@ -18,79 +18,78 @@
                     <h4>DOCUMENTS</h4>
                 </div>
                 <div class="right">
-                    <form>
-                        <div class="form-control" method="GET" action="">
+                    <form  method="GET" action="">
+                        <div class="form-control">
                             <input type='text' name='search-table' placeholder='Search Article or Author' value="<?= isset($search) ? htmlentities($search) : '' ?>">
                             <i class='bx bx-search icon' ></i>
                         </div>
-                    </form>
-                    <div class="sort-btn">
-                        <button id="btn-sort"><i class='bx bx-sort icon' ></i>Sort</button>
-                        <ul class="sort-links">
-                            <li><a href="?sort=title">by Title</a></li>
-                            <li><a href="?sort=date">by Date</a></li>
-                            <li><a href="?sort=campus">by Campus</a></li>
-                        </ul>
-                    </div>
-                    <div class="filter-btn">
-                        <button id="btn-filter"><i class='bx bx-filter icon' ></i>Filter</button>
-                        <div class="filter-options">
-                            <form action="">
-                                <p>By Date :</p> <i class='bx bx-x icon'></i>
-                                <div class="form-control">
-                                    <label for="from">From</label>
-                                    <input type="text" id="to" name='date-start' placeholder="FROM">
-                                </div>
-                                <div class="form-control">
-                                    <label for="to">To</label>
-                                    <input type="text" id="to" name='date-end' placeholder="TO" >
-                                </div>
-                                <p>By Campus :</p>
-                                <div class="checkbox-filter">
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="all">
-                                        <label for="all">Select All</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="alangilan" name="select-campus[]" class='campus-bsu' value="Alangilan">
-                                        <label for="alangilan">Alangilan</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="central" name="select-campus[]" class='campus-bsu' value="Central">
-                                        <label for="central">Central</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="lipa" name="select-campus[]" class='campus-bsu' value="Lipa">
-                                        <label for="lipa">Lipa</label> 
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="lobo" name="select-campus[]" class='campus-bsu' value="Lobo">
-                                        <label for="lobo">Lobo</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="mabini" name="select-campus[]" class='campus-bsu' value="Mabini">
-                                        <label for="mabini">Mabini</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="malvar" name="select-campus[]" class='campus-bsu' value="Malvar">
-                                        <label for="malvar">Malvar</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="nasugbu" name="select-campus[]" class='campus-bsu' value="Nasugbu">
-                                        <label for="nasugbu">Nasugbu</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="pb-main" name="select-campus[]" class='campus-bsu' value="Pablo Borbon">
-                                        <label for="pb-main">Pablo Borbon</label>
-                                    </div>
-                                    <div class="checkbox-control">
-                                        <input type="checkbox" id="rosario" name="select-campus[]" class='campus-bsu' value="Rosario">
-                                        <label for="rosario">Rosario</label>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Filter">
-                            </form>
+                        <div class="sort-btn">
+                            <button id="btn-sort"><i class='bx bx-sort icon' ></i>Sort</button>
+                            <ul class="sort-links">
+                                <li><a href="?sort=title">by Title</a></li>
+                                <li><a href="?sort=date">by Date</a></li>
+                                <li><a href="?sort=campus">by Campus</a></li>
+                            </ul>
                         </div>
+                        <div class="filter-btn">
+                            <button id="btn-filter"><i class='bx bx-filter icon' ></i>Filter</button>
+                            <div class="filter-options">
+                                    <p>By Date :</p> <i class='bx bx-x icon'></i>
+                                    <div class="form-control">
+                                        <label for="from">From</label>
+                                        <input type="text" id="to" name='date-start' placeholder="FROM">
+                                    </div>
+                                    <div class="form-control">
+                                        <label for="to">To</label>
+                                        <input type="text" id="to" name='date-end' placeholder="TO" >
+                                    </div>
+                                    <p>By Campus :</p>
+                                    <div class="checkbox-filter">
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="all">
+                                            <label for="all">Select All</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="alangilan" name="select-campus[]" class='campus-bsu' value="Alangilan">
+                                            <label for="alangilan">Alangilan</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="central" name="select-campus[]" class='campus-bsu' value="Central">
+                                            <label for="central">Central</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="lipa" name="select-campus[]" class='campus-bsu' value="Lipa">
+                                            <label for="lipa">Lipa</label> 
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="lobo" name="select-campus[]" class='campus-bsu' value="Lobo">
+                                            <label for="lobo">Lobo</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="mabini" name="select-campus[]" class='campus-bsu' value="Mabini">
+                                            <label for="mabini">Mabini</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="malvar" name="select-campus[]" class='campus-bsu' value="Malvar">
+                                            <label for="malvar">Malvar</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="nasugbu" name="select-campus[]" class='campus-bsu' value="Nasugbu">
+                                            <label for="nasugbu">Nasugbu</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="pb-main" name="select-campus[]" class='campus-bsu' value="Pablo Borbon">
+                                            <label for="pb-main">Pablo Borbon</label>
+                                        </div>
+                                        <div class="checkbox-control">
+                                            <input type="checkbox" id="rosario" name="select-campus[]" class='campus-bsu' value="Rosario">
+                                            <label for="rosario">Rosario</label>
+                                        </div>
+                                    </div>
+                                <input type="submit" value="Filter">
+                            
+                        </div>
+                    </form>
                     </div>
                 </div>
             </div>

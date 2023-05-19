@@ -16,20 +16,7 @@ filterBtn.addEventListener('click', (e) => {
     filterOptions.classList.add('show');
 })
 
-window.addEventListener('click', (e) => {
-    if(e.target !== sortBtn){
-        if(e.target !== sortOptions) {
-            if(sortOptions.classList.contains('show')){
-                sortOptions.classList.remove('show');
-            }
-        }
-    }
 
-    if(e.target === closeBtn) {
-        filterOptions.classList.remove('show')
-    }
-    
-})
 
 //check all campuses
 let checkAll = document.querySelector('input[id=all]');

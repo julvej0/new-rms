@@ -95,6 +95,37 @@ body {
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+#main-content .header .right {
+    display: flex;
+    align-items: center;
+  }
+  
+  #main-content .header .right form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #main-content .header .right .form-control {
+    position: relative;
+  }
+  
+  #main-content .header .right .form-control input[type="text"] {
+    padding-right: 30px;
+    /* Add any additional styling for the search input */
+  }
+  
+  #main-content .header .right .sort-btn,
+  #main-content .header .right .filter-btn {
+    position: relative;
+  }
+  
+  #main-content .header .right .sort-links,
+  #main-content .header .right .filter-options {
+    display: none;
+    /* Add any additional styling for the dropdown menus */
+  }
+
 #main-content .header .right .form-control .icon {
     position: absolute;
     top: 50%;
@@ -226,7 +257,7 @@ body {
     position: relative;
 }
 
-#main-content .header .filter-btn .filter-options form input[type='submit'] {
+#main-content .header form input[type='submit'] {
     background: var(--accent);
     border: none;
     border-radius: 3px;
