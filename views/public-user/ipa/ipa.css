@@ -278,6 +278,7 @@ body {
     height: calc(100% - 80px);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    overflow-y: scroll;
 }
 
 #main-content .table table {
@@ -317,3 +318,27 @@ body {
     border-bottom-right-radius: 5px;
     background: var(--grey);
 }
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .loading::after {
+    content: "";
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
