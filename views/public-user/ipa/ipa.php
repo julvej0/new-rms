@@ -80,7 +80,13 @@
             </div>
 
         <div class="table-footer">
-                    
+            <div class="pagination">
+                <li><a href="#"><i class='bx bx-chevrons-left icon' ></i></a></li>
+                <li><a href="#"><i class='bx bx-chevron-left icon' ></i></a></li>
+                <li><span class="current-page">1</span></li>
+                <li><a href="#"><i class='bx bx-chevron-right icon' ></i></a></li>
+                <li><a href="#"><i class='bx bx-chevrons-right icon' ></i></a></li>
+            </div>        
         </div>
         </div>
     </section>

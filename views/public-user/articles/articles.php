@@ -25,12 +25,52 @@
                         </div>
                     </form>
                     <div class="sort-btn">
-                        <button id="btn-sort">
-                        <i class='bx bx-sort icon' ></i>sort</button>
+                        <button id="btn-sort"><i class='bx bx-sort icon' ></i>Sort</button>
+                        <ul class="sort-links">
+                            <li><a href="#">by Title</a></li>
+                            <li><a href="#">by Date</a></li>
+                            <li><a href="#">by Campus</a></li>
+                        </ul>
                     </div>
                     <div class="filter-btn">
-                        <button id="btn-filter">
-                        <i class='bx bx-filter icon' ></i>filter</button>
+                        <button id="btn-filter"><i class='bx bx-filter icon' ></i>Filter</button>
+                        <div class="filter-options">
+                            <form action="">
+                                <p>By Date :</p> <i class='bx bx-x icon'></i>
+                                <div class="form-control">
+                                    <label for="from">From</label>
+                                    <input type="text" id="to">
+                                </div>
+                                <div class="form-control">
+                                    <label for="to">To</label>
+                                    <input type="text" id="to">
+                                </div>
+                                <p>By Campus :</p>
+                                <div class="checkbox-filter">
+                                    <div class="checkbox-control">
+                                        <input type="checkbox" id="all">
+                                        <label for="all">Select All</label>
+                                    </div>
+                                    <div class="checkbox-control">
+                                        <input type="checkbox" id="alangilan">
+                                        <label for="alangilan">Alangilan</label>
+                                    </div>
+                                    <div class="checkbox-control">
+                                        <input type="checkbox" id="lipa">
+                                        <label for="lipa">Lipa</label>
+                                    </div>
+                                    <div class="checkbox-control">
+                                        <input type="checkbox" id="pb-main">
+                                        <label for="pb-main">Pablo Borbon</label>
+                                    </div>
+                                    <div class="checkbox-control">
+                                        <input type="checkbox" id="rosario">
+                                        <label for="rosario">Rosario</label>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Filter">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,7 +99,13 @@
                 ?>
             </div>
         <div class="table-footer">
-                    
+             <div class="pagination">
+                <li><a href="#"><i class='bx bx-chevrons-left icon' ></i></a></li>
+                <li><a href="#"><i class='bx bx-chevron-left icon' ></i></a></li>
+                <li><span class="current-page">1</span></li>
+                <li><a href="#"><i class='bx bx-chevron-right icon' ></i></a></li>
+                <li><a href="#"><i class='bx bx-chevrons-right icon' ></i></a></li>
+            </div>     
         </div>
         </div>
     </section>
@@ -68,6 +114,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+<script src="./articles.js"></script>
 <?php 
     include '../../../includes/admin/templates/footer.php';
 ?>

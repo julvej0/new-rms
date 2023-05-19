@@ -12,18 +12,11 @@
 <link rel="stylesheet" href="../../../../../css/index.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!--Font Awesome CDN-->
 
-<!--download as PDF package -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- download as excel -->
 <script src="https://unpkg.com/xlsx@0.15.6/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
-<!-- download as Word document -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <body>
     <main id="dl-modal-container">
@@ -31,8 +24,6 @@
         <div class="header">
             <div class="dl-buttons">
                 <button onclick="downloadExcelFile()" class="btn"><i class="fas fa-file-excel fa-lg" style="color: green"></i></button>
-                <button id="printButton" onclick="print()" class="btn"><i class="fas fa-file-pdf fa-lg" style="color: red"></i></button>
-                <button onclick="exportTableToWord()" class="btn"><i class="fas fa-file-word fa-lg" style="color: blue"></i></button>
             </div>
             <div class="left">
             <form action='' method='get'>
@@ -73,14 +64,14 @@
                     
                     <td class="reg-num-col col-registration"><?=$row['registration_number'];?></td>
                     <td class="title-col col-title"><?=$row['title_of_work'];?></td>
-                    <td class="type-col col-type"><?=$row['type_of_document'];?></td>
+                    <td class="type-col col-type"><?=$row['type_of_document'] != null ? $row['type_of_document'] : "N/A";?></td>
                     <td class="cow-col col-cow"><?=$row['class_of_work'];?></td>
-                    <td class="tbl-col"><?=$row['date_of_creation'];?></td>
+                    <td class="tbl-col"><?=$row['date_of_creation'] != null ? $row['date_of_creation'] : "N/A";?></td>
                     <td class="date-reg-col col-date-reg"><?=$row['date_registered'];?></td>
-                    <td class="campus-col col-campus"><?=$row['campus'];?></td>
-                    <td class="college-col col-college"><?=$row['college'];?></td>
-                    <td class="program-col col-program"><?=$row['program'];?></td>
-                    <td class="authors-col col-authors"><?=$row['authors'];?></td>
+                    <td class="campus-col col-campus"><?=$row['campus'] != null ? $row['campus'] : "N/A";?></td>
+                    <td class="college-col col-college"><?=$row['college'] != null ? $row['college'] : "N/A";?></td>
+                    <td class="program-col col-program"><?=$row['program'] != null ? $row['program'] : "N/A";?></td>
+                    <td class="authors-col col-authors"><?=$row['authors'] != null ? $row['authors'] : "N/A";?></td>
 
                 </tr>
                 <?php
