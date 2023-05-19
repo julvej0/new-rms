@@ -80,6 +80,9 @@
             </div>
 
         <div class="table-footer">
+            <div class="total-articles">
+                <p>Patent Document Count : </p>
+            </div>
             <div class="pagination">
                 <li><a href="#"><i class='bx bx-chevrons-left icon' ></i></a></li>
                 <li><a href="#"><i class='bx bx-chevron-left icon' ></i></a></li>

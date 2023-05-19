@@ -95,6 +95,37 @@ body {
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+#main-content .header .right {
+    display: flex;
+    align-items: center;
+  }
+  
+  #main-content .header .right form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #main-content .header .right .form-control {
+    position: relative;
+  }
+  
+  #main-content .header .right .form-control input[type="text"] {
+    padding-right: 30px;
+    /* Add any additional styling for the search input */
+  }
+  
+  #main-content .header .right .sort-btn,
+  #main-content .header .right .filter-btn {
+    position: relative;
+  }
+  
+  #main-content .header .right .sort-links,
+  #main-content .header .right .filter-options {
+    display: none;
+    /* Add any additional styling for the dropdown menus */
+  }
+
 #main-content .header .right .form-control .icon {
     position: absolute;
     top: 50%;
@@ -226,7 +257,7 @@ body {
     position: relative;
 }
 
-#main-content .header .filter-btn .filter-options form input[type='submit'] {
+#main-content .header form input[type='submit'] {
     background: var(--accent);
     border: none;
     border-radius: 3px;
@@ -275,7 +306,7 @@ body {
 }
 
 #main-content .table {
-    border: 2px solid var(--dark-grey);
+    border: 1px solid var(--dark-grey);
     height: calc(100% - 80px);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -291,6 +322,15 @@ body {
 #main-content .table table, th, td {
     border-collapse: collapse;
     border-bottom: 0.5px solid var(--dark-grey);
+}
+
+#main-content .table table tbody tr {
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+#main-content .table table tbody tr:hover {
+    background: var(--grey);
 }
 
 #main-content .table table thead tr th {
@@ -321,15 +361,22 @@ body {
 
 
 #main-content .table-footer {
-    border: 2px solid var(--dark-grey);
+    border: 1px solid var(--dark-grey);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     background: var(--grey);
     height: 80px;
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+}
+
+#main-content .table-footer .total-articles {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
 }
 
 /* Pagination */
