@@ -11,11 +11,19 @@ const filterBtn = document.getElementById('btn-filter');
 const filterOptions = document.querySelector('.filter-options');
 const closeBtn = document.querySelector('#main-content .header .filter-btn .filter-options form .icon');
 
-filterBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    filterOptions.classList.add('show');
-})
 
+let isFilterOptionsVisible = false; // Track the visibility of filter options
+
+filterBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  isFilterOptionsVisible = !isFilterOptionsVisible; // Toggle the visibility
+
+  if (isFilterOptionsVisible) {
+    filterOptions.classList.add('show');
+  } else {
+    filterOptions.classList.remove('show');
+  }
+});
 
 
 //check all campuses

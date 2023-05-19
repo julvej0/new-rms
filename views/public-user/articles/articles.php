@@ -34,7 +34,7 @@
                         <div class="filter-btn">
                             <button id="btn-filter"><i class='bx bx-filter icon' ></i>Filter</button>
                             <div class="filter-options">
-                                    <p>By Date :</p> <i class='bx bx-x icon'></i>
+                                    <p>By Date :</p> 
                                     <div class="form-control">
                                         <label for="from">From</label>
                                         <input type="text" id="to" name='date-start' placeholder="FROM">
