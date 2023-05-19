@@ -169,13 +169,15 @@ $sql_result = pg_query($conn, $sql_data);
 
   if ($sql_result && pg_num_rows($sql_result) > 0)  {
     ?>
-    <table id='css-table'>
-    <tr id='css-header-container'>
-    <th class='css-header'> Title </th>
-    <th class='css-header'> Date Published </th>
-    <th class='css-header'> Campus </th>
-    <th class='css-header'> Authors </th>
-    </tr>
+    <table class='table'>
+      <thead>
+        <tr id='css-header-container'>
+          <th class='css-header'> Title </th>
+          <th class='css-header'> Date Published </th>
+          <th class='css-header'> Campus </th>
+          <th class='css-header'> Authors </th>
+        </tr>
+      </thead>
     <?php
 
     $previous_row = null;
@@ -204,13 +206,14 @@ $sql_result = pg_query($conn, $sql_data);
 
       $encrypted_ID = encryptor('encrypt', $row['publication_id']);
       ?>
-      <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
-        <td class='css-td'><?=$row['title_of_paper']?></td>
-        <td class='css-td'><?=$row['date_published']?></td>
-        <td class='css-td'><?=$row['campus']?></td>
-        <td class='css-td'><?=$author_implode?></td>
-      </tr>
-
+      <tbody>
+        <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
+          <td class='css-td'><?=$row['title_of_paper']?></td>
+          <td class='css-td'><?=$row['date_published']?></td>
+          <td class='css-td'><?=$row['campus']?></td>
+          <td class='css-td'><?=$author_implode?></td>
+        </tr>
+      </tbody>
       <?php
       $previous_row = $row;
     }
