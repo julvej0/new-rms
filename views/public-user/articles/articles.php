@@ -19,8 +19,8 @@
                 </div>
                 <div class="right">
                     <form>
-                        <div class="form-control">
-                            <input type='text' placeholder="Search" name='search' >
+                        <div class="form-control" method="GET" action="">
+                            <input type='text'name='search-table' placeholder='Search Article or Author' value="<?= isset($search) ? htmlentities($search) : '' ?>">
                             <i class='bx bx-search icon' ></i>
                         </div>
                     </form>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="table">
-                <table>
+                <!-- <table>
                     <thead>
                         <tr>
                             <th>Title</th>
@@ -92,7 +92,11 @@
                             <td>dasd</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
+
+                <?php
+                    require_once "functionalities/articles-data.php";
+                ?>
             </div>
         <div class="table-footer">
                     

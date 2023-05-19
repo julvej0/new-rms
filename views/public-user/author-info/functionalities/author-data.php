@@ -29,7 +29,7 @@ if (isset($_SESSION['user_email'])) {
                     echo "data-clickable='false'";
                 } else {
                     echo "data-clickable='true'";
-                } ?>>
+                } ?> onclick="window.location='../articles/article_view.php?pubID=<?=$encrypted_ID?>'">
                     <td class='css-td'><?= $row['title_of_paper'] ? $row['title_of_paper'] : 'Not Yet Set'; ?></td>
                 </tr>
                 <?php
