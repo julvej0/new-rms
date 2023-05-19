@@ -14,11 +14,10 @@ cancelBtn.addEventListener('click', (e) => {
     confirmButtonText: 'Yes!'
     }).then((result) => {
     if (result.isConfirmed) {
-        history.back(-1);
+      window.location.href = "publications.php";
     }
     })
 })
-
 
 // sdg limit selection
 

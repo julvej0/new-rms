@@ -1,287 +1,166 @@
 body {
-    background: var(--grey);
+    background: var(--light);
     position: relative;
     overflow-x: hidden;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-* {
+#main-content {
+    position: relative;
     padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Poppins;
+    padding: 20px 10px;
+    background: var(--grey);
 }
 
-.table-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-  }
-
-
-.table-header-container {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    width: 1220px;
-    align-items: center;
-}
-
-.table-header{
-    width: 495px;
-    font-size: 25px;
-    margin-left: 5px;
-    font-weight: bold;
-    color: #cf102d;
-}
-
-.table-search{
+#main-content .table-container {
+    width: 80%;
+    margin: auto;
+    background: var(--light);
+    border-radius: 5px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
     padding: 10px;
+}
+
+#main-content .page-title {
+    margin-bottom: 30px;
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
-#search-table {
-    width: 500px;
-    margin: 10px;
-    border-radius: 50px;
-    padding: 5px 33px 5px 5px;
-    font-size: 15px;
-    border: 2px solid gainsboro;
+#main-content .page-title h3 {
+    letter-spacing: 1px;
+    font-size: 30px;
+    color: var(--text-color);
+    position: relative;
+    text-transform: uppercase;
 }
 
-.search-button {
-    display: flex;
-    align-items: center;
-}
-
-#btn-search {
-    width: 20px;
-    height: 20px;
-    border:none;
-    cursor: pointer;
+#main-content .page-title h3::after {
+    content: '';
     position: absolute;
-    background-color: transparent;
-    margin-left: 485px;
-    margin-top: -75px;
-  }
-  
-#btn-search img {
-    width: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary);
+    width: 60%;
+    height: 3px;
+    bottom: -4px;
+    border-radius: 5px;
+}
+
+#main-content .header {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--light);
+    padding: 10px;
+}
+
+#main-content .header .left {
     height: 100%;
-    filter: grayscale(100%);
-}
-
-.sort-button {
+    width: 50%;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
+#main-content .header .left h4 {
+    color: var(--text-color);
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
 
-#btn-sort {
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    background-color: white;
-    border: none;
+#main-content .header .right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#main-content .header .right .form-control {
+    position: relative;
+}
+
+#main-content .header .right .form-control input {
+    width: 400px;
+    height: 40px;
+    background: var(--light);
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-   
-    
+    border: 2px solid var(--dark-grey);
+    outline: none;
+    padding: 10px 36px 10px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-#btn-sort i {
-    font-size: 15px;
-    color: gray;
-}
-.filter-button {
-    display: flex;
-    align-items: center;
+#main-content .header .right .form-control .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--bg-grey);
 }
 
-#btn-filter {
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    background-color: white;
+#main-content .header .right .form-control input:focus {
     border: none;
+    box-shadow: 0 0 0 4px var(--light-blue);
+}
+
+#main-content .header .sort-btn button,
+#main-content .header .filter-btn button {
+    height: 40px;
+    width: 70px;
+    border: 2px solid var(--dark-grey);
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-   
-    
-}
-
-#btn-filter i {
-    font-size: 12px;
-    color: gray;
-}
-
-span {
-    margin-right: 10px;
-    font-size: 12px;
-}
-
-#table-data {
-    overflow-y: auto;
-    max-height: 620px;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.css-td {
-    width: 300px;
-    text-align: center;
-    font-size: 12px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-color: gray;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  
-
-#css-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-spacing: 0;
-    border: solid 1px gray;
-    top: 0;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
-    
-}
-
-#spacer-row {
-    height: 20px;
-}
-
-.css-tr {
-    background-color: white;
-    transition: all 0.3s ease;
-}
-.css-tr:hover {
-    background-color: hsl(350, 250%, 30%);
-    color: white;
+    background: var(--light);
     cursor: pointer;
-    transition: all 0.3s ease;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+#main-content .table {
+    border: 2px solid var(--dark-grey);
+    height: calc(100% - 80px);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 
-.css-header {
-    background-color: white; /* Add a background color to make it visible */
-    border-top-width: 5px;
-    border-bottom-width: 5px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-color: #cf102d;
-    padding: 20px;
-    color: #cf102d;
-  }
-  
+#main-content .table table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+}
 
+#main-content .table table, th, td {
+    border-collapse: collapse;
+    border-bottom: 0.5px solid var(--dark-grey);
+}
 
-#css-table #css-header-container {
+#main-content .table table thead tr th {
     position: sticky;
     top: 0;
-  }
-
-
-.filter-button {
-    position: relative;
-}
-
-.filter-options {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: -180;
-    width: 250px;
-    background-color: #fefefe;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    opacity: 0;
-    animation: fadeIn 0.3s ease-in-out forwards;
-    z-index: 4;
-    padding: 15px;
-}
-
-.filter-options input[type='submit'] {
-    display: block;
-    margin: 0 auto;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.filter-options label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.campus-bsu {
-    margin-left: 20px;
-}
-
-
-.sort-button {
-    position: relative;
-}
-
-.sort-options {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: -70;
-    width: 150px;
-    background-color: #fefefe;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    opacity: 0;
-    animation: fadeIn 0.3s ease-in-out forwards;
-    z-index: 4;
-    padding: 15px;
-    height: 120px;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.sort-options li {
-    display: block;
-    margin-bottom: 10px;
     font-size: 14px;
-    color: black;
-}
-a {
-    color: black;
-    text-decoration: none;
+    padding: 20px;
+    text-align: center;    
+    background: var(--grey);
+    z-index: 100;
 }
 
-a:hover {
-    color: #cf102d;
-    text-decoration: none;
+#main-content .table table tbody td {
+    font-size: 11px;
+    top: 0;
+    font-size: 13px;
+    padding: 10px 10px;
+    text-align: center;
+    min-height: 180px;
+}
+
+#main-content .table-footer {
+    border: 2px solid var(--dark-grey);
+    height: 70px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: var(--grey);
 }
