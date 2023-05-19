@@ -1,5 +1,5 @@
 body {
-    background: var(--light);
+    background: var(--grey);
     position: relative;
     overflow-x: hidden;
 }
@@ -278,6 +278,7 @@ body {
     height: calc(100% - 80px);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    overflow-y: scroll;
 }
 
 #main-content .table table {
@@ -312,8 +313,63 @@ body {
 
 #main-content .table-footer {
     border: 2px solid var(--dark-grey);
-    height: 70px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     background: var(--grey);
+    height: 80px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
 }
+
+/* Pagination */
+
+#main-content .table-footer .pagination {
+    height: 100%;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    grid-gap: 5px;
+}
+
+#main-content .table-footer .pagination li {
+    list-style-type: none;
+}
+
+#main-content .table-footer .pagination li a {
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px solid var(--grey);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    font-size: 10px;
+    color: var(--dark);
+    flex-wrap: wrap;
+    background: var(--light);
+}
+
+#main-content .table-footer .pagination li a  .icon {
+    font-size: 20px;
+}
+
+#main-content .table-footer .pagination li a:hover {
+    background: var(--grey);
+}
+
+#main-content .table-footer .pagination .current-page {
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid var(--dark);
+    padding: 8px 30px;
+    border: 2px solid var(--grey);
+    border-radius: 2px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    cursor: text;
+}
+

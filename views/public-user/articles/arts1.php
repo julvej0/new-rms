@@ -5,11 +5,15 @@
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="./articles.css">
+<link rel="stylesheet" href="./arts1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <div class="article-content">
+    <div class="page-title">
+        <h3 class="animate__animated animate__zoomIn">PUBLICATIONS</h3>
+    </div>
 <!-- Table Cotainer -->
-    <div class='table-container'>
+    <div class="table-container animate__animated animate__fadeInUp" id='table-container'>
         <!-- Start of Table -->
         <div class='main-table'>
             <!-- Table Header -->

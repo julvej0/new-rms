@@ -5,7 +5,7 @@
 <div class="table-footer">
     <p><?=$count_text.' '.$total_records?></p>
     <div class="download">
-        <button onclick="openModal()" class="download-btn">Download</button>
+        <button onclick="OpenModal()" class="download-btn">Download</button>
     </div>
     <div class="pagination">
         <?php
