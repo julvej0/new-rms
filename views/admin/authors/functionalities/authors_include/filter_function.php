@@ -1,5 +1,6 @@
 <?php
-function filterAuthor($url_search, $url_role, $url_gender){
+
+function filterAuthor($search, $role, $gender ){
 
     $params=[];
     // Get the existing search parameters from the URL
@@ -18,22 +19,23 @@ function filterAuthor($url_search, $url_role, $url_gender){
         unset($search_params['delete']);
     }
 
-
-    if($url_search!='empty_search'){
-        $params = array_merge($search_params, ['search' => $url_search]);
+    if($search!='empty_search'){
+        array_push($params, 'search='.$search);
     }
-    if($url_role!='empty_role'){
-        $params = array_merge($search_params, ['role' => $url_role]);
+    if($role!='empty_role'){
+        array_push($params, 'role='.$role);
     }
-    if($url_gender!='empty_gender'){
-        $params = array_merge($search_params, ['gender' => $url_gender]);
+    if($gender!='empty_gender'){
+        array_push($params, 'gender='.$gender);
     }
-
-   
-    
-    return $link = '?' . http_build_query($params);
+    return $link = '?' . implode('&', $params);
 
 }
+
+
+
+
+
 
 
 

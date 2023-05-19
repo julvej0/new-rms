@@ -50,7 +50,7 @@ body {
     
   }
   
-table {
+.css-table {
     margin-left: 150px;
     margin-right: 150px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
@@ -252,6 +252,7 @@ a:hover {
     padding: 25px;
     border: 2px solid var(--dark-grey);
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    width: 1000px;
 }
 
 #author-affiliate .profile-row label{
@@ -342,4 +343,155 @@ a:hover {
     margin-top: 30px;
     font-weight: bold;
     color:#cf102d;
+}
+
+/* AUTHOR AFFILIATIONS BUTTONS*/
+
+
+
+#a-add-btn {
+    height: 50px;
+    width: 3.5rem;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    background: var(--blue);
+    color: var(--light);
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: 600;
+    
+}
+
+#a-add-btn:hover {
+    opacity: 80%;
+}
+
+.a-remove-btn {
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 30px;
+    padding: 0 20px;
+    background: var(--primary);
+    color: var(--light);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: 600;
+
+    
+}
+.a-remove-btn:hover {
+    opacity: 80%;
+}
+
+
+.affiliation-main-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  
+.affiliation-sub-menu {
+position: absolute;
+left: 3.5rem;
+top: 0;
+width: 10rem;
+display: none;
+background-color: var(--light);
+border: 1px solid var(--dark);
+margin-top: 10px;
+}
+
+.affiliation-sub-button {
+display: block;
+width: 100%;
+border: none;
+background-color: transparent;
+cursor: pointer;
+font-size: 1rem;
+
+}
+
+.affiliation-sub-button:hover {
+    background-color: rgb(185, 185, 192);
+}
+
+.affiliation-main-menu:hover .affiliation-sub-menu {
+    display: block;
+}
+
+
+
+/*AFFILIATION DESIGN*/
+
+.author-table-container {
+    width: 100%;
+}
+
+.author-table-container table {
+    border: 1px solid var(--dark-grey);
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.author-table-container table tr td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-gap: 20px;
+    margin-bottom: 10px;
+}
+
+.aff-info{
+    flex-grow: 1;
+    flex-basis: 200px;
+}
+
+.aff-categ {
+    flex: 2;
+    width: 180px;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 7px;
+}
+
+.form-control label {
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.form-control input[type="text"] {
+    height: 50px;
+    padding: 10px 36px 10px 16px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid var(--dark-grey);
+    transition: all 0.3s ease;
+}
+
+.form-control select {
+    height: 50px;
+    padding: 10px 36px 10px 16px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid var(--dark-grey);
+    transition: all 0.3s ease;
+}
+
+.form-control input[type="text"]:focus,
+.form-control select:focus {
+    box-shadow: 0 0 0 4px var(--light-blue);
 }

@@ -275,7 +275,7 @@ body {
 }
 
 #main-content .table {
-    border: 2px solid var(--dark-grey);
+    border: 1px solid var(--dark-grey);
     height: calc(100% - 80px);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -291,6 +291,15 @@ body {
 #main-content .table table, th, td {
     border-collapse: collapse;
     border-bottom: 0.5px solid var(--dark-grey);
+}
+
+#main-content .table table tbody tr {
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+#main-content .table table tbody tr:hover {
+    background: var(--grey);
 }
 
 #main-content .table table thead tr th {
@@ -321,15 +330,22 @@ body {
 
 
 #main-content .table-footer {
-    border: 2px solid var(--dark-grey);
+    border: 1px solid var(--dark-grey);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     background: var(--grey);
     height: 80px;
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+}
+
+#main-content .table-footer .total-articles {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
 }
 
 /* Pagination */
