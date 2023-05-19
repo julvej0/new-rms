@@ -20,6 +20,7 @@
         <td ><?=$row['sr_code'];?></td>
         <td><img id="user-image" src="<?=isset($row['user_img']) ? $row['user_img'] : $userPic;?>" alt="User Image" style="width:6.25rem; height:6.25rem;"></td>
         <td ><?=$row['user_fname']." ".$row['user_mname']." ".$row['user_lname'];?></td>
+        <td ><?=$row['account_type']?></td>
         <td><?=$row['user_contact'] != null ? $row['user_contact'] : "N/A"; ?></td>
         <td><?=$row['email']; ?></td>
        

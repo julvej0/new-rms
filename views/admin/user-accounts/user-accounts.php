@@ -49,6 +49,7 @@
                             <th>SR-Code</th>
                             <th>Profile Image</th>
                             <th>Full Name</th>
+                            <th>Account Type</th>
                             <th>Contact Number</th>
                             <th>Email</th>
                         </tr>

@@ -2,91 +2,71 @@
 include_once "../../../db/db.php";
 require_once "config.php";
 
-if (isset($_SESSION['user_email'])) {
 
-    $author_user = $_SESSION['user_email'];
-
-    $sql_data = "SELECT a.author_name, a.gender, a.type_of_author, a.affiliation, a.email, p.title_of_paper, p.publication_id, COUNT(i.*) as total_ip_assets
-                 FROM table_authors a
-                 LEFT JOIN table_publications p ON a.author_id = p.authors
-                 LEFT JOIN table_ipassets i ON a.author_id = i.authors
-                 WHERE a.email = '$author_user'
-                 GROUP BY a.author_name, a.gender, a.type_of_author, a.affiliation, a.email, p.title_of_paper, p.publication_id";
+function display_publications($conn, $id){
+    $sql_data = "SELECT publication_id, title_of_paper FROM table_publications WHERE authors ILIKE '%$id%'";
 
     $sql_result = pg_query($conn, $sql_data);
+    ?>
+    <table class ='css-table'>
+        <tr id='css-header-container'>
+            <th class='css-header'> Publications </th>
+        </tr>
+        <?php
 
     if ($sql_result && pg_num_rows($sql_result) > 0) {
-        ?>
-        <table id='css-table'>
-            <tr id='css-header-container'>
-                <th class='css-header'> Publications </th>
-            </tr>
-            <?php
+       
             while ($row = pg_fetch_assoc($sql_result)) {
                 $encrypted_ID = encryptor('encrypt', $row['publication_id']);
                 ?>
-                <tr class='css-tr' <?php if ($row['title_of_paper'] == 'Not Yet Set') {
-                    echo "data-clickable='false'";
-                } else {
-                    echo "data-clickable='true'";
-                } ?>>
+                <tr class='css-tr' data-clickable='true' onclick="window.location='../articles/article_view.php?pubID=<?=$encrypted_ID?>'">
                     <td class='css-td'><?= $row['title_of_paper'] ? $row['title_of_paper'] : 'Not Yet Set'; ?></td>
                 </tr>
                 <?php
             }
             ?>
         </table>
-        <table id='css-table'>
-            <tr id='css-header-container'>
-                <th class='css-header'> IP Assets </th>
-            </tr>
-            <?php
-            pg_result_seek($sql_result, 0); // Reset the result pointer to the beginning
+
+    <?php } else{
+    ?>
+        <tr class='css-tr' data-clickable='false'>
+            <td class='css-td'>No Records Found</td>
+        </tr>
+    
+    
+    <?php
+}}
+
+function display_ipassets($conn, $id){
+    $sql_data = "SELECT registration_number, title_of_work FROM table_ipassets WHERE authors ILIKE '%$id%'";
+
+    $sql_result = pg_query($conn, $sql_data);
+    ?>
+    <table class ='css-table'>
+        <tr id='css-header-container'>
+            <th class='css-header'> Patented Documents </th>
+        </tr>
+        <?php
+
+    if ($sql_result && pg_num_rows($sql_result) > 0) {
+       
             while ($row = pg_fetch_assoc($sql_result)) {
                 $encrypted_ID = encryptor('encrypt', $row['publication_id']);
                 ?>
-                <tr class='css-tr' <?php if ($row['total_ip_assets'] == 0) {
-                    echo "data-clickable='false'";
-                } else {
-                    echo "data-clickable='true'";
-                } ?>>
-                    <td class='css-td'><?= $row['total_ip_assets'] ?></td>
+                <tr class='css-tr' data-clickable='true' onclick="window.location='../articles/article_view.php?pubID=<?=$encrypted_ID?>'">
+                    <td class='css-td'><?= $row['title_of_paper'] ? $row['title_of_paper'] : 'Not Yet Set'; ?></td>
                 </tr>
                 <?php
             }
             ?>
         </table>
-        <?php
 
-    } else {
-        // No results found
-        ?>
-        <script>
-            Swal.fire({
-                icon: 'warning',
-                title: 'No results found',
-                text: 'No Results!',
-                confirmButtonText: 'OK'
-            }).then(() => {
-                // Clear the search query and reload the page
-                // window.location.href = 'author-profile.php';
-            });
-        </script>
-        <?php
-    }
-} else {
+    <?php } else{
     ?>
-    <script>
-        Swal.fire({
-            icon: 'warning',
-            title: 'Authorization Warning',
-            text: 'You are not an Author!',
-            confirmButtonText: 'OK'
-        }).then(() => {
-            // Clear the search query and reload the page
-            window.location.href = '../../admin/account/login.php';
-        });
-    </script>
+        <tr class='css-tr' data-clickable='false'>
+            <td class='css-td'>No Records Found</td>
+        </tr>
+    
+    
     <?php
-}
-?>
+}}?>

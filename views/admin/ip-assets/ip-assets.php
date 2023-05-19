@@ -135,7 +135,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document Deleted!"
+            title: "Patented Document was deleted succesfully!"
           })
     
         </script>
@@ -158,7 +158,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document Edited!"
+            title: "Patented Document was updated succesfully!"
           })
     
         </script>
