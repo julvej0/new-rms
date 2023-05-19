@@ -20,7 +20,7 @@
                 <div class="right">
                     <form>
                         <div class="form-control" method="GET" action="">
-                            <input type='text'name='search-table' placeholder='Search Article or Author' value="<?= isset($search) ? htmlentities($search) : '' ?>">
+                            <input type='text' name='search-table' placeholder='Search Article or Author' value="<?= isset($search) ? htmlentities($search) : '' ?>">
                             <i class='bx bx-search icon' ></i>
                         </div>
                     </form>

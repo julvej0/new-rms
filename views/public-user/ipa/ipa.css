@@ -279,6 +279,7 @@ body {
     height: calc(100% - 80px);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    overflow-y: scroll;
 }
 
 #main-content .table table {
