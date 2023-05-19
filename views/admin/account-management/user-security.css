@@ -21,7 +21,7 @@ body {
 #whole-page {
     width: 100%;
     height: 2000em;
-    background-color: white;
+    background-color: var(--grey);
     display: flex;
     flex-direction: column;
 }
