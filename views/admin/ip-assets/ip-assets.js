@@ -237,7 +237,7 @@ function submitDelete(id){
 function confirmDelete(id){
     Swal.fire({
         title: 'Are you sure?',
-        text: id + " will be deleted from Patented chuchu. You won't be able to revert this!",
+        text: id + " will be deleted from Patented Document. You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

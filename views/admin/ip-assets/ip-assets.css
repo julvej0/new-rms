@@ -41,7 +41,7 @@ main .header .addBtn:hover {
 
 main .header .left {
     display: flex;
-    width: 1200px;
+    width: 1000px;
     align-items: center;
     justify-content: space-between;
     grid-gap: 5px;
@@ -342,9 +342,8 @@ main .table-footer .download button:hover {
 /*SELECT COLUMN*/
 .select-columns-btn {
     border: transparent;
-    height: 2.6rem;
-    width: 2.6rem;
-    margin-top: 0.5rem;
+    height: 2.4rem;
+    width: 2.4rem;
     border-radius: 100%;
     background-color: var(--primary);
     color: white;
@@ -353,7 +352,7 @@ main .table-footer .download button:hover {
     cursor: pointer;
     transition: 0.3s ease-in-out;
     text-align: center;
-    line-height: 2.5rem;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
   }
   .checkbox-button{
     width: 10.8%;
@@ -370,7 +369,6 @@ main .table-footer .download button:hover {
 }
   .btn-container {
     position: relative;
-    width: 12.85rem;
     z-index: 101;
   }
   
