@@ -106,12 +106,23 @@
                 ?>
         </section>
     </main>
+     
+    <!-- Modal Popup -->
+     <div id="myModalpub" class="modal">
+        <div class="modal-content1">
+            <h3 style="float: left; position: relative; margin-top: -35px;">Download</h3>
+        <span class="close" onclick="closeModal()">&times;</span>
+        <iframe src="../publications/functionalities/download/download_pub.php"></iframe>
+        </div>
+    </div>
+
 </section>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
 <script src="publications.js"></script>
+<script src="./functionalities/download/download_pub.js"></script>
 </body>
 
 <?php

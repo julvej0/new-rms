@@ -1,19 +1,19 @@
 
 
 // Open modal popup
-function openModal() {
-    document.getElementById('myModal').style.display = 'block';
+function OpenModal() {
+    document.getElementById('myModalpub').style.display = 'block';
 }
 
 // Close modal popup
 function closeModal() {
-    document.getElementById('myModal').style.display = 'none';
+    document.getElementById('myModalpub').style.display = 'none';
 }
 
    // Function to download the excel file
    function downloadExcelFile() {
         // Get the table element by its ID
-        var table = document.getElementById("mytable");
+        var table = document.getElementById("mytablepub");
       
         // Convert the table to a worksheet object
         var worksheet = XLSX.utils.table_to_sheet(table);
@@ -38,10 +38,12 @@ function closeModal() {
         }
         // Generate unique filename with timestamp
         var timestamp = new Date().getTime();
-        var filename = "ipassets_" + timestamp + ".xlsx";
+        var filename = "publication_" + timestamp + ".xlsx";
         // Trigger download
         var blob = new Blob([s2ab(excelData)], { type: "application/octet-stream" });
         saveAs(blob, filename);
       }
       
+
+
 
