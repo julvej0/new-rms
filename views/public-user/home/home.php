@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="see-more-btn">
-                <a href="#">See More<i class='bx bx-right-arrow-alt icon'></i></a>
+                <a href="../ipa/ipa.php">See More<i class='bx bx-right-arrow-alt icon'></i></a>
             </div>
         </div>
         <div class="content">
