@@ -30,3 +30,19 @@ window.addEventListener('click', (e) => {
     }
     
 })
+
+//check all campuses
+let checkAll = document.querySelector('input[id=all]');
+let campuses = document.querySelectorAll('input[class=campus-bsu]');
+
+checkAll.addEventListener('change', function() {
+    if (this.checked) {
+        campuses.forEach(function(checkbox){
+            checkbox.checked = true;
+        });
+    } else{
+        campuses.forEach(function(checkbox){
+            checkbox.checked = false;
+        });
+    }
+});

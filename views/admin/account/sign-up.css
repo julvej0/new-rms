@@ -129,7 +129,7 @@ h1 {
   display: block;
 }
 
-#fName, #lName {
+#mName, #lName {
   height: 50px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -140,7 +140,7 @@ h1 {
   width: 195px;
   transition: all 0.3s ease-out;
 }
-#mName {
+#fName {
   height: 50px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -151,7 +151,7 @@ h1 {
   transition: all 0.3s ease-out;
 }
 
-#fName:hover, #lName:hover {
+#mName:hover, #lName:hover {
   height: 50px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -164,7 +164,7 @@ h1 {
   transition: all 0.3s ease-out;
 }
 
-#mName:hover {
+#fName:hover {
   height: 50px;
   background-color: #f9f9f9;
   border-radius: 5px;

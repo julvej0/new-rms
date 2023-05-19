@@ -37,10 +37,12 @@ if (isset($_SESSION['user_email'])) {
 <!----------------------------------------------------------- sign-up content ------------------------------------------------------->
             
             <form id='user_input' action='sample_db/create-account.php' method='POST' >
+                <label class="labelSubHeader">FIRST NAME</label>
+                <input id="fName" name="fName" placeholder="Juan" type="text"><br>
                 <div class="user-name">
                     <div>
-                        <label class="labelSubHeader2">FIRST NAME</label>
-                        <input id="fName" name="fName" placeholder="Juan" type="text">
+                        <label class="labelSubHeader2">MIDDLE NAME</label>
+                        <input id="mName" name="mName" placeholder="De Castro" type="text">
                     </div>
                     <div>
                         <label class="labelSubHeader2">LAST NAME</label>
@@ -48,8 +50,7 @@ if (isset($_SESSION['user_email'])) {
                     </div>
                     
                 </div><br>
-                <label class="labelSubHeader">MIDDLE NAME</label>
-                <input id="mName" name="mName" placeholder="De Castro" type="text"><br>
+                
                 <label class='labelSubHeader'>SR CODE</label>
                 <input id="srcode" name="srcode" placeholder="12-34567" type="text" maxlength='8'><br>
                 <label class='labelSubHeader'>EMAIL</label>
