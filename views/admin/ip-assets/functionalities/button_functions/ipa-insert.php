@@ -1,6 +1,4 @@
 <?php
-var_dump($_POST);
-
 include_once '../../../../../db/db.php';
 if (isset($_POST['submitIPA'])) {
     $date_of_creation = $_POST["date_of_creation"];
@@ -56,9 +54,6 @@ if (isset($_POST['submitIPA'])) {
 
         $authors_string = implode(",", $author_ids); // join the array values with a comma delimiter
     }
-
-    
-      
     
     // Check if file was uploaded without errors
     if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {
