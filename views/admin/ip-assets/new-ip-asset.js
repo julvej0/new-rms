@@ -17,4 +17,32 @@ cancelBtn.addEventListener('click', (e) => {
       window.location.href = "ip-assets.php";
     }
     })
-})
+});
+
+var inputElement = document.getElementById('reg_num');
+var dataList = document.getElementById('regnums');
+var errorMsg = document.getElementById('regnum-error');
+var submit_button = document.getElementById('submitBTN');
+
+inputElement.addEventListener('input', function() {
+  var value = inputElement.value;
+  var options = dataList.options;
+  var exists = false;
+  
+  for (var i = 0; i < options.length; i++) {
+    if (options[i].value === value) {
+      exists = true;
+      break;
+    }
+  }
+  
+  if (exists) {
+    errorMsg.style.display = 'inline';
+    submit_button.disabled = true;
+    submit_button.style.backgroundColor = "gray";
+  } else {
+    errorMsg.style.display = 'none';
+    submit_button.disabled = false;
+    submit_button.style.backgroundColor = "var(--blue)";
+  }
+});

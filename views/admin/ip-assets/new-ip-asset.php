@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-            <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors();">
+            <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -121,10 +121,10 @@
                                 <tr>
                                     <td class="ipa-author-field">
                                         <?php
-                                        $query = "SELECT author_id, author_name FROM table_authors";
-                                        $params = array();
-                                        $result = pg_query_params($conn, $query, $params);
-                                                ?>                            
+                                            $query = "SELECT author_id, author_name FROM table_authors";
+                                            $params = array();
+                                            $result = pg_query_params($conn, $query, $params);
+                                        ?>                            
                                         <input list="authors" name="author_name[]"
                                         style="
                                         width: 100%;
@@ -173,8 +173,21 @@
                             <h4 class="if-funded">If Registered : </h4>
                             <div class="reg-form-container2">
                                 <div class="form-control">
-                                    <label class="ip-label" for="reg_num">Registration Number: <span id="error-msg" style="display: none; color: red;">This registration number already exists!</span></label>
+                                    <label class="ip-label" for="reg_num">Registration Number: <span id="regnum-error" style="display: none; color: red;">This registration number already exists!</span></label>
                                     <input type="text" name="registration_number" id="reg_num" placeholder="Registration Number..." required>
+                                    <?php
+                                        $regnum_query = "SELECT registration_number FROM table_ipassets";
+                                        $regnum_params = array();
+                                        $regnum_result = pg_query_params($conn, $regnum_query, $regnum_params);
+                                    ?>      
+                                        <input type="hidden" list="regnums" id="db_regnum">
+                                        <datalist id="regnums">
+                                    <?php
+                                        while ($regnum_row = pg_fetch_assoc($regnum_result)) {
+                                            echo '<option value="' . $regnum_row['registration_number'] . '"></option>';
+                                        }
+                                        echo '</datalist>';
+                                    ?>
                                 </div>
                                 <div class="form-control">
                                     <label class="ip-label" for="reg-date">Date of Registration</label>
@@ -189,7 +202,7 @@
                     </div>
                  <hr>
                 <div class="form-footer">
-                    <input type="submit" class="submit-btn" name="submitIPA" value="Submit">
+                    <input type="submit" class="submit-btn" id="submitBTN" name="submitIPA" value="Submit">
                     <input type="hidden" name="submitIPA" value="true">
                     <input type="button" class="cancel-btn" value="Cancel">
                 </div>

@@ -18,7 +18,7 @@
         </div>
         <section>
             <div class="container">
-                <form name="form-pb" id="form-pb" action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return checkDuplicateAuthors();">
+                <form name="form-pb" id="form-pb" action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -251,10 +251,10 @@
                                 <tr>
                                     <td class="ipa-author-field">
                                         <?php
-                                        $query = "SELECT author_id, author_name FROM table_authors";
-                                        $params = array();
-                                        $result = pg_query_params($conn, $query, $params);
-                                                ?>                            
+                                            $query = "SELECT author_id, author_name FROM table_authors";
+                                            $params = array();
+                                            $result = pg_query_params($conn, $query, $params);
+                                        ?>                            
                                         <input list="authors" name="author_name[]"
                                         style="
                                         width: 100%;
@@ -325,7 +325,7 @@
                     </div>
                     <hr>
                     <div class="form-footer">
-                        <input type="submit" class="submit-btn" name="submitPB" value="Submit">
+                        <input type="submit" class="submit-btn" id="submitBTN" name="submitPB" value="Submit">
                         <input type="hidden" name="submitPB" value="true">
                         <input type="button" class="cancel-btn" value="Cancel">
                     </div>
