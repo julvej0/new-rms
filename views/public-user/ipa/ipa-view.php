@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../../views/public-user/articles/article-view.css">
+<link rel="stylesheet" href="../../../views/public-user/ipa/ipa-view.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <?php 
     include '../../../includes/admin/templates/header.php';
@@ -10,12 +10,12 @@
 <body>
     <section id="main-content">
         <div class="page-title">
-            <h3 class="animate__animated animate__zoomIn">PUBLICATIONS</h3>
+            <h3 class="animate__animated animate__zoomIn">PATENTED ARTICLES</h3>
         </div>
         <div class="content-container animate__animated animate__fadeInUp">
             <?php
-                if (isset($_GET['pubID']) && !empty($_GET['pubID'])) {
-                    $row = getPublicationData($_GET['pubID'], $conn);
+                if (isset($_GET['ipID']) && !empty($_GET['ipID'])) {
+                    $row = getPublicationData($_GET['ipID'], $conn);
                     if ($row) {
                         displayPublicationData($row, $conn);
                     }
