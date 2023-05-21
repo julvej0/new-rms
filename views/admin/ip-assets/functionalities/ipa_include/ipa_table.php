@@ -58,8 +58,6 @@
             }
             ?>
 
-
-            
             <a onclick="redirect('<?=$hyperlink != null? $hyperlink : 'no_url';?>')"  class="gdrive-btn">
                 <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
             </a>
