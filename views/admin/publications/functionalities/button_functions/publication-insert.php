@@ -88,9 +88,9 @@ if (isset($_POST['submitPB'])) {
     
     if ($insert_result) {
         echo "Insert successful.";
-        header("Location: ../../publications.php");
+        header("Location: ../../publications.php?upload=success");
     } else {
-        echo "Insert failed.";
+        header("Location: ../../publications.php?upload=failed");
     }
 } else {
     header("Location: ../../publications.php");

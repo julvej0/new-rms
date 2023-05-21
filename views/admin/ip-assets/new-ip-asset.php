@@ -194,7 +194,7 @@
                                     <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date">
                                 </div>
                                 <div class="form-control">
-                                    <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate</label>
+                                    <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate <span id="file-error" style="display: none; color: red;">Only PNG, JPG, and JPEG file types are accepted.</span></label>
                                     <input type="file" name="ip-certificate" id="ip-certificate" accept=".png, .jpg, .jpeg">
                                 </div>
                             </div>
@@ -215,6 +215,18 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
+
+<!--File Error Warning-->
+<script>
+    // Check if localStorage flag is set and show the span accordingly
+    if (localStorage.getItem("showError")) {
+        document.getElementById("file-error").style.display = "inline";
+        // Clear the localStorage flag after showing the span
+        localStorage.removeItem("showError");
+    }
+</script>
+<!--End of File Error Warning-->
+
 </body>
 <?php
     include 'new-ip-asset-js.php';
