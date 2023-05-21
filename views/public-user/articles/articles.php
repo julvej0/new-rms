@@ -47,7 +47,7 @@
                                     <div class="checkbox-filter">
                                         <div class="checkbox-control">
                                             <input type="checkbox" id="all">
-                                            <label for="all">Select All</label>
+                                            <label for="all">Select All</label> 
                                         </div>
                                         <div class="checkbox-control">
                                             <input type="checkbox" id="alangilan" name="select-campus[]" class='campus-bsu' value="Alangilan">
