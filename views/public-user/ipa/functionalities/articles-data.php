@@ -1,85 +1,77 @@
 <?php
 include_once "../../../db/db.php";
+include_once "articles-search-author.php";
 require_once "config.php";
 
-$limit = $_GET['limit'] ?? 10; // Get the limit parameter, defaulting to 10
-$offset = $_GET['offset'] ?? 0; // Get the offset parameter, defaulting to 0
 
 
-if (isset($_GET['search-table'])) {
-  // Sanitize the search query to prevent SQL injection
-  $search_query = pg_escape_string($conn, $_GET['search-table']);
 
-  // Select or Retrieve Data from Database with the search query
-  $sql_data = "SELECT DISTINCT table_ipassets.*, table_authors.author_name
-             FROM table_ipassets
-             LEFT JOIN table_authors ON table_ipassets.authors LIKE '%' || table_authors.author_id || '%'
-             WHERE (table_authors.author_name ILIKE '%$search_query%'
-             OR table_ipassets.title_of_work ILIKE '%$search_query%')";
+//number of records per page
+$no_of_records_per_page = 10;
 
-  // Check if the search query is a valid year
-  if (is_numeric($search_query)) {
-      $sql_data .= " OR EXTRACT(YEAR FROM table_ipassets.date_registered) = '$search_query'";
-  }
-} else {
+//offset
+$offset = ($page_number-1) * $no_of_records_per_page;
 
-  $sort_by = $_GET['sort'] ?? 'title'; // Get the sorting parameter, defaulting to 'title'
+$search = isset($_GET['search-table']) ? $_GET['search-table'] : '';
 
-  // Select or Retrieve all Data from Database if no search query is set
-  $sql_data = "SELECT table_ipassets.*, table_authors.author_name
-               FROM table_ipassets
-               LEFT JOIN table_authors ON table_ipassets.authors LIKE '%' || table_authors.author_id || '%' WHERE 1=1";
-               
+//Search Query
+$sqlSearchQuery = "SELECT * 
+FROM (
+    SELECT * 
+    FROM table_ipassets 
+    WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, date_registered, campus, college, program, authors, status, certificate) ILIKE '%$search%' ";
 
-  // Date filtration based on the input values
-  if (isset($_GET['date-start']) && isset($_GET['date-end'])) {
-      $date_start = $_GET['date-start'];
-      $date_end = $_GET['date-end'];
 
-      // Check if both inputs are valid years
-      if (is_numeric($date_start) && is_numeric($date_end)) {
-          $sql_data .= " AND EXTRACT(YEAR FROM table_ipassets.date_registered) BETWEEN $date_start AND $date_end";
+if (authorSearch($conn, $search_query) !== "empty_search" ) {
+    $sqlSearchQuery .= authorSearch($conn, $search_query);
+}
+
+$sqlSearchQuery .= " )AS searched_pub WHERE 1=1 ";
+
+if ($campus_query !== 'empty_campus') {
+
+  $sqlSearchQuery.= "AND (";
+  if(is_array($campus_query)){
+    foreach ($campus_query as $campus){
+      if ( $campus == $campus_query[0]){
+        $sqlSearchQuery .= "  searched_pub.campus = '$campus' ";
       }
-  }
-
-  // Campus filtration based on the checked checkboxes
-  if (isset($_GET['select-campus'])) {
-    $campus = $_GET['select-campus'];
-
-    if (in_array('All Campus', $campus)) {
-        // If 'All Campus' is selected, no need to apply further filtering
-    } else {
-        $campus_conditions = array();
-
-        foreach ($campus as $selected_campus) {
-            $selected_campus = pg_escape_string($conn, $selected_campus);
-            $campus_conditions[] = "table_ipassets.campus ILIKE '%$selected_campus%'";
-        }
-
-        $campus_query = implode(' OR ', $campus_conditions);
-        $sql_data .= " AND ($campus_query)";
-
+      else{
+          $sqlSearchQuery .= " OR  searched_pub.campus = '$campus' ";
       }
+      
+    }
+
   }
+  else{
+    $sqlSearchQuery .= "  searched_pub.campus = '$campus_query' ";
+  }
+  
+  $sqlSearchQuery .= ") ";
+}
+if ($dateStart_query !== 'empty_dStart' && $dateEnd_query !== 'empty_dEnd' ) {
+  $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_pub.date_registered) BETWEEN $dateStart_query AND $dateEnd_query";
+}
 
-
-  // Set the sort order based on the sorting parameter
-  if ($sort_by === 'date') {
+if ($sort_query !== 'empty_sort') {
+  if ($sort_query === 'date') {
     $sort_order = 'DESC'; // Sort by date in descending order
-    $sort_column = 'date_published';
-  } elseif ($sort_by === 'campus') {
+    $sort_column = 'date_registered';
+  } elseif ($sort_query === 'campus') {
     $sort_order = 'ASC'; // Sort by campus in ascending order
     $sort_column = 'campus';
   } else {
     $sort_order = 'ASC'; // Sort by title (default)
     $sort_column = 'title_of_work';
   }
-
-  $sql_data .= " ORDER BY $sort_column $sort_order";
- 
+  $sqlSearchQuery .= " ORDER BY $sort_column $sort_order ";
 }
 
-$sql_result = pg_query($conn, $sql_data);
+
+
+$sqlSearchQuery .= " OFFSET $offset LIMIT $no_of_records_per_page";
+
+$sql_result = pg_query($conn, $sqlSearchQuery);
 
 
   if ($sql_result && pg_num_rows($sql_result) > 0)  {
@@ -88,7 +80,7 @@ $sql_result = pg_query($conn, $sql_data);
       <thead>
         <tr id='css-header-container'>
           <th class='css-header'> Title </th>
-          <th class='css-header'> Date Published </th>
+          <th class='css-header'> Date Registered </th>
           <th class='css-header'> Campus </th>
           <th class='css-header'> Authors </th>
         </tr>
