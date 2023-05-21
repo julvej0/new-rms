@@ -68,4 +68,6 @@ function displayPublicationData($row, $conn) {
     echo '</div>';
     echo '</div>';
 }
+
+
 ?>

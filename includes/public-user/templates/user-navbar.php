@@ -40,7 +40,7 @@ session_start();
                     <div class="right-content">
                         <ul class="nav-links">
                             <li><a href="../../../views/public-user/home/home.php" id='home-link'>HOME</a></li>
-                            <li><a href="../../../views/public-user/ipa/ipa.php" id='ipa-link'>IP ASSETS</a></li>
+                            <li><a href="../../../views/public-user/ipa/ipa.php" id='ipa-link'>PATENTED DOCUMENTS</a></li>
                             <li><a href="../../../views/public-user/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
                             <li><a href="#" id='abt-link'>ABOUT</a></li>
                             <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php?logout=1' :  '../../../views/admin/account/login.php'?>" onclick="<?=isset($_SESSION['user_email']) ? 'return showLogoutAlert()' : ''?>">
