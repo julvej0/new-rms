@@ -141,8 +141,10 @@
         </script>
         
         ';
-        
-    }elseif(isset($_GET['update'])){
+    }
+    if(isset($_GET['update'])){
+        $updateStatus = $_GET['update'];
+        if ($updateStatus == 'success') {
         echo
         '
         <script>
@@ -164,5 +166,76 @@
         </script>
         
         ';
+        }elseif ($updateStatus == 'failed') {
+            echo
+            '
+            <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                }
+              })
+              
+              Toast.fire({
+                icon: "error",
+                title: "Failed to update Patented Document!"
+              })
+        
+            </script>
+            
+            ';
+        }
+    }
+    if (isset($_GET['upload'])){
+        $uploadStatus = $_GET['upload'];
+        if ($uploadStatus == 'success') {
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+          })
+          
+          Toast.fire({
+            icon: "success",
+            title: "Patented Document was uploaded succesfully!"
+          })
+    
+        </script>
+        
+        ';
+        }elseif ($uploadStatus == 'failed'){
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+            })
+            
+            Toast.fire({
+                icon: "error",
+                title: "Failed to upload Patented Document!"
+            })
+    
+        </script>
+        
+        ';
+        }
     }
 ?>

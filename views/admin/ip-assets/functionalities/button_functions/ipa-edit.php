@@ -70,7 +70,7 @@ if (isset($_POST['updateIPA'])) {
                         if (in_array($file_type, $allowed_types)) {
                                     // Upload file to server
                             if (move_uploaded_file($_FILES["ip-certificate"]["tmp_name"], $certificate_file)) {
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=success");
                             }
                         }
                     } else {
@@ -101,9 +101,9 @@ if (isset($_POST['updateIPA'])) {
 
                             // Check if the update was successful
                             if (pg_affected_rows($update_result) > 0) {
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=success");
                             } else {
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=!update");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
                             }
     
                             } else {
@@ -112,7 +112,8 @@ if (isset($_POST['updateIPA'])) {
                         } else {
                             echo "
                             <script>
-                            alert('Error: Only PNG and JPG files are allowed.');
+                            // Set the localStorage flag before navigating back
+                            localStorage.setItem('showError', true);
                             window.history.back();
                             </script>";
                         }
@@ -126,7 +127,7 @@ if (isset($_POST['updateIPA'])) {
                 die("Error in SQL query: " . pg_last_error());
             }
             if (pg_affected_rows($update_result) > 0) {
-                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=success");
             } else {
                 header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
             }

@@ -4,9 +4,9 @@ require_once "config.php";
 function getPublicationData($pubID, $conn) {
     $decrypted_ID = encryptor('decrypt', $pubID);
     
-    $sql_data = "SELECT tp.*, ta.author_name FROM table_publications tp
+    $sql_data = "SELECT ti.*, ta.author_name FROM table_ipassets ti
                  JOIN table_authors ta ON ta.author_id = ta.author_id
-                 WHERE tp.publication_id = $1;";
+                 WHERE ti.registration_number = $1;";
     $params = array($decrypted_ID);
     $sql_result = pg_query_params($conn, $sql_data, $params);
 
@@ -16,12 +16,12 @@ function getPublicationData($pubID, $conn) {
 function displayPublicationData($row, $conn) {
     echo '<div class="article-container">';
     echo '<div class="article-title">';
-    echo '<h1>'.$row['title_of_paper'].'</h1>';
+    echo '<h1>'.$row['title_of_work'].'</h1>';
     echo '</div>';
 
     echo '<div class="article-date-published">';
-    if (!empty($row['date_published'])) {
-        $date = date('F d, Y', strtotime($row['date_published']));
+    if (!empty($row['date_registered'])) {
+        $date = date('F d, Y', strtotime($row['date_registered']));
         echo '<h5>Date Published:  '. $date . '</h5>';
     }
     else {
@@ -55,16 +55,16 @@ function displayPublicationData($row, $conn) {
     echo '<div class="abstract-cont">';
     echo '<div>';
     echo '<label>Abstract:</label>';
-    if (!empty($row['abstract'])){
-        $abstract = $row['abstract'];
+    if (!empty($row['status'])){
+        $abstract = $row['status'];
         echo '<p>' .$abstract. '</p>';
     }
     else{
         echo '<p> Not Yet Set </p>';
     }
-    echo '<p>'.$row['abstract'].'</p>';
+    echo '<p>'.$row['status'].'</p>';
     echo '</div>';
-    echo '<button onclick="window.open(\'' . $row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
+    echo '<button onclick="window.open(\'' . $row['hyperlink'] . '\', \'_blank\')" class="download-cert-btn">CERTIFICATION</button>';
     echo '</div>';
     echo '</div>';
 }

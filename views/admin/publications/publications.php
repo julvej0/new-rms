@@ -152,7 +152,10 @@
         
         ';
         
-    }elseif(isset($_GET['update'])){
+    }
+    if(isset($_GET['update'])){
+        $updateStatus = $_GET['update'];
+        if ($updateStatus == 'success') {
         echo
         '
         <script>
@@ -168,11 +171,82 @@
           
           Toast.fire({
             icon: "success",
-            title: "Publication was updated successfully!"
+            title: "Publication was updated succesfully!"
           })
     
         </script>
         
         ';
+        }elseif ($updateStatus == 'failed') {
+            echo
+            '
+            <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                }
+              })
+              
+              Toast.fire({
+                icon: "error",
+                title: "Failed to update Publication!"
+              })
+        
+            </script>
+            
+            ';
+        }
+    }
+    if (isset($_GET['upload'])){
+        $uploadStatus = $_GET['upload'];
+        if ($uploadStatus == 'success') {
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+          })
+          
+          Toast.fire({
+            icon: "success",
+            title: "Publication was uploaded succesfully!"
+          })
+    
+        </script>
+        
+        ';
+        }elseif ($uploadStatus == 'failed'){
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+            })
+            
+            Toast.fire({
+                icon: "error",
+                title: "Failed to upload Publication!"
+            })
+    
+        </script>
+        
+        ';
+        }
     }
 ?>

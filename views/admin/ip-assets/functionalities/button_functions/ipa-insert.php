@@ -82,9 +82,9 @@ if (isset($_POST['submitIPA'])) {
 
                             if ($insert_result) {
                                 echo "Insert successful.";
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?success");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=success");
                             } else {
-                                echo "Insert failed.";
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=failed");
                             }
 
                         } else {
@@ -93,7 +93,8 @@ if (isset($_POST['submitIPA'])) {
                     } else {
                         echo "
                         <script>
-                        alert('Error: Only PNG and JPG files are allowed.');
+                        // Set the localStorage flag before navigating back
+                        localStorage.setItem('showError', true);
                         window.history.back();
                         </script>";
                     }
@@ -105,14 +106,14 @@ if (isset($_POST['submitIPA'])) {
 
                             if ($insert_result) {
                                 echo "Insert successful.";
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?success");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=success");
                             } else {
-                                echo "Insert failed.";
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=failed");
                             }
 
     }
     
 } else {
-    header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?failed");
+    header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=failed");
 }   
 ?>

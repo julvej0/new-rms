@@ -114,7 +114,7 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
       $encrypted_ID = encryptor('encrypt', $row['registration_number']);
       ?>
       <tbody>
-        <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
+        <tr class='css-tr' onclick="window.location='ipa-view.php?ipID=<?=$encrypted_ID?>'">
           <td class='css-td'><?=$row['title_of_work']?></td>
           <td class='css-td'><?=$row['date_registered']?></td>
           <td class='css-td'><?=$row['campus']?></td>
