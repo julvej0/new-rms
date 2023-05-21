@@ -55,7 +55,7 @@
             $('#affiliation-tbl-body').append(externalRow);
         }
         else{
-            alert('You reached maximum number of affiliation')
+            alert('You reached maximum number of affiliation') 
         }
     }
 

@@ -1,170 +1,78 @@
 <?php
 include_once "../../../db/db.php";
+include_once "articles-search-author.php";
 require_once "config.php";
-?>
-<!-- Add this JavaScript code before the table rendering -->
-<script>
-// Check if local storage is supported by the browser
-if (typeof(Storage) !== "undefined") {
-  // Check if the data is already stored in local storage
-  var localStorageKey = "articleData";
-  var cachedData = localStorage.getItem(localStorageKey);
 
-  if (cachedData) {
-    // Parse the cached data
-    var articles = JSON.parse(cachedData);
-    renderTable(articles); // Call the renderTable function with the cached data
-  } else {
-    // Fetch data from the server
-    fetch("fetch_data.php")
-      .then(response => response.json())
-      .then(data => {
-        // Store the data in local storage
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        renderTable(data); // Call the renderTable function with the fetched data
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-      });
-  }
-} else {
-  // Local storage is not supported
-  console.log("Local storage is not supported by the browser");
+
+
+
+//number of records per page
+$no_of_records_per_page = 10;
+
+//offset
+$offset = ($page_number-1) * $no_of_records_per_page;
+
+$search = isset($_GET['search-table']) ? $_GET['search-table'] : '';
+
+//Search Query
+$sqlSearchQuery = "SELECT * 
+                    FROM (
+                        SELECT * 
+                        FROM table_publications 
+                        WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search%' ";
+
+
+
+if (authorSearch($conn, $search_query) !== "empty_search" ) {
+    $sqlSearchQuery .= authorSearch($conn, $search_query);
 }
 
-// Function to render the table
-function renderTable(data) {
-  if (data && data.length > 0) {
-    var table = document.getElementById("css-table");
-    var tbody = table.getElementsByTagName("tbody")[0];
-    
-    // Clear the table body
-    while (tbody.firstChild) {
-      tbody.removeChild(tbody.firstChild);
+$sqlSearchQuery .= " )AS searched_pub WHERE 1=1 ";
+
+if ($campus_query !== 'empty_campus') {
+
+  $sqlSearchQuery.= "AND (";
+  if(is_array($campus_query)){
+    foreach ($campus_query as $campus){
+      if ( $campus == $campus_query[0]){
+        $sqlSearchQuery .= "  searched_pub.campus = '$campus' ";
+      }
+      else{
+          $sqlSearchQuery .= " OR  searched_pub.campus = '$campus' ";
+      }
+      
     }
-    
-    // Loop through the data and create table rows
-    for (var i = 0; i < data.length; i++) {
-      var row = data[i];
-      
-      // Create table cells for each column
-      var titleCell = document.createElement("td");
-      titleCell.className = "css-td";
-      titleCell.textContent = row.title_of_paper;
-      
-      var dateCell = document.createElement("td");
-      dateCell.className = "css-td";
-      dateCell.textContent = row.date_published;
-      
-      var campusCell = document.createElement("td");
-      campusCell.className = "css-td";
-      campusCell.textContent = row.campus;
-      
-      var authorsCell = document.createElement("td");
-      authorsCell.className = "css-td";
-      authorsCell.textContent = row.author_names.join(", ");
-      
-      // Create a table row and append the cells
-      var tableRow = document.createElement("tr");
-      tableRow.className = "css-tr";
-      tableRow.onclick = function() {
-        var encryptedID = encryptor("encrypt", row.publication_id);
-        window.location = "./article_view.php?pubID=" + encryptedID;
-      };
-      
-      tableRow.appendChild(titleCell);
-      tableRow.appendChild(dateCell);
-      tableRow.appendChild(campusCell);
-      tableRow.appendChild(authorsCell);
-      
-      // Append the row to the table body
-      tbody.appendChild(tableRow);
-    }
-  } else {
-    // No results found
-    var noResultsText = document.createElement("p");
-    noResultsText.textContent = "Your search query did not match any records.";
-    document.body.appendChild(noResultsText);
+
   }
+  else{
+    $sqlSearchQuery .= "  searched_pub.campus = '$campus_query' ";
+  }
+  
+  $sqlSearchQuery .= ") ";
 }
-</script>
-<?php
+if ($dateStart_query !== 'empty_dStart' && $dateEnd_query !== 'empty_dEnd' ) {
+  $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_pub.date_published) BETWEEN $dateStart_query AND $dateEnd_query";
+}
 
-if (isset($_GET['search-table'])) {
-  // Sanitize the search query to prevent SQL injection
-  $search_query = pg_escape_string($conn, $_GET['search-table']);
-
-  // Select or Retrieve Data from Database with the search query
-  $sql_data = "SELECT table_publications.*, table_authors.author_name
-             FROM table_publications
-             LEFT JOIN table_authors ON table_publications.authors LIKE '%' || table_authors.author_id || '%'
-             WHERE (table_authors.author_name ILIKE '%$search_query%'
-             OR table_publications.title_of_paper ILIKE '%$search_query%'
-             OR table_publications.campus ILIKE '%$search_query%')";
-
-  // Check if the search query is a valid year
-  if (is_numeric($search_query)) {
-      $sql_data .= " OR EXTRACT(YEAR FROM table_publications.date_published) = '$search_query'";
-  }
-} else {
-
-  $sort_by = $_GET['sort'] ?? 'title'; // Get the sorting parameter, defaulting to 'title'
-
-  // Select or Retrieve all Data from Database if no search query is set
-  $sql_data = "SELECT table_publications.*, table_authors.author_name
-               FROM table_publications
-               LEFT JOIN table_authors ON table_publications.authors LIKE '%' || table_authors.author_id || '%' WHERE 1=1";
-               
-
-  // Date filtration based on the input values
-  if (isset($_GET['date-start']) && isset($_GET['date-end'])) {
-      $date_start = $_GET['date-start'];
-      $date_end = $_GET['date-end'];
-
-      // Check if both inputs are valid years
-      if (is_numeric($date_start) && is_numeric($date_end)) {
-          $sql_data .= " AND EXTRACT(YEAR FROM table_publications.date_published) BETWEEN $date_start AND $date_end";
-      }
-  }
-
-  // Campus filtration based on the checked checkboxes
-  if (isset($_GET['select-campus'])) {
-    $campus = $_GET['select-campus'];
-
-    if (in_array('All Campus', $campus)) {
-        // If 'All Campus' is selected, no need to apply further filtering
-    } else {
-        $campus_conditions = array();
-
-        foreach ($campus as $selected_campus) {
-            $selected_campus = pg_escape_string($conn, $selected_campus);
-            $campus_conditions[] = "table_publications.campus ILIKE '%$selected_campus%'";
-        }
-
-        $campus_query = implode(' OR ', $campus_conditions);
-        $sql_data .= " AND ($campus_query)";
-
-      }
-  }
-
-
-  // Set the sort order based on the sorting parameter
-  if ($sort_by === 'date') {
+if ($sort_query !== 'empty_sort') {
+  if ($sort_query === 'date') {
     $sort_order = 'DESC'; // Sort by date in descending order
     $sort_column = 'date_published';
-  } elseif ($sort_by === 'campus') {
+  } elseif ($sort_query === 'campus') {
     $sort_order = 'ASC'; // Sort by campus in ascending order
     $sort_column = 'campus';
   } else {
     $sort_order = 'ASC'; // Sort by title (default)
     $sort_column = 'title_of_paper';
   }
-
-  $sql_data .= " ORDER BY $sort_column $sort_order";
- 
+  $sqlSearchQuery .= " ORDER BY $sort_column $sort_order ";
 }
 
-$sql_result = pg_query($conn, $sql_data);
+
+
+$sqlSearchQuery .= " OFFSET $offset LIMIT $no_of_records_per_page";
+
+$sql_result = pg_query($conn, $sqlSearchQuery);
 
 
   if ($sql_result && pg_num_rows($sql_result) > 0)  {
