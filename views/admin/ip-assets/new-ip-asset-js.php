@@ -38,26 +38,50 @@ $(document).ready(function() {
   });
 });
 
-
 function checkDuplicateAuthors() {
   var authors = {};
+  var authorInputs = document.querySelectorAll('input[name="author_name[]"]');
+  var errorMsg = document.getElementById('error-msg');
+  var submitButton = document.getElementById('submitBTN');
   var duplicate = false;
-  $('input[name="author_name[]"]').each(function() {
-    var id = $(this).val().toLowerCase();
+
+  for (var i = 0; i < authorInputs.length; i++) {
+    var input = authorInputs[i];
+    var id = input.value.toLowerCase();
+
+    // Exclude empty input values from duplicate check
+    if (id.trim() === '') {
+      continue;
+    }
+
     if (id in authors) {
       duplicate = true;
-      $(this).focus(); // Focus on the input field with duplicate value
-      $('#error-msg').show(); // Show the error message
-      event.preventDefault(); // Exit the loop if duplicate is found
+      input.focus(); // Focus on the input field with duplicate value
+      errorMsg.style.display = 'inline'; // Show the error message
+      submitButton.disabled = true; // Disable the submit button
+      submitButton.style.backgroundColor = 'gray'; // Set the background color to gray
+      break; // Exit the loop if duplicate is found
     } else {
       authors[id] = true;
     }
-  });
-  if (!duplicate) {
-    $('#error-msg').hide(); // Hide the error message if no duplicates found
   }
-  return !duplicate; // Return false to prevent form submission if duplicate found
+
+  if (!duplicate) {
+    errorMsg.style.display = 'none'; // Hide the error message if no duplicates found
+    submitButton.disabled = false; // Enable the submit button
+    submitButton.style.backgroundColor = 'var(--blue)'; // Reset the background color
+  }
+
+  return !duplicate; // Return false to prevent form submission if duplicate is found
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  var authorInputs = document.querySelectorAll('input[name="author_name[]"]');
+
+  for (var i = 0; i < authorInputs.length; i++) {
+    authorInputs[i].addEventListener('input', checkDuplicateAuthors);
+  }
+});
 
 var max =15; //max number of Authors
 var x =1; //represents the 1st author field
@@ -86,6 +110,7 @@ $('.add-row-btn').click(function(){
     //Remove row function
     $('#author-tbl').on('click','#remove',function(){
         $(this).closest('tr').remove();
+        checkDuplicateAuthors();
         x--;
     });
 });
