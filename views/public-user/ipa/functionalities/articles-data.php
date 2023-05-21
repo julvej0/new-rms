@@ -16,10 +16,10 @@ $search = isset($_GET['search-table']) ? $_GET['search-table'] : '';
 
 //Search Query
 $sqlSearchQuery = "SELECT * 
-FROM (
-    SELECT * 
-    FROM table_ipassets 
-    WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, date_registered, campus, college, program, authors, status, certificate) ILIKE '%$search%' ";
+                    FROM (
+                        SELECT * 
+                        FROM table_ipassets 
+                        WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, date_registered, campus, college, program, authors, status, certificate) ILIKE '%$search%' ";
 
 
 if (authorSearch($conn, $search_query) !== "empty_search" ) {
