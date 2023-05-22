@@ -97,20 +97,21 @@ body {
 
 #main-content .about-content .left-content .team-desc .team {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 150px;
 }
 
 #main-content .about-content .left-content .team-desc h4 {
     margin-top: 20px;
     font-size: 24px;
     color: var(--text-color);
+    text-align: center;
 }
 
 #main-content .about-content .left-content .team-desc p {
     color: var(--bg-grey);
     font-size: 14px;
+    text-align: center;
 }
 
 #main-content .team-desc .third-col {
