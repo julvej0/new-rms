@@ -43,45 +43,48 @@ function submitPss() {
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          if (xhr.responseText === "successful") {
-            // Display a success message using Swal (SweetAlert)
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            if (xhr.responseText === "successful") {
+                // Display a success message using Swal (SweetAlert)
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                  }
+                });
+              
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Password Changed Successfully'
+                });
+              
+                // Redirect to the login page after 3 seconds
+                setTimeout(() => {
+                  window.location.href = "login.php";
+                }, 3000);
+              
+                console.log(otpTextBox);
+              } else {
+                // Display an error message using Swal (SweetAlert)
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Wrong OTP, Please Try Again.',
+                  confirmButtonColor: '#3085d6',
+                  confirmButtonText: 'OK'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    // Redirect to the login page
+                    window.location.href = "login.php";
+                  }
+                });
+              
+                console.log(otpTextBox);
               }
-            });
-  
-            Toast.fire({
-              icon: 'success',
-              title: 'Password Changed Successfully'
-            });
-  
-            // Redirect to the login page after 3 seconds
-            setTimeout(() => {
-              window.location.href = "login.php";
-            }, 3000);
-  
-            console.log(otpTextBox);
-          } else {
-            // Display an error message using Swal (SweetAlert)
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Wrong OTP, Please Try Again.',
-              confirmButtonColor: '#3085d6',
-              confirmButtonText: 'OK'
-            });
-            
-            // Redirect to the login page
-            window.location.href = "login.php";
-            console.log(otpTextBox);
-          }
         }
       };
   
