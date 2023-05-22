@@ -25,7 +25,7 @@
 
     <main>
         <div class="header">
-            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'IP-ASSETS'; ?></h1>
+            <h1 class="title"><?php  echo (isset($_GET['search']) && $_GET['search'] != '' ) ? "Results for \"". $_GET['search']."\"": 'PATENTED DOCUMENTS'; ?></h1>
             <div class="left">
                 <div class="btn-container">
                 <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
