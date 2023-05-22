@@ -24,11 +24,11 @@
     
     <main>
         <div class="header">
-            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'Authors'; ?></h1>
+            <h1 class="title">AUTHORS</h1>
             <div class='left'>
                 <form action="#">
                     <div class="form-group">
-                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
+                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php echo isset($_GET['search']) ? $_GET['search']: ''?>' >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>

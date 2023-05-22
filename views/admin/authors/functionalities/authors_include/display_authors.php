@@ -7,7 +7,7 @@
     $offset = ($page_number - 1) * $items_per_page; //10 intervals
 
     //select query base on search
-    $sql = "SELECT * FROM table_authors WHERE CONCAT(author_id, author_name, affiliation) ILIKE '%$search_query%' ";
+    $sql = "SELECT * FROM table_authors WHERE CONCAT(author_id, author_name, affiliation) ILIKE '%".rtrim($search_query)."%' ";
 
     //additional query if the user has filter
     if ($gender !== "empty_gender") {

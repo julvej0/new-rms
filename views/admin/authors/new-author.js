@@ -1,4 +1,4 @@
-// find cancle button from page
+// find cancel button from page
 const cancelBtn = document.querySelector('.cancel-btn');
 
 //if cancel button is clicked

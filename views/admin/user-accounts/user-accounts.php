@@ -1,7 +1,7 @@
 <title>RMS | AUTHORS</title>
 <?php 
-    #hello
-    include_once '../../../db/db.php';
+
+    include_once '../../../db/db.php'; //db connection
 ?>
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="user-accounts.css">
@@ -22,11 +22,11 @@
     
     <main>
         <div class="header">
-            <h1 class="title">User Accounts</h1>
+            <h1 class="title">USER ACCOUNTS</h1>
             <div class='left'>
                 <form action="">
                     <div class="form-group">
-                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
+                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php echo isset($_GET['search']) ? $_GET['search']: ''?>' >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
@@ -63,7 +63,7 @@
                 </table>
             </div>
                 <?php
-                    include_once 'functionalities/userAccounts_include/pagination_authors.php';
+                    include_once 'functionalities/userAccounts_include/userAccounts_pagination.php';
                 ?>
         </section>
     </main>

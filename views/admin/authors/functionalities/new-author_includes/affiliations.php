@@ -16,8 +16,8 @@
                         <select name="a-aff-prog[]" class="a-aff-prog" required>\
                             <option value="" hidden>--Choose from the options--</option>\
                                 <?php 
+                                    //display option from array
                                     foreach ($program_options as $option) {
-                                        
                                         echo '<option value="'.$option.'" >'.$option.'</option>';
                                     }
                                 ?>
@@ -28,6 +28,7 @@
                         <select name="a-aff-camp[]" class="a-aff-camp" required>\
                             <option value="" hidden>--Choose from the options--</option>\
                                 <?php 
+                                    //display option from array
                                     foreach ($campus_options as $option) {
                                         echo '<option value="'.$option.'" >'.$option.'</option>';
                                     }

@@ -19,7 +19,7 @@ $sqlSearchQuery = "SELECT *
                     FROM (
                         SELECT * 
                         FROM table_publications 
-                        WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search%' ";
+                        WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%".trim($search)."%' ";
 
 
 
