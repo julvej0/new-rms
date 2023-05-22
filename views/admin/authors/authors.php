@@ -1,7 +1,6 @@
 <title>RMS | AUTHORS</title>
 <?php 
-    #hello
-    include_once '../../../db/db.php';
+    include_once '../../../db/db.php'; //db connection
 ?>
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="authors.css">
@@ -9,25 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <body>
     <?php
-        include_once '../../../includes/admin/templates/navbar.php';
-        include_once 'functionalities/authors_include/count_authors.php';
-        include_once 'functionalities/authors_include/filter_function.php';
+        include_once '../../../includes/admin/templates/navbar.php'; //navigation bar
+        include_once 'functionalities/authors_include/count_authors.php'; //for counting total author
+        include_once 'functionalities/authors_include/filter_function.php'; // for filtering
 
-        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+        //check for GET parameters
+        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search'; 
         $gender = isset($_GET['gender']) ? $_GET['gender']: 'empty_gender';
         $role = isset($_GET['role']) ? $_GET['role']: 'empty_role';
 
+        //check if page number exists
         $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
        
     ?>
     
     <main>
         <div class="header">
-            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'Authors'; ?></h1>
+            <h1 class="title">AUTHORS</h1>
             <div class='left'>
                 <form action="#">
                     <div class="form-group">
-                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php $search_query?>' >
+                        <input class='txt-search' type='text' placeholder="Search..." name='search' value='<?php echo isset($_GET['search']) ? $_GET['search']: ''?>' >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
@@ -65,14 +66,14 @@
                     </thead>
                     <tbody>
                         <?php
-                            include_once 'functionalities/authors_include/display_authors.php';
+                            include_once 'functionalities/authors_include/display_authors.php'; //diplay table for authors
                            
                         ?>
                     </tbody>
                 </table>
             </div>
                 <?php
-                    include_once 'functionalities/authors_include/pagination_authors.php';
+                    include_once 'functionalities/authors_include/pagination_authors.php'; // display pagination controls for authors
                 ?>
         </section>
     </main>

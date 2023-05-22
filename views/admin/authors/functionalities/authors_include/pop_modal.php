@@ -1,5 +1,5 @@
 <?php
-
+    //check if delete is on page's get parameter
     if(isset($_GET['delete'])){
         echo
        
@@ -25,7 +25,10 @@
         ';
         
     }
+
+    //check if update is on page's get parameter
     if(isset($_GET['update'])){
+      //result depends on update's value
       if($_GET['update'] == 'success'){
         echo
      
@@ -79,8 +82,10 @@
      
       
   }
-  if(isset($_GET['add'])){
 
+  //check if add is on page's get parameter
+  if(isset($_GET['add'])){
+    //result depends on add's value
     if($_GET['add'] == 'success'){
       echo
    

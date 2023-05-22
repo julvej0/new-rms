@@ -1,7 +1,7 @@
-// CANCEL MODAL
-
+// find cancel button from page
 const cancelBtn = document.querySelector('.cancel-btn');
 
+//if cancel button is clicked
 cancelBtn.addEventListener('click', (e) => {
   e.preventDefault();
   Swal.fire({
@@ -19,8 +19,11 @@ cancelBtn.addEventListener('click', (e) => {
     })
 })
 
+
+//find submit button from page
 const submitBtn = document.querySelector('.submit-btn');
 
+//checking if name exists from database
 function checkIfExist(name, callback){
   var xhr = new XMLHttpRequest();
   url = `functionalities/authors_query/checkExist_author.php?author_name=${name}`;
@@ -41,6 +44,8 @@ function checkIfExist(name, callback){
   xhr.send();
 }
 
+
+//error handling for new author form
 function checkData(event){
   event.preventDefault(); // prevent form submission
   

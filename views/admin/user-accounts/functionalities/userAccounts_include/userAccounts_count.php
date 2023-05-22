@@ -1,4 +1,5 @@
 <?php
+    //count total accounts from database
     function countUserAccounts($conn){
         $count_sql = "SELECT COUNT(*) FROM table_user";
         $count_result = pg_query($conn, $count_sql);
