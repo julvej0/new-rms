@@ -74,7 +74,7 @@ function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_
 function authorSearch($conn, $search) {
     if($search != 'empty_search'){
         //Select Author Ids that matches the search
-        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%$search%'";
+        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%".rtrim($search)."%'";
         $result = pg_query($conn, $select_authors);
 
         if(pg_num_rows($result) > 0){
