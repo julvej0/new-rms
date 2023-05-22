@@ -1,4 +1,6 @@
 <?php
+
+// this functions is to get if the login credential are not correct or not existing.
 if(isset($_GET['login'])){
     if ($_GET['login'] == "incorrect"){
         echo '

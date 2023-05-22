@@ -1,4 +1,5 @@
-console.log(window.location.search);
+
+//delete author 
 function submitDelete(id){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "functionalities/authors_query/delete_author.php", true);
@@ -31,7 +32,7 @@ function submitDelete(id){
 
 }
 
-
+//pop up for confirmining author deletion
 function confirmDelete(name, id){
     
     Swal.fire({
@@ -43,7 +44,6 @@ function confirmDelete(name, id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             submitDelete(id)
         } 
@@ -53,14 +53,12 @@ function confirmDelete(name, id){
 
 }
 
+
 let isRotated = false;
 const buttonIcon = document.getElementById("button-icon");
 const rbdContainer = document.getElementById("rdb-container");
 
 function rotateButton() {
-    
-    
-
     if (isRotated) {
         buttonIcon.style.transform = "rotate(0deg)";
         rbdContainer.style.opacity = 0;

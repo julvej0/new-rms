@@ -129,6 +129,7 @@
     include '../../../includes/admin/templates/footer.php';
 ?>
 <?php
+    //SweetAlert2 mixin alerts
     if(isset($_GET['delete'])){
         echo
         '

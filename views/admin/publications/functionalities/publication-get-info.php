@@ -39,20 +39,20 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
 
     if ($resultCheck > 0) {
         while ($row = pg_fetch_assoc($result)) {
-
+        // Split the author IDs into an array
             $authorIds = explode(',', $row['authors']);
-            $authorNames = array();
+            $authorNames = array(); // Initialize an empty array to store author names
 
             foreach ($authorIds as $id) {
                 $authorResult = pg_query($conn, "SELECT author_name FROM table_authors WHERE author_id = '$id' ");
                 $authorRow = pg_fetch_assoc($authorResult);
                 if ($authorRow) {
-                    $authorNames[] = $authorRow['author_name'];
+                    $authorNames[] = $authorRow['author_name']; // Add author name to the array
                 }
             }
-            $authorNamesString = implode(', ', $authorNames);
+            $authorNamesString = implode(', ', $authorNames); // Convert the array of author names into a string separated by commas
 
-            $table_rows[] = array(
+            $table_rows[] = array( // Add new rows of data to the $table_rows array
                 'publication_id' => $row['publication_id'],
                 'date_published' => $row['date_published'],
                 'quartile' => $row['quartile'],
@@ -70,6 +70,9 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
                 'campus' => $row['campus'],
                 'college' => $row['college'],
             );
+            // Each element of the array corresponds to a specific column in the table
+            // The values are assigned from the corresponding values in the $row array
+            // The 'authors' field is assigned the concatenated string of author names, $authorNamesString
         }
         return $table_rows;
     } else {

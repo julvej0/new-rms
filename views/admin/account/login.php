@@ -96,6 +96,7 @@ if (isset($_SESSION['user_email'])) {
 <script src='submit-password.js'></script>
 <script src='login.js'></script>
 <script src='change-pass-with-otp.js'></script>
+
 <script>
 var disableotpInput = document.getElementById("otpVerification");
 var disableSubmitBtn = document.getElementById('submit-password');
@@ -120,7 +121,7 @@ function validateForm() {
     } else {
         disableSubmitBtn.disabled = false;
         disableSubmitBtn.style.backgroundColor = "";
-        disableSubmitBtn.style.pointerEvents = "";
+        disableSubmitBtn.style.pointerEvents = ""; 
     }
 }
 
@@ -141,7 +142,4 @@ function showModal() {
 
 <?php
 include_once "functionalities/login_incorrect.php";
-
-
-
 ?>

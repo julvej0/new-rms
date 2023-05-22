@@ -2,9 +2,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var max = 16; // max number of affiliations is 15
-
     function addInternalRow() {
         if ($('#affiliation-tbl-body td').length < max) {
+            //row of input fields to be added once the "+" button is clicked
+            //the select options are from an array of program and campus options (\admin\authors\functionalities\new-author_includes\options.php)
             var internalRow = '\
                 <td>\
                     <div class="form-control aff-info">\
@@ -36,15 +37,16 @@
                     </div>\
                     <button class="a-remove-btn" type="button">x</button>\
                     </td>';
-            $('#affiliation-tbl-body').append(internalRow);
+            $('#affiliation-tbl-body').append(internalRow); //Appends the internalRow to the table
         }
         else{
-            alert('You reached maximum number of affiliation')
+            alert('You reached maximum number of affiliation') //Alerts the admin that they have reached the maximum number of affiliation
         }
     }
     
     function addExternalRow() {
         if ($('#affiliation-tbl-body td').length < max) {
+            //input field for external affiliation, the admin will input the organization/company name
             var externalRow = '<td>\
                     <div class="form-control aff-info">\
                         <label class="a-label" for="a-ex-aff">External Affiliation</label>\
@@ -52,10 +54,10 @@
                     </div>\
                     <button class="a-remove-btn" type="button">x</button>\
                     </td>';
-            $('#affiliation-tbl-body').append(externalRow);
+            $('#affiliation-tbl-body').append(externalRow); //Appends the externalRow to the table
         }
         else{
-            alert('You reached maximum number of affiliation')
+            alert('You reached maximum number of affiliation') //Alerts the admin that they have reached the maximum number of affiliation
         }
     }
 
