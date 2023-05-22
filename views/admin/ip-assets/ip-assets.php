@@ -98,8 +98,8 @@
             </section>
     </main>
     
-        <!-- Modal Popup -->
-     <div id="myModal" class="modal">
+    <!-- Modal Popup -->
+    <div id="myModal" class="modal">
         <div class="modal-content1">
             <h3 style="float: left; position: relative; margin-top: -35px;">Download</h3>
         <span class="close" onclick="closeModal()">&times;</span>
@@ -118,7 +118,7 @@
 <?php
     include '../../../includes/admin/templates/footer.php';
 ?>
-<?php
+<?php //SweetAlert2 mixin alerts
     if(isset($_GET['delete'])){
         echo
         '
