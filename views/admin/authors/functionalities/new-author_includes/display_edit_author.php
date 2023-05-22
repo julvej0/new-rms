@@ -1,6 +1,8 @@
 <?php
 
-$table_rows=[];
+$table_rows=[]; //initialize
+
+//check if id exists, if exists user is editing
 if (isset($_GET['id'])){
     $search_query = $_GET['id'];
     $sql = "SELECT * FROM table_authors WHERE author_id = '$search_query'";
@@ -21,6 +23,7 @@ if (isset($_GET['id'])){
 
 }
 else{
+    //author is adding a new entry
     $table_rows[] = array(
         'author_id' =>'',
         'author_name' => '',
@@ -33,18 +36,20 @@ else{
 }
 
 
+//displaying affiliation
 function display_edit_aff($table_rows, $campus_options, $program_options){
     if(!is_null($table_rows[0]['affiliation'])){
-                                        
+        //extract internal and external affiliation
         $affiliation = explode(' || ', $table_rows[0]["affiliation"]);
         $internal = explode('_ ', $affiliation[0]);
         $external = explode('_ ', $affiliation[1]);
 
-
+        //initialize
         $campus_affiliations = [];
         $program_affiliations = [];
         $department_affiliations = [];
 
+        //extact campus, program, and department
         if($internal[0]!==""){
             foreach ($internal as $affiliation) {
                 $affiliation_parts = explode(", ", $affiliation);
@@ -53,6 +58,7 @@ function display_edit_aff($table_rows, $campus_options, $program_options){
                 $campus_affiliations[] = $affiliation_parts[2];
             }
     
+            //display internal affiliation
             for ($i = 0; $i < count($campus_affiliations); $i++) {
                 echo '
                     <td>
@@ -90,7 +96,7 @@ function display_edit_aff($table_rows, $campus_options, $program_options){
             }
         }
        
-
+        //display external affiliation
         if($external[0]!==""){
             foreach ($external as $affiliation) {
                 echo '<td>
