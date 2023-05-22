@@ -152,7 +152,3 @@ disableotpInput.addEventListener("input", () => {
 </script>
 
 
-
-<?php
-include_once "../../../includes/admin/templates/footer.php";
-?>
