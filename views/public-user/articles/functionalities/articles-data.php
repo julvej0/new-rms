@@ -1,9 +1,30 @@
+<script>
+              function checkLoginCreds(encrypted_ID){
+      
+                var request = new XMLHttpRequest();
+
+                request.open("GET","  ../check-login-creds.php", true);
+                request.onreadystatechange = function(){
+                    if (request.readyState === XMLHttpRequest.DONE && request.status===200) {
+                      var response = request.responseText;
+
+                      console.log(response);
+                      if(response == "true"){
+                        window.location='./article_view.php?pubID='+ encrypted_ID;
+                      }else{
+                      window.location = '../../../views/admin/account/login.php?login=required';
+                      }
+                    }
+                  };
+                  request.send();   
+                }
+               
+      </script>
+
 <?php
 include_once "../../../db/db.php";
 include_once "articles-search-author.php";
 require_once "config.php";
-
-
 
 
 //number of records per page
@@ -19,7 +40,7 @@ $sqlSearchQuery = "SELECT *
                     FROM (
                         SELECT * 
                         FROM table_publications 
-                        WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search%' ";
+                        WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%".trim($search)."%' ";
 
 
 
@@ -77,6 +98,7 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
 
   if ($sql_result && pg_num_rows($sql_result) > 0)  {
     ?>
+    
     <table class='table'>
       <thead>
         <tr id='css-header-container'>
@@ -86,6 +108,7 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
           <th class='css-header'> Authors </th>
         </tr>
       </thead>
+      
     <?php
 
     $previous_row = null;
@@ -114,19 +137,24 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
 
       $encrypted_ID = encryptor('encrypt', $row['publication_id']);
       ?>
+       <!-- <button onclick="checkLoginCreds()">check</button> -->
       <tbody>
-        <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
+
+          <tr class='css-tr' onclick='<?=$encrypted_ID != null ? 'checkLoginCreds("'.$encrypted_ID.'")' : '' ?>'>
           <td class='css-td'><?=$row['title_of_paper'] != null ? $row['title_of_paper'] : "N/A" ?></td>
           <td class='css-td'><?=$row['date_published']  != null ? $row['date_published'] : "N/A" ?></td>
           <td class='css-td'><?=$row['campus']  != null ? $row['campus'] : "N/A" ?></td>
           <td class='css-td'><?=$author_implode?></td>
         </tr>
+        
       </tbody>
+    
       <?php
       $previous_row = $row;
     }
     ?>
     </table>
+   
     <?php
   }
   else {
@@ -143,8 +171,13 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
         // Clear the search query and reload the page
         window.location.href = 'articles.php';
       });
+
+
     </script>
     <?php
   }
 
 ?>
+
+      
+      

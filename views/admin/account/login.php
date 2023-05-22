@@ -121,7 +121,8 @@ function validateForm() {
     } else {
         disableSubmitBtn.disabled = false;
         disableSubmitBtn.style.backgroundColor = "";
-        disableSubmitBtn.style.pointerEvents = "";
+        disableSubmitBtn.style.pointerEvents = ""; 
+        
     }
 }
 

@@ -1,4 +1,5 @@
 <?php
+//get distinct year from db 
 function getDistinctYear($conn){
     $result_distinct = pg_query($conn, "SELECT DISTINCT EXTRACT(YEAR FROM date_registered) AS year_only FROM table_ipassets ORDER BY year_only DESC");
     $result = pg_num_rows($result_distinct);

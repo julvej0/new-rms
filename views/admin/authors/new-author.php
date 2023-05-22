@@ -35,38 +35,37 @@
                             <div class="form-container">
                                 <div class="form-control">
                                     <label class="a-label" for="a-name">Author Name</label>
-                                    <input required type="text" placeholder="Author Name" id="a-name" name="a-name" value ="<?php echo isset($_POST['a-name']) ? $_POST['a-name'] : $table_rows[0]['author_name'] ?>">
+                                        <input required type="text" placeholder="Author Name" id="a-name" name="a-name" value ="<?php echo isset($_POST['a-name']) ? $_POST['a-name'] : $table_rows[0]['author_name'] ?>">
                                     <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
                                 </div>
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-                                    <!--NEAL ANDRUS MANCILLA-->
-                                    <label class="a-label" for="a-name">Email</label>                               
-                                    <select list="user-email" id ="a-email" name="a-email" placeholder="Email...">
-                                        <datalist id="user-email">
+                                    <label class="a-label" for="a-name">Email</label>                                                                  
+                                    <select list="user-email" id ="a-email" name="a-email" placeholder="Email..."> <!--The emails are selected using a select tag--> 
+                                        <datalist id="user-email"> <!--The datalist contains the emails from the SQL query--> 
                                             <option value="" hidden>Choose an email...</option>
                                             <?php
+                                                //Query used to get the emails from the user table
                                                 $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
                                                 $params = array();
                                                 $result = pg_query_params($conn, $userQuery, $params);
                                                 while($userData = pg_fetch_assoc($result )){
                                                     if ($table_rows[0]['email'] == $userData['email']){
+                                                        //The options for the select are the emails
                                                         echo '<option value="' . $userData['email'] . '" selected>' . $userData['email'] . '</option>'; 
                                                     }
                                                     else{
                                                         if ($userData['account_type'] == "Regular"){
                                                             echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';
-                                                        }
-                                                        
-                                                    }
-                                                                                        
+                                                        }                                                        
+                                                    }                                                                                        
                                                 }
                                             ?>                     
                                         </datalist>
-                                    </select>           
-                                    <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
-                                    
+                                    </select>
+                                    <!--The input field to be submitted to the insert SQL query-->            
+                                    <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>                 
                                 </div>
                             </div>
                         </div>
@@ -143,7 +142,7 @@
 
 <script src="./new-author.js"></script>
 <?php
-    include  'functionalities/new-author_includes/affiliations.php';
+    include  'functionalities/new-author_includes/affiliations.php'; //script for affiliation table functions
 ?>
 </body>
 

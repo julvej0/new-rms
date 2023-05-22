@@ -70,9 +70,10 @@ function display_edit_aff($table_rows, $campus_options, $program_options){
                         <div class="form-control aff-categ">
                             <label class="a-label" for="a-aff-prog">Program</label>
                             <select name="a-aff-prog[]" class="a-aff-prog" required>';
+                                //display option from array
                                 foreach ($program_options as $option) {
                                     if ($option == $program_affiliations[$i]) {
-                                        echo '<option value="'.$option.'" selected>'.$option.'</option>';
+                                        echo '<option value="'.$option.'" selected>'.$option.'</option>'; //if option was seleted, echo selected
                                     } else {
                                         echo '<option value="'.$option.'">'.$option.'</option>';
                                     }
@@ -84,7 +85,7 @@ function display_edit_aff($table_rows, $campus_options, $program_options){
                         <select name="a-aff-camp[]" class="a-aff-camp" required>';
                             foreach ($campus_options as $option) {
                                 if ($option == $campus_affiliations[$i]) {
-                                    echo '<option value="'.$option.'" selected>'.$option.'</option>';
+                                    echo '<option value="'.$option.'" selected>'.$option.'</option>'; //if option was seleted, echo selected
                                 } else {
                                     echo '<option value="'.$option.'">'.$option.'</option>';
                                 }
