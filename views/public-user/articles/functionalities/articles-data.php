@@ -116,9 +116,9 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
       ?>
       <tbody>
         <tr class='css-tr' onclick="window.location='./article_view.php?pubID=<?=$encrypted_ID?>'">
-          <td class='css-td'><?=$row['title_of_paper']?></td>
-          <td class='css-td'><?=$row['date_published']?></td>
-          <td class='css-td'><?=$row['campus']?></td>
+          <td class='css-td'><?=$row['title_of_paper'] != null ? $row['title_of_paper'] : "N/A" ?></td>
+          <td class='css-td'><?=$row['date_published']  != null ? $row['date_published'] : "N/A" ?></td>
+          <td class='css-td'><?=$row['campus']  != null ? $row['campus'] : "N/A" ?></td>
           <td class='css-td'><?=$author_implode?></td>
         </tr>
       </tbody>

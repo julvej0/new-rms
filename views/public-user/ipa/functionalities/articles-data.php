@@ -115,9 +115,9 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
       ?>
       <tbody>
         <tr class='css-tr' onclick="window.location='ipa-view.php?ipID=<?=$encrypted_ID?>'">
-          <td class='css-td'><?=$row['title_of_work']?></td>
-          <td class='css-td'><?=$row['date_registered']?></td>
-          <td class='css-td'><?=$row['campus']?></td>
+          <td class='css-td'><?=$row['title_of_work'] != null ? $row['title_of_work'] : "N/A" ?></td>
+          <td class='css-td'><?=$row['date_registered']  != null ? $row['date_registered'] : "N/A" ?></td>
+          <td class='css-td'><?=$row['campus']  != null ? $row['campus'] : "N/A" ?></td>
           <td class='css-td'><?=$author_implode?></td>
         </tr>
       </tbody>
