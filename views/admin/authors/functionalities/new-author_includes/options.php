@@ -1,4 +1,5 @@
 <?php
+    //options for internal affiliation, campus
     $campus_options=array('Alangilan', 
     'Balayan',
     'Lemery',
@@ -12,7 +13,8 @@
     'Rosario',
     'San Juan');
     
-$program_options = array(
+    //options for internal affiliation, program
+    $program_options = array(
     "Accountancy, Business, and International Hospitality",
     "Agriculture and Forestry",
     "Arts and Sciences",
