@@ -39,6 +39,7 @@
                         <h3>Top Contributors</h3>
                         <div class="table">
                             <?php 
+                            // Call the `getPublicationsContributors` function to retrieve publications contributors using the database connection object $conn
                             echo getPublicationsContributors($conn);
                             ?>
                         </div>
@@ -49,6 +50,7 @@
                         <h3>Most Cited </h3>
                         <div class="table">
                             <?php
+                            // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
                             echo getMostViewedPapers($conn);
                             ?>
                         </div>
@@ -59,6 +61,7 @@
                         <h3>Recently Added </h3>
                         <div class="table">
                             <?php
+                            // Call the `getRecentPublications` function to retrieve the most recent publications using the database connection object $conn and a limit of 5
                             getRecentPublications($conn, 3)
                             ?>
                         </div>
@@ -79,6 +82,7 @@
                         <h3>Top Contributors</h3>
                         <div class="table">
                             <?php
+                             // Call the `getIpAssetsContributors` function to retrieve the contributors of intellectual property (IP) assets using the database connection object $conn
                             getIpAssetsContributors($conn)
                             ?>
                         </div>
@@ -89,6 +93,7 @@
                         <h3>Top Campus with IP Assets</h3>
                         <div class="table">
                             <?php
+                            //Call `getTopCampus` function to retrieve the top campus with most ip assets
                             getTopCampus($conn, 11)
                             ?>
                         </div>
@@ -99,6 +104,7 @@
                         <h3>Recently Added</h3>
                         <div class="table">
                             <?php
+                            // Call the `getRecentIpAssets` function to retrieve the most recent intellectual property (IP) assets using the database connection object $conn and a limit of 5
                             getRecentIpAssets($conn, 3)
                             ?>
                         </div>

@@ -1,4 +1,5 @@
 <?php
+// getting the number o authors with most contributions in publications
 function getPublicationsContributors($conn) {
     $sqlAuthors = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $resultAuthors = pg_prepare($conn, "getAuthorsPublications", $sqlAuthors);
@@ -65,6 +66,7 @@ function getPublicationsContributors($conn) {
     <?php
 
 }
+// getting the most cited articles in publications
 function getMostViewedPapers($conn, $reuse_stmt = false) {
     $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 4;";
     if (!$reuse_stmt) {
@@ -81,6 +83,7 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
 
     return $output;
 }
+//getting the number of recently added publications
 function getRecentPublications($conn, $limit) {
     $query = "SELECT title_of_paper, date_published
     FROM table_publications
