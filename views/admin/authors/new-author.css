@@ -354,13 +354,12 @@ main .container .form-footer .cancel-btn {
   
   
 .affiliation-sub-menu {
+padding-left: 1rem;
 position: absolute;
 left: 3.5rem;
 top: 0;
 width: 10rem;
 display: none;
-background-color: var(--light);
-border: 1px solid var(--dark);
 margin-top: 10px;
 }
 
@@ -368,6 +367,7 @@ margin-top: 10px;
 display: block;
 width: 100%;
 border: none;
+border-radius: .5rem .5rem .5rem .5rem;
 background-color: transparent;
 cursor: pointer;
 font-size: 1rem;

@@ -1,3 +1,25 @@
+<script>
+       function checkLoginCreds(encrypted_ID){
+      
+      var request = new XMLHttpRequest();
+
+      request.open("GET","  ../check-login-creds.php", true);
+      request.onreadystatechange = function(){
+          if (request.readyState === XMLHttpRequest.DONE && request.status===200) {
+            var response = request.responseText;
+
+            console.log(response);
+            if(response == "true"){
+              window.location='./ipa-view.php?ipID='+ encrypted_ID;
+            }else{
+            window.location = '../../../views/admin/account/login.php?login=required';
+            }
+          }
+        };
+        request.send();   
+      }
+          
+</script>
 <?php
 include_once "../../../db/db.php";
 include_once "articles-search-author.php";
@@ -114,13 +136,14 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
       $encrypted_ID = encryptor('encrypt', $row['registration_number']);
       ?>
       <tbody>
-        <tr class='css-tr' onclick="window.location='ipa-view.php?ipID=<?=$encrypted_ID?>'">
+        <tr class='css-tr' onclick='<?=$encrypted_ID != null ? 'checkLoginCreds("'.$encrypted_ID.'")' : '' ?>'>
           <td class='css-td'><?=$row['title_of_work'] != null ? $row['title_of_work'] : "N/A" ?></td>
           <td class='css-td'><?=$row['date_registered']  != null ? $row['date_registered'] : "N/A" ?></td>
           <td class='css-td'><?=$row['campus']  != null ? $row['campus'] : "N/A" ?></td>
           <td class='css-td'><?=$author_implode?></td>
         </tr>
       </tbody>
+      
       <?php
       $previous_row = $row;
     }

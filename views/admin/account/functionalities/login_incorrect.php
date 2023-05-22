@@ -1,4 +1,6 @@
 <?php
+
+// this functions is to get if the login credential are not correct or not existing.
 if(isset($_GET['login'])){
     if ($_GET['login'] == "incorrect"){
         echo '
@@ -26,5 +28,34 @@ if(isset($_GET['login'])){
         
         ';
     }
+}
+if(isset($_GET['login']))
+{
+    if($_GET['login'] == 'required'){
+       echo $_GET['login'];
+        echo
+   
+            '
+            <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                }
+                })
+                
+                Toast.fire({
+                icon: "error",
+                title: "Login Required!"
+                })
+        
+            </script>
+            
+            ';
+    }
+
 }
 ?>

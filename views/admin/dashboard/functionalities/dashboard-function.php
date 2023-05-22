@@ -116,7 +116,7 @@ function getPublicationsContributors($conn) {
     </table>
     <?php
 }
-// getting the number o authors with most contributions in ip assets
+// getting the number of authors with most contributions in ip assets
 function getIpAssetsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $result = pg_query($conn, $sql);
