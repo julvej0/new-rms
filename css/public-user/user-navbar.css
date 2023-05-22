@@ -155,12 +155,12 @@
 
 .navbar-container .right-content ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .navbar-container .right-content .nav-links li {
     list-style-type: none;
-    margin-right: 70px;
+    margin-right: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -173,13 +173,14 @@
     letter-spacing: 1px;
     font-weight: 400;
     position: relative;
-    display: inline-block;
+    display: block;
+    font-size: 14px;
 }
 
 .navbar-container .right-content .nav-links a:not(.signin-btn)::before,
 .navbar-container .right-content .nav-links a:not(.signin-btn)::after, 
 .dropdown a::before,
-.dropdown a::after{
+.dropdown a::after {
     content: '';
     position: absolute;
     left: 0;
