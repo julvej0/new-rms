@@ -145,7 +145,3 @@ include_once "functionalities/user-session.php";
 }
 
 </script>
-
-<?php
-include_once "../../../includes/admin/templates/footer.php";
-?>

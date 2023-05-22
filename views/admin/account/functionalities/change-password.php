@@ -1,4 +1,6 @@
 <?php 
+
+//this function is for changing the password of the user in which it based on the user email, it will update the table on the database.
 session_start();
 include_once "../../../../db/db.php";
 
