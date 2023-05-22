@@ -48,7 +48,7 @@ include_once "functionalities/options.php";
                         <div class="author-table-container">
                             <table>
                                 <tbody id='affiliation-tbl'>
-                                    <tr id="affiliation-tbl-body">
+                                    <tr id="affiliation-tbl-body"> 
                                         <td>
                                             <div class="affiliation-main-menu">
                                                 <div class="affiliation-main-menu">
