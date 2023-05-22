@@ -16,4 +16,5 @@ closeBtn.addEventListener("click", function() {
     // Navigate to user-profile.php after closing the modal
     window.location.href = "user-profile.php";
   }, 300); // Match the duration of the slide-out animation
-});
+}); 
+
