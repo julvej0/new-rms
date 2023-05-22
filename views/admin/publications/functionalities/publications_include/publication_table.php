@@ -3,7 +3,7 @@
     require_once('functionalities/publications_include/publication_count.php');
 
     $additionalQuery = authorSearch($conn, $search);
-    $table_rows = get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number);
+    $table_rows = get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number); // $table_rows is included from a ipa-get-info.php
     $total_records = countPublications($conn, $additionalQuery, $search, $type, $fund, $year );
 ?>
 
@@ -31,10 +31,11 @@
         <tr>
         <?php
         
-        if ($table_rows !== null) {
-        foreach ($table_rows as $row) {
+        if ($table_rows !== null) { // Check if $table_rows is not null
+            foreach ($table_rows as $row) { // Loop through each row in $table_rows
         ?>
         <tr>
+            <!--Displays the data from the database per column-->
             <td class="publication-col col-title" style="min-width: 15.625rem"><?=$row['title_of_paper'];?></td>
             <td class="publication-col col-type"><?=$row['type_of_publication'] != null ? $row['type_of_publication'] : "N/A";?></td>
             <td class="publication-col col-publisher"><?=$row['publisher'] != null ? $row['publisher'] : "N/A";?></td>
@@ -52,12 +53,13 @@
 
             <td class='pb-action-btns stickey-col'>
             <?php
+                // Check if the $google_link is empty which is prioritized by the redirect button
                 $google_link = $row['google_scholar_details'];
-                if (empty($google_link)){
+                if (empty($google_link)){ // If the $google_link is empty, set $google_link to null
                         $google_link = null;
                     }
             ?>
-            <!-- Open certificate in a new tab-->
+                <!--If the $google_link == null, the value will be no_url which is needed to trigger SweetAlert2-->
                 <a onclick="redirect('<?=$google_link != null? $google_link : 'no_url';?>')" class="gdrive-btn">
                         <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                 </a>
@@ -65,6 +67,7 @@
                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                     <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon"></i></button>
                 </form>      
+                <!--Onclick calls the confirmDelete() function with the registration number as a parameter-->
                 <button class="delete-btn" name="delete" onclick="confirmDelete('<?=$row['publication_id']?>')"><i class="fa-solid fa-trash-can"></i></button>                   
             </td>
     </tr>
@@ -73,7 +76,7 @@
 }else{
     ?>
     <tr>
-        <td colspan='15' style="text-align:center">No Records Found!</td>
+        <td colspan='15' style="text-align:center">No Records Found!</td> <!--If the $table_rows is empty, this will display instead of the table-->
     </tr>
 <?php
 }

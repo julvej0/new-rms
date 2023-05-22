@@ -1,7 +1,10 @@
 <?php
     include '../../../db/db.php';
     include '../../../includes/admin/templates/header.php';
+    // Check if the 'edit' form has been submitted
+    // This condition is used to determine if the code block should be executed when the 'edit' form is submitted
     if (isset($_POST['edit'])) {
+    // The code inside this block will be executed only if the 'edit' form has been submitted
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./new-ip-asset.css">
@@ -15,14 +18,14 @@
     ?>
     <main>
         <div class="header">
-            <h1 class="title">IP Asset Edit</h1>
+            <h1 class="title">Edit Patented Document</h1>
         </div>
         <section>
             <div class="container">
             <?php
                 $ipaID = $_POST['row_id'];
-                $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'");
-                while($row = pg_fetch_assoc($fetchdata)){
+                $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'"); //Fetch data from the 'table_ipassets' table based on the registration number
+                while($row = pg_fetch_assoc($fetchdata)){  //Iterate through the fetched data
             ?>
             <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
@@ -127,9 +130,9 @@
                                 <?php                                        
                                 $author_list = $row["authors"];
                                 $authors = explode(",", $author_list);
-                                foreach ($authors as $author) {
+                                foreach ($authors as $author) { //Iterate through each author in the list
                                     $authorData = pg_query($conn, "SELECT author_id, author_name FROM table_authors WHERE author_id = '$author'");                                            
-                                    while($author_list_row = pg_fetch_assoc($authorData)){                                            
+                                    while($author_list_row = pg_fetch_assoc($authorData)){ //Process the data for each author                                    
                                         echo '
                                         <tr>
                                         <td class="ipa-author-field">
@@ -143,10 +146,10 @@
                                         placeholder="Author Name..."
                                         value="' . $author_list_row['author_name'] . '">';
                                         echo '<datalist id="authors">';
-                                        $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name";
+                                        $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name"; // Fetch the list of authors from the 'table_authors' table
                                         $params = array();
                                         $result = pg_query_params($conn, $query, $params);
-                                        while ($author_row = pg_fetch_assoc($result)) {
+                                        while ($author_row = pg_fetch_assoc($result)) { // Iterate through each author in the result set and display them as options
                                             echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
                                         }
                                         echo '</datalist>';
@@ -199,10 +202,10 @@
                                     <label class="ip-label" for="ip-certificate">Upload Certificate</label>
                                     <input type="file" name="ip-certificate" id="ip-certificate" accept=".png, .jpg, .jpeg">
 
-                                        <?php if (!empty($row['certificate'])): $dir="functionalities/button_functions/"?>
-                                            <div>File uploaded: <a href="<?=$dir.$row['certificate']?>" target="_blank"><?=basename($row['certificate'])?></a></div>
+                                        <?php if (!empty($row['certificate'])): $dir="functionalities/button_functions/"?> <!-- Check if a certificate file is not empty -->
+                                            <div>File uploaded: <a href="<?=$dir.$row['certificate']?>" target="_blank"><?=basename($row['certificate'])?></a></div> <!--Display the file details with a link to open it in a new tab-->
                                         <?php else: ?>
-                                            <div>File uploaded: None</div>
+                                            <div>File uploaded: None</div> <!--No certificate file is present, display a message indicating none-->
                                         <?php endif; ?>
                                 </div>
 

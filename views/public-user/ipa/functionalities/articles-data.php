@@ -16,10 +16,10 @@ $search = isset($_GET['search-table']) ? $_GET['search-table'] : '';
 
 //Search Query
 $sqlSearchQuery = "SELECT * 
-FROM (
-    SELECT * 
-    FROM table_ipassets 
-    WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, date_registered, campus, college, program, authors, status, certificate) ILIKE '%$search%' ";
+                    FROM (
+                        SELECT * 
+                        FROM table_ipassets 
+                        WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, date_registered, campus, college, program, authors, status, certificate) ILIKE '%$search%' ";
 
 
 if (authorSearch($conn, $search_query) !== "empty_search" ) {
@@ -115,9 +115,9 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
       ?>
       <tbody>
         <tr class='css-tr' onclick="window.location='ipa-view.php?ipID=<?=$encrypted_ID?>'">
-          <td class='css-td'><?=$row['title_of_work']?></td>
-          <td class='css-td'><?=$row['date_registered']?></td>
-          <td class='css-td'><?=$row['campus']?></td>
+          <td class='css-td'><?=$row['title_of_work'] != null ? $row['title_of_work'] : "N/A" ?></td>
+          <td class='css-td'><?=$row['date_registered']  != null ? $row['date_registered'] : "N/A" ?></td>
+          <td class='css-td'><?=$row['campus']  != null ? $row['campus'] : "N/A" ?></td>
           <td class='css-td'><?=$author_implode?></td>
         </tr>
       </tbody>

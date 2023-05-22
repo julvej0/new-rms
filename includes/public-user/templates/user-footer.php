@@ -25,3 +25,4 @@
         <p>© 2023 Batangas State University | RMS - All Rights Reserved.</p>
     </div>
 </section>
+

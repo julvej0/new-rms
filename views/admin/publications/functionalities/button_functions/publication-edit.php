@@ -94,9 +94,9 @@ if (isset($_POST['updatePB'])) {
 
     // Check if the update was successful
     if (pg_affected_rows($update_result) > 0) {
-        header("Location: ../../publications.php?update=applied");
+        header("Location: ../../publications.php?update=success");
     } else {
-        header("Location: ../../publications.php?update=!update");
+        header("Location: ../../publications.php?update=failed");
     }
 } else {
     header("Location: ../../publications.php");

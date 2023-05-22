@@ -1,6 +1,6 @@
 <?php 
-    include '../../../includes/admin/templates/header.php';
-    require_once "../../../db/db.php";
+    include '../../../includes/admin/templates/header.php'; //display header
+    require_once "../../../db/db.php"; //db connection
     
 ?>
 
@@ -11,10 +11,11 @@
 
 <body>
 <?php
-    include '../../../includes/admin/templates/navbar.php';
-    include_once 'functionalities/new-author_includes/display_edit_author.php';
+    include '../../../includes/admin/templates/navbar.php'; //display navigation bar
+
+    include_once 'functionalities/new-author_includes/display_edit_author.php'; //display data if id exists 
     
-    include_once 'functionalities/new-author_includes/options.php';
+    include_once 'functionalities/new-author_includes/options.php'; // options for select input
    
    
 ?>
@@ -40,30 +41,30 @@
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-
+                                    <!--NEAL ANDRUS MANCILLA-->
                                     <label class="a-label" for="a-name">Email</label>                               
                                     <select list="user-email" id ="a-email" name="a-email" placeholder="Email...">
-                                    <datalist id="user-email">
-                                    <option value="" hidden>Choose an email...</option>
-                                    <?php
-                                    $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
-                                    $params = array();
-                                    $result = pg_query_params($conn, $userQuery, $params);
-                                    while($userData = pg_fetch_assoc($result )){
-                                        if ($table_rows[0]['email'] == $userData['email']){
-                                            echo '<option value="' . $userData['email'] . '" selected>' . $userData['email'] . '</option>'; 
-                                        }
-                                        else{
-                                            if ($userData['account_type'] == "Regular"){
-                                                echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';
-                                            }
-                                             
-                                        }
-                                                                             
-                                    }
-                                    
-                                    echo '</datalist></select>' ;
-                                    ?>                                
+                                        <datalist id="user-email">
+                                            <option value="" hidden>Choose an email...</option>
+                                            <?php
+                                                $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
+                                                $params = array();
+                                                $result = pg_query_params($conn, $userQuery, $params);
+                                                while($userData = pg_fetch_assoc($result )){
+                                                    if ($table_rows[0]['email'] == $userData['email']){
+                                                        echo '<option value="' . $userData['email'] . '" selected>' . $userData['email'] . '</option>'; 
+                                                    }
+                                                    else{
+                                                        if ($userData['account_type'] == "Regular"){
+                                                            echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';
+                                                        }
+                                                        
+                                                    }
+                                                                                        
+                                                }
+                                            ?>                     
+                                        </datalist>
+                                    </select>           
                                     <input type="text" id = "a-id" name="a-id" value="<?php echo $table_rows[0]['author_id']?>" hidden readonly>
                                     
                                 </div>

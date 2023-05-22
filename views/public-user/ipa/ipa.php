@@ -3,7 +3,7 @@
     include '../../../includes/admin/templates/header.php';
     include '../../../includes/public-user/templates/user-navbar.php'; 
 
-
+    include 'functionalities/articles-count.php';
     include 'functionalities/articles-sort.php';
 
 
@@ -115,18 +115,11 @@
                     require_once "functionalities/articles-data.php";
                 ?>
             </div>
-        <div class="table-footer">
-            <div class="total-articles">
-                <p>Published Document Count : </p>
+            <div class="table-footer">
+                <?php
+                    require_once "functionalities/articles-pagination.php";
+                ?>
             </div>
-             <div class="pagination">
-                <li><a href="#"><i class='bx bx-chevrons-left icon' ></i></a></li>
-                <li><a href="#"><i class='bx bx-chevron-left icon' ></i></a></li>
-                <li><span class="current-page">1</span></li>
-                <li><a href="#"><i class='bx bx-chevron-right icon' ></i></a></li>
-                <li><a href="#"><i class='bx bx-chevrons-right icon' ></i></a></li>
-            </div>     
-        </div>
         </div>
     </section>
 

@@ -2,7 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var max = 16; // max number of affiliations is 15
-
+    //NEAL ANDRUS MANCILLA
     function addInternalRow() {
         if ($('#affiliation-tbl-body td').length < max) {
             var internalRow = '\

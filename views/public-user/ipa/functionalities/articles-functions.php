@@ -33,10 +33,11 @@ function displayPublicationData($row, $conn) {
     $author_ids = explode(',', $row['authors']);
     $author_names = array();
     foreach ($author_ids as $author_id) {
-        $fetch_author_data = pg_query($conn, "SELECT author_name FROM table_authors WHERE author_id = '$author_id'");
+        $fetch_author_data = pg_query($conn, "SELECT author_name, email FROM table_authors WHERE author_id = '$author_id'");
         $author_data = pg_fetch_assoc($fetch_author_data);
         if ($author_data) {
             $author_names[] = $author_data['author_name'];
+            $author_emails[] = $author_data['email'];
         }
     }
     if (count($author_names) > 0) {
@@ -64,7 +65,21 @@ function displayPublicationData($row, $conn) {
     }
     echo '<p>'.$row['status'].'</p>';
     echo '</div>';
-    echo '<button onclick="window.open(\'' . $row['hyperlink'] . '\', \'_blank\')" class="download-cert-btn">CERTIFICATION</button>';
+
+    if(isset($_SESSION['user_email'])){
+        foreach ($author_emails as $email){
+        
+            if($email==$_SESSION['user_email']){
+                echo '<button onclick="window.open(\'' . $row['hyperlink'] . '\', \'_blank\')" class="download-cert-btn">CERTIFICATION</button>';
+            }
+    
+        }
+
+    }
+
+    
+
+   
     echo '</div>';
     echo '</div>';
 }

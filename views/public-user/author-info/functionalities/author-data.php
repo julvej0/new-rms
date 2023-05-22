@@ -51,10 +51,11 @@ function display_ipassets($conn, $id){
     if ($sql_result && pg_num_rows($sql_result) > 0) {
        
             while ($row = pg_fetch_assoc($sql_result)) {
-                $encrypted_ID = encryptor('encrypt', $row['publication_id']);
+                $encrypted_ID = encryptor('encrypt', $row['registration_number']);
                 ?>
-                <tr class='css-tr' data-clickable='true' onclick="window.location='../articles/article_view.php?pubID=<?=$encrypted_ID?>'">
-                    <td class='css-td'><?= $row['title_of_paper'] ? $row['title_of_paper'] : 'Not Yet Set'; ?></td>
+                <tr class='css-tr' data-clickable='true' onclick="window.location='../ipa/ipa-view.php?ipID=<?=$encrypted_ID?>'">
+                    <td class='css-td'><?= $row['title_of_work'] ? $row['title_of_work'] : 'Not Yet Set'; ?></td>
+                    
                 </tr>
                 <?php
             }

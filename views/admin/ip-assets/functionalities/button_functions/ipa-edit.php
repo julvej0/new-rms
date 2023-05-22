@@ -1,50 +1,54 @@
 <?php
 include_once '../../../../../db/db.php';
 if (isset($_POST['updateIPA'])) {
-    $date_of_creation = $_POST["date_of_creation"];
     $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
     if (!$date_of_creation) {
         $date_of_creation = null;
-    }else{
+    } else {
         $date_of_creation = $_POST["date_of_creation"];
     }
-    $date_registered = $_POST['date_registered'];
+    
     $date_registered = isset($_POST['date_registered']) ? $_POST['date_registered'] : null;
     if (!$date_registered) {
         $date_registered = null;
-    }else{
+    } else {
         $date_registered = $_POST["date_registered"];
     }
-
+    
     $authors_name = isset($_POST['author_name']) ? $_POST['author_name'] : null;
     if (!$authors_name) {
         $authors_name = "";
         $authors_string = "";
     } else {
+        // Prepare the select query
         $select_query = "SELECT author_id FROM table_authors WHERE author_name = $1";
         $select_stmt = pg_prepare($conn, "select_author_details", $select_query);
-
+    
         $author_ids = array(); // Define the array outside the loop
-
-        foreach ($authors_name as $name) { // Change variable name from $author_name to $authors_name
+    
+        // Iterate over the authors' names
+        foreach ($authors_name as $name) {
             $auth_name = pg_escape_string($conn, $name);
-
+    
             if (!empty($auth_name)) { // Check if the name is not empty
+                // Insert the author if it doesn't exist in the table
                 $sql = "INSERT INTO table_authors (author_name)
                         SELECT '$auth_name'
                         WHERE NOT EXISTS (SELECT 1 FROM table_authors WHERE author_name = '$auth_name')";
                 pg_query($conn, $sql);
-
+    
+                // Execute the select statement to retrieve the author's ID
                 $select_result = pg_execute($conn, "select_author_details", array($auth_name));
-
+    
+                // Fetch the results and store the author IDs in an array
                 while ($row = pg_fetch_assoc($select_result)) {
                     $author_ids[] = $row['author_id'];
                 }
             }
         }
-
-        $authors_string = implode(",", $author_ids); // join the array values with a comma delimiter
-    }
+    
+        $authors_string = implode(",", $author_ids); // Join the array values with a comma delimiter
+    }    
     
     $registration_number = $_POST['registration_number'];
     $title_of_work = $_POST['title_of_work'];
@@ -57,8 +61,8 @@ if (isset($_POST['updateIPA'])) {
     $status = $_POST['registerInfo'];
     $cert = $_FILES['ip-certificate'];
 
-    $target_dir = "uploads/";
-    $certificate_file = $target_dir . $registration_number . "_certificate.png";
+    $target_dir = "uploads/"; // Directory where the uploaded files will be stored
+    $certificate_file = $target_dir . $registration_number . "_certificate.png"; // The path to the certificate file based on the registration number    
 
         // Check if file was uploaded without errors
         if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {            
@@ -70,7 +74,7 @@ if (isset($_POST['updateIPA'])) {
                         if (in_array($file_type, $allowed_types)) {
                                     // Upload file to server
                             if (move_uploaded_file($_FILES["ip-certificate"]["tmp_name"], $certificate_file)) {
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=success");
                             }
                         }
                     } else {
@@ -101,21 +105,24 @@ if (isset($_POST['updateIPA'])) {
 
                             // Check if the update was successful
                             if (pg_affected_rows($update_result) > 0) {
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=success");
                             } else {
-                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=!update");
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
                             }
     
                             } else {
-                                echo "Sorry, there was an error uploading your file.";
+                                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
                             }
                         } else {
+                            // If the condition is not met, execute the following code block
                             echo "
                             <script>
-                            alert('Error: Only PNG and JPG files are allowed.');
+                            // Set the localStorage flag before navigating back
+                            localStorage.setItem('showError', true);
                             window.history.back();
                             </script>";
                         }
+                        
             }
         } else {
             $update_query = "UPDATE table_ipassets SET title_of_work=$1, type_of_document=$2, class_of_work=$3, date_of_creation=$4, date_registered=$5, campus=$6, college=$7, program=$8, authors=$9, hyperlink=$10, status=$11 WHERE registration_number=$12";
@@ -126,7 +133,7 @@ if (isset($_POST['updateIPA'])) {
                 die("Error in SQL query: " . pg_last_error());
             }
             if (pg_affected_rows($update_result) > 0) {
-                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=applied");
+                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=success");
             } else {
                 header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
             }

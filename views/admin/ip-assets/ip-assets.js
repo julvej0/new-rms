@@ -1,56 +1,3 @@
-// DELETE MODAL
-// const deleteBtn = document.querySelector('.delete-btn');
-
-// deleteBtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     Swal.fire({
-//     title: 'Are you sure?',
-//     text: "You won't be able to revert this!",
-//     icon: 'warning',
-//     showCancelButton: true,
-//     confirmButtonColor: '#3085d6',
-//     cancelButtonColor: '#d33',
-//     confirmButtonText: 'Yes, delete it!'
-//     }).then((result) => {
-//     if (result.isConfirmed) {
-//         Swal.fire({
-//         position: 'center',
-//         icon: 'success',
-//         title: 'file deleted!',
-//         showConfirmButton: false,
-//         timer: 1500
-//         })
-//     }
-//     })
-// })
-
-// // SHOW DOWNLOAD MENU
-// const allMenu = document.querySelectorAll('main .table-footer .download');
-
-// allMenu.forEach(item => {
-//     const downloadBtn = item.querySelector('.download-btn');
-//     const dlLink = item.querySelector('.dl-link');
-
-//     downloadBtn.addEventListener('click', (e) => {
-//         e.preventDefault();
-//         dlLink.classList.toggle('show');
-//     })
-// })
-
-// // HIDE DROPDOWN WHEN CLICKED OUTSIDE
-// window.addEventListener('click', (e) => {
-//     allMenu.forEach(item => {
-//         const downloadBtn = item.querySelector('.download-btn');
-//         const dlLink = item.querySelector('.dl-link');
-//         if(e.target !== downloadBtn){
-//             if(dlLink.classList.contains('show')){
-//                 dlLink.classList.remove('show');
-//             }
-//         }
-//     })
-// })
-
-// 
 // Floating action rotate
 let isRotated = false;
 const checkboxContainer = document.getElementById("checkbox-container");
@@ -58,32 +5,29 @@ const checkboxContainer = document.getElementById("checkbox-container");
 function rotateButton() {
     const buttonIcon = document.getElementById("button-icon");
     if (isRotated) {
+        // If the button is already rotated, reset its rotation and hide the checkbox container
         buttonIcon.style.transform = "rotate(0deg)";
         checkboxContainer.style.transition = "margin-top 0.3s ease-out, opacity 0.4s ease-in-out";
         checkboxContainer.style.opacity = 0;
         setTimeout(() => {
             checkboxContainer.style.marginTop = "0rem";
-        
-        setTimeout(() => {
-            checkboxContainer.style.display = "none";
-        }, 100); // wait for opacity transition to complete before hiding container
-        }, 150); // wait for margin-top transition to complete before setting opacity to 0
+            setTimeout(() => {
+                checkboxContainer.style.display = "none";
+            }, 100); // Wait for opacity transition to complete before hiding container
+        }, 150); // Wait for margin-top transition to complete before setting opacity to 0
         isRotated = false;
     } else {
+        // If the button is not rotated, rotate it and show the checkbox container
         buttonIcon.style.transform = "rotate(135deg)";
         checkboxContainer.style.transition = "margin-top 0.3s ease-in-out, opacity 0.4s ease-in-out";
         checkboxContainer.style.display = "block";
         setTimeout(() => {
-        checkboxContainer.style.opacity = 1;
-        checkboxContainer.style.marginTop = "0.5rem";
-        }, 10); // wait for margin-top transition to complete before setting opacity to 1
+            checkboxContainer.style.opacity = 1;
+            checkboxContainer.style.marginTop = "0.5rem";
+        }, 10); // Wait for margin-top transition to complete before setting opacity to 1
         isRotated = true;
     }
 }
-
-
-
-
 // get all the checkboxes
 var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
@@ -183,58 +127,69 @@ window.addEventListener('click', (e) => {
     })
 })
 
-//Redirect Certificate
-
-function redirect(url){
-    if (url == 'no_url'){
+// Redirect Certificate
+function redirect(url) {
+    if (url == 'no_url') {
+        // If the URL is 'no_url', display a toast notification indicating that the certificate is not set
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
-          })
-
-          Toast.fire({
+        });
+        Toast.fire({
             icon: 'info',
-            title: 'Certificate not set!'
-          })
-    }
-    else{
+            title: 'Certificate not set!',
+        });
+    } else {
+        // If the URL is valid, open it in a new tab
         window.open(url, "_blank");
     }
-
 }
-function submitDelete(id){
+
+// Submit Delete
+function submitDelete(id) {
+    // Create an XMLHttpRequest object
     var xhr = new XMLHttpRequest();
+    
+    // Open a POST request to the IPA delete PHP script
     xhr.open("POST", "functionalities/button_functions/ipa-delete.php", true);
+    
+    // Set the request header
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+    // Define the callback function to handle the response
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             if (xhr.responseText === "Success") {
+                // If the delete operation is successful, update the URL parameters and refresh the page
                 let queryString = window.location.search;
                 const searchParams = new URLSearchParams(queryString);
                 if (searchParams.has('delete')) {
                     searchParams.delete('delete');
                 }
-                window.location.href="?"+searchParams+"&delete=success";   
-            }
-            else {
+                window.location.href = "?" + searchParams + "&delete=success";
+            } else {
+                // If the delete operation fails, display an error message using SweetAlert
                 Swal.fire({
                     icon: 'error',
                     title: 'Delete was Unsuccessful',
                     text: 'Something went wrong! Please try again later!',
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'OK'
-                    });
-                    console.log(xhr.responseText)             
+                });
+                console.log(xhr.responseText);
             }
         }
     };
-    xhr.send("id=" + id );
+    
+    // Send the request with the ID parameter
+    xhr.send("id=" + id);
 }
 
-function confirmDelete(id){
+// Confirm Delete
+function confirmDelete(id) {
     Swal.fire({
         title: 'Are you sure?',
         text: id + " will be deleted from Patented Document. You won't be able to revert this!",
@@ -243,13 +198,14 @@ function confirmDelete(id){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
+    }).then((result) => {
         if (result.isConfirmed) {
-            submitDelete(id)
+            // If the user confirms the deletion, call the submitDelete() function to initiate the deletion process
+            submitDelete(id);
         } 
-      });
+    });
 }
+
   
 
 

@@ -24,7 +24,7 @@
 ?>
     <main>
         <div class="header">
-            <h1 class="title"><?php  echo isset($_GET['search']) ? "Results for \"". $_GET['search']."\"": 'Publications'; ?></h1>
+            <h1 class="title"><?php  echo (isset($_GET['search']) && $_GET['search'] != '') ? "Results for \"". $_GET['search']."\"": 'Publications'; ?></h1>
             <div class='left'>
                 <div class="btn-container">
                     <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>   
@@ -129,6 +129,7 @@
     include '../../../includes/admin/templates/footer.php';
 ?>
 <?php
+    //SweetAlert2 mixin alerts
     if(isset($_GET['delete'])){
         echo
         '
@@ -152,7 +153,10 @@
         
         ';
         
-    }elseif(isset($_GET['update'])){
+    }
+    if(isset($_GET['update'])){
+        $updateStatus = $_GET['update'];
+        if ($updateStatus == 'success') {
         echo
         '
         <script>
@@ -168,11 +172,82 @@
           
           Toast.fire({
             icon: "success",
-            title: "Publication was updated successfully!"
+            title: "Publication was updated succesfully!"
           })
     
         </script>
         
         ';
+        }elseif ($updateStatus == 'failed') {
+            echo
+            '
+            <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                }
+              })
+              
+              Toast.fire({
+                icon: "error",
+                title: "Failed to update Publication!"
+              })
+        
+            </script>
+            
+            ';
+        }
+    }
+    if (isset($_GET['upload'])){
+        $uploadStatus = $_GET['upload'];
+        if ($uploadStatus == 'success') {
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+          })
+          
+          Toast.fire({
+            icon: "success",
+            title: "Publication was uploaded succesfully!"
+          })
+    
+        </script>
+        
+        ';
+        }elseif ($uploadStatus == 'failed'){
+        echo
+        '
+        <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            }
+            })
+            
+            Toast.fire({
+                icon: "error",
+                title: "Failed to upload Publication!"
+            })
+    
+        </script>
+        
+        ';
+        }
     }
 ?>

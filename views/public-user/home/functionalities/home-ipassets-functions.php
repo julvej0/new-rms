@@ -1,4 +1,5 @@
 <?php
+// getting the number o authors with most contributions in ip assets
 function getIpAssetsContributors($conn) {
     $sqlAuthors = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $resultAuthors = pg_prepare($conn, "getAuthorsIpAssets", $sqlAuthors);
@@ -64,6 +65,7 @@ function getIpAssetsContributors($conn) {
     </table>
     <?php
 }
+//getting the number of most ip assets by campuses
 function getTopCampus($conn, $limit) {
     $query = "SELECT campus, COUNT(*) as dataset FROM table_ipassets WHERE campus IS NOT NULL GROUP BY campus ORDER BY dataset DESC LIMIT $1";
     $params = array($limit);
@@ -90,7 +92,7 @@ function getTopCampus($conn, $limit) {
         }
     }
 }
-
+// getting the recently added articles
 function getRecentIpAssets($conn, $limit) {
     $query = "SELECT title_of_work, date_registered 
     FROM table_ipassets
