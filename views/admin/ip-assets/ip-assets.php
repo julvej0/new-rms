@@ -25,7 +25,7 @@
 
     <main>
         <div class="header">
-            <h1 class="title">PATENT DOCUMENTS</h1>
+            <h1 class="title">IP Assets</h1>
             <div class="left">
                 <div class="btn-container">
                 <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
@@ -135,7 +135,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document was deleted succesfully!"
+            title: "IP Asset was deleted succesfully!"
           })
     
         </script>
@@ -160,7 +160,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document was updated succesfully!"
+            title: "IP Asset was updated succesfully!"
           })
     
         </script>
@@ -182,7 +182,7 @@
               
               Toast.fire({
                 icon: "error",
-                title: "Failed to update Patented Document!"
+                title: "Failed to update IP Asset!"
               })
         
             </script>
@@ -208,7 +208,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document was uploaded succesfully!"
+            title: "IP Asset was uploaded succesfully!"
           })
     
         </script>
@@ -230,7 +230,7 @@
             
             Toast.fire({
                 icon: "error",
-                title: "Failed to upload Patented Document!"
+                title: "Failed to upload IP Asset!"
             })
     
         </script>

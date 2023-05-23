@@ -29,10 +29,12 @@ body {
     text-shadow: 2px 2px 2px #000;
 }
 
-#hero-img input[type="text"] {
+#hero-img .form-group input[type="text"] {
     width: 500px;
     height: 50px;
     border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     outline: none;
     border: none;
     padding: 10px 36px 10px 16px;
@@ -40,8 +42,30 @@ body {
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+#hero-img .form-group select {
+    width: 130px;
+    height: 50px;
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    outline: none;
+    border: none;
+    padding: 10px 10px 10px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
 #hero-img input[type="text"]:focus {
     box-shadow: 0 0 0 4px var(--dark-grey);
+}
+
+#hero-img .form-group select:focus {
+    box-shadow: 0 0 0 4px var(--dark-grey);
+}
+
+#hero-img form {
+    display: flex;
+    gap: 2px;
 }
 
 #hero-img form .form-group {
