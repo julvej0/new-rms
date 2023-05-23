@@ -58,13 +58,26 @@ body {
     border-radius: 10px;  
 }
 .article-title{
-    font-weight: 580;
     margin-bottom: 2%;
-    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
-.article-date-published{
-    font-size: .8rem;
-    font-weight: 480;
+
+.article-title h1 {
+    text-align: center;
+    font-weight: 580;
+}
+
+.article-date-published {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--text-color);
+}
+.article-date-published h5{
+    font-size: 13px;
+    font-weight: 400;
     margin-bottom: 2%;
 }
 .article-container label{
