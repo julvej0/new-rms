@@ -13,7 +13,7 @@
         include_once 'functionalities/userAccounts_include/userAccounts_count.php';
         include_once 'functionalities/userAccounts_include/userAccounts_filter.php';
 
-        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+        $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
         $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
 
         $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
