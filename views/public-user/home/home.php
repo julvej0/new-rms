@@ -22,6 +22,12 @@
         <div class="search">
             <form>
                 <div class="form-group">
+                    <select name="dropdown" id="dropdown">
+                        <option value="publications">Publications</option>
+                        <option value="ip-assets">IP assets</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <input type="text" placeholder="Search">
                     <i class='bx bx-search icon' ></i>
                 </div>
