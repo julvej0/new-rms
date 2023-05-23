@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <select name="dropdown" id="select-option">
                         <option value="publications">Publications</option>
-                        <option value="ip-assets">Patent Documents</option>
+                        <option value="ip-assets">IP Assets</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -158,9 +158,6 @@
 
         var txt_search = document.getElementById('txt-search').value;
         var select_option = document.getElementById('select-option').value;
-
-        alert(txt_search);
-        alert(select_option);
 
         if (select_option == "publications") {
             window.location.href = "../articles/articles.php?search-table=" + encodeURIComponent(txt_search);

@@ -23,7 +23,7 @@
 <body>
     <section id="main-content">
         <div class="page-title">
-            <h3 class="animate__animated animate__fadeIn">PATENT DOCUMENTS</h3>
+            <h3 class="animate__animated animate__fadeIn">IP ASSETS</h3>
         </div>
         <div class="table-container animate__animated animate__fadeIn" id="tbl-container">
             <div class="header">
