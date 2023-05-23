@@ -50,12 +50,14 @@ function displayPublicationData($row, $conn) {
         echo '<label>Authors:</label>';
     }
     echo '</div>';
-
+    echo '<div class="content-title">';
+    echo '<label class="abstract">Campus</label>';
+    echo '</div>';
     echo '<div class="abstract-cont">';
     echo '<div>';
-    echo '<label>Abstract:</label>';
-    if (!empty($row['status'])){
-        $abstract = $row['status'];
+    
+    if (!empty($row['campus'])){
+        $abstract = $row['campus'];
         echo '<p>' .$abstract. '</p>';
     }
     else{
