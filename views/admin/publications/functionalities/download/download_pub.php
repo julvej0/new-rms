@@ -14,7 +14,7 @@
 
 <body>
 <?php    
-    $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+    $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
 ?>
     <main  id="dl-modal-container">
     <section>

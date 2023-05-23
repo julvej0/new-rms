@@ -238,12 +238,12 @@ a:hover {
     text-decoration: none;
 }
 .profile-details{
-    margin-right: 100px;
     margin-top: 30px;
     border: 2px solid var(--dark-grey);
     border-radius: 5px;
     padding: 25px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    justify-content: center;
 }
 
 #author-affiliate {

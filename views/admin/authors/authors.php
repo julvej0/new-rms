@@ -13,7 +13,9 @@
         include_once 'functionalities/authors_include/filter_function.php'; // for filtering
 
         //check for GET parameters
-        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search'; 
+        $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
+        
+         
         $gender = isset($_GET['gender']) ? $_GET['gender']: 'empty_gender';
         $role = isset($_GET['role']) ? $_GET['role']: 'empty_role';
 
