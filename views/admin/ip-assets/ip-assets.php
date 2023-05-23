@@ -1,4 +1,4 @@
-<title>RMS | IP ASSETS</title>
+<title>RMS | PATENT DOCUMENTS</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../db/db.php';
@@ -14,7 +14,7 @@
         include_once 'functionalities/ipa_include/ipa_year.php';
         include_once 'functionalities/ipa_include/ipa_count.php';
 
-        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+        $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
         $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
         $class = isset($_GET['class']) ? $_GET['class']: 'empty_class';
         $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
@@ -25,7 +25,7 @@
 
     <main>
         <div class="header">
-            <h1 class="title">PATENTED DOCUMENTS</h1>
+            <h1 class="title">PATENT DOCUMENTS</h1>
             <div class="left">
                 <div class="btn-container">
                 <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  

@@ -19,15 +19,6 @@ function displayPublicationData($row, $conn) {
     echo "<h1 id='header-title'>".$row['title_of_paper']."</h1>";
     echo '</div>';
 
-    echo '<div class="article-date-published">';
-    if (!empty($row['date_published'])) {
-        $date = date('F d, Y', strtotime($row['date_published']));
-        echo '<h5>Date Published:  '. $date . '</h5>';
-    }
-    else {
-        echo '<h5>Date Published: Not Yet Set </h5>';
-    }
-    echo '</div>';
 
     echo '<div class="author-list-cont">';
     $author_ids = explode(',', $row['authors']);
@@ -50,9 +41,20 @@ function displayPublicationData($row, $conn) {
     }
     echo '</div>';
 
+    echo '<div class="article-date-published">';
+    if (!empty($row['date_published'])) {
+        $date = date('F d, Y', strtotime($row['date_published']));
+        echo '<h5>Date Published:  '. $date . '</h5>';
+    }
+    else {
+        echo '<h5>Date Published: Not Yet Set </h5>';
+    }
+    echo '</div>';
+    echo '<div class="content-title">';
+    echo '<label class="abstract">Abstract</label>';
+    echo '</div>';
     echo '<div class="abstract-cont">';
     echo '<div>';
-    echo '<label>Abstract:</label>';
     if (!empty($row['abstract'])){
         $abstract = $row['abstract'];
         echo '<p>' .$abstract. '</p>';

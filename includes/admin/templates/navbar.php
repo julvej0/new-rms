@@ -27,7 +27,7 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         </li>
         <li>
             <a href="../../../views/admin/ip-assets/ip-assets.php" id='ip-assets-link'>
-            <i class='bx bxs-folder icon' ></i>IP assets</a>
+            <i class='bx bxs-folder icon' ></i>Patent Documents</a>
         </li>
         <li><a href="../../../views/admin/authors/authors.php" id='author-link'>
             <i class='bx bxs-group icon' ></i>Authors</a>
