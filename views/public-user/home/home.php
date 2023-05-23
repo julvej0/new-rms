@@ -20,15 +20,15 @@
             <h1>Research Management Services</h1>
         </div>
         <div class="search">
-            <form>
+            <form id="search-form">
                 <div class="form-group">
-                    <select name="dropdown" id="dropdown">
+                    <select name="dropdown" id="select-option">
                         <option value="publications">Publications</option>
-                        <option value="ip-assets">IP assets</option>
+                        <option value="ip-assets">Patent Documents</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Search">
+                    <input type="text" placeholder="Search" id="txt-search">
                     <i class='bx bx-search icon' ></i>
                 </div>
             </form>
@@ -150,3 +150,25 @@
 <?php 
     include '../../../includes/admin/templates/footer.php';
 ?>
+
+<script>
+
+    function search_func(event) {
+        event.preventDefault(); // Prevents the form from being submitted in the traditional way
+
+        var txt_search = document.getElementById('txt-search').value;
+        var select_option = document.getElementById('select-option').value;
+
+        alert(txt_search);
+        alert(select_option);
+
+        if (select_option == "publications") {
+            window.location.href = "../articles/articles.php?search-table=" + encodeURIComponent(txt_search);
+        } else if (select_option == "ip-assets") {
+            window.location.href = "../ipa/ipa.php?search-table=" + encodeURIComponent(txt_search);
+        }
+    }
+    
+    document.getElementById('search-form').addEventListener('submit', search_func);
+
+</script>
