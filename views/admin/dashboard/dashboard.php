@@ -23,7 +23,7 @@
             <h1 class="title">Dashboard</h1>
             <div class="routes">
                 <a href="#" class="nav-button" data-target="#pb-page"><span>Publications</span></a>
-                <a href="#" class="nav-button" data-target="#ipa-page"><span>IP-assets</span></a>
+                <a href="#" class="nav-button" data-target="#ipa-page"><span>IP assets</span></a>
             </div>
         </div>
         <section id="pb-page" class="sub-page">
@@ -189,7 +189,7 @@
             <div class="data">
                 <div class="main-content-data">
                     <div class="head">
-                        <h3>IP-assets Report</h3>
+                        <h3>IP Assets Report</h3>
                     </div>
                     <div class="chart">
                         <?php
@@ -208,7 +208,7 @@
                 </div>
                 <div class="main-content-data">
                     <div class="head">
-                        <h3>IP-assets Report (campus)</h3>
+                        <h3>IP Assets Report (campus)</h3>
                     </div>
                     <div class="chart">    
                         <?php

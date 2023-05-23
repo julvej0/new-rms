@@ -57,10 +57,11 @@ body {
     border-radius: 10px;  
 }
 .article-title{
-    margin-bottom: 2%;
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: center;
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .article-title h1 {
@@ -73,20 +74,27 @@ body {
     display: flex;
     justify-content: center;
     color: var(--text-color);
+    margin-bottom: 10px;
 }
 .article-date-published h5{
     font-size: 13px;
-    font-weight: 400;
-    margin-bottom: 2%;
+    font-weight: 500;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
 }
 .article-container label{
     font-weight: 500;
 }
 .article-authors{
     font-size: .8rem;
-    font-weight: 400;
-    margin-bottom: 2%;
-
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    text-align: center;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+    margin: auto;
 }
 .download-cert-btn{
     background-color: #cf102d;
@@ -104,6 +112,17 @@ body {
     background-color: #ef3450;
 }
 .abstract-cont{
-    font-size: .9rem;
     text-align: justify;
+    width: 80%;
+    margin: auto;
+}
+
+.content-title {
+    display: flex;
+    justify-content: center;
+}
+.content-title .abstract {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
 }

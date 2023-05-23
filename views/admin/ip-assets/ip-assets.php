@@ -1,4 +1,4 @@
-<title>RMS | IP ASSETS</title>
+<title>RMS | PATENT DOCUMENTS</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../db/db.php';
@@ -25,7 +25,7 @@
 
     <main>
         <div class="header">
-            <h1 class="title">PATENTED DOCUMENTS</h1>
+            <h1 class="title">PATENT DOCUMENTS</h1>
             <div class="left">
                 <div class="btn-container">
                 <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
