@@ -123,7 +123,6 @@ function validateForm() {
         disableSubmitBtn.style.backgroundColor = "";
         disableSubmitBtn.style.pointerEvents = ""; 
         
-
     }
 }
 

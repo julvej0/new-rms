@@ -33,7 +33,7 @@ $no_of_records_per_page = 10;
 //offset
 $offset = ($page_number-1) * $no_of_records_per_page;
 
-$search = isset($_GET['search-table']) ? $_GET['search-table'] : '';
+$search = $search_query != 'empty_search' ? $search_query : '';
 
 //Search Query
 $sqlSearchQuery = "SELECT * 

@@ -16,7 +16,7 @@ function getPublicationData($pubID, $conn) {
 function displayPublicationData($row, $conn) {
     echo '<div class="article-container">';
     echo '<div class="article-title">';
-    echo '<h1>'.$row['title_of_paper'].'</h1>';
+    echo "<h1 id='header-title'>".$row['title_of_paper']."</h1>";
     echo '</div>';
 
 
@@ -62,7 +62,7 @@ function displayPublicationData($row, $conn) {
     else{
         echo '<p> Not Yet Set </p>';
     }
-    echo '<p>'.$row['abstract'].'</p>';
+
     echo '</div>';
     echo '<button onclick="window.open(\'' . $row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
     echo '</div>';

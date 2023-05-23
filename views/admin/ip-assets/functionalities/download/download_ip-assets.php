@@ -3,8 +3,10 @@
 <?php 
     include '../../../../../db/db.php';
     require_once('../download/ipa-get-info-download.php');
-    $additionalQuery= authorSearch($conn);
-    $table_rows = get_data($conn, $additionalQuery);
+
+    $search_query = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
+    $additionalQuery= authorSearch($conn, $search_query);
+    $table_rows = get_data($conn, $additionalQuery, $search_query);
 ?>
 
 <!-- <link rel="stylesheet" href="../../ip-assets.css"> -->
@@ -52,8 +54,8 @@
                 <tbody>
                 <?php
 
-                        $search_query = isset($_GET['search']) ? $_GET['search'] : '';
-                    $result_count = pg_query($conn, "SELECT * FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'".$additionalQuery.";");
+                    
+                    $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'".$additionalQuery.";");
                     $total_records = pg_fetch_result($result_count, 0, 0);
                     
                     

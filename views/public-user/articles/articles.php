@@ -7,9 +7,9 @@
     include 'functionalities/articles-sort.php';
 
     include 'functionalities/articles-count.php';
+   
 
-
-    $search_query = (isset($_GET['search-table']) && $_GET['search-table'] != '') ?  $_GET['search-table'] : 'empty_search';
+    $search_query = (isset($_GET['search-table']) && $_GET['search-table'] != '' && strpos($_GET['search-table'], "'") === false) ?  $_GET['search-table'] : 'empty_search';
     $sort_query = (isset($_GET['sort']) && $_GET['sort'] != '' ) ?  $_GET['sort'] : 'empty_sort';
     $campus_query = isset($_GET['select-campus']) ?  $_GET['select-campus'] : 'empty_campus';
     $dateStart_query = (isset($_GET['date-start']) && $_GET['date-start'] != '') ?  $_GET['date-start'] : 'empty_dStart';

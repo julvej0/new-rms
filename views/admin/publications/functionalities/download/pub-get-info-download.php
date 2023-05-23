@@ -1,7 +1,6 @@
 <?php
 function get_data($conn, $additionalQuery, $search ) {
-    $search_query = $search != "empty_search" ? $search : '';
-
+    $search_query = $search == 'empty_search' ? '' : $search ;
     //Search Query
     $sqlSearchQuery = "SELECT * 
                         FROM (
