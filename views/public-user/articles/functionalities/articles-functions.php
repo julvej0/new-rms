@@ -16,7 +16,7 @@ function getPublicationData($pubID, $conn) {
 function displayPublicationData($row, $conn) {
     echo '<div class="article-container">';
     echo '<div class="article-title">';
-    echo '<h1>'.$row['title_of_paper'].'</h1>';
+    echo "<h1 id='header-title'>".$row['title_of_paper']."</h1>";
     echo '</div>';
 
     echo '<div class="article-date-published">';
@@ -41,10 +41,8 @@ function displayPublicationData($row, $conn) {
     }
     if (count($author_names) > 0) {
         // Join the author names and display them
-        echo '<label>Authors:</label>';
         echo '<div class="article-authors">';
-        echo '&#8226 ';
-        echo implode('<br>&#8226; ', $author_names);
+        echo implode(', ', $author_names);
         echo '</div>';
     } else {
         // Display only the label "Authors:"
@@ -62,7 +60,7 @@ function displayPublicationData($row, $conn) {
     else{
         echo '<p> Not Yet Set </p>';
     }
-    echo '<p>'.$row['abstract'].'</p>';
+
     echo '</div>';
     echo '<button onclick="window.open(\'' . $row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
     echo '</div>';
