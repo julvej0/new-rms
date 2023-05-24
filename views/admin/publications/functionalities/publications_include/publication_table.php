@@ -60,15 +60,15 @@
                     }
             ?>
                 <!--If the $google_link == null, the value will be no_url which is needed to trigger SweetAlert2-->
-                <a onclick="redirect('<?=$google_link != null? $google_link : 'no_url';?>')" class="gdrive-btn">
+                <a onclick="redirect('<?=$google_link != null? $google_link : 'no_url';?>')" class="gdrive-btn" title="Click to Redirect">
                         <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
                 </a>
                 <form action="edit-publication.php" method="POST">
                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
-                    <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon"></i></button>
+                    <button type="submit" class="edit-btn" name="edit"><i class="fa-solid fa-pen-to-square icon" title="Click to Edit"></i></button>
                 </form>      
                 <!--Onclick calls the confirmDelete() function with the registration number as a parameter-->
-                <button class="delete-btn" name="delete" onclick="confirmDelete('<?=$row['publication_id']?>')"><i class="fa-solid fa-trash-can"></i></button>                   
+                <button class="delete-btn" name="delete" onclick="confirmDelete('<?=$row['publication_id']?>')" title="Click to Delete"><i class="fa-solid fa-trash-can"></i></button>                   
             </td>
     </tr>
     <?php
