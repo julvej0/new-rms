@@ -112,13 +112,7 @@ if (isset($_POST['submitIPA'])) {
                     header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=failed");
                 }
             } else {
-                // Display an error message and navigate back
-                echo "
-                <script>
-                // Set the localStorage flag before navigating back
-                localStorage.setItem('showError', true);
-                window.history.back();
-                </script>";
+                header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=failed");
             }
         }        
     } else {

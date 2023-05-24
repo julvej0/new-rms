@@ -114,13 +114,7 @@ if (isset($_POST['updateIPA'])) {
                                 header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
                             }
                         } else {
-                            // If the condition is not met, execute the following code block
-                            echo "
-                            <script>
-                            // Set the localStorage flag before navigating back
-                            localStorage.setItem('showError', true);
-                            window.history.back();
-                            </script>";
+                            header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?upload=failed");
                         }
                         
             }

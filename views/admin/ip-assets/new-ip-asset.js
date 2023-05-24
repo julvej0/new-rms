@@ -53,3 +53,30 @@ inputElement.addEventListener('input', function() {
     submit_button.style.backgroundColor = "var(--blue)";
   }
 });
+
+// Check if certificate file type is valid
+function checkFileType(fileInput) {
+  const allowedExtensions = ['jpeg', 'jpg', 'png', 'pdf'];
+  const file = fileInput.files[0];
+  const errorElement = document.getElementById('file-error');
+  const certificateInput = document.getElementById('ip-certificate-input');
+  if (file) {
+    const fileName = file.name.toLowerCase();
+    const fileExtension = fileName.split('.').pop();
+
+    if (allowedExtensions.includes(fileExtension)) {
+      // File type is allowed
+      errorElement.style.display = 'none';
+      return true;
+    } else {
+      // File type is not allowed
+      errorElement.style.display = 'inline';
+      certificateInput.value = "";
+      return false;
+    }
+  } else {
+    // No file selected
+    errorElement.style.display = 'none';
+    return false;
+  }
+}

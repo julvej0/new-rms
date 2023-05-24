@@ -33,7 +33,7 @@
                         <div class="form-col">
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-title">Work Title</label>
+                                    <label class="pb-label" for="pb-title">Work Title <span style="color: red;">*</span></label>
                                     <input type="text" placeholder="Work Title" id="pb-title" name="title_of_paper" value="<?=$row['title_of_paper']?>" required/>
                                 </div>
                                 <div class="form-control">
@@ -108,94 +108,94 @@
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="pb-label" for="sdg_no">SDG (choose at least 5):</label>
+                                    <label class="pb-label" for="sdg_no">SDG (Choose at a maximum of 5):</label>
                                     <div class="checkbox-container">
                                         <?php
                                         $sdg_array = explode(",", $row['sdg_no']);
                                         ?>
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="1" id="sdg1" onclick="limitSelection()" <?php if (in_array('1', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg1">SDG 1</label>
+                                            <label class="sdg-checkbox" for="sdg1" title="SDG 1: No Poverty">SDG 1</label>
                                         </div>
                                         
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="2" id="sdg2" onclick="limitSelection()" <?php if (in_array('2', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg2">SDG 2</label>
+                                            <label class="sdg-checkbox" for="sdg2" title="SDG 2: Zero Hunger">SDG 2</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="3" id="sdg3" onclick="limitSelection()" <?php if (in_array('3', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg3">SDG 3</label>
+                                            <label class="sdg-checkbox" for="sdg3" title="SDG 3: Good Health and Well-Being">SDG 3</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="4" id="sdg4" onclick="limitSelection()" <?php if (in_array('4', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg4">SDG 4</label>
+                                            <label class="sdg-checkbox" for="sdg4" title="SDG 4 Quality Education">SDG 4</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="5" id="sdg5" onclick="limitSelection()" <?php if (in_array('5', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg5">SDG 5</label>
+                                            <label class="sdg-checkbox" for="sdg5" title="SDG 5: Gender Equality">SDG 5</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="6" id="sdg6" onclick="limitSelection()" <?php if (in_array('6', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg6">SDG 6</label>
+                                            <label class="sdg-checkbox" for="sdg6" title="SDG 6: Clean Water and Sanitation">SDG 6</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="7" id="sdg7" onclick="limitSelection()" <?php if (in_array('7', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg7">SDG 7</label>
+                                            <label class="sdg-checkbox" for="sdg7" title="SDG 7: Affordable and Clean Energy">SDG 7</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="8" id="sdg8" onclick="limitSelection()" <?php if (in_array('8', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg8">SDG 8</label>
+                                            <label class="sdg-checkbox" for="sdg8" title="SDG 8: Decent Work and Economic Growth">SDG 8</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="9" id="sdg9" onclick="limitSelection()" <?php if (in_array('9', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg9">SDG 9</label>
+                                            <label class="sdg-checkbox" for="sdg9" title="SDG 9: Industry Innovation and Infrastructure">SDG 9</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                             <input type="checkbox" name="sdg_no[]" value="10" id="sdg10" onclick="limitSelection()" <?php if (in_array('10', $sdg_array)) echo 'checked="checked"'; ?>>
-                                            <label class="sdg-checkbox" for="sdg10">SDG 10</label>
+                                            <label class="sdg-checkbox" for="sdg10" title="SDG 10: Reduced Inequalities">SDG 10</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                         <input type="checkbox" name="sdg_no[]" value="11" id="sdg11" onclick="limitSelection()" <?= in_array('11', $sdg_array) ? 'checked' : ''; ?>>
-                                        <label class="sdg-checkbox" for="sdg11">SDG 11</label>
+                                        <label class="sdg-checkbox" for="sdg11" title="SDG 11: Sustainable Cities and Communities">SDG 11</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                         <input type="checkbox" name="sdg_no[]" value="12" id="sdg12" onclick="limitSelection()" <?= in_array('12', $sdg_array) ? 'checked' : ''; ?>>
-                                        <label class="sdg-checkbox" for="sdg12">SDG 12</label>
+                                        <label class="sdg-checkbox" for="sdg12" title="SDG 12: Responsible Consumption and Production">SDG 12</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                         <input type="checkbox" name="sdg_no[]" value="13" id="sdg13" onclick="limitSelection()" <?= in_array('13', $sdg_array) ? 'checked' : ''; ?>>
-                                        <label class="sdg-checkbox" for="sdg13">SDG 13</label>
+                                        <label class="sdg-checkbox" for="sdg13" title="SDG 13: Climate Action">SDG 13</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                         <input type="checkbox" name="sdg_no[]" value="14" id="sdg14" onclick="limitSelection()" <?= in_array('14', $sdg_array) ? 'checked' : ''; ?>>
-                                        <label class="sdg-checkbox" for="sdg14">SDG 14</label>
+                                        <label class="sdg-checkbox" for="sdg14" title="SDG 14: Life Below Water">SDG 14</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                         <input type="checkbox" name="sdg_no[]" value="15" id="sdg15" onclick="limitSelection()" <?= in_array('15', $sdg_array) ? 'checked' : ''; ?>>
-                                        <label class="sdg-checkbox" for="sdg15">SDG 15</label>
+                                        <label class="sdg-checkbox" for="sdg15" title="SDG 15: Life on Land">SDG 15</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                         <input type="checkbox" name="sdg_no[]" value="16" id="sdg16" onclick="limitSelection()" <?= in_array('16', $sdg_array) ? 'checked' : ''; ?>>
-                                        <label class="sdg-checkbox" for="sdg16">SDG 16</label>
+                                        <label class="sdg-checkbox" for="sdg16" title="SDG 16: Peace, Justice and Strong Institutions">SDG 16</label>
                                         </div>
 
                                         <div class="checkbox-col">
                                         <input type="checkbox" name="sdg_no[]" value="17" id="sdg17" onclick="limitSelection()" <?= in_array('17', $sdg_array) ? 'checked' : ''; ?>>
-                                        <label class="sdg-checkbox" for="sdg17">SDG 17</label>
+                                        <label class="sdg-checkbox" for="sdg17" title="SDG 17: Partnership for the Goals">SDG 17</label>
                                         </div>
                                         
                                         <div class="error"></div>

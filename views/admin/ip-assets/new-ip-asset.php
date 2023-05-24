@@ -27,7 +27,7 @@
                         <div class="form-col">
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label for="ip-title" class="ip-label">Work Title</label>
+                                    <label for="ip-title" class="ip-label">Work Title <span style="color: red;">*</span></label>
                                     <input type="text" placeholder="Work Title..." id="ip-title" name="title_of_work" required/>
                                 </div>
                                 <div class="form-control">
@@ -159,7 +159,7 @@
                         </div>
                         <div class="form-col">
                             <div class="reg-form-container">
-                                <label class="reg-titles">Registered?</label>
+                                <label class="reg-titles">Registered? <span style="color: red;">*</span></label>
                                 <div class="form-control">
                                     <div class="choices">
                                         <input type="radio" name="registerInfo" id="registered" value="registered" required>
@@ -175,7 +175,7 @@
                             <div class="reg-form-container2">
                             <div class="form-control">
                                 <!-- Registration Number input field -->
-                                <label class="ip-label" for="reg_num">Registration Number: <span id="regnum-error" style="display: none; color: red;">This registration number already exists!</span></label>
+                                <label class="ip-label" for="reg_num">Registration Number: <span style="color: red;">*</span><span id="regnum-error" style="display: none; color: red;">This registration number already exists!</span></label>
                                 <input type="text" name="registration_number" id="reg_num" placeholder="Registration Number..." required>
                                 <?php
                                     // Fetch existing registration numbers from the database
@@ -195,12 +195,12 @@
                             </div>
 
                                 <div class="form-control">
-                                    <label class="ip-label" for="reg-date">Date of Registration</label>
+                                    <label class="ip-label" for="reg-date">Date of Registration: </label>
                                     <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date">
                                 </div>
                                 <div class="form-control">
-                                    <label class="ip-label" for="ip-certificate" id="ip-certificate">Upload Certificate <span id="file-error" style="display: none; color: red;">Only PNG, JPG, and JPEG file types are accepted.</span></label>
-                                    <input type="file" name="ip-certificate" id="ip-certificate" accept=".png, .jpg, .jpeg">
+                                    <label class="ip-label" for="ip-certificate">Upload Certificate: <span id="file-error" style="display: none; color: red;">Only PNG, JPG, JPEG, and PDF file types are allowed!</span></label>
+                                <input type="file" name="ip-certificate" id="ip-certificate-input" onchange="checkFileType(this)" accept=".png, .jpg, .jpeg, .pdf">
                                 </div>
                             </div>
                         </div>
@@ -220,18 +220,6 @@
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
-
-<!--File Error Warning-->
-<script>
-    // Check if localStorage flag is set and show the span accordingly
-    if (localStorage.getItem("showError")) {
-        document.getElementById("file-error").style.display = "inline";
-        // Clear the localStorage flag after showing the span
-        localStorage.removeItem("showError");
-    }
-</script>
-<!--End of File Error Warning-->
-
 </body>
 <?php
     include 'new-ip-asset-js.php';

@@ -17,7 +17,7 @@ function rotateButton() {
         }, 150); // wait for margin-top transition to complete before setting opacity to 0
         isRotated = false;
     } else {
-        buttonIcon.style.transform = "rotate(135deg)";
+        buttonIcon.style.transform = "rotate(540deg)";
         checkboxContainer.style.transition = "margin-top 0.3s ease-in-out, opacity 0.4s ease-in-out";
         checkboxContainer.style.display = "block";
         setTimeout(() => {

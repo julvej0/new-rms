@@ -28,7 +28,7 @@
             <h1 class="title">IP Assets</h1>
             <div class="left">
                 <div class="btn-container">
-                <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
+                <button class="select-columns-btn" onclick="rotateButton()" id="button-icon" title="Edit Table Column"><i class="fa-solid fa-caret-down"></i></button>  
                     <div class="checkbox-container" id="checkbox-container">
                         <input type="checkbox" name="col-registration" id="col-registration" checked>
                         <label class="checkbox-button" for="col-registration">Registration Number</label><br>

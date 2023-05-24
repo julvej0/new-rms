@@ -36,7 +36,7 @@
                         <div class="form-col">
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label for="ip-title" class="ip-label">Work Title</label>
+                                    <label for="ip-title" class="ip-label">Work Title <span style="color: red;">*</span></label>
                                     <input type="text" placeholder="Work Title..." id="ip-title" name="title_of_work" required value="<?=$row['title_of_work']?>">
                                 </div>
                                 <div class="form-control">
@@ -176,7 +176,7 @@
                         </div>
                         <div class="form-col">
                             <div class="reg-form-container">
-                                <label class="reg-titles">Registered?</label>
+                                <label class="reg-titles">Registered? <span style="color: red;">*</span></label>
                                 <div class="form-control">
                                     <div class="choices">
                                         <input type="radio" name="registerInfo" id="registered" value="registered">
@@ -191,7 +191,7 @@
                             <h4 class="if-funded">If Registered : </h4>
                             <div class="reg-form-container2">
                                 <div class="form-control">
-                                    <label class="ip-label" for="reg-num" id="reg_num">Registration Number:</label>
+                                    <label class="ip-label" for="reg-num" id="reg_num">Registration Number: <span style="color: red;">*</span></label>
                                     <input type="text" name="registration_number" id="reg_num" placeholder="Registration Number..." required  value="<?=$row['registration_number']?>" readonly>
                                 </div>
                                 <div class="form-control">
@@ -199,8 +199,8 @@
                                     <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" value="<?=$row['date_registered']?>">
                                 </div>
                                 <div class="form-control">
-                                    <label class="ip-label" for="ip-certificate">Upload Certificate</label>
-                                    <input type="file" name="ip-certificate" id="ip-certificate" accept=".png, .jpg, .jpeg">
+                                    <label class="ip-label" for="ip-certificate">Upload Certificate: <span id="file-error" style="display: none; color: red;">Only PNG, JPG, JPEG, and PDF file types are allowed!</span></label>
+                                    <input type="file" name="ip-certificate" id="ip-certificate-input" onchange="checkFileType(this)" accept=".png, .jpg, .jpeg, .pdf">
 
                                         <?php if (!empty($row['certificate'])): $dir="functionalities/button_functions/"?> <!-- Check if a certificate file is not empty -->
                                             <div>File uploaded: <a href="<?=$dir.$row['certificate']?>" target="_blank"><?=basename($row['certificate'])?></a></div> <!--Display the file details with a link to open it in a new tab-->

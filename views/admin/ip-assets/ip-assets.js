@@ -18,7 +18,7 @@ function rotateButton() {
         isRotated = false;
     } else {
         // If the button is not rotated, rotate it and show the checkbox container
-        buttonIcon.style.transform = "rotate(135deg)";
+        buttonIcon.style.transform = "rotate(540deg)";
         checkboxContainer.style.transition = "margin-top 0.3s ease-in-out, opacity 0.4s ease-in-out";
         checkboxContainer.style.display = "block";
         setTimeout(() => {
