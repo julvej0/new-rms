@@ -23,7 +23,7 @@
             <h1 class="title">Dashboard</h1>
             <div class="routes">
                 <a href="#" class="nav-button" data-target="#pb-page"><span>Publications</span></a>
-                <a href="#" class="nav-button" data-target="#ipa-page"><span>IP-assets</span></a>
+                <a href="#" class="nav-button" data-target="#ipa-page"><span>IP assets</span></a>
             </div>
         </div>
         <section id="pb-page" class="sub-page">
@@ -189,7 +189,7 @@
             <div class="data">
                 <div class="main-content-data">
                     <div class="head">
-                        <h3>IP-assets Report</h3>
+                        <h3>IP Assets Report</h3>
                     </div>
                     <div class="chart">
                         <?php
@@ -208,7 +208,7 @@
                 </div>
                 <div class="main-content-data">
                     <div class="head">
-                        <h3>IP-assets Report (campus)</h3>
+                        <h3>IP Assets Report (campus)</h3>
                     </div>
                     <div class="chart">    
                         <?php
@@ -255,10 +255,10 @@
     <script src="dashboard.js"></script>
     <script>
         // Assign the campus data obtained from PHP to a JavaScript variable
-        var campus_data = <?php echo json_encode($campus_data); ?>;
+        var campus_data = <?php echo $campus_data; ?>;
         
         // Assign the campus labels obtained from PHP to a JavaScript variable
-        var campus_labels = <?php echo json_encode($campus_labels); ?>;
+        var campus_labels = <?php echo $campus_labels; ?>;
         
         // Configure the options for the donut chart
         var campus_options = {
@@ -288,10 +288,10 @@
     </script>
     <script>
         // Assign the status data obtained from PHP to a JavaScript variable
-        var status_data = <?php echo json_encode($status_data); ?>;
+        var status_data = <?php echo $status_data; ?>;
         
         // Assign the status labels obtained from PHP to a JavaScript variable
-        var status_labels = <?php echo json_encode($status_labels); ?>;
+        var status_labels = <?php echo $status_labels; ?>;
         
         // Configure the options for the donut chart
         var status_options = {
@@ -321,10 +321,10 @@
     </script>
     <script>
         // Assign the year data obtained from PHP to a JavaScript variable
-        var year_data = <?php echo json_encode($ipyear_data); ?>;
+        var year_data = <?php echo $ipyear_data; ?>;
         
         // Assign the year labels obtained from PHP to a JavaScript variable
-        var year_labels = <?php echo json_encode($ipyear_labels); ?>;
+        var year_labels = <?php echo $ipyear_labels; ?>;
         
         // Configure the options for the line chart
         var year_options = {
@@ -373,10 +373,10 @@
     </script>
     <script>
     // Assign the publication data obtained from PHP to a JavaScript variable
-    var pub_data = <?php echo json_encode($publications_data); ?>;
+    var pub_data = <?php echo $publications_data; ?>;
     
     // Assign the publication labels obtained from PHP to a JavaScript variable
-    var pub_labels = <?php echo json_encode($publications_year); ?>;
+    var pub_labels = <?php echo $publications_year; ?>;
     
     // Configure the options for the line chart
     var pub_options = {

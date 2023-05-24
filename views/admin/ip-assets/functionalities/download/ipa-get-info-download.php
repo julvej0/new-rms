@@ -1,6 +1,6 @@
 <?php
-function get_data($conn, $additionalQuery) {
-    $search_query = isset($_GET['search']) ? $_GET['search'] : '';
+function get_data($conn, $additionalQuery, $search) {
+    $search_query = $search != 'empty_search' ? $search : '';
     $no_of_records_per_page = 10;
     
 
@@ -44,10 +44,9 @@ function get_data($conn, $additionalQuery) {
     }
 }
 
-function authorSearch($conn) {
+function authorSearch($conn, $search_query) {
     $additionalQuery = "";
     if(isset($_GET['search'])){
-        $search_query = $_GET['search'];
         //Select Author Ids that matches the search
         $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%$search_query%'";
         $result = pg_query($conn, $select_authors);

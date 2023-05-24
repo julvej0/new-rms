@@ -18,7 +18,7 @@
     ?>
     <main>
         <div class="header">
-            <h1 class="title">Edit Patented Document</h1>
+            <h1 class="title">Edit IP Asset</h1>
         </div>
         <section>
             <div class="container">

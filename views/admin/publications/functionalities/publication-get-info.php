@@ -1,6 +1,6 @@
 <?php
 function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number) {
-    $search_query = $search != "empty_search" ? $search : '';
+    $search_query = $search != "empty_search" ? $search  : '';
    
     $no_of_records_per_page = 10;
 
@@ -12,7 +12,7 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
                         FROM (
                             SELECT * 
                             FROM table_publications 
-                            WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search_query%' ";
+                            WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%".rtrim($search_query)."%' ";
     
     
     if ($additionalQuery !== "empty_search") {
@@ -83,7 +83,7 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
 function authorSearch($conn, $search) {
     if($search != 'empty_search'){
         //Select Author Ids that matches the search
-        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%$search%'";
+        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%".rtrim($search)."%'";
         $result = pg_query($conn, $select_authors);
 
         if(pg_num_rows($result) > 0){

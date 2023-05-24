@@ -16,18 +16,9 @@ function getPublicationData($pubID, $conn) {
 function displayPublicationData($row, $conn) {
     echo '<div class="article-container">';
     echo '<div class="article-title">';
-    echo '<h1>'.$row['title_of_paper'].'</h1>';
+    echo "<h1 id='header-title'>".$row['title_of_paper']."</h1>";
     echo '</div>';
 
-    echo '<div class="article-date-published">';
-    if (!empty($row['date_published'])) {
-        $date = date('F d, Y', strtotime($row['date_published']));
-        echo '<h5>Date Published:  '. $date . '</h5>';
-    }
-    else {
-        echo '<h5>Date Published: Not Yet Set </h5>';
-    }
-    echo '</div>';
 
     echo '<div class="author-list-cont">';
     $author_ids = explode(',', $row['authors']);
@@ -41,10 +32,8 @@ function displayPublicationData($row, $conn) {
     }
     if (count($author_names) > 0) {
         // Join the author names and display them
-        echo '<label>Authors:</label>';
         echo '<div class="article-authors">';
-        echo '&#8226 ';
-        echo implode('<br>&#8226; ', $author_names);
+        echo implode(', ', $author_names);
         echo '</div>';
     } else {
         // Display only the label "Authors:"
@@ -52,9 +41,20 @@ function displayPublicationData($row, $conn) {
     }
     echo '</div>';
 
+    echo '<div class="article-date-published">';
+    if (!empty($row['date_published'])) {
+        $date = date('F d, Y', strtotime($row['date_published']));
+        echo '<h5>Date Published:  '. $date . '</h5>';
+    }
+    else {
+        echo '<h5>Date Published: Not Yet Set </h5>';
+    }
+    echo '</div>';
+    echo '<div class="content-title">';
+    echo '<label class="abstract">Abstract</label>';
+    echo '</div>';
     echo '<div class="abstract-cont">';
     echo '<div>';
-    echo '<label>Abstract:</label>';
     if (!empty($row['abstract'])){
         $abstract = $row['abstract'];
         echo '<p>' .$abstract. '</p>';
@@ -62,7 +62,7 @@ function displayPublicationData($row, $conn) {
     else{
         echo '<p> Not Yet Set </p>';
     }
-    echo '<p>'.$row['abstract'].'</p>';
+
     echo '</div>';
     echo '<button onclick="window.open(\'' . $row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
     echo '</div>';

@@ -142,7 +142,7 @@
 
 <script src="./new-author.js"></script>
 <?php
-    include  'functionalities/new-author_includes/affiliations.php';
+    include  'functionalities/new-author_includes/affiliations.php'; //script for affiliation table functions
 ?>
 </body>
 

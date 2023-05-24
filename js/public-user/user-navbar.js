@@ -11,3 +11,7 @@ if (path.includes('articles.php') || (path.includes('article_view.php'))){
 if (path.includes('ipa.php') || (path.includes('ipa-view.php'))){
     document.getElementById('ipa-link').classList.add('active');
 }
+
+if (path.includes('about.php')){
+    document.getElementById('abt-link').classList.add('active');
+}

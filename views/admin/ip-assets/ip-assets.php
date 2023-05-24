@@ -1,4 +1,4 @@
-<title>RMS | IP ASSETS</title>
+<title>RMS | PATENT DOCUMENTS</title>
 <?php 
     include '../../../includes/admin/templates/header.php';
     include '../../../db/db.php';
@@ -14,7 +14,7 @@
         include_once 'functionalities/ipa_include/ipa_year.php';
         include_once 'functionalities/ipa_include/ipa_count.php';
 
-        $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
+        $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
         $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
         $class = isset($_GET['class']) ? $_GET['class']: 'empty_class';
         $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
@@ -25,7 +25,7 @@
 
     <main>
         <div class="header">
-            <h1 class="title"><?php  echo (isset($_GET['search']) && $_GET['search'] != '' ) ? "Results for \"". $_GET['search']."\"": 'PATENTED DOCUMENTS'; ?></h1>
+            <h1 class="title">IP Assets</h1>
             <div class="left">
                 <div class="btn-container">
                 <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>  
@@ -56,7 +56,7 @@
                 </div>
                 <form action='' method='get'>
                     <div class="form-group">
-                        <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >
+                        <input type='text' placeholder="Search" name='search' value='<?php echo isset($_GET['search']) ? $_GET['search']: ''?>' placeholder="Search..." >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>
@@ -135,7 +135,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document was deleted succesfully!"
+            title: "IP Asset was deleted succesfully!"
           })
     
         </script>
@@ -160,7 +160,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document was updated succesfully!"
+            title: "IP Asset was updated succesfully!"
           })
     
         </script>
@@ -182,7 +182,7 @@
               
               Toast.fire({
                 icon: "error",
-                title: "Failed to update Patented Document!"
+                title: "Failed to update IP Asset!"
               })
         
             </script>
@@ -208,7 +208,7 @@
           
           Toast.fire({
             icon: "success",
-            title: "Patented Document was uploaded succesfully!"
+            title: "IP Asset was uploaded succesfully!"
           })
     
         </script>
@@ -230,7 +230,7 @@
             
             Toast.fire({
                 icon: "error",
-                title: "Failed to upload Patented Document!"
+                title: "Failed to upload IP Asset!"
             })
     
         </script>

@@ -7,7 +7,7 @@
     include 'functionalities/articles-sort.php';
 
 
-    $search_query = (isset($_GET['search-table']) && $_GET['search-table'] != '') ?  $_GET['search-table'] : 'empty_search';
+    $search_query = (isset($_GET['search-table']) && $_GET['search-table'] != '' && strpos($_GET['search-table'], "'") === false) ?  $_GET['search-table'] : 'empty_search';
     $sort_query = (isset($_GET['sort']) && $_GET['sort'] != '' ) ?  $_GET['sort'] : 'empty_sort';
     $campus_query = isset($_GET['select-campus']) ?  $_GET['select-campus'] : 'empty_campus';
     $dateStart_query = (isset($_GET['date-start']) && $_GET['date-start'] != '') ?  $_GET['date-start'] : 'empty_dStart';
@@ -23,9 +23,9 @@
 <body>
     <section id="main-content">
         <div class="page-title">
-            <h3 class="animate__animated animate__zoomIn">PATENTED ARTICLES</h3>
+            <h3 class="animate__animated animate__fadeIn">IP ASSETS</h3>
         </div>
-        <div class="table-container animate__animated animate__fadeInUp" id="tbl-container">
+        <div class="table-container animate__animated animate__fadeIn" id="tbl-container">
             <div class="header">
                 <div class="left">
                     <h4>DOCUMENTS</h4>
