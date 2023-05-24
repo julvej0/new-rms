@@ -20,12 +20,12 @@
                     <i class="bx bx-phone"></i>
                     <p class="number">(123) 456-7890</p>
                     <i class="bx bx-envelope"></i>
-                    <a href=mailto:“info@gmail.com”><p class="email">info@gmail.com</p></a>
+                    <a href=mailto:“info@gmail.com”><p class="email">researchmanagement@g.batstate-u.edu.ph</p></a>
                 </div>
                 <div class="complete-address">
                     <h3 class="address">Address</h3>
-                    <p class="street">Street</p>
-                    <p class="city">Batangas</p>
+                    <p class="street">Rizal Avenue</p>
+                    <p class="city">Batangas City, Philippines, 4200</p>
                 </div>
             </div>
         </div>

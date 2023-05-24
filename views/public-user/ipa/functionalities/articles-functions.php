@@ -55,9 +55,9 @@ function displayPublicationData($row, $conn) {
     echo '</div>';
     echo '<div class="abstract-cont">';
     echo '<div>';
-    
-    if (!empty($row['campus'])){
-        $abstract = $row['campus'];
+    echo '<label>Status:</label>';
+    if (!empty($row['status'])){
+        $abstract = $row['status'];
         echo '<p>' .$abstract. '</p>';
     }
     else{

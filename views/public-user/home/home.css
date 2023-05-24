@@ -53,6 +53,7 @@ body {
     padding: 10px 10px 10px 16px;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 #hero-img input[type="text"]:focus {
