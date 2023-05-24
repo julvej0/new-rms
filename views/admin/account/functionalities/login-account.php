@@ -20,7 +20,7 @@ if (isset($_POST['login'] )) {
         $user = pg_fetch_assoc($fetch_result);
         
         if (password_verify($password, $user['password'])) {
-            
+             
             //create a session
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['account_type'] = $user['account_type'];

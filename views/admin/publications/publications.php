@@ -14,8 +14,8 @@
     include_once 'functionalities/publications_include/publication_filter_display.php';
     include_once 'functionalities/publications_include/publication_filter.php';
     
-    $search = isset($_GET['search']) ? $_GET['search']: 'empty_search';
-
+   
+    $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
     $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
     $fund = isset($_GET['fund']) ? $_GET['fund']: 'empty_fund';
     $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
@@ -24,7 +24,7 @@
 ?>
     <main>
         <div class="header">
-            <h1 class="title"><?php  echo (isset($_GET['search']) && $_GET['search'] != '') ? "Results for \"". $_GET['search']."\"": 'Publications'; ?></h1>
+            <h1 class="title">PUBLICATIONS</h1>
             <div class='left'>
                 <div class="btn-container">
                     <button class="select-columns-btn" onclick="rotateButton()" id="button-icon"><i class="fa-solid fa-plus fa-2xs"></i></button>   
@@ -61,7 +61,7 @@
                 </div>
                 <form action='' method='get'>
                     <div class="form-group">
-                        <input type='text' name='search' value='<?php $search_query?>' placeholder="Search..." >
+                        <input type='text' name='search' value='<?php echo isset($_GET['search']) ? $_GET['search']: ''?>' placeholder="Search..." >
                         <i class='bx bx-search icon' ></i>
                     </div>
                 </form>

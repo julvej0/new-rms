@@ -33,14 +33,14 @@ $no_of_records_per_page = 10;
 //offset
 $offset = ($page_number-1) * $no_of_records_per_page;
 
-$search = isset($_GET['search-table']) ? $_GET['search-table'] : '';
+$search = $search_query != 'empty_search' ? $search_query : '';
 
 //Search Query
 $sqlSearchQuery = "SELECT * 
                     FROM (
                         SELECT * 
                         FROM table_publications 
-                        WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search%' ";
+                        WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%".trim($search)."%' ";
 
 
 
@@ -76,15 +76,16 @@ if ($dateStart_query !== 'empty_dStart' && $dateEnd_query !== 'empty_dEnd' ) {
 }
 
 if ($sort_query !== 'empty_sort') {
-  if ($sort_query === 'date') {
-    $sort_order = 'DESC'; // Sort by date in descending order
-    $sort_column = 'date_published';
+  if ($sort_query === 'title') {
+    $sort_order = 'ASC'; // Sort by title 
+    $sort_column = 'title_of_paper';
   } elseif ($sort_query === 'campus') {
     $sort_order = 'ASC'; // Sort by campus in ascending order
     $sort_column = 'campus';
   } else {
-    $sort_order = 'ASC'; // Sort by title (default)
-    $sort_column = 'title_of_paper';
+    
+    $sort_column = 'date_published';
+    $sort_order = 'DESC'; // Sort by date in descending order (default)
   }
   $sqlSearchQuery .= " ORDER BY $sort_column $sort_order ";
 }

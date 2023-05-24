@@ -7,9 +7,9 @@
     include 'functionalities/articles-sort.php';
 
     include 'functionalities/articles-count.php';
+   
 
-
-    $search_query = (isset($_GET['search-table']) && $_GET['search-table'] != '') ?  $_GET['search-table'] : 'empty_search';
+    $search_query = (isset($_GET['search-table']) && $_GET['search-table'] != '' && strpos($_GET['search-table'], "'") === false) ?  $_GET['search-table'] : 'empty_search';
     $sort_query = (isset($_GET['sort']) && $_GET['sort'] != '' ) ?  $_GET['sort'] : 'empty_sort';
     $campus_query = isset($_GET['select-campus']) ?  $_GET['select-campus'] : 'empty_campus';
     $dateStart_query = (isset($_GET['date-start']) && $_GET['date-start'] != '') ?  $_GET['date-start'] : 'empty_dStart';
@@ -27,9 +27,9 @@
 <body>
     <section id="main-content">
         <div class="page-title">
-            <h3 class="animate__animated animate__zoomIn">PUBLICATIONS</h3>
+            <h3 class="animate__animated animate__fadeIn">PUBLICATIONS</h3>
         </div>
-        <div class="table-container animate__animated animate__fadeInUp" id="tbl-container">
+        <div class="table-container animate__animated animate__fadeIn" id="tbl-container">
             <div class="header">
                 <div class="left">
                     <h4>DOCUMENTS</h4>
@@ -56,7 +56,7 @@
                                 <input type="hidden" name="search-table" value="<?=$search_query != 'empty_search' ?  $search_query : ''?>">
                                 <input type="hidden" name="sort" value="<?=$sort_query != 'empty_sort' ?  $sort_query : ''?>">
 
-                                <p>By Date :</p> <i class='bx bx-x icon'></i>
+                                <p>By Date :</p>
                                 <div class="form-control">
                                     <label for="from">From</label>
                                     <input type="text" id="to" name='date-start' placeholder="FROM" empty_dStart>

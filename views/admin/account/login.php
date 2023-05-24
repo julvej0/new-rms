@@ -122,6 +122,7 @@ function validateForm() {
         disableSubmitBtn.disabled = false;
         disableSubmitBtn.style.backgroundColor = "";
         disableSubmitBtn.style.pointerEvents = ""; 
+        
     }
 }
 
