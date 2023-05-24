@@ -55,7 +55,7 @@ function displayPublicationData($row, $conn) {
 
     echo '<div class="abstract-cont">';
     echo '<div>';
-    echo '<label>Abstract:</label>';
+    echo '<label>Status:</label>';
     if (!empty($row['status'])){
         $abstract = $row['status'];
         echo '<p>' .$abstract. '</p>';
@@ -63,7 +63,6 @@ function displayPublicationData($row, $conn) {
     else{
         echo '<p> Not Yet Set </p>';
     }
-    echo '<p>'.$row['status'].'</p>';
     echo '</div>';
 
     if(isset($_SESSION['user_email'])){
