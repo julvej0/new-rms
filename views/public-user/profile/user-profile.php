@@ -14,7 +14,7 @@ include_once "functionalities/user-session.php";
 <!-- profile page -->
     <div id="profile-page" class="mini-page">
         <div class="page-title">
-            <h3 class="animate__animated animate__zoomIn">CHANGE PASSWORD</h3>
+            <h3 class="animate__animated animate__zoomIn">USER PROFILE</h3>
         </div>
         <div class="profile-info">
             <div class="profile-photo">
