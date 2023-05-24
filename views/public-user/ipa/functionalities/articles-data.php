@@ -64,6 +64,7 @@ if ($campus_query !== 'empty_campus') {
       
     }
 
+    
   }
   else{
     $sqlSearchQuery .= "  searched_pub.campus = '$campus_query' ";
@@ -76,15 +77,17 @@ if ($dateStart_query !== 'empty_dStart' && $dateEnd_query !== 'empty_dEnd' ) {
 }
 
 if ($sort_query !== 'empty_sort') {
-  if ($sort_query === 'date') {
-    $sort_order = 'DESC'; // Sort by date in descending order
-    $sort_column = 'date_registered';
+  if ($sort_query === 'title') {
+    $sort_order = 'ASC'; // Sort by title 
+    $sort_column = 'title_of_work';
+    
   } elseif ($sort_query === 'campus') {
     $sort_order = 'ASC'; // Sort by campus in ascending order
     $sort_column = 'campus';
   } else {
-    $sort_order = 'ASC'; // Sort by title (default)
-    $sort_column = 'title_of_work';
+    $sort_order = 'DESC'; // Sort by date in descending order (default)
+    $sort_column = 'date_registered';
+    
   }
   $sqlSearchQuery .= " ORDER BY $sort_column $sort_order ";
 }
