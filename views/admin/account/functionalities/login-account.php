@@ -2,7 +2,6 @@
 session_start();
 include_once "../../../../db/db.php";
 
-
 if (isset($_POST['login'] )) {
     $email = $_POST['emailAddress'];
     $password = $_POST['password'];

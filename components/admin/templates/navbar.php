@@ -65,6 +65,7 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         </div>
     </nav>
     <!-- NAVBAR -->
+</section>
 <!-- APPBAR -->
  
 <!-- Script -->

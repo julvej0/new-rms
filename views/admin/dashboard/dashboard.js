@@ -20,10 +20,5 @@ navBtns.forEach(navlinks => {
     })
 })
 
-    document.querySelector('#pb-page').classList.add('active');
-    document.querySelector('.nav-button[data-target="#pb-page"]').classList.add('focused');
-    
-
-
-    
-    
+document.querySelector('#pb-page').classList.add('active');
+document.querySelector('.nav-button[data-target="#pb-page"]').classList.add('focused');

@@ -10,9 +10,4 @@
         session_destroy();
         header('Location: ../../../../views/public-user/home/home.php');
     }
-    
-
-    
-
-
 ?>

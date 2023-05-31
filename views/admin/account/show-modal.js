@@ -55,7 +55,7 @@ function showModal() {
         const url = `../account/functionalities/create-account.php?srcode=${srCode}&email=${emailAddress}`;
         xhr.open("GET", url, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 const response = xhr.responseText;
                 if (response === 'exists') {

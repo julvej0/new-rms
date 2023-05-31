@@ -123,11 +123,9 @@
             <?php
                 require_once "functionalities/articles-pagination.php";
             ?>
-               
         </div>
     </div>
 </section>
-
     <script src="articles.js"></script>
 </body>
 
