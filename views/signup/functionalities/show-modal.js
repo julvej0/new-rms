@@ -52,7 +52,7 @@ function showModal() {
 
         // Check for existing SR code and email using XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = `../account/functionalities/create-account.php?srcode=${srCode}&email=${emailAddress}`;
+        const url = `./functionalities/check-account.php?srcode=${srCode}&email=${emailAddress}`;
         xhr.open("GET", url, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function () {

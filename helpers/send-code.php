@@ -1,9 +1,9 @@
 <?php
 session_start(); // start the session
 include_once "send.php";
+echo "send-code.php";
 
 if (isset($_POST['textValue'])) {
-
     $email = $_POST['textValue'];
 
     // generate a random verification code and store it in a session variable
@@ -14,7 +14,9 @@ if (isset($_POST['textValue'])) {
     $recipient = $email;
     $subject = "VERIFICATION CODE";
     $message = "This is your verification code: ".$verification_code;
-    echo "Email sent to ".$recipient;
+    echo "Email sent to " . $recipient;
     send_mail($recipient, $subject, $message);
+}else{
+    echo "email sending failed";
 }
 ?>

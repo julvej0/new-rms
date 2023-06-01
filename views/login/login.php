@@ -1,40 +1,40 @@
 <?php
-include_once "../../../includes/admin/templates/header.php";
 session_start();
 
 if (isset($_SESSION['user_email'])) {
     if($_SESSION['account_type'] == "Admin"){
-        header("Location: ../../../views/admin/dashboard/dashboard.php");
+        // header("Location: ../../../views/admin/dashboard/dashboard.php");
+        header("Location: " . dirname(__FILE__, 3) . "/views/admin/dashboard/dashboard.php");
         exit;
 
-    }
-    else{
-        header("Location: ../../../views/public-user/home/home.php");
+    } else {
+        // header("Location: ../../../views/public-user/home/home.php");
+        header("Location: " . dirname(__FILE__, 3) . "/views/public-user/home/home.php");
         exit;
-
     }
-    
+}else{
+    include_once dirname(__FILE__, 3) . "/components/header/header.php";
 }
 ?>
 
 <link rel="stylesheet" href="login.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <!----------------------------------------------------------- login page ---------------------------------------------------------->
 <div id="whole_page">
-    <img src='../../../assets/images/background_img.jpg' style='opacity: 0.7; width: 100%; height: 100%; position:fixed;'/>
+    <img src='./../../assets/images/background_img.jpg' style='opacity: 0.7; width: 100%; height: 100%; position:fixed;'/>
     <!-- <div style="width: 155px; height: 230px; background-color: white; position: fixed; bottom: 0; right: 0; margin-bottom: 20px; margin-right: 20px; z-index: 1; padding: 20px; border-radius: 50% / 20%;">
         <img src="../../../assets/images/redspartan_logo.png" style="width: 150px; height: 160px; position: fixed; bottom: 0; right: 0; margin-bottom: 50px; margin-right: 25px; z-index: 2; border-radius: 50% / 20%;">
     </div> -->
 
-    <img src='../../../assets/images/batStateUNeu-logo.png' style='width: 100px; height: 100px; position: fixed; border:solid 3px #cf102d; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -300%); top: 50%; left: 50%;'/>
+    <img src='./../../assets/images/batStateUNeu-logo.png' style='width: 100px; height: 100px; position: fixed; border:solid 3px #cf102d; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -300%); top: 50%; left: 50%;'/>
 <!----------------------------------------------------------- login header ---------------------------------------------------------->
-        <div id="login_container">
-            <div id='container-header'>
+    <div id="login_container">
+        <div id='container-header'>
             <h2 id='h2Login'>SIGN IN</h2>
-            </div>
-            <br>
-            <form onsubmit = "return checkdata()" id='user_input' action = "functionalities/login-account.php" method = "POST" >
+        </div>
+        <br>
+        <form onsubmit = "return checkdata()" id='user_input' action = "functionalities/login-account.php" method = "POST" >
+            <div>
                 <label class='labelSubHeader'>EMAIL</label>
                 <input id="login_email" name="emailAddress" placeholder="example@g.batstate-u.edu.ph" type="text"><br>
                 <label class='labelSubHeader'>PASSWORD</label>
@@ -50,12 +50,12 @@ if (isset($_SESSION['user_email'])) {
                     <hr style="flex: 1; margin-left: 10px; border-top: 1px solid gray;">
                 </div>
 
-                <input type="button" onclick="window.location.href='sign-up.php'" value="SIGN UP">
-                <label id='labelSignUp' style='margin-top: 10px;'>Forgot Password?<a id='a_SignUp' onclick="showModal()">&nbsp;Click Here!</a></label>
+                <input type="button" onclick="window.location.href='./../signup/sign-up.php'" value="SIGN UP">
+                <label id='labelSignUp'>Forgot Password?<a id='a_SignUp' onclick="showModal()">&nbsp;Click Here!</a></label>
                 <br>
             </div>
-            </form>
-        </div>
+        </form>
+    </div>
 </div>
 <!------------------------------------------------- HTML code for change password modal ---------------------------------------------->
 <div id="myModal" class="modal">
@@ -87,60 +87,15 @@ if (isset($_SESSION['user_email'])) {
 </div>
 
 <!----------------------------------------------------------- SCRIPTS --------------------------------------------------------------->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
-<script src='show-hide-password.js'></script>
-<script src='close-modal.js'></script>
-<script src='send-otp.js'></script>
-<script src='submit-password.js'></script>
+<!-- <script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css"> -->
+<script src='../helpers/show-hide-password.js'></script>
+<script src='../helpers/close-modal.js'></script>
+<script src='../../helpers/send-otp.js'></script>
+<script src='../helpers/submit-password.js'></script>
 <script src='login.js'></script>
-<script src='change-pass-with-otp.js'></script>
-
-<script>
-var disableotpInput = document.getElementById("otpVerification");
-var disableSubmitBtn = document.getElementById('submit-password');
-var email = document.getElementById("userEmailAddressInput");
-var pass = document.getElementsByClassName('passwordInput')[1];
-var confirmpass = document.getElementById('confirmPasswordInput');
-var otpBox = document.getElementById('otpVerification');
-
-disableotpInput.disabled = true;
-
-email.addEventListener('input', validateForm);
-pass.addEventListener('input', validateForm);
-confirmpass.addEventListener('input', validateForm);
-otpBox.addEventListener('input', validateForm);
-disableotpInput.addEventListener('input', validateForm);
-
-function validateForm() {
-    if (email.value === '' || pass.value === '' || confirmpass.value === '' || otpBox.value ==='' || disableotpInput.value==='') {
-        disableSubmitBtn.disabled = true;
-        disableSubmitBtn.style.backgroundColor = "gray";
-        disableSubmitBtn.style.pointerEvents = "none";
-    } else {
-        disableSubmitBtn.disabled = false;
-        disableSubmitBtn.style.backgroundColor = "";
-        disableSubmitBtn.style.pointerEvents = ""; 
-        
-    }
-}
-
-window.onload = validateForm;
-
-//<!-------------------------------------------- SHOW MODAL PASSWORD --------------------------------------------------------------->
-
-function showModal() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
-    setTimeout(function() {
-        modal.querySelector(".modal-container").style.transform = "translate(-50%, -50%)";
-    }, 10);
-}
-
-</script>
-
+<script src='../helpers/change-pass-with-otp.js'></script>
 
 <?php
-include_once "functionalities/login_incorrect.php";
+    include_once "functionalities/login_incorrect.php";
 ?>

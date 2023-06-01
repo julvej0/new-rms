@@ -1,21 +1,20 @@
 <title>RMS | DASHBOARD</title>
 <?php
-    include '../../../includes/admin/templates/header.php';
-    require_once "../../../db/db.php";
+    include dirname(__FILE__, 3) . "/components/header/header.php"
+    require_once  dirname(__FILE__, 3) . "/helpers/db.php";
     include './functionalities/dashboard-function.php'; 
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="dashboard.css">
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.2/dist/apexcharts.min.js"></script>
 
 <!-- CDN -->
 
 <body>
     <?php
-            include '../../../includes/admin/templates/navbar.php';
+        include dirname(__FILE__, 3) . '/components/navbar/navbar.php';
     ?>
     
     <main>
@@ -372,61 +371,57 @@
         year_chart.render();
     </script>
     <script>
-    // Assign the publication data obtained from PHP to a JavaScript variable
-    var pub_data = <?php echo $publications_data; ?>;
-    
-    // Assign the publication labels obtained from PHP to a JavaScript variable
-    var pub_labels = <?php echo $publications_year; ?>;
-    
-    // Configure the options for the line chart
-    var pub_options = {
-        chart: {
-            type: 'line',
-            height: 350, // set the height of the chart
-            foreColor: '#263238', // set the text color of the chart
-        },
-        series: [{
-            data: pub_data
-        }],
-        xaxis: {
-            categories: pub_labels
-        },
-        title: {
-            text: 'Publications Per Year',
-            align: 'center',
-            margin: 10,
-            offsetY: 20,
-            style: {
-                fontSize: '20px',
-                fontWeight: 'bold',
-                fontFamily: undefined,
-                color: '#263238'
+        // Assign the publication data obtained from PHP to a JavaScript variable
+        var pub_data = <?php echo $publications_data; ?>;
+        
+        // Assign the publication labels obtained from PHP to a JavaScript variable
+        var pub_labels = <?php echo $publications_year; ?>;
+        
+        // Configure the options for the line chart
+        var pub_options = {
+            chart: {
+                type: 'line',
+                height: 350, // set the height of the chart
+                foreColor: '#263238', // set the text color of the chart
             },
-        },
-        colors: ['#03C988'], // set the chart color
-        responsive: [{
-            breakpoint: 500,
-            options: {
-                chart: {
-                    width: 300
+            series: [{
+                data: pub_data
+            }],
+            xaxis: {
+                categories: pub_labels
+            },
+            title: {
+                text: 'Publications Per Year',
+                align: 'center',
+                margin: 10,
+                offsetY: 20,
+                style: {
+                    fontSize: '20px',
+                    fontWeight: 'bold',
+                    fontFamily: undefined,
+                    color: '#263238'
                 },
-                legend: {
-                    position: 'bottom'
+            },
+            colors: ['#03C988'], // set the chart color
+            responsive: [{
+                breakpoint: 500,
+                options: {
+                    chart: {
+                        width: 300
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
                 }
-            }
-        }]
-    };
+            }]
+        };
 
-    // Create a new ApexCharts instance with the chart container element and options
-    var pub_chart = new ApexCharts(document.querySelector("#pb-bar-chart"), pub_options);
-    
-    // Render the chart
-    pub_chart.render();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
+        // Create a new ApexCharts instance with the chart container element and options
+        var pub_chart = new ApexCharts(document.querySelector("#pb-bar-chart"), pub_options);
+        
+        // Render the chart
+        pub_chart.render();
+    </script>
 </body>
 
 <?php

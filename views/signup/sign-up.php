@@ -1,24 +1,23 @@
 <?php
-include_once "../../../includes/admin/templates/header.php";
 
 session_start();
 
 if (isset($_SESSION['user_email'])) {
     if ($_SESSION['account_type'] == "Admin") {
-        header("Location: ../../../views/admin/dashboard/dashboard.php");
+        // header("Location: ../../../views/admin/dashboard/dashboard.php");
+        header("Location: " . dirname(__FILE__, 3) . "/views/admin/dashboard/dashboard.php");
         exit;
-
     } else {
-        header("Location: ../../../views/public-user/home/home.php");
+        // header("Location: ../../../views/public-user/home/home.php");
+        header("Location: " . dirname(__FILE__, 3) . "/views/public-user/home/home.php");
         exit;
-
     }
-
+}else{
+    include_once dirname(__FILE__, 3) . "/components/header/header.php";
 }
 
 ?>
 <link rel="stylesheet" href="sign-up.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 
 <!----------------------------------------------------------- sign up page ---------------------------------------------------------->
@@ -27,7 +26,7 @@ if (isset($_SESSION['user_email'])) {
 
     <!----------------------------------------------------------- sign up header -------------------------------------------------------->
     <div id="signup-container">
-        <img src='../../../assets/images/batStateUNeu-logo.png'
+        <img src='./../../assets/images/batStateUNeu-logo.png'
             style='width: 90px; height: 90px; position: fixed; border:solid 3px #cf102d; background-color: white; border-radius: 50%; z-index: 1; transform: translate(-50%, -490%); top: 50%; left: 50%;' />
         <div id='container-header'>
             <h2 id='h2Login'>Create Account</h2>
@@ -112,19 +111,13 @@ if (isset($_SESSION['user_email'])) {
     </div>
 </div>
 
-
-
 <!--------------------------------------------------------- script files ------------------------------------------------------------->
 
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src='show-hide-password.js'></script>
-<script src='show-modal.js'></script>
-<script src='close-modal.js'></script>
-<script src='add-user-btn.js'></script>
-<script src='send-otp.js'></script>
-
+<script src='../helpers/show-hide-password.js'></script>
+<script src='./functionalities/show-modal.js'></script>
+<script src='../helpers/close-modal.js'></script>
+<script src='./functionalities/add-user-btn.js'></script>
+<script src='../../helpers/send-otp.js'></script>
 
 <!-------------------------------------------------------- disable buttons on modal -------------------------------------------------->
 <script>

@@ -1,7 +1,7 @@
 <?php
 
 //this function is for checking if the user inputted on the signup page is existing or not existing on the database.
-include_once "../../../../db/db.php";
+include_once "./helpers/db.php";
 if (isset($_GET['srcode']) && isset($_GET['email'])) {
   $srcode = $_GET['srcode'];
   $email = $_GET['email'];

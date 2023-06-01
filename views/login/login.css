@@ -41,6 +41,19 @@ html, body {
     
 }
 
+#login_container input {
+    width: 100%;
+}
+
+#login_container #labelSignUp{
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    display: flex; 
+    align-items: center;
+    font-size: 12px;
+}
+
 #container-header {
     background-color:#cf102d;
     height: 100px;

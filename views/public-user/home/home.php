@@ -1,7 +1,7 @@
 <title>RMS | Home</title>
 <?php 
-    include '../../../includes/admin/templates/header.php';
-    include '../../../db/db.php';
+    include dirname(__FILE__, 3) . '/components/header/header.php';
+    include dirname(__FILE__, 3) . '/helpers/db.php';
     include_once './functionalities/home-publication-functions.php';
     include_once './functionalities/home-ipassets-functions.php';
 ?>
@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="./home.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <?php 
-    include '../../../includes/public-user/templates/user-navbar.php'; 
+    include dirname(__FILE__, 3) . '/components/public-user/templates/user-navbar.php'; 
 ?>
 
 <body>

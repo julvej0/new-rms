@@ -1,3 +1,6 @@
+//TODO: transfer all scripts in dashboard.php here
+
+
 // Nav Buttons
 
 const navBtns = document.querySelectorAll('main .routes .nav-button');
