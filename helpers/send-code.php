@@ -1,7 +1,7 @@
 <?php
 session_start(); // start the session
 include_once "send.php";
-echo "send-code.php";
+// echo "<script>console.log(send-code.php);</script>";
 
 if (isset($_POST['textValue'])) {
     $email = $_POST['textValue'];

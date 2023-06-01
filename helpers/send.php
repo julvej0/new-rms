@@ -8,14 +8,22 @@ require '../libs/email_ver/PHPMailer-master/src/Exception.php';
 require '../libs/email_ver/PHPMailer-master/src/PHPMailer.php';
 require '../libs/email_ver/PHPMailer-master/src/SMTP.php';
 
-echo "send.php";
+// echo "<script>console.log(send.php);</script>";
 function send_mail($recipient,$subject,$message){
 
     $mail = new PHPMailer(true);
     try{
         $mail->IsSMTP();
 
-        $mail->SMTPDebug  = 0;  
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+
+        $mail->SMTPDebug  = 2;  
         $mail->SMTPAuth   = TRUE;
         $mail->SMTPSecure = "tls";
         $mail->Port       = 587;
