@@ -1,6 +1,6 @@
 <?php
 session_start(); // start the session
-include_once "send.php";
+include_once realpath(dirname(__FILE__) . '/..') . "/helpers/send.php";
 // echo "<script>console.log(send-code.php);</script>";
 
 if (isset($_POST['textValue'])) {

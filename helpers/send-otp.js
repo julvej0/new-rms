@@ -49,6 +49,7 @@ function sendOtp() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             const status = xhr.status;
 
+            console.log("status: " + status);
             if (status === 0 || (status >= 200 && status < 400)) {
               // Display a success message using Swal (SweetAlert) when OTP is sent successfully
               Swal.fire({
@@ -61,6 +62,10 @@ function sendOtp() {
             }
         }
     };
+    xhr.addEventListener("error", (event) => {
+        console.log("error " + event);
+    });
+
     xhr.send("textValue=" + emailInput);
   }
 }

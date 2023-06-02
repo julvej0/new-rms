@@ -1,4 +1,4 @@
-function confirmBtn() {
+function signUpConfirmBtn() {
     // Get input values from the HTML elements
     var emailAddress = document.getElementById('userEmailAddressInput').value;
     var otpTextBox = document.getElementById("otpVerification").value;
@@ -19,7 +19,7 @@ function confirmBtn() {
 
     // Send the OTP and email address to verify_otp.php using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../account/functionalities/verification.php", true);
+    xhr.open("POST", "./functionalities/otp-verify.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -44,7 +44,7 @@ function confirmBtn() {
 
                 // Redirect to the login page after 3 seconds
                 setTimeout(() => {
-                    window.location.href = "login.php";
+                    window.location.href = base_url() + "views/login/login.php";
                 }, 3000);
 
                 console.log(otpTextBox);
@@ -65,5 +65,18 @@ function confirmBtn() {
     };
 
     // Send the data to the server for verification
-    xhr.send("email=" + encodeURIComponent(emailAddress) + "&otp=" + encodeURIComponent(otpTextBox) + "&srcode=" + encodeURIComponent(srCode) + "&password=" + encodeURIComponent(confirmPassword) + "&fname=" + encodeURIComponent(fname) + "&lname=" + encodeURIComponent(lname) + "&mname=" + encodeURIComponent(mname));
+    xhr.send("email=" + encodeURIComponent(emailAddress) + "&otp=" + encodeURIComponent(otpTextBox) + 
+    "&srcode=" + encodeURIComponent(srCode) + "&password=" + encodeURIComponent(confirmPassword) + 
+    "&fname=" + encodeURIComponent(fname) + "&lname=" + encodeURIComponent(lname) + "&mname=" + encodeURIComponent(mname));
+}
+
+
+function base_url() {
+    var pathparts = location.pathname.split('/');
+    if (location.host == 'localhost') {
+        var url = location.origin+'/'+pathparts[1].trim('/')+'/'; // http://localhost/myproject/
+    }else{
+        var url = location.origin; // http://stackoverflow.com
+    }
+    return url;
 }

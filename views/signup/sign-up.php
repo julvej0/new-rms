@@ -103,7 +103,7 @@ if (isset($_SESSION['user_email'])) {
                     <br>
 
                     <button name="confirm" id="btnSubmit" title="btnSubmit" type="button"
-                        onclick='confirmBtn()'>Confirm</button>
+                        onclick='signUpConfirmBtn()'>Confirm</button>
                 </form>
             </div>
         </div>
