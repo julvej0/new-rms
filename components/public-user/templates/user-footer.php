@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="../../../css/public-user/user-footer.css">
+<link rel="stylesheet" href="../../../components/public-user/css/user-footer.css">
 
 <section id="footer-container">
     <div class="footer">

@@ -3,8 +3,8 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
 
 ?>
 <!-- STYLES -->
-<link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="../../../css/admin/templates/navbar.css">
+<link rel="stylesheet" href="./../../../css/index.css">
+<link rel="stylesheet" href="./../../../components/navbar/navbar.css">
 <!-- STYLES -->
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -69,7 +69,7 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
 <!-- APPBAR -->
  
 <!-- Script -->
-<script src="../../../js/admin/templates/navbar.js"></script>
+<script src="../../../components/navbar/navbar.js"></script>
 
 <script>
     function showLogoutAlert() {

@@ -1,22 +1,19 @@
 <title>RMS | DASHBOARD</title>
-<?php
-    include dirname(__FILE__, 3) . "/components/header/header.php"
-    require_once  dirname(__FILE__, 3) . "/helpers/db.php";
-    include './functionalities/dashboard-function.php'; 
-?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="dashboard.css">
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.2/dist/apexcharts.min.js"></script>
-
+<script src="../../../js/apexchartsV3.28.2.min.js"></script>
 <!-- CDN -->
 
+<?php
+    include dirname(__FILE__, 4) . "/components/header/header.php";
+    require_once  dirname(__FILE__, 4) . "/helpers/db.php";
+    include './functionalities/dashboard-function.php'; 
+    include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
+?>
+
 <body>
-    <?php
-        include dirname(__FILE__, 3) . '/components/navbar/navbar.php';
-    ?>
-    
     <main>
         <div class="header">
             <h1 class="title">Dashboard</h1>
@@ -425,5 +422,5 @@
 </body>
 
 <?php
-    include '../../../includes/admin/templates/footer.php';
+    include dirname(__FILE__, 4) . '/components/footer/footer.php';
 ?>

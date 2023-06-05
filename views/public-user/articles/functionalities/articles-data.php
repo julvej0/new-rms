@@ -1,28 +1,29 @@
 <script>
-              function checkLoginCreds(encrypted_ID){
-      
-                var request = new XMLHttpRequest();
+  function checkLoginCreds(encrypted_ID){
 
-                request.open("GET","  ../check-login-creds.php", true);
-                request.onreadystatechange = function(){
-                    if (request.readyState === XMLHttpRequest.DONE && request.status===200) {
-                      var response = request.responseText;
+    var request = new XMLHttpRequest();
 
-                      console.log(response);
-                      if(response == "true"){
-                        window.location='./article_view.php?pubID='+ encrypted_ID;
-                      }else{
-                      window.location = '../../../views/admin/account/login.php?login=required';
-                      }
-                    }
-                  };
-                  request.send();   
-                }
-               
-      </script>
+    request.open("GET","  ../check-login-creds.php", true);
+    request.onreadystatechange = function(){
+      if (request.readyState === XMLHttpRequest.DONE && request.status===200) {
+        var response = request.responseText;
+
+        console.log(response);
+        if(response == "true"){
+          window.location='./article_view.php?pubID='+ encrypted_ID;
+        }else{
+          window.location = '../../../views/admin/account/login.php?login=required';
+        }
+      }
+    };
+
+    request.send();   
+  }
+          
+</script>
 
 <?php
-include_once "../../../db/db.php";
+include dirname(__FILE__, 5) . '/helpers/db.php';
 include_once "articles-search-author.php";
 require_once "config.php";
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../../../db/db.php";
+require_once  dirname(__FILE__, 5) . "/helpers/db.php";
 
 // Check if the user is logged in as an admin
 if ($_SESSION['account_type'] != 'Admin') {

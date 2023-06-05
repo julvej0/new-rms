@@ -63,15 +63,15 @@
 
             <!--If the $hyperlink == null, the value will be no_url which is needed to trigger SweetAlert2-->
             <a onclick="redirect('<?=$hyperlink != null? $hyperlink : 'no_url';?>')" class="gdrive-btn" title="Click to Redirect">
-                <i class="fa-solid fa-arrow-up-right-from-square icon"></i>
+                <i class="fas fa-arrow-up-right-from-square icon"></i>
             </a>
 
             <form action="edit-ipa.php" method="POST">
                 <input type="hidden" name="row_id" value="<?=$row['registration_number']?>">
-                <button type="submit" class="edit-btn" name="edit" title="Click to Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button type="submit" class="edit-btn" name="edit" title="Click to Edit"><i class="fas fa-pen-to-square"></i></button>
             </form>
             <!--Onclick calls the confirmDelete() function with the registration number as a parameter-->
-            <button class="delete-btn" name="delete" onclick="confirmDelete('<?=$row['registration_number']?>')" title="Click to Delete"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="delete-btn" name="delete" onclick="confirmDelete('<?=$row['registration_number']?>')" title="Click to Delete"><i class="fas fa-trash-can"></i></button>
            
         </td>
     </tr>

@@ -1,18 +1,18 @@
 <title>RMS | EDIT PUBLICATION</title>
 <?php 
-    include '../../../includes/admin/templates/header.php';
-    include '../../../db/db.php';
+    include dirname(__FILE__, 4) . '/components/header/header.php';
+    include dirname(__FILE__, 4) . '/helpers/db.php';
+    include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php'; 
 ?>
+
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="publications.css">
+<link rel="stylesheet" href="./publications.css">
 
 <body>
 <?php
-    include '../../../includes/admin/templates/navbar.php';
     include_once 'functionalities/publications_include/publication_filter_extract.php';
     include_once 'functionalities/publications_include/publication_filter_display.php';
     include_once 'functionalities/publications_include/publication_filter.php';
-    
    
     $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
     $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
@@ -79,6 +79,14 @@
                         <li><a href="<?=filterPublication($search, $type, 'non-funded', $year)?>">Non-funded</a></li>
                     </ul>
                 </div>
+                <div class="filter_dd">
+                    <button class="dropbtn">Dropdown</button>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
                 <div class="filter">
                     <button class="btn"><?=$year!="empty_year" ? $year: 'Year'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
@@ -121,7 +129,7 @@
 </body>
 
 <?php
-    include '../../../includes/admin/templates/footer.php';
+    include dirname(__FILE__, 4) . '/components/public-user/templates/user-footer.php';
 ?>
 <?php
     //SweetAlert2 mixin alerts
@@ -145,10 +153,9 @@
           })
     
         </script>
-        
         ';
-        
     }
+
     if(isset($_GET['update'])){
         $updateStatus = $_GET['update'];
         if ($updateStatus == 'success') {
@@ -170,9 +177,7 @@
             title: "Publication was updated succesfully!"
           })
     
-        </script>
-        
-        ';
+        </script>';
         }elseif ($updateStatus == 'failed') {
             echo
             '
@@ -192,9 +197,7 @@
                 title: "Failed to update Publication!"
               })
         
-            </script>
-            
-            ';
+            </script>';
         }
     }
     if (isset($_GET['upload'])){

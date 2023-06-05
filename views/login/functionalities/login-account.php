@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once "../../../../db/db.php";
+include_once dirname(__FILE__, 4) . "/helpers/db.php";
 
 if (isset($_POST['login'] )) {
     $email = $_POST['emailAddress'];
@@ -28,10 +28,10 @@ if (isset($_POST['login'] )) {
 
             // check account type and redirect accordingly
             if ($user['account_type'] === 'Admin') {
-                header("Location: ../../../../views/admin/dashboard/dashboard.php");
+                header("Location: ../../admin/dashboard/dashboard.php");
                 exit();
             } else {
-                header("Location: ../../../../views/public-user/home/home.php");
+                header("Location: ../../public-user/home/home.php");
                 exit();
             }
         }

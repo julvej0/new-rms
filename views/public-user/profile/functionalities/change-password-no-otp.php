@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../../../../db/db.php";
+include_once dirname(__FILE__, 4) . "/helpers/db.php";
 
 if (isset($_POST['email'], $_POST['current-password'], $_POST['new-password'])) {
     $email = $_POST['email'];

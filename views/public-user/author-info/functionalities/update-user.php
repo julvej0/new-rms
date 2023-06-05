@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../../../../db/db.php";
+include_once dirname(__FILE__, 4) . "/helpers/db.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $field = $_POST['field'];
     $value = $field === 'user_contact' ? $_POST['value'] : $_POST['value'];

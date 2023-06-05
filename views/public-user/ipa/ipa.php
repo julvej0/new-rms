@@ -1,10 +1,10 @@
 <title>RMS | PUBLISHED ARTICLES</title>
 <?php 
-    include '../../../includes/admin/templates/header.php';
-    include '../../../includes/public-user/templates/user-navbar.php'; 
+    include dirname(__FILE__, 4) . '/components/header/header.php';
+    include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php'; 
 
-    include 'functionalities/articles-count.php';
-    include 'functionalities/articles-sort.php';
+    include './functionalities/articles-count.php';
+    include './functionalities/articles-sort.php';
 
 
     $search_query = (isset($_GET['search-table']) && $_GET['search-table'] != '' && strpos($_GET['search-table'], "'") === false) ?  $_GET['search-table'] : 'empty_search';
@@ -16,10 +16,11 @@
     $page_number= isset($_GET['page']) ?  intval($_GET['page']) : 1 ;
 
 ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!-- TODO: add a Loading message inside the table to show it's doing something -->
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./ipa.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
 <body>
     <section id="main-content">
         <div class="page-title">

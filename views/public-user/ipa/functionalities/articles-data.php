@@ -21,12 +21,9 @@
           
 </script>
 <?php
-include_once "../../../db/db.php";
+include_once dirname(__FILE__, 5) . "/helpers/db.php";
 include_once "articles-search-author.php";
 require_once "config.php";
-
-
-
 
 //number of records per page
 $no_of_records_per_page = 10;

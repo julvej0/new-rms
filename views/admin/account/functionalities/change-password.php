@@ -2,7 +2,7 @@
 
 //this function is for changing the password of the user in which it based on the user email, it will update the table on the database.
 session_start();
-include_once "../../../../db/db.php";
+include_once dirname(__FILE__, 4) . "/helpers/db.php";
 
 
 if (isset($_POST['email'], $_POST['otp'], $_POST['password'])) {

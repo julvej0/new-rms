@@ -7,7 +7,7 @@ session_start();
 
 <!-- css -->
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="../../../css/public-user/user-navbar.css">
+<link rel="stylesheet" href="../../../components/public-user/css/user-navbar.css">
 
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -40,7 +40,7 @@ session_start();
                             <li><a href="../../../views/public-user/ipa/ipa.php" id='ipa-link'>IP ASSETS</a></li>
                             <li><a href="../../../views/public-user/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
                             <li><a href="../../../views/public-user/about/about.php" id='abt-link'>ABOUT</a></li>
-                            <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/admin/account/functionalities/logout.php?logout=1' :  '../../../views/admin/account/login.php'?>" onclick="<?=isset($_SESSION['user_email']) ? 'return showLogoutAlert()' : ''?>">
+                            <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '../../../views/logout/logout.php?logout=1' :  '../../../views/login/login.php'?>" onclick="<?=isset($_SESSION['user_email']) ? 'return showLogoutAlert()' : ''?>">
                                 <?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?>
                             </a>
                         </ul>
@@ -77,8 +77,8 @@ session_start();
     </div>
 </section>
 <!-- SCRIPT -->
-<script src="../../../js/public-user/user-navbar.js"></script>
-<script src="../../../js/public-user/profile-dropdown.js"></script>
+<script src="../../../components/public-user/js/user-navbar.js"></script>
+<script src="../../../components/public-user/js/profile-dropdown.js"></script>
 <script>
     function showLogoutAlert() {
         Swal.fire({
@@ -93,7 +93,7 @@ session_start();
         }).then((result) => {
             if (result.isConfirmed) {
                 // Redirect to the logout page
-                window.location.href = '../../../views/admin/account/functionalities/logout.php?logout=1';
+                window.location.href = '../../../views/logout/logout.php?logout=1';
             }
         });
 

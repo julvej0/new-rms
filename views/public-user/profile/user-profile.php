@@ -5,7 +5,7 @@ include_once "functionalities/user-session.php";
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="user-profile.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
 <div id='whole-page'>
 
 
