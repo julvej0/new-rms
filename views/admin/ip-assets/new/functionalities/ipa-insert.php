@@ -1,5 +1,6 @@
 <?php
-include_once '../../../../../db/db.php';
+include dirname(__FILE__, 6) . '/helpers/db.php';
+
 if (isset($_POST['submitIPA'])) {
     // Retrieve the value of 'date_of_creation' from the POST data
     $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;

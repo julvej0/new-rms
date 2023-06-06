@@ -1,7 +1,7 @@
 
 
 // Open modal popup
-function OpenModal() {
+function openModal() {
     document.getElementById('myModalpub').style.display = 'block';
 }
 

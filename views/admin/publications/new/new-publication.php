@@ -1,14 +1,12 @@
 <?php
-    include '../../../db/db.php';
-    include '../../../includes/admin/templates/header.php';
+    include dirname(__FILE__, 5) . '/helpers/db.php';
+    include dirname(__FILE__, 5) . '/components/header/header.php';
+    include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php'; 
 ?>
-<link rel="stylesheet" href="../../../css/index.css">
+<!-- <link rel="stylesheet" href="../../../css/index.css"> -->
 <link rel="stylesheet" href="new-publication.css">
 
 <body>
-    <?php
-        include '../../../includes/admin/templates/navbar.php';
-    ?>
     <main>
         <div class="header">
             <h1 class="title">New Publication</h1>

@@ -79,14 +79,14 @@
                         <li><a href="<?=filterPublication($search, $type, 'non-funded', $year)?>">Non-funded</a></li>
                     </ul>
                 </div>
-                <div class="filter_dd">
+                <!-- <div class="filter_dd">
                     <button class="dropbtn">Dropdown</button>
                     <div class="dropdown-content">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
                         <a href="#">Link 3</a>
                     </div>
-                </div>
+                </div> -->
                 <div class="filter">
                     <button class="btn"><?=$year!="empty_year" ? $year: 'Year'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
@@ -97,7 +97,7 @@
                        
                     </ul>
                 </div>
-                <a href="./new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
+                <a href="./new/new-publication.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
             </div>
         </div>
         <section>

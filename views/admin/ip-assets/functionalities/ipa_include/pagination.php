@@ -1,5 +1,6 @@
 
 <?php
+//TODO: make a shared folder with all the shared resources for admin and non-admin user pages
     //check if user searched, result is base on whether the user searched or not
     $count_text = $search != "empty_search" ? "Total Patented Docs for \"". $search. "\" : " : "Total Patented Docs :";
 ?>

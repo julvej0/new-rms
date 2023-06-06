@@ -21,11 +21,11 @@ if (isset($_POST['login'] )) {
         if (password_verify($password, $user['password'])) {
              
             //create a session
+            session_start();
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['account_type'] = $user['account_type'];
             $_SESSION['user_name'] = $user['user_fname'] . " " . $user['user_mname'] . " ". $user['user_lname'];
             
-
             // check account type and redirect accordingly
             if ($user['account_type'] === 'Admin') {
                 header("Location: ../../admin/dashboard/dashboard.php");

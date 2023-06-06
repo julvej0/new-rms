@@ -130,16 +130,19 @@ main .header .filter .filter-link {
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+    list-style-type: none
 }
 
 main .header .filter .filter-link.show {
     top: calc(100%);
     opacity: 1;
     pointer-events: visible;
+    display: inline-block;
     margin-top: 5px;
 }
 
 main .header .filter .filter-link a {
+    text-decoration: none;
     display: block;
     padding: 6px 16px;
     font-size: 12px;

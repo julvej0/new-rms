@@ -1,27 +1,24 @@
 <title>RMS | PATENT DOCUMENTS</title>
 <?php 
-    include '../../../includes/admin/templates/header.php';
-    include '../../../db/db.php';
+    include dirname(__FILE__, 4) . '/components/header/header.php';
+    include dirname(__FILE__, 4) . '/helpers/db.php';
+    //TODO: create a php file that contains an include for the header.php and db.php then call that file if necessary
+    include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php'; 
+    include_once 'functionalities/ipa_include/ipa_filter.php';
+    include_once 'functionalities/ipa_include/ipa_year.php';
+    include_once 'functionalities/ipa_include/ipa_count.php';
+
+    $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
+    $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
+    $class = isset($_GET['class']) ? $_GET['class']: 'empty_class';
+    $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
+
+    $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./ip-assets.css">
 
 <body>
-    <?php
-        include '../../../includes/admin/templates/navbar.php';
-        include_once 'functionalities/ipa_include/ipa_filter.php';
-        include_once 'functionalities/ipa_include/ipa_year.php';
-        include_once 'functionalities/ipa_include/ipa_count.php';
-
-        $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
-        $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
-        $class = isset($_GET['class']) ? $_GET['class']: 'empty_class';
-        $year = isset($_GET['year']) ? $_GET['year']: 'empty_year';
-
-        $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
-
-    ?>
-
     <main>
         <div class="header">
             <h1 class="title">IP Assets</h1>
@@ -80,7 +77,7 @@
                         <?php include_once 'functionalities/ipa_include/ipa_year_filter.php' ?>
                     </ul>
                 </div>
-                <a href="./new-ip-asset.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
+                <a href="./new/new-ip-asset.php" class="addBtn"><i class='bx bxs-file-plus icon' ></i>New</a>
             </div>
         </div>
         <section>
@@ -107,11 +104,12 @@
     </div>
 
 <script src="./ip-assets.js"></script>
-<script src="functionalities/download//download_button.js"></script>
+<script src="functionalities/download/download_button.js"></script>
 </body>
 
 <?php
-    include '../../../includes/admin/templates/footer.php';
+    include dirname(__FILE__, 4) . '/components/public-user/templates/user-footer.php';
+    include dirname(__FILE__, 4) . '/components/footer/footer.php';
 ?>
 <?php //SweetAlert2 mixin alerts
     if(isset($_GET['delete'])){

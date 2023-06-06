@@ -1,13 +1,13 @@
 <?php
-    include '../../../db/db.php';
-    include '../../../includes/admin/templates/header.php';
+    include dirname(__FILE__, 5) . '/components/header/header.php';
+    include dirname(__FILE__, 5) . '/helpers/db.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./new-ip-asset.css">
 
 <body>
     <?php
-        include '../../../includes/admin/templates/navbar.php';
+        include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php'; 
     ?>
     <main>
         <div class="header">
@@ -15,7 +15,7 @@
         </div>
         <section>
             <div class="container">
-            <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-insert.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
+            <form name="form-ipa" id="form-ipa" action="./functionalities/ipa-insert.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -216,6 +216,6 @@
 <script src="./new-ip-asset.js"></script>
 </body>
 <?php
-    include 'new-ip-asset-js.php';
-    include '../../../includes/admin/templates/footer.php';
+    include './new-ip-asset-js.php';
+    include dirname(__FILE__, 5) . '/components/footer/footer.php';
 ?>

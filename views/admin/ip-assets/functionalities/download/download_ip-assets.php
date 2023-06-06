@@ -1,7 +1,7 @@
 
 
 <?php 
-    include '../../../../../db/db.php';
+    include dirname(__FILE__, 6) . '/helpers/db.php';
     require_once('../download/ipa-get-info-download.php');
 
     $search_query = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
@@ -24,7 +24,14 @@
     <section>
         <div class="header">
             <div class="dl-buttons">
-                <button onclick="downloadExcelFile()" class="btn"><i class="fas fa-file-excel fa-lg" style="color: green"></i></button>
+                <button onclick="downloadExcelFile()" class="btn">
+                    <i class="fas fa-file-excel" style="color: green"></i>
+                    <!-- <i class="fa-solid fa-file-excel"></i> -->
+                </button>
+                <button onclick="downloadExcelFile()" class="btn">
+                    <i class="fas fa-file-excel" style="color: green"></i>
+                    <!-- <i class="fa-solid fa-file-excel"></i> -->
+                </button>
             </div>
             <div class="left">
             <form action='' method='get'>
@@ -93,5 +100,5 @@
 <script src="./download_button.js"></script>
 </body>
 <?php
-    include '../../../../../includes/admin/templates/footer.php';
+    include dirname(__FILE__, 6) . '/components/footer/footer.php';
 ?>

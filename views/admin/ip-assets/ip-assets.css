@@ -282,12 +282,14 @@ main table .edit-btn, .delete-btn, .gdrive-btn{
     justify-content: center;
     align-items: center;
     padding: 0;
-    grid-gap: 5px;
+    grid-gap: 5px;  
+    list-style: none;
 }
 
 .table-footer .pagination li a {
     padding: 10px;
     cursor: pointer;
+    text-decoration: none;
     display: flex;
     align-items: center;
     border-radius: 2px;

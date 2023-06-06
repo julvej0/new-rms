@@ -1,5 +1,8 @@
 <?php
-include_once '../../../../../db/db.php';
+//TODO: add some description/tooltip to fields like author describing how they work. 
+//that you can just type an author's name to add it to the database 
+include dirname(__FILE__, 6) . '/helpers/db.php';
+
 if (isset($_POST['submitPB'])) {
     $date_published = $_POST["date_published"];
     $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;

@@ -85,7 +85,7 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         }).then((result) => {
             if (result.isConfirmed) {
                 // Redirect to the logout page
-                window.location.href = '../../../views/admin/account/functionalities/logout.php?logout=1';
+                window.location.href = '../../../views/logout/logout.php?logout=1';
             }
         });
 
