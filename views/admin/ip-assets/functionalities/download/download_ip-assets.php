@@ -21,7 +21,6 @@
 
 <section>
     <div class="header" id="dl-modal-container">
-        <i class="fas fa-trash-can" style="color: green"></i>
         <div class="dl-buttons">
             <button onclick="downloadExcelFile()" class="btn">
                 <!-- <i class="fas fa-trash-can" style="color: green"></i> -->

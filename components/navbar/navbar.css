@@ -28,7 +28,7 @@ body {
 	display: none;
 }
 
-#sidebar.hide {
+#sidebar.collapse-down {
     max-width: 60px;
     overflow-x: hidden;
 }
@@ -48,7 +48,7 @@ body {
     transition: all 0.3s ease;
 }
 
-#sidebar.hide .logo .logo-wrapper{
+#sidebar.collapse-down .logo .logo-wrapper{
     width: 50px;
 }
 
@@ -66,7 +66,7 @@ body {
     font-size: 16px;
 }
 
-#sidebar.hide .logo .logo-title {
+#sidebar.collapse-down .logo .logo-title {
     display: none;
 }
 
@@ -93,7 +93,7 @@ body {
     transition: all .3s ease;
 }
 
-#sidebar.hide .side-menu {
+#sidebar.collapse-down .side-menu {
     padding: 0 6px;
 }
 
@@ -132,7 +132,7 @@ body {
     white-space: nowrap;
 }
 
-#sidebar.hide .divider {
+#sidebar.collapse-down .divider {
     text-align: center;
 }
 
@@ -167,7 +167,7 @@ body {
     left: var(--sidenav-size);
     transition: all 0.3s ease;
 }
-#sidebar.hide + #appbar-and-content {
+#appbar-and-content.collapse-wide {
     width: calc(100% - 60px);
     left: 60px;
 }
@@ -185,6 +185,7 @@ nav .toggle-sidebar {
     font-size: 18px;
     cursor: pointer;
     color: var(--light);
+    padding: 16px;
 }
 
 nav .profile {

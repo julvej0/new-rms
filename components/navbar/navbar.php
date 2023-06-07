@@ -49,7 +49,7 @@ include_once  dirname(__FILE__, 3) . "/views/admin/account-management/functional
                     <a href="../../../views/admin/account-management/user-profile.php" id="user-link">Profile</a>
                 </li>
                 <li>
-                    <a href="../../../views/admin/account-management/user-security.php" id="security-link">Change Password</a>
+                    <a href="../../../views/admin/account-management/change-password.php" id="security-link">Change Password</a>
                 </li>
             </ul>
             <a class="logout" onclick = 'return showLogoutAlert()'>
@@ -60,7 +60,7 @@ include_once  dirname(__FILE__, 3) . "/views/admin/account-management/functional
     </ul>
 </section>
 <!-- SIDEBAR -->
- 
+<!-- TODO: see if it's possible to track the state of the collapse of the sidebar(localStorage?) -->
 <!-- Script -->
 <script src="../../../components/navbar/navbar.js"></script>
 

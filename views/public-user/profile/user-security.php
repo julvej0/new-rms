@@ -3,7 +3,7 @@ include_once "../../../includes/public-user/templates/user-navbar.php";
 include_once "functionalities/user-session.php";
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="user-security.css">
+<link rel="stylesheet" href="change-password.css">
 <div id='whole-page'>
 
 

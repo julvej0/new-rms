@@ -70,7 +70,7 @@ session_start();
                                             <i class="fas fa-info-circle"></i> AUTHOR INFORMATION
                                         </a>
                                     <?php endif; ?>
-                                    <a href="//localhost/new-rms-webdev/views/public-user/profile/user-security.php">
+                                    <a href="//localhost/new-rms-webdev/views/public-user/profile/change-password.php">
                                         <i class="fas fa-lock"></i> CHANGE PASSWORD
                                     </a>
                                 </div>

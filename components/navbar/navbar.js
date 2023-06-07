@@ -40,10 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		})
 	}
 
+	const dashboardContent = document.querySelector('#appbar-and-content');
 	toggleSidebar.addEventListener('click', function () {
-		sidebar.classList.toggle('hide');
+		sidebar.classList.toggle('collapse-down');
+		dashboardContent.classList.toggle('collapse-wide');
 
-		if(sidebar.classList.contains('hide')) {
+		if(sidebar.classList.contains('collapse-down')) {
 			allSideDivider.forEach(item=> {
 				item.textContent = '-'
 			})
@@ -82,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.getElementById('author-link').classList.add('active');
 	}
 
-	if(path.includes("user-security.php") || path.includes("user-profile.php")){
+	if(path.includes("change-password.php") || path.includes("user-profile.php")){
 		document.getElementById('account-link').classList.add("active");
 	}
 
@@ -95,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.querySelector('#sidebar .side-dropdown').classList.add('show');
 	}
 
-	if(path.includes("user-security.php")){
+	if(path.includes("change-password.php")){
 		document.getElementById('security-link').classList.add("active");
 		document.querySelector('#sidebar .side-dropdown').classList.add('show');
 	}

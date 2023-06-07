@@ -14,6 +14,8 @@
 ?>
 
 <body>
+<section id='appbar-and-content'>
+    <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
     <main>
         <div class="header">
             <h1 class="title">Dashboard</h1>

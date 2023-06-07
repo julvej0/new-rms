@@ -70,5 +70,5 @@
 <script src="./user-accounts.js"></script>
 </body>
 <?php
-    include '../../../includes/admin/templates/footer.php';
+    include dirname(__FILE__, 4) . '/components/footer/footer.php';
 ?>
