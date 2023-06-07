@@ -11,7 +11,7 @@
 
 #whole-page {
     width: 100%;
-    height: 2000em;
+    /* height: 2000em; */
     display: flex;
     flex-direction: column;
 }

@@ -2,7 +2,7 @@
 <?php 
     include dirname(__FILE__, 4) . '/components/header/header.php';
     include dirname(__FILE__, 4) . '/helpers/db.php';
-    include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php'; 
+    include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
 ?>
 
 <link rel="stylesheet" href="../../../css/index.css">
@@ -21,6 +21,8 @@
 
     $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
 ?>
+<section id='appbar-and-content'>
+    <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
     <main>
         <div class="header">
             <h1 class="title">PUBLICATIONS</h1>
@@ -129,7 +131,7 @@
 </body>
 
 <?php
-    include dirname(__FILE__, 4) . '/components/public-user/templates/user-footer.php';
+    include dirname(__FILE__, 4) . '/components/footer/footer.php';
 ?>
 <?php
     //SweetAlert2 mixin alerts

@@ -1,12 +1,12 @@
 <title>RMS | AUTHORS</title>
 <?php 
-    include_once '../../../db/db.php'; //db connection
+    include dirname(__FILE__, 4) . '/helpers/db.php'; //db connection
 ?>
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="authors.css">
 <body>
     <?php
-        include_once '../../../includes/admin/templates/navbar.php'; //navigation bar
+        include dirname(__FILE__, 4) . '/components/navbar/navbar.php'; //navigation bar
         include_once 'functionalities/authors_include/count_authors.php'; //for counting total author
         include_once 'functionalities/authors_include/filter_function.php'; // for filtering
 
@@ -21,7 +21,8 @@
         $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
        
     ?>
-    
+<section id='appbar-and-content'>
+    <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
     <main>
         <div class="header">
             <h1 class="title">AUTHORS</h1>
@@ -83,5 +84,5 @@
 </body>
 <?php
     include_once 'functionalities/authors_include/pop_modal.php';
-    include '../../../includes/admin/templates/footer.php';
+    include dirname(__FILE__, 4) . '/components/footer/footer.php';
 ?>

@@ -1,6 +1,6 @@
 <?php
-include_once "../../../views/admin/account-management/functionalities/user-session.php";
-
+include_once  dirname(__FILE__, 3) . "/views/admin/account-management/functionalities/user-session.php";
+//TODO: rename this to something like admin-nav or admin-sidebar
 ?>
 <!-- STYLES -->
 <link rel="stylesheet" href="./../../../css/index.css">
@@ -18,21 +18,25 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
         <h4 class="logo-title">Research Management Services</h4>
     </div>
     <ul class="side-menu">
-        <li><a href="../../../views/admin/dashboard/dashboard.php" id='dashboard-link'>
+        <li>
+            <a href="../../../views/admin/dashboard/dashboard.php" id='dashboard-link'>
             <i class='bx bxs-dashboard icon'></i>Dashboard</a>
         </li>
         <li class="divider" data-text="Main">Main</li>
-        <li><a href="../../../views/admin/publications/publications.php" id='publication-link'>
+        <li>
+            <a href="../../../views/admin/publications/publications.php" id='publication-link'>
             <i class='bx bxs-book-open icon' ></i>Publications</a>
         </li>
         <li>
             <a href="../../../views/admin/ip-assets/ip-assets.php" id='ip-assets-link'>
             <i class='bx bxs-folder icon' ></i>IP Assets</a>
         </li>
-        <li><a href="../../../views/admin/authors/authors.php" id='author-link'>
+        <li>
+            <a href="../../../views/admin/authors/authors.php" id='author-link'>
             <i class='bx bxs-group icon' ></i>Authors</a>
         </li>
-        <li><a href="../../../views/admin/user-accounts/user-accounts.php" id='user-accounts-link'>
+        <li>
+            <a href="../../../views/admin/user-accounts/user-accounts.php" id='user-accounts-link'>
             <i class='bx bxs-user icon'></i></i>User Accounts</a>
         </li>
         <li class="divider" data-text="Account">Account</li>
@@ -41,32 +45,21 @@ include_once "../../../views/admin/account-management/functionalities/user-sessi
                 <i class='bx bxs-cog icon' ></i>Account Settings<i class='bx bx-chevron-right icon-right' ></i>
             </a>
             <ul class='side-dropdown'>
-                <li><a href="../../../views/admin/account-management/user-profile.php" id="user-link">Profile</a></li>
-                <li><a href="../../../views/admin/account-management/user-security.php" id="security-link">Change Password</a></li>
+                <li>
+                    <a href="../../../views/admin/account-management/user-profile.php" id="user-link">Profile</a>
+                </li>
+                <li>
+                    <a href="../../../views/admin/account-management/user-security.php" id="security-link">Change Password</a>
+                </li>
             </ul>
             <a class="logout" onclick = 'return showLogoutAlert()'>
-                <i class='bx bx-log-out icon rotate' name='logout' ></i>Sign Out
+                <i class='bx bx-log-out icon rotate' name='logout' ></i>
+                Sign Out
             </a>
         </li>
-
     </ul>
 </section>
 <!-- SIDEBAR -->
-
-<!-- APPBAR -->
-<section id='appbar-content'>
-    <!-- NAVBAR -->
-    <nav>
-        <i class='bx bx-menu toggle-sidebar' ></i>
-        <span class="divider"></span>
-        <div class="profile">
-        <p class="user-name" style="font-weight: bold; 'text-transform: uppercase; ?>"><?=$_SESSION['user_name']?></p>
-        <small>Admin</small>
-        </div>
-    </nav>
-    <!-- NAVBAR -->
-</section>
-<!-- APPBAR -->
  
 <!-- Script -->
 <script src="../../../components/navbar/navbar.js"></script>

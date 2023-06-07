@@ -161,13 +161,13 @@ body {
 }
 
 /* APPBAR CONTENT */
-#appbar-content {
+#appbar-and-content {
     position: relative;
     width: calc(100% - var(--sidenav-size));
     left: var(--sidenav-size);
     transition: all 0.3s ease;
 }
-#sidebar.hide + #appbar-content {
+#sidebar.hide + #appbar-and-content {
     width: calc(100% - 60px);
     left: 60px;
 }

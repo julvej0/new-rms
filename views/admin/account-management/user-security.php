@@ -1,42 +1,47 @@
 <?php
-include_once "../../../includes/admin/templates/header.php";
-include_once "../../../includes/admin/templates/navbar.php";
+include_once dirname(__FILE__, 4) . '/components/header/header.php';
+include_once dirname(__FILE__, 4) . '/components/navbar/navbar.php'; 
 include_once "functionalities/user-session.php";
 ?>
 <link rel="stylesheet" href="user-security.css">
-<div id='whole-page'>
+<section id='appbar-and-content'>
+    <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?>  
+    <div id='whole-page'>
 
 
-<!-- HTML code for change password modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Change Password</h2>
-            <form id="change-password-form">
-                <label for="current-password">Current Password:</label>
-                <div class='password-container'>
-                    <input type="password" class="oldPasswordInput" name="current-password" minlength='8' maxlength='16' required>
-                    <i class="toggle-password fas fa-eye-slash"></i>
-                </div>
-                <label for="new-password">New Password:</label>
-                <div class='password-container'>
-                    <input type="password" class="passwordInput" name="new-password" minlength='8' maxlength='16' required>
-                    <i class="toggle-password fas fa-eye-slash"></i>
-                </div>  
-                <label for="confirm-password">Confirm Password:</label>
-                <div class='password-container'>
-                    <input type="password" id="confirmPasswordInput" name="confirm-password" minlength='8' maxlength='16' required>
-                    <i class="toggle-password fas fa-eye-slash"></i>
-                </div>  
-                <button type="button" id="submit-password" onclick='changePss()'>Submit</button>
-            </form>
+    <!-- HTML code for change password modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Change Password</h2>
+                <form id="change-password-form">
+                    <label for="current-password">Current Password:</label>
+                    <div class='password-container'>
+                        <input type="password" class="oldPasswordInput" name="current-password" minlength='8' maxlength='16' required>
+                        <i class="toggle-password fas fa-eye-slash"></i>
+                    </div>
+                    <label for="new-password">New Password:</label>
+                    <div class='password-container'>
+                        <input type="password" class="passwordInput" name="new-password" minlength='8' maxlength='16' required>
+                        <i class="toggle-password fas fa-eye-slash"></i>
+                    </div>  
+                    <label for="confirm-password">Confirm Password:</label>
+                    <div class='password-container'>
+                        <input type="password" id="confirmPasswordInput" name="confirm-password" minlength='8' maxlength='16' required>
+                        <i class="toggle-password fas fa-eye-slash"></i>
+                    </div>  
+                    <button type="button" id="submit-password" onclick='changePss()'>Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
 <script src='change-pass-and-email.js'></script>
 <script src='show-hide-password.js'></script>
 <script src='edit-info.js'></script>
 <script src='close-modal.js'></script>
+
 <script>
     function changePss() {
     var currentPassword = document.querySelector('.oldPasswordInput').value;
@@ -48,15 +53,15 @@ include_once "functionalities/user-session.php";
     
     if (newPassword !== confirmPassword) {
         const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
         })
         
         Toast.fire({
@@ -73,40 +78,40 @@ include_once "functionalities/user-session.php";
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 if (xhr.responseText === 'successful') {
-                disableSubmitPassword.disabled = true;
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-                })
-                
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Password Changed Successfully'
-                })
-                // Redirect to login page after 3 seconds
-                setTimeout(() => {
-                    changePasswordModal.style.display = "none";
-                    document.getElementById("change-password-form").reset();
-                    window.location.href = "user-profile.php";
-                }, 3000);
+                    disableSubmitPassword.disabled = true;
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Password Changed Successfully'
+                    })
+                    // Redirect to login page after 3 seconds
+                    setTimeout(() => {
+                        changePasswordModal.style.display = "none";
+                        document.getElementById("change-password-form").reset();
+                        window.location.href = "user-profile.php";
+                    }, 3000);
                 } else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
                     })
                     
                     Toast.fire({
@@ -122,15 +127,15 @@ include_once "functionalities/user-session.php";
                     timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-                    })
+                })
                     
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'There Was a Problem With The Request!'
-                    })
+                Toast.fire({
+                    icon: 'error',
+                    title: 'There Was a Problem With The Request!'
+                })
             }
         }
     };

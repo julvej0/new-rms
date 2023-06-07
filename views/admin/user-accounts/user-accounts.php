@@ -1,13 +1,12 @@
-<title>RMS | AUTHORS</title>
+<title>RMS | ACCOUNTS</title>
 <?php 
-
-    include_once '../../../db/db.php'; //db connection
+    include dirname(__FILE__, 4) . '/helpers/db.php';
 ?>
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="user-accounts.css">
 <body>
     <?php
-        include_once '../../../includes/admin/templates/navbar.php';
+        include dirname(__FILE__, 4) . '/components/navbar/navbar.php'; 
         include_once 'functionalities/userAccounts_include/userAccounts_count.php';
         include_once 'functionalities/userAccounts_include/userAccounts_filter.php';
 
@@ -17,7 +16,8 @@
         $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
        
     ?>
-    
+ <section id='appbar-and-content'>
+    <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?>    
     <main>
         <div class="header">
             <h1 class="title">USER ACCOUNTS</h1>

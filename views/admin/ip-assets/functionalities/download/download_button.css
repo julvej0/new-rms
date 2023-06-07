@@ -1,8 +1,4 @@
-#dl-modal-container {
-    background: var(--grey);
-    padding: 0;
-}
-main section {
+section {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -10,7 +6,8 @@ main section {
     padding:0;
     height: 100%;
 }
-main section .header {
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,19 +15,20 @@ main section .header {
     padding: 10px; 
     width: 100%;
     position: sticky;
+    top: 0;
     left: 0;
     z-index: 100;
     background: var(--grey);
 }
 
-main section .header .dl-buttons {
+.dl-buttons {
     display: flex;
     justify-content: flex-start;
     width: 250px;
-    height: 100%;
+    /* height: 100%; */
 }
 
-main .header .dl-buttons .btn {
+.dl-buttons .btn {
     font-size: 25px;
     width: 60px;
     background: var(--light);
@@ -42,7 +40,7 @@ main .header .dl-buttons .btn {
     transition: all 0.3s ease;
 }
 
-main .header .dl-buttons .btn:hover {
+.dl-buttons .btn:hover {
     transform: translateY(-5px);
 }
 
@@ -54,11 +52,11 @@ main section .left {
     justify-content: flex-end;
 }
 
-main section .left .form-group {
+.left .form-group {
     position: relative;
 }
 
-main section .left .form-group input {
+.left .form-group input {
     width: 320px;
     height: 50px;
     background: var(--light);
@@ -70,11 +68,11 @@ main section .left .form-group input {
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-main section .left .form-group input:focus {
+.left .form-group input:focus {
     box-shadow: 0 0 0 4px var(--light-blue);
 }
 
-main .left .form-group .icon {
+.left .form-group .search-icon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -83,26 +81,35 @@ main .left .form-group .icon {
 }
 
 
-main section table {
+#tbl_download_ip-assets {
     width: 100%;
     table-layout: auto;
     min-width: 1000px;
     border-collapse: collapse;
 }
 
-main section table,
-th,
-td {
+#tbl_download_ip-assets, th, td {
     border-collapse: collapse;
     border-bottom: 2.5px solid var(--grey);
 }
 
-main section table thead tr {
+#tbl_download_ip-assets tbody td {
+    font-size: 11px;
+    top: 0;
+    max-width: 200px;
+    font-size: 13px;
+    padding: 10px 10px;
+    text-align: center;
+    min-height: 180px;
+    background: var(--light);
+}
+
+#bl_download_ip-assets thead tr {
     background: var(--light);
 }
 
 
-main section table thead tr th {
+#tbl_download_ip-assets thead tr th {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -114,16 +121,3 @@ main section table thead tr th {
     background: lightgray;
     box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
 }
-
-main section table tbody td {
-    font-size: 11px;
-    top: 0;
-    max-width: 200px;
-    font-size: 13px;
-    padding: 10px 10px;
-    text-align: center;
-    min-height: 180px;
-    background: var(--light);
-}
-
-

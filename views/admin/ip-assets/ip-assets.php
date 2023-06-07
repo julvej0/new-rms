@@ -3,10 +3,8 @@
     include dirname(__FILE__, 4) . '/components/header/header.php';
     include dirname(__FILE__, 4) . '/helpers/db.php';
     //TODO: create a php file that contains an include for the header.php and db.php then call that file if necessary
-    include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php'; 
-    include_once 'functionalities/ipa_include/ipa_filter.php';
-    include_once 'functionalities/ipa_include/ipa_year.php';
-    include_once 'functionalities/ipa_include/ipa_count.php';
+    include dirname(__FILE__, 4) . '/components/navbar/navbar.php'; 
+    
 
     $search = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
     $type = isset($_GET['type']) ? $_GET['type']: 'empty_type';
@@ -19,6 +17,13 @@
 <link rel="stylesheet" href="./ip-assets.css">
 
 <body>
+    <?php
+        include_once 'functionalities/ipa_include/ipa_filter.php';
+        include_once 'functionalities/ipa_include/ipa_year.php';
+        include_once 'functionalities/ipa_include/ipa_count.php';
+    ?>
+<section id='appbar-and-content'>
+    <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
     <main>
         <div class="header">
             <h1 class="title">IP Assets</h1>
@@ -105,10 +110,10 @@
 
 <script src="./ip-assets.js"></script>
 <script src="functionalities/download/download_button.js"></script>
+</section>
 </body>
 
 <?php
-    include dirname(__FILE__, 4) . '/components/public-user/templates/user-footer.php';
     include dirname(__FILE__, 4) . '/components/footer/footer.php';
 ?>
 <?php //SweetAlert2 mixin alerts
