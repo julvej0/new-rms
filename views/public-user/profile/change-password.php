@@ -1,11 +1,11 @@
 <?php
-include_once "../../../includes/public-user/templates/user-navbar.php";
-include_once "functionalities/user-session.php";
+    include_once "./functionalities/user-session.php";
+    include dirname(__FILE__, 4) . '/components/header/header.php';
+    include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php';
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="change-password.css">
 <div id='whole-page'>
-
 
 <!-- HTML code for change password modal -->
         
@@ -147,7 +147,3 @@ include_once "functionalities/user-session.php";
 }
 
 </script>
-
-<?php 
-include '../../../includes/admin/templates/header.php';
-?>

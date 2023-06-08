@@ -1,6 +1,6 @@
 <?php
 
-include_once "../../../db/db.php";
+include dirname(__FILE__, 4) . '/helpers/db.php';
 
 // Check if the user is logged in
 
