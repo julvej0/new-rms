@@ -19,7 +19,7 @@
 
 <!-- TODO: add a Loading message inside the table to show it's doing something -->
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="./ipa.css">
+<link rel="stylesheet" href="./ip-assets.css">
 <link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
 <body>
     <section id="main-content">
@@ -124,7 +124,7 @@
         </div>
     </section>
 
-    <script src="ipa.js"></script>
+    <script src="ip-assets.js"></script>
 </body>
 
 

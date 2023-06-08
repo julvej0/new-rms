@@ -34,14 +34,21 @@ session_start();
                 <div class="right-sm-container">
                     <div class="right-content">
                         <ul class="nav-links">
-                            <?php if ($_SESSION['account_type'] == "Admin"): ?>
-                                <li><a href="//localhost/new-rms-webdev/views/admin/home/home.php" id='home-link'>HOME</a></li>
-                                <li><a href="//localhost/new-rms-webdev/views/admin/ip-assets/ip-assets.php" id='ipa-link'>IP ASSETS</a></li>
-                                <li><a href="//localhost/new-rms-webdev/views/admin/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
-                                <li><a href="//localhost/new-rms-webdev/views/admin/about/about.php" id='abt-link'>ABOUT</a></li>
+                            <?php if( isset($_SESSION['account_type']) ): ?>
+                                <?php if ($_SESSION['account_type'] == "Admin"): ?>
+                                    <li><a href="//localhost/new-rms-webdev/views/admin/home/home.php" id='home-link'>HOME</a></li>
+                                    <li><a href="//localhost/new-rms-webdev/views/admin/ip-assets/ip-assets.php" id='ip-assets-link'>IP ASSETS</a></li>
+                                    <li><a href="//localhost/new-rms-webdev/views/admin/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
+                                    <li><a href="//localhost/new-rms-webdev/views/admin/about/about.php" id='abt-link'>ABOUT</a></li>
+                                <?php else: ?>
+                                    <li><a href="//localhost/new-rms-webdev/views/public-user/home/home.php" id='home-link'>HOME</a></li>
+                                    <li><a href="//localhost/new-rms-webdev/views/public-user/ip-assets/ip-assets.php" id='ip-assets-link'>IP ASSETS</a></li>
+                                    <li><a href="//localhost/new-rms-webdev/views/public-user/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
+                                    <li><a href="//localhost/new-rms-webdev/views/public-user/about/about.php" id='abt-link'>ABOUT</a></li>
+                                <?php endif; ?>
                             <?php else: ?>
                                 <li><a href="//localhost/new-rms-webdev/views/public-user/home/home.php" id='home-link'>HOME</a></li>
-                                <li><a href="//localhost/new-rms-webdev/views/public-user/ipa/ipa.php" id='ipa-link'>IP ASSETS</a></li>
+                                <li><a href="//localhost/new-rms-webdev/views/public-user/ip-assets/ip-assets.php" id='ip-assets-link'>IP ASSETS</a></li>
                                 <li><a href="//localhost/new-rms-webdev/views/public-user/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
                                 <li><a href="//localhost/new-rms-webdev/views/public-user/about/about.php" id='abt-link'>ABOUT</a></li>
                             <?php endif; ?>
