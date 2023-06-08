@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../../views/public-user/ipa/ipa-view.css">
+<link rel="stylesheet" href="../../../views/public-user/ip-assets/ip-assets-view.css">
 <link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
 <?php 
     include dirname(__FILE__, 4) . '/components/header/header.php';

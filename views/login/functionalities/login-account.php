@@ -36,12 +36,12 @@ if (isset($_POST['login'] )) {
             }
         }
         else{
-            header("Location: ../../../../views/admin/account/login.php?login=incorrect");
+            header("Location: ../../../../views/login/login.php?login=incorrect");
             exit();
         }
     }
     else{
-        header("Location: ../../../../views/admin/account/login.php?login=notexist");
+        header("Location: ../../../../views/login/login.php?login=notexist");
         exit();
     }
 }

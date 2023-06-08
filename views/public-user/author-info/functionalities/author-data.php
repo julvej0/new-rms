@@ -53,7 +53,7 @@ function display_ipassets($conn, $id){
             while ($row = pg_fetch_assoc($sql_result)) {
                 $encrypted_ID = encryptor('encrypt', $row['registration_number']);
                 ?>
-                <tr class='css-tr' data-clickable='true' onclick="window.location='../ipa/ipa-view.php?ipID=<?=$encrypted_ID?>'">
+                <tr class='css-tr' data-clickable='true' onclick="window.location='../ipa/ip-assets-view.php?ipID=<?=$encrypted_ID?>'">
                     <td class='css-td'><?= $row['title_of_work'] ? $row['title_of_work'] : 'Not Yet Set'; ?></td>
                     
                 </tr>

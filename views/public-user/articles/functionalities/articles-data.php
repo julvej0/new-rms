@@ -12,7 +12,7 @@
         if(response == "true"){
           window.location='./article_view.php?pubID='+ encrypted_ID;
         }else{
-          window.location = '../../../views/admin/account/login.php?login=required';
+          window.location = '../../../views/login/login.php?login=required';
         }
       }
     };

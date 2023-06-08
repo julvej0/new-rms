@@ -19,7 +19,7 @@ $user = pg_fetch_assoc($user_result);
 
 if (!$user) {
     echo "User not found.";
-    header("Location: ../../admin/account/login.php");
+    header("Location: ../../login/login.php");
     exit;
 }
 

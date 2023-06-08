@@ -28,5 +28,4 @@ window.addEventListener('click', (e) => {
     if(e.target === closeBtn) {
         filterOptions.classList.remove('show')
     }
-    
 })

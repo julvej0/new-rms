@@ -10,9 +10,9 @@
 
             console.log(response);
             if(response == "true"){
-              window.location='./ipa-view.php?ipID='+ encrypted_ID;
+              window.location='./ip-assets-view.php?ipID='+ encrypted_ID;
             }else{
-            window.location = '../../../views/admin/account/login.php?login=required';
+            window.location = '../../../views/login/login.php?login=required';
             }
           }
         };
