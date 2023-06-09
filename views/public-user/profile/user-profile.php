@@ -8,7 +8,7 @@ include_once "functionalities/user-session.php";
 <link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
 <div id='whole-page'>
 
-
+<!-- TODO: make a shared user-session.php -->
 <!-- profile page -->
     <div id="profile-page" class="mini-page">
         <div class="page-title">

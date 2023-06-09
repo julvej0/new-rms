@@ -4,6 +4,7 @@ include dirname(__FILE__, 4) . '/helpers/db.php';
 
 // Check if the user is logged in
 
+echo("<script>console.log('user_email: " . $_SESSION['user_email'] . "');</script>");
 if (!isset($_SESSION['user_email'])) {
     header("Location: ../../../views/public-user/home/home.php");
     exit;
