@@ -1,25 +1,27 @@
-
 <?php
 session_start();
 ?>
 
 <!-- css -->
-<link rel="stylesheet" href="//localhost/new-rms-webdev/css/index.css">
-<link rel="stylesheet" href= "//localhost/new-rms-webdev/components/public-user/css/user-navbar.css">
+<link rel="stylesheet" href="//localhost:8080/new-rms-webdev/css/index.css">
+<link rel="stylesheet" href= "//localhost:8080/new-rms-webdev/components/public-user/css/user-navbar.css">
 
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="sweetalert2.min.css">
 <!-- TODO: learn how to make link href target absolute paths without actually hardcoding the url -->
 <body>
-<section>
+<section>    
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
     <div class="navbar-container">
         <div class="left">
             <div class="left-md-container">
                 <div class="left-sm-container">
                     <div class="left-content">
                         <div class="logo">
-                            <img src="//localhost/new-rms-webdev/assets/images/batStateUNeu-logo.png" alt="">
+                            <img src="//localhost:8080/new-rms-webdev/assets/images/batStateUNeu-logo.png" alt="">
                         </div>
                         <div class="header-title">
                             <h4>BatStateU</h4>
@@ -36,24 +38,24 @@ session_start();
                         <ul class="nav-links">
                             <?php if( isset($_SESSION['account_type']) ): ?>
                                 <?php if ($_SESSION['account_type'] == "Admin"): ?>
-                                    <li><a href="//localhost/new-rms-webdev/views/admin/home/home.php" id='home-link'>HOME</a></li>
-                                    <li><a href="//localhost/new-rms-webdev/views/admin/ip-assets/ip-assets.php" id='ip-assets-link'>IP ASSETS</a></li>
-                                    <li><a href="//localhost/new-rms-webdev/views/admin/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
-                                    <li><a href="//localhost/new-rms-webdev/views/admin/about/about.php" id='abt-link'>ABOUT</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/admin/home/home.php" id='home-link' onclick="showLoadingScreen()">HOME</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/admin/ip-assets/ip-assets.php" id='ip-assets-link' onclick="showLoadingScreen()">IP ASSETS</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/admin/articles/articles.php" id='pb-link' onclick="showLoadingScreen()">PUBLICATIONS</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/admin/about/about.php" id='abt-link' onclick="showLoadingScreen()">ABOUT</a></li>
                                 <?php else: ?>
-                                    <li><a href="//localhost/new-rms-webdev/views/public-user/home/home.php" id='home-link'>HOME</a></li>
-                                    <li><a href="//localhost/new-rms-webdev/views/public-user/ip-assets/ip-assets.php" id='ip-assets-link'>IP ASSETS</a></li>
-                                    <li><a href="//localhost/new-rms-webdev/views/public-user/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
-                                    <li><a href="//localhost/new-rms-webdev/views/public-user/about/about.php" id='abt-link'>ABOUT</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/public-user/home/home.php" id='home-link' onclick="showLoadingScreen()">HOME</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/public-user/ip-assets/ip-assets.php" id='ip-assets-link' onclick="showLoadingScreen()">IP ASSETS</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/public-user/articles/articles.php" id='pb-link'onclick="showLoadingScreen()">PUBLICATIONS</a></li>
+                                    <li><a href="//localhost:8080/new-rms-webdev/views/public-user/about/about.php" id='abt-link' onclick="showLoadingScreen()">ABOUT</a></li>
                                 <?php endif; ?>
                             <?php else: ?>
-                                <li><a href="//localhost/new-rms-webdev/views/public-user/home/home.php" id='home-link'>HOME</a></li>
-                                <li><a href="//localhost/new-rms-webdev/views/public-user/ip-assets/ip-assets.php" id='ip-assets-link'>IP ASSETS</a></li>
-                                <li><a href="//localhost/new-rms-webdev/views/public-user/articles/articles.php" id='pb-link'>PUBLICATIONS</a></li>
-                                <li><a href="//localhost/new-rms-webdev/views/public-user/about/about.php" id='abt-link'>ABOUT</a></li>
+                                <li><a href="//localhost:8080/new-rms-webdev/views/public-user/home/home.php" id='home-link' onclick="showLoadingScreen()">HOME</a></li>
+                                <li><a href="//localhost:8080/new-rms-webdev/views/public-user/ip-assets/ip-assets.php" id='ip-assets-link' onclick="showLoadingScreen()">IP ASSETS</a></li>
+                                <li><a href="//localhost:8080/new-rms-webdev/views/public-user/articles/articles.php" id='pb-link' onclick="showLoadingScreen()">PUBLICATIONS</a></li>
+                                <li><a href="//localhost:8080/new-rms-webdev/views/public-user/about/about.php" id='abt-link' onclick="showLoadingScreen()">ABOUT</a></li>
                             <?php endif; ?>
                             
-                            <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '//localhost/new-rms-webdev/views/logout/logout.php?logout=1' :  '//localhost/new-rms-webdev/views/login/login.php'?>" onclick="<?=isset($_SESSION['user_email']) ? 'return showLogoutAlert()' : ''?>">
+                            <a class="signin-btn" href="<?=isset($_SESSION['user_email']) ? '//localhost:8080/new-rms-webdev/views/logout/logout.php?logout=1' :  '//localhost:8080/new-rms-webdev/views/login/login.php'?>" onclick="<?=isset($_SESSION['user_email']) ? 'return showLogoutAlert()' : ''?>">
                                 <?=isset($_SESSION['user_email']) ? 'LOGOUT' : 'LOGIN'?>
                             </a>
                         </ul>
@@ -69,15 +71,15 @@ session_start();
                             <?php if ($sessionActive): ?>
                                 <i class="fas fa-cog" onclick="toggleDropdown()"></i>
                                 <div class="dropdown" id="dropdown">
-                                    <a style='margin-right: 30px;' href="//localhost/new-rms-webdev/views/public-user/profile/user-profile.php">
+                                    <a style='margin-right: 30px;' href="//localhost:8080/new-rms-webdev/views/public-user/profile/user-profile.php">
                                         <i class="fas fa-user"></i> PROFILE
                                     </a>
                                     <?php if ($isAuthor): ?>
-                                        <a style='margin-right: 30px;' href="//localhost/new-rms-webdev/views/public-user/author-info/author-profile.php">
+                                        <a style='margin-right: 30px;' href="//localhost:8080/new-rms-webdev/views/public-user/author-info/author-profile.php">
                                             <i class="fas fa-info-circle"></i> AUTHOR INFORMATION
                                         </a>
                                     <?php endif; ?>
-                                    <a href="//localhost/new-rms-webdev/views/public-user/profile/change-password.php">
+                                    <a href="//localhost:8080/new-rms-webdev/views/public-user/profile/change-password.php">
                                         <i class="fas fa-lock"></i> CHANGE PASSWORD
                                     </a>
                                 </div>
@@ -90,8 +92,8 @@ session_start();
     </div>
 </section>
 <!-- SCRIPT -->
-<script src="//localhost/new-rms-webdev/components/public-user/js/user-navbar.js"></script>
-<script src="//localhost/new-rms-webdev/components/public-user/js/profile-dropdown.js"></script>
+<script src="//localhost:8080/new-rms-webdev/components/public-user/js/user-navbar.js"></script>
+<script src="//localhost:8080/new-rms-webdev/components/public-user/js/profile-dropdown.js"></script>
 <script>
     function showLogoutAlert() {
         Swal.fire({
@@ -106,14 +108,16 @@ session_start();
         }).then((result) => {
             if (result.isConfirmed) {
                 // Redirect to the logout page
-                window.location.href = '//localhost/new-rms-webdev/views/logout/logout.php?logout=1';
+                window.location.href = '//localhost:8080/new-rms-webdev/views/logout/logout.php?logout=1';
             }
         });
 
         return false; // Prevent the default behavior of the anchor tag
     }
+    
+    function showLoadingScreen() {
+        document.getElementById('loadingOverlay').style.visibility = 'visible';
+    }
+
 </script>
 <!-- CONTENT -->
-
-
-
