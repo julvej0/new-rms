@@ -1,5 +1,9 @@
 //TODO: transfer all scripts in dashboard.php here
 
+window.addEventListener("load", function() {
+    var loadingScreen = document.getElementById("loading-screen");
+    loadingScreen.style.display = "none";
+});
 
 // Nav Buttons
 

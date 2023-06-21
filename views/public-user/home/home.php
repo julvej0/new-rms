@@ -169,8 +169,15 @@
     document.getElementById('search-form').addEventListener('submit', search_func);
 
     window.addEventListener("load", function() {
-    var loadingScreen = document.getElementById("loading-screen");
-    loadingScreen.style.display = "none";
+        var loadingScreen = document.getElementById("loading-screen");
+        var body = document.querySelector('body');
+
+        function enableScroll (){
+            body.style.overflow ='auto';
+        }
+
+        loadingScreen.style.display = "none";
+        enableScroll();
     });
 
 </script>
