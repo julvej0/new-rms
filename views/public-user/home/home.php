@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
 
 <body>
-    
+<div id="loading-screen">
+    <div id="loading-spinner"></div>
+</div>
 <div class="home-content">
     <section id="hero-img">
         <div class="rms-title">
@@ -165,5 +167,10 @@
     }
     
     document.getElementById('search-form').addEventListener('submit', search_func);
+
+    window.addEventListener("load", function() {
+    var loadingScreen = document.getElementById("loading-screen");
+    loadingScreen.style.display = "none";
+    });
 
 </script>
