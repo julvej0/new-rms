@@ -2,6 +2,7 @@ body {
     background: var(--grey);
     position: relative;
     overflow-x: hidden;
+    overflow: hidden;
 }
 #hero-img {
     width: 100%;
