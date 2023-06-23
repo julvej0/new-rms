@@ -15,9 +15,8 @@
 
 <body>
 <div id="loading-screen">
-    <div id="loading-spinner"></div>
-    <div class="loading">
-        redSpartan
+    <div class="loading-img">
+        <img src="../../../assets/images/redspartan_logo.png" alt="redSpartan">
     </div>
 </div>
 <section id='appbar-and-content'>

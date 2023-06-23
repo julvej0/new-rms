@@ -17,26 +17,29 @@ include_once  dirname(__FILE__, 3) . "/views/admin/account-management/functional
         </div>
         <h4 class="logo-title">Research Management Services</h4>
     </div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
     <ul class="side-menu">
         <li>
-            <a href="../../../views/admin/dashboard/dashboard.php" id='dashboard-link'>
+            <a href="../../../views/admin/dashboard/dashboard.php" id='dashboard-link' onclick="showLoadingScreen()">
             <i class='bx bxs-dashboard icon'></i>Dashboard</a>
         </li>
         <li class="divider" data-text="Main">Main</li>
         <li>
-            <a href="../../../views/admin/publications/publications.php" id='publication-link'>
+            <a href="../../../views/admin/publications/publications.php" id='publication-link' onclick="showLoadingScreen()">
             <i class='bx bxs-book-open icon' ></i>Publications</a>
         </li>
         <li>
-            <a href="../../../views/admin/ip-assets/ip-assets.php" id='ip-assets-link'>
+            <a href="../../../views/admin/ip-assets/ip-assets.php" id='ip-assets-link' onclick="showLoadingScreen()">
             <i class='bx bxs-folder icon' ></i>IP Assets</a>
         </li>
         <li>
-            <a href="../../../views/admin/authors/authors.php" id='author-link'>
+            <a href="../../../views/admin/authors/authors.php" id='author-link' onclick="showLoadingScreen()">
             <i class='bx bxs-group icon' ></i>Authors</a>
         </li>
         <li>
-            <a href="../../../views/admin/user-accounts/user-accounts.php" id='user-accounts-link'>
+            <a href="../../../views/admin/user-accounts/user-accounts.php" id='user-accounts-link' onclick="showLoadingScreen()">
             <i class='bx bxs-user icon'></i></i>User Accounts</a>
         </li>
         <li class="divider" data-text="Account">Account</li>
@@ -46,10 +49,10 @@ include_once  dirname(__FILE__, 3) . "/views/admin/account-management/functional
             </a>
             <ul class='side-dropdown'>
                 <li>
-                    <a href="../../../views/admin/account-management/user-profile.php" id="user-link">Profile</a>
+                    <a href="../../../views/admin/account-management/user-profile.php" id="user-link" onclick="showLoadingScreen()">Profile</a>
                 </li>
                 <li>
-                    <a href="../../../views/admin/account-management/change-password.php" id="security-link">Change Password</a>
+                    <a href="../../../views/admin/account-management/change-password.php" id="security-link" onclick="showLoadingScreen()">Change Password</a>
                 </li>
             </ul>
             <a class="logout" onclick = 'return showLogoutAlert()'>

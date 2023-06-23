@@ -102,3 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.querySelector('#sidebar .side-dropdown').classList.add('show');
 	}
 });
+
+function showLoadingScreen() {
+	document.getElementById('loadingOverlay').style.visibility = 'visible';
+}
