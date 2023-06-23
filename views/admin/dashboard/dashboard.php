@@ -16,6 +16,9 @@
 <body>
 <div id="loading-screen">
     <div id="loading-spinner"></div>
+    <div class="loading">
+        redSpartan
+    </div>
 </div>
 <section id='appbar-and-content'>
     <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
