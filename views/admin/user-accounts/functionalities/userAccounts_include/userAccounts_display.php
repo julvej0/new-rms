@@ -1,6 +1,6 @@
 <?php
     $items_per_page = 10; //items per page
-    $total_records = countUserAccounts($conn); //get total records
+    $total_records = countUserAccounts($userurl); //get total records
 
     $search_query = $search != "empty_search"? $_GET['search'] : ""; //check if user searched
 

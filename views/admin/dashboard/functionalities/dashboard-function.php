@@ -1,58 +1,85 @@
 <?php
 // getting the total number of users account
-function getUserCount($conn, $reuse_stmt = false) {
-    $query = "SELECT user_id FROM table_user;";
-    if (!$reuse_stmt) {
-        $stmt = pg_prepare($conn, "get_user_id", $query);
+function getUserCount($userurl) {
+    // Make the HTTP request to the endpoint
+    $response = file_get_contents($userurl);
+
+    // Check if the request was successful
+    if ($response === false) {
+        echo "Failed to retrieve data from the endpoint.";
+        return false;
     }
-    $result = pg_execute($conn, "get_user_id", array());
-    if (!$result) {
-        echo "Query failed: " . pg_last_error($conn);
-    } else {
-        $row_count = pg_num_rows($result);
-        if ($row_count == 0) {
-            return '0';
-        } else {
-            return $row_count;
-        }
+
+    // Parse the JSON response
+    $data = json_decode($response, true);
+
+    // Check if the JSON was parsed successfully
+    if ($data === null) {
+        echo "Failed to parse JSON response.";
+        return false;
     }
+
+    // Get the number of users from the response
+    $userCount = count($data['table_user']);
+
+    return $userCount;
 }
+
 // getting the total number of authors 
-function getAuthorCount($conn, $reuse_stmt = false) {
-    $query = "SELECT author_id FROM table_authors;";
-    if (!$reuse_stmt) {
-        $stmt = pg_prepare($conn, "get_author_id", $query);
+function getAuthorCount() {
+    // Make the HTTP request to the endpoint
+    $url = 'http://localhost:5000/table_authors';
+    $response = file_get_contents($url);
+
+    // Check if the request was successful
+    if ($response === false) {
+        echo "Failed to retrieve data from the endpoint.";
+        return false;
     }
-    $result = pg_execute($conn, "get_author_id", array());
-    if (!$result) {
-        echo "Query failed: " . pg_last_error($conn);
-    } else {
-        $row_count = pg_num_rows($result);
-        if ($row_count == 0) {
-            return '0';
-        } else {
-            return $row_count;
-        }
+
+    // Parse the JSON response
+    $data = json_decode($response, true);
+
+    // Check if the JSON was parsed successfully
+    if ($data === null) {
+        echo "Failed to parse JSON response.";
+        return false;
     }
+
+    // Get the number of users from the response
+    $userCount = count($data['table_authors']);
+
+    return $userCount;
 }
+
 // getting the total number of articles in publications
-function getArticleCount($conn, $reuse_stmt = false) {
-    $query = "SELECT title_of_paper FROM table_publications;";
-    if (!$reuse_stmt) {
-        $stmt = pg_prepare($conn, "get_title_of_paper", $query);
+function getArticleCount() {
+    // Make the HTTP request to the endpoint
+    $url = 'http://localhost:5000/table_publications';
+    $response = file_get_contents($url);
+
+    // Check if the request was successful
+    if ($response === false) {
+        echo "Failed to retrieve data from the endpoint.";
+        return false;
     }
-    $result = pg_execute($conn, "get_title_of_paper", array());
-    if (!$result) {
-        echo "Query failed: " . pg_last_error($conn);
-    } else {
-        $row_count = pg_num_rows($result);
-        if ($row_count == 0) {
-            return '0';
-        } else {
-            return $row_count;
-        }
+
+    // Parse the JSON response
+    $data = json_decode($response, true);
+
+    // Check if the JSON was parsed successfully
+    if ($data === null) {
+        echo "Failed to parse JSON response.";
+        return false;
     }
+
+    // Get the number of users from the response
+    $userCount = count($data['table_publications']);
+
+    return $userCount;
 }
+
+// tobe updated
 // getting the number o authors with most contributions in publications
 function getPublicationsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";

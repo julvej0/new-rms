@@ -36,7 +36,7 @@
                         <div>
                             <?php
                                 // Retrieve the user count using the `getUserCount` function and store it in the variable $user_count
-                                $user_count = getUserCount($conn);
+                                $user_count = getUserCount($userurl);
                                 
                                 // Output the user count within an <h2> HTML element
                                 echo '<h2>'.$user_count.'</h2>';
@@ -51,7 +51,7 @@
                         <div>
                             <?php
                                 // Retrieve the author count using the `getAuthorCount` function and store it in the variable $author_count
-                                $author_count = getAuthorCount($conn);
+                                $author_count = getAuthorCount();
 
                                 // Output the author count within an <h2> HTML element
                                 echo '<h2>'.$author_count.'</h2>';
@@ -66,7 +66,7 @@
                         <div>
                             <?php
                                 // Retrieve the article count using the `getArticleCount` function and store it in the variable $article_count
-                                $article_count = getArticleCount($conn);
+                                $article_count = getArticleCount();
 
                                 // Output the article count within an <h2> HTML element
                                 echo '<h2>'.$article_count.'</h2>';
@@ -148,7 +148,7 @@
                         <div>
                             <?php
                                 // Retrieve the user count using the `getUserCount` function with an optional parameter and store it in the variable $user_count
-                                $user_count = getUserCount($conn, true);
+                                $user_count = getUserCount($userurl);
 
                                 // Output the user count within an <h2> HTML element
                                 echo '<h2>'.$user_count.'</h2>';
@@ -163,7 +163,7 @@
                         <div>
                             <?php
                                 // Retrieve the author count using the `getAuthorCount` function with an optional parameter and store it in the variable $author_count
-                                $author_count = getAuthorCount($conn, true);
+                                $author_count = getAuthorCount();
 
                                 // Output the author count within an <h2> HTML element
                                 echo '<h2>'.$author_count.'</h2>';
