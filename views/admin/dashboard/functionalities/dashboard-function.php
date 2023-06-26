@@ -1,14 +1,27 @@
 <?php
 // getting the total number of users account
 function getUserCount($userurl) {
-    // Make the HTTP request to the endpoint
-    $response = file_get_contents($userurl);
+    // Initialize a cURL session
+    $ch = curl_init();
+
+    // Set the URL
+    curl_setopt($ch, CURLOPT_URL, $userurl);
+
+    // Set the option to return the transfer as a string
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // Execute the request and get the response
+    $response = curl_exec($ch);
 
     // Check if the request was successful
     if ($response === false) {
         echo "Failed to retrieve data from the endpoint.";
+        curl_close($ch);
         return false;
     }
+
+    // Close the cURL session
+    curl_close($ch);
 
     // Parse the JSON response
     $data = json_decode($response, true);
@@ -25,17 +38,30 @@ function getUserCount($userurl) {
     return $userCount;
 }
 
+
 // getting the total number of authors 
-function getAuthorCount() {
-    // Make the HTTP request to the endpoint
-    $url = 'http://localhost:5000/table_authors';
-    $response = file_get_contents($url);
+function getAuthorCount($authorurl) {
+    // Initialize a cURL session
+    $ch = curl_init();
+
+    // Set the URL
+    curl_setopt($ch, CURLOPT_URL, $authorurl);
+
+    // Set the option to return the transfer as a string
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // Execute the request and get the response
+    $response = curl_exec($ch);
 
     // Check if the request was successful
     if ($response === false) {
         echo "Failed to retrieve data from the endpoint.";
+        curl_close($ch);
         return false;
     }
+
+    // Close the cURL session
+    curl_close($ch);
 
     // Parse the JSON response
     $data = json_decode($response, true);
@@ -46,23 +72,35 @@ function getAuthorCount() {
         return false;
     }
 
-    // Get the number of users from the response
-    $userCount = count($data['table_authors']);
+    // Get the number of authors from the response
+    $authorCount = count($data['table_authors']);
 
-    return $userCount;
+    return $authorCount;
 }
 
 // getting the total number of articles in publications
-function getArticleCount() {
-    // Make the HTTP request to the endpoint
-    $url = 'http://localhost:5000/table_publications';
-    $response = file_get_contents($url);
+function getArticleCount($publicationurl) {
+    // Initialize a cURL session
+    $ch = curl_init();
+
+    // Set the URL
+    curl_setopt($ch, CURLOPT_URL, $publicationurl);
+
+    // Set the option to return the transfer as a string
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // Execute the request and get the response
+    $response = curl_exec($ch);
 
     // Check if the request was successful
     if ($response === false) {
         echo "Failed to retrieve data from the endpoint.";
+        curl_close($ch);
         return false;
     }
+
+    // Close the cURL session
+    curl_close($ch);
 
     // Parse the JSON response
     $data = json_decode($response, true);
@@ -73,11 +111,12 @@ function getArticleCount() {
         return false;
     }
 
-    // Get the number of users from the response
-    $userCount = count($data['table_publications']);
+    // Get the number of articles from the response
+    $articleCount = count($data['table_publications']);
 
-    return $userCount;
+    return $articleCount;
 }
+
 
 // tobe updated
 // getting the number o authors with most contributions in publications
@@ -226,27 +265,31 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
     return $output;
 }
 // getting the number of published articles
-function getPublishedIPAssets($conn) {
-    $query = "SELECT title_of_work FROM table_ipassets WHERE status = $1";
-    $params = array("published");
+function getPublishedIPAssets($ipassetsurl) {
+    // Make the HTTP request to the endpoint
+    $response = file_get_contents($ipassetsurl);
 
-    $query_run = pg_prepare($conn, "pub_query", $query);
-    if(!$query_run) {
-        echo "Prepared statement creation failed: " . pg_last_error($conn);
-    } else {
-        $result = pg_execute($conn, "pub_query", $params);
-        if(!$result) {
-            echo "Query execution failed: " . pg_last_error($conn);
-        } else {
-            $row_count = pg_num_rows($result);
-            if($row_count == 0) {
-                return '0';
-            } else {
-                return $row_count;
-            }
-        }
+    // Check if the request was successful
+    if ($response === false) {
+        echo "Failed to retrieve data from the endpoint.";
+        return false;
     }
+
+    // Parse the JSON response
+    $data = json_decode($response, true);
+
+    // Check if the JSON was parsed successfully
+    if ($data === null) {
+        echo "Failed to parse JSON response.";
+        return false;
+    }
+
+    // Get the number of published IP assets from the response
+    $publishedIPAssetCount = count($data['table_ipassets']);
+
+    return $publishedIPAssetCount;
 }
+
 // getting the recently added articles
 function getRecentIpAssets($conn, $limit) {
     $query = "SELECT title_of_work, date_registered FROM table_ipassets WHERE date_registered IS NOT NULL ORDER BY date_registered DESC LIMIT $1";

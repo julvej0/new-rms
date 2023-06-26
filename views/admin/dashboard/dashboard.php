@@ -51,7 +51,7 @@
                         <div>
                             <?php
                                 // Retrieve the author count using the `getAuthorCount` function and store it in the variable $author_count
-                                $author_count = getAuthorCount();
+                                $author_count = getAuthorCount($authorurl);
 
                                 // Output the author count within an <h2> HTML element
                                 echo '<h2>'.$author_count.'</h2>';
@@ -66,7 +66,7 @@
                         <div>
                             <?php
                                 // Retrieve the article count using the `getArticleCount` function and store it in the variable $article_count
-                                $article_count = getArticleCount();
+                                $article_count = getArticleCount($publicationurl);
 
                                 // Output the article count within an <h2> HTML element
                                 echo '<h2>'.$article_count.'</h2>';
@@ -163,7 +163,7 @@
                         <div>
                             <?php
                                 // Retrieve the author count using the `getAuthorCount` function with an optional parameter and store it in the variable $author_count
-                                $author_count = getAuthorCount();
+                                $author_count = getAuthorCount($authorurl);
 
                                 // Output the author count within an <h2> HTML element
                                 echo '<h2>'.$author_count.'</h2>';
@@ -178,7 +178,7 @@
                         <div>
                             <?php
                                 // Retrieve the published IP assets using the `getPublishedIPAssets` function and store it in the variable $published_ipassets
-                                $published_ipassets = getPublishedIPAssets($conn);
+                                $published_ipassets = getPublishedIPAssets($ipassetsurl);
 
                                 // Output the published IP assets within an <h2> HTML element
                                 echo '<h2>'.$published_ipassets.'</h2>';
