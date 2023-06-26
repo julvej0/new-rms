@@ -266,14 +266,27 @@ function getMostViewedPapers($conn, $reuse_stmt = false) {
 }
 // getting the number of published articles
 function getPublishedIPAssets($ipassetsurl) {
-    // Make the HTTP request to the endpoint
-    $response = file_get_contents($ipassetsurl);
+    // Initialize a cURL session
+    $ch = curl_init();
+
+    // Set the URL
+    curl_setopt($ch, CURLOPT_URL, $ipassetsurl);
+
+    // Set the option to return the transfer as a string
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // Execute the request and get the response
+    $response = curl_exec($ch);
 
     // Check if the request was successful
     if ($response === false) {
         echo "Failed to retrieve data from the endpoint.";
+        curl_close($ch);
         return false;
     }
+
+    // Close the cURL session
+    curl_close($ch);
 
     // Parse the JSON response
     $data = json_decode($response, true);
