@@ -12,7 +12,9 @@
 
 <body>
 <div id="loading-screen">
-    <div id="loading-spinner"></div>
+    <div class="loading-img">
+        <img src="../../../assets/images/redspartan_logo.png" alt="redSpartan">
+    </div>
 </div>
 <div class="home-content">
     <section id="hero-img">
@@ -169,15 +171,15 @@
     document.getElementById('search-form').addEventListener('submit', search_func);
 
     window.addEventListener("load", function() {
-        var loadingScreen = document.getElementById("loading-screen");
-        var body = document.querySelector('body');
+    var loadingScreen = document.getElementById("loading-screen");
+    var body = document.querySelector('body');
 
-        function enableScroll (){
-            body.style.overflow ='auto';
-        }
+    function enableScroll (){
+        body.style.overflow ='auto';
+    }
 
-        loadingScreen.style.display = "none";
-        enableScroll();
-    });
+    loadingScreen.style.display = "none";
+    enableScroll();
+});
 
 </script>

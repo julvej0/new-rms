@@ -119,7 +119,7 @@ function getArticleCount($publicationurl) {
 
 
 // tobe updated
-// getting the number o authors with most contributions in publications
+// getting the number of authors with most contributions in publications
 function getPublicationsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $result = pg_query($conn, $sql);
