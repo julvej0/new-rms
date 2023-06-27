@@ -9,7 +9,38 @@
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./home.css">
 <link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
+<style>
+      
+#loading-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    height: 100%;
+    background-color:  rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
 
+.loading-img img {
+    animation: load 2s ease-in-out infinite;
+    width: 130px;
+}
+
+@keyframes load {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 50%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+</style>
 <body>
 <div id="loading-screen">
     <div class="loading-img">
@@ -171,15 +202,15 @@
     document.getElementById('search-form').addEventListener('submit', search_func);
 
     window.addEventListener("load", function() {
-    var loadingScreen = document.getElementById("loading-screen");
-    var body = document.querySelector('body');
+        var loadingScreen = document.getElementById("loading-screen");
+        var body = document.querySelector('body');
 
-    function enableScroll (){
-        body.style.overflow ='auto';
-    }
+        function enableScroll (){
+            body.style.overflow ='auto';
+        }
 
-    loadingScreen.style.display = "none";
-    enableScroll();
-});
+        loadingScreen.style.display = "none";
+        enableScroll();
+    });
 
 </script>
