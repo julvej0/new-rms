@@ -123,7 +123,7 @@
                     <div>
                     <?php
                         // Call the `getPublicationsContributors` function to retrieve publications contributors using the database connection object $conn
-                        echo getPublicationsContributors($conn);
+                        echo getPublicationsContributors($authorurl, $publicationurl);
                     ?>
                     </div>
                 </div>
@@ -235,7 +235,7 @@
                     <div>
                     <?php
                         // Call the `getIpAssetsContributors` function to retrieve the contributors of intellectual property (IP) assets using the database connection object $conn
-                        echo getIpAssetsContributors($conn);
+                        echo getIpAssetsContributors($ipassetsurl, $authorurl);
                     ?>
                     </div>
                 </div>

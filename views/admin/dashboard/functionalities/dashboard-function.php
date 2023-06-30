@@ -120,6 +120,100 @@ function getArticleCount($publicationurl) {
 
 // tobe updated
 // getting the number of authors with most contributions in publications
+function getPublicationsContributors($authorurl, $publicationurl) {
+    
+    $responsePublications = file_get_contents($publicationurl);
+
+    // Parse the JSON response
+    $dataPublications = json_decode($responsePublications, true);
+
+    // Extract the 'authors' column from the data
+    $authorsColumn = array_column($dataPublications, 'authors');
+
+    // Initialize an associative array to count author IDs
+    $authorCounts = array();
+
+    // Iterate through each 'authors' value
+    foreach ($authorsColumn as $authors) {
+        // Split the 'authors' value by ','
+        $authorIds = explode(',', $authors);
+
+        // Count the occurrence of each author ID
+        foreach ($authorIds as $authorId) {
+            $authorId = trim($authorId); // Remove leading/trailing whitespaces
+            if (!empty($authorId)) {
+                if (isset($authorCounts[$authorId])) {
+                    $authorCounts[$authorId]++;
+                } else {
+                    $authorCounts[$authorId] = 1;
+                }
+            }
+        }
+    }
+
+    // Sort the author IDs based on their occurrence in descending order
+    arsort($authorCounts);
+
+    // Retrieve the top 9 most used author IDs and their occurrence counts
+    $top9Authors = array_slice($authorCounts, 0, 9, true);
+
+    // Make GET request to the 'http://localhost:5000/table_authors' endpoint
+    $responseAuthors = file_get_contents($authorurl);
+
+    // Parse the JSON response
+    $dataAuthors = json_decode($responseAuthors, true);
+
+    // Extract the 'author_id' and 'author_name' columns from the data
+    $authorIdColumn = array_column($dataAuthors, 'author_id');
+    $authorNameColumn = array_column($dataAuthors, 'author_name');
+
+    // Create a mapping of author IDs to author names
+    $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
+
+    // Create an array to store contributors' information
+    $contributors = array();
+
+    // Iterate through the top 9 author IDs
+    foreach ($top9Authors as $authorId => $count) {
+        // Check if the author ID exists in the mapping
+        if (isset($authorMapping[$authorId])) {
+            $authorName = $authorMapping[$authorId];
+            $contributors[] = array(
+                'author_name' => $authorName,
+                'total_publications' => $count
+            );
+        }
+    }
+
+    // Sort the contributors array based on the total publications count in descending order
+    usort($contributors, function($a, $b) {
+        return $b['total_publications'] - $a['total_publications'];
+    });
+
+    // Display the top 9 contributors in the desired format
+    $count = 0;
+    ?>
+    <table>
+        <tr>
+            <th>Authors</th>
+            <th>Number of Publications</th>
+        </tr>
+        <?php foreach ($contributors as $contributor) {
+            $count++;
+            if ($count > 9) {
+                break;
+            }
+        ?>
+            <tr>
+                <td><?= $contributor['author_name']; ?></td>
+                <td><?= $contributor['total_publications']; ?></td>
+            </tr>
+        <?php } ?>
+    </table>
+    <?php
+}
+
+/*
 function getPublicationsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $result = pg_query($conn, $sql);
@@ -182,7 +276,101 @@ function getPublicationsContributors($conn) {
     </table>
     <?php
 }
+*/
+
 // getting the number of authors with most contributions in ip assets
+function getIpAssetsContributors($ipassetsurl, $authorurl) {
+    $responseIpAssets = file_get_contents($ipassetsurl);
+
+    // Parse the JSON response
+    $dataIpAssets = json_decode($responseIpAssets, true);
+
+    // Extract the 'authors' column from the data
+    $authorsColumn = array_column($dataIpAssets, 'authors');
+
+    // Initialize an associative array to count author IDs
+    $authorCounts = array();
+
+    // Iterate through each 'authors' value
+    foreach ($authorsColumn as $authors) {
+        // Split the 'authors' value by ','
+        $authorIds = explode(',', $authors);
+
+        // Count the occurrence of each author ID
+        foreach ($authorIds as $authorId) {
+            $authorId = trim($authorId); // Remove leading/trailing whitespaces
+            if (!empty($authorId)) {
+                if (isset($authorCounts[$authorId])) {
+                    $authorCounts[$authorId]++;
+                } else {
+                    $authorCounts[$authorId] = 1;
+                }
+            }
+        }
+    }
+
+    // Sort the author IDs based on their occurrence in descending order
+    arsort($authorCounts);
+
+    // Retrieve the top 9 most used author IDs and their occurrence counts
+    $top9Authors = array_slice($authorCounts, 0, 9, true);
+
+    $responseAuthors = file_get_contents($authorurl);
+
+    // Parse the JSON response
+    $dataAuthors = json_decode($responseAuthors, true);
+
+    // Extract the 'author_id' and 'author_name' columns from the data
+    $authorIdColumn = array_column($dataAuthors, 'author_id');
+    $authorNameColumn = array_column($dataAuthors, 'author_name');
+
+    // Create a mapping of author IDs to author names
+    $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
+
+    // Create an array to store contributors' information
+    $contributors = array();
+
+    // Iterate through the top 9 author IDs
+    foreach ($top9Authors as $authorId => $count) {
+        // Check if the author ID exists in the mapping
+        if (isset($authorMapping[$authorId])) {
+            $authorName = $authorMapping[$authorId];
+            $contributors[] = array(
+                'author_name' => $authorName,
+                'total_publications' => $count
+            );
+        }
+    }
+
+    // Sort the contributors array based on the total publications count in descending order
+    usort($contributors, function($a, $b) {
+        return $b['total_publications'] - $a['total_publications'];
+    });
+
+    // Display the top 9 contributors in the desired format
+    $count = 0;
+    ?>
+    <table>
+        <tr>
+            <th>Authors</th>
+            <th>Number of Publications</th>
+        </tr>
+        <?php foreach ($contributors as $contributor) {
+            $count++;
+            if ($count > 9) {
+                break;
+            }
+        ?>
+            <tr>
+                <td><?= $contributor['author_name']; ?></td>
+                <td><?= $contributor['total_publications']; ?></td>
+            </tr>
+        <?php } ?>
+    </table>
+    <?php
+}
+
+/*
 function getIpAssetsContributors($conn) {
     $sql = "SELECT * FROM table_authors ORDER BY author_id ASC";
     $result = pg_query($conn, $sql);
@@ -247,6 +435,7 @@ function getIpAssetsContributors($conn) {
     </table>
     <?php
 }
+*/
 
 // getting the most cited articles in publications
 
