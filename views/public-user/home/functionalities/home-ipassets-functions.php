@@ -93,40 +93,27 @@ function getTopCampus($conn, $limit) {
     }
 }
 // getting the recently added articles
-function getRecentIpAssets($conn, $limit) {
-    $query = "SELECT title_of_work, date_registered 
-    FROM table_ipassets
-    WHERE date_registered IS NOT NULL
-    ORDER BY date_registered 
-    DESC LIMIT $1";
-    $params = array($limit);
+function getRecentIpAssets($ipassetsurl) {
+    $data = file_get_contents($ipassetsurl);
+    $assets = json_decode($data, true);
 
-    $query_run = pg_prepare($conn, "recent_ipassets_query", $query);
-    if(!$query_run) {
-        echo "Prepared statement creation failed: " . pg_last_error($conn);
-    } else {
-        $result = pg_execute($conn, "recent_ipassets_query", $params);
-        if(!$result) {
-            echo "Query execution failed: " . pg_last_error($conn);
-        } else {
-            $rows = pg_fetch_all($result);
-            if(!$rows) {
-                echo "<p>No data found</p>";
-            } else {
-                echo "<table>";
-                echo "<tr><th>Title</th><th>Date Registered</th></tr>";    
-                foreach($rows as $row) {
-                    if(!empty($row['date_registered']) && strtotime($row['date_registered']) !== false) {
-                        $date = date('F d, Y', strtotime($row['date_registered']));
-                    } else {
-                        $date = "N/A";
-                    }
-                    echo "<tr><td>".$row['title_of_work']."</td><td>".$date."</td></tr>";
-                }
-                echo "</table>";
-            }
-        }
+    // Sort the assets based on the 'date_registered' column in descending order
+    usort($assets, function ($a, $b) {
+        return strtotime($b['date_registered']) - strtotime($a['date_registered']);
+    });
+
+    $recent_assets = array_slice($assets, 0, 4); // Get the top 4 records
+
+    // Print the details of the top 4 assets in a table format
+    echo "<table>";
+    echo "<tr><th>Title</th><th>Date Registered</th></tr>";
+
+    foreach ($recent_assets as $asset) {
+        $date = date('F d, Y', strtotime($asset['date_registered']));
+        echo "<tr><td>" . $asset['title_of_work'] . "</td><td>" . $date . "</td></tr>";
     }
+
+    echo "</table>";
 }
 
 ?>

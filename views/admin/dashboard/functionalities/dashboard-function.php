@@ -247,23 +247,53 @@ function getIpAssetsContributors($conn) {
     </table>
     <?php
 }
-// getting the most cited articles in publications
-function getMostViewedPapers($conn, $reuse_stmt = false) {
-    $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 4;";
-    if (!$reuse_stmt) {
-        $stmt = pg_prepare($conn, "get_most_viewed_papers", $sql);
-    }
-    $result = pg_execute($conn, "get_most_viewed_papers", array());
 
+// getting the most cited articles in publications
+
+function getMostViewedPapers($publicationurl) {
+    // Step 1: Send GET request to the API endpoint
+    $response = file_get_contents($publicationurl);
+
+    // Step 2: Parse JSON response and extract 'number_of_citation' and 'title_of_paper' values
+    $data = json_decode($response, true);
+    $citations = array_column($data, 'number_of_citation');
+    $titles = array_column($data, 'title_of_paper');
+
+    // Step 3: Sort the 'number_of_citation' values in descending order while maintaining the corresponding 'title_of_paper' values
+    array_multisort($citations, SORT_DESC, $titles);
+
+    // Step 4: Generate the HTML table with 'title_of_paper' and 'number_of_citation'
     $output = "<table>";
     $output .= "<tr><th>Title of Paper</th><th>Number of Citations</th></tr>";
-    while ($row = pg_fetch_assoc($result)) {
-        $output .= "<tr><td>".$row['title_of_paper']."</td><td>".$row['number_of_citation']."</td></tr>";
+
+    $topFour = array_slice($titles, 0, 4);
+    foreach ($topFour as $index => $title) {
+        $citation = $citations[$index];
+        $output .= "<tr><td>".$title."</td><td>".$citation."</td></tr>";
     }
+
     $output .= "</table>";
 
-    return $output;
+    echo $output;
 }
+
+// function getMostViewedPapers($conn, $reuse_stmt = false) {
+//     $sql = "SELECT title_of_paper, number_of_citation FROM table_publications WHERE number_of_citation IS NOT NULL ORDER BY number_of_citation DESC LIMIT 4;";
+//     if (!$reuse_stmt) {
+//         $stmt = pg_prepare($conn, "get_most_viewed_papers", $sql);
+//     }
+//     $result = pg_execute($conn, "get_most_viewed_papers", array());
+
+//     $output = "<table>";
+//     $output .= "<tr><th>Title of Paper</th><th>Number of Citations</th></tr>";
+//     while ($row = pg_fetch_assoc($result)) {
+//         $output .= "<tr><td>".$row['title_of_paper']."</td><td>".$row['number_of_citation']."</td></tr>";
+//     }
+//     $output .= "</table>";
+
+//     return $output;
+// }
+
 // getting the number of published articles
 function getPublishedIPAssets($ipassetsurl) {
     // Initialize a cURL session
@@ -304,33 +334,56 @@ function getPublishedIPAssets($ipassetsurl) {
 }
 
 // getting the recently added articles
-function getRecentIpAssets($conn, $limit) {
-    $query = "SELECT title_of_work, date_registered FROM table_ipassets WHERE date_registered IS NOT NULL ORDER BY date_registered DESC LIMIT $1";
-    $params = array($limit);
+function getRecentIpAssets($ipassetsurl) {
+    $data = file_get_contents($ipassetsurl);
+    $assets = json_decode($data, true);
 
-    $query_run = pg_prepare($conn, "recent_assets_query", $query);
-    if(!$query_run) {
-        echo "Prepared statement creation failed: " . pg_last_error($conn);
-    } else {
-        $result = pg_execute($conn, "recent_assets_query", $params);
-        if(!$result) {
-            echo "Query execution failed: " . pg_last_error($conn);
-        } else {
-            $rows = pg_fetch_all($result);
-            if(!$rows) {
-                echo "<p>No data found</p>";
-            } else {
-                echo "<table>";
-                echo "<tr><th>Title</th><th>Date Registered </th></tr>";    
-                foreach($rows as $row) {
-                    $date = date('F d, Y', strtotime($row['date_registered']));
-                    echo "<tr><td>".$row['title_of_work']."</td><td>".$date."</td></tr>";
-                }
-                echo "</table>";
-            }
-        }
+    // Sort the assets based on the 'date_registered' column in descending order
+    usort($assets, function ($a, $b) {
+        return strtotime($b['date_registered']) - strtotime($a['date_registered']);
+    });
+
+    $recent_assets = array_slice($assets, 0, 4); // Get the top 4 records
+
+    // Print the details of the top 4 assets in a table format
+    echo "<table>";
+    echo "<tr><th>Title</th><th>Date Registered</th></tr>";
+
+    foreach ($recent_assets as $asset) {
+        $date = date('F d, Y', strtotime($asset['date_registered']));
+        echo "<tr><td>" . $asset['title_of_work'] . "</td><td>" . $date . "</td></tr>";
     }
+
+    echo "</table>";
 }
+
+// function getRecentIpAssets($conn, $limit) {
+//     $query = "SELECT title_of_work, date_registered FROM table_ipassets WHERE date_registered IS NOT NULL ORDER BY date_registered DESC LIMIT $1";
+//     $params = array($limit);
+
+//     $query_run = pg_prepare($conn, "recent_assets_query", $query);
+//     if(!$query_run) {
+//         echo "Prepared statement creation failed: " . pg_last_error($conn);
+//     } else {
+//         $result = pg_execute($conn, "recent_assets_query", $params);
+//         if(!$result) {
+//             echo "Query execution failed: " . pg_last_error($conn);
+//         } else {
+//             $rows = pg_fetch_all($result);
+//             if(!$rows) {
+//                 echo "<p>No data found</p>";
+//             } else {
+//                 echo "<table>";
+//                 echo "<tr><th>Title</th><th>Date Registered </th></tr>";    
+//                 foreach($rows as $row) {
+//                     $date = date('F d, Y', strtotime($row['date_registered']));
+//                     echo "<tr><td>".$row['title_of_work']."</td><td>".$date."</td></tr>";
+//                 }
+//                 echo "</table>";
+//             }
+//         }
+//     }
+// }
 // getting the ip assets per campus
 function getIpAssetsCampus($conn) {
     $query = "SELECT campus, COUNT(*) as dataset FROM table_ipassets WHERE campus IS NOT NULL GROUP BY campus";
