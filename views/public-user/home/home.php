@@ -90,7 +90,7 @@
                         <div class="table">
                             <?php
                             // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
-                            echo getMostViewedPapers($conn);
+                            echo getMostViewedPapers($publicationurl);
                             ?>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="table">
                             <?php
                             // Call the `getRecentPublications` function to retrieve the most recent publications using the database connection object $conn and a limit of 5
-                            getRecentPublications($conn, 3)
+                            getRecentPublications($publicationurl)
                             ?>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                         <div class="table">
                             <?php
                             // Call the `getRecentIpAssets` function to retrieve the most recent intellectual property (IP) assets using the database connection object $conn and a limit of 5
-                            getRecentIpAssets($conn, 3)
+                            getRecentIpAssets($ipassetsurl)
                             ?>
                         </div>
                     </div>
