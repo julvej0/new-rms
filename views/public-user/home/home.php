@@ -79,7 +79,7 @@
                         <div class="table">
                             <?php 
                             // Call the `getPublicationsContributors` function to retrieve publications contributors using the database connection object $conn
-                            echo getPublicationsContributors($authorurl, $publicationurl);
+                            echo getPublicationsContributors($authorurl, $publicationurl)
                             ?>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         <div class="table">
                             <?php
                             // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
-                            echo getMostViewedPapers($publicationurl);
+                            getMostViewedPapers($publicationurl)//($conn)
                             ?>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="table">
                             <?php
                             // Call the `getRecentPublications` function to retrieve the most recent publications using the database connection object $conn and a limit of 5
-                            getRecentPublications($publicationurl)
+                            getRecentPublications($publicationurl)//($conn, 3)
                             ?>
                         </div>
                     </div>

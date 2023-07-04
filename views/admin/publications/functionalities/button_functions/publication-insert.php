@@ -1,4 +1,124 @@
 <?php
+//TODO: add some description/tooltip to fields like author describing how they work.
+//that you can just type an author's name to add it to the database
+if (isset($_POST['submitPB'])) {
+    $date_published = $_POST["date_published"];
+    $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;
+    if (!$date_published) {
+        $date_published = null;
+    } else {
+        $date_published = $_POST["date_published"];
+    }
+    $if_funded = isset($_POST['funding_type']) ? $_POST['funding_type'] : null;
+    if (!$if_funded) {
+        $if_funded = "";
+    } else {
+        $if_funded = $_POST["funding_type"];
+    }
+    $sdg = $_POST["sdg_no"];
+    $sdg_no = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
+    if (!$sdg_no) {
+        $sdg_no = null;
+    } else {
+        $sdg_no = $_POST["sdg_no"];
+        $sdg_string = implode(", ", $sdg);
+    }
+    $quartile_sem = $_POST["quartile"];
+    $quartile_year = $_POST["quartile_year"];
+    $department = $_POST["research_area"];
+    $college = $_POST["college"];
+    $campus = $_POST["campus"];
+    $title = $_POST["title_of_paper"];
+    $type = $_POST["type_of_publication"];
+    $url = $_POST["google_scholar_details"];
+    $funding_nature = $_POST["nature_of_funding"];
+    $publisher = $_POST["publisher"];
+    $abstract = $_POST["abstract"];
+
+    $authors_name = isset($_POST['author_name']) ? $_POST['author_name'] : null;
+    if (!$authors_name) {
+        $authors_name = "";
+        $authors_string = "";
+    } else {
+        $author_ids = array(); // Define the array outside the loop
+
+        foreach ($authors_name as $name) {
+            $auth_name = $name;
+
+            if (!empty($auth_name)) {
+                $author_ids[] = $auth_name;
+            }
+        }
+
+        $authors_string = implode(",", $author_ids);
+    }
+
+    $quartileJoin = array();
+    foreach ($quartile_sem as $index => $value) {
+        $quartileJoin[] = $value . '_' . $quartile_year[$index];
+    }
+    $quartile = implode(", ", $quartileJoin);
+
+    if ($if_funded == "internal") {
+        $if_external = "BatState-U Research Fund";
+    } else {
+        $if_external = isset($_POST['funding_source']) ? $_POST['funding_source'] : null;
+        if (!$if_external) {
+            $if_external = "";
+        } else {
+            $if_external = $_POST["funding_source"];
+        }
+    }
+
+    $postData = array(
+        'date_published' => $date_published,
+        'quartile' => $quartile,
+        'authors' => $authors_string,
+        'department' => $department,
+        'college' => $college,
+        'campus' => $campus,
+        'title_of_paper' => $title,
+        'type_of_publication' => $type,
+        'funding_source' => $if_external,
+        'google_scholar_details' => $url,
+        'sdg_no' => $sdg_string,
+        'funding_type' => $if_funded,
+        'nature_of_funding' => $funding_nature,
+        'publisher' => $publisher,
+        'abstract' => $abstract
+    );
+
+    // Convert the data array to JSON
+    $jsonData = json_encode($postData);
+
+    // Set the cURL options
+    $ch = curl_init('http://localhost:5000/table_publications');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+    // Execute the cURL request
+    $response = curl_exec($ch);
+
+    // Check for errors
+    if ($response === false) {
+        header("Location: ../../publications/publications.php?upload=failed");
+    } else {
+        echo "Insert successful.";
+        header("Location: ../../publications/publications.php?upload=success");
+    }
+
+    // Close cURL session
+    curl_close($ch);
+} else {
+    header("Location: ../../publications/publications.php");
+}
+?>
+
+
+
+
 //TODO: add some description/tooltip to fields like author describing how they work. 
 //that you can just type an author's name to add it to the database 
 include dirname(__FILE__, 6) . '/helpers/db.php';
@@ -98,4 +218,3 @@ if (isset($_POST['submitPB'])) {
 } else {
     header("Location: ../../publications.php");
 }   
-?>

@@ -123,7 +123,7 @@
                     <div>
                     <?php
                         // Call the `getPublicationsContributors` function to retrieve publications contributors using the database connection object $conn
-                        echo getPublicationsContributors($authorurl, $publicationurl);
+                        echo getPublicationsContributors($authorurl, $publicationurl)
                     ?>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                     <div>
                     <?php
                         // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
-                        echo getMostViewedPapers($publicationurl);
+                        echo getMostViewedPapers($publicationurl)
                     ?>
                     </div>
                 </div>
