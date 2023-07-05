@@ -1,3 +1,4 @@
+<title>RMS | SIGN UP</title>
 <?php
 
 session_start();
@@ -73,7 +74,7 @@ if (isset($_SESSION['user_email'])) {
             <br>
             <input name="submit" type="button" id="pass" value="SIGN UP" onclick='showModal()'>
             <br>
-            <label id='labelSignUp'>Already have an account?<a id='a_SignUp' href='login.php'>&nbsp;Sign In</a></label>
+            <label id='labelSignUp'>Already have an account?<a id='a_SignUp' href='../login/login.php'>&nbsp;Sign In</a></label>
             <br>
         </form>
 

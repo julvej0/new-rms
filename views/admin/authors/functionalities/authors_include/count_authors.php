@@ -1,24 +1,28 @@
 <?php
     //function for total authors from database
     //the total adjusts base on search and filer
-    function countAuthors($conn, $search, $gender, $role){
-        
-        $search_query = $search != "empty_search" ? $search : ''; //check if the user searched
-        $count_sql = "SELECT COUNT(*) FROM table_authors WHERE CONCAT(author_id, author_name, affiliation) ILIKE '%$search_query%'";
-
-        //check if user has filters
-        if ($gender !== "empty_gender") {
-            $count_sql .= " AND gender = '$gender' ";
+    function countAuthors($authorurl){
+        // Make the HTTP request to the endpoint
+        $response = file_get_contents($authorurl);
+    
+        // Check if the request was successful
+        if ($response === false) {
+            echo "Failed to retrieve data from the endpoint.";
+            return false;
         }
-        if ($role!== "empty_role") {
-            $count_sql .= " AND type_of_author = '$role' ";
+    
+        // Parse the JSON response
+        $data = json_decode($response, true);
+    
+        // Check if the JSON was parsed successfully
+        if ($data === null) {
+            echo "Failed to parse JSON response.";
+            return false;
         }
-
-        //run query
-        $count_result = pg_query($conn, $count_sql);
-        $total_items = pg_fetch_result($count_result, 0, 0);
-
-        //return total
-        return $total_items;
+    
+        // Get the number of users from the response
+        $userCount = count($data['table_authors']);
+    
+        return $userCount;
     }
 ?>

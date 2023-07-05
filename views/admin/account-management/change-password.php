@@ -3,7 +3,8 @@ include_once dirname(__FILE__, 4) . '/components/header/header.php';
 include_once dirname(__FILE__, 4) . '/components/navbar/navbar.php'; 
 include_once "functionalities/user-session.php";
 ?>
-<link rel="stylesheet" href="user-security.css">
+<title>RMS | PASSWORD</title>
+<link rel="stylesheet" href="change-password.css">
 <section id='appbar-and-content'>
     <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?>  
     <div id='whole-page'>

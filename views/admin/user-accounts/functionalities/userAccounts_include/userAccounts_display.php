@@ -1,45 +1,50 @@
 <?php
-    $items_per_page = 10; //items per page
-    $total_records = countUserAccounts($userurl); //get total records
+$items_per_page = 10; // items per page
+$total_records = countUserAccounts($userurl); // get total records
 
-    $search_query = $search != "empty_search"? $_GET['search'] : ""; //check if user searched
+$search_query = $search != "empty_search" ? $_GET['search'] : ""; // check if user searched
 
-    $offset = ($page_number - 1) * $items_per_page; //interbals of 10 
+$offset = ($page_number - 1) * $items_per_page; // intervals of 10 
 
-    //query to select all data from db
-    $sql = "SELECT * FROM table_user WHERE CONCAT(sr_code, user_fname, user_mname, user_lname, email, user_contact) ILIKE '%".rtrim($search_query)."%'";
-    if ($type !== "empty_type") {
-        $sql .= " AND account_type = '$type' ";
+//global variable from db.php
+$json_data = file_get_contents($userurl);
+$data = json_decode($json_data, true);
+
+$filtered_data = array_filter($data['table_user'], function ($row) use ($search_query) {
+    // Filter based on the search query in relevant columns
+    $columns_to_search = ['sr_code', 'user_fname', 'user_mname', 'user_lname', 'email', 'user_contact'];
+    foreach ($columns_to_search as $column) {
+        if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
+            return true;
+        }
     }
+    return false;
+});
 
-    $sql .= "ORDER BY user_id DESC LIMIT $items_per_page OFFSET $offset"; //default order and offset
-    $result = pg_query($conn, $sql); //fetch data
+$total_records = count($filtered_data); // update total records
 
-    //check if there is a result
-    if(pg_num_rows($result) > 0){
-    while ($row = pg_fetch_assoc($result)) {
-        $userPic = '../../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png'; //image url
+// Apply pagination
+$filtered_data = array_slice($filtered_data, $offset, $items_per_page);
 
-        //display results
-    ?>
-    <tr>
-        <td ><?=$row['sr_code'];?></td>
-        <td><img id="user-image" src="<?=isset($row['user_img']) ? $row['user_img'] : $userPic;?>" alt="User Image" style="width:6.25rem; height:6.25rem;"></td>
-        <td ><?=$row['user_fname']." ".$row['user_mname']." ".$row['user_lname'];?></td>
-        <td ><?=$row['account_type']?></td>
-        <td><?=$row['user_contact'] != null ? $row['user_contact'] : "N/A"; ?></td>
-        <td><?=$row['email']; ?></td>
-       
-        </td>
-        
-        <?php
-            }
-        }
-        else{
-            echo '<td colspan="6">No Author Found!</td>'; //if result is empty
-        }
+// check if there is a result
+if (count($filtered_data) > 0) {
+    foreach ($filtered_data as $row) {
+        $userPic = '../../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png'; // image url
+
+        // display results
         ?>
-    </tr>
-
-    
-    
+        <tr>
+            <td><?= $row['sr_code']; ?></td>
+            <td><img id="user-image" src="<?= isset($row['user_img']) ? $row['user_img'] : $userPic; ?>"
+                    alt="User Image" style="width:6.25rem; height:6.25rem;"></td>
+            <td><?= $row['user_fname'] . " " . $row['user_mname'] . " " . $row['user_lname']; ?></td>
+            <td><?= isset($row['account_type']) ? $row['account_type'] : ""; ?></td>
+            <td><?= isset($row['user_contact']) ? $row['user_contact'] : "N/A"; ?></td>
+            <td><?= $row['email']; ?></td>
+        </tr>
+    <?php
+    }
+} else {
+    echo '<tr><td colspan="6">No Author Found!</td></tr>'; // if result is empty
+}
+?>

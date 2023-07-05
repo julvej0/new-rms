@@ -1,3 +1,4 @@
+<title>RMS | LOGIN</title>
 <?php
 session_start();
 

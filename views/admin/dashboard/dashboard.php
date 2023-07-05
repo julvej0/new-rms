@@ -85,7 +85,7 @@
                     <div class="chart">
                         <?php
                             // Retrieve publications data per year using the `getPublicationsPerYear` function and store it in the variable $pub_per_year
-                            $pub_per_year = getPublicationsPerYear($conn);
+                            $pub_per_year = getPublicationsPerYear($publicationurl);
 
                             // Extract the publications data from the $pub_per_year array and assign it to the variable $publications_data
                             $publications_data = $pub_per_year['data'];
@@ -104,7 +104,7 @@
                     <div class="chart">
                         <?php
                             // Retrieve publication types and their data using the `getPublicationType` function and store it in the variable $pb_status
-                            $pb_status = getPublicationType($conn);
+                            $pb_status = getPublicationType($publicationurl);
 
                             // Extract the publication data from the $pb_status array and assign it to the variable $status_data
                             $status_data = $pb_status['data'];
@@ -197,7 +197,7 @@
                     <div class="chart">
                         <?php
                             // Retrieve IP assets per year using the `getIPAssetsPerYear` function and store it in the variable $ipassets_per_year
-                            $ipassets_per_year = getIPAssetsPerYear($conn);
+                            $ipassets_per_year = getIPAssetsPerYear($ipassetsurl);
 
                             // Extract the IP assets data from the $ipassets_per_year array and assign it to the variable $ipyear_data
                             $ipyear_data = $ipassets_per_year['data'];
@@ -216,7 +216,7 @@
                     <div class="chart">    
                         <?php
                             // Retrieve IP assets by campus using the `getIpAssetsCampus` function and store it in the variable $data
-                            $data = getIpAssetsCampus($conn);
+                            $data = getIpAssetsCampus($ipassetsurl);
 
                             // Extract the IP assets data from the $data array and assign it to the variable $campus_data
                             $campus_data = $data["data"];

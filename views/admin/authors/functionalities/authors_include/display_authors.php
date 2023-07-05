@@ -1,98 +1,92 @@
 <?php
-    $items_per_page = 10; //total item per page
-    $search_query = $search != 'empty_search' ? $search : ''; //check if the user searched
-    $total_records = countAuthors($conn, $search, $gender, $role); //function for total author base on search and filter
+$items_per_page = 10; // total item per page
+$search_query = $search != 'empty_search' ? $search : ''; // check if the user searched
+$total_records = countAuthors($authorurl); // function for total author base on search and filter
 
-    //determining what items will be displayed 
-    $offset = ($page_number - 1) * $items_per_page; //10 intervals
+// determining what items will be displayed
+$offset = ($page_number - 1) * $items_per_page; // 10 intervals
 
-    //select query base on search
-    $sql = "SELECT * FROM table_authors WHERE CONCAT(author_id, author_name, affiliation) ILIKE '%".rtrim($search_query)."%' ";
+//global variable from db.php
+$json_data = file_get_contents($authorurl);
+$data = json_decode($json_data, true);
 
-    //additional query if the user has filter
-    if ($gender !== "empty_gender") {
-        $sql .= " AND gender = '$gender' ";
+$filtered_data = array_filter($data['table_authors'], function ($row) use ($search_query) {
+    // Filter based on the search query in relevant columns
+    $columns_to_search = ['author_id', 'author_name', 'affiliation'];
+    foreach ($columns_to_search as $column) {
+        if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
+            return true;
+        }
     }
-    if ($role !== "empty_role") {
-        $sql .= " AND type_of_author = '$role' ";
-    }
+    return false;
+});
 
-    //default order with offset
-    $sql .= "ORDER BY author_id DESC LIMIT $items_per_page OFFSET $offset";
-    $result = pg_query($conn, $sql); // run the query
+$total_records = count($filtered_data); // update total records
 
-    //check for result
-    if(pg_num_rows($result) > 0){
-        //display result
-        while ($row = pg_fetch_assoc($result)) {
-    ?>
-    <tr>
-        <td ><?=$row['author_id'];?></td>
-        <td ><?=$row['author_name'];?></td>
-        <td><?=$row['type_of_author']== '' ? 'N/A' :   $row['type_of_author']; ?></td>
-        <td><?=$row['gender']== '' ? 'N/A' :   $row['gender']; ?></td>
-        <td><?php
-                //check if affiliation is null
-                if (is_null($row['affiliation'])){
+// Apply pagination
+$filtered_data = array_slice($filtered_data, $offset, $items_per_page);
+
+// check for result
+if (count($filtered_data) > 0) {
+    // display result
+    foreach ($filtered_data as $row) {
+        ?>
+        <tr>
+            <td><?= $row['author_id']; ?></td>
+            <td><?= $row['author_name']; ?></td>
+            <td><?= isset($row['type_of_author']) ? $row['type_of_author'] : 'N/A'; ?></td>
+            <td><?= isset($row['gender']) ? $row['gender'] : 'N/A'; ?></td>
+            <td>
+                <?php
+                // check if affiliation is null or undefined
+                if (!isset($row['affiliation']) || is_null($row['affiliation'])) {
                     echo "N/A";
-                }
-                else{
-                    //display affiliation 
-                    $affiliation = explode(' || ', $row['affiliation']); //separate internal and external affiliation
+                } else {
+                    // display affiliation
+                    $affiliation = explode(' || ', $row['affiliation']); // separate internal and external affiliation
 
                     // initializations
-                    $internal_affiliation = "";  //container for internal
-                    $external_affiliation = "";  //container for external
+                    $internal_affiliation = ""; // container for internal
+                    $external_affiliation = ""; // container for external
 
-                    //extract internal
-                    if (count($affiliation)>0){
-                        foreach (explode('_', $affiliation[0]) as $in_aff){
-                            if ($in_aff != ""){
+                    // extract internal
+                    if (count($affiliation) > 0) {
+                        foreach (explode('_', $affiliation[0]) as $in_aff) {
+                            if ($in_aff != "") {
                                 $internal_affiliation .= $in_aff . ", BatStateU <br>";
-
-                            }
-                            else{
+                            } else {
                                 $internal_affiliation = "";
                             }
-                            
                         }
                     }
 
-                    //extract external
-                    if (count($affiliation)>1){
-                        foreach (explode('_', $affiliation[1]) as $ex_aff){
+                    // extract external
+                    if (count($affiliation) > 1) {
+                        foreach (explode('_', $affiliation[1]) as $ex_aff) {
                             $external_affiliation = $ex_aff . "<br>";
                         }
                     }
 
-                    //if both empty 
-                    if ($internal_affiliation == "" && $external_affiliation == "" ){
+                    // if both empty
+                    if ($internal_affiliation == "" && $external_affiliation == "") {
                         echo "N/A";
                     }
-                    //if existing
-                    else{
-                        $all_affiliation =array($internal_affiliation, $external_affiliation);
+                    // if existing
+                    else {
+                        $all_affiliation = array($internal_affiliation, $external_affiliation);
                         echo implode('', $all_affiliation);
                     }
-                
-                    
-            }
-                
-            ?>
-        </td>
-        <td id="white-side" class="a-action-btns stickey-col">
-            <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"><i class="fas fa-pen-to-square icon"></i></a>
-            <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?php echo $row['author_name'];?>', '<?php echo $row['author_id'];?>')"><i class="fas fa-trash-can icon"></i></button>
-        </td>
-        
-        <?php
-            }
-        }
-        else{
-            echo '<td colspan="6">No Author Found!</td>';
-        }
-        ?>
-    </tr>
-
-    
-    
+                }
+                ?>
+                </td>
+                <td id="white-side" class="a-action-btns stickey-col">
+                    <a class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'"><i class="fas fa-pen-to-square icon"></i></a>
+                    <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?php echo $row['author_name'];?>', '<?php echo $row['author_id'];?>')"><i class="fas fa-trash-can icon"></i></button>
+                </td>
+        </tr>
+                <?php
+    }
+} else {
+    echo '<tr><td colspan="6">No Author Found!</td></tr>';
+}
+?>

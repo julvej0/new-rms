@@ -2,7 +2,7 @@
     include dirname(__FILE__, 4) . '/components/header/header.php';
     include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php'; 
 ?>
-
+<title>RMS | ABOUT</title>
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="./about.css">
 <link rel="stylesheet" href="../../../css/animatev4.1.1.min.css"/>
