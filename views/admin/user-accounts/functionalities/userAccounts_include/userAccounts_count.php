@@ -9,7 +9,7 @@
            echo "Failed to retrieve data from the endpoint.";
            return false;
        }
-   
+       
        // Parse the JSON response
        $data = json_decode($response, true);
    
