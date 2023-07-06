@@ -261,13 +261,14 @@ main table .stickey-col {
     top: 0;
     left: 0;
     right: 0;
+    margin: 0;
     bottom: 0;
     display: flex;
     justify-content: center;
     padding: 10px;
     align-items: center;
     height: 100%;
-    width: 80px; 
+    width: 100%;
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
     background: var(--grey);
 }
