@@ -1,0 +1,328 @@
+
+main .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+}
+
+main .header .left .addBtn {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none;
+    background: green;
+    color: var(--light);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 5px;
+    width: 100px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+main .header .addBtn .icon {
+    font-size: 20px;
+    transition: all 0.5s ease;
+}
+
+main .header .addBtn:hover {
+    opacity: 50%;
+}
+
+main .header .left {
+    display: flex;
+    width: 800px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+}
+
+main .header .left .filter button {
+    height: 100%;
+    width: 120px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: var(--light);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+    color: var(--text-color);
+}
+
+main .header .left .filter {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .header .filter .filter-link {
+    position: absolute;
+    top: calc(100% - 10px);
+    right: 0;
+    width: 120px;
+    background: var(--light);
+    border-radius: 5px;
+    padding: 10px 0;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+main .header .filter .filter-link.show {
+    top: calc(100%);
+    opacity: 1;
+    pointer-events: visible;
+    margin-top: 5px;
+}
+
+main .header .filter .filter-link a:hover {
+    background: var(--grey);
+}
+
+main .header .filter .filter-link a {
+    display: block;
+    padding: 6px 16px;
+    font-size: 14px;
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+
+
+main .header .left .filter button .icon {
+    font-size: 18px;
+}
+
+main .header .left form {
+    max-width: 400px;
+    width: 100%;
+}
+
+main .header .left .form-group {
+    position: relative;
+}
+
+main .header .left .form-group input {
+    width: 100%;
+    height: 100%;
+    background: var(--light);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 10px 36px 10px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+main .left .form-group .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--dark-grey);
+}
+
+main .header .form-group input:focus {
+    box-shadow: 0 0 0 4px var(--light-blue);
+}
+
+main .table-container {
+    margin-top: 20px;
+    height: 100vh;
+    overflow: auto;
+    background: var(--light);
+    border-radius: 5px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+}
+
+main .table-container table {
+    width: 100%;
+    table-layout: auto;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+main .table-container table, th, td {
+    border-collapse: collapse;
+    border-bottom: 2.5px solid var(--grey);
+}
+
+main table thead tr {
+    background: var(--light);
+}
+
+main table thead tr th {
+    position: sticky;
+    top: 0;
+    min-width: 150px;
+    max-width: 200px;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;    
+    background: var(--light);
+    z-index: 100;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
+}
+
+main table tbody td {
+    font-size: 11px;
+    top: 0;
+    max-width: 200px;
+    font-size: 13px;
+    padding: 10px 10px;
+    text-align: center;
+    min-height: 180px;
+}
+
+main section .table-footer {
+    height: 80px;
+    width: 100%;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 0 17px 20px;
+    border-top: 1px solid var(--grey);
+}
+
+main section .table-footer p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+main table .stickey-col {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    align-items: center;
+    height: 100%;
+    width: 80px; 
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.075);
+    background: var(--grey);
+}
+
+main table .stickey-col-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 80px;
+    padding: 10px;
+    box-shadow: inset 0px -10px 10px -10px rgba(0,0,0,0.1);
+}
+
+main table .pb-action-btns {
+    display: flex;
+    gap: 7px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+main table .a-action-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.edit-btn, .delete-btn {
+    border: none;
+    color: #ffffff;
+    height: 30px;
+    font-size: 10px;
+    border-radius: 3px;
+    padding: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    text-align: center;
+    gap: 5px;
+    margin: 0 2px 0 2px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    opacity: 80%;
+}
+
+.edit-btn {
+    background-color: var(--blue);
+}
+
+.delete-btn{
+    background-color: var(--danger);
+}
+
+.table-footer .pagination {
+    height: 100%;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    grid-gap: 5px;
+}
+
+.table-footer .pagination li a {
+    border: 2px solid var(--dark);
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px solid var(--grey);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    font-size: 10px;
+    color: var(--dark);
+    flex-wrap: wrap;
+}
+
+.table-footer .pagination li a:hover {
+    background: var(--grey);
+}
+
+.table-footer .pagination li .current-page {
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid var(--dark);
+    padding: 8px 30px;
+    border: 2px solid var(--grey);
+    border-radius: 2px;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    cursor: text;
+}
+
+.table-footer .pagination li a .icon {
+    font-size: 20px;
+}
+
+

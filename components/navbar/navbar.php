@@ -43,6 +43,10 @@ include_once  dirname(__FILE__, 3) . "/views/admin/account-management/functional
             <i class='bx bxs-user icon'></i></i>User Accounts</a>
         </li>
         <li class="divider" data-text="Account">Account</li>
+        <li>
+            <a href="../../../views/admin/logs/logs.php" id='log-link' onclick="showLoadingScreen()">
+            <i class='bx bxs-log-in icon' ></i>Logs</a>
+        </li>
         <li id="account-settings">
             <a href="#" id="account-link">
                 <i class='bx bxs-cog icon' ></i>Account Settings<i class='bx bx-chevron-right icon-right' ></i>
