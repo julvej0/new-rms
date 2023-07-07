@@ -20,7 +20,7 @@
        }
    
        // Get the number of logs from the response
-       $logCount = count($data['table_logs']);
+       $logCount = count($data['table_log']);
    
        return $logCount;
    }
