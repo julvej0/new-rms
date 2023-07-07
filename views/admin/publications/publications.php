@@ -25,7 +25,7 @@
     <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
     <main>
         <div class="header">
-            <h1 class="title">PUBLICATIONS</h1>
+            <h1 class="title">Publications</h1>
             <div class='left'>
                 <div class="btn-container">
                     <button class="select-columns-btn" onclick="rotateButton()" id="button-icon" title="Edit Table Column"  ><i class="fa-solid fa-caret-down"></i></button>   

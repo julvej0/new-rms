@@ -20,7 +20,7 @@
     <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?>    
     <main>
         <div class="header">
-            <h1 class="title">USER ACCOUNTS</h1>
+            <h1 class="title">User Accounts</h1>
             <div class='left'>
                 <form action="">
                     <div class="form-group">

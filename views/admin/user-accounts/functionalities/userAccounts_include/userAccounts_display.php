@@ -12,7 +12,7 @@ $data = json_decode($json_data, true);
 
 $filtered_data = array_filter($data['table_user'], function ($row) use ($search_query) {
     // Filter based on the search query in relevant columns
-    $columns_to_search = ['sr_code', 'user_fname', 'user_mname', 'user_lname', 'email', 'user_contact'];
+    $columns_to_search = ['sr_code', 'user_fname', 'user_mname', 'user_lname', 'account_type', 'email', 'user_contact'];
     foreach ($columns_to_search as $column) {
         if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
             return true;
@@ -22,6 +22,11 @@ $filtered_data = array_filter($data['table_user'], function ($row) use ($search_
 });
 
 $total_records = count($filtered_data); // update total records
+
+// Sort the data based on 'account_type' column in ascending order
+usort($filtered_data, function ($a, $b) {
+    return strcasecmp($a['account_type'], $b['account_type']);
+});
 
 // Apply pagination
 $filtered_data = array_slice($filtered_data, $offset, $items_per_page);

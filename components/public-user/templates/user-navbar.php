@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!-- css -->
-<link rel="stylesheet" href="/new-rms-webdev/css/index.css">
+<link rel="stylesheet" href="../../../../css/index.css">
 <link rel="stylesheet" href= "/new-rms-webdev/components/public-user/css/user-navbar.css">
 
 <!-- CDN -->
@@ -93,8 +93,8 @@ session_start();
     </div>
 </section>
 <!-- SCRIPT -->
-<script src="/new-rms-webdev/components/public-user/js/user-navbar.js"></script>
-<script src="/new-rms-webdev/components/public-user/js/profile-dropdown.js"></script>
+<script src="../../../components/public-user/js/user-navbar.js"></script>
+<script src="../../../components/public-user/js/profile-dropdown.js"></script>
 <script>
     function showLogoutAlert() {
         Swal.fire({

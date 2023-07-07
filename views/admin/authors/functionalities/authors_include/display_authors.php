@@ -12,7 +12,7 @@ $data = json_decode($json_data, true);
 
 $filtered_data = array_filter($data['table_authors'], function ($row) use ($search_query) {
     // Filter based on the search query in relevant columns
-    $columns_to_search = ['author_id', 'author_name', 'affiliation'];
+    $columns_to_search = ['author_id', 'author_name', 'type_of_author', 'gender', 'affiliation'];
     foreach ($columns_to_search as $column) {
         if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
             return true;
@@ -22,6 +22,11 @@ $filtered_data = array_filter($data['table_authors'], function ($row) use ($sear
 });
 
 $total_records = count($filtered_data); // update total records
+
+// Sort the data based on 'author_id' column in ascending order
+usort($filtered_data, function ($a, $b) {
+    return strcasecmp($a['author_id'], $b['author_id']);
+});
 
 // Apply pagination
 $filtered_data = array_slice($filtered_data, $offset, $items_per_page);
@@ -34,8 +39,8 @@ if (count($filtered_data) > 0) {
         <tr>
             <td><?= $row['author_id']; ?></td>
             <td><?= $row['author_name']; ?></td>
-            <td><?= isset($row['type_of_author']) ? $row['type_of_author'] : 'N/A'; ?></td>
-            <td><?= isset($row['gender']) ? $row['gender'] : 'N/A'; ?></td>
+            <td><?= isset($row['type_of_author']) ? $row['type_of_author'] : "N/A"; ?></td>
+            <td><?= isset($row['gender']) ? $row['gender'] : "N/A"; ?></td>
             <td>
                 <?php
                 // check if affiliation is null or undefined
