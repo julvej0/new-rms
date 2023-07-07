@@ -3,7 +3,7 @@
     include dirname(__FILE__, 5) . '/components/header/header.php';
     include dirname(__FILE__, 5) . '/helpers/db.php';
 ?>
-<link rel="stylesheet" href="../../../css/index.css">
+<link rel="stylesheet" href="../../../../css/index.css">
 <link rel="stylesheet" href="./new-ip-asset.css">
 
 <body>

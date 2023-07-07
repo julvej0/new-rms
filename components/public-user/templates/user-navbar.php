@@ -3,12 +3,13 @@ session_start();
 ?>
 
 <!-- css -->
-<link rel="stylesheet" href="../../../../css/index.css">
+<link rel="stylesheet" href="/new-rms-webdev/css/index.css">
 <link rel="stylesheet" href= "/new-rms-webdev/components/public-user/css/user-navbar.css">
 
 <!-- CDN -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="sweetalert2.min.css">
+<link rel="stylesheet" href="/new-rms-webdev/css/sweetalert2.min.css">
+<script src="/new-rms-webdev/js/sweetalert2.min.js"></script>
 <!-- TODO: learn how to make link href target absolute paths without actually hardcoding the url -->
 <body>
 <section>    
@@ -93,8 +94,8 @@ session_start();
     </div>
 </section>
 <!-- SCRIPT -->
-<script src="../../../components/public-user/js/user-navbar.js"></script>
-<script src="../../../components/public-user/js/profile-dropdown.js"></script>
+<script src="/new-rms-webdev/components/public-user/js/user-navbar.js"></script>
+<script src="/new-rms-webdev/components/public-user/js/profile-dropdown.js"></script>
 <script>
     function showLogoutAlert() {
         Swal.fire({
