@@ -49,7 +49,7 @@
                         <li><a href="<?php echo filterAuthor($search, $role, 'Female')?>">Female</a></li>
                     </ul>
                 </div>
-                <a href="./new-author.php" class="addBtn"><i class='bx bx-user-plus icon'></i></i>New</a>
+                <a href="./new/new-author.php" class="addBtn"><i class='bx bx-user-plus icon'></i></i>New</a>
             </div>
         </div>
         <section>

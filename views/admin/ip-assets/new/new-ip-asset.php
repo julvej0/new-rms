@@ -1,3 +1,4 @@
+<title>RMS | NEW IPASSETS</title>
 <?php
     include dirname(__FILE__, 5) . '/components/header/header.php';
     include dirname(__FILE__, 5) . '/helpers/db.php';

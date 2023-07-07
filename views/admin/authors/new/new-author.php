@@ -1,22 +1,20 @@
-<?php 
-    include '../../../includes/admin/templates/header.php'; //display header
-    require_once "../../../db/db.php"; //db connection
-    
+<?php
+    include dirname(__FILE__, 5) . '/helpers/db.php';
+    include dirname(__FILE__, 5) . '/components/header/header.php';
+    include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php'; 
 ?>
 
 <link rel="stylesheet" href="../../../css/index.css">
 <link rel="stylesheet" href="new-author.css">
 
 <body>
-<?php
-    include '../../../includes/admin/templates/navbar.php'; //display navigation bar
-
+<!-- <?php
     include_once 'functionalities/new-author_includes/display_edit_author.php'; //display data if id exists 
     
     include_once 'functionalities/new-author_includes/options.php'; // options for select input
    
    
-?>
+?> -->
     <main>
         <div class="header">
             <h1 class="title"><?php echo isset($_GET['id'])? 'Edit Author': 'New Author'?></h1>
@@ -135,8 +133,8 @@
 </section>
 
 <script src="./new-author.js"></script>
-<?php
+<!-- <?php
     include  'functionalities/new-author_includes/affiliations.php'; //script for affiliation table functions
-?>
+?> -->
 </body>
 

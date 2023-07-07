@@ -1,4 +1,4 @@
-<title>RMS | EDIT PUBLICATION</title>
+<title>RMS | PUBLICATIONS</title>
 <?php 
     include dirname(__FILE__, 4) . '/components/header/header.php';
     include dirname(__FILE__, 4) . '/helpers/db.php';

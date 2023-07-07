@@ -1,3 +1,4 @@
+<title>RMS | NEW PUBLICATIONS</title>
 <?php
     include dirname(__FILE__, 5) . '/helpers/db.php';
     include dirname(__FILE__, 5) . '/components/header/header.php';
