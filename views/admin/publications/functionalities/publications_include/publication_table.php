@@ -63,7 +63,7 @@
                 <a onclick="redirect('<?=$google_link != null? $google_link : 'no_url';?>')" class="gdrive-btn" title="Click to Redirect">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
-                <form action="edit-publication.php" method="POST">
+                <form action="../publications/edit/edit-publication.php" method="POST">
                     <input type="hidden" name="row_id" value="<?=$row['publication_id']?>">
                     <button type="submit" class="edit-btn" name="edit"><i class="fas fa-pen-to-square icon" title="Click to Edit"></i></button>
                 </form>      

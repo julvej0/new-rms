@@ -103,16 +103,16 @@ if (isset($_POST['submitPB'])) {
 
     // Check for errors
     if ($response === false) {
-        header("Location: ../../publications/publications.php?upload=failed");
+        header("Location: ../../publications.php?upload=failed");
     } else {
         echo "Insert successful.";
-        header("Location: ../../publications/publications.php?upload=success");
+        header("Location: ../../publications.php?upload=success");
     }
 
     // Close cURL session
     curl_close($ch);
 } else {
-    header("Location: ../../publications/publications.php");
+    header("Location: ../../publications.php");
 }
 ?>
 

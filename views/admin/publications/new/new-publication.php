@@ -14,7 +14,7 @@
         </div>
         <section>
             <div class="container">
-                <form name="form-pb" id="form-pb" action="functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return checkDuplicateAuthors()">
+                <form name="form-pb" id="form-pb" action="../functionalities/button_functions/publication-insert.php" method="POST" onsubmit="return checkDuplicateAuthors()">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>

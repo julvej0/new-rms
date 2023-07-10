@@ -1,10 +1,12 @@
 <?php
-    include '../../../db/db.php';
+    include dirname(__FILE__, 5) . '/helpers/db.php';
+    include dirname(__FILE__, 5) . '/components/header/header.php';
+    include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php'; 
     include '../../../includes/admin/templates/header.php';
     if (isset($_POST['edit'])) {
 ?>
-<link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="new-publication.css">
+<link rel="stylesheet" href="../../../../css/index.css">
+<link rel="stylesheet" href="../../publications/new/new-publication.css">
 
 <body>
 <?php
