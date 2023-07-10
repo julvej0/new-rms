@@ -32,9 +32,9 @@
                     <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
                         <li><a href="<?=filterlogs($search, 'empty_type')?>">All</a></li>
-                        <li><a href="<?=filterlogs($search, "Regular")?>">Regular</a></li>
-                        <li><a href="<?=filterlogs($search, "Author")?>">Author</a></li>
-                        <li><a href="<?=filterlogs($search, "Admin")?>">Admin</a></li>
+                        <li><a href="<?=filterlogs($search, "post")?>">Post</a></li>
+                        <li><a href="<?=filterlogs($search, "update")?>">Update</a></li>
+                        <li><a href="<?=filterlogs($search, "delete")?>">Delete</a></li>
                     </ul>
                 </div>
             </div>

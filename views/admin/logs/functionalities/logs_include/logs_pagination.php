@@ -33,7 +33,7 @@
                
 
                 //check if parameters exists
-                if(isset($_GET['search']) || isset($_GET['gender']) || isset($_GET['role'])){
+                if(isset($_GET['search']) || isset($_GET['date_time']) || isset($_GET['activity'])){
                     $url_page ='&page=';
                 }else{
                     $url_page ='page=';

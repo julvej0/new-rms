@@ -12,7 +12,7 @@ $data = json_decode($json_data, true);
 
 $filtered_data = array_filter($data['table_log'], function ($row) use ($search_query) {
     // Filter based on the search query in relevant columns
-    $columns_to_search = ['created_at', 'activity', 'description'];
+    $columns_to_search = ['date_time', 'activity', 'description'];
     foreach ($columns_to_search as $column) {
         if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
             return true;
@@ -23,29 +23,68 @@ $filtered_data = array_filter($data['table_log'], function ($row) use ($search_q
 
 $total_records = count($filtered_data); // update total records
 
-// Sort the data based on 'account_type' column in ascending order
+// Sort the data based on 'date_time' column in ascending order
 usort($filtered_data, function ($a, $b) {
-    return strcasecmp($a['created_at'], $b['created_at']);
+    $timestamp_a = strtotime($a['date_time']);
+    $timestamp_b = strtotime($b['date_time']);
+
+    return $timestamp_b - $timestamp_a;
 });
+
+// Function to fetch user data from the API URL based on user_id
+function fetchUserData($userurl, $user_id) {
+    $json_data = file_get_contents($userurl);
+
+    // Decode the JSON response into an associative array
+    $data = json_decode($json_data, true);
+
+    // Find the user data based on user_id
+    foreach ($data['table_user'] as $user) {
+        if ($user['user_id'] === $user_id) {
+            return $user;
+        }
+    }
+
+    // Return null if user data is not found
+    return null;
+}
 
 // Apply pagination
 $filtered_data = array_slice($filtered_data, $offset, $items_per_page);
 
-// check if there is a result
 if (count($filtered_data) > 0) {
     foreach ($filtered_data as $row) {
-        // display results
+        // Extract the date from the 'date_time' column
+        $formatted_date = isset($row['date_time']) ? date('F d, Y - h:i A', strtotime($row['date_time'])) : "N/A";
+
+        // Get the user_id from the current row
+        $user_id = isset($row['user_id']) ? $row['user_id'] : null;
+
+        // Fetch additional details from the API URL based on user_id
+        $user_data = fetchUserData($userurl, $user_id);
+
+        $sr_code = isset($user_data['sr_code']) ? $user_data['sr_code'] : "N/A";
+
+        $user_full_name = "N/A";
+        if ($user_data) {
+            $user_full_name = isset($user_data['user_fname']) ? $user_data['user_fname'] . " " . $user_data['user_mname'] . " " . $user_data['user_lname'] : "N/A";
+        }
+
+        // Display the log data
         ?>
         <tr>
-            <td><?= $row['created_at']; ?></td>
-            <td><?= $row['sr_code']; ?></td>
-            <td><?= $row['log_fname'] . "" . $row['log_mname'] . " " . $row['log_lname']; ?></td>
+            <td><?= $formatted_date; ?></td>
+            <td><?= $sr_code; ?></td>
+            <td><?= $user_full_name; ?></td>
             <td><?= isset($row['activity']) ? $row['activity'] : "N/A"; ?></td>
             <td><?= $row['description']; ?></td>
         </tr>
-    <?php
+        <?php
     }
+
 } else {
     echo '<tr><td colspan="6">No Author Found!</td></tr>'; // if result is empty
 }
+
+
 ?>
