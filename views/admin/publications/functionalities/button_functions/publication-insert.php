@@ -85,7 +85,8 @@ if (isset($_POST['submitPB'])) {
         'funding_type' => $if_funded,
         'nature_of_funding' => $funding_nature,
         'publisher' => $publisher,
-        'abstract' => $abstract
+        'abstract' => $abstract,
+        'number_of_citation' => 0
     );
 
     // Convert the data array to JSON
@@ -115,8 +116,6 @@ if (isset($_POST['submitPB'])) {
     header("Location: ../../publications.php");
 }
 ?>
-
-
 
 
 //TODO: add some description/tooltip to fields like author describing how they work. 
