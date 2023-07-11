@@ -85,8 +85,8 @@ if (count($filtered_data) > 0) {
                 ?>
                 </td>
                 <td id="white-side" class="a-action-btns stickey-col">
-                    <button class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id'];?>'" title="Click to Edit"><i class="fas fa-pen-to-square"></i></button>
-                    <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?php echo $row['author_name'];?>', '<?php echo $row['author_id'];?>')" title="Click to Delete"><i class="fas fa-trash-can"></i></button>
+                    <button class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id']?>'" title="Click to Edit"><i class="fas fa-pen-to-square"></i></button>
+                    <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?=$row['author_id']?>')" title="Click to Delete"><i class="fas fa-trash-can"></i></button>
                 </td>
         </tr>
                 <?php

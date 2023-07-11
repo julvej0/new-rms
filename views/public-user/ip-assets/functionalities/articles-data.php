@@ -163,7 +163,7 @@ $sql_result = pg_query($conn, $sqlSearchQuery);
         confirmButtonText: 'OK'
       }).then(() => {
         // Clear the search query and reload the page
-        window.location.href = 'ipa.php';
+        window.location.href = 'ip-assets.php';
       });
     </script>
     <?php
