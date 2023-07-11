@@ -64,7 +64,7 @@ function submitPss() {
 
                     // Redirect to the login page after 3 seconds
                     setTimeout(() => {
-                        window.location.href = "login.php";
+                        window.location.href = "../login.php";
                     }, 3000);
 
                     console.log(otpTextBox);
@@ -79,7 +79,7 @@ function submitPss() {
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Redirect to the login page
-                            window.location.href = "login.php";
+                            window.location.href = "../login.php";
                         }
                     });
 

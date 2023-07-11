@@ -44,7 +44,7 @@ function signUpConfirmBtn() {
 
                 // Redirect to the login page after 3 seconds
                 setTimeout(() => {
-                    window.location.href = base_url() + "views/login/login.php";
+                    window.location.href = base_url() + "../login.php";
                 }, 3000);
 
                 console.log(otpTextBox);
