@@ -342,6 +342,6 @@
 </body>
 <?php
     }else{
-        header("Location: ./publications.php");
+        header("Location: ../../publications.php");
     }
 ?>

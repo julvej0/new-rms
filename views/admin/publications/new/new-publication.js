@@ -19,7 +19,8 @@ cancelBtn.addEventListener('click', (e) => {
     // If the user confirms the cancellation
     if (result.isConfirmed) {
       // Redirect to "publications.php" page
-      window.location.href = "publications.php";
+      window.location.href = "../publications.php";
+      
     }
   });
 });

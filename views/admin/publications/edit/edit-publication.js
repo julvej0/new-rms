@@ -17,7 +17,7 @@ cancelBtn.addEventListener('click', (e) => {
   }).then((result) => {
     if (result.isConfirmed) {
       // If confirmed, navigate to "publications.php"
-      window.location.href = "publications.php";
+      window.location.href = "../publications.php";
     }
   });
 });
