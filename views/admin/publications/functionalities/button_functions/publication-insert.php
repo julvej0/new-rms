@@ -36,20 +36,36 @@ if (isset($_POST['submitPB'])) {
     $abstract = $_POST["abstract"];
 
     $authors_name = isset($_POST['author_name']) ? $_POST['author_name'] : null;
+
     if (!$authors_name) {
         $authors_name = "";
         $authors_string = "";
     } else {
-        $author_ids = array(); // Define the array outside the loop
-
+        $author_ids = array();
+    
         foreach ($authors_name as $name) {
-            $auth_name = $name;
-
-            if (!empty($auth_name)) {
-                $author_ids[] = $auth_name;
+    
+            $url = 'http://localhost:5000/table_authors';
+            $response = file_get_contents($url);
+    
+            if ($response !== false) {
+                $data = json_decode($response, true);
+    
+                if (isset($data['table_authors'])) {
+                    $authorIdColumn = array_column($data['table_authors'], 'author_id');
+                    $authorNameColumn = array_column($data['table_authors'], 'author_name');
+    
+                    $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
+    
+                    foreach ($authorMapping as $author_id => $author_name) {
+                        if ($author_name == $name) { // Check if author_name matches the desired name
+                            $author_ids[] = $author_id;
+                        }
+                    }
+                }
             }
         }
-
+    
         $authors_string = implode(",", $author_ids);
     }
 
