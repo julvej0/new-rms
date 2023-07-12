@@ -21,6 +21,11 @@
         $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
        
     ?>
+    <div id="loading-screen">
+        <div class="loading-img">
+            <img src="../../../assets/images/redspartan_logo.png" alt="redSpartan">
+        </div>
+    </div>
 <section id='appbar-and-content'>
     <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
     <main>

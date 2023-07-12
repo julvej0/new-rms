@@ -17,11 +17,16 @@
 <link rel="stylesheet" href="./ip-assets.css">
 
 <body>
-    <?php
-        include_once 'functionalities/ipa_include/ipa_filter.php';
-        include_once 'functionalities/ipa_include/ipa_year.php';
-        include_once 'functionalities/ipa_include/ipa_count.php';
-    ?>
+<?php
+    include_once 'functionalities/ipa_include/ipa_filter.php';
+    include_once 'functionalities/ipa_include/ipa_year.php';
+    include_once 'functionalities/ipa_include/ipa_count.php';
+?>
+<div id="loading-screen">
+    <div class="loading-img">
+        <img src="../../../assets/images/redspartan_logo.png" alt="redSpartan">
+    </div>
+</div>
 <section id='appbar-and-content'>
     <?php include_once  dirname(__FILE__, 4) . '/components/navbar/admin-navbar.php'; ?> 
     <main>

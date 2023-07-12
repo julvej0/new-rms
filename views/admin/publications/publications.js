@@ -1,3 +1,8 @@
+window.addEventListener("load", function() {
+  var loadingScreen = document.getElementById("loading-screen");
+  loadingScreen.style.display = "none";
+});
+
 // Floating action rotate
 let isRotated = false;
 const checkboxContainer = document.getElementById("checkbox-container");

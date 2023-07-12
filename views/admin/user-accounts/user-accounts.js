@@ -1,4 +1,8 @@
-// FILTER
+window.addEventListener("load", function() {
+    var loadingScreen = document.getElementById("loading-screen");
+    loadingScreen.style.display = "none";
+  });
+  // FILTER
 const allFilter = document.querySelectorAll('main .header .left .filter');
 allFilter.forEach(item => {
     const filterBtn = item.querySelector('.btn');

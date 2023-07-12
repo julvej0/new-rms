@@ -1,4 +1,8 @@
-
+window.addEventListener("load", function() {
+    var loadingScreen = document.getElementById("loading-screen");
+    loadingScreen.style.display = "none";
+  });
+  
 //delete author 
 function submitDelete(id){
     var xhr = new XMLHttpRequest();
