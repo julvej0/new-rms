@@ -87,6 +87,7 @@ if (isset($_POST['submitPB'])) {
     }
 
     $postData = array(
+        'publication_id' => $publication_id,
         'date_published' => $date_published,
         'quartile' => $quartile,
         'authors' => $authors_string,

@@ -16,7 +16,7 @@ $(document).ready(function() {
       return $(this).val().trim() === '';
     });
 
-    if (emptyFields.length > 0) {
+    if (emptyFields.length > 2) {
       // Display Swal.fire confirmation dialog for incomplete IP Asset information
       Swal.fire({
         title: 'Are you sure?',
