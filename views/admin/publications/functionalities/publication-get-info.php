@@ -80,37 +80,68 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
     }
 }
 
-function authorSearch($conn, $search) {
-    if($search != 'empty_search'){
-        //Select Author Ids that matches the search
-        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%".rtrim($search)."%'";
-        $result = pg_query($conn, $select_authors);
-
-        if(pg_num_rows($result) > 0){
-            $additionalQuery = "OR ( ";
-            while ($row = pg_fetch_assoc($result)) {
-                $author_id[] = $row['author'];    
-            }//Additional query for search
-            foreach ($author_id as $a_id){
-                if ( $a_id == $author_id[0]){
-                    $additionalQuery .= " authors ILIKE '%$a_id%' ";
+function authorSearch($authorurl, $search) {
+    if ($search != 'empty_search' || $search != ' ') {
+        $authors = file_get_contents($authorurl);
+        
+        if ($authors !== false) {
+            $authors = json_decode($authors, true);
+            $authorIDs = array_column($authors['table_authors'], 'author_id');
+            
+            if (!empty($authorIDs)) {
+                $additionalQuery = "OR ( ";
+                foreach ($authorIDs as $index => $authorID) {
+                    if ($index == 0) {
+                        $additionalQuery .= " authors ILIKE '%$authorID%' ";
+                    } else {
+                        $additionalQuery .= " OR authors ILIKE '%$authorID%' ";
+                    }
                 }
-                else{
-                    $additionalQuery .= " OR authors ILIKE '%$a_id%' ";
-                }
-                
+                $additionalQuery .= " ) ";
+                return $additionalQuery;
             }
-
-            $additionalQuery .= " ) ";
-            return $additionalQuery;
         }
-
-        
-        
-    }else{
+    } else {
         return "empty_search";
     }
+    return '';
+}
+
+
+
+// function authorSearch($conn, $search) {
+//     if($search != 'empty_search' || $search != ' '){
+//         //Select Author Ids that matches the search
+//         $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%".rtrim($search)."%'";
+//         $result = pg_query($conn, $select_authors);
+
+//         if(pg_num_rows($result) > 0){
+//             $additionalQuery = "OR ( ";
+//             while ($row = pg_fetch_assoc($result)) {
+//                 $author_id[] = $row['author'];    
+//             }//Additional query for search
+//             foreach ($author_id as $a_id){
+//                 if ( $a_id == $author_id[0]){
+//                     $additionalQuery .= " authors ILIKE '%$a_id%' ";
+//                 }
+//                 else{
+//                     $additionalQuery .= " OR authors ILIKE '%$a_id%' ";
+//                 }
+                
+//             }
+
+//             $additionalQuery .= " ) ";
+//             return $additionalQuery;
+//         }
+
+        
+        
+//     }else{
+//         return "empty_search";
+//     }
     
 
-}
+// }
+
 ?>
+

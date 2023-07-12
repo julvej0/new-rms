@@ -1,7 +1,7 @@
 <?php
     require_once('../download/pub-get-info-download.php');
 
-    $additionalQuery = authorSearch($conn, $search);
+    $additionalQuery = authorSearch($authorurl, $search);
     $table_rows = get_data($conn, $additionalQuery, $search);
 ?>
 

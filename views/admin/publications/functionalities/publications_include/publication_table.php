@@ -2,7 +2,7 @@
     require_once('functionalities/publication-get-info.php');
     require_once('functionalities/publications_include/publication_count.php');
 
-    $additionalQuery = authorSearch($conn, $search);
+    $additionalQuery = authorSearch($authorurl, $search);
     $table_rows = get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number); // $table_rows is included from a ipa-get-info.php
     $total_records = countPublications($conn, $additionalQuery, $search, $type, $fund, $year );
 ?>
