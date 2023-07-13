@@ -1,4 +1,5 @@
 <?php
+session_start();
 include dirname(__FILE__, 6) . '/helpers/db.php';
 
 if (isset($_POST['submitIPA'])) {
@@ -105,6 +106,62 @@ if (isset($_POST['submitIPA'])) {
                     if ($response === false) {
                         header("Location: ../../ip-assets.php?upload=failed");
                     } else {
+                        $logurl = 'http://localhost:5000/table_log';
+
+                        $response_id = file_get_contents($logurl);
+                
+                        if ($response_id !== false) {
+                            $data = json_decode($response_id, true);
+                
+                            $logs = $data['table_log'];
+                
+                            usort($logs, function ($a, $b) {
+                                return strcmp($a['log_id'], $b['log_id']);
+                            });
+                
+                            $lastLog = end($logs);
+                
+                            $last_id = $lastLog['log_id'];
+                
+                            $numericPart = intval(substr($last_id, 3));
+                
+                            $nextNumericID = $numericPart + 1;
+                
+                            $paddedNumericID = str_pad($nextNumericID, 6, '0', STR_PAD_LEFT);
+                
+                            $log_id = 'AL' . $paddedNumericID;
+                
+                            echo $log_id;
+                        }
+                
+                        $date_time = date('Y-m-d H:i:s.uO');
+                
+                        $user_id = 18;
+                
+                        $activity = 'Upload IP-Assets';
+                        $description = 'Uploaded Registration no. "' . $registration_number . '" titled "' . $title_of_work . '" by "' . $authors_string . '".';
+                
+                        $ipasset_log = array(
+                            'log_id' => $log_id,
+                            'date_time' => $date_time,
+                            'user_id' => $user_id,
+                            'activity' => $activity,
+                            'description' => $description
+                        );
+                
+                        // Convert the data array to JSON
+                        $jsonData = json_encode($ipasset_log);
+                
+                        // Set the cURL options
+                        $ch = curl_init('http://localhost:5000/table_log');
+                        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                
+                        // Execute the cURL request
+                        $response = curl_exec($ch);
+                
                         echo "Insert successful.";
                         header("Location: ../../ip-assets.php?upload=success");
                     }
@@ -146,6 +203,62 @@ if (isset($_POST['submitIPA'])) {
         if ($response === false) {
             header("Location: ../../ip-assets.php?upload=failed");
         } else {
+            $logurl = 'http://localhost:5000/table_log';
+
+            $response_id = file_get_contents($logurl);
+    
+            if ($response_id !== false) {
+                $data = json_decode($response_id, true);
+    
+                $logs = $data['table_log'];
+    
+                usort($logs, function ($a, $b) {
+                    return strcmp($a['log_id'], $b['log_id']);
+                });
+    
+                $lastLog = end($logs);
+    
+                $last_id = $lastLog['log_id'];
+    
+                $numericPart = intval(substr($last_id, 3));
+    
+                $nextNumericID = $numericPart + 1;
+    
+                $paddedNumericID = str_pad($nextNumericID, 6, '0', STR_PAD_LEFT);
+    
+                $log_id = 'AL' . $paddedNumericID;
+    
+                echo $log_id;
+            }
+    
+            $date_time = date('Y-m-d H:i:s.uO');
+    
+            $user_id = 18;
+    
+            $activity = 'Upload IP-Assets';
+            $description = 'Uploaded Registration no. "' . $registration_number . '" titled "' . $title_of_work . '" by "' . $authors_string . '".';
+    
+            $ipasset_log = array(
+                'log_id' => $log_id,
+                'date_time' => $date_time,
+                'user_id' => $user_id,
+                'activity' => $activity,
+                'description' => $description
+            );
+    
+            // Convert the data array to JSON
+            $jsonData = json_encode($ipasset_log);
+    
+            // Set the cURL options
+            $ch = curl_init('http://localhost:5000/table_log');
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    
+            // Execute the cURL request
+            $response = curl_exec($ch);
+
             echo "Insert successful.";
             header("Location: ../../ip-assets.php?upload=success");
         }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 //TODO: add some description/tooltip to fields like author describing how they work.
 //that you can just type an author's name to add it to the database
 if (isset($_POST['submitPB'])) {
@@ -86,7 +87,35 @@ if (isset($_POST['submitPB'])) {
         }
     }
 
-    $postData = array(
+    $publicationurl = 'http://localhost:5000/table_publications';
+
+    $response_pubid = file_get_contents($publicationurl);
+
+    if ($response_pubid !== false) {
+        $data = json_decode($response_pubid, true);
+        
+        $publications = $data['table_publications'];
+
+        usort($publications, function($a, $b) {
+            return strcmp($a['publication_id'], $b['publication_id']);
+        });
+
+        $lastPublication = end($publications);
+
+        $last_id = $lastPublication['publication_id'];
+
+        $numericPart = intval(substr($last_id, 3));
+
+        $nextNumericID = $numericPart + 1;
+
+        $paddedNumericID = str_pad($nextNumericID, 6, '0', STR_PAD_LEFT);
+
+        $publication_id = 'PID' . $paddedNumericID;
+
+        echo $publication_id;
+    }
+
+    $publication_data = array(
         'publication_id' => $publication_id,
         'date_published' => $date_published,
         'quartile' => $quartile,
@@ -107,7 +136,7 @@ if (isset($_POST['submitPB'])) {
     );
 
     // Convert the data array to JSON
-    $jsonData = json_encode($postData);
+    $jsonData = json_encode($publication_data);
 
     // Set the cURL options
     $ch = curl_init('http://localhost:5000/table_publications');
@@ -123,6 +152,62 @@ if (isset($_POST['submitPB'])) {
     if ($response === false) {
         header("Location: ../../publications.php?upload=failed");
     } else {
+        $logurl = 'http://localhost:5000/table_log';
+
+        $response_id = file_get_contents($logurl);
+
+        if ($response_id !== false) {
+            $data = json_decode($response_id, true);
+
+            $logs = $data['table_log'];
+
+            usort($logs, function ($a, $b) {
+                return strcmp($a['log_id'], $b['log_id']);
+            });
+
+            $lastLog = end($logs);
+
+            $last_id = $lastLog['log_id'];
+
+            $numericPart = intval(substr($last_id, 3));
+
+            $nextNumericID = $numericPart + 1;
+
+            $paddedNumericID = str_pad($nextNumericID, 6, '0', STR_PAD_LEFT);
+
+            $log_id = 'AL' . $paddedNumericID;
+
+            echo $log_id;
+        }
+
+        $date_time = date('Y-m-d H:i:s.uO');
+
+        $user_id = 18;
+
+        $activity = 'Upload Publication';
+        $description = 'Uploaded Publication ID "' . $publication_id . '" titled "' . $title . '" by "' . $authors_string . '".';
+
+        $publication_log = array(
+            'log_id' => $log_id,
+            'date_time' => $date_time,
+            'user_id' => $user_id,
+            'activity' => $activity,
+            'description' => $description
+        );
+
+        // Convert the data array to JSON
+        $jsonData = json_encode($publication_log);
+
+        // Set the cURL options
+        $ch = curl_init('http://localhost:5000/table_log');
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+        // Execute the cURL request
+        $response_logpost = curl_exec($ch);
+
         echo "Insert successful.";
         header("Location: ../../publications.php?upload=success");
     }
