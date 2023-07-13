@@ -1,5 +1,4 @@
 <?php
-session_start();
 include dirname(__FILE__, 6) . '/helpers/db.php';
 
 if (isset($_POST['submitIPA'])) {

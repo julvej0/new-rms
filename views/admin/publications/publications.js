@@ -156,51 +156,110 @@ function redirect(url) {
   }
   
 
-  function submitDelete(id) {
-    // Create a new XMLHttpRequest object
-    var xhr = new XMLHttpRequest();
-    
-    // Configure the request
-    xhr.open("POST", "functionalities/button_functions/publication-delete.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    
-    // Define the callback function to handle the response
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        if (xhr.responseText === "Success") {
-          // Remove the 'delete' parameter from the current URL
-          let queryString = window.location.search;
-          const searchParams = new URLSearchParams(queryString);
-          if (searchParams.has('delete')) {
-            searchParams.delete('delete');
+function submitDelete(id) {
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Configure the request
+  xhr.open("DELETE", "http://localhost:5000/table_publications/" + id, true);
+
+  // Define the callback function to handle the response
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+
+        var logurl = 'http://localhost:5000/table_log';
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', logurl, true);
+
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var response_id = xhr.responseText;
+            
+            var data = JSON.parse(response_id);
+            var logs = data['table_log'];
+            
+            logs.sort(function(a, b) {
+              return a['log_id'].localeCompare(b['log_id']);
+            });
+            
+            var lastLog = logs[logs.length - 1];
+            var last_id = lastLog['log_id'];
+            
+            var numericPart = parseInt(last_id.substr(2));
+            var nextNumericID = numericPart + 1;
+            
+            var paddedNumericID = nextNumericID.toString().padStart(6, '0');
+            
+            var log_id = 'AL' + paddedNumericID;
+            
+            console.log(log_id);
+            
+            var date_time = new Date().toISOString();
+            var user_id = 18;
+            var activity = 'Delete Publication';
+            var description = 'Deleted Publication ID "' + id + '"';
+            
+            var publication_log = {
+              'log_id': log_id,
+              'date_time': date_time,
+              'user_id': user_id,
+              'activity': activity,
+              'description': description
+            };
+            
+            var jsonData = JSON.stringify(publication_log);
+            
+            var xhrLogPost = new XMLHttpRequest();
+            xhrLogPost.open('POST', 'http://localhost:5000/table_log', true);
+            xhrLogPost.setRequestHeader('Content-Type', 'application/json');
+            
+            xhrLogPost.onreadystatechange = function() {
+              if (xhrLogPost.readyState === 4 && xhrLogPost.status === 200) {
+                var response_logpost = xhrLogPost.responseText;
+                // Handle the response as needed
+              }
+            };
+            
+            xhrLogPost.send(jsonData);
           }
-          
-          // Append the 'delete=success' parameter to the modified URL
-          window.location.href = "?" + searchParams + "&delete=success";
-        } else {
-          // Display an error message using SweetAlert library
-          Swal.fire({
-            icon: 'error',
-            title: 'Delete was Unsuccessful',
-            text: 'Something went wrong! Please try again later!',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'OK'
-          });
-          console.log(xhr.responseText);
+        };
+
+        xhr.send();
+
+        // Remove the 'delete' parameter from the current URL
+        let queryString = window.location.search;
+        const searchParams = new URLSearchParams(queryString);
+        if (searchParams.has('delete')) {
+          searchParams.delete('delete');
         }
+
+        // Append the 'delete=success' parameter to the modified URL
+        window.location.href = "?" + searchParams + "&delete=success";
+      } else {
+        // Display an error message using SweetAlert library
+        Swal.fire({
+          icon: 'error',
+          title: 'Delete was Unsuccessful',
+          text: 'Something went wrong! Please try again later!',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        });
+        console.log(xhr.responseText);
       }
-    };
-    
-    // Send the request with the 'id' parameter
-    xhr.send("id=" + id);
-  }
-  
+    }
+  };
+
+  // Send the request
+  xhr.send();
+}
 
   function confirmDelete(id) {
     // Display a confirmation dialog using SweetAlert library
     Swal.fire({
       title: 'Are you sure?',
-      text: id + " will be deleted from Publications chuchu. You won't be able to revert this!",
+      text: id + " will be deleted from Publications. You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

@@ -153,45 +153,148 @@ function redirect(url) {
     }
 }
 
-// Submit Delete
+// // Submit Delete
+// function submitDelete(id) {
+//     // Create an XMLHttpRequest object
+//     var xhr = new XMLHttpRequest();
+    
+//     // Open a POST request to the IPA delete PHP script
+//     xhr.open("POST", "functionalities/button_functions/ipa-delete.php", true);
+    
+//     // Set the request header
+//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+//     // Define the callback function to handle the response
+//     xhr.onreadystatechange = function() {
+//         if (xhr.readyState === 4 && xhr.status === 200) {
+//             if (xhr.responseText === "Success") {
+//                 // If the delete operation is successful, update the URL parameters and refresh the page
+//                 let queryString = window.location.search;
+//                 const searchParams = new URLSearchParams(queryString);
+//                 if (searchParams.has('delete')) {
+//                     searchParams.delete('delete');
+//                 }
+//                 window.location.href = "?" + searchParams + "&delete=success";
+//             } else {
+//                 // If the delete operation fails, display an error message using SweetAlert
+//                 Swal.fire({
+//                     icon: 'error',
+//                     title: 'Delete was Unsuccessful',
+//                     text: 'Something went wrong! Please try again later!',
+//                     confirmButtonColor: '#3085d6',
+//                     confirmButtonText: 'OK'
+//                 });
+//                 console.log(xhr.responseText);
+//             }
+//         }
+//     };
+    
+//     // Send the request with the ID parameter
+//     xhr.send("id=" + id);
+// }
+
+
 function submitDelete(id) {
-    // Create an XMLHttpRequest object
+    // Create a new XMLHttpRequest object
     var xhr = new XMLHttpRequest();
-    
-    // Open a POST request to the IPA delete PHP script
-    xhr.open("POST", "functionalities/button_functions/ipa-delete.php", true);
-    
-    // Set the request header
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    
+  
+    // Configure the request
+    xhr.open("DELETE", "http://localhost:5000/table_publications/" + id, true);
+  
     // Define the callback function to handle the response
     xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            if (xhr.responseText === "Success") {
-                // If the delete operation is successful, update the URL parameters and refresh the page
-                let queryString = window.location.search;
-                const searchParams = new URLSearchParams(queryString);
-                if (searchParams.has('delete')) {
-                    searchParams.delete('delete');
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+  
+          var logurl = 'http://localhost:5000/table_log';
+  
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', logurl, true);
+  
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var response_id = xhr.responseText;
+              
+              var data = JSON.parse(response_id);
+              var logs = data['table_log'];
+              
+              logs.sort(function(a, b) {
+                return a['log_id'].localeCompare(b['log_id']);
+              });
+              
+              var lastLog = logs[logs.length - 1];
+              var last_id = lastLog['log_id'];
+              
+              var numericPart = parseInt(last_id.substr(2));
+              var nextNumericID = numericPart + 1;
+              
+              var paddedNumericID = nextNumericID.toString().padStart(6, '0');
+              
+              var log_id = 'AL' + paddedNumericID;
+              
+              console.log(log_id);
+              
+              var date_time = new Date().toISOString();
+              var user_id = 18;
+              var activity = 'Delete Publication';
+              var description = 'Deleted Publication ID "' + id + '"';
+              
+              var publication_log = {
+                'log_id': log_id,
+                'date_time': date_time,
+                'user_id': user_id,
+                'activity': activity,
+                'description': description
+              };
+              
+              var jsonData = JSON.stringify(publication_log);
+              
+              var xhrLogPost = new XMLHttpRequest();
+              xhrLogPost.open('POST', 'http://localhost:5000/table_log', true);
+              xhrLogPost.setRequestHeader('Content-Type', 'application/json');
+              
+              xhrLogPost.onreadystatechange = function() {
+                if (xhrLogPost.readyState === 4 && xhrLogPost.status === 200) {
+                  var response_logpost = xhrLogPost.responseText;
+                  // Handle the response as needed
                 }
-                window.location.href = "?" + searchParams + "&delete=success";
-            } else {
-                // If the delete operation fails, display an error message using SweetAlert
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Delete was Unsuccessful',
-                    text: 'Something went wrong! Please try again later!',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'OK'
-                });
-                console.log(xhr.responseText);
+              };
+              
+              xhrLogPost.send(jsonData);
             }
+          };
+  
+          xhr.send();
+  
+          // Remove the 'delete' parameter from the current URL
+          let queryString = window.location.search;
+          const searchParams = new URLSearchParams(queryString);
+          if (searchParams.has('delete')) {
+            searchParams.delete('delete');
+          }
+  
+          // Append the 'delete=success' parameter to the modified URL
+          window.location.href = "?" + searchParams + "&delete=success";
+        } else {
+          // Display an error message using SweetAlert library
+          Swal.fire({
+            icon: 'error',
+            title: 'Delete was Unsuccessful',
+            text: 'Something went wrong! Please try again later!',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+          });
+          console.log(xhr.responseText);
         }
+      }
     };
-    
-    // Send the request with the ID parameter
-    xhr.send("id=" + id);
-}
+  
+    // Send the request
+    xhr.send();
+  }
+
+
+
 
 // Confirm Delete
 function confirmDelete(id) {

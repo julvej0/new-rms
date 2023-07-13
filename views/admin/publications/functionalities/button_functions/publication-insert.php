@@ -1,5 +1,4 @@
 <?php
-session_start();
 //TODO: add some description/tooltip to fields like author describing how they work.
 //that you can just type an author's name to add it to the database
 if (isset($_POST['submitPB'])) {
