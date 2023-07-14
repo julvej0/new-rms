@@ -134,20 +134,16 @@ if (isset($_POST['submitPB'])) {
         'number_of_citation' => 0
     );
 
-    // Convert the data array to JSON
     $jsonData = json_encode($publication_data);
 
-    // Set the cURL options
     $ch = curl_init('http://localhost:5000/table_publications');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-    // Execute the cURL request
     $response = curl_exec($ch);
 
-    // Check for errors
     if ($response === false) {
         header("Location: ../../publications.php?upload=failed");
     } else {
@@ -193,25 +189,21 @@ if (isset($_POST['submitPB'])) {
             'activity' => $activity,
             'description' => $description
         );
-
-        // Convert the data array to JSON
+        
         $jsonData = json_encode($publication_log);
 
-        // Set the cURL options
         $ch = curl_init('http://localhost:5000/table_log');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-        // Execute the cURL request
         $response_logpost = curl_exec($ch);
 
         echo "Insert successful.";
         header("Location: ../../publications.php?upload=success");
     }
 
-    // Close cURL session
     curl_close($ch);
 } else {
     header("Location: ../../publications.php?upload=failed");

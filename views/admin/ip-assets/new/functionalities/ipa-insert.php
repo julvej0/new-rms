@@ -1,5 +1,4 @@
 <?php
-include dirname(__FILE__, 6) . '/helpers/db.php';
 
 if (isset($_POST['submitIPA'])) {
     $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
@@ -148,17 +147,14 @@ if (isset($_POST['submitIPA'])) {
                             'description' => $description
                         );
                 
-                        // Convert the data array to JSON
                         $jsonData = json_encode($ipasset_log);
                 
-                        // Set the cURL options
                         $ch = curl_init('http://localhost:5000/table_log');
                         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
                 
-                        // Execute the cURL request
                         $response = curl_exec($ch);
                 
                         echo "Insert successful.";
@@ -245,17 +241,14 @@ if (isset($_POST['submitIPA'])) {
                 'description' => $description
             );
     
-            // Convert the data array to JSON
             $jsonData = json_encode($ipasset_log);
     
-            // Set the cURL options
             $ch = curl_init('http://localhost:5000/table_log');
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
     
-            // Execute the cURL request
             $response = curl_exec($ch);
 
             echo "Insert successful.";
