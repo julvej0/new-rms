@@ -2,16 +2,15 @@
     include dirname(__FILE__, 5) . '/helpers/db.php';
     include dirname(__FILE__, 5) . '/components/header/header.php';
     include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php'; 
-    include '../../../includes/admin/templates/header.php';
     if (isset($_POST['edit'])) {
 ?>
 <link rel="stylesheet" href="../../../../css/index.css">
 <link rel="stylesheet" href="../../publications/new/new-publication.css">
 
 <body>
-<?php
+<!-- <?php
     include '../../../includes/admin/templates/navbar.php';
-?>
+?> -->
     <main>
         <div class="header">
             <h1 class="title">Publication Edit</h1>
@@ -23,7 +22,7 @@
                 $fetchdata = pg_query($conn, "SELECT * FROM table_publications WHERE publication_id = '$publicationID'");
                 while($row = pg_fetch_assoc($fetchdata)){
             ?>
-                <form name="form-pb" id="form-pb" action="functionalities/button_functions/publication-edit.php" method="POST" onsubmit="return checkDuplicateAuthors();">
+                <form name="form-pb" id="form-pb" action="../functionalities/button_functions/publication-edit.php" method="POST" onsubmit="return checkDuplicateAuthors();">
                     <div class="sub-container">
                         <div class="title">
                             <h3>Document Details</h3>
@@ -337,7 +336,7 @@
 <script src="edit-publication.js"></script>
 
 <?php
-    include 'new-publication-js.php';
+    include '../new/new-publication-js.php';
 ?>
 </body>
 <?php

@@ -88,6 +88,7 @@ if (isset($_POST['updateIPA'])) {
                     echo "The file ". htmlspecialchars(basename($_FILES["ip-certificate"]["name"])) . " has been uploaded.";
 
                     $postData = array(
+                        'registration_number' => $registration_number,
                         'title_of_work' => $title_of_work,
                         'type_of_document' => $type_of_document,
                         'class_of_work' => $class_of_work,
@@ -185,6 +186,7 @@ if (isset($_POST['updateIPA'])) {
         }
     } else {
         $postData = array(
+            'registration_number' => $registration_number,
             'title_of_work' => $title_of_work,
             'type_of_document' => $type_of_document,
             'class_of_work' => $class_of_work,

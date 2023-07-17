@@ -1,18 +1,19 @@
 <?php
-    include '../../../db/db.php';
-    include '../../../includes/admin/templates/header.php';
+    include dirname(__FILE__, 4) . '/helpers/db.php';
+    include dirname(__FILE__, 4) . '/components/header/header.php';
+    include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.php'; 
     // Check if the 'edit' form has been submitted
     // This condition is used to determine if the code block should be executed when the 'edit' form is submitted
     if (isset($_POST['edit'])) {
     // The code inside this block will be executed only if the 'edit' form has been submitted
 ?>
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="./new-ip-asset.css">
+<link rel="stylesheet" href="../ip-assets/new/new-ip-asset.css">
 
 <body>
-    <?php
+    <!-- <?php
         include '../../../includes/admin/templates/navbar.php';
-    ?>
+    ?> -->
     <main>
         <div class="header">
             <h1 class="title">Edit IP Asset</h1>
@@ -222,11 +223,10 @@
             </div>
         </section>
     </main>
-<script src="new-ip-asset.js"></script>
+<script src="new/new-ip-asset.js"></script>
 </body>
 <?php
-    include 'new-ip-asset-js.php';
-    include '../../../includes/admin/templates/footer.php';
+    include 'new/new-ip-asset-js.php';
     }else{
         header("Location: ../ip-assets/ip-assets.php");
     }

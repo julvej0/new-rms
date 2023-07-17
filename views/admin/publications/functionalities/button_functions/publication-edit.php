@@ -85,6 +85,7 @@ if (isset($_POST['updatePB'])) {
 
 
     $publication_data = array(
+        'publication_id' => $pubID,
         'date_published' => $date_published,
         'quartile' => $quartile,
         'authors' => $authors_string,
