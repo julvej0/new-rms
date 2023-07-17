@@ -1,4 +1,5 @@
 <?php
+include_once("../../../account-management/functionalities/user-session.php");
 
 if (isset($_POST['updatePB'])) {
     $date_published = $_POST["date_published"];
@@ -147,16 +148,14 @@ if (isset($_POST['updatePB'])) {
         }
 
         $date_time = date('Y-m-d H:i:s.uO');
-
-        $user_id = 18;
-
+        $uid = intval($user_id);
         $activity = 'Update Publication';
         $description = 'Updated Publication ID "' . $pubID . '" titled "' . $title . '" by "' . $authors_string . '".';
 
         $publication_log = array(
             'log_id' => $log_id,
             'date_time' => $date_time,
-            'user_id' => $user_id,
+            'user_id' => $uid,
             'activity' => $activity,
             'description' => $description
         );

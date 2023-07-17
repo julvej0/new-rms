@@ -1,7 +1,9 @@
 <?php
+include_once("../../../account-management/functionalities/user-session.php");
 //TODO: add some description/tooltip to fields like author describing how they work.
 //that you can just type an author's name to add it to the database
 if (isset($_POST['submitPB'])) {
+
     $date_published = $_POST["date_published"];
     $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;
     if (!$date_published) {
@@ -176,16 +178,14 @@ if (isset($_POST['submitPB'])) {
         }
 
         $date_time = date('Y-m-d H:i:s.uO');
-
-        $user_id = 18;
-
+        $uid = intval($user_id);
         $activity = 'Upload Publication';
         $description = 'Uploaded Publication ID "' . $publication_id . '" titled "' . $title . '" by "' . $authors_string . '".';
 
         $publication_log = array(
             'log_id' => $log_id,
             'date_time' => $date_time,
-            'user_id' => $user_id,
+            'user_id' => $uid,
             'activity' => $activity,
             'description' => $description
         );

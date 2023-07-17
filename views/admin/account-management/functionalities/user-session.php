@@ -24,4 +24,10 @@ if (!$user) {
     exit;
 }
 
+// Get the user_id from the user details
+$user_id = $user['user_id'];
+
+// Store the user_id in a session variable
+$_SESSION['user_id'] = $user_id;
+
 ?>

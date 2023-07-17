@@ -1,5 +1,5 @@
 <?php
-
+include_once("../../../account-management/functionalities/user-session.php");
 if (isset($_POST['updateIPA'])) {
     $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
     if (!$date_of_creation) {
@@ -147,16 +147,14 @@ if (isset($_POST['updateIPA'])) {
                         }
                 
                         $date_time = date('Y-m-d H:i:s.uO');
-                
-                        $user_id = 18;
-                
+                        $uid = intval($user_id);
                         $activity = 'Update IP-Assets';
                         $description = 'Updated Registration no. "' . $registration_number . '" titled "' . $title_of_work . '" by "' . $authors_string . '".';
                 
                         $ipasset_log = array(
                             'log_id' => $log_id,
                             'date_time' => $date_time,
-                            'user_id' => $user_id,
+                            'user_id' => $uid,
                             'activity' => $activity,
                             'description' => $description
                         );
@@ -244,16 +242,14 @@ if (isset($_POST['updateIPA'])) {
             }
     
             $date_time = date('Y-m-d H:i:s.uO');
-    
-            $user_id = 18;
-    
+            $uid = intval($user_id);
             $activity = 'Update IP-Assets';
             $description = 'Updated Registration no. "' . $registration_number . '" titled "' . $title_of_work . '" by "' . $authors_string . '".';
     
             $ipasset_log = array(
                 'log_id' => $log_id,
                 'date_time' => $date_time,
-                'user_id' => $user_id,
+                'user_id' => $uid,
                 'activity' => $activity,
                 'description' => $description
             );

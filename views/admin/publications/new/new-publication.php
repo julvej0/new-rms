@@ -2,7 +2,7 @@
 <?php
     include dirname(__FILE__, 5) . '/helpers/db.php';
     include dirname(__FILE__, 5) . '/components/header/header.php';
-    include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php'; 
+    include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php';
 ?>
 <!-- <link rel="stylesheet" href="../../../css/index.css"> -->
 <link rel="stylesheet" href="new-publication.css">
