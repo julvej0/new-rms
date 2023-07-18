@@ -8,22 +8,24 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
     $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
     $tableData = $encodedJsonResponse->table_ipassets;
 
-    // TODO: API call for authors name retrieval
+    // retrieve all the authors registered from the api
+    $authorObj = getReq("http://localhost:5000/table_authors");
+    $authorObj = $authorObj->table_authors;
+
     // retrieve all the values from json response
     foreach($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper
         $authors = explode(',', $content->authors);
         $authorList = "";
 
-        // retrieve the autornames from the api
+        // retrieve the autornames from the api response
         foreach($authors as $aid) {
-            $authorObj = getReq("http://localhost:5000/table_authors/$aid");
-            if (!$authorObj || !property_exists($authorObj, "table_authors")) {
-                $authorList .= "Unknown Author<br/>";
-                continue;
+            foreach($authorObj as $registeredAuthor) {
+                if ($aid == $registeredAuthor->author_id) {
+                    $authorList .= $registeredAuthor->author_name . "<br/>";
+                    break;
+                }
             }
-
-            $authorList .= $authorObj->table_authors->author_name . "<br/>";
         }
 
         $table_rows[] = array(
