@@ -18,7 +18,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
         // retrieve the autornames from the api
         foreach($authors as $aid) {
             $authorObj = getReq("http://localhost:5000/table_authors/$aid");
-            if (!property_exists($authorObj, "table_authors")) {
+            if (!$authorObj || !property_exists($authorObj, "table_authors")) {
                 $authorList .= "Unknown Author<br/>";
                 continue;
             }
