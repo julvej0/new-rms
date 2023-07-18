@@ -5,22 +5,26 @@ function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_
 
 // retrieves the data from the api route
 function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number) {
-    // retrieve all the data from the api
-    $curlRequest = curl_init('http://localhost:5000/table_ipassets');
-    curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, "GET");
-    curl_setopt($curlRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-    curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
-
-    $response = curl_exec($curlRequest);
-    $encodedJsonResponse = json_decode($response);
+    $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
     $tableData = $encodedJsonResponse->table_ipassets;
 
     // TODO: API call for authors name retrieval
     // retrieve all the values from json response
     foreach($tableData as $content) {
-        // for now: author ids are to be pushed
+        // retrieve the names for each authors that are registered for this paper
         $authors = explode(',', $content->authors);
-        $authors = implode('<br/>', $authors);
+        $authorList = "";
+
+        // retrieve the autornames from the api
+        foreach($authors as $aid) {
+            $authorObj = getReq("http://localhost:5000/table_authors/$aid");
+            if (!property_exists($authorObj, "table_authors")) {
+                $authorList .= "Unknown Author<br/>";
+                continue;
+            }
+
+            $authorList .= $authorObj->table_authors->author_name . "<br/>";
+        }
 
         $table_rows[] = array(
             'registration_number' => $content->registration_number,
@@ -32,7 +36,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
             'campus' => 'Not Available',
             'college' => 'Not Available',
             'program' => 'Not Available',
-            'authors' => $authors,
+            'authors' => $authorList,
             'hyperlink' => 'Not Available',
             'status' => $content->status,
             'certificate' => 'Not Available',
@@ -41,7 +45,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 
     // perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
-    $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
+    $table_rows = searchTypeAPI($table_rows, $type);
 
     return $table_rows;
 }
@@ -66,9 +70,9 @@ function keywordsearchAPI($tableRows, $strmatch) {
 }
 
 // searches for the type of document
-function searchTypeAPI($tableRows, $strmatch, $key) {
+function searchTypeAPI($tableRows, $strmatch) {
     if ($strmatch == 'empty_type') return $tableRows;
-    return searchAPI($tableRows, $strmatch, $key);
+    return searchAPI($tableRows, $strmatch, 'type_of_document');
 }
 
 // removes the authors from the table that doesn' match or isn't like the authorName
@@ -82,6 +86,18 @@ function searchAPI($tableRows, $strmatch, $key) {
     }
 
     return $tableRows;
+}
+
+// for making a curl get request
+function getReq($url) {
+    // retrieve all the data from the api
+    $curlRequest = curl_init($url);
+    curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, "GET");
+    curl_setopt($curlRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($curlRequest);
+    return json_decode($response);
 }
 
 function authorSearch($authorurl, $search) {
@@ -112,4 +128,3 @@ function authorSearch($authorurl, $search) {
 }
 
 ?>
-
