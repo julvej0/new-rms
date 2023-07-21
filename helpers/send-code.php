@@ -16,9 +16,10 @@ if (isset($_POST['textValue'])) {
     $recipient = $email;
     $subject = "VERIFICATION CODE";
     $message = "This is your verification code: ".$verification_code;
-    echo "Email sent to " . $recipient;
+    
+    echo "<script>console.log('Attempt email sending to" . $recipient ."');</script>";
     send_mail($recipient, $subject, $message);
 }else{
-    echo "email sending failed";
+    echo "<script>console.log('email sending failed');</script>";
 }
 ?>
