@@ -73,7 +73,10 @@ if (isset($_SESSION['user_email'])) {
             <br>
             <input name="submit" type="button" id="pass" value="SIGN UP" onclick='showModal()'>
             <br>
-            <label id='labelSignUp'>Already have an account?<a id='a_SignUp' href='login.php'>&nbsp;Sign In</a></label>
+            <label id='labelSignUp'>
+                Already have an account?
+                <a id='a_SignUp' href='../login/login.php'>&nbsp;Sign In</a>
+            </label>
             <br>
         </form>
 
@@ -115,35 +118,35 @@ if (isset($_SESSION['user_email'])) {
 
 <script src='../helpers/show-hide-password.js'></script>
 <script src='./functionalities/show-modal.js'></script>
+<script src='./functionalities/add-user-btn.js'></script>
 <script src='../helpers/close-modal.js'></script>
 <script src='./functionalities/add-user-btn.js'></script>
 <script src='../../helpers/send-otp.js'></script>
 
 <!-------------------------------------------------------- disable buttons on modal -------------------------------------------------->
 <script>
-    var disableotpInput = document.getElementById("otpVerification");
-    var disableconfirmBtn = document.getElementById("btnSubmit");
-    var disableEmailAddress = document.getElementById('userEmailAddressInput');
-    var disableSrCode = document.getElementById('userSrCode');
+var disableotpInput = document.getElementById("otpVerification");
+var disableconfirmBtn = document.getElementById("btnSubmit");
+var disableEmailAddress = document.getElementById('userEmailAddressInput');
+var disableSrCode = document.getElementById('userSrCode');
 
-    // Disable confirm button initially
-    disableotpInput.disabled = true;
-    disableconfirmBtn.disabled = true;
-    disableSrCode.disabled = true;
-    disableEmailAddress.disabled = true;
-    disableconfirmBtn.style.backgroundColor = "gray";
-    disableconfirmBtn.style.pointerEvents = "none";
+// Disable confirm button initially
+disableotpInput.disabled = true;
+disableconfirmBtn.disabled = true;
+disableSrCode.disabled = true;
+disableEmailAddress.disabled = true;
+disableconfirmBtn.style.backgroundColor = "gray";
+disableconfirmBtn.style.pointerEvents = "none";
 
-    disableotpInput.addEventListener("input", () => {
-        if (disableotpInput.value === "") {
-            disableconfirmBtn.disabled = true;
-            disableconfirmBtn.style.backgroundColor = "gray";
-            disableconfirmBtn.style.pointerEvents = "none";
-        } else {
-            disableconfirmBtn.disabled = false;
-            disableconfirmBtn.style.backgroundColor = "";
-            disableconfirmBtn.style.pointerEvents = "auto";
-        }
-    });
-
+disableotpInput.addEventListener("input", () => {
+    if (disableotpInput.value === "") {
+        disableconfirmBtn.disabled = true;
+        disableconfirmBtn.style.backgroundColor = "gray";
+        disableconfirmBtn.style.pointerEvents = "none";
+    } else {
+        disableconfirmBtn.disabled = false;
+        disableconfirmBtn.style.backgroundColor = "";
+        disableconfirmBtn.style.pointerEvents = "auto";
+    }
+});
 </script>

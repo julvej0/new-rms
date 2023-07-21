@@ -19,6 +19,7 @@ if (isset($_POST['login'] )) {
         $user = pg_fetch_assoc($fetch_result);
         
         if (password_verify($password, $user['password'])) {
+        echo "<script>console.log('password: " . $password . "');</script>";
              
             //create a session
             session_start();
@@ -36,12 +37,14 @@ if (isset($_POST['login'] )) {
             }
         }
         else{
-            header("Location: ../../../../views/login/login.php?login=incorrect");
+            // header("Location: ../views/login/login.php?login=incorrect");
+            echo "<script>console.log('login incorrect: " . $password . " hash: " . $user['password'] . "');</script>";
             exit();
         }
     }
     else{
-        header("Location: ../../../../views/login/login.php?login=notexist");
+        // header("Location: ../views/login/login.php?login=notexist");
+        echo "<script>console.log('login notexist: " . $password . " hash: " . $user['password'] . "');</script>";
         exit();
     }
 }

@@ -54,6 +54,8 @@ if (isset($_POST['email'], $_POST['otp'], $_POST['srcode'], $_POST['password'], 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $accountType = 'Regular';
 
+    echo "sessVerCode: " + $_SESSION['verification_code'];
+    echo "otp: " +$otp;
     // check if the OTP entered by the user matches the one sent to their email
     if ($otp == $_SESSION['verification_code']) {
         // the OTP is valid, so clear the session and post the data to the API endpoint
@@ -100,4 +102,3 @@ if (isset($_POST['email'], $_POST['otp'], $_POST['srcode'], $_POST['password'], 
     }
 }
 ?>
-

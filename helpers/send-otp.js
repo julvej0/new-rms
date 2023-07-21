@@ -44,26 +44,28 @@ function sendOtp() {
     xhr.open("POST", "./../../helpers/send-code.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
-        console.log("try otp sending");
-        //TODO: check why this code considers a failed attempt ok
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            const status = xhr.status;
+      console.log("try otp sending");
+      //TODO: check why this code considers a failed attempt ok
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        const status = xhr.status;
 
-            console.log("status: " + status);
-            if (status === 0 || (status >= 200 && status < 400)) {
-              // Display a success message using Swal (SweetAlert) when OTP is sent successfully
-              Swal.fire({
-                icon: "success",
-                title: "OTP Sent",
-                text: "OTP has been sent to your email " + emailInput,
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "OK",
-              });
-            }
+        console.log("status: " + status);
+        if (status === 200) {
+          // Display a success message using Swal (SweetAlert) when OTP is sent successfully
+          Swal.fire({
+            icon: "success",
+            title: "OTP Sent",
+            text: "OTP has been sent to your email " + emailInput,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "OK",
+          });
+        } else {
+          console.log("OTP sending failed");
         }
+      }
     };
     xhr.addEventListener("error", (event) => {
-        console.log("error " + event);
+      console.log("error " + event);
     });
 
     xhr.send("textValue=" + emailInput);
