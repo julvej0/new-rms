@@ -10,8 +10,8 @@ require '../libs/email_ver/PHPMailer-master/src/SMTP.php';
 require '../libs/email_ver/PHPMailer-master/src/class.smtp.php';
 
 //https://world.siteground.com/kb/gmail-smtp-server/
-$sender_uname = "manalor2018@gmail.com";
-$sender_pword = "guuqorljmiphvdyj";
+$sender_uname = "rms.websample@gmail.com";
+$sender_pword = "yfjgkcjsxfljawee";
 $sender_display_name = "Research Management Services";
 
 if (!isset($_POST['email_recepient']) || !isset($_POST['subject']) || !isset($_POST['message'])) {

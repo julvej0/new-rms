@@ -6,7 +6,6 @@ sendOtpLink.addEventListener("click", sendOtp);
 function sendOtp() {
     // Get the value of the email input
     var emailInput = document.getElementById("userEmailAddressInput").value;
-    console.log(emailInput);
 
     if (emailInput === "") {
         // Display an error message using Swal (SweetAlert) if the email input is empty
@@ -37,8 +36,6 @@ function sendOtp() {
                 timeLeft--;
             }
         }, 1000);
-
-        console.log("emailRecepient: " + emailInput);
         prepareOTPSending(emailInput);
     }
 
@@ -47,7 +44,6 @@ function sendOtp() {
             // generate a random verification code and store it in a session variable
             var verification_code = getRndInteger(100000, 999999); // change this to generate a code of desired length
             sessionStorage.setItem("verification_code", verification_code);
-            console.log("otpCOde: " + verification_code);
 
             // send the verification code to the user's email
             var subject = "VERIFICATION CODE";
@@ -64,6 +60,9 @@ function sendOtp() {
                         confirmButtonColor: "#3085d6",
                         confirmButtonText: "OK",
                     });
+
+                    var signUpSubmitBtn = document.getElementById("btnSubmit");
+                    signUpSubmitBtn.disabled = false;
                 } else {
                     Toast.fire({
                         icon: "error",
