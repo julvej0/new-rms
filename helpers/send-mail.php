@@ -14,18 +14,17 @@ $sender_uname = "manalor2018@gmail.com";
 $sender_pword = "guuqorljmiphvdyj";
 $sender_display_name = "Research Management Services";
 
-if (!isset($_POST['arguments'])) {
+if (!isset($_POST['email_recepient']) || !isset($_POST['subject']) || !isset($_POST['message'])) {
     return;
 }
-echo "<script>console.log('inside send-mail');</script>";
 
-$recipient = $_POST['arguments'][0];
-$subject = $_POST['arguments'][1];
-$message = $_POST['arguments'][2];
+$recipient = $_POST['email_recepient'];
+$subject = $_POST['subject'];
+$message = $_POST['message'];
 
 try {
     $mail = new PHPMailer(true);
-    $mail->SMTPDebug = 2;
+    $mail->SMTPDebug = 0;
     $mail->IsSMTP();
     $mail->Host = "smtp.gmail.com";
     $mail->CharSet = 'UTF-8';
@@ -34,25 +33,21 @@ try {
     $mail->Password = $sender_pword;
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
-
+    
     $mail->setFrom($sender_uname, $sender_display_name);
     $mail->addAddress($recipient, "");
 
     $mail->IsHTML(true);
     $mail->Subject = $subject;
-    // $content = $message;
     $mail->Body = $message;
     $mail->AltBody = $message;
 
-    // $mail->MsgHTML($content);
-    if (!$mail->Send()) {
-        echo "<script>console.log('Error while sending Email.');</script>";
-        throw new ErrorException("Message sending failed", 0, 5);
-    } else {
-        echo "<script>console.log('Email sent successfully');</script>";
-        return true;
-    }
+    $status = false;
+    if ($mail->Send()) {
+        $status = true;
+    } 
+    echo json_encode(array("status" => $status));
 } catch (Exception $e) {
-    echo "<script>console.log('phpMailer err: " . $e . "');</script>"; //Boring error messages sender_uname anything else!
+    echo json_encode(array("status" => false));
 }
 ?>

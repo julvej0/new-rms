@@ -39,43 +39,53 @@ function sendOtp() {
         }, 1000);
 
         console.log("emailRecepient: " + emailInput);
-        prepareOTPSending(emailInput)
+        prepareOTPSending(emailInput);
     }
 
     function prepareOTPSending(emailRecepient) {
         if (emailRecepient != "") {
             // generate a random verification code and store it in a session variable
             var verification_code = getRndInteger(100000, 999999); // change this to generate a code of desired length
-            sessionStorage.setItem("verification_code", verification_code)
+            sessionStorage.setItem("verification_code", verification_code);
             console.log("otpCOde: " + verification_code);
 
             // send the verification code to the user's email
             var subject = "VERIFICATION CODE";
-            var message = "This is your verification code: " + verification_code;
+            var message =
+                "This is your verification code: " + verification_code;
 
             console.log("Attempt email sending to " + emailRecepient);
-            attempOTPSending(emailRecepient, subject, message);
+            attempOTPSending(emailRecepient, subject, message).then((resp) => {
+                if (resp["status"]) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "OTP Sent",
+                        text: "OTP has been sent to your email " + emailInput,
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK",
+                    });
+                } else {
+                    Toast.fire({
+                        icon: "error",
+                        title: "OTP Sending Failed",
+                    });
+                }
+            });
         } else {
             console.log("emailRecepient not set");
         }
     }
 
     function attempOTPSending(emailRecepient, subject, message) {
-        $.ajax({
+        return $.ajax({
             type: "POST",
-            url: '../../helpers/send-mail.php',
-            dataType: 'json',
-            data: { functionname: 'send_mail', arguments: [emailRecepient, subject, message] },
-
-            success: function (obj, textstatus) {
-                if (!('error' in obj)) {
-                    console.log("otp sent");
-                }
-                else {
-                    console.log("otp sending failed");
-                    console.log(obj.error);
-                }
-            }
+            url: "../../helpers/send-mail.php",
+            dataType: "json",
+            data: {
+                email_recepient: emailRecepient,
+                subject: subject,
+                message: message,
+            },
         });
     }
 
