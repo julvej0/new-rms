@@ -42,6 +42,8 @@ function signUpConfirmBtn() {
 }
 
 var redirectToLoginAfter = 3000;
+// var serverIp = "192.168.101.90";
+var serverIp = "localhost";
 function otpVerify(email, otp, srCode, password, fname, lname, mname) {
     if (
         email != "" &&
@@ -68,7 +70,7 @@ function otpVerify(email, otp, srCode, password, fname, lname, mname) {
 
             console.log("otp matched, creating new record");
             getPasswordHash(password).then((resp) => {
-                fetch("http://localhost:5000/table_user", {
+                fetch("http://" + serverIp + ":5000/table_user", {
                     method: "POST",
                     mode: "cors",
                     credentials: "same-origin",

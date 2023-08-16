@@ -19,7 +19,7 @@ cancelBtn.addEventListener('click', (e) => {
   }).then((result) => {
     if (result.isConfirmed) {
       // If the user confirms, redirect to the specified URL
-      window.location.href = "ip-assets.php";
+      window.location.href = "../ip-assets.php";
     }
   });
 });

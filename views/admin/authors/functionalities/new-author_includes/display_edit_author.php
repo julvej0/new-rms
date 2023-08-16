@@ -1,6 +1,6 @@
 <?php
 
-$table_rows=[]; //initialize
+$author_info_arr=[]; //initialize
 
 //check if id exists, if exists user is editing
 if (isset($_GET['id'])){
@@ -10,7 +10,7 @@ if (isset($_GET['id'])){
 
     if(pg_num_rows($result) > 0){
         $row = pg_fetch_assoc($result);
-        $table_rows[] = array(
+        $author_info_arr[] = array(
             'author_id' =>$row['author_id'],
             'author_name' => $row['author_name'],
             'gender' => $row['gender'],
@@ -24,7 +24,7 @@ if (isset($_GET['id'])){
 }
 else{
     //author is adding a new entry
-    $table_rows[] = array(
+    $author_info_arr[] = array(
         'author_id' =>'',
         'author_name' => '',
         'gender' => '',

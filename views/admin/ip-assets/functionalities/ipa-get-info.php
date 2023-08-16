@@ -18,7 +18,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
         $authors = explode(',', $content->authors);
         $authorList = "";
 
-        // retrieve the autornames from the api response
+        // retrieve the author names from the api response
         foreach($authors as $aid) {
             foreach($authorObj as $registeredAuthor) {
                 if ($aid == $registeredAuthor->author_id) {
