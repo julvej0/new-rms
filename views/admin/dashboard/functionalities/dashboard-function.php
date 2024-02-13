@@ -96,6 +96,7 @@ function getArticleCount($publicationurl) {
 function getPublicationsContributors($authorurl, $publicationurl) {
 
     $responsePublications = file_get_contents($publicationurl);
+    echo("error: " + $responsePublications)
 
     $dataPublications = json_decode($responsePublications, true);
 

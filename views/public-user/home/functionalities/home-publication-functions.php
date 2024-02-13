@@ -2,7 +2,11 @@
 // getting the number o authors with most contributions in publications
 
 function getPublicationsContributors($authorurl, $publicationurl) {
-
+    // $context = stream_context_create(array(
+    //     'http' => array('ignore_errors' => true),
+    // ));
+    
+    // $responsePublications = file_get_contents($publicationurl, false, $context);
     $responsePublications = file_get_contents($publicationurl);
 
     $dataPublications = json_decode($responsePublications, true);
@@ -36,7 +40,6 @@ function getPublicationsContributors($authorurl, $publicationurl) {
 
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
     $authorNameColumn = array_column($dataAuthors['table_authors'], 'author_name');
-
     $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
 
     $contributors = array();

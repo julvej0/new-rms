@@ -42,11 +42,11 @@
 }
 </style>
 <body>
-<div id="loading-screen">
+<!-- <div id="loading-screen">
     <div class="loading-img">
         <img src="../../../assets/images/redspartan_logo.png" alt="redSpartan">
     </div>
-</div>
+</div> -->
 <div class="home-content">
     <section id="hero-img">
         <div class="rms-title">

@@ -73,7 +73,7 @@ function updateIpasset($conn, $id){
     
 
 }
-
+//make na API
 //updating authors column if table_ipasset due to author removal
 function updatePublication($conn, $id){
     $selectPublication = "SELECT * FROM table_publications WHERE authors ILIKE $1"; //query to get all entries related to author
