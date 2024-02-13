@@ -1,4 +1,6 @@
+
 <?php
+echo '<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>';
 $items_per_page = 10; // total item per page
 $search_query = $search != 'empty_search' ? $search : ''; // check if the user searched
 $total_records = countAuthors($authorurl); // function for total author base on search and filter

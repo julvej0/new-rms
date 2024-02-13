@@ -42,11 +42,11 @@
 }
 </style>
 <body>
-<!-- <div id="loading-screen">
+<div id="loading-screen">
     <div class="loading-img">
         <img src="../../../assets/images/redspartan_logo.png" alt="redSpartan">
     </div>
-</div> -->
+</div>
 <div class="home-content">
     <section id="hero-img">
         <div class="rms-title">
@@ -185,7 +185,6 @@
 <script src="./home.js"></script>
 
 <script>
-
     function search_func(event) {
         event.preventDefault(); // Prevents the form from being submitted in the traditional way
 
@@ -202,6 +201,7 @@
     document.getElementById('search-form').addEventListener('submit', search_func);
 
     window.addEventListener("load", function() {
+        
         var loadingScreen = document.getElementById("loading-screen");
         var body = document.querySelector('body');
 

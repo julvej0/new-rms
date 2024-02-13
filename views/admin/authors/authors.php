@@ -4,6 +4,7 @@
 ?>
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="authors.css">
+    
 <body>
     <?php
         include dirname(__FILE__, 4) . '/components/navbar/navbar.php'; //navigation bar
@@ -86,6 +87,7 @@
 </section>
 
 <script src="./authors.js"></script>
+
 </body>
 <?php
     include_once 'functionalities/authors_include/pop_modal.php';

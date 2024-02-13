@@ -5,7 +5,7 @@ if (!isset($_POST['user_email'])) {
     return;
 }
 
-$fetch_query = "SELECT * FROM table_user WHERE email = $1";
+$fetch_query = "SELECT * FROM table_users WHERE email = $1";
 $fetch_result = pg_query_params($conn, $fetch_query, array($_POST['user_email']));
 if (!$fetch_result) {
     echo ("userWithEmailQueryFailed err: " . pg_last_error($conn));

@@ -464,22 +464,22 @@ main .table-footer .download button:hover {
   }
 /*style for download modal */
 .modal-content1 {
-background-color: #fff;
-margin: 5% auto;
-margin-left: 30%;
-padding: 30px;
-padding-top: 80px;
-width: 60%;
-height: 75%;
-text-align: center;
-border-radius: 10px;
-position: relative;
-opacity: 2;
+    background-color: #fff;
+    margin: 5% auto;
+    margin-left: 30%;
+    padding: 30px;
+    padding-top: 80px;
+    width: 60%;
+    height: 75%;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    opacity: 2;
 }
 .modal-content1 iframe {
-width: 100%;
-height: calc(100% - 5px); /* Subtract height of close button */
-/* border: 2px solid black; */
+    width: 100%;
+    height: calc(100% - 5px); /* Subtract height of close button */
+    /* border: 2px solid black; */
 }
 .close {
     position: absolute;
@@ -506,7 +506,7 @@ height: calc(100% - 5px); /* Subtract height of close button */
     justify-content: center;
     align-items: center;
     z-index: 9999;
-  }
+}
 
 .loading-img img {
     animation: load 2s ease-in-out infinite;
