@@ -194,7 +194,7 @@
         if (select_option == "publications") {
             window.location.href = "../articles/articles.php?search-table=" + encodeURIComponent(txt_search);
         } else if (select_option == "ip-assets") {
-            window.location.href = "../ipa/ipa.php?search-table=" + encodeURIComponent(txt_search);
+            window.location.href = "../ip-assets/ip-assets.php?search-table=" + encodeURIComponent(txt_search);
         }
     }
     

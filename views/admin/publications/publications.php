@@ -6,40 +6,7 @@
 ?>
 
 <link rel="stylesheet" href="../../../css/index.css">
-<link rel="stylesheet" href="./lala.css">
-
-<style>
-      
-#loading-screen{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    height: 100%;
-    background-color:  rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-
-.loading-img img {
-    animation: load 2s ease-in-out infinite;
-    width: 130px;
-}
-
-@keyframes load {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 50%;
-    }
-    100% {
-        opacity: 100%;
-    }
-}
-</style>
+<link rel="stylesheet" href="./publications.css">
 
 <body>
 <?php
@@ -289,12 +256,3 @@
         }
     }
 ?>
-
-<script>
-    window.addEventListener("load", function() {
-        console.log("haha")
-        var loadingScreen = document.getElementById("loading-screen");
-        loadingScreen.style.display = "none";
-    });
-
-</script>

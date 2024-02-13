@@ -47,16 +47,17 @@
                                                 <option value="" hidden>Choose an email...</option>
                                                 <?php
                                                 //Query used to get the emails from the user table
-                                                $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
+                                                $userQuery = "SELECT email, account_type FROM table_users ORDER BY email";
                                                 $params = array();
                                                 $result = pg_query_params($conn, $userQuery, $params);
-                                                while($userData = pg_fetch_assoc($result )){
+                                                // $userData = pg_fetch_assoc($result);
+                                                while($userData = pg_fetch_assoc($result)){
                                                     if ($author_info_arr[0]['email'] == $userData['email']){
                                                         //The options for the select are the emails
                                                         echo '<option value="' . $userData['email'] . '" selected>' . $userData['email'] . '</option>'; 
                                                     }
                                                     else{
-                                                        if ($userData['account_type'] == "Regular"){
+                                                        if ($userData['account_type'] == "Admin"){
                                                             echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';
                                                         }                                                        
                                                     }                                                                                        
@@ -152,7 +153,7 @@
     </section>
 
     <script src="./new-author.js"></script>
-    <?php
-        include  'functionalities/new-author_includes/affiliations.php'; //script for affiliation table functions
-    ?>
+    <!-- <?php
+        include  '../functionalities/new-author_includes/affiliations.php'; //script for affiliation table functions
+    ?> -->
 </body>

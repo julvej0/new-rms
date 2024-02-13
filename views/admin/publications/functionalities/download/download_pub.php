@@ -1,6 +1,6 @@
 
 <?php 
-    include '../../../../../db/db.php';
+    include '../../../../../helpers/db.php';
 ?>
 <link rel="stylesheet" href="../../../../../css/index.css">
 <link rel="stylesheet" href="../../functionalities/download/download_pub.css">

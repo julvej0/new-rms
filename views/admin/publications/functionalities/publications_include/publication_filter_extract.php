@@ -2,7 +2,7 @@
 
 //get all years available from db
 function getDistinctYear($conn){
-    $result_distinct = pg_query($conn, "SELECT DISTINCT EXTRACT(YEAR FROM date_published) AS year_only FROM table_publications ORDER BY year_only DESC");
+    $result_distinct = pg_query($conn, "SELECT DISTINCT EXTRACT(YEAR FROM date_published::timestamp) AS year_only FROM table_publications ORDER BY year_only DESC");
     $result = pg_num_rows($result_distinct);
 
     if ($result > 0) {

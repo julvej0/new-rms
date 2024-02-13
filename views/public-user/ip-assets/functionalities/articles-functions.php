@@ -32,8 +32,9 @@ function displayPublicationData($row, $conn) {
     echo '<div class="author-list-cont">';
     $author_ids = explode(',', $row['authors']);
     $author_names = array();
+    $author_emails = array();
     foreach ($author_ids as $author_id) {
-        $fetch_author_data = pg_query($conn, "SELECT author_name, email FROM table_authors WHERE author_id = '$author_id'");
+        $fetch_author_data = pg_query($conn, "SELECT author_name, author_email FROM table_authors WHERE author_id = '$author_id'");
         $author_data = pg_fetch_assoc($fetch_author_data);
         if ($author_data) {
             $author_names[] = $author_data['author_name'];
