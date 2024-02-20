@@ -11,15 +11,15 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
     $authorCounts = array();
 
     foreach ($authorsColumn as $authors) {
-        $authorIds = explode(',', $authors);
+        $authorNames = explode(', ', $authors);
 
-        foreach ($authorIds as $authorId) {
-            $authorId = trim($authorId); // Remove leading/trailing whitespaces
-            if (!empty($authorId)) {
-                if (isset($authorCounts[$authorId])) {
-                    $authorCounts[$authorId]++;
+        foreach ($authorNames as $authorName) {
+            $authorName = trim($authorName); // Remove leading/trailing whitespaces
+            if (!empty($authorName)) {
+                if (isset($authorCounts[$authorName])) {
+                    $authorCounts[$authorName]++;
                 } else {
-                    $authorCounts[$authorId] = 1;
+                    $authorCounts[$authorName] = 1;
                 }
             }
         }
@@ -36,15 +36,14 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
     $authorNameColumn = array_column($dataAuthors['table_authors'], 'author_name');
 
-    $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
+    $authorMapping = array_combine($authorNameColumn, $authorIdColumn);
 
     $contributors = array();
 
     foreach ($top9Authors as $authorId => $count) {
         if (isset($authorMapping[$authorId])) {
-            $authorName = $authorMapping[$authorId];
             $contributors[] = array(
-                'author_name' => $authorName,
+                'author_name' => $authorId,
                 'total_publications' => $count
             );
         }
@@ -84,6 +83,35 @@ function getTopCampus($ipassetsurl) {
     $dataIpAssets = json_decode($datacampus, true);
     $campusColumn = array_column($dataIpAssets['table_ipassets'], 'campus');
 
+    $campusCounts = array();
+
+    foreach ($campusColumn as $campus){
+        if (!empty($campus)) {
+            if (isset($campusCounts[$campus])) {
+                $campusCounts[$campus]++;
+            } else {
+                $campusCounts[$campus] = 1;
+            }
+        }
+    }
+
+    $topCampuses = array_slice($campusCounts, 0, 9, true);
+
+    $campuses = array();
+
+    foreach ($topCampuses as $campusName => $count) {
+        if (isset($campusName)) {
+            $campuses[] = array(
+                'campus_name' => $campusName,
+                'total_ipassets' => $count
+            );
+        }
+    }
+
+    usort($campuses, function($a, $b) {
+        return $b['total_ipassets'] - $a['total_ipassets'];
+    });
+
     $PBcount = 0;
     foreach ($campusColumn as $campus) {
         if ($campus === 'Pablo Borbon') {
@@ -102,13 +130,45 @@ function getTopCampus($ipassetsurl) {
             $Nacount++;
         }
     }
+    // Alangilan
+    // Nasugbu
+    // Pablo Borbon
+    // Lemery
+    // Lipa
+    // Lobo
+    // Balayan
+    // Mabini
+    // Malbar
+    // Padre Garcia
+    // Rosario
+    // San Juan
 
-    echo "<table>";
-    echo "<tr><th>Campus</th><th>Number of IP Assets</th></tr>";
-    echo "<tr><td>Pablo Borbon</td><td>".$PBcount."</td></tr>";
-    echo "<tr><td>Alangilan</td><td>".$Alcount."</td></tr>";
-    echo "<tr><td>Nasugbu</td><td>".$Nacount."</td></tr>";
-    echo "</table>";
+    // echo "<table>";
+    // echo "<tr><th>Campus</th><th>Number of IP Assets</th></tr>";
+    // echo "<tr><td>Pablo Borbon</td><td>".$PBcount."</td></tr>";
+    // echo "<tr><td>Alangilan</td><td>".$Alcount."</td></tr>";
+    // echo "<tr><td>Nasugbu</td><td>".$Nacount."</td></tr>";
+    // echo "</table>";
+    $count = 0;
+    ?> 
+    <table>
+        <tr>
+            <th>Campus</th>
+            <th>Number of IP Assets</th>
+        </tr>
+        <?php foreach ($campuses as $campus) {
+            $count++;
+            if ($count > 9) {
+                break;
+            }
+        ?>
+            <tr>
+                <td><?= $campus['campus_name']; ?></td>
+                <td><?= $campus['total_ipassets']; ?></td>
+            </tr>
+        <?php } ?>
+    </table>
+    <?php
 }
 
 

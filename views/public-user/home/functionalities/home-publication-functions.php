@@ -7,20 +7,20 @@ function getPublicationsContributors($authorurl, $publicationurl) {
 
     $dataPublications = json_decode($responsePublications, true);
 
-    $authorsColumn = array_column($dataPublications['table_publications'], 'authors');
+    $authorsColumn = array_column($dataPublications['table_publications'], 'authors'); //joe and jane
 
     $authorCounts = array();
 
     foreach ($authorsColumn as $authors) {
-        $authorIds = explode(',', $authors);
+        $authorNames = explode(', ', $authors); // 
 
-        foreach ($authorIds as $authorId) {
-            $authorId = trim($authorId); // Remove leading/trailing whitespaces
-            if (!empty($authorId)) {
-                if (isset($authorCounts[$authorId])) {
-                    $authorCounts[$authorId]++;
+        foreach ($authorNames as $authorName) {
+            $authorName = trim($authorName); // Remove leading/trailing whitespaces
+            if (!empty($authorName)) {
+                if (isset($authorCounts[$authorName])) {
+                    $authorCounts[$authorName]++;
                 } else {
-                    $authorCounts[$authorId] = 1;
+                    $authorCounts[$authorName] = 1;
                 }
             }
         }
@@ -36,15 +36,13 @@ function getPublicationsContributors($authorurl, $publicationurl) {
 
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
     $authorNameColumn = array_column($dataAuthors['table_authors'], 'author_name');
-    $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
+    $authorMapping = array_combine($authorNameColumn, $authorIdColumn);
 
     $contributors = array();
-
     foreach ($top9Authors as $authorId => $count) {
         if (isset($authorMapping[$authorId])) {
-            $authorName = $authorMapping[$authorId];
             $contributors[] = array(
-                'author_name' => $authorName,
+                'author_name' => $authorId,
                 'total_publications' => $count
             );
         }
@@ -55,6 +53,7 @@ function getPublicationsContributors($authorurl, $publicationurl) {
     });
 
     $count = 0;
+    // print_r($contributors)
     ?>
     <table>
         <tr>
