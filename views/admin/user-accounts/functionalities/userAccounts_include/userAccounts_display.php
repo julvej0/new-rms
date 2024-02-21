@@ -34,8 +34,7 @@ $filtered_data = array_slice($filtered_data, $offset, $items_per_page);
 // check if there is a result
 if (count($filtered_data) > 0) {
     foreach ($filtered_data as $row) {
-        $userPic = '../../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png'; // image url
-
+        $userPic = '../../../account-management/uploads/user.png'; // image url 
         // display results
         ?>
         <tr>
