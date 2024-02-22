@@ -78,12 +78,13 @@ include_once "functionalities/user-session.php";
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
+                console.log(xhr.responseText)
                 if (xhr.responseText === 'successful') {
-                    disableSubmitPassword.disabled = true;
+                    disableSubmitPassword.disabled = false;
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        showConfirmButton: false,
+                        showConfirmButton: true,
                         timer: 3000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
@@ -102,7 +103,25 @@ include_once "functionalities/user-session.php";
                         document.getElementById("change-password-form").reset();
                         window.location.href = "user-profile.php";
                     }, 3000);
-                } else {
+
+                } else if(xhr.responseText === "incorrect"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Current Password Incorrect.'
+                    })
+                }else{
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -120,6 +139,7 @@ include_once "functionalities/user-session.php";
                         title: 'Password Change Fail!'
                     })
                 }
+
             } else {
                 const Toast = Swal.mixin({
                     toast: true,
@@ -144,3 +164,5 @@ include_once "functionalities/user-session.php";
 }
 
 </script>
+<script src="../../helpers/show-hide-password.js"></script>
+

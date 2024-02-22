@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Function to fetch user data using API
 function getUserData($userurl, $email) {
     $response = file_get_contents($userurl);

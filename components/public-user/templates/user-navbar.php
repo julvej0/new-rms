@@ -77,11 +77,11 @@ session_start();
                                         <i class="fas fa-user"></i> PROFILE
                                     </a>
                                     <?php if ($isAuthor): ?>
-                                        <a style='margin-right: 30px;' href="/new-rms-webdev/views/public-user/author-info/author-profile.php">
+                                        <a style='margin-right: 30px;' href="/../../../views/public-user/author-info/author-profile.php">
                                             <i class="fas fa-info-circle"></i> AUTHOR INFORMATION
                                         </a>
                                     <?php endif; ?>
-                                    <a href="/new-rms-webdev/views/public-user/profile/change-password.php">
+                                    <a href="../../../views/public-user/profile/change-password.php">
                                         <i class="fas fa-lock"></i> CHANGE PASSWORD
                                     </a>
                                 </div>
@@ -93,6 +93,7 @@ session_start();
         </div>
     </div>
 </section>
+
 <!-- SCRIPT -->
 <script src="/new-rms-webdev/components/public-user/js/user-navbar.js"></script>
 <script src="/new-rms-webdev/components/public-user/js/profile-dropdown.js"></script>

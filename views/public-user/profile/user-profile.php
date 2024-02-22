@@ -1,6 +1,6 @@
 <?php
-include_once "../../../includes/public-user/templates/user-navbar.php";
-include_once '../../../includes/admin/templates/header.php';
+include_once "../../../components/public-user/templates/user-navbar.php";
+include_once '../../../components/header/header.php';
 include_once "functionalities/user-session.php";
 ?>
 <link rel="stylesheet" href="../../../css/index.css">

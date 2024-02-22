@@ -10,14 +10,12 @@ function getUserData($userurl, $email) {
         exit();
     }
 
-    $useremail = json_decode($response, true);
-
-    $users = array_column($useremail['table_user'],'email');
-
-    // Find the row with the equivalent email
-    foreach ($users as $user) {
+    $userData = json_decode($response, true)['table_user'];
+    foreach ($userData as $user) {
+        $userId = $user['user_id'];
+        $userPassword = $user['password'];
         if ($user['email'] === $email) {
-            return $user;
+            return array('id' => $userId, 'password' => $userPassword);
         }
     }
 
@@ -26,10 +24,9 @@ function getUserData($userurl, $email) {
 
 
 // Function to update user password using API
-function updateUserPassword($userurl, $email, $password) {
-    $url = $userurl . '?email=' . urlencode($email);
+function updateUserPassword($userurl, $user, $password) {
+    $url = $userurl . '/' . $user;
     $data = json_encode(['password' => $password]);
-
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -45,7 +42,7 @@ function updateUserPassword($userurl, $email, $password) {
     curl_close($ch);
 
     if ($httpCode === 200) {
-        echo "Password update successful.";
+        echo "successful";
         exit();
     } else {
         echo "Password update failed. Error: " . $response;
@@ -55,7 +52,7 @@ function updateUserPassword($userurl, $email, $password) {
 
 include_once dirname(__FILE__, 5) . "/helpers/db.php";
 
-if (isset($_POST['email'], $_POST['current-password'], $_POST['new-password'])) {
+if (isset($_POST['email'], $_POST['current-password'], $_POST['new-password'])) { 
     $email = $_POST['email'];
     $currentPassword = $_POST['current-password'];
     $newPassword = $_POST['new-password'];
@@ -70,12 +67,12 @@ if (isset($_POST['email'], $_POST['current-password'], $_POST['new-password'])) 
     // Verify current password
     $currentPasswordCorrect = password_verify($currentPassword, $user['password']);
     if (!$currentPasswordCorrect) {
-        echo "Current password is incorrect.";
+        echo "incorrect";
         exit();
     }
 
     // Update password using API
-    updateUserPassword($userurl, $email, password_hash($newPassword, PASSWORD_DEFAULT));
+    updateUserPassword($userurl, $user['id'], password_hash($newPassword, PASSWORD_DEFAULT));
 }
 ?>
 

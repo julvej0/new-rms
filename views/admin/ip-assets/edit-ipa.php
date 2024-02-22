@@ -22,7 +22,26 @@
             <div class="container">
             <?php
                 $ipaID = $_POST['row_id'];
-                $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'"); //Fetch data from the 'table_ipassets' table based on the registration number
+                // $fetchdata[] = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'"); //Fetch data from the 'table_ipassets' table based on the registration number
+                // foreach($fetchdata as $data){
+                //     throw new Exception($data);
+                // }
+                $result = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'");
+                if (!$result) {
+                    throw new Exception("Query failed: " . pg_last_error($conn));
+                }
+
+                $data = pg_fetch_all($result); // Fetch all rows from the result
+
+                if (!$data) {
+                    throw new Exception("No data found for IPA ID: $ipaID");
+                }
+
+                $dataString = implode(", ", array_map(function($row) {
+                    return implode(" ", $row);
+                }, $data));
+
+                throw new Exception($dataString);
                 while($row = pg_fetch_assoc($fetchdata)){  //Iterate through the fetched data
             ?>
             <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-edit.php" method="POST" enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">

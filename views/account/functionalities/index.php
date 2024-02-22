@@ -1,5 +1,6 @@
 <?php
-// $userurl = "http://localhost:5000/table_user";
+$userurl = "http://localhost:5000/table_user";
+$useremail = "20-08137@g.batstate-u.edu.ph";
 // $ch = curl_init($userurl);
 // // $ch = curl_init("http://localhost:5000/table_user");
 // $data = json_encode(["password"=>"$2y$10$7E.EiGxMPYnxDnFJYayEWus1zLgy0nx\/JhqfHLvEFwDpZdylF3QqC"]);
@@ -19,9 +20,11 @@
 // curl_close($ch);
 // print_r($userurl . "/" . $id);
 
-function getUserData() {
-    $userurl = "http://localhost:5000/table_user";
-    $email = "20-08137@g.batstate-u.edu.ph";
+
+
+function getUserData($userurl, $email) {
+    
+    // print_r('haha');
     $response = file_get_contents($userurl);
 
     if ($response === false) {
@@ -29,46 +32,15 @@ function getUserData() {
         exit();
     }
 
-    $useremail = json_decode($response, true);
-    $userEmail = array_column($useremail['table_user'],'email');
-    $userId = array_column($useremail['table_user'],'user_id');
-    $users = array_combine($userEmail, $userId);
-    // Find the row with the equivalent email
-    foreach ($users as $user => $id) {
-        if ($user === $email) {
-            return $id;
+    $userData = json_decode($response, true)['table_user'];
+
+    foreach ($userData as $user) {
+        if ($user['email'] === $email) {
+            return array('id' => $user['user_id'], 'current_password' => $user['password']);
         }
     }
 
     return null; // User not found
 }
 
-print_r(getUserData());
-
-
-
-if (isset($_POST['email'], $_POST['current-password'], $_POST['new-password'])) {
-    $email = $_POST['email'];
-    $currentPassword = $_POST['current-password'];
-    $newPassword = $_POST['new-password'];
-
-    try {
-        // Check if user exists by fetching user data using API
-        $user = getUserData($userurl, $email);
-
-        // Verify current password
-        $currentPasswordCorrect = password_verify($currentPassword, $user['password']);
-        if (!$currentPasswordCorrect) {
-            throw new Exception("Current password is incorrect.");
-        }
-
-        // Update password using API
-        updateUserPassword($userurl, $email, password_hash($newPassword, PASSWORD_DEFAULT));
-
-        // Password update successful
-        echo "Password update successful.";
-    } catch (Exception $e) {
-        // Handle exceptions
-        echo $e->getMessage();
-    }
-}
+getUserData($userurl, $useremail);
