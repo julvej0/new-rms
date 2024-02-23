@@ -82,31 +82,8 @@
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 if (xhr.responseText === 'successful') {
-                disableSubmitPassword.disabled = true;
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-                })
-                
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Password Changed Successfully'
-                })
-                // Redirect to login page after 3 seconds
-                setTimeout(() => {
-                    changePasswordModal.style.display = "none";
-                    document.getElementById("change-password-form").reset();
-                    window.location.href = "user-profile.php";
-                }, 3000);
-                } else {
-                const Toast = Swal.mixin({
+                    disableSubmitPassword.disabled = true;
+                    const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
@@ -119,9 +96,49 @@
                     })
                     
                     Toast.fire({
-                        icon: 'error',
-                        title: 'Password Change Fail!'
+                        icon: 'success',
+                        title: 'Password Changed Successfully'
                     })
+                    // Redirect to login page after 3 seconds
+                    setTimeout(() => {
+                        changePasswordModal.style.display = "none";
+                        document.getElementById("change-password-form").reset();
+                        window.location.href = "user-profile.php";
+                    }, 3000);
+                } else if(xhr.responseText === 'incorrect'){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+                        
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Current password is incorrect!'
+                        })
+                }else {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+                        
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Password Change Fail!'
+                        })
                 }
             } else {
                 const Toast = Swal.mixin({
