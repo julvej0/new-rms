@@ -36,7 +36,7 @@ function getPublicationsContributors($authorurl, $publicationurl) {
 
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
     $authorNameColumn = array_column($dataAuthors['table_authors'], 'author_name');
-    $authorMapping = array_combine($authorNameColumn, $authorIdColumn);
+    $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
 
     $contributors = array();
     foreach ($top9Authors as $authorId => $count) {
@@ -53,7 +53,6 @@ function getPublicationsContributors($authorurl, $publicationurl) {
     });
 
     $count = 0;
-    // print_r($contributors)
     ?>
     <table>
         <tr>

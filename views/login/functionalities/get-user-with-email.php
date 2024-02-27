@@ -4,7 +4,7 @@ include_once dirname(__FILE__, 4) . "/helpers/db.php";
 if (!isset($_POST['user_email'])) {
     return;
 }
-
+$email = $_POST['user_email'];
 $response = file_get_contents($userurl);
 
 if ($response === false) {
@@ -14,16 +14,15 @@ if ($response === false) {
 
 $user = null;
 $userData = json_decode($response, true)['table_user'];
-foreach ($user as $user) {
-    $userId = $user['user_id'];
-    if ($user['email'] === $email) {
-        return $userId;
+foreach ($userData as $users) {
+    $userEmail = $users['email'];
+    if ($userEmail === $email) {
+        $user = $users;
     }
 }
-if(!$userData){
-    $user = $userData;
-}
+
 echo json_encode(array("user" => $user));
+
 // $fetch_query = "SELECT * FROM table_users WHERE email = $1";
 // $fetch_result = pg_query_params($conn, $fetch_query, array($_POST['user_email']));
 // if (!$fetch_result) {

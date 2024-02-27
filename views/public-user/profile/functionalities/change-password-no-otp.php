@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include_once dirname(__FILE__, 5) . "/helpers/db.php";
 
 // Function to fetch user data using API

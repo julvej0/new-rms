@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once  dirname(__FILE__, 5) . "/helpers/db.php";
+require_once dirname(__FILE__, 5) . "/helpers/db.php";
 
-echo("<script>console.log('user_email: " . $_SESSION['user_email'] . "');</script>");
+echo ("<script>console.log('user_email: " . $_SESSION['user_email'] . "');</script>");
 // Check if the user is logged in as an admin
 if ($_SESSION['account_type'] != 'Admin') {
     header("Location: ../../../views/public-user/home/home.php");

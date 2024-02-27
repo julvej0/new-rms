@@ -1,343 +1,332 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    list-style-type: none;
-    text-decoration: none;
-    font-family: Poppins;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: Poppins;
 }
 
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-
 #whole-page {
-    width: 100%;
-    height: 2000em;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    
+  width: 100%;
+  height: 2000em;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 #userh2 {
-    color:#EF1F3B;
+  color: #ef1f3b;
 }
 /* mini-pages */
 
 .mini-page {
-    display: none;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: white;
-    border: 1px solid #ccc;
-    height: 100%;
-    border: none;
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid #ccc;
+  height: 100%;
+  border: none;
 }
 
 .mini-page.active {
-    display: block;
+  display: block;
 }
 
 /* profile-page */
 #profile-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-info {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 50px;
 }
 
 .profile-photo {
-    position: relative;
-    width: 250px;
-    height: 360px;
-    overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    margin-right: 20px;
-    transition: all 0.3s ease;
+  position: relative;
+  width: 250px;
+  height: 360px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-right: 20px;
+  transition: all 0.3s ease;
 }
 
 .profile-photo:hover img {
-    filter: blur(1.2px);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .profile-photo .icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 30px;
-    color: black;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: black;
+}
 
 .profile-photo:hover {
-    border-color: greenyellow;
-    /* change the border color when input is in focus */
-    outline: none;
-    /* remove default outline */
-    box-shadow: 5px 5px 10px greenyellow;
-    /* add custom box-shadow when input is in focus */
-    transition: all 0.3s ease;
+  border-color: greenyellow;
+  /* change the border color when input is in focus */
+  outline: none;
+  /* remove default outline */
+  box-shadow: 5px 5px 10px greenyellow;
+  /* add custom box-shadow when input is in focus */
+  transition: all 0.3s ease;
 }
 
 .profile-photo img {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .profile-row {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
 }
 
 .profile-row label {
-    width: 150px;
-    font-weight: bold;
-    margin-right: 10px;
+  width: 150px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .profile-row input[type="text"] {
-    border: none;
-    background-color: #f5f5f5;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 400px;
-    height: 40px;
-    box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.3);
+  border: none;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 400px;
+  height: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .profile-row input[type="text"]:focus {
-    outline: none;
-    box-shadow: 0 0 2px 2px greenyellow;
+  outline: none;
+  box-shadow: 0 0 2px 2px greenyellow;
 }
 
 .edit-button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #cf102d;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    height: 40px;
-    width: 65px;
-    transition: all 0.3s ease;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #cf102d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 65px;
+  transition: all 0.3s ease;
 }
 
 .edit-button:hover {
-    border: solid;
-    background-color: white;
-    color: #cf102d;
-    transition: all 0.3s ease;
-    border-color: #cf102d;
+  border: solid;
+  background-color: white;
+  color: #cf102d;
+  transition: all 0.3s ease;
+  border-color: #cf102d;
 }
 
 .page-title h3 {
-    letter-spacing: 1px;
-    font-size: 30px;
-    color: var(--text-color);
-    position: relative;
-    text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 30px;
+  color: var(--text-color);
+  position: relative;
+  text-transform: uppercase;
 }
 .page-title h3::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--primary);
-    width: 60%;
-    height: 3px;
-    bottom: -4px;
-    border-radius: 5px;
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--primary);
+  width: 60%;
+  height: 3px;
+  bottom: -4px;
+  border-radius: 5px;
 }
 
-
-
 .upload-button {
-    position:fixed;
-    top: 550px;
-    margin-left: -62px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #cf102d;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    height: 40px;
-    width: 75px;
-    transition: all 0.3s ease;
+  position: fixed;
+  top: 550px;
+  margin-left: -62px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #cf102d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 75px;
+  transition: all 0.3s ease;
 }
 
 .upload-button:hover {
-    border: solid;
-    background-color: white;
-    color: #cf102d;
-    transition: all 0.3s ease;
-    border-color: #cf102d;
+  border: solid;
+  background-color: white;
+  color: #cf102d;
+  transition: all 0.3s ease;
+  border-color: #cf102d;
 }
 /* security-page */
 
 #security-page {
-    text-align: center;
+  text-align: center;
 }
-
 
 /* modal */
 /* CSS code for popup modal */
 .modal {
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-    overflow: hidden;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  overflow: hidden;
 }
 
 .modal-content {
-    position: fixed;
-    top: 27%;
-    left: 42%;
-    transform: translate(-50%, -50%);
-    background-color: #fefefe;
-    border: 1px solid #888;
-    width: 38em;
-    border-radius: 5px;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in-out forwards;
+  position: fixed;
+  top: 27%;
+  left: 42%;
+  transform: translate(-50%, -50%);
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 38em;
+  border-radius: 5px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
 
 /* Style the close button */
 .close {
-    color: #aaaaaa;
-    margin-right: 10px;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaaaaa;
+  margin-right: 10px;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .modal-content form label {
-    display: block;
-    margin-left: 7.5em;
-    width: 60%;
+  display: block;
+  margin-left: 7.5em;
+  width: 60%;
 }
 
 .modal-content h2 {
-    text-align: center;
-    background-color: #cf102d;
-    color: white;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    padding: 20px
+  text-align: center;
+  background-color: #cf102d;
+  color: white;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding: 20px;
 }
 
 .modal-content #submit-password {
-    display: block;
-    margin-left: 9em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 60%;
-    height: 40px;
-    background-color: #cf102d;
-    color: white;
-    border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+  display: block;
+  margin-left: 9em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 60%;
+  height: 40px;
+  background-color: #cf102d;
+  color: white;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 .modal-content #submit-password:hover {
-    display: block;
-    margin-left: 9em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 60%;
-    height: 40px;
-    background-color: white;
-    color: #cf102d;
-    transition: all 0.3s ease;
-    border: none;
-    opacity: 0.7;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    border-radius: 5px;
+  display: block;
+  margin-left: 9em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 60%;
+  height: 40px;
+  background-color: white;
+  color: #cf102d;
+  transition: all 0.3s ease;
+  border: none;
+  opacity: 0.7;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  border-radius: 5px;
 }
 
-
-.modal-content form input[type=password],
-.modal-content form input[type=text],
-.modal-content form input[type=email] {
-    display: block;
-    margin-left: 9em;
-    width: 60%;
+.modal-content form input[type="password"],
+.modal-content form input[type="text"],
+.modal-content form input[type="email"] {
+  display: block;
+  margin-left: 9em;
+  width: 60%;
 }
 
 .modal-content .oldPasswordInput,
 .modal-content .passwordInput,
 .modal-content #confirmPasswordInput {
-    padding: 10px;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    border: 2px solid lightgray;
-    transition: all 0.3s ease;
+  padding: 10px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  border: 2px solid lightgray;
+  transition: all 0.3s ease;
 }
 
 .modal-content .oldPasswordInput:focus,
@@ -346,54 +335,52 @@ body {
 .modal-content .oldPasswordInput:hover,
 .modal-content .passwordInput:hover,
 .modal-content #confirmPasswordInput:hover {
-    border-color: greenyellow;
-    /* change the border color when input is in focus */
-    outline: none;
-    /* remove default outline */
-    box-shadow: 0 0 5px greenyellow;
-    /* add custom box-shadow when input is in focus */
-    transition: all 0.3s ease;
+  border-color: greenyellow;
+  /* change the border color when input is in focus */
+  outline: none;
+  /* remove default outline */
+  box-shadow: 0 0 5px greenyellow;
+  /* add custom box-shadow when input is in focus */
+  transition: all 0.3s ease;
 }
 
 .modal-content label {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
-
 .password-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .toggle-password {
-    margin-top: 10px;
-    margin-left: 5px;
-    cursor: pointer;
+  margin-top: 10px;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 /* 
 change email modal */
 
-
 .modal-content #new-email,
 .modal-content #confirm-email {
-    padding: 10px;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    border: 2px solid lightgray;
-    transition: all 0.3s ease;
+  padding: 10px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  border: 2px solid lightgray;
+  transition: all 0.3s ease;
 }
 
 .modal-content #new-email:focus,
 .modal-content #confirm-email:focus,
 .modal-content #new-email:hover,
 .modal-content #confirm-email:hover {
-    border-color: greenyellow;
-    /* change the border color when input is in focus */
-    outline: none;
-    /* remove default outline */
-    box-shadow: 0 0 5px greenyellow;
-    /* add custom box-shadow when input is in focus */
-    transition: all 0.3s ease;
+  border-color: greenyellow;
+  /* change the border color when input is in focus */
+  outline: none;
+  /* remove default outline */
+  box-shadow: 0 0 5px greenyellow;
+  /* add custom box-shadow when input is in focus */
+  transition: all 0.3s ease;
 }

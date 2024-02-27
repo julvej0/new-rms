@@ -36,7 +36,7 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
     $authorNameColumn = array_column($dataAuthors['table_authors'], 'author_name');
 
-    $authorMapping = array_combine($authorNameColumn, $authorIdColumn);
+    $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
 
     $contributors = array();
 

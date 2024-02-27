@@ -1,8 +1,8 @@
 <title>RMS | PROFILE</title>
 <?php
     include dirname(__FILE__, 4) . '/components/header/header.php';
-    include_once "functionalities/user-session.php";
     include dirname(__FILE__, 4) . '/components/navbar/navbar.php'; 
+    include_once "functionalities/user-session.php";
 ?>
 
 <link rel="stylesheet" href="user-profile.css">

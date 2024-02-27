@@ -9,4 +9,5 @@ $_SESSION['account_type'] = $_POST['account_type'];
 $_SESSION['user_name'] = $_POST['user_name'];
 
 echo json_encode(array("status" => "success"));
+
 ?>

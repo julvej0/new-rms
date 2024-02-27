@@ -1,4 +1,8 @@
 <?php
+// session_start();
+// if (session_status() == PHP_SESSION_NONE) {
+//     throw new Exception('hah');
+// }
 
 include dirname(__FILE__, 5) . './helpers/db.php';
 
@@ -14,8 +18,6 @@ $userEmail = $_SESSION['user_email'];
 $userJson = file_get_contents($userurl); // Assuming $userurl is defined elsewhere
 
 $user = json_decode($userJson, true);
-
-print_r($user);
 $users = array_column($user['table_user'], 'email'); // Assuming $userdata is defined elsewhere
 
 // Check if $userEmail is in $users
@@ -23,7 +25,14 @@ if (!in_array($userEmail, $users)) {
     echo "User not found.";
     header("Location: ../../login/login.php");
     exit;
+} else {
+    foreach ($user['table_user'] as $users) {
+        $email = $users['email'];
+        if ($userEmail === $email) {
+
+            $user = $users;
+        }
+    }
 }
 
 ?>
-

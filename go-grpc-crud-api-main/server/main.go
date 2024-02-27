@@ -22,7 +22,7 @@ func init() {
 var DB *gorm.DB
 var err error
 
-const table_users = "table_users"
+const table_users = "table_user"
 const table_logs = "table_logs"
 const table_authors = "table_authors"
 const table_ipassets = "table_ipassets"

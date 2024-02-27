@@ -8,6 +8,8 @@ if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
     
     // Check if file already exists
     if (file_exists($user_img_name)) {
+
+        
         // Query the database to retrieve the current user_img value
         $select_query = "SELECT user_img FROM table_user WHERE email = $1";
         $select_stmt = pg_prepare($conn, "select_user_image", $select_query);

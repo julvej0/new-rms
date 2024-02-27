@@ -9,3 +9,10 @@ closeBtn.addEventListener("click", function() {
     window.location.href = "user-profile.php"; // navigate to user-profile.php
   }, 300); // match the duration of the slide-out animation
 });
+
+function showModal() {
+  modal.style.display = "block";
+  setTimeout(function () {
+      modal.querySelector(".modal-container").style.transform = "translate(-50%, -50%)";
+  }, 10);
+}
