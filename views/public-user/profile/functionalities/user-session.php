@@ -36,3 +36,9 @@ if (!in_array($userEmail, $users)) {
 }
 
 ?>
+
+<option value="Invention">Original Article</option>
+                                                <option value="Utility Model">Review</option>
+                                                <option value="Industrial Design">Proceedings</option>
+                                                <option value="Trademark">Communication</option>
+                                                <option value="Copyright">International</option>
