@@ -10,7 +10,7 @@ if ($_SESSION['account_type'] != 'Admin') {
 }
 
 // Fetch user details from the database
-$user_query = "SELECT * FROM table_users WHERE email = $1";
+$user_query = "SELECT * FROM table_user WHERE email = $1";
 $user_result = pg_query_params($conn, $user_query, array($_SESSION['user_email']));
 if (!$user_result) {
     echo "An error occurred: " . pg_last_error($conn);

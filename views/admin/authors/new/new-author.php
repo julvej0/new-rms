@@ -47,7 +47,7 @@
                                                 <option value="" hidden>Choose an email...</option>
                                                 <?php
                                                 //Query used to get the emails from the user table
-                                                $userQuery = "SELECT email, account_type FROM table_users ORDER BY email";
+                                                $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
                                                 $params = array();
                                                 $result = pg_query_params($conn, $userQuery, $params);
                                                 // $userData = pg_fetch_assoc($result);
