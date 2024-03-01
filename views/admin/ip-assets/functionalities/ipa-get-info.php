@@ -6,6 +6,11 @@ function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_
 // retrieves the data from the api route
 function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number) {
     $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
+    if(isset($encodedJsonResponse->error)) {
+        
+        return null;
+    }
+
     $tableData = $encodedJsonResponse->table_ipassets;
 
     // retrieve all the authors registered from the api
@@ -15,18 +20,21 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
     // retrieve all the values from json response
     foreach($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper
-        $authors = explode(',', $content->authors);
         $authorList = "";
+        if(isset($content->authors)){
+            $authors = explode(',', $content->authors);
 
-        // retrieve the author names from the api response
-        foreach($authors as $aid) {
-            foreach($authorObj as $registeredAuthor) {
-                if ($aid == $registeredAuthor->author_id) {
-                    $authorList .= $registeredAuthor->author_name . "<br/>";
-                    break;
+            // retrieve the author names from the api response
+            foreach($authors as $aid) {
+                foreach($authorObj as $registeredAuthor) {
+                    if ($aid == $registeredAuthor->author_id) {
+                        $authorList .= $registeredAuthor->author_name . "<br/>";
+                        break;
+                    }
                 }
             }
         }
+        
 
         $table_rows[] = array(
             'registration_number' => $content->registration_number,
