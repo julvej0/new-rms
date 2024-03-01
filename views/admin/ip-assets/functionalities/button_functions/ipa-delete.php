@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../../db/db.php';
+include_once '../../../../../helpers/db.php';
 // Check if the 'id' parameter is set
 if (isset($_POST['id'])) {
     $id = $_POST['id'];

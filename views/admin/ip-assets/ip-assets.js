@@ -199,8 +199,8 @@ function submitDelete(id) {
     var xhr = new XMLHttpRequest();
   
     // Configure the request
-    xhr.open("DELETE", "http://localhost:5000/table_publications/" + id, true);
-  
+    xhr.open("DELETE", "http://localhost:5000/table_ipassets/" + id, true);
+
     // Define the callback function to handle the response
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
@@ -208,12 +208,13 @@ function submitDelete(id) {
   
           var logurl = 'http://localhost:5000/table_log';
   
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', logurl, true);
+          var xhrLog = new XMLHttpRequest();
+          xhrLog.open('GET', logurl, true);
   
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-              var response_id = xhr.responseText;
+          xhrLog.onreadystatechange = function() {
+            if (xhrLog.readyState === 4 && xhrLog.status === 200) {
+              console.log(xhrLog.responseText)
+              var response_id = xhrLog.responseText;
               
               var data = JSON.parse(response_id);
               var logs = data['table_log'];
@@ -264,7 +265,7 @@ function submitDelete(id) {
             }
           };
   
-          xhr.send();
+          xhrLog.send();
   
           // Remove the 'delete' parameter from the current URL
           let queryString = window.location.search;
