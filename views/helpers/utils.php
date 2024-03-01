@@ -1,6 +1,6 @@
 <?php
 
-function getUserId($userurl, $tableData)
+function getUserIdByEmail($userurl, $email)
 {
     $response = file_get_contents($userurl);
 
@@ -12,7 +12,27 @@ function getUserId($userurl, $tableData)
     $userData = json_decode($response, true)['table_user'];
     foreach ($userData as $user) {
         $userId = $user['user_id'];
-        if ($user['email'] === $tableData || $user['sr_code'] === $tableData) {
+        if ($user['email'] === $email) {
+            return $userId;
+        }
+    }
+
+    return null; // User not found
+}
+
+function getUserIdBySrCode($userurl, $srCode)
+{
+    $response = file_get_contents($userurl);
+
+    if ($response === false) {
+        echo "An error occurred while fetching user data.";
+        exit();
+    }
+
+    $userData = json_decode($response, true)['table_user'];
+    foreach ($userData as $user) {
+        $userId = $user['user_id'];
+        if ($user['sr_code'] === $srCode) {
             return $userId;
         }
     }
@@ -22,10 +42,10 @@ function getUserId($userurl, $tableData)
 
 
 // Function to update user password using API
-function updateUserById($userurl, $userId, $userData, $string)
+function updateUserImageById($userurl, $userId, $image_path, $string)
 {
     $url = $userurl . '/' . $userId;
-    $data = json_encode([$string => $userData]);
+    $data = json_encode([$string => $image_path]);
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);

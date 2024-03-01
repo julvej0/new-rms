@@ -1,10 +1,12 @@
 <?php
-function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_number) {
+function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_number)
+{
     return api_get_data($additionalQuery, $search, $type, $class, $year, $page_number);
 }
 
 // retrieves the data from the api route
-function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number) {
+function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number)
+{
     $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
     $tableData = $encodedJsonResponse->table_ipassets;
 
@@ -13,14 +15,14 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
     $authorObj = $authorObj->table_authors;
 
     // retrieve all the values from json response
-    foreach($tableData as $content) {
+    foreach ($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper
         $authors = explode(',', $content->authors);
         $authorList = "";
 
         // retrieve the author names from the api response
-        foreach($authors as $aid) {
-            foreach($authorObj as $registeredAuthor) {
+        foreach ($authors as $aid) {
+            foreach ($authorObj as $registeredAuthor) {
                 if ($aid == $registeredAuthor->author_id) {
                     $authorList .= $registeredAuthor->author_name . "<br/>";
                     break;
@@ -53,45 +55,54 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 }
 
 // keyword searching operation for all the string matches in the table
-function keywordsearchAPI($tableRows, $strmatch) {
-    if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '') return $tableRows;
+function keywordsearchAPI($tableRows, $strmatch)
+{
+    if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '')
+        return $tableRows;
 
     // pop the values that isn't like the authorname
-    foreach($tableRows as $index => $rowData) {
+    foreach ($tableRows as $index => $rowData) {
         $isMatched = strpos(strtolower($rowData['title_of_work']), strtolower($strmatch))
-        || strpos(strtolower($rowData['authors']), strtolower($strmatch))
-        || strpos(strtolower($rowData['registration_number']), strtolower($strmatch))
-        || strpos(strtolower($rowData['campus']), strtolower($strmatch))
-        || strpos(strtolower($rowData['college']), strtolower($strmatch))
-        || strpos(strtolower($rowData['status']), strtolower($strmatch));
+            || strpos(strtolower($rowData['authors']), strtolower($strmatch))
+            || strpos(strtolower($rowData['registration_number']), strtolower($strmatch))
+            || strpos(strtolower($rowData['campus']), strtolower($strmatch))
+            || strpos(strtolower($rowData['college']), strtolower($strmatch))
+            || strpos(strtolower($rowData['status']), strtolower($strmatch));
 
-        if (!$isMatched) unset($tableRows[$index]);
+        if (!$isMatched)
+            unset($tableRows[$index]);
     }
 
     return $tableRows;
 }
 
 // searches for the type of document
-function searchTypeAPI($tableRows, $strmatch) {
-    if ($strmatch == 'empty_type') return $tableRows;
+function searchTypeAPI($tableRows, $strmatch)
+{
+    if ($strmatch == 'empty_type')
+        return $tableRows;
     return searchAPI($tableRows, $strmatch, 'type_of_document');
 }
 
 // removes the authors from the table that doesn' match or isn't like the authorName
-function searchAPI($tableRows, $strmatch, $key) {
-    if ($strmatch == '' || $strmatch == ' ') return $tableRows;
+function searchAPI($tableRows, $strmatch, $key)
+{
+    if ($strmatch == '' || $strmatch == ' ')
+        return $tableRows;
 
     // pop the values that isn't like the authorname
-    foreach($tableRows as $index => $rowData) {
+    foreach ($tableRows as $index => $rowData) {
         $isMatched = strpos($rowData[$key], $strmatch);
-        if (!$isMatched) unset($tableRows[$index]);
+        if (!$isMatched)
+            unset($tableRows[$index]);
     }
 
     return $tableRows;
 }
 
 // for making a curl get request
-function getReq($url) {
+function getReq($url)
+{
     // retrieve all the data from the api
     $curlRequest = curl_init($url);
     curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, "GET");
@@ -102,7 +113,8 @@ function getReq($url) {
     return json_decode($response);
 }
 
-function authorSearch($authorurl, $search) {
+function authorSearch($authorurl, $search)
+{
     if ($search != 'empty_search' || $search != ' ') {
         $authors = file_get_contents($authorurl);
 

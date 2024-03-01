@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // update the user record in the database
   require_once dirname(__FILE__, 4) . "/helpers/utils.php";
 
-  $userId = getUserId($userurl, $srCode);
+  $userId = getUserIdBySrCode($userurl, $srCode);
 
-  $httpCode = updateUserById($userurl, $userId, $value, $field);
+  $httpCode = updateUserImageById($userurl, $userId, $value, $field);
 
   if ($httpCode === 200) {
     echo "successful";

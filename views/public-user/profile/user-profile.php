@@ -17,7 +17,8 @@ include_once "functionalities/user-session.php";
         <div class="profile-info">
             <div class="profile-photo">
                 <label for="photo-upload">
-                    <img id="user-image" src="<?php echo isset($user['user_img']) ? $user['user_img'] : "../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png"; ?>"
+                    <img id="user-image"
+                        src="<?php echo isset($user['user_img']) ? $user['user_img'] : "../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png"; ?>"
                         alt="User Image">
                 </label>
                 <input type="file" id="photo-upload" name="file" style="display:none">
@@ -42,7 +43,7 @@ include_once "functionalities/user-session.php";
                 <div class="profile-row">
                     <label for="contact">Contact Number:</label>
                     <input type="text" id="user_contact" maxlength='11'
-                        value="<?php echo isset($user['user_contact']) ? $user['user_contact'] : ""; ?>" readonly>
+                        value="<?php echo $user_contact = $user['user_contact'] ?? ""; ?>" readonly>
                     <button class="edit-button" onclick="editField('user_contact')">EDIT</button>
                 </div>
 

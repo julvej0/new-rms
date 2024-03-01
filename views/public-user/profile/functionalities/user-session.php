@@ -1,8 +1,5 @@
 <?php
-// session_start();
-// if (session_status() == PHP_SESSION_NONE) {
-//     throw new Exception('hah');
-// }
+session_start();
 
 include dirname(__FILE__, 5) . './helpers/db.php';
 
