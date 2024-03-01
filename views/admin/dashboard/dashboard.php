@@ -141,7 +141,7 @@
             </div>
         </section>
         <!-- IP-assets -->
-        <section id="ipa-page">
+        <section id="ipa-page" class="sub-page">
             <div class="content-data">
                 <div class="content-card">
                     <div class="head">
