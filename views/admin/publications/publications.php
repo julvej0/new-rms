@@ -99,7 +99,7 @@
                     <ul class="filter-link">
                         <?php
                             
-                            displayYearFilter($conn, $search, $type, $fund);
+                            displayYearFilter($ipassetsurl, $search, $type, $fund);
                         ?>
                        
                     </ul>

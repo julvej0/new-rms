@@ -20,6 +20,7 @@ function getUserIdByEmail($userurl, $email)
     return null; // User not found
 }
 
+// function 
 function getUserIdBySrCode($userurl, $srCode)
 {
     $response = file_get_contents($userurl);
@@ -41,7 +42,7 @@ function getUserIdBySrCode($userurl, $srCode)
 }
 
 
-// Function to update user password using API
+
 function updateUserImageById($userurl, $userId, $image_path, $string)
 {
     $url = $userurl . '/' . $userId;
@@ -62,3 +63,5 @@ function updateUserImageById($userurl, $userId, $image_path, $string)
 
     return $httpCode;
 }
+
+

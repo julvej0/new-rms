@@ -2,18 +2,9 @@
 include_once("../../../account-management/functionalities/user-session.php");
 if (isset($_POST['submitIPA'])) {
     $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
-    if (!$date_of_creation) {
-        $date_of_creation = null;
-    } else {
-        $date_of_creation = $_POST["date_of_creation"];
-    }
 
     $date_registered = isset($_POST['date_registered']) ? $_POST['date_registered'] : null;
-    if (!$date_registered) {
-        $date_registered = null;
-    } else {
-        $date_registered = $_POST["date_registered"];
-    }
+    
     
     $registration_number = $_POST['registration_number'];
     $title_of_work = $_POST['title_of_work'];

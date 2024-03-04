@@ -185,11 +185,11 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                 <h4 id="show-register" class="if-funded">If Registered : </h4>
                                 <div class="reg-form-container2"  >
                                     <div class="form-control">
+
                                         <!-- Registration Number input field -->
                                         <label class="ip-label" for="reg_num">Registration Number: <span
                                                 style="color: red;">*</span><span id="regnum-error"
-                                                style="display: none; color: red;">This registration number already
-                                                exists!</span></label>
+                                                style="display: none; color: red;">This registration number already exists!</span></label>
                                         <input type="text" name="registration_number" id="reg_num"
                                             placeholder="Registration Number..." required>
                                         <?php

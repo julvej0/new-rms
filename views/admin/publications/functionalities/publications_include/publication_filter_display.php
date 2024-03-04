@@ -1,7 +1,7 @@
 <?php
-function displayYearFilter($conn, $search, $type, $fund){
+function displayYearFilter($url, $search, $type, $fund){
     //get all years available from db
-    $year_rows = getDistinctYear($conn);
+    $year_rows = getDistinctYear($url);
 
     //diplay year from filter
     foreach ($year_rows as $year_filter) {
