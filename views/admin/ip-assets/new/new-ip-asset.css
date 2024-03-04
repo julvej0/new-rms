@@ -282,7 +282,7 @@ main .sub-container .form-col .reg-form-container {
 
 main .sub-container .form-col .reg-form-container2 {
     width: 100%;
-    display: flex;
+    /* display: none; */
     flex-direction: column;
     grid-gap: 10px;
 }

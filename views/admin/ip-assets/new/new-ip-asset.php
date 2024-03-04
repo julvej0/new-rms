@@ -169,55 +169,57 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                             <div class="reg-form-container">
                                 <label class="reg-titles">Registered? <span style="color: red;">*</span></label>
                                 <div class="form-control">
-                                    <div class="choices">
-                                        <input type="radio" name="registerInfo" id="registered" value="registered"
+                                    <div class="choices radio-register">
+                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo" id="registered" value="registered"
                                             required>
                                         <label for="registered" class="reg-choices">Yes</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" name="registerInfo" id="not-registered"
+                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo" id="not-registered"
                                             value="not-registered" required>
                                         <label for="not-registered" class="reg-choices">No</label>
                                     </div>
                                 </div>
                             </div>
-                            <h4 class="if-funded">If Registered : </h4>
-                            <div class="reg-form-container2">
-                                <div class="form-control">
-                                    <!-- Registration Number input field -->
-                                    <label class="ip-label" for="reg_num">Registration Number: <span
-                                            style="color: red;">*</span><span id="regnum-error"
-                                            style="display: none; color: red;">This registration number already
-                                            exists!</span></label>
-                                    <input type="text" name="registration_number" id="reg_num"
-                                        placeholder="Registration Number..." required>
-                                    <?php
-                                    // Fetch existing registration numbers from the database
-                                    $regnum_query = "SELECT registration_number FROM table_ipassets";
-                                    $regnum_params = array();
-                                    $regnum_result = pg_query_params($conn, $regnum_query, $regnum_params);
-                                    ?>
-                                    <input type="hidden" list="regnums" id="db_regnum">
-                                    <datalist id="regnums">
+                            <div id="show-register" class="reg-form-container2" style="display:none">
+                                <h4 id="show-register" class="if-funded">If Registered : </h4>
+                                <div class="reg-form-container2"  >
+                                    <div class="form-control">
+                                        <!-- Registration Number input field -->
+                                        <label class="ip-label" for="reg_num">Registration Number: <span
+                                                style="color: red;">*</span><span id="regnum-error"
+                                                style="display: none; color: red;">This registration number already
+                                                exists!</span></label>
+                                        <input type="text" name="registration_number" id="reg_num"
+                                            placeholder="Registration Number..." required>
                                         <?php
-                                        // Display existing registration numbers as datalist options
-                                        while ($regnum_row = pg_fetch_assoc($regnum_result)) {
-                                            echo '<option value="' . $regnum_row['registration_number'] . '"></option>';
-                                        }
-                                        echo '</datalist>';
+                                        // Fetch existing registration numbers from the database
+                                        $regnum_query = "SELECT registration_number FROM table_ipassets";
+                                        $regnum_params = array();
+                                        $regnum_result = pg_query_params($conn, $regnum_query, $regnum_params);
                                         ?>
-                                </div>
+                                        <input type="hidden" list="regnums" id="db_regnum">
+                                        <datalist id="regnums">
+                                            <?php
+                                            // Display existing registration numbers as datalist options
+                                            while ($regnum_row = pg_fetch_assoc($regnum_result)) {
+                                                echo '<option value="' . $regnum_row['registration_number'] . '"></option>';
+                                            }
+                                            echo '</datalist>';
+                                            ?>
+                                    </div>
 
-                                <div class="form-control">
-                                    <label class="ip-label" for="reg-date">Date of Registration: </label>
-                                    <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date">
-                                </div>
-                                <div class="form-control">
-                                    <label class="ip-label" for="ip-certificate">Upload Certificate: <span
-                                            id="file-error" style="display: none; color: red;">Only PNG, JPG, JPEG, and
-                                            PDF file types are allowed!</span></label>
-                                    <input type="file" name="ip-certificate" id="ip-certificate-input"
-                                        onchange="checkFileType(this)" accept=".png, .jpg, .jpeg, .pdf">
+                                    <div class="form-control">
+                                        <label class="ip-label" for="reg-date">Date of Registration: </label>
+                                        <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date">
+                                    </div>
+                                    <div class="form-control">
+                                        <label class="ip-label" for="ip-certificate">Upload Certificate: <span
+                                                id="file-error" style="display: none; color: red;">Only PNG, JPG, JPEG, and
+                                                PDF file types are allowed!</span></label>
+                                        <input type="file" name="ip-certificate" id="ip-certificate-input"
+                                            onchange="checkFileType(this)" accept=".png, .jpg, .jpeg, .pdf">
+                                    </div>
                                 </div>
                             </div>
                         </div>
