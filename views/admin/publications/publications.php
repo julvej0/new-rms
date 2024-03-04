@@ -75,7 +75,7 @@
                     <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
                         <?php
-                            displayTypeFilter($conn, $search, $fund, $year);
+                            displayTypeFilter($publicationurl, $search, $fund, $year);
                         ?>
                     </ul>
                 </div>
@@ -99,7 +99,7 @@
                     <ul class="filter-link">
                         <?php
                             
-                            displayYearFilter($conn, $search, $type, $fund);
+                            displayYearFilter($ipassetsurl, $search, $type, $fund);
                         ?>
                        
                     </ul>

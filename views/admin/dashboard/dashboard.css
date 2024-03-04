@@ -14,7 +14,6 @@ main .sub-page.active {
     display: block;
 }
 
-
 main .header {
     display: flex;
     justify-content: space-between;
