@@ -1,4 +1,6 @@
 <?php
+
+// NOTE: Using @ to suppress errors hides the notice about another session_start.
 @session_start();
 ?>
 

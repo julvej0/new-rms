@@ -1,4 +1,5 @@
 <?php
+//NOTE: Using @ to suppress errors hides the notice about another session_start.
 @session_start();
 
 include dirname(__FILE__, 5) . './helpers/db.php';
