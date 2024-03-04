@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 
 include dirname(__FILE__, 5) . './helpers/db.php';
 
