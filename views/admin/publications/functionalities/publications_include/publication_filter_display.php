@@ -12,9 +12,9 @@ function displayYearFilter($url, $search, $type, $fund){
     
 }
 
-function displayTypeFilter($conn, $search, $fund, $year){
+function displayTypeFilter($url, $search, $fund, $year){
     //get all years type from db
-    $type_rows = getDistinctType($conn);
+    $type_rows = getDistinctType($url);
     
     //diplay type from filter
     foreach ($type_rows as $type_filter) {
