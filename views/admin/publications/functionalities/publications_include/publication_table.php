@@ -30,7 +30,6 @@ $total_records = countPublications($conn, $additionalQuery, $search, $type, $fun
     <tbody>
         <tr>
             <?php
-
             if ($table_rows !== null) { // Check if $table_rows is not null
                 foreach ($table_rows as $row) { // Loop through each row in $table_rows
                     ?>

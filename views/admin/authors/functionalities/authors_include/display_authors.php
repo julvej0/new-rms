@@ -1,22 +1,26 @@
-
 <?php
-echo '<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>';
+echo '<script src="https://kit.fontawesome.com/02052a094f.js" crossorigin="anonymous"></script>';
+echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
 $items_per_page = 10; // total item per page
 $search_query = $search != 'empty_search' ? $search : ''; // check if the user searched
 $total_records = countAuthors($authorurl); // function for total author base on search and filter
-
 // determining what items will be displayed
 $offset = ($page_number - 1) * $items_per_page; // 10 intervals
 
 //global variable from db.php
-$json_data = file_get_contents($authorurl);
+$json_data = @file_get_contents($authorurl);
+if ($json_data === false) {
+    echo '<tr><td colspan="6">No Author Found!</td></tr>';
+    return false;
+}
+
 $data = json_decode($json_data, true);
 
 $filtered_data = array_filter($data['table_authors'], function ($row) use ($search_query) {
     // Filter based on the search query in relevant columns
     $columns_to_search = ['author_id', 'author_name', 'type_of_author', 'gender', 'affiliation'];
     foreach ($columns_to_search as $column) {
-        if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
+        if (isset ($row[$column]) && stripos($row[$column], $search_query) !== false) {
             return true;
         }
     }
@@ -39,10 +43,18 @@ if (count($filtered_data) > 0) {
     foreach ($filtered_data as $row) {
         ?>
         <tr>
-            <td><?= $row['author_id']; ?></td>
-            <td><?= $row['author_name']; ?></td>
-            <td><?= isset($row['type_of_author']) ? $row['type_of_author'] : "N/A"; ?></td>
-            <td><?= isset($row['gender']) ? $row['gender'] : "N/A"; ?></td>
+            <td>
+                <?= $row['author_id']; ?>
+            </td>
+            <td>
+                <?= $row['author_name']; ?>
+            </td>
+            <td>
+                <?= isset($row['type_of_author']) ? $row['type_of_author'] : "N/A"; ?>
+            </td>
+            <td>
+                <?= isset($row['gender']) ? $row['gender'] : "N/A"; ?>
+            </td>
             <td>
                 <?php
                 // check if affiliation is null or undefined
@@ -51,11 +63,11 @@ if (count($filtered_data) > 0) {
                 } else {
                     // display affiliation
                     $affiliation = explode(' || ', $row['affiliation']); // separate internal and external affiliation
-
+        
                     // initializations
                     $internal_affiliation = ""; // container for internal
                     $external_affiliation = ""; // container for external
-
+        
                     // extract internal
                     if (count($affiliation) > 0) {
                         foreach (explode('_', $affiliation[0]) as $in_aff) {
@@ -85,13 +97,16 @@ if (count($filtered_data) > 0) {
                     }
                 }
                 ?>
-                </td>
-                <td id="white-side" class="a-action-btns stickey-col">
-                    <button class="edit-btn" id="a-edit-btn" name="edit" onclick="window.location.href='new-author.php?id=<?php echo $row['author_id']?>'" title="Click to Edit"><i class="fas fa-pen-to-square"></i></button>
-                    <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?=$row['author_id']?>')" title="Click to Delete"><i class="fas fa-trash-can"></i></button>
-                </td>
+            </td>
+            <td id="white-side" class="a-action-btns stickey-col">
+                <button class="edit-btn" id="a-edit-btn" name="edit"
+                    onclick="window.location.href='./new/new-author.php?id=<?php echo $row['author_id'] ?>'" title="Click to Edit"><i
+                        class="fas fa-pen-to-square"></i></button>
+                <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?= $row['author_id'] ?>')"
+                    title="Click to Delete"><i class="fas fa-trash-can"></i></button>
+            </td>
         </tr>
-                <?php
+        <?php
     }
 } else {
     echo '<tr><td colspan="6">No Author Found!</td></tr>';

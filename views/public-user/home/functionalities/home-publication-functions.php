@@ -3,7 +3,10 @@
 
 function getPublicationsContributors($authorurl, $publicationurl) {
     
-    $responsePublications = file_get_contents($publicationurl);
+    $responsePublications = @file_get_contents($publicationurl);
+    if ($responsePublications === false) {
+        return null;
+    }
 
     $dataPublications = json_decode($responsePublications, true);
 
@@ -30,8 +33,10 @@ function getPublicationsContributors($authorurl, $publicationurl) {
 
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
-    $responseAuthors = file_get_contents($authorurl);
-
+    $responseAuthors = @file_get_contents($authorurl);
+    if($responseAuthors == false){
+        return null;
+    }
     $dataAuthors = json_decode($responseAuthors, true);
 
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
@@ -84,10 +89,9 @@ function getMostViewedPapers($publicationurl) {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curl);
-
-    if ($response === false) {
+    if (isset($response['error']) == false) {
         $error = curl_error($curl);
-        return "cURL Error: " . $error;
+        return null;
     }
 
     curl_close($curl);
@@ -124,7 +128,7 @@ function getRecentPublications($publicationurl) {
 
     $response = curl_exec($curl);
 
-    if ($response === false) {
+    if (isset($response['error']) == false) {
         $error = curl_error($curl);
         return "cURL Error: " . $error;
     }

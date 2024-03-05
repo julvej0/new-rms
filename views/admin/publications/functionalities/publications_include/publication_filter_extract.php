@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //get all years available from db
 // function getDistinctYear($conn){
@@ -15,12 +15,13 @@
 //     }
 // }
 
-function getDistinctYear($url) {
+function getDistinctYear($url)
+{
     $response = file_get_contents($url);
-
+    
     if ($response === false) {
         echo "An error occurred while fetching data.";
-        exit();
+        return null;
     }
 
     $userData = json_decode($response, true)['table_ipassets'];
@@ -38,12 +39,14 @@ function getDistinctYear($url) {
 
     return $distinctYears;
 }
-function getDistinctType($url) {
-    $response = file_get_contents($url);
 
+function getDistinctType($url)
+{
+    $response = file_get_contents($url);
+    print_r($response);
     if ($response === false) {
         echo "An error occurred while fetching data.";
-        exit();
+        return null;
     }
 
     $userData = json_decode($response, true)['table_publications'];
@@ -58,6 +61,7 @@ function getDistinctType($url) {
     }
     rsort($distinctTypes);
     return $distinctTypes;
+
 }
 
 //get all type available from db

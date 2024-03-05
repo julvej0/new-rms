@@ -41,16 +41,16 @@ if (isset($_POST['edit'])) {
                                                 required value="<?= $row['title_of_work'] ?>">
                                         </div>
                                         <div class="form-control">
-                                            <label class="ip-label" for="ip-type">Type of Document</label>
+                                            <label class="ip-label" for="ip-type">Type of IP</label>
                                             <select name="type_of_ipa" id="ip-type">
                                                 <option value="<?= $row['type_of_document'] ?>" hidden>
                                                     <?= $row['type_of_document'] ?>
                                                 </option>
-                                                <option value="Original Article">Original Article</option>
-                                                <option value="Review">Review</option>
-                                                <option value="Proceedings">Proceedings</option>
-                                                <option value="Communication">Communication</option>
-                                                <option value="International">International</option>
+                                                <option value="Original Article">Invention</option>
+                                                <option value="Review">Utility Model</option>
+                                                <option value="Proceedings">Industrial Design</option>
+                                                <option value="Communication">Trademark</option>
+                                                <option value="International">Copyright</option>
                                             </select>
                                         </div>
                                         <div class="form-control">

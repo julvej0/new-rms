@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../../db/db.php'; //db connection
+include_once '../../../../../helpers/db.php'; //db connection
 
 //determine if id parameter is existing
 if (isset($_POST['id'])) {

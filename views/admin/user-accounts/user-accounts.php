@@ -73,6 +73,7 @@
 </section>
 
 <script src="./user-accounts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 <?php
     include dirname(__FILE__, 4) . '/components/footer/footer.php';

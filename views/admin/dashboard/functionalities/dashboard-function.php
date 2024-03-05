@@ -1,6 +1,7 @@
 <?php
 // getting the total number of users account
-function getUserCount($userurl) {
+function getUserCount($userurl)
+{
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $userurl);
@@ -10,7 +11,6 @@ function getUserCount($userurl) {
     $response = curl_exec($ch);
 
     if ($response === false) {
-        echo "Failed to retrieve data from the endpoint.";
         curl_close($ch);
         return false;
     }
@@ -31,7 +31,8 @@ function getUserCount($userurl) {
 
 
 // getting the total number of authors 
-function getAuthorCount($authorurl) {
+function getAuthorCount($authorurl)
+{
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $authorurl);
@@ -39,11 +40,9 @@ function getAuthorCount($authorurl) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($ch);
-
-    if ($response === false) {
-        echo "Failed to retrieve data from the endpoint.";
+    if (isset($response['error']) === false) {
         curl_close($ch);
-        return false;
+        return null;
     }
 
     curl_close($ch);
@@ -61,22 +60,14 @@ function getAuthorCount($authorurl) {
 }
 
 // getting the total number of articles in publications
-function getArticleCount($publicationurl) {
-    $ch = curl_init();
+function getArticleCount($publicationurl)
+{
 
-    curl_setopt($ch, CURLOPT_URL, $publicationurl);
-
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    $response = curl_exec($ch);
-
+    $response = @file_get_contents($publicationurl);
     if ($response === false) {
-        echo "Failed to retrieve data from the endpoint.";
-        curl_close($ch);
         return false;
     }
 
-    curl_close($ch);
 
     $data = json_decode($response, true);
 
@@ -93,9 +84,14 @@ function getArticleCount($publicationurl) {
 
 // getting the number of authors with most contributions in publications
 
-function getPublicationsContributors($authorurl, $publicationurl) {
+function getPublicationsContributors($authorurl, $publicationurl)
+{
 
-    $responsePublications = file_get_contents($publicationurl);
+    $responsePublications = @file_get_contents($publicationurl);
+
+    if ($responsePublications == false) {
+        return null;
+    }
 
     $dataPublications = json_decode($responsePublications, true);
 
@@ -122,7 +118,10 @@ function getPublicationsContributors($authorurl, $publicationurl) {
 
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
-    $responseAuthors = file_get_contents($authorurl);
+    $responseAuthors = @file_get_contents($authorurl);
+    if($responseAuthors == false){
+        return null;
+    }
 
     $dataAuthors = json_decode($responseAuthors, true);
 
@@ -143,7 +142,7 @@ function getPublicationsContributors($authorurl, $publicationurl) {
         }
     }
 
-    usort($contributors, function($a, $b) {
+    usort($contributors, function ($a, $b) {
         return $b['total_publications'] - $a['total_publications'];
     });
 
@@ -159,10 +158,14 @@ function getPublicationsContributors($authorurl, $publicationurl) {
             if ($count > 9) {
                 break;
             }
-        ?>
+            ?>
             <tr>
-                <td><?= $contributor['author_name']; ?></td>
-                <td><?= $contributor['total_publications']; ?></td>
+                <td>
+                    <?= $contributor['author_name']; ?>
+                </td>
+                <td>
+                    <?= $contributor['total_publications']; ?>
+                </td>
             </tr>
         <?php } ?>
     </table>
@@ -172,8 +175,12 @@ function getPublicationsContributors($authorurl, $publicationurl) {
 // getting the number of authors with most contributions in ip assets
 
 
-function getIpAssetsContributors($ipassetsurl, $authorurl) {
-    $responseIpAssets = file_get_contents($ipassetsurl);
+function getIpAssetsContributors($ipassetsurl, $authorurl)
+{
+    $responseIpAssets = @file_get_contents($ipassetsurl);
+    if ($responseIpAssets == false) {
+        return null;
+    }
 
     $dataIpAssets = json_decode($responseIpAssets, true);
 
@@ -200,7 +207,10 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
 
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
-    $responseAuthors = file_get_contents($authorurl);
+    $responseAuthors = @file_get_contents($authorurl);
+    if ($responseAuthors == false) {
+        return null;
+    }
 
     $dataAuthors = json_decode($responseAuthors, true);
 
@@ -221,7 +231,7 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
         }
     }
 
-    usort($contributors, function($a, $b) {
+    usort($contributors, function ($a, $b) {
         return $b['total_publications'] - $a['total_publications'];
     });
 
@@ -237,10 +247,14 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
             if ($count > 9) {
                 break;
             }
-        ?>
+            ?>
             <tr>
-                <td><?= $contributor['author_name']; ?></td>
-                <td><?= $contributor['total_publications']; ?></td>
+                <td>
+                    <?= $contributor['author_name']; ?>
+                </td>
+                <td>
+                    <?= $contributor['total_publications']; ?>
+                </td>
             </tr>
         <?php } ?>
     </table>
@@ -249,21 +263,18 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
 
 // getting the most cited articles in publications
 
-function getMostViewedPapers($publicationurl) {
+function getMostViewedPapers($publicationurl)
+{
     $curl = curl_init();
 
     curl_setopt($curl, CURLOPT_URL, $publicationurl);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curl);
-
-    if ($response === false) {
-        $error = curl_error($curl);
-        return "cURL Error: " . $error;
+    if (isset($response['error']) == false) {
+        curl_close($curl);
+        return null;
     }
-
-    curl_close($curl);
-    
     $data = json_decode($response, true);
 
     $citationData = array_column($data['table_publications'], 'number_of_citation', 'title_of_paper');
@@ -285,7 +296,8 @@ function getMostViewedPapers($publicationurl) {
 }
 
 // getting the number of published articles
-function getPublishedIPAssets($ipassetsurl) {
+function getPublishedIPAssets($ipassetsurl)
+{
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $ipassetsurl);
@@ -294,8 +306,7 @@ function getPublishedIPAssets($ipassetsurl) {
 
     $response = curl_exec($ch);
 
-    if ($response === false) {
-        echo "Failed to retrieve data from the endpoint.";
+    if (isset($response['error']) == false) {
         curl_close($ch);
         return false;
     }
@@ -316,22 +327,21 @@ function getPublishedIPAssets($ipassetsurl) {
 
 // getting the recently added articles
 
-function getRecentIpAssets($ipassetsurl) {
+function getRecentIpAssets($ipassetsurl)
+{
     $curl = curl_init();
 
     curl_setopt($curl, CURLOPT_URL, $ipassetsurl);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curl);
-
-    if ($response === false) {
-        $error = curl_error($curl);
-        return "cURL Error: " . $error;
-    }
-
-    curl_close($curl);
-
     $data = json_decode($response, true);
+    if (isset($data['error'])) {
+        echo '<p>No record found</p>';
+        return;
+    }
+    
+    curl_close($curl);
 
     $dateData = array_column($data['table_ipassets'], 'date_registered', 'title_of_work');
 
@@ -356,8 +366,13 @@ function getRecentIpAssets($ipassetsurl) {
 
 // getting the ip assets per campus
 
-function getIpAssetsCampus($ipassetsurl) {
-    $datacampus = file_get_contents($ipassetsurl);
+function getIpAssetsCampus($ipassetsurl)
+{
+    $datacampus = @file_get_contents($ipassetsurl);
+
+    if ($datacampus == false) {
+        return null;
+    }
     $dataIpAssets = json_decode($datacampus, true);
     $campusColumn = array_column($dataIpAssets['table_ipassets'], 'campus');
 
@@ -387,9 +402,13 @@ function getIpAssetsCampus($ipassetsurl) {
 
 
 // getting the type of publication in table publication
-function getPublicationType($publicationurl){
+function getPublicationType($publicationurl)
+{
 
-    $datatype = file_get_contents($publicationurl);
+    $datatype = @file_get_contents($publicationurl);
+    if ($datatype == false) {
+        return null;
+    }
     $dataPublication = json_decode($datatype, true);
     $typesColumn = array_column($dataPublication['table_publications'], 'type_of_publication');
 
@@ -413,38 +432,50 @@ function getPublicationType($publicationurl){
     );
 }
 // getting the number ip assets per year
-function getIPAssetsPerYear($ipassetsurl) {
+function getIPAssetsPerYear($ipassetsurl)
+{
 
-    $dataIpassets = file_get_contents($ipassetsurl);
+    $dataIpassets = @file_get_contents($ipassetsurl);
+    if ($dataIpassets == false) {
+        return null;
+    }
     $datadate = json_decode($dataIpassets, true);
-    $datesColumn = array_column($datadate['table_ipassets'], 'date_registered');
+    $array = $datadate['table_ipassets'];
+    foreach ($array as $value) {
+        if ($value["status"] == "registered") {
 
-    foreach ($datesColumn as $date) {
-        $yearValue = date("Y", strtotime($date)); // Extract year (yyyy) from date
-        if (isset($year[$yearValue])) {
-            $year[$yearValue]++;
-        } else {
-            $year[$yearValue] = 1;
+            $date = $value['date_registered'];
+            $yearValue = date("Y", strtotime($date)); // Extract year (yyyy) from date
+            if (isset($year[$yearValue])) {
+                $year[$yearValue]++;
+            } else {
+                $year[$yearValue] = 1;
+            }
+
+            ksort($year);
+
+            $data = array_values($year); // Values are the ipassets counts
+            $labels = array_keys($year); // Keys are the years
+
+            return array(
+                "data" => json_encode($data),
+                "labels" => json_encode($labels)
+            );
         }
     }
 
-    ksort($year);
-    
-    $data = array_values($year); // Values are the ipassets counts
-    $labels = array_keys($year); // Keys are the years
-
-    return array(
-        "data" => json_encode($data),
-        "labels" => json_encode($labels)
-    );
 }
 
 
 // getting the number of publicatons per year 
 
 
-function getPublicationsPerYear($publicationurl) {
-    $dataPublication = file_get_contents($publicationurl);
+function getPublicationsPerYear($publicationurl)
+{
+    $dataPublication = @file_get_contents($publicationurl);
+    if ($dataPublication == false) {
+        return null;
+    }
     $datadate = json_decode($dataPublication, true);
     $datesColumn = array_column($datadate['table_publications'], 'date_published');
 

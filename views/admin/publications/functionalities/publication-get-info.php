@@ -82,7 +82,7 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
 
 function authorSearch($authorurl, $search) {
     if ($search != 'empty_search' || $search != ' ') {
-        $authors = file_get_contents($authorurl);
+        $authors = @file_get_contents($authorurl);
         
         if ($authors !== false) {
             $authors = json_decode($authors, true);
@@ -100,6 +100,8 @@ function authorSearch($authorurl, $search) {
                 $additionalQuery .= " ) ";
                 return $additionalQuery;
             }
+        }else{
+            return "";
         }
     } else {
         return "empty_search";

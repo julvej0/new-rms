@@ -17,7 +17,11 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 
     // retrieve all the authors registered from the api
     $authorObj = getReq("http://localhost:5000/table_authors");
-    $authorObj = $authorObj->table_authors;
+    if(!isset($authorObj->error)) {
+        $authorObj = $authorObj->table_authors;
+    }else{
+        $authorObj= [];
+    }
 
     // retrieve all the values from json response
     foreach ($tableData as $content) {
@@ -38,21 +42,39 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
         }
         
 
-        $table_rows[] = array(
-            'registration_number' => $content->registration_number,
-            'title_of_work' => $content->title_of_work,
-            'type_of_document' => $content->type_of_document,
-            'class_of_work' => $content->class_of_work,
-            'date_of_creation' => $content->date_of_creation,
-            'date_registered' => $content->date_registered,
-            'campus' => 'Not Available',
-            'college' => 'Not Available',
-            'program' => 'Not Available',
-            'authors' => $authorList,
-            'hyperlink' => 'Not Available',
-            'status' => $content->status,
-            'certificate' => 'Not Available',
-        );
+        if($content->status == "not-registered"){
+            $table_rows[] = array(
+                'registration_number' => $content->registration_number,
+                'title_of_work' => $content->title_of_work,
+                'type_of_document' => $content->type_of_document,
+                'class_of_work' => $content->class_of_work,
+                'date_of_creation' => $content->date_of_creation,
+                'date_registered' => "Not Available",
+                'campus' => 'Not Available',
+                'college' => 'Not Available',
+                'program' => 'Not Available',
+                'authors' => $authorList,
+                'hyperlink' => 'Not Available',
+                'status' => $content->status,
+                'certificate' => 'Not Available',
+            );
+        }else{
+            $table_rows[] = array(
+                'registration_number' => $content->registration_number,
+                'title_of_work' => $content->title_of_work,
+                'type_of_document' => $content->type_of_document,
+                'class_of_work' => $content->class_of_work,
+                'date_of_creation' => $content->date_of_creation,
+                'date_registered' => $content->date_registered,
+                'campus' => 'Not Available',
+                'college' => 'Not Available',
+                'program' => 'Not Available',
+                'authors' => $authorList,
+                'hyperlink' => 'Not Available',
+                'status' => $content->status,
+                'certificate' => 'Not Available',
+            );
+        }
     }
 
     // perform a searching operation for all keywords
@@ -124,7 +146,7 @@ function getReq($url)
 function authorSearch($authorurl, $search)
 {
     if ($search != 'empty_search' || $search != ' ') {
-        $authors = file_get_contents($authorurl);
+        $authors = @file_get_contents($authorurl);
 
         if ($authors !== false) {
             $authors = json_decode($authors, true);
@@ -142,6 +164,8 @@ function authorSearch($authorurl, $search)
                 $additionalQuery .= " ) ";
                 return $additionalQuery;
             }
+        }else{
+            return "";
         }
     } else {
         return "empty_search";

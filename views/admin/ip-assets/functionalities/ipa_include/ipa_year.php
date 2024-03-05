@@ -16,7 +16,6 @@
 
 function getDistinctYear($url) {
     $response = file_get_contents($url);
-
     if ($response === false) {
         echo "An error occurred while fetching data.";
         exit();
