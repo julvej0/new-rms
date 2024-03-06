@@ -10,14 +10,14 @@ function getUserCount($userurl)
 
     $response = curl_exec($ch);
 
-    if ($response === false) {
+    $data = json_decode($response, true);
+    if (isset($data["error"])) {
         curl_close($ch);
         return false;
     }
 
     curl_close($ch);
 
-    $data = json_decode($response, true);
 
     if ($data === null) {
         echo "Failed to parse JSON response.";
@@ -40,14 +40,15 @@ function getAuthorCount($authorurl)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($ch);
-    if (isset($response['error']) === false) {
+    $data = json_decode($response, true);
+
+    if (isset($data['error'])) {
         curl_close($ch);
         return null;
     }
 
     curl_close($ch);
 
-    $data = json_decode($response, true);
 
     if ($data === null) {
         echo "Failed to parse JSON response.";
@@ -64,12 +65,12 @@ function getArticleCount($publicationurl)
 {
 
     $response = @file_get_contents($publicationurl);
-    if ($response === false) {
+    $data = json_decode($response, true);
+    if (isset($data["error"])) {
         return false;
     }
 
 
-    $data = json_decode($response, true);
 
     if ($data === null) {
         echo "Failed to parse JSON response.";
@@ -89,11 +90,11 @@ function getPublicationsContributors($authorurl, $publicationurl)
 
     $responsePublications = @file_get_contents($publicationurl);
 
-    if ($responsePublications == false) {
+    $dataPublications = json_decode($responsePublications, true);
+    if (isset($dataPublications["error"])) {
         return null;
     }
 
-    $dataPublications = json_decode($responsePublications, true);
 
     $authorsColumn = array_column($dataPublications['table_publications'], 'authors');
 
@@ -119,11 +120,11 @@ function getPublicationsContributors($authorurl, $publicationurl)
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
     $responseAuthors = @file_get_contents($authorurl);
-    if ($responseAuthors == false) {
+    $dataAuthors = json_decode($responseAuthors, true);
+    if (isset($dataAuthors["error"])) {
         return null;
     }
 
-    $dataAuthors = json_decode($responseAuthors, true);
 
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
     $authorNameColumn = array_column($dataAuthors['table_authors'], 'author_name');
@@ -178,11 +179,11 @@ function getPublicationsContributors($authorurl, $publicationurl)
 function getIpAssetsContributors($ipassetsurl, $authorurl)
 {
     $responseIpAssets = @file_get_contents($ipassetsurl);
-    if ($responseIpAssets == false) {
+    $dataIpAssets = json_decode($responseIpAssets, true);
+    if (isset($dataIpAssets["error"])) {
         return null;
     }
 
-    $dataIpAssets = json_decode($responseIpAssets, true);
 
     $authorsColumn = array_column($dataIpAssets['table_ipassets'], 'authors');
 
@@ -208,11 +209,11 @@ function getIpAssetsContributors($ipassetsurl, $authorurl)
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
     $responseAuthors = @file_get_contents($authorurl);
-    if ($responseAuthors == false) {
+    $dataAuthors = json_decode($responseAuthors, true);
+    if (isset($dataAuthors["error"])) {
         return null;
     }
 
-    $dataAuthors = json_decode($responseAuthors, true);
 
     $authorIdColumn = array_column($dataAuthors['table_authors'], 'author_id');
     $authorNameColumn = array_column($dataAuthors['table_authors'], 'author_name');
@@ -305,15 +306,15 @@ function getPublishedIPAssets($ipassetsurl)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($ch);
+    $data = json_decode($response, true);
 
-    if (isset($response['error']) == false) {
+    if (isset($data['error'])) {
         curl_close($ch);
         return false;
     }
 
     curl_close($ch);
 
-    $data = json_decode($response, true);
 
     if ($data === null) {
         echo "Failed to parse JSON response.";
@@ -369,11 +370,12 @@ function getRecentIpAssets($ipassetsurl)
 function getIpAssetsCampus($ipassetsurl)
 {
     $datacampus = @file_get_contents($ipassetsurl);
+    $dataIpAssets = json_decode($datacampus, true);
 
-    if ($datacampus == false) {
+    if (isset($dataIpAssets['error'])) {
         return null;
     }
-    $dataIpAssets = json_decode($datacampus, true);
+
     $campusColumn = array_column($dataIpAssets['table_ipassets'], 'campus');
 
     $PBcount = 0;
@@ -406,10 +408,10 @@ function getPublicationType($publicationurl)
 {
 
     $datatype = @file_get_contents($publicationurl);
-    if ($datatype == false) {
+    $dataPublication = json_decode($datatype, true);
+    if (isset($dataPublication['error'])) {
         return null;
     }
-    $dataPublication = json_decode($datatype, true);
     $typesColumn = array_column($dataPublication['table_publications'], 'type_of_publication');
 
     $Intcount = 0;
@@ -473,10 +475,10 @@ function getIPAssetsPerYear($ipassetsurl)
 function getPublicationsPerYear($publicationurl)
 {
     $dataPublication = @file_get_contents($publicationurl);
-    if ($dataPublication == false) {
+    $datadate = json_decode($dataPublication, true);
+    if (isset($datadate["error"])) {
         return null;
     }
-    $datadate = json_decode($dataPublication, true);
     $datesColumn = array_column($datadate['table_publications'], 'date_published');
 
     foreach ($datesColumn as $date) {

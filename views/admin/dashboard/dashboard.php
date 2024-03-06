@@ -53,14 +53,9 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
 
                                 // Retrieve the author count using the `getAuthorCount` function and store it in the variable $author_count
                                 $author_count = getAuthorCount($authorurl);
-                                if ($author_count != null) {
 
-                                    echo '<h2>' . $author_count . '</h2>';
-                                } else {
-                                    echo '<h2>' . 0 . '</h2>';
-                                }
                                 // Output the author count within an <h2> HTML element
-                                echo '<h2>' . $author_count . '</h2>';
+                                echo $author_count != null ? '<h2>' . $author_count . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
                                 <p>Contributors</p>
                             </div>
@@ -75,7 +70,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                                 $article_count = getArticleCount($publicationurl);
 
                                 // Output the article count within an <h2> HTML element
-                                echo '<h2>' . $article_count . '</h2>';
+                                echo $article_count != null ? '<h2>' . $article_count . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
                                 <p>Articles</p>
                             </div>
@@ -172,7 +167,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                                 $author_count = getAuthorCount($authorurl);
 
                                 // Output the author count within an <h2> HTML element
-                                echo '<h2>' . $author_count . '</h2>';
+                                echo $author_count != null ? '<h2>' . $author_count . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
                                 <p>Contributors</p>
                             </div>
@@ -187,7 +182,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                                 $published_ipassets = getPublishedIPAssets($ipassetsurl);
 
                                 // Output the published IP assets within an <h2> HTML element
-                                echo '<h2>' . $published_ipassets . '</h2>';
+                                echo $published_ipassets != null ? '<h2>' . $published_ipassets . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
                                 <p>Articles</p>
                             </div>
@@ -204,7 +199,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                             <?php
                             // Retrieve IP assets per year using the `getIPAssetsPerYear` function and store it in the variable $ipassets_per_year
                             $ipassets_per_year = getIPAssetsPerYear($ipassetsurl);
-                            
+
                             // Extract the IP assets data from the $ipassets_per_year array and assign it to the variable $ipyear_data
                             $ipyear_data = $ipassets_per_year['data'];
 
