@@ -25,7 +25,7 @@ function countPublications($conn, $additionalQuery, $search, $type, $fund, $year
         $count_sql .= " AND searched_pub.nature_of_funding = '$fund' ";
     }
     if ($year !== 'empty_year') {
-        $count_sql .= " AND EXTRACT(YEAR FROM searched_pub.date_published) = '$year' ";
+        $count_sql .= " AND EXTRACT(YEAR FROM searched_pub.date_published::date) = '$year' ";
     }
 
     //get result
