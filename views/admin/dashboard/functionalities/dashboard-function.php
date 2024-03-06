@@ -378,22 +378,51 @@ function getIpAssetsCampus($ipassetsurl)
 
     $campusColumn = array_column($dataIpAssets['table_ipassets'], 'campus');
 
-    $PBcount = 0;
-    $Alcount = 0;
-    $Nacount = 0;
+    $Alangilan = 0;
+    $Balayan = 0;
+    $Lemery = 0;
+    $Lipa = 0;
+    $Lobo = 0;
+    $Mabini = 0;
+    $Malvar = 0;
+    $Nasugbu = 0;
+    $PabloBorbon = 0;
+    $PadreGarcia = 0;
+    $Rosario = 0;
+    $SanJuan = 0;
 
     foreach ($campusColumn as $campus) {
-        if ($campus === 'Pablo Borbon') {
-            $PBcount++;
-        } elseif ($campus === 'Alangilan') {
-            $Alcount++;
+        if ($campus === 'Alangilan (Main II)') {
+            $Alangilan++;
+        } elseif ($campus === 'Balayan') {
+            $Balayan++;
+        } elseif ($campus === 'Lemery') {
+            $Lemery++;
+        } elseif ($campus === 'Lipa') {
+            $Lipa++;
+        } elseif ($campus === 'Lobo') {
+            $Lobo++;
+        } elseif ($campus === 'Mabini') {
+            $Mabini++;
+        } elseif ($campus === 'Malvar') {
+            $Malvar++;
         } elseif ($campus === 'Nasugbu') {
-            $Nacount++;
-        }
+            $Nasugbu++;
+        } elseif ($campus === 'Pablo Borbon (Main I)') {
+            $PabloBorbon++;
+        } elseif ($campus === 'Padre Garcia') {
+            $PadreGarcia++;
+        } elseif ($campus === 'Rosario') {
+            $Rosario++;
+        } elseif ($campus === 'San Juan') {
+            $SanJuan++;
+        } 
     }
 
-    $data = array($PBcount, $Alcount, $Nacount);
-    $labels = array('Pablo Borbon', 'Alangilan', 'Nasugbu');
+    $data = array($Alangilan, $Balayan, $Lemery, $Lipa, $Lobo, $Mabini, $Malvar,
+     $Nasugbu, $PabloBorbon, $PadreGarcia, $Rosario, $SanJuan);
+    $labels = array('Alangilan (Main II)', 'Balayan', 'Lemery', 'Lipa', 'Lobo', 
+    'Mabini','Malvar','Nasugbu','Pablo Borbon (Main I)','Padre Garcia', 'Rosario', 'San Juan');
 
     return array(
         "data" => json_encode($data),
