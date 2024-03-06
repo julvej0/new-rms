@@ -401,6 +401,46 @@ function getIpAssetsCampus($ipassetsurl)
     );
 }
 
+function getIpAssetsTypeofIP($ipassetsurl)
+{
+    $data = @file_get_contents($ipassetsurl);
+    $dataIpAssets = json_decode($data, true);
+
+    if (!$data) {
+        return null;
+    }
+
+    $typeOfIPColumn = array_column($dataIpAssets['table_ipassets'], 'type_of_document');
+
+    $Invention = 0;
+    $UtilityModel = 0;
+    $IndustrialDesign = 0;
+    $Trademark = 0;
+    $Copyright = 0;
+
+    foreach ($typeOfIPColumn as $typeofIP) {
+        if ($typeofIP === 'Invention') {
+            $Invention++;
+        } elseif ($typeofIP === 'Utility Model') {
+            $UtilityModel++;
+        } elseif ($typeofIP === 'Industrial Design') {
+            $IndustrialDesign++;
+        }elseif ($typeofIP === 'Trademark') {
+            $Trademark++;
+        }elseif ($typeofIP === 'Copyright') {
+            $Copyright++;
+        }
+    }
+
+    $dataIP = array($Invention, $UtilityModel, $IndustrialDesign, $Trademark, $Copyright);
+    $labels = array('Invention', 'Utility Model', 'Industrial Design', 'Trademark', 'Copyright');
+
+    return array(
+        "data" => json_encode($dataIP),
+        "labels" => json_encode($labels)
+    );
+}
+
 
 
 // getting the type of publication in table publication
