@@ -274,8 +274,8 @@ function getMostViewedPapers($publicationurl)
     $response = curl_exec($curl);
     $data = json_decode($response, true);
     if (isset($data['error'])) {
-        curl_close($curl);
-        return null;
+        echo '<p>No record found</p>';
+        return;
     }
 
     $citationData = array_column($data['table_publications'], 'number_of_citation', 'title_of_paper');

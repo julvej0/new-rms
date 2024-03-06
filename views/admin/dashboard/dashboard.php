@@ -72,7 +72,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                                 // Output the article count within an <h2> HTML element
                                 echo $article_count != null ? '<h2>' . $article_count . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
-                                <p>Articles</p>
+                                <p>Publications</p>
                             </div>
                             <i class='bx bxs-book-open'></i>
                         </div>
@@ -139,7 +139,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                         <div>
                             <?php
                             // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
-                            echo getMostViewedPapers($publicationurl)
+                            getMostViewedPapers($publicationurl)
                                 ?>
                         </div>
                     </div>
@@ -188,7 +188,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                                 // Output the published IP assets within an <h2> HTML element
                                 echo $published_ipassets != null ? '<h2>' . $published_ipassets . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
-                                <p>Articles</p>
+                                <p>IP Assets</p>
                             </div>
                             <i class='bx bxs-book-open'></i>
                         </div>
