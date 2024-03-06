@@ -79,8 +79,11 @@
                         <h3>Top Contributors</h3>
                         <div class="table">
                             <?php 
-                            // Call the `getPublicationsContributors` function to retrieve publications contributors using the database connection object $conn
-                            echo getPublicationsContributors($authorurl, $publicationurl)
+                            if(getPublicationsContributors($authorurl, $publicationurl) != null){
+
+                                // Call the `getPublicationsContributors` function to retrieve publications contributors using the database connection object $conn
+                                echo getPublicationsContributors($authorurl, $publicationurl);
+                            }
                             ?>
                         </div>
                     </div>
@@ -90,8 +93,11 @@
                         <h3>Most Cited </h3>
                         <div class="table">
                             <?php
-                            // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
-                            getMostViewedPapers($publicationurl)//($conn)
+                            if(getMostViewedPapers($publicationurl) != null){
+
+                                // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
+                                getMostViewedPapers($publicationurl);//($conn)
+                            }
                             ?>
                         </div>
                     </div>
@@ -101,8 +107,11 @@
                         <h3>Recently Added </h3>
                         <div class="table">
                             <?php
-                            // Call the `getRecentPublications` function to retrieve the most recent publications using the database connection object $conn and a limit of 5
-                            getRecentPublications($publicationurl)//($conn, 3)
+                            if(getRecentPublications($publicationurl) != null){
+
+                                // Call the `getRecentPublications` function to retrieve the most recent publications using the database connection object $conn and a limit of 5
+                                getRecentPublications($publicationurl);//($conn, 3)
+                            }
                             ?>
                         </div>
                     </div>
@@ -122,8 +131,11 @@
                         <h3>Top Contributors</h3>
                         <div class="table">
                             <?php
-                             // Call the `getIpAssetsContributors` function to retrieve the contributors of intellectual property (IP) assets using the database connection object $conn
-                            getIpAssetsContributors($ipassetsurl, $authorurl)
+                            if(getIpAssetsContributors($ipassetsurl, $authorurl) != null){
+
+                                // Call the `getIpAssetsContributors` function to retrieve the contributors of intellectual property (IP) assets using the database connection object $conn
+                               getIpAssetsContributors($ipassetsurl, $authorurl);
+                            }
                             ?>
                         </div>
                     </div>
@@ -133,8 +145,11 @@
                         <h3>Top Campus with IP Assets</h3>
                         <div class="table">
                             <?php
-                            //Call `getTopCampus` function to retrieve the top campus with most ip assets
-                            getTopCampus($ipassetsurl)
+                            if(getTopCampus($ipassetsurl) != null){
+
+                                //Call `getTopCampus` function to retrieve the top campus with most ip assets
+                                getTopCampus($ipassetsurl);
+                            }
                             ?>
                         </div>
                     </div>
@@ -144,8 +159,11 @@
                         <h3>Recently Added</h3>
                         <div class="table">
                             <?php
-                            // Call the `getRecentIpAssets` function to retrieve the most recent intellectual property (IP) assets using the database connection object $conn and a limit of 5
-                            getRecentIpAssets($ipassetsurl)
+                            if(getRecentIpAssets($ipassetsurl) != null){
+
+                                // Call the `getRecentIpAssets` function to retrieve the most recent intellectual property (IP) assets using the database connection object $conn and a limit of 5
+                                getRecentIpAssets($ipassetsurl);
+                            }
                             ?>
                         </div>
                     </div>

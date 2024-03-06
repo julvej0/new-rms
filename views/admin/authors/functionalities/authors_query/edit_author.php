@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../../db/db.php'; //db connection
+include_once '../../../../../helpers/db.php'; //db connection
 
 //check if every data needed exists
 if (isset($_POST['a-name'],$_POST['a-gender'],$_POST['a-role'],$_POST['a-id'],$_POST['a-email'])) {

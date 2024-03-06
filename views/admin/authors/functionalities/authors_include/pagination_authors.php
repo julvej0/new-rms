@@ -5,7 +5,7 @@
 ?>
 <div class="table-footer">
     
-    <p><?=$count_text.' '.$total_records?></p>
+    <p><?=$total_records ? $count_text.' '.$total_records : $count_text.' 0' ?></p>
    
     <div class="pagination">
         <?php

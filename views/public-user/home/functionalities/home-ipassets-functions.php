@@ -2,8 +2,10 @@
 // getting the number o authors with most contributions in ip assets
 
 function getIpAssetsContributors($ipassetsurl, $authorurl) {
-    $responseIpAssets = file_get_contents($ipassetsurl);
-
+    $responseIpAssets = @file_get_contents($ipassetsurl);
+    if($responseIpAssets == false){
+        return null;
+    }
     $dataIpAssets = json_decode($responseIpAssets, true);
 
     $authorsColumn = array_column($dataIpAssets['table_ipassets'], 'authors');
@@ -29,7 +31,10 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
 
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
-    $responseAuthors = file_get_contents($authorurl);
+    $responseAuthors = @file_get_contents($authorurl);
+    if($responseAuthors == false){
+        return null;
+    }
 
     $dataAuthors = json_decode($responseAuthors, true);
 
@@ -79,7 +84,10 @@ function getIpAssetsContributors($ipassetsurl, $authorurl) {
 
 
 function getTopCampus($ipassetsurl) {
-    $datacampus = file_get_contents($ipassetsurl);
+    $datacampus = @file_get_contents($ipassetsurl);
+    if($datacampus == false){
+        return null;
+    }
     $dataIpAssets = json_decode($datacampus, true);
     $campusColumn = array_column($dataIpAssets['table_ipassets'], 'campus');
 
@@ -182,10 +190,9 @@ function getRecentIpAssets($ipassetsurl) {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curl);
-
-    if ($response === false) {
+    if (isset($response['error']) == false) {
         $error = curl_error($curl);
-        return "cURL Error: " . $error;
+        return null;
     }
 
     curl_close($curl);

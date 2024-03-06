@@ -1,6 +1,7 @@
 <?php
 
 //get all years available from db
+include_once dirname(__FILE__, 5) . "/helpers/db.php";
 $year_rows = getDistinctYear($userurl);
 
 //diplay year from filter

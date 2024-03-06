@@ -212,7 +212,7 @@ func main() {
 		res, err := client.GetIP_Assets(ctx, &pb.ReadIP_AssetsRequest{})
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{
-				"error": err,
+				"error": err.Error(),
 			})
 			return
 		}

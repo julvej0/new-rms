@@ -4,18 +4,8 @@ include_once("../../../account-management/functionalities/user-session.php");
 if (isset($_POST['updatePB'])) {
     $date_published = $_POST["date_published"];
     $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;
-    if (!$date_published) {
-        $date_published = null;
-    }else{
-        $date_published = $_POST["date_published"];
-    }
 
     $if_funded = isset($_POST['funding_type']) ? $_POST['funding_type'] : null;
-    if (!$if_funded) {
-        $if_funded = "";
-    }else{
-        $if_funded = $_POST["funding_type"];
-    }
 
     $authors_name = isset($_POST['author_name']) ? $_POST['author_name'] : null;
 

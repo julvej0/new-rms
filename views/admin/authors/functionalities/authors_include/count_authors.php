@@ -3,11 +3,10 @@
     //the total adjusts base on search and filer
     function countAuthors($authorurl){
         // Make the HTTP request to the endpoint
-        $response = file_get_contents($authorurl);
+        $response = @file_get_contents($authorurl);
     
         // Check if the request was successful
         if ($response === false) {
-            echo "Failed to retrieve data from the endpoint.";
             return false;
         }
     
