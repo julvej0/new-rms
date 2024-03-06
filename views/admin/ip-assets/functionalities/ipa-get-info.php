@@ -22,7 +22,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
     } else {
         $authorObj = [];
     }
-
+    $count = $page_number * 10;
     // retrieve all the values from json response
     foreach ($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper

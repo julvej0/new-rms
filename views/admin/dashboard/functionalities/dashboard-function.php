@@ -457,15 +457,17 @@ function getIPAssetsPerYear($ipassetsurl)
 
         }
     }
-    ksort($year);
+    if ($year != null) {
+        ksort($year);
 
-    $data = array_values($year); // Values are the ipassets counts
-    $labels = array_keys($year); // Keys are the years
+        $data = array_values($year); // Values are the ipassets counts
+        $labels = array_keys($year); // Keys are the years
 
-    return array(
-        "data" => json_encode($data),
-        "labels" => json_encode($labels)
-    );
+        return array(
+            "data" => json_encode($data),
+            "labels" => json_encode($labels)
+        );
+    }
 }
 
 
