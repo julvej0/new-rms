@@ -2,6 +2,9 @@
 function displayYearFilter($url, $search, $type, $fund){
     //get all years available from db
     $year_rows = getDistinctYear($url);
+    if($year_rows == null){
+        return;
+    }
 
     //diplay year from filter
     foreach ($year_rows as $year_filter) {
@@ -15,7 +18,9 @@ function displayYearFilter($url, $search, $type, $fund){
 function displayTypeFilter($url, $search, $fund, $year){
     //get all years type from db
     $type_rows = getDistinctType($url);
-    
+    if($type_rows == null){
+        return;
+    }
     //diplay type from filter
     foreach ($type_rows as $type_filter) {
         ?>
