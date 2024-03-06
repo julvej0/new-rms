@@ -49,7 +49,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
                 'type_of_document' => $content->type_of_document,
                 'class_of_work' => $content->class_of_work,
                 'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
-                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y"),
+                'date_registered' => "Not Available",
                 'campus' => $content->campus ?? "Not Available",
                 'college' => $content->college ?? "Not Available",
                 'program' => $content->program ?? "Not Available",
