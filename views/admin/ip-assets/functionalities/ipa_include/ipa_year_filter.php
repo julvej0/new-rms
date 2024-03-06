@@ -1,8 +1,8 @@
 <?php
 
 //get all years available from db
-include_once dirname(__FILE__, 5) . "/helpers/db.php";
-$year_rows = getDistinctYear($userurl);
+include_once dirname(__FILE__, 6) . "/helpers/db.php";
+$year_rows = getDistinctYear($ipassetsurl);
 
 //diplay year from filter
 foreach ($year_rows as $year_filter) {
