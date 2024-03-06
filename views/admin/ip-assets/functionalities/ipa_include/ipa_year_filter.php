@@ -8,6 +8,7 @@ if($year_rows == null){
     ?><li><a>Empty</a></li><?php
     return null;
 }
+?><li><a href="./ip-assets.php">All</a></li><?php
 //diplay year from filter
 foreach ($year_rows as $year_filter) {
     ?>

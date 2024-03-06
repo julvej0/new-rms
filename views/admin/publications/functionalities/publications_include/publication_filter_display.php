@@ -10,6 +10,7 @@ function displayYearFilter($url, $search, $type, $fund){
     //diplay year from filter
     foreach ($year_rows as $year_filter) {
         ?>
+        <li><a href="./publications.php">All</a></li>
         <li><a href='<?php echo filterPublication($search, $type, $fund, $year_filter);?>'> <?php echo $year_filter;?></a></li>
     <?php
  }
