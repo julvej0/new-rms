@@ -271,11 +271,11 @@ function getMostViewedPapers($publicationurl)
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curl);
-    if (isset($response['error']) == false) {
+    $data = json_decode($response, true);
+    if (isset($data['error'])) {
         curl_close($curl);
         return null;
     }
-    $data = json_decode($response, true);
 
     $citationData = array_column($data['table_publications'], 'number_of_citation', 'title_of_paper');
 
