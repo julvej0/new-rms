@@ -17,10 +17,9 @@
 
 function getDistinctYear($url)
 {
-    $response = file_get_contents($url);
-    
+    $response = @file_get_contents($url);
+
     if ($response === false) {
-        echo "An error occurred while fetching data.";
         return null;
     }
 
@@ -42,10 +41,8 @@ function getDistinctYear($url)
 
 function getDistinctType($url)
 {
-    $response = file_get_contents($url);
-    print_r($response);
+    $response = @file_get_contents($url);
     if ($response === false) {
-        echo "An error occurred while fetching data.";
         return null;
     }
 
