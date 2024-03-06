@@ -46,11 +46,11 @@ if (isset($_POST['edit'])) {
                                                 <option value="<?= $row['type_of_document'] ?>" hidden>
                                                     <?= $row['type_of_document'] ?>
                                                 </option>
-                                                <option value="Original Article">Invention</option>
-                                                <option value="Review">Utility Model</option>
-                                                <option value="Proceedings">Industrial Design</option>
-                                                <option value="Communication">Trademark</option>
-                                                <option value="International">Copyright</option>
+                                                <option value="Invention">Invention</option>
+                                                <option value="Utility Model">Utility Model</option>
+                                                <option value="Industrial Design">Industrial Design</option>
+                                                <option value="Trademark">Trademark</option>
+                                                <option value="Copyright">Copyright</option>
                                             </select>
                                         </div>
                                         <div class="form-control">

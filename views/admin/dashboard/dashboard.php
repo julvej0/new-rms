@@ -215,7 +215,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                             <div id="ipa-bar-chart">
                             </div>
                         </div>
-                    </div>
+                        </div>
                     <div class="main-content-data">
                         <div class="head">
                             <h3>IP Assets Report (campus)</h3>
