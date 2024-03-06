@@ -72,7 +72,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                                 // Output the article count within an <h2> HTML element
                                 echo $article_count != null ? '<h2>' . $article_count . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
-                                <p>Publications</p>
+                                <p>Articles</p>
                             </div>
                             <i class='bx bxs-book-open'></i>
                         </div>
@@ -139,7 +139,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                         <div>
                             <?php
                             // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
-                            getMostViewedPapers($publicationurl)
+                            echo getMostViewedPapers($publicationurl)
                                 ?>
                         </div>
                     </div>
@@ -188,7 +188,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                                 // Output the published IP assets within an <h2> HTML element
                                 echo $published_ipassets != null ? '<h2>' . $published_ipassets . '</h2>' : '<h2>' . 0 . '</h2>';
                                 ?>
-                                <p>IP Assets</p>
+                                <p>Articles</p>
                             </div>
                             <i class='bx bxs-book-open'></i>
                         </div>
@@ -215,7 +215,8 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                             <div id="ipa-bar-chart">
                             </div>
                         </div>
-                        </div>
+                    </div>
+
                     <div class="main-content-data">
                         <div class="head">
                             <h3>IP Assets Report (campus)</h3>
@@ -237,6 +238,29 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="main-content-data">
+                        <div class="head">
+                            <h3>Type of IP Assets  </h3>
+                        </div>
+                        <div class="chart">
+                            <?php
+                            // Retrieve IP assets by campus using the `getIpAssetsCampus` function and store it in the variable $data
+                            $data = getIpAssetsTypeofIP($ipassetsurl);
+
+                            if($data != null){
+                                // Extract the IP assets data from the $data array and assign it to the variable $campus_data
+                            $ip_data = $data["data"];
+
+                            // Extract the campus labels from the $data array and assign them to the variable $campus_labels
+                            $ip_labels = $data["labels"];
+                            }
+                            ?>
+                            <div id="ipa-type-pie-chart">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="main-content-data">
                         <div class="head">
                             <h3>Top Contributors</h3>
@@ -298,6 +322,41 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
         // Render the chart
         campus_chart.render();
     </script>
+
+    <script>
+        // Assign the ip data obtained from PHP to a JavaScript variable
+        var ip_data = <?php echo $ip_data; ?>;
+
+        // Assign the ip labels obtained from PHP to a JavaScript variable
+        var ip_labels = <?php echo $ip_labels; ?>;
+
+        // Configure the options for the donut chart
+        var ip_options = {
+            chart: {
+                type: 'donut'
+            },
+            series: ip_data,
+            labels: ip_labels,
+            responsive: [{
+                breakpoint: 500,
+                options: {
+                    chart: {
+                        width: 300
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+        // Create a new ApexCharts instance with the chart container element and options
+        var ip_chart = new ApexCharts(document.querySelector("#ipa-type-pie-chart"), ip_options);
+
+        // Render the chart
+        ip_chart.render();
+    </script>
+
     <script>
         // Assign the status data obtained from PHP to a JavaScript variable
         var status_data = <?php echo $status_data; ?>;
