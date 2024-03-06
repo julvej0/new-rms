@@ -2,7 +2,7 @@
 include_once '../../../../helpers/db.php';
 // Check if file was uploaded without errors
 if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
-    $target_dir = "./uploads/";
+    $target_dir = "../uploads/";
     $user_email = $_POST['email'];
     $user_img_name = $target_dir . $user_email . "_userimage.png";
 
@@ -22,8 +22,7 @@ if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $user_img_name)) {
             echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
             $userId = getUserIdByEmail($userurl, $user_email);
-            $httpCode = updateUserImageById($userurl, $userId, $user_img_name, "user_img");
-            throw new Exception($user_img_name);
+            $httpCode = updateUserImage($userurl, $userId, $user_img_name, "user_img");
             if ($httpCode === 200) {
                 // Update the user's image URL in the $user array
                 $user['user_img'] = $user_img_name;
