@@ -20,6 +20,25 @@ function getUserIdByEmail($userurl, $email)
     return null; // User not found
 }
 
+function getUserByEmail($userurl, $email)
+{
+    $response = file_get_contents($userurl);
+
+    if ($response === false) {
+        echo "An error occurred while fetching user data.";
+        exit();
+    }
+
+    $userData = json_decode($response, true)['table_user'];
+    foreach ($userData as $user) {
+        if ($user['email'] === $email) {
+            return $user;
+        }
+    }
+
+    return null; // User not found
+}
+
 // function 
 function getUserIdBySrCode($userurl, $srCode)
 {

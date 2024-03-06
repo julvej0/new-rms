@@ -13,6 +13,8 @@ if ($_SESSION['account_type'] != 'Admin') {
 // Fetch user details from the API
 $user_id = getUserIdByEmail($userurl, $_SESSION['user_email']);
 
+$user = getUserByEmail($userurl, $_SESSION['user_email']);
+
 if ($user_id === null) {
     echo "User not found.";
     header("Location: ../../login/login.php");
