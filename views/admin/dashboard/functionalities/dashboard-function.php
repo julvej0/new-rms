@@ -91,7 +91,7 @@ function getPublicationsContributors($authorurl, $publicationurl)
     $responsePublications = @file_get_contents($publicationurl);
 
     $dataPublications = json_decode($responsePublications, true);
-    if (isset($dataPublications["error"])) {
+    if (!$responsePublications) {
         return null;
     }
 
@@ -180,7 +180,7 @@ function getIpAssetsContributors($ipassetsurl, $authorurl)
 {
     $responseIpAssets = @file_get_contents($ipassetsurl);
     $dataIpAssets = json_decode($responseIpAssets, true);
-    if (isset($dataIpAssets["error"])) {
+    if (!$responseIpAssets) {
         return null;
     }
 
@@ -372,7 +372,7 @@ function getIpAssetsCampus($ipassetsurl)
     $datacampus = @file_get_contents($ipassetsurl);
     $dataIpAssets = json_decode($datacampus, true);
 
-    if (isset($dataIpAssets['error'])) {
+    if (!$datacampus) {
         return null;
     }
 
@@ -409,7 +409,7 @@ function getPublicationType($publicationurl)
 
     $datatype = @file_get_contents($publicationurl);
     $dataPublication = json_decode($datatype, true);
-    if (isset($dataPublication['error'])) {
+    if (!$datatype) {
         return null;
     }
     $typesColumn = array_column($dataPublication['table_publications'], 'type_of_publication');
@@ -444,7 +444,6 @@ function getIPAssetsPerYear($ipassetsurl)
     }
     $array = $datadate['table_ipassets'];
     foreach ($array as $value) {
-        // print_r($value);
         if ($value["status"] == "published") {
             $date = $value['date_registered'];
             $yearValue = date("Y", strtotime($date)); // Extract year (yyyy) from date
@@ -478,7 +477,7 @@ function getPublicationsPerYear($publicationurl)
 {
     $dataPublication = @file_get_contents($publicationurl);
     $datadate = json_decode($dataPublication, true);
-    if (isset($datadate["error"])) {
+    if (!$dataPublication) {
         return null;
     }
     $datesColumn = array_column($datadate['table_publications'], 'date_published');
