@@ -425,9 +425,9 @@ function getIpAssetsTypeofIP($ipassetsurl)
             $UtilityModel++;
         } elseif ($typeofIP === 'Industrial Design') {
             $IndustrialDesign++;
-        }elseif ($typeofIP === 'Trademark') {
+        } elseif ($typeofIP === 'Trademark') {
             $Trademark++;
-        }elseif ($typeofIP === 'Copyright') {
+        } elseif ($typeofIP === 'Copyright') {
             $Copyright++;
         }
     }
@@ -475,7 +475,7 @@ function getPublicationType($publicationurl)
     }
 
     $data = array($Review, $International, $OriginalArticle);
-    $labels = array('Original Article', 'Review','Proceedings','Communications','International');
+    $labels = array('Original Article', 'Review', 'Proceedings', 'Communications', 'International');
 
     return array(
         "data" => json_encode($data),
@@ -493,7 +493,7 @@ function getIPAssetsPerYear($ipassetsurl)
     }
     $array = $datadate['table_ipassets'];
     foreach ($array as $value) {
-        if ($value["status"] == "published") {
+        if ($value["status"] != "not-registered") {
             $date = $value['date_registered'];
             $yearValue = date("Y", strtotime($date)); // Extract year (yyyy) from date
             if (isset($year[$yearValue])) {
@@ -505,7 +505,7 @@ function getIPAssetsPerYear($ipassetsurl)
 
         }
     }
-    if ($year != null) {
+    if (isset($year) && $year != null) {
         ksort($year);
 
         $data = array_values($year); // Values are the ipassets counts
