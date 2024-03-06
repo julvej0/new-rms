@@ -16,9 +16,9 @@
 
 function getDistinctYear($url)
 {
-    $response = file_get_contents($url);
+    $response = @file_get_contents($url);
     if ($response === false) {
-        exit();
+        return null;
     }
 
     $userData = json_decode($response, true)['table_ipassets'];
@@ -26,8 +26,8 @@ function getDistinctYear($url)
     $distinctYears = [];
 
     foreach ($userData as $asset) {
-        $year = date('Y', strtotime($asset['date_registered']));
-        if (!in_array($year, $distinctYears)) {
+        $year = isset($asset['date_registered']) ? date('Y', strtotime($asset['date_registered'])) : null;
+        if (!in_array($year, $distinctYears) && $year != null) {
             $distinctYears[] = $year;
         }
     }

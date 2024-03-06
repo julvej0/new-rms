@@ -23,13 +23,14 @@ function getDistinctYear($url)
         return null;
     }
 
-    $userData = json_decode($response, true)['table_ipassets'];
+    $userData = json_decode($response, true)['table_publications'];
 
     $distinctYears = [];
 
     foreach ($userData as $asset) {
-        $year = date('Y', strtotime($asset['date_registered']));
-        if (!in_array($year, $distinctYears)) {
+        $year = isset($asset['date_published']) ? date('Y', strtotime($asset['date_published'])) : null;
+        // print_r($year . "haha");
+        if (!in_array($year, $distinctYears) && $year != null) {
             $distinctYears[] = $year;
         }
     }
@@ -51,8 +52,8 @@ function getDistinctType($url)
     $distinctTypes = [];
 
     foreach ($userData as $publication) {
-        $type = $publication["type_of_publication"];
-        if (!in_array($type, $distinctTypes)) {
+        $type = isset($publication["type_of_publication"]) ? $publication["type_of_publication"] : null;
+        if (!in_array($type, $distinctTypes) && $type != null) {
             $distinctTypes[] = $type;
         }
     }

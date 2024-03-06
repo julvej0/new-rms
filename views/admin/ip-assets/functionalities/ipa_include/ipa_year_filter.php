@@ -4,6 +4,10 @@
 include_once dirname(__FILE__, 6) . "/helpers/db.php";
 $year_rows = getDistinctYear($ipassetsurl);
 
+if($year_rows == null){
+    ?><li><a>Empty</a></li><?php
+    return null;
+}
 //diplay year from filter
 foreach ($year_rows as $year_filter) {
     ?>

@@ -74,8 +74,13 @@
                 <div class="filter">
                     <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
+                        <li><a href="<?=filterPublication($search, 'Original Article', $fund, $year);?>">Original Article</a></li>
+                        <li><a href="<?=filterPublication($search, 'Review', $fund, $year);?>">Review</a></li>
+                        <li><a href="<?=filterPublication($search, 'Proceedings', $fund, $year);?>">Proceedings</a></li>
+                        <li><a href="<?=filterPublication($search, 'Communication', $fund, $year);?>">Communication</a></li>
+                        <li><a href="<?=filterPublication($search, 'International', $fund, $year);?>">International</a></li>
                         <?php
-                            displayTypeFilter($publicationurl, $search, $fund, $year);
+                            // displayTypeFilter($publicationurl, $search, $fund, $year);
                         ?>
                     </ul>
                 </div>

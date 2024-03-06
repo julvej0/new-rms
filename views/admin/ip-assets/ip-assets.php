@@ -70,8 +70,11 @@
                 <div class="filter">
                     <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="<?=filterIPA($search, 'Copyright', $class, $year);?>">Copyright</a></li>
-                        <li><a href="<?=filterIPA($search, 'Original', $class, $year);?>">Original</a></li>
+                        <li><a href="<?=filterIPA($search, 'Copyright', $class, $year);?>">Invention</a></li>
+                        <li><a href="<?=filterIPA($search, 'Original', $class, $year);?>">Utility Model</a></li>
+                        <li><a href="<?=filterIPA($search, 'Original', $class, $year);?>">Industrial Design</a></li>
+                        <li><a href="<?=filterIPA($search, 'Original', $class, $year);?>">Trademark</a></li>
+                        <li><a href="<?=filterIPA($search, 'Original', $class, $year);?>">Copyright</a></li>
                     </ul>
                 </div>
                 <div class="filter">
