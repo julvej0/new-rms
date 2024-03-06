@@ -66,7 +66,7 @@ function getArticleCount($publicationurl)
 
     $response = @file_get_contents($publicationurl);
     $data = json_decode($response, true);
-    if (isset($data["error"])) {
+    if (!$response) {
         return false;
     }
 
@@ -437,9 +437,9 @@ function getPublicationType($publicationurl)
 function getIPAssetsPerYear($ipassetsurl)
 {
 
-    $dataIpassets = file_get_contents($ipassetsurl);
+    $dataIpassets = @file_get_contents($ipassetsurl);
     $datadate = json_decode($dataIpassets, true);
-    if (isset($datadate['error'])) {
+    if (!$dataIpassets) {
         return null;
     }
     $array = $datadate['table_ipassets'];
