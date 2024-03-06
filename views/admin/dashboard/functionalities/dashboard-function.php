@@ -454,19 +454,28 @@ function getPublicationType($publicationurl)
     }
     $typesColumn = array_column($dataPublication['table_publications'], 'type_of_publication');
 
-    $Intcount = 0;
-    $Nacount = 0;
+    $OriginalArticle = 0;
+    $Review = 0;
+    $Proceedings = 0;
+    $Communications = 0;
+    $International = 0;
 
     foreach ($typesColumn as $type) {
-        if ($type === 'International') {
-            $Intcount++;
-        } elseif ($type === 'National') {
-            $Nacount++;
+        if ($type === 'Original Article') {
+            $OriginalArticle++;
+        } elseif ($type === 'Review') {
+            $Review++;
+        } elseif ($type === 'Proceedings') {
+            $Proceedings++;
+        } elseif ($type === 'Communications') {
+            $Communications++;
+        } elseif ($type === 'International') {
+            $International++;
         }
     }
 
-    $data = array($Nacount, $Intcount);
-    $labels = array('National', 'International');
+    $data = array($Review, $International, $OriginalArticle);
+    $labels = array('Original Article', 'Review','Proceedings','Communications','International');
 
     return array(
         "data" => json_encode($data),
