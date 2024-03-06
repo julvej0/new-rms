@@ -119,7 +119,7 @@ function getPublicationsContributors($authorurl, $publicationurl)
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
     $responseAuthors = @file_get_contents($authorurl);
-    if($responseAuthors == false){
+    if ($responseAuthors == false) {
         return null;
     }
 
@@ -340,7 +340,7 @@ function getRecentIpAssets($ipassetsurl)
         echo '<p>No record found</p>';
         return;
     }
-    
+
     curl_close($curl);
 
     $dateData = array_column($data['table_ipassets'], 'date_registered', 'title_of_work');
@@ -435,15 +435,15 @@ function getPublicationType($publicationurl)
 function getIPAssetsPerYear($ipassetsurl)
 {
 
-    $dataIpassets = @file_get_contents($ipassetsurl);
-    if ($dataIpassets == false) {
+    $dataIpassets = file_get_contents($ipassetsurl);
+    $datadate = json_decode($dataIpassets, true);
+    if (isset($datadate['error'])) {
         return null;
     }
-    $datadate = json_decode($dataIpassets, true);
     $array = $datadate['table_ipassets'];
     foreach ($array as $value) {
-        if ($value["status"] == "registered") {
-
+        // print_r($value);
+        if ($value["status"] == "published") {
             $date = $value['date_registered'];
             $yearValue = date("Y", strtotime($date)); // Extract year (yyyy) from date
             if (isset($year[$yearValue])) {
@@ -452,18 +452,18 @@ function getIPAssetsPerYear($ipassetsurl)
                 $year[$yearValue] = 1;
             }
 
-            ksort($year);
 
-            $data = array_values($year); // Values are the ipassets counts
-            $labels = array_keys($year); // Keys are the years
-
-            return array(
-                "data" => json_encode($data),
-                "labels" => json_encode($labels)
-            );
         }
     }
+    ksort($year);
 
+    $data = array_values($year); // Values are the ipassets counts
+    $labels = array_keys($year); // Keys are the years
+
+    return array(
+        "data" => json_encode($data),
+        "labels" => json_encode($labels)
+    );
 }
 
 
