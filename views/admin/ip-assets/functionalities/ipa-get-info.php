@@ -8,8 +8,8 @@ function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_
 function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number)
 {
     $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
-    if(isset($encodedJsonResponse->error)) {
-        
+    if (isset($encodedJsonResponse->error)) {
+
         return null;
     }
 
@@ -17,22 +17,22 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 
     // retrieve all the authors registered from the api
     $authorObj = getReq("http://localhost:5000/table_authors");
-    if(!isset($authorObj->error)) {
+    if (!isset($authorObj->error)) {
         $authorObj = $authorObj->table_authors;
-    }else{
-        $authorObj= [];
+    } else {
+        $authorObj = [];
     }
 
     // retrieve all the values from json response
     foreach ($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper
         $authorList = "";
-        if(isset($content->authors)){
+        if (isset($content->authors)) {
             $authors = explode(',', $content->authors);
 
             // retrieve the author names from the api response
-            foreach($authors as $aid) {
-                foreach($authorObj as $registeredAuthor) {
+            foreach ($authors as $aid) {
+                foreach ($authorObj as $registeredAuthor) {
                     if ($aid == $registeredAuthor->author_id) {
                         $authorList .= $registeredAuthor->author_name . "<br/>";
                         break;
@@ -40,35 +40,36 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
                 }
             }
         }
-        
 
-        if($content->status == "not-registered"){
+
+        if ($content->status == "not-registered") {
             $table_rows[] = array(
                 'registration_number' => $content->registration_number,
                 'title_of_work' => $content->title_of_work,
                 'type_of_document' => $content->type_of_document,
                 'class_of_work' => $content->class_of_work,
-                'date_of_creation' => $content->date_of_creation,
-                'date_registered' => "Not Available",
-                'campus' => 'Not Available',
-                'college' => 'Not Available',
-                'program' => 'Not Available',
+                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
+                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y"),
+                'campus' => $content->campus ?? "Not Available",
+                'college' => $content->college ?? "Not Available",
+                'program' => $content->program ?? "Not Available",
                 'authors' => $authorList,
                 'hyperlink' => 'Not Available',
                 'status' => $content->status,
                 'certificate' => 'Not Available',
             );
-        }else{
+        } else {
+            // print_r();
             $table_rows[] = array(
                 'registration_number' => $content->registration_number,
                 'title_of_work' => $content->title_of_work,
                 'type_of_document' => $content->type_of_document,
                 'class_of_work' => $content->class_of_work,
-                'date_of_creation' => $content->date_of_creation,
-                'date_registered' => $content->date_registered,
-                'campus' => 'Not Available',
-                'college' => 'Not Available',
-                'program' => 'Not Available',
+                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
+                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y"),
+                'campus' => $content->campus ?? "Not Available",
+                'college' => $content->college ?? "Not Available",
+                'program' => $content->program ?? "Not Available",
                 'authors' => $authorList,
                 'hyperlink' => 'Not Available',
                 'status' => $content->status,
@@ -164,7 +165,7 @@ function authorSearch($authorurl, $search)
                 $additionalQuery .= " ) ";
                 return $additionalQuery;
             }
-        }else{
+        } else {
             return "";
         }
     } else {
