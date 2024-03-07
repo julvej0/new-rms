@@ -121,7 +121,7 @@ function getPublicationsContributors($authorurl, $publicationurl)
 
     $responseAuthors = @file_get_contents($authorurl);
     $dataAuthors = json_decode($responseAuthors, true);
-    if (isset($dataAuthors["error"])) {
+    if ($dataAuthors == false){
         return null;
     }
 
@@ -210,7 +210,7 @@ function getIpAssetsContributors($ipassetsurl, $authorurl)
 
     $responseAuthors = @file_get_contents($authorurl);
     $dataAuthors = json_decode($responseAuthors, true);
-    if (isset($dataAuthors["error"])) {
+    if ($dataAuthors == false){
         return null;
     }
 
