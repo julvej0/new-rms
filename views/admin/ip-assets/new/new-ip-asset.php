@@ -228,7 +228,7 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                     <div class="form-footer">
                         <input type="submit" class="submit-btn" id="submitBTN" name="submitIPA" value="Submit">
                         <input type="hidden" name="submitIPA" value="true">
-                        <input type="button" class="cancel-btn" value="Cancel">
+                        <input type="button" class="cancel-btn add-mode" value="Cancel">
                     </div>
                 </form>
             </div>

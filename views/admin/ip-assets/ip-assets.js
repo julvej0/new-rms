@@ -7,6 +7,8 @@ window.addEventListener("load", function() {
 let isRotated = false;
 const checkboxContainer = document.getElementById("checkbox-container");
 
+
+
 function rotateButton() {
     const buttonIcon = document.getElementById("button-icon");
     if (isRotated) {

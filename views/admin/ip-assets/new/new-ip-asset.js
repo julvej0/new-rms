@@ -9,7 +9,7 @@ cancelBtn.addEventListener("click", (e) => {
 
   // Show a confirmation dialog using Swal (SweetAlert) library
   Swal.fire({
-    title: "Are you sure?",
+    title: "Are you sures?",
     text: "You want to cancel?",
     icon: "question",
     showCancelButton: true,
@@ -19,7 +19,9 @@ cancelBtn.addEventListener("click", (e) => {
   }).then((result) => {
     if (result.isConfirmed) {
       // If the user confirms, redirect to the specified URL
-      window.location.href = "../ip-assets.php";
+      window.location.href = cancelBtn.classList.contains("edit-mode")
+        ? "./ip-assets.php"
+        : "../ip-assets.php";
     }
   });
 });

@@ -13,10 +13,10 @@ if (isset($_GET['id'])){
         $author_info_arr[] = array(
             'author_id' =>$row['author_id'],
             'author_name' => $row['author_name'],
-            'gender' => $row['author_gender'],
+            'gender' => $row['gender'],
             'type_of_author' => $row['type_of_author'],
             'affiliation' => $row['affiliation'],
-            'email' => $row['author_email']
+            'email' => $row['email']
             
         );
     }
