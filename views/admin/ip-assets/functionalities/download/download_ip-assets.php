@@ -12,17 +12,17 @@
 <link rel="stylesheet" href="../../../../../css/index.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://kit.fontawesome.com/02052a094f.js" crossorigin="anonymous"></script>
 
 <!-- download as excel -->
 <script src="https://unpkg.com/xlsx@0.15.6/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-<script src="https://kit.fontawesome.com/02052a094f.js" crossorigin="anonymous"></script>
 
 <section>
     <div class="header" id="dl-modal-container">
         <div class="dl-buttons">
             <button onclick="downloadExcelFile()" class="btn">
-                <i class="fa-solid fa-file-excel" style="color: green;" aria-hidden="true"></i>
+                <i class="fa-solid fa-file-excel fa-lg" style="color: green;" aria-hidden="true"></i>
             </button>
         </div>
         <div class="left">
