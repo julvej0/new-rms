@@ -102,7 +102,7 @@ if (count($filtered_data) > 0) {
                 <button class="edit-btn" id="a-edit-btn" name="edit"
                     onclick="window.location.href='./new/new-author.php?id=<?php echo $row['author_id'] ?>'" title="Click to Edit"><i
                         class="fas fa-pen-to-square"></i></button>
-                <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?= $row['author_id'] ?>')"
+                <button class="delete-btn" id="ipa-delete-btn" name="delete" onclick="confirmDelete('<?= $row['author_name'] ?>', '<?= $row['author_id'] ?>')"
                     title="Click to Delete"><i class="fas fa-trash-can"></i></button>
             </td>
         </tr>
