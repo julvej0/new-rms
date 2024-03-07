@@ -170,8 +170,7 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                 <label class="reg-titles">Registered? <span style="color: red;">*</span></label>
                                 <div class="form-control">
                                     <div class="choices radio-register">
-                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo" id="registered" value="registered"
-                                            required>
+                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo" id="registered" value="registered"required>
                                         <label for="registered" class="reg-choices">Yes</label>
                                     </div>
                                     <div class="choices">
@@ -182,7 +181,7 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                 </div>
                             </div>
                             <div id="show-register" class="reg-form-container2" style="display:none">
-                                <h4 id="show-register" class="if-funded">If Registered : </h4>
+                                <h4 id="show-register">If Registered : </h4>
                                 <div class="reg-form-container2"  >
                                     <div class="form-control">
 
