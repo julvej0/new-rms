@@ -28,7 +28,7 @@ function get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_n
         $sqlSearchQuery .= " AND searched_pub.nature_of_funding = '$fund' ";
     }
     if ($year !== 'empty_year') {
-        $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_pub.date_published) = '$year' ";
+        $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_pub.date_published::date) = '$year' ";
     }
 
     

@@ -24,8 +24,9 @@ function countIPA($conn, $additionalQuery, $search, $type, $class, $year ){
         $count_sql .= " AND searched_ipa.class_of_work = '$class' ";
     }
     if ($year !== 'empty_year') {
-        $count_sql .= " AND EXTRACT(YEAR FROM searched_ipa.date_registered) = '$year' ";
-    }
+        $count_sql .= " AND EXTRACT(YEAR FROM searched_ipa.date_registered::date) = '$year' ";
+        // it only filters the registered datas for ip assets
+    }   
 
     //get result
     $result_count = pg_query($conn, $count_sql);
