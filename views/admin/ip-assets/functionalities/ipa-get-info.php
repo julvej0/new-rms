@@ -59,7 +59,6 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
                 'certificate' => 'Not Available',
             );
         } else {
-            // print_r();
             $table_rows[] = array(
                 'registration_number' => $content->registration_number,
                 'title_of_work' => $content->title_of_work,
@@ -88,8 +87,10 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 // keyword searching operation for all the string matches in the table
 function keywordsearchAPI($tableRows, $strmatch)
 {
-    if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '')
+    if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '') {
+
         return $tableRows;
+    }
 
     // pop the values that isn't like the authorname
     foreach ($tableRows as $index => $rowData) {
@@ -120,14 +121,18 @@ function searchAPI($tableRows, $strmatch, $key)
 {
     if ($strmatch == '' || $strmatch == ' ')
         return $tableRows;
-
+    $matched = array();
     // pop the values that isn't like the authorname
+    print_r("-$strmatch-");
     foreach ($tableRows as $index => $rowData) {
         $isMatched = strpos($rowData[$key], $strmatch);
-        if (!$isMatched)
+        if (!$isMatched) {
             unset($tableRows[$index]);
+        } else {
+            $matched[$index] = $rowData;
+        }
     }
-
+    print_r($matched);
     return $tableRows;
 }
 

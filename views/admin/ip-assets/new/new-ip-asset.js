@@ -19,7 +19,7 @@ cancelBtn.addEventListener("click", (e) => {
   }).then((result) => {
     if (result.isConfirmed) {
       // If the user confirms, redirect to the specified URL
-      window.location.href = "../ip-assets/ip-assets.php";
+      window.location.href = "../ip-assets.php";
     }
   });
 });
@@ -54,28 +54,28 @@ inputElement.addEventListener("input", function () {
   }
 });
 
-
 function RegisterRadio() {
-    const registerRadio = document.querySelector('input[name="registerInfo"]:checked');
-    const registerResult = document.getElementById("show-register");
-    const regID = document.getElementById("reg_num");
-    const regDate = document.getElementById("reg-date");
-    const regIpCert = document.getElementById("ip-certificate-input");
-  
-    if (registerRadio) { 
-        const registerValue = registerRadio.value;
-  
-        if (registerValue === "registered") {
-            registerResult.style.display = 'flex';
-        } else if (registerValue === "not-registered") {
-            registerResult.style.display = 'none';
-            regID.value = '';
-            regDate.value = '';
-            regIpCert.value = '';
-        }
-    } 
-}
+  const registerRadio = document.querySelector(
+    'input[name="registerInfo"]:checked'
+  );
+  const registerResult = document.getElementById("show-register");
+  const regID = document.getElementById("reg_num");
+  const regDate = document.getElementById("reg-date");
+  const regIpCert = document.getElementById("ip-certificate-input");
 
+  if (registerRadio) {
+    const registerValue = registerRadio.value;
+
+    if (registerValue === "registered") {
+      registerResult.style.display = "flex";
+    } else if (registerValue === "not-registered") {
+      registerResult.style.display = "none";
+      regID.value = "";
+      regDate.value = "";
+      regIpCert.value = "";
+    }
+  }
+}
 
 // Check if certificate file type is valid
 function checkFileType(fileInput) {
