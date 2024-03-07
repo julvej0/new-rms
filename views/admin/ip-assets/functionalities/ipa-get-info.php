@@ -8,7 +8,10 @@ function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_
 function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number)
 {
     $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
+    if (isset($encodedJsonResponse->error)) {
 
+        return null;
+    }
     $tableData = $encodedJsonResponse->table_ipassets;
 
     // retrieve all the authors registered from the api
@@ -145,12 +148,7 @@ function getReq($url)
 
     $response = curl_exec($curlRequest);
     
-    $decodedResponse = json_decode($response);
-    if (isset($decodedResponse->error)) {
-
-        return null;
-    }
-    return $decodedResponse;
+    return json_decode($response);
 }
 
 function authorSearch($authorurl, $search)
