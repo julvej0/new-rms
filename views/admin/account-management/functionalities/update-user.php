@@ -20,27 +20,6 @@ function getUserIdBySrCode($userurl, $srCode)
     }
 }
 
-function updateUserImage($userurl, $userId, $image_path, $string)
-{
-    $url = $userurl . '/' . $userId;
-    $data = json_encode([$string => substr($image_path, 1)]);
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($data)
-    ]);
-
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-    curl_close($ch);
-
-    return $httpCode;
-}
-
 function updateUserRecord($userurl, $userId, $field, $value)
 {
     $url = $userurl . '/' . $userId;
