@@ -8,10 +8,6 @@ function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_
 function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number)
 {
     $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
-    if (isset($encodedJsonResponse->error)) {
-
-        return null;
-    }
 
     $tableData = $encodedJsonResponse->table_ipassets;
 
@@ -148,7 +144,13 @@ function getReq($url)
     curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curlRequest);
-    return json_decode($response);
+    
+    $decodedResponse = json_decode($response);
+    if (isset($decodedResponse->error)) {
+
+        return null;
+    }
+    return $decodedResponse;
 }
 
 function authorSearch($authorurl, $search)
