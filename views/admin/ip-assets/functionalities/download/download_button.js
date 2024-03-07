@@ -13,7 +13,7 @@ function closeModal() {
 // Function to download the excel file
 function downloadExcelFile() {
   // Get the table element by its ID
-  var table = document.getElementById("mytable");
+  var table = document.getElementById("tbl_download_ip-assets");
 
   // Convert the table to a worksheet object
   var worksheet = XLSX.utils.table_to_sheet(table);
