@@ -12,7 +12,6 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 
         return null;
     }
-
     $tableData = $encodedJsonResponse->table_ipassets;
 
     // retrieve all the authors registered from the api
@@ -148,6 +147,7 @@ function getReq($url)
     curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curlRequest);
+    
     return json_decode($response);
 }
 
