@@ -34,12 +34,12 @@ $filtered_data = array_slice($filtered_data, $offset, $items_per_page);
 // check if there is a result
 if (count($filtered_data) > 0) {
     foreach ($filtered_data as $row) {
-        $userPic = '../../../account-management/uploads/user.png'; // image url 
+        $userPic = '../account-management/uploads/user.png'; // image url 
         // display results
         ?>
         <tr>
             <td><?= $row['sr_code']; ?></td>
-            <td><img id="user-image" src="<?= isset($row['user_img']) ? $row['user_img'] : $userPic; ?>"
+            <td><img id="user-image" src="<?= isset($row['user_img']) ? "../account-management/" . $row['user_img'] : $userPic; ?>"
                     alt="User Image" style="width:6.25rem; height:6.25rem;"></td>
             <td><?= $row['user_fname'] . " " . $row['user_mname'] . " " . $row['user_lname']; ?></td>
             <td><?= isset($row['account_type']) ? $row['account_type'] : ""; ?></td>
