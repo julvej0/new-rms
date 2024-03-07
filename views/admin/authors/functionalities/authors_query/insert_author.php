@@ -56,7 +56,7 @@ if (isset($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-emai
         $author_count = count($json_response['table_authors']);
     }
     //update query
-    $insert_query = "INSERT INTO table_authors (author_name, gender, type_of_author, affiliation, author_email) VALUES ($1, $2 ,$3,$4, $5)";
+    $insert_query = "INSERT INTO table_authors (author_name, gender, type_of_author, affiliation, email) VALUES ($1, $2 ,$3,$4, $5)";
     $insert_stmt = pg_prepare($conn, "insert_author", $insert_query);
     $insert_result = pg_execute($conn, "insert_author", array($author_name, $gender, $types, $affiliation, $email));
     // throw new Exception("$insert_result" . "haha");

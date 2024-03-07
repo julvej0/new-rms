@@ -247,7 +247,7 @@ if (isset($_POST['edit'])) {
                             <div class="form-footer">
                                 <input type="submit" class="submit-btn" name="updateIPA" value="Submit">
                                 <input type="hidden" name="updateIPA" value="true">
-                                <input type="button" class="cancel-btn" value="Cancel">
+                                <input type="button" class="cancel-btn edit-mode" value="Cancel">
                             </div>
                         </form>
                         <?php

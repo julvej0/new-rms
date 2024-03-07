@@ -57,7 +57,7 @@ if (isset($_POST['a-name'],$_POST['a-gender'],$_POST['a-role'],$_POST['a-id'],$_
     }
 
     //update query
-    $update_query = "UPDATE table_authors SET author_name=$1, author_gender=$2, type_of_author=$3, affiliation=$4, author_email=$6 WHERE author_id=$5";
+    $update_query = "UPDATE table_authors SET author_name=$1, gender=$2, type_of_author=$3, affiliation=$4, email=$6 WHERE author_id=$5";
     $update_stmt = pg_prepare($conn,"edit_author", $update_query);
     $update_result = pg_execute($conn,"edit_author",array($author_name, $gender, $types, $affiliation, $id, $email));
 
