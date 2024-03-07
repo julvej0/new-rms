@@ -1,5 +1,3 @@
-
-
 <?php 
     include dirname(__FILE__, 6) . '/helpers/db.php';
     require_once('../download/ipa-get-info-download.php');
@@ -14,6 +12,7 @@
 <link rel="stylesheet" href="../../../../../css/index.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://kit.fontawesome.com/02052a094f.js" crossorigin="anonymous"></script>
 
 <!-- download as excel -->
 <script src="https://unpkg.com/xlsx@0.15.6/dist/xlsx.full.min.js"></script>
@@ -23,16 +22,15 @@
     <div class="header" id="dl-modal-container">
         <div class="dl-buttons">
             <button onclick="downloadExcelFile()" class="btn">
-                <!-- <i class="fas fa-trash-can" style="color: green"></i> -->
-                <i class="fa-solid fas fa-file-excel" style="color: green"></i>
-                <!-- <i class="fa-solid fa-file-excel"></i> -->
+                <i class="fa-solid fa-file-excel fa-lg" style="color: green;" aria-hidden="true"></i>
             </button>
         </div>
         <div class="left">
             <form action='' method='get'>
                 <div class="form-group">
-                    <input type='text' placeholder="Search" name='search' value='<?php $search_query?>' placeholder="Search..." >
-                    <i class='bx bx-search search-icon' ></i>
+                    <input type='text' placeholder="Search" name='search' value='<?php $search_query?>'
+                        placeholder="Search...">
+                    <i class='bx bx-search search-icon'></i>
                 </div>
             </form>
         </div>
