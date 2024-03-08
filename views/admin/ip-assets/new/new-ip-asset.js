@@ -68,16 +68,20 @@ function RegisterRadio() {
   if (registerRadio) {
     const registerValue = registerRadio.value;
 
+  
     if (registerValue === "registered") {
       registerResult.style.display = "flex";
-      inputElement.setAttribute("required", "");
+      regID.setAttribute("required", "");
+      regDate.setAttribute("required", "");
     } else if (registerValue === "not-registered") {
       registerResult.style.display = "none";
-      inputElement.removeAttribute("required");
+      regID.removeAttribute("required");
+      regDate.removeAttribute("required");
       regID.value = "";
       regDate.value = "";
       regIpCert.value = "";
     }
+
   }
 }
 
