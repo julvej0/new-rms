@@ -44,21 +44,21 @@ if (isset($_POST['submitPB'])) {
         $authors_string = "";
     } else {
         $author_ids = array();
-    
+
         foreach ($authors_name as $name) {
-    
+
             $url = 'http://localhost:5000/table_authors';
             $response = file_get_contents($url);
-    
+
             if ($response !== false) {
                 $data = json_decode($response, true);
-    
+
                 if (isset($data['table_authors'])) {
                     $authorIdColumn = array_column($data['table_authors'], 'author_id');
                     $authorNameColumn = array_column($data['table_authors'], 'author_name');
-    
+
                     $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
-    
+
                     foreach ($authorMapping as $author_id => $author_name) {
                         if ($author_name == $name) { // Check if author_name matches the desired name
                             $author_ids[] = $author_id;
@@ -67,7 +67,7 @@ if (isset($_POST['submitPB'])) {
                 }
             }
         }
-    
+
         $authors_string = implode(",", $author_ids);
     }
 
@@ -91,13 +91,13 @@ if (isset($_POST['submitPB'])) {
     $publicationurl = 'http://localhost:5000/table_publications';
 
     $response_pubid = file_get_contents($publicationurl);
-
+    
     if ($response_pubid !== false) {
         $data = json_decode($response_pubid, true);
-        
+
         $publications = $data['table_publications'];
 
-        usort($publications, function($a, $b) {
+        usort($publications, function ($a, $b) {
             return strcmp($a['publication_id'], $b['publication_id']);
         });
 
@@ -114,6 +114,8 @@ if (isset($_POST['submitPB'])) {
         $publication_id = 'PID' . $paddedNumericID;
 
         echo $publication_id;
+    } else {
+        $publication_id = 'PID000001';
     }
 
     $publication_data = array(
@@ -189,7 +191,7 @@ if (isset($_POST['submitPB'])) {
             'activity' => $activity,
             'description' => $description
         );
-        
+
         $jsonData = json_encode($publication_log);
 
         $ch = curl_init('http://localhost:5000/table_log');

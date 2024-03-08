@@ -119,32 +119,32 @@ $('.add-row-btn').click(function() {
 });
 
 //Auto Registration Number
-$(document).ready(function(){
-    // Get the input fields
-    const classOfWork = document.getElementById('class_of_work');
-    var today = new Date();
-    var year = today.getFullYear();
+// $(document).ready(function(){
+//     // Get the input fields
+//     const classOfWork = document.getElementById('class_of_work');
+//     var today = new Date();
+//     var year = today.getFullYear();
 
-    // Get the registration number field
-    const registrationNumber = document.getElementById('reg_num');
+//     // Get the registration number field
+//     const registrationNumber = document.getElementById('reg_num');
 
-    // Listen for changes to the IPA registration radio buttons
-    const ipaRegistration = document.getElementsByName('registerInfo');
-    ipaRegistration.forEach(function (radio) {
-        radio.addEventListener('change', function () {
-            if (this.value === 'not-registered') {
-                // Generate the registration number
-                const classOW = classOfWork.value.split(' ').join('');
-                const yearNow = year.toString();
-                const registration = classOW + yearNow + '-';
+//     // Listen for changes to the IPA registration radio buttons
+//     const ipaRegistration = document.getElementsByName('registerInfo');
+//     ipaRegistration.forEach(function (radio) {
+//         radio.addEventListener('change', function () {
+//             if (this.value === 'not-registered') {
+//                 // Generate the registration number
+//                 const classOW = classOfWork.value.split(' ').join('');
+//                 const yearNow = year.toString();
+//                 const registration = classOW + yearNow + '-';
                 
-                // Set the registration number field value
-                reg_num.value = registration;
-            } else {
-                // Clear the registration number field value
-                reg_num.value = '';
-            }
-        });
-    });
-});
+//                 // Set the registration number field value
+//                 reg_num.value = registration;
+//             } else {
+//                 // Clear the registration number field value
+//                 reg_num.value = '';
+//             }
+//         });
+//     });
+// });
 </script>

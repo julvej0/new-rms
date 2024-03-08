@@ -70,14 +70,17 @@ function RegisterRadio() {
 
     if (registerValue === "registered") {
       registerResult.style.display = "flex";
+      inputElement.setAttribute("required", "");
     } else if (registerValue === "not-registered") {
       registerResult.style.display = "none";
+      inputElement.removeAttribute("required");
       regID.value = "";
       regDate.value = "";
       regIpCert.value = "";
     }
   }
 }
+
 
 // Check if certificate file type is valid
 function checkFileType(fileInput) {

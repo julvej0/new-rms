@@ -197,12 +197,13 @@ if (isset($_POST['edit'])) {
                                         <label class="reg-titles">Registered? <span style="color: red;">*</span></label>
                                         <div class="form-control">
                                             <div class="choices">
-                                                <input type="radio" name="registerInfo" id="registered" value="registered">
+                                                <input type="radio" name="registerInfo" id="registered" value="registered"
+                                                    <?= $row['status'] == 'not-registered' ? '' : 'checked' ?>>
                                                 <label for="registered" class="reg-choices">Yes</label>
                                             </div>
                                             <div class="choices">
                                                 <input type="radio" name="registerInfo" id="not-registered"
-                                                    value="not-registered" checked="checked">
+                                                    value="not-registered" <?= $row['status'] == 'not-registered' ? 'checked' : '' ?>>
                                                 <label for="not-registered" class="reg-choices">No</label>
                                             </div>
                                         </div>
@@ -214,7 +215,7 @@ if (isset($_POST['edit'])) {
                                                     style="color: red;">*</span></label>
                                             <input type="text" name="registration_number" id="reg_num"
                                                 placeholder="Registration Number..." required
-                                                value="<?= $row['registration_number'] ?>" readonly>
+                                                value="<?= $row['registration_number'] ?>">
                                         </div>
                                         <div class="form-control">
                                             <label class="ip-label" for="reg-date">Date of Registration</label>

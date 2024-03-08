@@ -2,7 +2,7 @@
 
 function getUserIdByEmail($userurl, $email)
 {
-    $response = file_get_contents($userurl);
+    $response = @file_get_contents($userurl);
 
     if ($response === false) {
         echo "An error occurred while fetching user data.";
@@ -22,7 +22,7 @@ function getUserIdByEmail($userurl, $email)
 
 function getUserByEmail($userurl, $email)
 {
-    $response = file_get_contents($userurl);
+    $response = @file_get_contents($userurl);
 
     if ($response === false) {
         echo "An error occurred while fetching user data.";
@@ -42,7 +42,7 @@ function getUserByEmail($userurl, $email)
 // function 
 function getUserIdBySrCode($userurl, $srCode)
 {
-    $response = file_get_contents($userurl);
+    $response = @file_get_contents($userurl);
 
     if ($response === false) {
         echo "An error occurred while fetching user data.";
@@ -79,7 +79,10 @@ function updateUserImageById($userurl, $userId, $image_path, $string)
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     curl_close($ch);
-
+    if ($httpCode != 200) {
+        echo "An error occurred while fetching user data.";
+        exit();
+    }
     return $httpCode;
 }
 

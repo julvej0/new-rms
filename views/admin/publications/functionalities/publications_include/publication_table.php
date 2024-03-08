@@ -1,11 +1,18 @@
 <?php
 require_once('functionalities/publication-get-info.php');
 require_once('functionalities/publications_include/publication_count.php');
-
+// if (isset ($row['type_of_author']) && $row['type_of_author'] != $role_query) {
+    //     return false;
+    // }
+    // if (isset ($row['gender']) && $row['gender'] != $gender_query) {
+    //     return false;
+    // }
+    //, $role_query, $gender_query
 $additionalQuery = authorSearch($authorurl, $search);
 $table_rows = get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number); // $table_rows is included from a ipa-get-info.php
 $total_records = countPublications($conn, $additionalQuery, $search, $type, $fund, $year);
 ?>
+
 
 <table>
     <thead>
@@ -97,7 +104,7 @@ $total_records = countPublications($conn, $additionalQuery, $search, $type, $fun
                                     title="Click to Edit"></i></button>
                         </form>
                         <!--Onclick calls the confirmDelete() function with the registration number as a parameter-->
-                        <button class="delete-btn" name="delete" onclick="confirmDelete('<?= $row['title_of_paper'] ?>', '<?= $row['publication_id'] ?>')"
+                        <button class="delete-btn" name="delete" onclick="confirmDelete('<?= $row['publication_id'] ?>')"
                             title="Click to Delete"><i class="fas fa-trash-can"></i></button>
                     </td>
                 </tr>

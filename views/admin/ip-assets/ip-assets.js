@@ -215,7 +215,6 @@ function submitDelete(id) {
   
           xhrLog.onreadystatechange = function() {
             if (xhrLog.readyState === 4 && xhrLog.status === 200) {
-              console.log(xhrLog.responseText)
               var response_id = xhrLog.responseText;
               
               var data = JSON.parse(response_id);
