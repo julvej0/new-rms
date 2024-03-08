@@ -307,11 +307,11 @@ include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.ph
                                                 $result = pg_query_params($conn, $query, $params);
                                                 ?>
                                                 <input list="authors" name="author_name[]" style="
-                                        width: 100%;
-                                        height: 50px;
-                                        padding: 10px 36px 10px 16px;
-                                        border-radius: 5px;
-                                        border: 1px solid var(--dark-grey);" placeholder="Author Name..." required>
+                                                    width: 100%;
+                                                    height: 50px;
+                                                    padding: 10px 36px 10px 16px;
+                                                    border-radius: 5px;
+                                                    border: 1px solid var(--dark-grey);" placeholder="Author Name..." required>
                                                 <datalist id="authors">
                                                     <?php
                                                     while ($row = pg_fetch_assoc($result)) {
