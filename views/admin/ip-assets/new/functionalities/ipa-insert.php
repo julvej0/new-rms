@@ -1,15 +1,16 @@
 <?php
 include_once("../../../account-management/functionalities/user-session.php");
 if (isset($_POST['submitIPA'])) {
-    $date_of_creation = $_POST['date_of_creation'] != '' ? $_POST['date_of_creation'] : "0001-01-01";
+    $date_of_creation = $_POST['date_of_creation'] != '' ? $_POST['date_of_creation'] : "2001-01-01";
 
-    $date_registered = $_POST['date_registered'] != '' ? $_POST['date_registered'] : "0001-01-01";
+    $date_registered = $_POST['date_registered'] != '' ? $_POST['date_registered'] : "2001-01-01";
 
-    $registration_number = $_POST['date_registered'] != '' ? $_POST['date_registered'] : uniqid('PID'); //timestamp
+    $registration_number = $_POST['registration_number'] != '' ? $_POST['registration_number'] : strval(time()); //timestamp
     $title_of_work = $_POST['title_of_work'];
     $type_of_document = $_POST['type_of_ipa'];
     $class_of_work = $_POST['class_of_work'];
-    $campus = $_POST['campus'];
+    ~
+        $campus = $_POST['campus'];
     $college = $_POST['college'];
     $program = $_POST['program'];
     $hyperlink = $_POST['hyperlink'];
@@ -24,7 +25,7 @@ if (isset($_POST['submitIPA'])) {
 
         foreach ($authors_name as $name) {
             $url = 'http://localhost:5000/table_authors';
-            $response = file_get_contents($url);
+            $response = @file_get_contents($url);
 
             if ($response !== false) {
                 $data = json_decode($response, true);

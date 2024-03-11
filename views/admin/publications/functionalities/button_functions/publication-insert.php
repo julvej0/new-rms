@@ -90,8 +90,8 @@ if (isset($_POST['submitPB'])) {
 
     $publicationurl = 'http://localhost:5000/table_publications';
 
-    $response_pubid = file_get_contents($publicationurl);
-    
+    $response_pubid = @file_get_contents($publicationurl);
+
     if ($response_pubid !== false) {
         $data = json_decode($response_pubid, true);
 
@@ -148,7 +148,7 @@ if (isset($_POST['submitPB'])) {
 
     $response = curl_exec($ch);
 
-    if ($response === false) {
+    if (str_contains($response, 'error')) {
         header("Location: ../../publications.php?upload=failed");
     } else {
         $logurl = 'http://localhost:5000/table_log';
