@@ -40,30 +40,9 @@
                                 <div class="form-container">
                                     <div class="form-control">
                                         <label class="a-label" for="a-name">Email</label>
-                                        <input list="user-email" id="a-email" name="a-email" placeholder="Email...">
-                                            <!--The emails are selected using a select tag-->
-                                            <datalist id="user-email">
-                                                <!--The datalist contains the emails from the SQL query-->
-                                                <option value="" hidden>Input an email...</option>
-                                                <?php
-                                                //Query used to get the emails from the user table
-                                                $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
-                                                $params = array();
-                                                $result = pg_query_params($conn, $userQuery, $params);
-                                                // $userData = pg_fetch_assoc($result);
-                                                while($userData = pg_fetch_assoc($result)){
-                                                    if ($author_info_arr[0]['email'] == $userData['email']){
-                                                        //The options for the select are the emails
-                                                        echo '<option value="' . $userData['email'] . '" selected>' . $userData['email'] . '</option>'; 
-                                                    }
-                                                    else{
-                                                        if ($userData['account_type'] == "Admin"){
-                                                            echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';
-                                                        }                                                        
-                                                    }                                                                                        
-                                                }
-                                            ?>
-                                            </datalist>
+                                        <input list="user-email" id="a-email" name="a-email" placeholder="Email..."
+                                        value=" <?php echo $author_info_arr[0]['email']?>">
+                                            
                                         </input>
                                         <!--The input field to be submitted to the insert SQL query-->
                                         <input type="text" id="a-id" name="a-id"
