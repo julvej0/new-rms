@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sub-container">
+                        <!-- <div class="sub-container">
                             <div class="title">
                                 <h3>Affiliations</h3>
                                 <hr>
@@ -111,14 +111,34 @@
                                                 if(isset($_GET['id'])){
                                                     display_edit_aff($author_info_arr, $campus_options, $program_options);
                                                 }
-                                            ?>
+                                                ?>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                        </div> -->
+                        <div class="sub-container">
+                            <div class="title">
+                                <h3>Affiliations</h3>
+                                <hr>
+                            </div>
+                            <div class="form-col">
+                            <div class="form-container">
+                                    <div class="form-control">
+                                        <select name="a-affiliation" class="a-input-field" id="a-affiliation">
+                                            <option value="" hidden>--Choose from the options--</option>
+                                            <option value="internal"
+                                                <?php echo $author_info_arr[0]['internal']== 'internal' ? 'selected' : ''?>> Internal
+                                            </option>
+                                            <option value="external"
+                                                <?php echo $author_info_arr[0]['external']== 'external' ? 'selected' : ''?>>External
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                         <br>
                         <div class="form-footer">
                             <input type="submit" class="submit-btn"
