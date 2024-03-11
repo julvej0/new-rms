@@ -74,7 +74,7 @@
                 <div class="filter">
                     <button class="btn"><?=$type!="empty_type" ? $type: 'Type'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="./publications.php">All</a></li>
+                        <li><a href="<?=filterPublication($search, 'empty_type', $fund, $year);?>">All</a></li>
                         <li><a href="<?=filterPublication($search, 'Original Article', $fund, $year);?>">Original Article</a></li>
                         <li><a href="<?=filterPublication($search, 'Review', $fund, $year);?>">Review</a></li>
                         <li><a href="<?=filterPublication($search, 'Proceedings', $fund, $year);?>">Proceedings</a></li>
@@ -88,7 +88,7 @@
                 <div class="filter">
                     <button class="btn"><?=$fund!="empty_fund" ? $fund: 'Fund'  ?><i class='bx bx-chevron-down icon'></i></button>
                     <ul class="filter-link">
-                        <li><a href="./publications.php">All</a></li>
+                        <li><a href="<?=filterPublication($search, $type, 'empty_fund', $year);?>">All</a></li>
                         <li><a href="<?=filterPublication($search, $type, 'funded', $year)?>">Funded</a></li>
                         <li><a href="<?=filterPublication($search, $type, 'non-funded', $year)?>">Non-funded</a></li>
                     </ul>

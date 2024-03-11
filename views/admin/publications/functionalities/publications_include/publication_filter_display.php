@@ -10,7 +10,7 @@ function displayYearFilter($url, $search, $type, $fund)
         return;
     }
     ?>
-    <li><a href="./publications.php">All</a></li>
+    <li><a href="<?=filterPublication($search, $type, $fund, 'empty_year');?>">All</a></li>
     <?php
 
     //diplay year from filter

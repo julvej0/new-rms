@@ -75,7 +75,7 @@ $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
                             <?= $type != "empty_type" ? $type : 'Type' ?><i class='bx bx-chevron-down icon'></i>
                         </button>
                         <ul class="filter-link">
-                            <li><a href="./ip-assets.php">All</a></li>
+                            <li><a href="<?= filterIPA($search, 'empty_type', $class, $year); ?>">All</a></li>
                             <li><a href="<?= filterIPA($search, 'Invention', $class, $year); ?>">Invention</a></li>
                             <li><a href="<?= filterIPA($search, 'Utility Model', $class, $year); ?>">Utility Model</a>
                             </li>
@@ -91,7 +91,7 @@ $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
                                 class='bx bx-chevron-down icon'></i>
                         </button>
                         <ul class="filter-link">
-                            <li><a href="./ip-assets.php">All</a></li>
+                            <li><a href="<?= filterIPA($search, $type, 'empty_class', $year); ?>">All</a></li>
                             <li><a href="<?= filterIPA($search, $type, 'A', $year); ?>">Class A</a></li>
                             <li><a href="<?= filterIPA($search, $type, 'G', $year); ?>">Class G</a></li>
                             <li><a href="<?= filterIPA($search, $type, 'O', $year); ?>">Class O</a></li>

@@ -22,7 +22,7 @@ function filterAuthor($search, $role, $gender ){
     if (isset($_GET['delete'])){
         unset($search_params['delete']);
     }
-
+    
     //check if each param exists
     if($search!='empty_search'){
         array_push($params, 'search='.$search); //add param 
