@@ -40,11 +40,11 @@
                                 <div class="form-container">
                                     <div class="form-control">
                                         <label class="a-label" for="a-name">Email</label>
-                                        <select list="user-email" id="a-email" name="a-email" placeholder="Email...">
+                                        <input list="user-email" id="a-email" name="a-email" placeholder="Email...">
                                             <!--The emails are selected using a select tag-->
                                             <datalist id="user-email">
                                                 <!--The datalist contains the emails from the SQL query-->
-                                                <option value="" hidden>Choose an email...</option>
+                                                <option value="" hidden>Input an email...</option>
                                                 <?php
                                                 //Query used to get the emails from the user table
                                                 $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
@@ -64,7 +64,7 @@
                                                 }
                                             ?>
                                             </datalist>
-                                        </select>
+                                        </input>
                                         <!--The input field to be submitted to the insert SQL query-->
                                         <input type="text" id="a-id" name="a-id"
                                             value="<?php echo $author_info_arr[0]['author_id']?>" hidden readonly>

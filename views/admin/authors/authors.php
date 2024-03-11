@@ -65,6 +65,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Author Name</th>
+                            <th>Email</th>
                             <th>Type</th>
                             <th>Gender</th>
                             <th>Affiliations</th>

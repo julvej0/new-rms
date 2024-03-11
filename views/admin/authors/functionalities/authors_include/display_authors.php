@@ -61,6 +61,9 @@ if (count($filtered_data) > 0) {
                 <?= $row['author_name']; ?>
             </td>
             <td>
+                <?= $row['email']; ?>
+            </td>
+            <td>
                 <?= isset($row['type_of_author']) ? $row['type_of_author'] : "N/A"; ?>
             </td>
             <td>
