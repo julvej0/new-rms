@@ -3,6 +3,7 @@ $items_per_page = 10; // items per page
 $total_records = countUserAccounts($userurl); // get total records
 
 $search_query = $search != "empty_search" ? $_GET['search'] : ""; // check if user searched
+$type_query = $type != "empty_type" ? $_GET['type'] : ""; // check if user searched
 
 $offset = ($page_number - 1) * $items_per_page; // intervals of 10 
 
@@ -10,15 +11,21 @@ $offset = ($page_number - 1) * $items_per_page; // intervals of 10
 $json_data = file_get_contents($userurl);
 $data = json_decode($json_data, true);
 
-$filtered_data = array_filter($data['table_user'], function ($row) use ($search_query) {
+$filtered_data = array_filter($data['table_user'], function ($row) use ($search_query, $type_query) {
     // Filter based on the search query in relevant columns
     $columns_to_search = ['sr_code', 'user_fname', 'user_mname', 'user_lname', 'account_type', 'email', 'user_contact'];
+    $match_query = false;
+    $match_type = false;
     foreach ($columns_to_search as $column) {
-        if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
-            return true;
+        if (isset ($row[$column]) && stripos($row[$column], $search_query) !== false) {
+            $match_query = true;
         }
     }
-    return false;
+
+    if (isset ($row['account_type']) && $row['account_type'] == $type_query || $type_query == '') {
+        $match_type = true;
+    }
+    return $match_query && $match_type;
 });
 
 $total_records = count($filtered_data); // update total records
@@ -38,15 +45,26 @@ if (count($filtered_data) > 0) {
         // display results
         ?>
         <tr>
-            <td><?= $row['sr_code']; ?></td>
-            <td><img id="user-image" src="<?= isset($row['user_img']) ? "../account-management/" . $row['user_img'] : $userPic; ?>"
+            <td>
+                <?= $row['sr_code']; ?>
+            </td>
+            <td><img id="user-image"
+                    src="<?= isset($row['user_img']) ? "../account-management/" . $row['user_img'] : $userPic; ?>"
                     alt="User Image" style="width:6.25rem; height:6.25rem;"></td>
-            <td><?= $row['user_fname'] . " " . $row['user_mname'] . " " . $row['user_lname']; ?></td>
-            <td><?= isset($row['account_type']) ? $row['account_type'] : ""; ?></td>
-            <td><?= isset($row['user_contact']) ? $row['user_contact'] : "N/A"; ?></td>
-            <td><?= $row['email']; ?></td>
+            <td>
+                <?= $row['user_fname'] . " " . $row['user_mname'] . " " . $row['user_lname']; ?>
+            </td>
+            <td>
+                <?= isset($row['account_type']) ? $row['account_type'] : ""; ?>
+            </td>
+            <td>
+                <?= isset($row['user_contact']) ? $row['user_contact'] : "N/A"; ?>
+            </td>
+            <td>
+                <?= $row['email']; ?>
+            </td>
         </tr>
-    <?php
+        <?php
     }
 } else {
     echo '<tr><td colspan="6">No Author Found!</td></tr>'; // if result is empty

@@ -342,11 +342,11 @@ include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.ph
                                 <label class="funding-titles">Funding Nature </label>
                                 <div class="form-control">
                                     <div class="choices">
-                                        <input type="radio" name="nature_of_funding" id="funded" value="funded">
+                                        <input type="radio" name="nature_of_funding" id="funded" value="Funded">
                                         <label for="funded" class="funding-choices">Funded</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" name="nature_of_funding" id="non-funded" value="non-funded" checked="checked">
+                                        <input type="radio" name="nature_of_funding" id="non-funded" value="Non-Funded" checked="checked">
                                         <label for="non-funded" class="funding-choices">Non-funded</label>
                                     </div>
                                 </div>
