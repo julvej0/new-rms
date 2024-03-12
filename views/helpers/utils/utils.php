@@ -61,7 +61,7 @@ function getUserIdBySrCode($userurl, $srCode)
 }
 
 
-
+// for updating user image
 function updateUserImageById($userurl, $userId, $image_path, $string)
 {
     $url = $userurl . '/' . $userId;
