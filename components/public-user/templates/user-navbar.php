@@ -81,7 +81,7 @@
                             <?php
                             $sessionActive = isset($_SESSION['user_email']);
                             $accountType = isset($_SESSION['account_type']) ? $_SESSION['account_type'] : '';
-
+                            $link = $accountType != "Admin" ? "public-user/profile/user-profile.php" : "admin/account-management/user-profile.php";
                             // Check if the user is an author
                             $isAuthor = $accountType == 'Author';
                             ?>
@@ -90,8 +90,7 @@
                                 <?php if ($sessionActive): ?>
                                     <i class="fas fa-cog" onclick="toggleDropdown()"></i>
                                     <div class="dropdown" id="dropdown">
-                                        <a style='margin-right: 30px;'
-                                            href="/new-rms-webdev/views/public-user/profile/user-profile.php">
+                                        <a style='margin-right: 30px;' href="/new-rms-webdev/views/<?= $link ?>">
                                             <i class="fas fa-user"></i> PROFILE
                                         </a>
                                         <?php if ($isAuthor): ?>
