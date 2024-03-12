@@ -52,7 +52,7 @@ main .header .left {
 
 main .header .left .filter button {
   height: 100%;
-  width: 130px;
+  min-width: 130px;
   padding: 10px;
   border-radius: 5px;
   border: none;
