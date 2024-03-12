@@ -9,7 +9,7 @@ cancelBtn.addEventListener("click", (e) => {
 
   // Show a confirmation dialog using Swal (SweetAlert) library
   Swal.fire({
-    title: "Are you sures?",
+    title: "Are you sure?",
     text: "You want to cancel?",
     icon: "question",
     showCancelButton: true,

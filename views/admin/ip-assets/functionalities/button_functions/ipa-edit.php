@@ -37,14 +37,14 @@ if (isset($_POST['updateIPA'])) {
         $authors_string = implode(",", $author_ids);
     }
 
-    $registration_number = $_POST['registration_number'];
-    $title_of_work = $_POST['title_of_work'];
+    $registration_number = trim($_POST['registration_number']);
+    $title_of_work = trim($_POST['title_of_work']);
     $type_of_document = $_POST['type_of_ipa'];
     $class_of_work = $_POST['class_of_work'];
     $campus = $_POST['campus'];
-    $college = $_POST['college'];
+    $college = trim($_POST['college']);
     $program = $_POST['program'];
-    $hyperlink = $_POST['hyperlink'];
+    $hyperlink = trim($_POST['hyperlink']);
     $status = $_POST['registerInfo'];
     $cert = $_FILES['ip-certificate'];
 
