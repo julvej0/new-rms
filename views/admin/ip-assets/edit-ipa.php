@@ -70,7 +70,7 @@ if (isset($_POST['edit'])) {
                                                 <option value="<?= $row['campus'] ?>" hidden>
                                                     <?= $row['campus'] ?>
                                                 </option>
-                                                <option value="Alangilan (Main II)">Alangilan (Main II) </option>
+                                                <option value="Alangilan">Alangilan</option>
                                                 <option value="Balayan">Balayan</option>
                                                 <option value="Lemery">Lemery</option>
                                                 <option value="Lipa">Lipa</option>
@@ -78,7 +78,7 @@ if (isset($_POST['edit'])) {
                                                 <option value="Mabini">Mabini</option>
                                                 <option value="Malvar">Malvar-JPCPC</option>
                                                 <option value="Nasugbu">Nasugbu-Arasof</option>
-                                                <option value="Pablo Borbon (Main I)">Pablo Borbon (Main I)</option>
+                                                <option value="Pablo Borbon (Main I)">Pablo Borbon</option>
                                                 <option value="Padre Garcia">Padre Garcia</option>
                                                 <option value="Rosario">Rosario</option>
                                                 <option value="San Juan">San Juan</option>
@@ -161,17 +161,17 @@ if (isset($_POST['edit'])) {
                                         border: 1px solid var(--dark-grey);"                                                                                        
                                         placeholder="Author Name..."
                                         value="' . $author_list_row['author_name'] . '">';
-                                                        echo '<datalist id="authors">';
-                                                        $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name"; // Fetch the list of authors from the 'table_authors' table
-                                                        $params = array();
-                                                        $result = pg_query_params($conn, $query, $params);
-                                                        while ($author_row = pg_fetch_assoc($result)) { // Iterate through each author in the result set and display them as options
-                                                            echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
-                                                        }
-                                                        echo '</datalist>';
-                                                        echo '
+                                                    echo '<datalist id="authors">';
+                                                    $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name"; // Fetch the list of authors from the 'table_authors' table
+                                                    $params = array();
+                                                    $result = pg_query_params($conn, $query, $params);
+                                                    while ($author_row = pg_fetch_assoc($result)) { // Iterate through each author in the result set and display them as options
+                                                        echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
+                                                    }
+                                                    echo '</datalist>';
+                                                    echo '
                                         </td>                                                
-                                        <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fas fa-xmark fa-xs"></i></button></td>
+                                         <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fas fa-xmark fa-xs"></i></button></td>
                                         </tr>';
                                                     }
                                                 }
@@ -181,8 +181,8 @@ if (isset($_POST['edit'])) {
                                                 <button type="button" class="add-row-btn"
                                                     style="height: 50px; width: 10%;">+</button>
                                             </td>
-                                            <div id="error-msg" style="display: none; color: red;">Duplicate author names are
-                                                not allowed!</div>
+                                            <div id="error-msg" style="display: none; color: red;">Duplicate author names not allowed!</div>
+                                            <div id="no-author-msg" style="display: none; color: red;">No author found!</div>
                                         </table>
                                     </div>
                                 </div>

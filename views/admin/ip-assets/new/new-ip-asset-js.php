@@ -95,7 +95,7 @@ var rowHtml = '<tr>\
                       echo '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name...">';
                       echo '<datalist id="authors">';
                       while ($row = pg_fetch_assoc($result)) {
-                          echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                        echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
                       }
                       echo '</datalist>';
                       ?>
@@ -109,13 +109,14 @@ $('.add-row-btn').click(function() {
         $('#author-tbl-body').append(rowHtml);
         x++;
     }
+});
 
-    // Remove row function
-    $('#author-tbl').on('click', '#remove', function() {
-        $(this).closest('tr').remove();
-        checkDuplicateAuthors();
-        x--;
-    });
+// Remove row function
+$('#author-tbl-body').on('click', '#remove', function() {
+    event.preventDefault();
+    $(this).closest('tr').remove();
+    checkDuplicateAuthors();
+    x--;
 });
 
 //Auto Registration Number

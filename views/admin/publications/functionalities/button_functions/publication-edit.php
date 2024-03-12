@@ -11,24 +11,24 @@ if (isset($_POST['updatePB'])) {
 
     if (!$authors_name) {
         $authors_name = "";
-        $authors_string = "";
+        $authors_string = " ";
     } else {
         $author_ids = array();
-    
+
         foreach ($authors_name as $name) {
-    
+
             $url = 'http://localhost:5000/table_authors';
             $response = file_get_contents($url);
-    
+
             if ($response !== false) {
                 $data = json_decode($response, true);
-    
+
                 if (isset($data['table_authors'])) {
                     $authorIdColumn = array_column($data['table_authors'], 'author_id');
                     $authorNameColumn = array_column($data['table_authors'], 'author_name');
-    
+
                     $authorMapping = array_combine($authorIdColumn, $authorNameColumn);
-    
+
                     foreach ($authorMapping as $author_id => $author_name) {
                         if ($author_name == $name) { // Check if author_name matches the desired name
                             $author_ids[] = $author_id;
@@ -37,23 +37,23 @@ if (isset($_POST['updatePB'])) {
                 }
             }
         }
-    
+
         $authors_string = implode(",", $author_ids);
     }
 
-    
+
     $sdg = $_POST["sdg_no"];
     $sdg_no = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
     if (!$sdg_no) {
         $sdg_no = null;
-    }else{
+    } else {
         $sdg_no = $_POST["sdg_no"];
         $sdg_string = implode(", ", $sdg);
     }
 
     $quartile = $_POST["pb-quartile"];
     $pubID = $_POST['pubID'];
-    $department = $_POST["research_area"]; 
+    $department = $_POST["research_area"];
     $college = $_POST["college"];
     $campus = $_POST["campus"];
     $title = $_POST["title_of_paper"];
@@ -65,14 +65,14 @@ if (isset($_POST['updatePB'])) {
 
     if ($if_funded == "internal") {
         $if_external = "BatState-U Research Fund";
-      } else {
+    } else {
         $if_external = isset($_POST['funding_source']) ? $_POST['funding_source'] : null;
         if (!$if_external) {
             $if_external = "";
-        }else{
+        } else {
             $if_external = $_POST["funding_source"];
         }
-      }
+    }
 
 
     $publication_data = array(
@@ -93,7 +93,7 @@ if (isset($_POST['updatePB'])) {
         'publisher' => $publisher,
         'abstract' => $abstract
     );
-      
+
     $jsonData = json_encode($publication_data);
 
     $update_url = 'http://localhost:5000/table_publications/' . $pubID;
