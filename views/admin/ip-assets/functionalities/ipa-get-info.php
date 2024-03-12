@@ -78,13 +78,9 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 
     // perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
-    print_r($search . '-');
     $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
-    // print_r($table_rows);
     $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
-    // print_r($table_rows);
     $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
-    // print_r($table_rows);
 
     return $table_rows;
 }
