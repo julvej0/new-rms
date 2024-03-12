@@ -42,13 +42,13 @@
                             <ul class="nav-links">
                                 <?php if (isset($_SESSION['account_type'])): ?>
                                     <?php if ($_SESSION['account_type'] == "Admin"): ?>
-                                        <li><a href="../../../admin/dashboard/dashboard.php" id='home-link'
+                                        <li><a href="../../admin/dashboard/dashboard.php" id='home-link'
                                                 onclick="showLoadingScreen()">DASHBOARD</a></li>
-                                        <li><a href="../../../admin/publications/publications.php" id='pb-link'
+                                        <li><a href="../../admin/publications/publications.php" id='pb-link'
                                                 onclick="showLoadingScreen()">PUBLICATIONS</a></li>
-                                        <li><a href="../../../admin/ip-assets/ip-assets.php" id='ip-assets-link'
+                                        <li><a href="../../admin/ip-assets/ip-assets.php" id='ip-assets-link'
                                                 onclick="showLoadingScreen()">IP ASSETS</a></li>
-                                        <li><a href="../../../admin/authors/authors.php" id='author-link'
+                                        <li><a href="../../admin/authors/authors.php" id='author-link'
                                                 onclick="showLoadingScreen()">AUTHORS</a></li>
                                         <!-- <li><a href="/new-rms-webdev/views/admin/about/about.php" id='abt-link' onclick="showLoadingScreen()">ABOUT</a></li> -->
                                     <?php else: ?>
@@ -95,8 +95,7 @@
                                             <i class="fas fa-user"></i> PROFILE
                                         </a>
                                         <?php if ($isAuthor): ?>
-                                            <a style='margin-right: 30px;'
-                                                href="/../../../views/public-user/author-info/author-profile.php">
+                                            <a style='margin-right: 30px;' href="../author-info/author-profile.php">
                                                 <i class="fas fa-info-circle"></i> AUTHOR INFORMATION
                                             </a>
                                         <?php endif; ?>

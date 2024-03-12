@@ -1,5 +1,5 @@
 <?php
-include_once "../../../db/db.php";
+include_once "../../../helpers/db.php";
 
 //check if the session is an author
 if (isset($_SESSION['user_email'])) {
