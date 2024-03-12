@@ -40,30 +40,9 @@
                                 <div class="form-container">
                                     <div class="form-control">
                                         <label class="a-label" for="a-name">Email</label>
-                                        <input list="user-email" id="a-email" name="a-email" placeholder="Email...">
-                                            <!--The emails are selected using a select tag-->
-                                            <datalist id="user-email">
-                                                <!--The datalist contains the emails from the SQL query-->
-                                                <option value="" hidden>Input an email...</option>
-                                                <?php
-                                                //Query used to get the emails from the user table
-                                                $userQuery = "SELECT email, account_type FROM table_user ORDER BY email";
-                                                $params = array();
-                                                $result = pg_query_params($conn, $userQuery, $params);
-                                                // $userData = pg_fetch_assoc($result);
-                                                while($userData = pg_fetch_assoc($result)){
-                                                    if ($author_info_arr[0]['email'] == $userData['email']){
-                                                        //The options for the select are the emails
-                                                        echo '<option value="' . $userData['email'] . '" selected>' . $userData['email'] . '</option>'; 
-                                                    }
-                                                    else{
-                                                        if ($userData['account_type'] == "Admin"){
-                                                            echo '<option value="' . $userData['email'] . '">' . $userData['email'] . '</option>';
-                                                        }                                                        
-                                                    }                                                                                        
-                                                }
-                                            ?>
-                                            </datalist>
+                                        <input list="user-email" id="a-email" name="a-email" placeholder="Email..."
+                                        value=" <?php echo $author_info_arr[0]['email']?>">
+                                            
                                         </input>
                                         <!--The input field to be submitted to the insert SQL query-->
                                         <input type="text" id="a-id" name="a-id"
@@ -105,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sub-container">
+                        <!-- <div class="sub-container">
                             <div class="title">
                                 <h3>Affiliations</h3>
                                 <hr>
@@ -132,14 +111,34 @@
                                                 if(isset($_GET['id'])){
                                                     display_edit_aff($author_info_arr, $campus_options, $program_options);
                                                 }
-                                            ?>
+                                                ?>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                        </div> -->
+                        <div class="sub-container">
+                            <div class="title">
+                                <h3>Affiliations</h3>
+                                <hr>
+                            </div>
+                            <div class="form-col">
+                            <div class="form-container">
+                                    <div class="form-control">
+                                        <select name="a-affiliation" class="a-input-field" id="a-affiliation">
+                                            <option value="" hidden>--Choose from the options--</option>
+                                            <option value="internal"
+                                                <?php echo $author_info_arr[0]['internal']== 'internal' ? 'selected' : ''?>> Internal
+                                            </option>
+                                            <option value="external"
+                                                <?php echo $author_info_arr[0]['external']== 'external' ? 'selected' : ''?>>External
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                         <br>
                         <div class="form-footer">
                             <input type="submit" class="submit-btn"
