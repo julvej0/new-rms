@@ -188,7 +188,7 @@ if (isset($_POST['submitIPA'])) {
         } else {
             $logurl = 'http://localhost:5000/table_log';
 
-            $response_id = file_get_contents($logurl);
+            $response_id = @file_get_contents($logurl);
 
             if ($response_id !== false) {
                 $data = json_decode($response_id, true);
@@ -236,13 +236,14 @@ if (isset($_POST['submitIPA'])) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
             $response = curl_exec($ch);
+
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if (str_contains($response, 'error')) {
+            if (!str_contains($response, 'error')) {
                 echo "Insert successful.";
                 header("Location: ../../ip-assets.php?upload=success");
             } else {
                 echo "Insert unsuccessful.";
-                header("Location: ../../ip-assets.php?upload=failed");
+                header("Location: ../../ip-assets.php?upload=failedd");
             }
         }
 

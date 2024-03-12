@@ -41,7 +41,7 @@
                                     <div class="form-control">
                                         <label class="a-label" for="a-name">Email</label>
                                         <input list="user-email" id="a-email" name="a-email" placeholder="Email..."
-                                        value=" <?php echo $author_info_arr[0]['email']?>">
+                                        value="<?php echo $author_info_arr[0]['email']?>">
                                             
                                         </input>
                                         <!--The input field to be submitted to the insert SQL query-->
