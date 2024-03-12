@@ -78,9 +78,13 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 
     // perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
+    print_r($search . '-');
     $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
+    // print_r($table_rows);
     $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
+    // print_r($table_rows);
     $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
+    // print_r($table_rows);
 
     return $table_rows;
 }
@@ -95,17 +99,17 @@ function keywordsearchAPI($tableRows, $strmatch)
 
     // pop the values that isn't like the authorname
     foreach ($tableRows as $index => $rowData) {
-        $isMatched = strpos(strtolower($rowData['title_of_work']), strtolower($strmatch))
-            || strpos(strtolower($rowData['authors']), strtolower($strmatch))
-            || strpos(strtolower($rowData['registration_number']), strtolower($strmatch))
-            || strpos(strtolower($rowData['campus']), strtolower($strmatch))
-            || strpos(strtolower($rowData['college']), strtolower($strmatch))
-            || strpos(strtolower($rowData['status']), strtolower($strmatch));
+        $isMatched = strpos(strtolower($rowData['title_of_work']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['authors']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['registration_number']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['campus']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['college']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['status']), strtolower($strmatch)) !== false;
 
-        if (!$isMatched)
+        if (!$isMatched) {
             unset($tableRows[$index]);
+        }
     }
-
     return $tableRows;
 }
 
@@ -147,7 +151,7 @@ function getReq($url)
     curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curlRequest);
-    
+
     return json_decode($response);
 }
 
