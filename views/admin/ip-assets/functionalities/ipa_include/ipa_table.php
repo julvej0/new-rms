@@ -26,7 +26,7 @@ $total_records = countIPA($conn, $additionalQuery, $search, $type, $class, $year
     </thead>
     <tbody>
         <?php
-        if ($table_rows !== null) { // Check if $table_rows is not null
+        if ($table_rows !== null && !empty($table_rows)) { // Check if $table_rows is not null
             foreach ($table_rows as $row) { // Loop through each row in $table_rows
                 ?>
                 <tr>
