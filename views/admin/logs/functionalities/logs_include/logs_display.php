@@ -7,32 +7,38 @@ $search_query = $search != "empty_search" ? $_GET['search'] : ""; // check if lo
 $offset = ($page_number - 1) * $items_per_page; // intervals of 10 
 
 //global variable from db.php
-$json_data = file_get_contents($logurl);
+$json_data = @file_get_contents($logurl);
 $data = json_decode($json_data, true);
 
-$filtered_data = array_filter($data['table_log'], function ($row) use ($search_query) {
-    // Filter based on the search query in relevant columns
-    $columns_to_search = ['date_time', 'activity', 'description'];
-    foreach ($columns_to_search as $column) {
-        if (isset($row[$column]) && stripos($row[$column], $search_query) !== false) {
-            return true;
+if ($json_data !== false) {
+
+    $filtered_data = array_filter($data['table_log'], function ($row) use ($search_query) {
+        // Filter based on the search query in relevant columns
+        $columns_to_search = ['date_time', 'activity', 'description'];
+        foreach ($columns_to_search as $column) {
+            if (isset ($row[$column]) && stripos($row[$column], $search_query) !== false) {
+                return true;
+            }
         }
-    }
-    return false;
-});
+        return false;
+    });
 
-$total_records = count($filtered_data); // update total records
+    $total_records = count($filtered_data); // update total records
 
-// Sort the data based on 'date_time' column in ascending order
-usort($filtered_data, function ($a, $b) {
-    $timestamp_a = strtotime($a['date_time']);
-    $timestamp_b = strtotime($b['date_time']);
+    // Sort the data based on 'date_time' column in ascending order
+    usort($filtered_data, function ($a, $b) {
+        $timestamp_a = strtotime($a['date_time']);
+        $timestamp_b = strtotime($b['date_time']);
 
-    return $timestamp_b - $timestamp_a;
-});
+        return $timestamp_b - $timestamp_a;
+    });
+} else {
+    $filtered_data = [];
+}
 
 // Function to fetch user data from the API URL based on user_id
-function fetchUserData($userurl, $user_id) {
+function fetchUserData($userurl, $user_id)
+{
     $json_data = file_get_contents($userurl);
 
     // Decode the JSON response into an associative array
@@ -73,17 +79,27 @@ if (count($filtered_data) > 0) {
         // Display the log data
         ?>
         <tr>
-            <td><?= $formatted_date; ?></td>
-            <td><?= $sr_code; ?></td>
-            <td><?= $user_full_name; ?></td>
-            <td><?= isset($row['activity']) ? $row['activity'] : "N/A"; ?></td>
-            <td><?= $row['description']; ?></td>
+            <td>
+                <?= $formatted_date; ?>
+            </td>
+            <td>
+                <?= $sr_code; ?>
+            </td>
+            <td>
+                <?= $user_full_name; ?>
+            </td>
+            <td>
+                <?= isset($row['activity']) ? $row['activity'] : "N/A"; ?>
+            </td>
+            <td>
+                <?= $row['description']; ?>
+            </td>
         </tr>
         <?php
     }
 
 } else {
-    echo '<tr><td colspan="6">No Author Found!</td></tr>'; // if result is empty
+    echo '<tr><td colspan="6">No Log Found!</td></tr>'; // if result is empty
 }
 
 
