@@ -303,18 +303,20 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
             },
             series: campus_data,
             labels: campus_labels,
+            colors: ['#FF0000', '#A52A2A', '#808000', '#006400', '#000080', '#4B0082', '#8B008B', '#800080', '#008B8B', '#32CD32', '#FF8C00', '#008B8B'],
             responsive: [{
+
                 breakpoint: 500,
                 options: {
-                    chart: {
-                        width: 300
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
+                chart: {
+                    width: 300
+                },
+                legend: {
+                    position: 'bottom'
+                }
                 }
             }]
-        };
+            };
 
         // Create a new ApexCharts instance with the chart container element and options
         var campus_chart = new ApexCharts(document.querySelector("#ipa-pie-chart"), campus_options);

@@ -81,7 +81,7 @@
                                     <label class="pb-label" for="pb-campus" value="<?=$row['campus']?>">Campus</label>
                                     <select name="campus" id="pb-campus">
                                         <option value="<?=$row['campus']?>" hidden><?=$row['campus']?></option>
-                                        <option value="Alangilan">Alangilan</option>
+                                        <option value="Alangilan (Main II)">Alangilan (Main II)</option>
                                         <option value="Balayan">Balayan</option>
                                         <option value="Lemery">Lemery</option>
                                         <option value="Lipa">Lipa</option>
@@ -89,7 +89,7 @@
                                         <option value="Mabini">Mabini</option>
                                         <option value="Malvar">Malvar-JPCPC</option>
                                         <option value="Nasugbu">Nasugbu-Arasof</option>
-                                        <option value="Pablo Borbon (Main I)">Pablo Borbon</option>
+                                        <option value="Pablo Borbon (Main I)">Pablo Borbon (Main I)</option>
                                         <option value="Padre Garcia">Padre Garcia</option>
                                         <option value="Rosario">Rosario</option>
                                         <option value="San Juan">San Juan</option>

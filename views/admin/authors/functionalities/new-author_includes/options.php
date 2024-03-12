@@ -1,6 +1,6 @@
 <?php
     //options for internal affiliation, campus
-    $campus_options=array('Alangilan', 
+    $campus_options=array('Alangilan (Main II)', 
     'Balayan',
     'Lemery',
     'Lipa',

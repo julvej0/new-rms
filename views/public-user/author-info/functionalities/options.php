@@ -1,5 +1,5 @@
 <?php
-    $campus_options=array('Alangilan', 
+    $campus_options=array('Alangilan (Main II)', 
     'Balayan',
     'Lemery',
     'Lipa',
@@ -8,7 +8,7 @@
     'Malavar',
     'Nasugbu',
     'Pablo Borbon (Main I)',
-   'Padre Garcia',
+    'Padre Garcia',
     'Rosario',
     'San Juan');
     

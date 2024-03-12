@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="checkbox-control">
                                         <input type="checkbox" id="alangilan" name="select-campus[]" class='campus-bsu' value="Alangilan">
-                                        <label for="alangilan">Alangilan</label>
+                                        <label for="alangilan">Alangilan (Main II)</label>
                                     </div>
                                     <div class="checkbox-control">
                                         <input type="checkbox" id="central" name="select-campus[]" class='campus-bsu' value="Central">
@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="checkbox-control">
                                         <input type="checkbox" id="pb-main" name="select-campus[]" class='campus-bsu' value="Pablo Borbon">
-                                        <label for="pb-main">Pablo Borbon</label>
+                                        <label for="pb-main">Pablo Borbon (Main I)</label>
                                     </div>
                                     <div class="checkbox-control">
                                         <input type="checkbox" id="rosario" name="select-campus[]" class='campus-bsu' value="Rosario">
