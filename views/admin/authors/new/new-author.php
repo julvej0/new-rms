@@ -129,10 +129,10 @@
                                         <select name="a-affiliation" class="a-input-field" id="a-affiliation">
                                             <option value="" hidden>--Choose from the options--</option>
                                             <option value="internal"
-                                                <?php echo $author_info_arr[0]['internal']== 'internal' ? 'selected' : ''?>> Internal
+                                                <?php echo $author_info_arr[0]['affiliation']== 'internal' ? 'selected' : ''?>>Internal
                                             </option>
                                             <option value="external"
-                                                <?php echo $author_info_arr[0]['external']== 'external' ? 'selected' : ''?>>External
+                                                <?php echo $author_info_arr[0]['affiliation']== 'external' ? 'selected' : ''?>>External
                                             </option>
                                         </select>
                                     </div>
