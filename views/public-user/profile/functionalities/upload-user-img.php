@@ -16,7 +16,7 @@ if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
     $allowed_types = array('image/png', 'image/jpg', 'image/jpeg');
     $file_type = $_FILES["file"]["type"];
 
-    require_once dirname(__FILE__, 4) . "/helpers/utils.php";
+    require_once dirname(__FILE__, 4) . "/helpers/utils/utils.php";
 
     if (in_array($file_type, $allowed_types)) {
         // Upload file to server
