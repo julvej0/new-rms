@@ -5,12 +5,11 @@ if (isset($_POST['submitIPA'])) {
 
     $date_registered = $_POST['date_registered'] != '' ? $_POST['date_registered'] : "2001-01-01";
 
-    $registration_number = trim($_POST['registration_number']) != '' ? $_POST['registration_number'] : strval(time()); //timestamp
+    $registration_number = $_POST['registration_number'] != '' ? trim($_POST['registration_number']) : strval(time()); //timestamp
     $title_of_work = trim($_POST['title_of_work']);
     $type_of_document = $_POST['type_of_ipa'];
     $class_of_work = $_POST['class_of_work'];
-    ~
-        $campus = $_POST['campus'];
+    $campus = $_POST['campus'];
     $college = trim($_POST['college']);
     $program = $_POST['program'];
     $hyperlink = trim($_POST['hyperlink']);
