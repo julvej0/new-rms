@@ -39,7 +39,7 @@ function getUserByEmail($userurl, $email)
     return null; // User not found
 }
 
-// function 
+// function getting user id 
 function getUserIdBySrCode($userurl, $srCode)
 {
     $response = @file_get_contents($userurl);
@@ -86,4 +86,67 @@ function updateUserImageById($userurl, $userId, $image_path, $string)
     return $httpCode;
 }
 
+function getIpAssetById($url, $id)
+{
 
+    $response = @file_get_contents($url);
+
+    if ($response === false) {
+        echo "An error occurred while fetching user data.";
+        exit();
+    }
+
+    $ipassetsData = json_decode($response, true)['table_ipassets'];
+    foreach ($ipassetsData as $ipasset) {
+        if ($ipasset['registration_number'] === $id) {
+            return $ipasset;
+        }
+    }
+
+    return null; // User not found
+}
+
+function getAuthorById($url, $id)
+{
+
+    $response = @file_get_contents($url);
+
+    if ($response === false) {
+        echo "An error occurred while fetching user data.";
+        exit();
+    }
+
+    $ipassetsData = json_decode($response, true)['table_authors'];
+    foreach ($ipassetsData as $ipasset) {
+        if ($ipasset['author_id'] === $id) {
+            return $ipasset;
+        }
+    }
+
+    return null; // User not found
+}
+
+function getAuthors($url)
+{
+
+    $response = @file_get_contents($url);
+
+    if ($response === false) {
+        echo "An error occurred while fetching user data.";
+        exit();
+    }
+
+    $ipassetsData = json_decode($response, true)['table_authors'];
+    
+    return $ipassetsData; // User not found
+}
+
+
+function sortByAuthorName($array)
+{
+    usort($array, function ($a, $b) {
+        return strcmp($a['author_name'], $b['author_name']);
+    });
+
+    return $array;
+}

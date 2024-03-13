@@ -22,8 +22,9 @@ if (isset($_POST['edit'])) {
                 <div class="container">
                     <?php
                     $ipaID = $_POST['row_id'];
-                    $fetchdata = pg_query($conn, "SELECT * FROM table_ipassets WHERE registration_number = '$ipaID'"); //Fetch data from the 'table_ipassets' table based on the registration number
-                    while ($row = pg_fetch_assoc($fetchdata)) {  //Iterate through the fetched data
+                    include_once dirname(__FILE__, 4) .'../helpers/db.php';
+                    include_once dirname(__FILE__, 3) .'./helpers/utils/utils.php';
+                    $row = getIpAssetById($ipassetsurl, $ipaID);
                         ?>
                         <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-edit.php" method="POST"
                             enctype="multipart/form-data" onsubmit="return checkDuplicateAuthors()">
@@ -67,8 +68,8 @@ if (isset($_POST['edit'])) {
                                         <div class="form-control">
                                             <label class="ipa-label" for="ipa-campus">Campus</label>
                                             <select name="campus" class="ipa-input-field">
-                                                <option value="<?= $row['campus'] ?>" hidden>
-                                                    <?= $row['campus'] ?>
+                                                <option value="<?= isset($row['campus']) ? $row['campus'] : null ?>" hidden>
+                                                    <?= isset($row['campus']) ? $row['campus'] : null ?>
                                                 </option>
                                                 <option value="Alangilan">Alangilan</option>
                                                 <option value="Balayan">Balayan</option>
@@ -89,8 +90,8 @@ if (isset($_POST['edit'])) {
                                         <div class="form-control">
                                             <label class="ipa-label" for="program">Program</label>
                                             <select name="program" class="ipa-input-field">
-                                                <option value="<?= $row['program'] ?>" hidden>
-                                                    <?= $row['program'] ?>
+                                                <option value="<?= isset($row['program']) ? $row['program'] : null ?>" hidden>
+                                                    <?= isset($row['program']) ? $row['program'] : null ?>
                                                 </option>
                                                 <option value="Accountancy, Business, and International Hospitality">
                                                     Accountancy, Business, and International Hospitality</option>
@@ -113,7 +114,7 @@ if (isset($_POST['edit'])) {
                                         <div class="form-control">
                                             <label class="ipa-label" for="college">College</label>
                                             <input type="text" class="ipa-input-field" id="college" name="college"
-                                                placeholder="College..." value="<?= $row['college'] ?>">
+                                                placeholder="College..." value="<?= isset($row['college']) ? $row['college'] : null ?>">
                                         </div>
                                         <div class="form-control">
                                             <label class="ipa-label" for="date-of-creation">Date of Creation</label>
@@ -123,7 +124,7 @@ if (isset($_POST['edit'])) {
                                         <div class="form-control">
                                             <label class="ipa-label" for="hyperlink">Hyperlink</label>
                                             <input type="text" class="ipa-input-field" id="hyperlink" name="hyperlink"
-                                                placeholder="URL..." value="<?= $row['hyperlink'] ?>">
+                                                placeholder="URL..." value="<?= isset($row['hyperlink']) ? $row['hyperlink'] : null ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -144,11 +145,10 @@ if (isset($_POST['edit'])) {
                                             </thead>
                                             <tbody id="author-tbl-body">
                                                 <?php
-                                                $author_list = $row["authors"];
-                                                $authors = explode(",", $author_list);
-                                                foreach ($authors as $author) { //Iterate through each author in the list
-                                                    $authorData = pg_query($conn, "SELECT author_id, author_name FROM table_authors WHERE author_id = '$author'");
-                                                    while ($author_list_row = pg_fetch_assoc($authorData)) { //Process the data for each author                                    
+                                                $author = isset($row["authors"]) ? $row["authors"] : "";
+                                                // foreach ($authors as $author) { //Iterate through each author in the list
+                                                    $author_list_row = getAuthorById($authorurl, $author);
+                                                    if($author_list_row != null) { //Process the data for each author
                                                         echo '
                                         <tr>
                                         <td class="ipa-author-field">
@@ -161,12 +161,10 @@ if (isset($_POST['edit'])) {
                                         border: 1px solid var(--dark-grey);"                                                                                        
                                         placeholder="Author Name..."
                                         value="' . $author_list_row['author_name'] . '">';
-                                                    echo '<datalist id="authors">';
-                                                    $query = "SELECT author_id, author_name FROM table_authors ORDER BY author_name"; // Fetch the list of authors from the 'table_authors' table
-                                                    $params = array();
-                                                    $result = pg_query_params($conn, $query, $params);
-                                                    while ($author_row = pg_fetch_assoc($result)) { // Iterate through each author in the result set and display them as options
-                                                        echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
+                                        echo '<datalist id="authors">';
+                                                    $author_data = getAuthors($authorurl);
+                                                    foreach ($author_data as $key => $value) { // Iterate through each author in the result set and display them as options
+                                                        echo '<option value="' . $value['author_name'] . '">' . $value['author_id'] . '</option>';
                                                     }
                                                     echo '</datalist>';
                                                     echo '
@@ -174,7 +172,7 @@ if (isset($_POST['edit'])) {
                                          <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fas fa-xmark fa-xs"></i></button></td>
                                         </tr>';
                                                     }
-                                                }
+                                                // }
                                                 ?>
                                             </tbody>
                                             <td style="text-align: center;" colspan="2">
@@ -251,9 +249,6 @@ if (isset($_POST['edit'])) {
                                 <input type="button" class="cancel-btn edit-mode" value="Cancel">
                             </div>
                         </form>
-                        <?php
-                    }
-                    ?>
                 </div>
             </section>
         </main>
