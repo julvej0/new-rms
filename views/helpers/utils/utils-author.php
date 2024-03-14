@@ -64,9 +64,9 @@ function getAuthors($url)
         exit();
     }
 
-    $ipassetsData = json_decode($response, true)['table_authors'];
-    
-    return $ipassetsData; // User not found
+    $authorsData = json_decode($response, true)['table_authors'];
+
+    return $authorsData; // User not found
 }
 
 

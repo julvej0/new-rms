@@ -147,7 +147,8 @@ if (isset($_POST['edit'])) {
                                             <tbody id="author-tbl-body">
                                                 <?php
                                                 $author = isset($row["authors"]) ? $row["authors"] : "";
-                                                // foreach ($authors as $author) { //Iterate through each author in the list
+                                                $authors = explode(",", $author);
+                                                foreach ($authors as $author) { //Iterate through each author in the list
                                                     $author_list_row = getAuthorById($authorurl, $author);
                                                     if($author_list_row != null) { //Process the data for each author
                                                         echo '
@@ -165,6 +166,7 @@ if (isset($_POST['edit'])) {
                                         echo '<datalist id="authors">';
                                                     $author_data = getAuthors($authorurl);
                                                     $author_data = sortByAuthorName($author_data);
+                                                    
                                                     foreach ($author_data as $key => $value) { // Iterate through each author in the result set and display them as options
                                                         echo '<option value="' . $value['author_name'] . '">' . $value['author_id'] . '</option>';
                                                     }
@@ -174,7 +176,7 @@ if (isset($_POST['edit'])) {
                                          <td class="ipa-author-field" style="text-align:center;"><button name="remove" style="height: 50px; width:3.7rem; border-radius: 5px; border: none; padding: 0 20px; background: var(--primary); color: var(--light); font-size: 25px; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-weight: 600;"id="remove"><i class="fas fa-xmark fa-xs"></i></button></td>
                                         </tr>';
                                                     }
-                                                // }
+                                                }
                                                 ?>
                                             </tbody>
                                             <td style="text-align: center;" colspan="2">
