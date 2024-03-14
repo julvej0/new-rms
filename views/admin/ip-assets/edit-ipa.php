@@ -23,7 +23,8 @@ if (isset($_POST['edit'])) {
                     <?php
                     $ipaID = $_POST['row_id'];
                     include_once dirname(__FILE__, 4) .'../helpers/db.php';
-                    include_once dirname(__FILE__, 3) .'./helpers/utils/utils.php';
+                    include_once dirname(__FILE__, 3) .'./helpers/utils/utils-ipasset.php';
+                    include_once dirname(__FILE__, 3) .'./helpers/utils/utils-author.php';
                     $row = getIpAssetById($ipassetsurl, $ipaID);
                         ?>
                         <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-edit.php" method="POST"
@@ -163,6 +164,7 @@ if (isset($_POST['edit'])) {
                                         value="' . $author_list_row['author_name'] . '">';
                                         echo '<datalist id="authors">';
                                                     $author_data = getAuthors($authorurl);
+                                                    $author_data = sortByAuthorName($author_data);
                                                     foreach ($author_data as $key => $value) { // Iterate through each author in the result set and display them as options
                                                         echo '<option value="' . $value['author_name'] . '">' . $value['author_id'] . '</option>';
                                                     }

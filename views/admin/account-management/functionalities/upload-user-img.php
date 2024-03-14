@@ -11,7 +11,7 @@ if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
     //     unlink($user_img_name);
     // }
 
-    require_once dirname(__FILE__, 4) . "/helpers/utils/utils.php";
+    require_once dirname(__FILE__, 4) . "/helpers/utils/utils-user.php";
 
     // Check if uploaded file is a PNG or JPG
     $allowed_types = array('image/png', 'image/jpg', 'image/jpeg');

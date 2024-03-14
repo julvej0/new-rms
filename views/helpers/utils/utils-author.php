@@ -1,5 +1,4 @@
 <?php
-require_once(dirname(__FILE__, 4) . "\helpers\db.php");
 function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $email)
 {
     $postData = array(
@@ -35,8 +34,7 @@ function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $em
     curl_close($ch);
 }
 
-
-function getDataById($url, $id)
+function getAuthorById($url, $id)
 {
 
     $response = @file_get_contents($url);
@@ -46,12 +44,37 @@ function getDataById($url, $id)
         exit();
     }
 
-    $ipassetsData = json_decode($response, true)['table_ipassets'];
+    $ipassetsData = json_decode($response, true)['table_authors'];
     foreach ($ipassetsData as $ipasset) {
-        if ($ipasset['registration_number'] === $id) {
+        if ($ipasset['author_id'] === $id) {
             return $ipasset;
         }
     }
 
     return null; // User not found
+}
+
+function getAuthors($url)
+{
+
+    $response = @file_get_contents($url);
+
+    if ($response === false) {
+        echo "An error occurred while fetching user data.";
+        exit();
+    }
+
+    $ipassetsData = json_decode($response, true)['table_authors'];
+    
+    return $ipassetsData; // User not found
+}
+
+
+function sortByAuthorName($array)
+{
+    usort($array, function ($a, $b) {
+        return strcmp($a['author_name'], $b['author_name']);
+    });
+
+    return $array;
 }

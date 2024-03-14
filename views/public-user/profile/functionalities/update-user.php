@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   // update the user record in the database
-  require_once dirname(__FILE__, 4) . "/helpers/utils/utils.php";
+  require_once dirname(__FILE__, 4) . "/helpers/utils/utils-user.php";
 
   $userId = getUserIdBySrCode($userurl, $srCode);
 
