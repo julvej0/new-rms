@@ -147,6 +147,9 @@ if (isset($_POST['edit'])) {
                                             <tbody id="author-tbl-body">
                                                 <?php
                                                 $author = isset($row["authors"]) ? $row["authors"] : "";
+                                                if(!$author){
+                                                    echo '<p style="color: red;">No author found!</p>';
+                                                }
                                                 $authors = explode(",", $author);
                                                 foreach ($authors as $author) { //Iterate through each author in the list
                                                     $author_list_row = getAuthorById($authorurl, $author);
@@ -167,8 +170,10 @@ if (isset($_POST['edit'])) {
                                                     $author_data = getAuthors($authorurl);
                                                     $author_data = sortByAuthorName($author_data);
                                                     
-                                                    foreach ($author_data as $key => $value) { // Iterate through each author in the result set and display them as options
-                                                        echo '<option value="' . $value['author_name'] . '">' . $value['author_id'] . '</option>';
+                                                    if($author_data != null) {
+                                                        foreach ($author_data as $key => $value) { // Iterate through each author in the result set and display them as options
+                                                            echo '<option value="' . $value['author_name'] . '">' . $value['author_id'] . '</option>';
+                                                        }
                                                     }
                                                     echo '</datalist>';
                                                     echo '

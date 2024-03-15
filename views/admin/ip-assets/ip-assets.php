@@ -127,7 +127,7 @@ $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
             <div class="modal-content1">
                 <h3 style="float: left; position: relative; margin-top: -35px;">Download</h3>
                 <span class="close" onclick="closeModal()">&times;</span>
-                <iframe src="functionalities/download/download_ip-assets.php"></iframe>
+                <iframe src="functionalities/download/download_ip-assets.php?search=<?php echo $search; ?>&type=<?php echo $type; ?>&class=<?php echo $class; ?>&year=<?php echo $year; ?>"></iframe>
             </div>
         </div>
 

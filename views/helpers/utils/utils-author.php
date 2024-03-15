@@ -40,8 +40,7 @@ function getAuthorById($url, $id)
     $response = @file_get_contents($url);
 
     if ($response === false) {
-        echo "An error occurred while fetching user data.";
-        exit();
+        return null;
     }
 
     $ipassetsData = json_decode($response, true)['table_authors'];
@@ -60,8 +59,7 @@ function getAuthors($url)
     $response = @file_get_contents($url);
 
     if ($response === false) {
-        echo "An error occurred while fetching user data.";
-        exit();
+        return null;
     }
 
     $authorsData = json_decode($response, true)['table_authors'];

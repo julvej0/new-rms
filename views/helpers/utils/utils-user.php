@@ -6,7 +6,7 @@ function getUserIdByEmail($userurl, $email)
 
     if ($response === false) {
         echo "An error occurred while fetching user data.";
-        exit();
+        return null;
     }
 
     $userData = json_decode($response, true)['table_user'];
@@ -26,7 +26,7 @@ function getUserByEmail($userurl, $email)
 
     if ($response === false) {
         echo "An error occurred while fetching user data.";
-        exit();
+        return null;
     }
 
     $userData = json_decode($response, true)['table_user'];
@@ -46,7 +46,7 @@ function getUserIdBySrCode($userurl, $srCode)
 
     if ($response === false) {
         echo "An error occurred while fetching user data.";
-        exit();
+        return null;
     }
 
     $userData = json_decode($response, true)['table_user'];
@@ -81,7 +81,7 @@ function updateUserImageById($userurl, $userId, $image_path, $string)
     curl_close($ch);
     if ($httpCode != 200) {
         echo "An error occurred while fetching user data.";
-        exit();
+        return null;
     }
     return $httpCode;
 }

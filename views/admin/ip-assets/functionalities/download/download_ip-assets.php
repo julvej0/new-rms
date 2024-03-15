@@ -1,10 +1,15 @@
-<?php 
-    include dirname(__FILE__, 6) . '/helpers/db.php';
-    require_once('../download/ipa-get-info-download.php');
+<?php
+include dirname(__FILE__, 6) . '/helpers/db.php';
+require_once('../download/ipa-get-info-download.php');
 
-    $search_query = (isset($_GET['search']) && strpos($_GET['search'], "'") === false )? $_GET['search']: 'empty_search';
-    $additionalQuery= authorSearch($conn, $search_query);
-    $table_rows = get_data($conn, $additionalQuery, $search_query);
+$search_query = (isset($_GET['search']) && strpos($_GET['search'], "'") === false) ? $_GET['search'] : 'empty_search';
+$type = (isset($_GET['type']) && strpos($_GET['type'], "'") === false) ? $_GET['type'] : 'empty_type';
+$class = (isset($_GET['class']) && strpos($_GET['class'], "'") === false) ? $_GET['class'] : 'empty_class';
+$year = (isset($_GET['year']) && strpos($_GET['year'], "'") === false) ? $_GET['year'] : 'empty_year';
+$additionalQuery = authorSearch($conn, $search_query);
+
+include_once dirname(__FILE__, 6) . '\helpers\db.php';
+$table_rows = get_data($ipassetsurl, $authorurl, $additionalQuery, $search_query, $type, $class, $year);
 ?>
 
 <!-- <link rel="stylesheet" href="../../ip-assets.css"> -->
@@ -28,11 +33,12 @@
         <div class="left">
             <form action='' method='get'>
                 <div class="form-group">
-                    <input type='text' placeholder="Search" name='search' value='<?php $search_query?>'
+                    <input type='text' placeholder="Search" name='search' value='<?php $search_query ?>'
                         placeholder="Search...">
                     <i class='bx bx-search search-icon'></i>
                 </div>
             </form>
+            <button>Off</button>
         </div>
     </div>
     <table id="tbl_download_ip-assets">
@@ -52,12 +58,12 @@
         </thead>
         <tbody>
             <?php
-                $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'".$additionalQuery.";");
-                $total_records = pg_fetch_result($result_count, 0, 0);
+            $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'" . $additionalQuery . ";");
+            $total_records = pg_fetch_result($result_count, 0, 0);
 
-                if ($table_rows !== null) {
-                    foreach ($table_rows as $row) {
-                        echo '<tr>
+            if ($table_rows !== null) {
+                foreach ($table_rows as $row) {
+                    echo '<tr>
                             <td class="reg-num-col col-registration">' . $row['registration_number'] . '</td>
                             <td class="title-col col-title">' . $row['title_of_work'] . '</td>
                             <td class="type-col col-type">' . ($row['type_of_document'] != null ? $row['type_of_document'] : "N/A") . '</td>
@@ -69,17 +75,19 @@
                             <td class="program-col col-program">' . ($row['program'] != null ? $row['program'] : "N/A") . '</td>
                             <td class="authors-col col-authors">' . ($row['authors'] != null ? $row['authors'] : "N/A") . '</td>
                         </tr>';
-                    }
-                }else{
-                    echo '<tr>
+                }
+            } else {
+                echo '<tr>
                         <td colspan="10" style="text-align:center">No Records Found!</td>
                     </tr>';
-                }
+            }
             ?>
         </tbody>
     </table>
 </section>
 <script src="./download_button.js"></script>
+
+
 <?php
-    include dirname(__FILE__, 6) . '/components/footer/footer.php';
+include dirname(__FILE__, 6) . '/components/footer/footer.php';
 ?>

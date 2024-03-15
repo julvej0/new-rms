@@ -1,5 +1,6 @@
 <?php
 include_once '../../../../../helpers/db.php';
+require_once dirname(__FILE__, 4) . "../helpers/utils/utils-ipasset.php";
 // Check if the 'id' parameter is set
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
@@ -16,12 +17,10 @@ if (isset($_POST['id'])) {
     }
 
     // Delete the record from the database
-    $delete_query = "DELETE FROM table_ipassets WHERE registration_number=$1";
-    $delete_stmt = pg_prepare($conn, "delete_author", $delete_query);
-    $delete_result = pg_execute($conn, "delete_author", array($id));
+    $delete_result = deleteIpAssetById($ipassetsurl, $id);
 
     // Check if the deletion was successful
-    if ($delete_result) {
+    if ($delete_result != 200) {
         echo "Success";
     } else {
         echo "Error";
