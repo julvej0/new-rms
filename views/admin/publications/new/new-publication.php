@@ -3,6 +3,7 @@
 include dirname(__FILE__, 5) . '/helpers/db.php';
 include dirname(__FILE__, 5) . '/components/header/header.php';
 include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php';
+include_once dirname(__FILE__, 4) .'/helpers/utils/utils-author.php';
 ?>
 <!-- <link rel="stylesheet" href="../../../css/index.css"> -->
 <link rel="stylesheet" href="new-publication.css">
@@ -302,9 +303,7 @@ include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.ph
                                         <tr>
                                             <td class="ipa-author-field">
                                                 <?php
-                                                $query = "SELECT author_id, author_name FROM table_authors";
-                                                $params = array();
-                                                $result = pg_query_params($conn, $query, $params);
+                                                $result = getAuthors($authorurl);
                                                 ?>
                                                 <input list="authors" name="author_name[]" style="
                                                     width: 100%;
@@ -314,7 +313,7 @@ include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.ph
                                                     border: 1px solid var(--dark-grey);" placeholder="Author Name..." required>
                                                 <datalist id="authors">
                                                     <?php
-                                                    while ($row = pg_fetch_assoc($result)) {
+                                                    foreach($result as $key => $row){
                                                         echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
                                                     }
                                                     echo '</datalist>';

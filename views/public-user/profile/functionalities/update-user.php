@@ -28,19 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "User update failed. Error: " . $response;
     exit();
   }
-  // $update_query = "UPDATE table_user SET $field = $1 WHERE sr_code = $2";
-  // $stmt = pg_prepare($conn, "update_user", $update_query);
-  // $result = pg_execute($conn, "update_user", array($value, $srCode));
 
-  // if ($result) {
-  //   $rows_affected = pg_affected_rows($result);
-  //   if ($rows_affected > 0) {
-  //     echo "Record updated successfully.";
-  //   } else {
-  //     echo "No record was updated.";
-  //   }
-  // } else {
-  //   echo "Error updating record.";
-  // }
 }
 ?>
