@@ -2,6 +2,8 @@
 <?php
 include dirname(__FILE__, 5) . '/components/header/header.php';
 include dirname(__FILE__, 5) . '/helpers/db.php';
+include_once dirname(__FILE__, 4) . '/helpers/utils/utils-author.php';
+include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
 ?>
 <link rel="stylesheet" href="../../../../css/index.css">
 <link rel="stylesheet" href="./new-ip-asset.css">
@@ -32,7 +34,8 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                         required />
                                 </div>
                                 <div class="form-control">
-                                    <label class="ip-label" for="ip-type">Type of IP <span style="color: red;">*</span></label>
+                                    <label class="ip-label" for="ip-type">Type of IP <span
+                                            style="color: red;">*</span></label>
                                     <select name="type_of_ipa" id="ip-type" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Invention">Invention</option>
@@ -43,7 +46,8 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                     </select>
                                 </div>
                                 <div class="form-control">
-                                    <label class="ipa-label" for="class_of_work">Class of Work <span style="color: red;">*</span></label>
+                                    <label class="ipa-label" for="class_of_work">Class of Work <span
+                                            style="color: red;">*</span></label>
                                     <select class="ipa-input-field" id="class_of_work" name="class_of_work" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="A">Class A</option>
@@ -52,7 +56,8 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                     </select>
                                 </div>
                                 <div class="form-control">
-                                    <label class="ipa-label" for="ipa-campus">Campus <span style="color: red;">*</span></label>
+                                    <label class="ipa-label" for="ipa-campus">Campus <span
+                                            style="color: red;">*</span></label>
                                     <select name="campus" class="ipa-input-field" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Alangilan (Main II)">Alangilan (Main II)</option>
@@ -72,7 +77,8 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="ipa-label" for="program">Program <span style="color: red;">*</span></label>
+                                    <label class="ipa-label" for="program">Program <span
+                                            style="color: red;">*</span></label>
                                     <select name="program" class="ipa-input-field" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Accountancy, Business, and International Hospitality">
@@ -94,12 +100,14 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                     </select>
                                 </div>
                                 <div class="form-control">
-                                    <label class="ipa-label" for="college">College <span style="color: red;">*</span></label>
+                                    <label class="ipa-label" for="college">College <span
+                                            style="color: red;">*</span></label>
                                     <input type="text" class="ipa-input-field" id="college" name="college" required
-                                        placeholder="College..." >
+                                        placeholder="College...">
                                 </div>
                                 <div class="form-control">
-                                    <label class="ipa-label" for="date-of-creation">Date of Creation <span style="color: red;">*</span></label>
+                                    <label class="ipa-label" for="date-of-creation">Date of Creation <span
+                                            style="color: red;">*</span></label>
                                     <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation" required
                                         name="date_of_creation">
                                 </div>
@@ -129,9 +137,7 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                         <tr>
                                             <td class="ipa-author-field">
                                                 <?php
-                                                $query = "SELECT author_id, author_name FROM table_authors";
-                                                $params = array();
-                                                $result = pg_query_params($conn, $query, $params);
+                                                $result = getAuthors($authorurl);
                                                 ?>
                                                 <input list="authors" name="author_name[]" style="
                                                     width: 100%;
@@ -139,11 +145,10 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                                     padding: 10px 36px 10px 16px;
                                                     border-radius: 5px;
                                                     border: 1px solid var(--dark-grey);" placeholder="Author Name..."
-                                                    required
-                                                >
+                                                    required>
                                                 <datalist id="authors">
                                                     <?php
-                                                    while ($row = pg_fetch_assoc($result)) {
+                                                    foreach ($result as $key => $row) {
                                                         echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
                                                     }
                                                     echo '</datalist>';
@@ -157,9 +162,9 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                         <!-- Display an error message if duplicate author names are entered -->
                                         <div id="error-msg" style="display: none; color: red;">Duplicate author names
                                             are not allowed!</div>
-                                            
+
                                     </tbody>
-                                    
+
                                 </table>
                             </div>
                         </div>
@@ -174,53 +179,44 @@ include dirname(__FILE__, 5) . '/helpers/db.php';
                                 <label class="reg-titles">Registered? <span style="color: red;">*</span></label>
                                 <div class="form-control">
                                     <div class="choices radio-register">
-                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo" id="registered" value="registered"required>
+                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo"
+                                            id="registered" value="registered" required>
                                         <label for="registered" class="reg-choices">Yes</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo" id="not-registered"
-                                            value="not-registered" >
+                                        <input type="radio" onclick="RegisterRadio()" name="registerInfo"
+                                            id="not-registered" value="not-registered">
                                         <label for="not-registered" class="reg-choices">No</label>
                                     </div>
                                 </div>
                             </div>
                             <div id="show-register" class="reg-form-container2" style="display:none">
                                 <h4 id="show-register">If Registered : </h4>
-                                <div class="reg-form-container2"  >
+                                <div class="reg-form-container2">
                                     <div class="form-control">
 
                                         <!-- Registration Number input field -->
                                         <label class="ip-label" for="reg_num">Registration Number: <span
                                                 style="color: red;">*</span><span id="regnum-error"
-                                                style="display: none; color: red;">This registration number already exists!</span></label>
+                                                style="display: none; color: red;">This registration number already
+                                                exists!</span></label>
                                         <input type="text" name="registration_number" id="reg_num"
-                                            placeholder="Registration Number..." >
-                                        <?php
-                                        // Fetch existing registration numbers from the database
-                                        $regnum_query = "SELECT registration_number FROM table_ipassets";
-                                        $regnum_params = array();
-                                        $regnum_result = pg_query_params($conn, $regnum_query, $regnum_params);
-                                        ?>
+                                            placeholder="Registration Number...">
                                         <input type="hidden" list="regnums" id="db_regnum">
-                                        <datalist id="regnums">
-                                            <?php
-                                            // Display existing registration numbers as datalist options
-                                            while ($regnum_row = pg_fetch_assoc($regnum_result)) {
-                                                echo '<option value="' . $regnum_row['registration_number'] . '"></option>';
-                                            }
-                                            echo '</datalist>';
-                                            ?>
                                     </div>
 
                                     <div class="form-control">
-                                        <label class="ip-label" for="reg-date">Date of Registration: <span style="color: red;">*</span></label>
-                                        <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date" >
+                                        <label class="ip-label" for="reg-date">Date of Registration: <span
+                                                style="color: red;">*</span></label>
+                                        <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered"
+                                            id="reg-date">
                                     </div>
                                     <div class="form-control">
                                         <label class="ip-label" for="ip-certificate">Upload Certificate: <span
-                                                id="file-error" style="display: none; color: red;">Only PNG, JPG, JPEG, and
+                                                id="file-error" style="display: none; color: red;">Only PNG, JPG, JPEG,
+                                                and
                                                 PDF file types are allowed!</span></label>
-                                        <input type="file" name="ip-certificate" id="ip-certificate-input" 
+                                        <input type="file" name="ip-certificate" id="ip-certificate-input"
                                             onchange="checkFileType(this)" accept=".png, .jpg, .jpeg, .pdf">
                                     </div>
                                 </div>

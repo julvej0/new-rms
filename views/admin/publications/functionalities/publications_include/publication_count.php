@@ -7,23 +7,23 @@ function countPublications($conn, $additionalQuery, $search, $type, $fund, $year
     $params = [];
     // Get total number of records
 
-    // $count_sql = "SELECT COUNT(*)
-    //         FROM (
-    //             SELECT * 
-    //             FROM table_publications 
-    //             WHERE CONCAT(publication_id, date_published, quartile, authors, 
-    //             department, college, campus, title_of_paper, type_of_publication, funding_source, 
-    //             number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search_query%' ";
-    include_once dirname(__FILE__, 5) . "/helpers/utils/utils-publications.php";
+    $count_sql = "SELECT COUNT(*)
+            FROM (
+                SELECT * 
+                FROM table_publications 
+                WHERE CONCAT(publication_id, date_published, quartile, authors, 
+                department, college, campus, title_of_paper, type_of_publication, funding_source, 
+                number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search_query%' ";
+    // include_once dirname(__FILE__, 5) . "/helpers/utils/utils-publication.php";
 
-    $count = getPublications($publicationurl);
+    // $count = getPublications($publicationurl);
     //check if searched matches authors' name
     if ($additionalQuery !== "empty_search") {
         // $count_sql .= $additionalQuery;
         array_push($params, $additionalQuery);
     }
 
-    // $count_sql .= " )AS searched_pub WHERE 1=1 ";
+    $count_sql .= " )AS searched_pub WHERE 1=1 ";
 
     //check if user used filters
     if ($type !== 'empty_type') {
@@ -40,9 +40,9 @@ function countPublications($conn, $additionalQuery, $search, $type, $fund, $year
     }
 
     //get result
-    // $result_count = pg_query($conn, $count_sql);
-    // $total_records = pg_fetch_result($result_count, 0, 0);
-    $total_records = count($params);
+    $result_count = pg_query($conn, $count_sql);
+    $total_records = pg_fetch_result($result_count, 0, 0);
+    // $total_records = count($params);
 
     return $total_records; //return number of records base on search and filters
 
