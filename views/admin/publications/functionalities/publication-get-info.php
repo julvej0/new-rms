@@ -84,6 +84,7 @@
 
 //     return $table_rows;
 // }
+
 // function getReq($url)
 // {
 //     // retrieve all the data from the api

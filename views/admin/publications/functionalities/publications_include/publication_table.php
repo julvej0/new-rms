@@ -11,6 +11,8 @@ require_once('functionalities/publications_include/publication_count.php');
 $additionalQuery = authorSearch($authorurl, $search);
 $table_rows = get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number); // $table_rows is included from a ipa-get-info.php
 $total_records = countPublications($conn, $additionalQuery, $search, $type, $fund, $year);
+
+
 ?>
 
 
