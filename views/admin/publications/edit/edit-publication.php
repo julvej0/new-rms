@@ -371,12 +371,12 @@ if (isset ($_POST['edit'])) {
                                     <div class="form-control">
                                         <div class="choices">
                                             <input type="radio" name="funding_type" id="internal" value="internal"
-                                                <?= ($row['funding_type'] == 'internal') ? 'checked="checked"' : ''; ?>>
+                                                <?= ((isset($row['funding_type']) ? $row['funding_type'] : "") == 'internal') ? 'checked="checked"' : ''; ?>>
                                             <label for="internal" class="funding-choices">Internal</label>
                                         </div>
                                         <div class="choices">
                                             <input type="radio" name="funding_type" id="external" value="external"
-                                                <?= ($row['funding_type'] == 'external') ? 'checked="checked"' : ''; ?>>
+                                                <?= ((isset($row['funding_type']) ? $row['funding_type'] : "") == 'external') ? 'checked="checked"' : ''; ?>>
                                             <label for="external" class="funding-choices">External</label>
                                         </div>
                                     </div>
@@ -388,7 +388,7 @@ if (isset ($_POST['edit'])) {
                                             Agency</label>
                                         <input type="text" name="funding_source" class="pb-input-field"
                                             id="pb-funding-agency" placeholder="Funding Agency"
-                                            value="<?= $row['funding_source'] ?>" required>
+                                            value="<?= isset($row['funding_source']) ? $row['funding_source'] : "" ?>" required>
                                     </div>
                                 </div>
                             </div>
