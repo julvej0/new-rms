@@ -34,6 +34,44 @@ function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $em
     curl_close($ch);
 }
 
+function getAuthorByEmail($url, $email)
+{
+
+    $response = @file_get_contents($url);
+
+    if ($response === false) {
+        return null;
+    }
+
+    $authorsData = json_decode($response, true)['table_authors'];
+    foreach ($authorsData as $author) {
+        if ($author['email'] === $email) {
+            return $author;
+        }
+    }
+
+    return null; // User not found
+}
+
+function getAuthorByName($url, $name)
+{
+
+    $response = @file_get_contents($url);
+
+    if ($response === false) {
+        return null;
+    }
+
+    $authorsData = json_decode($response, true)['table_authors'];
+    foreach ($authorsData as $author) {
+        if ($author['author_name'] === $name) {
+            return $author;
+        }
+    }
+
+    return null; // User not found
+}
+
 function getAuthorById($url, $id)
 {
 
@@ -43,10 +81,10 @@ function getAuthorById($url, $id)
         return null;
     }
 
-    $ipassetsData = json_decode($response, true)['table_authors'];
-    foreach ($ipassetsData as $ipasset) {
-        if ($ipasset['author_id'] === $id) {
-            return $ipasset;
+    $authorsData = json_decode($response, true)['table_authors'];
+    foreach ($authorsData as $author) {
+        if ($author['author_id'] === $id) {
+            return $author;
         }
     }
 

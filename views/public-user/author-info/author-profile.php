@@ -48,7 +48,7 @@ include_once "functionalities/options.php";
                     <p>
                         <?php
                         //check if affiliation is null
-                        if (is_null($author_user['affiliation'])) {
+                        if (@$author_user['affiliation'] == false) {
                             echo "N/A";
                         } else {
                             //display affiliation 
