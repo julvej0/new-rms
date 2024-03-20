@@ -74,7 +74,6 @@ function getAuthorByName($url, $name)
 
 function updateAuthorById($authorurl, $authorId, $value)
 {
-    // $url = 'http://localhost:5000/table_authors/AID005880';
     $url = $authorurl . '/' . $authorId;
     $data = json_encode($value);
     $ch = curl_init($url);

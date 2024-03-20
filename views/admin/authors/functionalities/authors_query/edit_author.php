@@ -1,5 +1,6 @@
 <?php
 include_once '../../../../../helpers/db.php'; //db connection
+include_once dirname(__FILE__, 5) . '/helpers/utils/utils-user.php';
 include_once dirname(__FILE__, 5) . '/helpers/utils/utils-author.php';
 include_once dirname(__FILE__, 6) . '/helpers/db.php';
 
@@ -65,12 +66,10 @@ if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-id'
 
     if ($update_result == "successful") {
         //update user type 
-        $update_type_query = "UPDATE table_user SET account_type=$1 WHERE email = $2;";
-        $update_type_stmt = pg_prepare($conn, "edit_accType", $update_type_query);
-        $update_type_result = pg_execute($conn, "edit_accType", array("Author", $email));
+        $update_type_result = updateUser($userurl, "email", $email, array("account_type" => "Author"));
 
 
-        if ($update_type_result && updateAccountType($conn)) {
+        if ($update_type_result && updateAccountType($authorurl, $userurl, $email)) {
 
             header("Location: ../../authors.php?search=" . $author_name . "&update=success");
             exit();
@@ -92,13 +91,16 @@ if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-id'
 }
 
 //updating the accout type
-function updateAccountType($conn)
+function updateAccountType($authorurl, $userurl, $email)
 {
-    $update_query = "UPDATE table_user SET account_type = $1 WHERE email NOT IN (SELECT email FROM table_authors WHERE email IS NOT NULL) AND account_type <> 'Admin';";
-    $update_stmt = pg_prepare($conn, "update_account", $update_query);
-    $update_result = pg_execute($conn, "update_account", array("Regular"));
-
-    if ($update_result) {
+    $update_result = "";
+    $author_emails = getAuthors($authorurl);
+    $emails = array_column($author_emails, 'email');
+    $user = getUserByEmail($userurl, $email);
+    if (!in_array($email, $emails) && $user['account_type'] != "admin") {
+        $update_result = updateUser($userurl, "email", $email, array('account_type' => 'Regular'));
+    }
+    if ($update_result != null) {
         return true;
     } else {
         return false;
