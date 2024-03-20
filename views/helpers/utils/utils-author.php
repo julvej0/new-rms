@@ -26,9 +26,9 @@ function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $em
     } else {
         $response_data = json_decode($response, true);
         if ($response_data != false) {
-            echo 'User record updated successfully.';
+            echo 'Author record updated successfully.';
         } else {
-            echo 'Failed to update user record.';
+            echo 'Failed to update author record.';
         }
     }
     curl_close($ch);
@@ -50,7 +50,7 @@ function getAuthorByEmail($url, $email)
         }
     }
 
-    return null; // User not found
+    return null; // Author not found
 }
 
 function getAuthorByName($url, $name)
@@ -69,7 +69,31 @@ function getAuthorByName($url, $name)
         }
     }
 
-    return null; // User not found
+    return null; // Author not found
+}
+
+function updateAuthorById($authorurl, $authorId, $value)
+{
+    // $url = 'http://localhost:5000/table_authors/AID005880';
+    $url = $authorurl . '/' . $authorId;
+    $data = json_encode($value);
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($data)
+    ]);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if ($httpCode === 200) {
+        return "successful";
+    } else {
+        return "Update author failed. Error: " . $response;
+    }
 }
 
 function getAuthorById($url, $id)
@@ -88,7 +112,7 @@ function getAuthorById($url, $id)
         }
     }
 
-    return null; // User not found
+    return null; // Author not found
 }
 
 function getAuthors($url)
@@ -102,7 +126,7 @@ function getAuthors($url)
 
     $authorsData = json_decode($response, true)['table_authors'];
 
-    return $authorsData; // User not found
+    return $authorsData; // Author not found
 }
 
 

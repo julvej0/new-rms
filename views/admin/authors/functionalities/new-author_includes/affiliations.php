@@ -10,7 +10,7 @@
                 <td>
                     <div class="form-control aff-info">
                         <label class="a-label" for="a-aff-dept">Department</label>
-                        <input type="text" class="a-aff-dept" name="a-aff-dept[]" placeholder="Department" required>
+                        <input type="text" class="a-aff-dept" name="a-aff-dept[]" placeholder="Department" required/>
                     </div>
                     <div class="form-control aff-categ">
                         <label class="a-label" for="a-aff-prog">Program</label>
@@ -51,7 +51,7 @@
             var externalRow = <td>
                     <div class="form-control aff-info">
                         <label class="a-label" for="a-ex-aff">External Affiliation</label>
-                        <input type="text" class="a-ex-aff" name="a-ex-aff" placeholder="Affiliation" required>
+                        <input type="text" class="a-ex-aff" name="a-ex-aff" placeholder="Affiliation" required/>
                     </div>
                     <button class="a-remove-btn" type="button">x</button>
                     </td>

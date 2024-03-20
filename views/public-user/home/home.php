@@ -96,7 +96,7 @@
                             if(getMostViewedPapers($publicationurl) != null){
 
                                 // Call the `getMostViewedPapers` function to retrieve the most viewed papers using the database connection object $conn
-                                getMostViewedPapers($publicationurl);//($conn)
+                                getMostViewedPapers($publicationurl);
                             }
                             ?>
                         </div>
@@ -110,7 +110,7 @@
                             if(getRecentPublications($publicationurl) != null){
 
                                 // Call the `getRecentPublications` function to retrieve the most recent publications using the database connection object $conn and a limit of 5
-                                getRecentPublications($publicationurl);//($conn, 3)
+                                getRecentPublications($publicationurl);
                             }
                             ?>
                         </div>

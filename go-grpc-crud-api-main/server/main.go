@@ -31,10 +31,10 @@ const table_publications = "table_publications"
 type Author struct {
 	ID           string `gorm:"primarykey"`
 	AuthorName   string
-	AuthorGender string
-	TypeofAuthor string
+	AuthorGender string `gorm:"column:gender"`
+	TypeofAuthor string `gorm:"column:type_of_author"`
 	Affiliation  string
-	AuthorEmail  string
+	AuthorEmail  string `gorm:"column:email"`
 }
 
 type IP_Asset struct {

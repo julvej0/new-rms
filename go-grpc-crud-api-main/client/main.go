@@ -162,9 +162,10 @@ func main() {
 			})
 			return
 		}
+		authorID := ctx.Param("author_id")
 		res, err := client.UpdateAuthor(ctx, &pb.UpdateAuthorRequest{
 			Author: &pb.Author{
-				AuthorId:     author.ID,
+				AuthorId:     authorID,
 				AuthorName:   author.AuthorName,
 				Gender:       author.AuthorGender,
 				TypeOfAuthor: author.TypeofAuthor,
