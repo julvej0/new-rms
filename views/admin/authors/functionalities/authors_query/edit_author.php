@@ -13,7 +13,6 @@ if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-id'
     $email = $_POST['a-email'] != "" ? $_POST['a-email'] : null;
     $types = $_POST['a-role'] != "" ? $_POST['a-role'] : null;
 
-
     //combining the affiliation for updating
     if (isset ($_POST['a-aff-dept']) && isset ($_POST['a-aff-prog']) && isset ($_POST['a-aff-camp'])) {
         //initialize
@@ -66,19 +65,15 @@ if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-id'
 
     if ($update_result == "successful") {
         //update user type 
-        $update_type_result = updateUser($userurl, "email", $email, array("account_type" => "Author"));
+        $user = getUserByEmail($userurl, $email);
+        if ($user['account_type'] != 'Admin') {
 
-
-        if ($update_type_result && updateAccountType($authorurl, $userurl, $email)) {
-
-            header("Location: ../../authors.php?search=" . $author_name . "&update=success");
-            exit();
-        } else {
-            header("Location: ../../authors.php?search=" . $author_name . "&update=failed");
-            exit();
+            $update_type_result = updateUser($userurl, "email", $email, array("account_type" => "Author"));
+            // $update_account_type = updateAccountType($authorurl, $userurl, $email);
         }
 
-
+        header("Location: ../../authors.php?search=" . $author_name . "&update=success");
+        exit();
 
     } else {
         header("Location: ../../authors.php?search=" . $author_name . "&update=failed");
@@ -91,20 +86,20 @@ if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-id'
 }
 
 //updating the accout type
-function updateAccountType($authorurl, $userurl, $email)
-{
-    $update_result = "";
-    $author_emails = getAuthors($authorurl);
-    $emails = array_column($author_emails, 'email');
-    $user = getUserByEmail($userurl, $email);
-    if (!in_array($email, $emails) && $user['account_type'] != "admin") {
-        $update_result = updateUser($userurl, "email", $email, array('account_type' => 'Regular'));
-    }
-    if ($update_result != null) {
-        return true;
-    } else {
-        return false;
-    }
+// function updateAccountType($authorurl, $userurl, $email)
+// {
+//     $update_result = "";
+//     $author_emails = getAuthors($authorurl);
+//     $emails = array_column($author_emails, 'email');
+//     $user = getUserByEmail($userurl, $email);
+//     if (!in_array($email, $emails) && $user['account_type'] != "Admin") {
+//         $update_result = updateUser($userurl, "email", $email, array('account_type' => 'Regular'));
+//     }
+//     if ($update_result != "") {
+//         return true;
+//     } else {
+//         return false;
+//     }
 
-}
+// }
 ?>
