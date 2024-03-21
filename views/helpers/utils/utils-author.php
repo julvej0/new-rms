@@ -2,7 +2,7 @@
 function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $email)
 {
     $postData = array(
-        'id' => 'AID005875',
+        'author_id' => bin2hex(random_bytes(5)),
         'author_name' => $authorName,
         'gender' => $gender,
         'type_of_author' => $type,
@@ -18,20 +18,19 @@ function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $em
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return response as a string
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); // Set the content type header
 
-    $response = curl_exec($ch);
-    // throw new Exception($response);
 
-    if (str_contains($response, 'error')) {
-        echo 'cURL error: ' . $response;
+    $response = curl_exec($ch);
+    $response_data = json_decode($response, true);
+    curl_close($ch);
+    if (strpos($response, 'error') !== false) {
+        return 'cURL error: ' . $response;
     } else {
-        $response_data = json_decode($response, true);
-        if ($response_data != false) {
-            echo 'Author record updated successfully.';
+        if ($response_data !== false) {
+            return 'Author created successfully.';
         } else {
-            echo 'Failed to update author record.';
+            return 'Author creation failed.';
         }
     }
-    curl_close($ch);
 }
 
 function getAuthorByEmail($url, $email)
@@ -55,20 +54,16 @@ function getAuthorByEmail($url, $email)
 
 function getAuthorByName($url, $name)
 {
-
     $response = @file_get_contents($url);
-
     if ($response === false) {
         return null;
     }
-
     $authorsData = json_decode($response, true)['table_authors'];
     foreach ($authorsData as $author) {
         if ($author['author_name'] === $name) {
             return $author;
         }
     }
-
     return null; // Author not found
 }
 

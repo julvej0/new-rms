@@ -29,7 +29,7 @@ const table_ipassets = "table_ipassets"
 const table_publications = "table_publications"
 
 type Author struct {
-	ID           string `gorm:"primarykey"`
+	ID           string `gorm:"column:author_id;primarykey"`
 	AuthorName   string
 	AuthorGender string `gorm:"column:gender"`
 	TypeofAuthor string `gorm:"column:type_of_author"`
@@ -144,7 +144,7 @@ func (*server) CreateAuthor(ctx context.Context, req *pb.CreateAuthorRequest) (*
 		AuthorEmail:  author.GetEmail(),
 	}
 
-	res := DB.Table("authors").Create(&data)
+	res := DB.Table("table_authors").Create(&data)
 	if res.RowsAffected == 0 {
 		return nil, errors.New("author creation unsuccessful")
 	}

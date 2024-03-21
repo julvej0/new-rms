@@ -103,15 +103,15 @@ function getUsers($userurl)
 function updateUser($userurl, $column, $columnValue, $value)
 {
     $users = getUsers($userurl);
-    $userId = null;
+    $userId = "";
     foreach ($users as $key => $user) {
         if ($user[$column] === $columnValue) {
             $userId = $user['user_id'];
             break;
         }
     }
-    if ($userId === null) {
-        return null;
+    if ($userId === "") {
+        return "No user found.";
     }
     $url = $userurl . '/' . $userId;
     $data = json_encode($value);
@@ -126,6 +126,7 @@ function updateUser($userurl, $column, $columnValue, $value)
 
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
     curl_close($ch);
     if ($httpCode === 200) {
         return "successful";

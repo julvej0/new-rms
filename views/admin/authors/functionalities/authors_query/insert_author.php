@@ -1,8 +1,10 @@
 <?php
 include dirname(__FILE__, 6) . '/helpers/db.php';
+include_once dirname(__FILE__, 5) . "/helpers/utils/utils-author.php";
+include_once dirname(__FILE__, 5) . "/helpers/utils/utils-user.php";
 
 //check if every data needed exists
-if (isset($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-email'])) {
+if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-email'])) {
     //initialize
 
     $author_name = $_POST['a-name'];
@@ -11,7 +13,7 @@ if (isset($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-emai
     $types = $_POST['a-role'] != "" ? $_POST['a-role'] : null;
 
     //combining the affiliation for updating
-    if (isset($_POST['a-aff-dept']) && isset($_POST['a-aff-prog']) && isset($_POST['a-aff-camp'])) {
+    if (isset ($_POST['a-aff-dept']) && isset ($_POST['a-aff-prog']) && isset ($_POST['a-aff-camp'])) {
         //initialize
         $department_affiliations = $_POST['a-aff-dept'];
         $program_affiliations = $_POST['a-aff-prog'];
@@ -29,7 +31,7 @@ if (isset($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-emai
     }
 
     //check for external affiliation input
-    if (isset($_POST['a-ex-aff'])) {
+    if (isset ($_POST['a-ex-aff'])) {
         $external_affiliations = $_POST['a-ex-aff']; //initialize
         //check content
         if (is_array($external_affiliations)) {
@@ -50,28 +52,23 @@ if (isset($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-emai
     }
     $response = @file_get_contents($authorurl);
     $json_response = json_decode($response, true);
-    // print_r($json_response);
-    // throw new Exception('haha');
-    if($json_response != false){
+
+    if ($json_response != false) {
         $author_count = count($json_response['table_authors']);
     }
     //update query
-    $insert_query = "INSERT INTO table_authors (author_name, gender, type_of_author, affiliation, email) VALUES ($1, $2 ,$3,$4, $5)";
-    $insert_stmt = pg_prepare($conn, "insert_author", $insert_query);
-    $insert_result = pg_execute($conn, "insert_author", array($author_name, $gender, $types, $affiliation, $email));
-    // throw new Exception("$insert_result" . "haha");
-    if ($insert_result) {
+    $insert_result = createAuthor($authorurl, $author_name, $gender, $types, $affiliation, $email);
+    if (strpos($insert_result, 'success') !== false) {
         //update user type
-        $update_query = "UPDATE table_user SET account_type=$1 WHERE email =$2;";
-        $update_stmt = pg_prepare($conn, "edit_accType", $update_query);
-        $update_result = pg_execute($conn, "edit_accType", array("Author", $email));
-
-
-        if ($update_result) {
+        $update_result = updateUser($userurl, "email", $email, ["account_type" => "Author"]);
+        if (strpos($update_result, 'success') !== false) {
             header("Location: ../../authors.php?add=success");
             exit();
-        } else {
+        } else if (strpos($update_result, 'No user') !== false) {
             header("Location: ../../authors.php?add=update-failed");
+            exit();
+        }else{
+            header("Location: ../../authors.php?add=failed");
             exit();
         }
 

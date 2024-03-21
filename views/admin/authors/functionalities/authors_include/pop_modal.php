@@ -1,6 +1,6 @@
 <?php
 //check if delete is on page's get parameter
-if (isset($_GET['delete'])) {
+if (isset ($_GET['delete'])) {
   if ($_GET['delete'] == 'success') {
     echo
 
@@ -52,7 +52,7 @@ if (isset($_GET['delete'])) {
 }
 
 //check if update is on page's get parameter
-if (isset($_GET['update'])) {
+if (isset ($_GET['update'])) {
   //result depends on update's value
   if ($_GET['update'] == 'success') {
     echo
@@ -108,7 +108,7 @@ if (isset($_GET['update'])) {
 }
 
 //check if add is on page's get parameter
-if (isset($_GET['add'])) {
+if (isset ($_GET['add'])) {
   //result depends on add's value
   if ($_GET['add'] == 'success') {
     echo
@@ -150,8 +150,9 @@ if (isset($_GET['add'])) {
         })
         
         Toast.fire({
-          icon: "error",
-          title: "Failed Updating Author!"
+          icon: "warning",
+          title: "Author Added!",
+          text: "Failed to update User."
         })
   
       </script>
