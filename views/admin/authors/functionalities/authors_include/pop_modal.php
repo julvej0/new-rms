@@ -152,7 +152,7 @@ if (isset ($_GET['add'])) {
         Toast.fire({
           icon: "warning",
           title: "Author Added!",
-          text: "Failed to update User."
+          text: "Email address does not match any user records."
         })
   
       </script>

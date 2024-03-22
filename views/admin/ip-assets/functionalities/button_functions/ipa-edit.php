@@ -1,11 +1,11 @@
 <?php
-include_once("../../../account-management/functionalities/user-session.php");
-if (isset($_POST['updateIPA'])) {
-    $date_of_creation = isset($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
+include_once ("../../../account-management/functionalities/user-session.php");
+if (isset ($_POST['updateIPA'])) {
+    $date_of_creation = isset ($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
 
-    $date_registered = isset($_POST['date_registered']) ? $_POST['date_registered'] : null;
+    $date_registered = isset ($_POST['date_registered']) ? $_POST['date_registered'] : null;
 
-    $authors_name = isset($_POST['author_name']) ? $_POST['author_name'] : null;
+    $authors_name = isset ($_POST['author_name']) ? $_POST['author_name'] : null;
     if (!$authors_name) {
         $authors_name = "";
         $authors_string = " ";
@@ -19,7 +19,7 @@ if (isset($_POST['updateIPA'])) {
             if ($response !== false) {
                 $data = json_decode($response, true);
 
-                if (isset($data['table_authors'])) {
+                if (isset ($data['table_authors'])) {
                     $authorIdColumn = array_column($data['table_authors'], 'author_id');
                     $authorNameColumn = array_column($data['table_authors'], 'author_name');
 
@@ -52,7 +52,7 @@ if (isset($_POST['updateIPA'])) {
     $certificate_file = $target_dir . $registration_number . "_certificate.png"; // The path to the certificate file based on the registration number    
 
     // Check if file was uploaded without errors
-    if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {
+    if (isset ($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {
         // Check if file already exists
         if (file_exists($certificate_file)) {
             if (unlink($certificate_file)) { // delete the file
@@ -96,7 +96,6 @@ if (isset($_POST['updateIPA'])) {
                     $jsonData = json_encode($postData);
 
                     $update_url = 'http://localhost:5000/table_ipassets/' . $registration_number;
-
                     $ch = curl_init($update_url);
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
@@ -150,19 +149,18 @@ if (isset($_POST['updateIPA'])) {
                         );
 
                         $jsonData = json_encode($ipasset_log);
-
                         $ch = curl_init('http://localhost:5000/table_log');
                         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
+                        
                         $response = curl_exec($ch);
-
+                        
                         echo "Insert successful.";
                         header("Location: ../../ip-assets.php?update=success");
                     }
-
+                    
                     curl_close($ch);
                 } else {
                     header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
@@ -170,7 +168,7 @@ if (isset($_POST['updateIPA'])) {
             } else {
                 header("Location: ../../../../../views/admin/ip-assets/ip-assets.php?update=failed");
             }
-
+            
         }
     } else {
         $postData = array(
@@ -187,24 +185,23 @@ if (isset($_POST['updateIPA'])) {
             'hyperlink' => $hyperlink,
             'status' => $status
         );
-
+        
         $jsonData = json_encode($postData);
-        ;
         $update_url = 'http://localhost:5000/table_ipassets/' . $registration_number;
-
+        
         $ch = curl_init($update_url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
+        
         $response = curl_exec($ch);
-
+        
         if ($response === false) {
             header("Location: ../../ip-assets.php?update=failed");
         } else {
             $logurl = 'http://localhost:5000/table_log';
-
+            
             $response_id = file_get_contents($logurl);
 
             if ($response_id !== false) {
