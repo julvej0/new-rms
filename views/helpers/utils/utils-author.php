@@ -123,6 +123,23 @@ function getAuthors($url)
     return $authorsData; // Author not found
 }
 
+function deleteAuthorById($authorurl, $id){
+    $url = $authorurl . '/' . $id;
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    curl_close($ch);
+    if (str_contains($response, 'error') || $response == false) {
+        echo "An error occurred while deleting the IP asset.";
+        return null;
+    }
+    return $httpCode;
+}
+
 
 function sortByAuthorName($array)
 {

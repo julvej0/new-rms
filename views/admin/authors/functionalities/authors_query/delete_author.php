@@ -13,9 +13,7 @@ if (isset ($_POST['id'])) {
 
     if (updateIpassetsByAuthor($ipassetsurl, $id) == "Task Completed" && updatePublicationsByAuthor($publicationurl, $id) == "Task Completed" && updateAccountType($userurl, $authorurl, $id) == "Task Completed") {
         //deleting the author
-        $delete_query = "DELETE FROM table_authors WHERE author_id=$1";
-        $delete_stmt = pg_prepare($conn, "delete_author", $delete_query);
-        $delete_result = pg_execute($conn, "delete_author", array($id));
+        $delete_result = deleteAuthorById($authorurl, $id);
 
         if ($delete_result) {
             echo "Success";
