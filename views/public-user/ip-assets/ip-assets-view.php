@@ -17,7 +17,7 @@
                 if (isset($_GET['ipID']) && !empty($_GET['ipID'])) {
                     $row = getPublicationData($_GET['ipID'], $conn);
                     if ($row) {
-                        displayPublicationData($row, $conn);
+                        displayPublicationData($row, $authorurl);
                     }
                 }
             ?>

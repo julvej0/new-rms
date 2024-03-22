@@ -11,7 +11,7 @@ if (isset ($_POST['id'])) {
     $id = $_POST['id'];//initialize
     //check if the author was removed from publication and ipasset
 
-    if (updateIpassetsByAuthor($ipassetsurl, $id) == "Task Completed" && updatePublicationsByAuthor($publicationurl, $id) == "Task Completed" && updateAccountType($userurl, $authorurl, $id) == "Task Completed") {
+    if (updateIpassetsByAuthor($ipassetsurl, $id) == "Task Completed" && updatePublicationsByAuthor($publicationurl, $id) == "Task Completed") {
         //deleting the author
         $delete_result = deleteAuthorById($authorurl, $id);
 

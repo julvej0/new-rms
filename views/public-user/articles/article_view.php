@@ -17,7 +17,7 @@
                 if (isset($_GET['pubID']) && !empty($_GET['pubID'])) {
                     $row = getPublicationData($_GET['pubID'], $conn);
                     if ($row) {
-                        displayPublicationData($row, $conn);
+                        displayPublicationData($row, $authorurl);
                     }
                 }
             ?>

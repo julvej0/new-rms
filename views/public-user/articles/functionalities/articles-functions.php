@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+include_once dirname( __FILE__, 4 ) ."/helpers/utils/utils-author.php";
 
 function getPublicationData($pubID, $conn) {
     $decrypted_ID = encryptor('decrypt', $pubID);
@@ -13,7 +14,7 @@ function getPublicationData($pubID, $conn) {
     return pg_fetch_assoc($sql_result);
 }
 
-function displayPublicationData($row, $conn) {
+function displayPublicationData($row, $authorurl) {
     echo '<div class="article-container">';
     echo '<div class="article-title">';
     echo "<h1 id='header-title'>".$row['title_of_paper']."</h1>";
@@ -24,9 +25,8 @@ function displayPublicationData($row, $conn) {
     $author_ids = explode(',', $row['authors']);
     $author_names = array();
     foreach ($author_ids as $author_id) {
-        $fetch_author_data = pg_query($conn, "SELECT author_name FROM table_authors WHERE author_id = '$author_id'");
-        $author_data = pg_fetch_assoc($fetch_author_data);
-        if ($author_data) {
+        $author_data = getAuthorById($authorurl, $author_id);
+        if ($author_data != null) {
             $author_names[] = $author_data['author_name'];
         }
     }

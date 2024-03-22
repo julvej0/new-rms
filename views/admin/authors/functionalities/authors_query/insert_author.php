@@ -60,19 +60,23 @@ if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-ema
     $insert_result = createAuthor($authorurl, $author_name, $gender, $types, $affiliation, $email);
     if (strpos($insert_result, 'success') !== false) {
         //update user type
-        $update_result = updateUser($userurl, "email", $email, ["account_type" => "Author"]);
-        if (strpos($update_result, 'success') !== false) {
-            header("Location: ../../authors.php?add=success");
-            exit();
-        } else if (strpos($update_result, 'No user') !== false) {
-            header("Location: ../../authors.php?add=update-failed");
-            exit();
-        }else{
-            header("Location: ../../authors.php?add=failed");
-            exit();
+        $user_data = getUserByEmail($userurl, $email);
+        if($user_data['account_type'] == "Admin"){
+            $update_result = updateUser($userurl, "email", $email, ["account_type" => "Author"]);
+            if (strpos($update_result, 'success') !== false) {
+                header("Location: ../../authors.php?add=success");
+                exit();
+            } else if (strpos($update_result, 'No user') !== false) {
+                header("Location: ../../authors.php?add=update-failed");
+                exit();
+            }else{
+                header("Location: ../../authors.php?add=failed");
+                exit();
+            }
+
         }
-
-
+        header("Location: ../../authors.php?add=success");
+        exit();
 
     } else {
         header("Location: ../../authors.php?add=failed");
