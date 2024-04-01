@@ -5,7 +5,7 @@ function authorSearch($conn, $search) {
         
         //include_once dirname(__FILE__, 5) . '/helpers/db.php';
         //include_once dirname(__FILE__, 4) . '/helpers/utils/utils-author.php';
-        //$select_authors = getAuthorByName($authorurl, $author_name);
+        //$select_authors = getAuthorByName($authorurl, $search);
 
         $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%".rtrim($search)."%'";
         $result = pg_query($conn, $select_authors);

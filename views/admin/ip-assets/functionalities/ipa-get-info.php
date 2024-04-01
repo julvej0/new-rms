@@ -86,8 +86,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
 }
 
 // keyword searching operation for all the string matches in the table
-function keywordsearchAPI($tableRows, $strmatch)
-{
+function keywordsearchAPI($tableRows, $strmatch){
     if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '') {
 
         return $tableRows;

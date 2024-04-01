@@ -5,14 +5,14 @@ function getIpAssetsContributors($ipassetsurl, $authorurl)
 {
     $responseIpAssets = @file_get_contents($ipassetsurl);
     if ($responseIpAssets == false) {
-        echo "<p>No ip asset data found.</p>";
+        echo "<p style='text-align: center;'>No ip asset data found.</p>";
         return;
     }
     $dataIpAssets = json_decode($responseIpAssets, true);
 
     $authorsColumn = array_column($dataIpAssets['table_ipassets'], 'authors');
-    if (empty ($authorsColumn)) {
-        echo "<p>No ip asset data found.</p>";
+    if (empty($authorsColumn)) {
+        echo "<p style='text-align: center;'>No ip asset data found.</p>";
         return;
     }
     $authorCounts = array();
@@ -22,8 +22,8 @@ function getIpAssetsContributors($ipassetsurl, $authorurl)
 
         foreach ($authorNames as $authorName) {
             $authorName = trim($authorName); // Remove leading/trailing whitespaces
-            if (!empty ($authorName)) {
-                if (isset ($authorCounts[$authorName])) {
+            if (!empty($authorName)) {
+                if (isset($authorCounts[$authorName])) {
                     $authorCounts[$authorName]++;
                 } else {
                     $authorCounts[$authorName] = 1;
@@ -51,7 +51,7 @@ function getIpAssetsContributors($ipassetsurl, $authorurl)
     $contributors = array();
 
     foreach ($top9Authors as $authorId => $count) {
-        if (isset ($authorMapping[$authorId])) {
+        if (isset($authorMapping[$authorId])) {
             $contributors[] = array(
                 'author_name' => $authorId,
                 'total_publications' => $count
@@ -96,7 +96,7 @@ function getTopCampus($ipassetsurl)
 {
     $datacampus = @file_get_contents($ipassetsurl);
     if ($datacampus == false) {
-        echo "<p>No ip asset data found.</p>";
+        echo "<p style='text-align: center;'>No ip asset data found.</p>";
         return;
     }
     $dataIpAssets = json_decode($datacampus, true);
@@ -105,8 +105,8 @@ function getTopCampus($ipassetsurl)
     $campusCounts = array();
 
     foreach ($campusColumn as $campus) {
-        if (!empty ($campus)) {
-            if (isset ($campusCounts[$campus])) {
+        if (!empty($campus)) {
+            if (isset($campusCounts[$campus])) {
                 $campusCounts[$campus]++;
             } else {
                 $campusCounts[$campus] = 1;
@@ -119,7 +119,7 @@ function getTopCampus($ipassetsurl)
     $campuses = array();
 
     foreach ($topCampuses as $campusName => $count) {
-        if (isset ($campusName)) {
+        if (isset($campusName)) {
             $campuses[] = array(
                 'campus_name' => $campusName,
                 'total_ipassets' => $count
@@ -208,14 +208,15 @@ function getRecentIpAssets($ipassetsurl)
     $response = curl_exec($curl);
     if ($response == false) {
         $error = curl_error($curl);
-        return null;
+        echo '<p style="text-align: center;">No ip asset data found.</p>';
+        return;
     }
 
     curl_close($curl);
 
     $data = json_decode($response, true);
-    if (!isset ($data['table_ipassets'])) {
-        echo "<p>No ip asset data found.</p>";
+    if (!isset($data['table_ipassets'])) {
+        echo "<p style='text-align: center;'>No ip asset data found.</p>";
         return;
     }
     $dateData = array_column($data['table_ipassets'], 'date_registered', 'title_of_work');

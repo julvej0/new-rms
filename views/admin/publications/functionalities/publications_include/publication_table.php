@@ -1,20 +1,10 @@
 <?php
-require_once('functionalities/publication-get-info.php');
-require_once('functionalities/publications_include/publication_count.php');
-// if (isset ($row['type_of_author']) && $row['type_of_author'] != $role_query) {
-    //     return false;
-    // }
-    // if (isset ($row['gender']) && $row['gender'] != $gender_query) {
-    //     return false;
-    // }
-    //, $role_query, $gender_query
-$additionalQuery = authorSearch($authorurl, $search);
-$table_rows = get_data($conn, $additionalQuery, $search, $type, $fund, $year, $page_number); // $table_rows is included from a ipa-get-info.php
-$total_records = countPublications($conn, $additionalQuery, $search, $type, $fund, $year);
+require_once ('functionalities/publication-get-info.php');
+require_once ('functionalities/publications_include/publication_count.php');
 
-
+$table_rows = get_data($conn, $search, $type, $fund, $year, $page_number); // $table_rows is included from a ipa-get-info.php
+$total_records = count($table_rows);
 ?>
-
 
 <table>
     <thead>
@@ -39,7 +29,7 @@ $total_records = countPublications($conn, $additionalQuery, $search, $type, $fun
     <tbody>
         <tr>
             <?php
-            if ($table_rows !== null && !empty($table_rows)) { // Check if $table_rows is not null
+            if ($table_rows !== null && !empty ($table_rows)) { // Check if $table_rows is not null
                 foreach ($table_rows as $row) { // Loop through each row in $table_rows
                     ?>
                 <tr>
@@ -91,7 +81,7 @@ $total_records = countPublications($conn, $additionalQuery, $search, $type, $fun
                         <?php
                         // Check if the $google_link is empty which is prioritized by the redirect button
                         $google_link = $row['google_scholar_details'];
-                        if (empty($google_link)) { // If the $google_link is empty, set $google_link to null
+                        if (empty ($google_link)) { // If the $google_link is empty, set $google_link to null
                             $google_link = null;
                         }
                         ?>

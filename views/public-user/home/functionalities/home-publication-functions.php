@@ -6,13 +6,13 @@ function getPublicationsContributors($authorurl, $publicationurl)
 
     $responsePublications = @file_get_contents($publicationurl);
     if ($responsePublications === false) {
-        echo "<p>No publication data found.</p>";
+        echo "<p style='text-align: center;'>No publication data found.</p>";
         return;
     }
 
     $dataPublications = json_decode($responsePublications, true);
-    if (isset ($dataPublications["table_publications"])) {
-        echo "<p>No publication data found.</p>";
+    if (isset($dataPublications["table_publications"])) {
+        echo "<p style='text-align: center;'>No publication data found.</p>";
         return;
     }
     $authorsColumn = array_column($dataPublications['table_publications'], 'authors'); //joe and jane
@@ -24,8 +24,8 @@ function getPublicationsContributors($authorurl, $publicationurl)
 
         foreach ($authorNames as $authorName) {
             $authorName = trim($authorName); // Remove leading/trailing whitespaces
-            if (!empty ($authorName)) {
-                if (isset ($authorCounts[$authorName])) {
+            if (!empty($authorName)) {
+                if (isset($authorCounts[$authorName])) {
                     $authorCounts[$authorName]++;
                 } else {
                     $authorCounts[$authorName] = 1;
@@ -49,7 +49,7 @@ function getPublicationsContributors($authorurl, $publicationurl)
 
     $contributors = array();
     foreach ($top9Authors as $authorId => $count) {
-        if (isset ($authorMapping[$authorId])) {
+        if (isset($authorMapping[$authorId])) {
             $contributors[] = array(
                 'author_name' => $authorId,
                 'total_publications' => $count
@@ -98,19 +98,20 @@ function getMostViewedPapers($publicationurl)
     $response = curl_exec($curl);
     if ($response == false) {
         $error = curl_error($curl);
-        return null;
+        echo "<p style='text-align: center;'>No publication data found.</p>";
+        return;
     }
 
     curl_close($curl);
 
     $data = json_decode($response, true);
-    if (!isset ($data['table_publications'])) {
-        echo "<p>No publication data found.</p>";
+    if (!isset($data['table_publications']) || $data === false) {
+        echo "<p style='text-align: center;>No publication data found.</p>";
         return;
     }
     $citationData = array_column($data['table_publications'], 'number_of_citation', 'title_of_paper');
     if (empty($citationData)) {
-        echo "<p>No publication data found.</p>";
+        echo "<p style='text-align: center;'>No publication data found.</p>";
         return;
     }
     arsort($citationData); // Sort the citations in descending order
@@ -144,14 +145,15 @@ function getRecentPublications($publicationurl)
 
     if ($response == false) {
         $error = curl_error($curl);
-        return "cURL Error: " . $error;
+        echo "<p style='text-align: center;'>No publication data found.</p>";
+        return;
     }
 
     curl_close($curl);
 
     $data = json_decode($response, true);
-    if (!isset ($data['table_publications'])) {
-        echo "<p>No publication data found.</p>";
+    if (!isset($data['table_publications'])) {
+        echo "<p style='text-align: center;'>No publication data found.</p>";
         return;
     }
     $dateData = array_column($data['table_publications'], 'date_published', 'title_of_paper');

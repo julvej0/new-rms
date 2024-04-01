@@ -1,24 +1,26 @@
 <?php
-include_once("../../../account-management/functionalities/user-session.php");
+include_once ("../../../account-management/functionalities/user-session.php");
 //TODO: add some description/tooltip to fields like author describing how they work.
 //that you can just type an author's name to add it to the database
-if (isset($_POST['submitPB'])) {
-
+if (isset ($_POST['submitPB'])) {
     $date_published = $_POST["date_published"];
-    $date_published = isset($_POST['date_published']) ? $_POST['date_published'] : null;
+    $date_published = isset ($_POST['date_published']) ? $_POST['date_published'] : null;
+    $status = "";
     if (!$date_published) {
         $date_published = null;
+        $status = "not-registered";
     } else {
         $date_published = $_POST["date_published"];
+        $status = "registered";
     }
-    $if_funded = isset($_POST['funding_type']) ? $_POST['funding_type'] : null;
+    $if_funded = isset ($_POST['funding_type']) ? $_POST['funding_type'] : null;
     if (!$if_funded) {
         $if_funded = "";
     } else {
         $if_funded = $_POST["funding_type"];
     }
     $sdg = $_POST["sdg_no"];
-    $sdg_no = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
+    $sdg_no = isset ($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
     if (!$sdg_no) {
         $sdg_no = null;
     } else {
@@ -37,7 +39,7 @@ if (isset($_POST['submitPB'])) {
     $publisher = $_POST["publisher"];
     $abstract = $_POST["abstract"];
 
-    $authors_name = isset($_POST['author_name']) ? $_POST['author_name'] : null;
+    $authors_name = isset ($_POST['author_name']) ? $_POST['author_name'] : null;
 
     if (!$authors_name) {
         $authors_name = "";
@@ -53,7 +55,7 @@ if (isset($_POST['submitPB'])) {
             if ($response !== false) {
                 $data = json_decode($response, true);
 
-                if (isset($data['table_authors'])) {
+                if (isset ($data['table_authors'])) {
                     $authorIdColumn = array_column($data['table_authors'], 'author_id');
                     $authorNameColumn = array_column($data['table_authors'], 'author_name');
 
@@ -80,7 +82,7 @@ if (isset($_POST['submitPB'])) {
     if ($if_funded == "internal") {
         $if_external = "BatState-U Research Fund";
     } else {
-        $if_external = isset($_POST['funding_source']) ? $_POST['funding_source'] : null;
+        $if_external = isset ($_POST['funding_source']) ? $_POST['funding_source'] : null;
         if (!$if_external) {
             $if_external = "";
         } else {
@@ -134,12 +136,12 @@ if (isset($_POST['submitPB'])) {
         'funding_type' => $if_funded,
         'nature_of_funding' => $funding_nature,
         'publisher' => $publisher,
+        'status' => $status,
         'abstract' => $abstract,
-        'number_of_citation' => 0
+        'number_of_citation' => 0,
     );
 
     $jsonData = json_encode($publication_data);
-
     $ch = curl_init('http://localhost:5000/table_publications');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
@@ -147,7 +149,6 @@ if (isset($_POST['submitPB'])) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
     $response = curl_exec($ch);
-
     if (str_contains($response, 'error')) {
         header("Location: ../../publications.php?upload=failed");
     } else {
