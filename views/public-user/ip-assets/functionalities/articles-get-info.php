@@ -65,12 +65,11 @@ function get_data($search, $sort_query, $dateStart_query, $dateEnd_query, $campu
             );
         }
     }
-
     // perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
-    // $table_rows = searchTypeAPI($table_rows, $sort_query, $sort_query);
-    // $table_rows = searchTypeAPI($table_rows, $class, "nature_of_funding");
-    // $table_rows = searchTypeAPI($table_rows, $year, "date_published");
+    $table_rows = sortTypeAPI($table_rows, $sort_query);
+    $table_rows = searchTypeAPI($table_rows, $campus_query);
+    $table_rows = dateTypeAPI($table_rows, $dateStart_query, $dateEnd_query);
 
     return $table_rows;
 }
@@ -91,6 +90,26 @@ function getReq($url)
         return null;
     }
     return $decodedResponse;
+}
+
+function dateTypeAPI($tableRows, $start, $end)
+{
+    if ($start == 'empty_dStart' && $end == 'empty_dEnd')
+        return $tableRows;
+    if ($start == '' && $end == "") {
+        return $tableRows;
+    }
+    foreach ($tableRows as $index => $rowData) {
+        $date = date_format(date_create($rowData['date_registered']), "Y");
+        if ($end < $date) {
+            unset($tableRows[$index]);
+        }
+        if ($start != "empty_dStart" && $start > $date) {
+            print_r($start);
+            unset($tableRows[$index]);
+        }
+    }
+    return $tableRows;
 }
 
 function keywordsearchAPI($tableRows, $strmatch)
@@ -116,31 +135,59 @@ function keywordsearchAPI($tableRows, $strmatch)
 }
 
 // searches for the type of document
-function searchTypeAPI($tableRows, $strmatch, $tableColumn)
+function searchTypeAPI($tableRows, $strmatch)
 {
-    if ($strmatch == 'empty_sort' || $strmatch == '' || $strmatch == ' ')
+    if ($strmatch == '' || $strmatch == 'empty_campus' || $strmatch == ' ')
         return $tableRows;
-    return searchAPI($tableRows, $strmatch, $tableColumn);
+    return searchAPI($tableRows, $strmatch);
 }
 
 // removes the authors from the table that doesn' match or isn't like the authorName
-function searchAPI($tableRows, $strmatch, $key)
+function searchAPI($tableRows, $strmatch)
 {
+    $campusData = implode(", ", $strmatch);
     // pop the values that isn't like the authorname
     foreach ($tableRows as $index => $rowData) {
-        if ($key == "title") {
-            if (isset($rowData[$key])) {
-                $isMatched = date('Y', strtotime($rowData[$key])) == $strmatch;
-            }
-        } else {
-            $isMatched = $rowData[$key] == $strmatch;
-        }
-
-        if (!$isMatched) {
+        if (strpos($campusData, $rowData['campus']) == "") {
             unset($tableRows[$index]);
         }
     }
     return $tableRows;
 }
 
+function sortTypeAPI($tableRows, $sort)
+{
+    if ($sort == 'empty_sort' || $sort == '' || $sort == ' ')
+        return $tableRows;
+    return sortAPI($tableRows, $sort);
+}
+
+// removes the authors from the table that doesn' match or isn't like the authorName
+function compareTitles($a, $b)
+{
+    return strcmp($a['title_of_work'], $b['title_of_work']);
+}
+
+function convertDate($date)
+{
+    return DateTime::createFromFormat('m/d/Y', $date)->format('Y-m-d');
+}
+
+function compareCampus($a, $b)
+{
+    return strcmp($a['campus'], $b['campus']);
+}
+function sortAPI($tableRows, $sort)
+{
+    if ($sort == "title")
+        usort($tableRows, "compareTitles");
+    if ($sort == "date") {
+        usort($tableRows, function ($a, $b) {
+            return strtotime(convertDate($a['date_of_creation'])) - strtotime(convertDate($b['date_of_creation']));
+        });
+    }
+    if ($sort == "campus")
+        usort($tableRows, "compareCampus");
+    return $tableRows;
+}
 ?>

@@ -1,5 +1,5 @@
 <?php
-    $total_records = countIPAssets($conn, authorSearch($conn, $search_query), $search_query, $campus_query, $dateStart_query, $dateEnd_query );
+    $total_records = countIPAssets($conn,  $search_query, $campus_query, $dateStart_query, $dateEnd_query );
     $count_text = $search_query != "empty_search" ? "Total Patented Articles for \"". $search_query. "\" : " : "Total Patented Articles :";
 ?>
 
@@ -12,9 +12,7 @@
     <?php
         $items_per_page = 10;
         $total_pages = ceil($total_records / $items_per_page);
-
         
-
         if ($total_pages > 1) {
 
             $params=[];
