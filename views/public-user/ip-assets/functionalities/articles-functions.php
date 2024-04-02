@@ -1,31 +1,41 @@
 <?php
 require_once "config.php";
-include_once dirname(__FILE__, 4) ."/helpers/utils/utils-author.php";
+include_once dirname(__FILE__, 4) . "/helpers/utils/utils-author.php";
+include_once dirname(__FILE__, 4) . "/helpers/utils/utils-ipasset.php";
 
-function getPublicationData($pubID, $conn) {
+function getPublicationData($pubID, $ipassetsurl, $authorurl)
+{
     $decrypted_ID = encryptor('decrypt', $pubID);
-    
-    $sql_data = "SELECT ti.*, ta.author_name FROM table_ipassets ti
-                 JOIN table_authors ta ON ta.author_id = ta.author_id
-                 WHERE ti.registration_number = $1;";
-    $params = array($decrypted_ID);
-    $sql_result = pg_query_params($conn, $sql_data, $params);
-
-    return pg_fetch_assoc($sql_result);
+    $data = getIpAssetById($ipassetsurl, $decrypted_ID);
+    $authors = getAuthors($authorurl);
+    $authorList = "";
+    if ($data['authors']) {
+        $authorData = explode(",", $data['authors']);
+        foreach ($authorData as $index => $rowData) {
+            foreach ($authors as $index => $author) {
+                if ($rowData == $author['author_id']) {
+                    $authorList .= (strlen($authorList) > 1 ? ", " : "") . $author['author_name'];
+                    break;
+                }
+            }
+        }
+    }
+    $data[0]['authors'] = $authorList;
+    return $data;
 }
 
-function displayPublicationData($row, $authorurl) {
+function displayPublicationData($row, $authorurl)
+{
     echo '<div class="article-container">';
     echo '<div class="article-title">';
-    echo '<h1>'.$row['title_of_work'].'</h1>';
+    echo '<h1>' . $row['title_of_work'] . '</h1>';
     echo '</div>';
 
     echo '<div class="article-date-published">';
     if (!empty($row['date_registered'])) {
         $date = date('F d, Y', strtotime($row['date_registered']));
-        echo '<h5>Date Registered:  '. $date . '</h5>';
-    }
-    else {
+        echo '<h5>Date Registered:  ' . $date . '</h5>';
+    } else {
         echo '<h5>Date Published: Not Yet Set </h5>';
     }
     echo '</div>';
@@ -58,24 +68,19 @@ function displayPublicationData($row, $authorurl) {
     echo '<div class="abstract-cont">';
     echo '<div>';
     echo '<label>Status:</label>';
-    if (!empty($row['status'])){
+    if (!empty($row['status'])) {
         $abstract = $row['status'];
-        echo '<p>' .$abstract. '</p>';
-    }
-    else{
+        echo '<p>' . $abstract . '</p>';
+    } else {
         echo '<p> Not Yet Set </p>';
     }
     echo '</div>';
-
-    if(isset($_SESSION['user_email'])){
-        foreach ($author_emails as $email){
-        
-            if($email==$_SESSION['user_email']){
+    if (isset($_SESSION['user_email'])) {
+        foreach ($author_emails as $email) {
+            if ($email === $_SESSION['user_email']) {
                 echo '<button onclick="window.open(\'' . $row['hyperlink'] . '\', \'_blank\')" class="download-cert-btn">CERTIFICATION</button>';
             }
-    
         }
-
     }
 
     echo '</div>';

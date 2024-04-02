@@ -1,10 +1,10 @@
 <?php
 require_once "config.php";
-include_once dirname(__FILE__, 4) ."/helpers/utils/utils-author.php";
+include_once dirname(__FILE__, 4) . "/helpers/utils/utils-author.php";
 
-function getPublicationData($pubID, $conn) {
+function getPublicationData($pubID, $conn)
+{
     $decrypted_ID = encryptor('decrypt', $pubID);
-    
     $sql_data = "SELECT tp.*, ta.author_name FROM table_publications tp
                  JOIN table_authors ta ON ta.author_id = ta.author_id
                  WHERE tp.publication_id = $1;";
@@ -14,18 +14,18 @@ function getPublicationData($pubID, $conn) {
     return pg_fetch_assoc($sql_result);
 }
 
-function displayPublicationData($row, $authorurl) {
+function displayPublicationData($row, $authorurl)
+{
     echo '<div class="article-container">';
     echo '<div class="article-title">';
-    echo '<h1>'.$row['title_of_paper'].'</h1>';
+    echo '<h1>' . $row['title_of_paper'] . '</h1>';
     echo '</div>';
 
     echo '<div class="article-date-published">';
     if (!empty($row['date_published'])) {
         $date = date('F d, Y', strtotime($row['date_published']));
-        echo '<h5>Date Published:  '. $date . '</h5>';
-    }
-    else {
+        echo '<h5>Date Published:  ' . $date . '</h5>';
+    } else {
         echo '<h5>Date Published: Not Yet Set </h5>';
     }
     echo '</div>';
@@ -55,14 +55,13 @@ function displayPublicationData($row, $authorurl) {
     echo '<div class="abstract-cont">';
     echo '<div>';
     echo '<label>Abstract:</label>';
-    if (!empty($row['abstract'])){
+    if (!empty($row['abstract'])) {
         $abstract = $row['abstract'];
-        echo '<p>' .$abstract. '</p>';
-    }
-    else{
+        echo '<p>' . $abstract . '</p>';
+    } else {
         echo '<p> Not Yet Set </p>';
     }
-    echo '<p>'.$row['abstract'].'</p>';
+    echo '<p>' . $row['abstract'] . '</p>';
     echo '</div>';
     echo '<button onclick="window.open(\'' . $row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
     echo '</div>';

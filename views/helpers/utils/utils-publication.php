@@ -1,6 +1,5 @@
 <?php
 
-
 function getPublications($publicationurl)
 {
   $response = @file_get_contents($publicationurl);
@@ -29,7 +28,7 @@ function getPublicationById($publicationurl, $publicationid)
     }
   }
 
-  return $publicationData;
+  return null;
 }
 
 function updatePublicationsByAuthor($publicationurl, $author)
