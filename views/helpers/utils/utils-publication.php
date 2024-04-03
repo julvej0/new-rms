@@ -3,7 +3,7 @@
 function getPublications($publicationurl)
 {
   $response = @file_get_contents($publicationurl);
-  $jsonData = json_decode($response, true);
+  $jsonData = json_decode($response, true)['table_publications'];
 
   if ($jsonData === false) {
     return null;

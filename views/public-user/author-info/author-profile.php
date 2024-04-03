@@ -1,9 +1,9 @@
 <?php
 include_once "../../../components/public-user/templates/user-navbar.php";
 include_once "functionalities/user-session.php";
-
 include_once "functionalities/display-edit-affiliations.php";
-
+include_once dirname(__FILE__, 4) . "/views/helpers/utils/utils-publication.php";
+include_once dirname(__FILE__, 4) . "/helpers/db.php";
 
 include_once "functionalities/options.php";
 
@@ -34,7 +34,7 @@ include_once "functionalities/options.php";
                 <div class="profile-row">
                     <label for="affiliation">Type:</label>
                     <p>
-                        <?php echo $author_user['type_of_author'] ? $author_user['type_of_author'] : 'Not Yet Set'; ?>
+                        <?php echo isset($author_user['type_of_author']) ? $author_user['type_of_author'] : 'Not Yet Set'; ?>
                     </p>
                 </div>
                 <div class="profile-row">
@@ -102,8 +102,8 @@ include_once "functionalities/options.php";
         <div id='author-info' style='display: flex; justify-content: center;'>
             <?php
             include_once "functionalities/author-data.php";
-            display_publications($conn, $author_user['author_id']);
-            display_ipassets($conn, $author_user['author_id']);
+            display_publications($publicationurl, $author_user['author_id']);
+            display_ipassets($ipassetsurl, $author_user['author_id']);
             ?>
         </div>
     </div>
