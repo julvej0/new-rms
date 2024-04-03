@@ -29,7 +29,7 @@ function get_data($conn, $search, $type, $class, $year, $page_number)
         }
 
 
-        if ($content->date_published == null) {
+        if (!isset($content->date_published)) {
             $table_rows[] = array(
                 'publication_id' => $content->publication_id,
                 'date_published' => "Not Available",
