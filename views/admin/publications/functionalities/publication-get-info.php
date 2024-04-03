@@ -52,7 +52,7 @@ function get_data($conn, $search, $type, $class, $year, $page_number)
         } else {
             $table_rows[] = array(
                 'publication_id' => $content->publication_id,
-                'date_published' => date_format(date_create($content->date_published), "m/d/Y" ?? "Not Available"),
+                'date_published' => date_format(date_create($content->date_published), "m/d/Y") ?? "Not Available",
                 'quartile' => $content->quartile ?? "Not Available",
                 'authors' => $authorList ?? "Not Available",
                 'department' => $content->department ?? "Not Available",
