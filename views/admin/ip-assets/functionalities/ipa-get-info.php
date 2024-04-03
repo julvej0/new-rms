@@ -44,33 +44,33 @@ function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $
         if ($content->status == "not-registered") {
             $table_rows[] = array(
                 'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work,
-                'type_of_document' => $content->type_of_document,
+                'title_of_work' => $content->title_of_work ?? "Not Available",
+                'type_of_document' => $content->type_of_document ?? "Not Available",
                 'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
+                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
                 'date_registered' => "Not Available",
                 'campus' => $content->campus ?? "Not Available",
                 'college' => $content->college ?? "Not Available",
                 'program' => $content->program ?? "Not Available",
-                'authors' => $authorList,
+                'authors' => $authorList ?? "Not Available",
                 'hyperlink' => 'Not Available',
-                'status' => $content->status,
+                'status' => $content->status ?? "Not Available",
                 'certificate' => 'Not Available',
             );
         } else {
             $table_rows[] = array(
                 'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work,
-                'type_of_document' => $content->type_of_document,
+                'title_of_work' => $content->title_of_work ?? "Not Available",
+                'type_of_document' => $content->type_of_document ?? "Not Available",
                 'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
-                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y"),
+                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
+                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
                 'campus' => $content->campus ?? "Not Available",
                 'college' => $content->college ?? "Not Available",
                 'program' => $content->program ?? "Not Available",
-                'authors' => $authorList,
+                'authors' => $authorList ?? "Not Available",
                 'hyperlink' => 'Not Available',
-                'status' => $content->status,
+                'status' => $content->status ?? "Not Available",
                 'certificate' => 'Not Available',
             );
         }
@@ -86,7 +86,8 @@ function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $
 }
 
 // keyword searching operation for all the string matches in the table
-function keywordsearchAPI($tableRows, $strmatch){
+function keywordsearchAPI($tableRows, $strmatch)
+{
     if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '') {
 
         return $tableRows;
