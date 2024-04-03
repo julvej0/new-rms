@@ -36,7 +36,7 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                 <div class="form-control">
                                     <label class="ip-label" for="ip-type">Type of IP <span
                                             style="color: red;">*</span></label>
-                                    <select name="type_of_ipa" id="ip-type" required>
+                                    <select name="type_of_ipa" id="ip-type" required onchange="toggleRequired()">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Invention">Invention</option>
                                         <option value="Utility Model">Utility Model</option>
@@ -47,7 +47,7 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="class_of_work">Class of Work <span
-                                            style="color: red;">*</span></label>
+                                            style="color: red;" class="class_of_work">*</span></label>
                                     <select class="ipa-input-field" id="class_of_work" name="class_of_work" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="A">Class A</option>
@@ -56,9 +56,9 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                     </select>
                                 </div>
                                 <div class="form-control">
-                                    <label class="ipa-label" for="ipa-campus">Campus <span
-                                            style="color: red;">*</span></label>
-                                    <select name="campus" class="ipa-input-field" required>
+                                    <label class="ipa-label" for="ipa-campus">Campus <span style="color: red;"
+                                            class="ipa-campus">*</span></label>
+                                    <select name="campus" class="ipa-input-field" id="ipa-campus" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Alangilan (Main II)">Alangilan (Main II)</option>
                                         <option value="Balayan">Balayan</option>
@@ -72,14 +72,15 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                         <option value="Padre Garcia">Padre Garcia</option>
                                         <option value="Rosario">Rosario</option>
                                         <option value="San Juan">San Juan</option>
+                                        <option value="CENTRAL">CENTRAL</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-container">
                                 <div class="form-control">
-                                    <label class="ipa-label" for="program">Program <span
-                                            style="color: red;">*</span></label>
-                                    <select name="program" class="ipa-input-field" required>
+                                    <label class="ipa-label" for="program">Program <span style="color: red;"
+                                            class="program">*</span></label>
+                                    <select name="program" class="ipa-input-field" id="program" required>
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="Accountancy, Business, and International Hospitality">
                                             Accountancy, Business, and International Hospitality</option>
@@ -100,8 +101,8 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                     </select>
                                 </div>
                                 <div class="form-control">
-                                    <label class="ipa-label" for="college">College <span
-                                            style="color: red;">*</span></label>
+                                    <label class="ipa-label" for="college">College <span style="color: red;"
+                                            class="college">*</span></label>
                                     <input type="text" class="ipa-input-field" id="college" name="college" required
                                         placeholder="College...">
                                 </div>
@@ -121,7 +122,7 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                     </div>
                     <div class="sub-container">
                         <div class="title">
-                            <h3>Author Details <span style="color: red;">*</span></h3>
+                            <h3>Author Details <span style="color: red;" class="authors">*</span></h3>
                             <hr>
                         </div>
                         <div class="form-col">
@@ -145,7 +146,7 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                                     padding: 10px 36px 10px 16px;
                                                     border-radius: 5px;
                                                     border: 1px solid var(--dark-grey);" placeholder="Author Name..."
-                                                    required>
+                                                    id="ipa-author" required>
                                                 <datalist id="authors">
                                                     <?php
                                                     foreach ($result as $key => $row) {

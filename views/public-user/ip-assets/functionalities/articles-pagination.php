@@ -1,6 +1,6 @@
 <?php
-    $total_records = countIPAssets($conn,  $search_query, $campus_query, $dateStart_query, $dateEnd_query );
-    $count_text = $search_query != "empty_search" ? "Total Patented Articles for \"". $search_query. "\" : " : "Total Patented Articles :";
+    $total_records = countIPAssets($search_query, $campus_query, $dateStart_query, $dateEnd_query );
+    $count_text = $search_query != "empty_search" ? "Total Patented IP Docs for \"". $search_query. "\" : " : "Total Patented IP Docs :";
 ?>
 
 <div class="total-articles">

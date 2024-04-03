@@ -8,7 +8,6 @@ function get_data($ipassetsurl, $authorurl, $additionalQuery, $search, $type, $c
     include_once dirname(__FILE__, 5) . '/helpers/utils/utils-author.php';
     $response = getIpassets($ipassetsurl);
     if ($response != false) {
-
         foreach ($response as $key => $row) {
             $authorIds = explode(',', $row['authors']);
             $authorNames = array();
@@ -17,7 +16,7 @@ function get_data($ipassetsurl, $authorurl, $additionalQuery, $search, $type, $c
                 $authorResult = getAuthorById($authorurl, $authorId);
                 if ($authorResult != false) {
                     foreach ($authorResult as $key => $author) {
-                        $authorNames[] = $author['author_name'];
+                        $authorNames[] = $author;
                     }
                 }
             }
@@ -46,44 +45,6 @@ function get_data($ipassetsurl, $authorurl, $additionalQuery, $search, $type, $c
         return null;
     }
 
-    // Search Query
-    // $sqlSearchQuery = "SELECT * FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'" . $additionalQuery . " ORDER BY date_registered DESC;";
-    // $result = pg_query($conn, $sqlSearchQuery);
-    // $resultCheck = pg_num_rows($result);
-
-    // if ($resultCheck > 0) {
-    //     while ($row = pg_fetch_assoc($result)) {
-
-    //         $authorIds = explode(',', $row['authors']);
-    //         $authorNames = array();
-
-    //         foreach ($authorIds as $id) {
-    //             $authorResult = pg_query($conn, "SELECT author_name FROM table_authors WHERE author_id = '$id' ");
-    //             $authorRow = pg_fetch_assoc($authorResult);
-    //             if ($authorRow) {
-    //                 $authorNames[] = $authorRow['author_name'];
-    //             }
-    //         }
-    //         $authorNamesString = implode(', ', $authorNames);
-
-    //         $table_rows[] = array(
-    //             'registration_number' => $row['registration_number'],
-    //             'title_of_work' => $row['title_of_work'],
-    //             'type_of_document' => $row['type_of_document'],
-    //             'class_of_work' => $row['class_of_work'],
-    //             'date_of_creation' => $row['date_of_creation'],
-    //             'date_registered' => $row['date_registered'],
-    //             'campus' => $row['campus'],
-    //             'college' => $row['college'],
-    //             'program' => $row['program'],
-    //             'authors' => $authorNamesString,
-    //             'hyperlink' => $row['hyperlink'],
-    //         );
-    //     }
-    //     return $table_rows;
-    // } else {
-    //     return null;
-    // }
 }
 
 function keywordsearchAPI($tableRows, $strmatch)

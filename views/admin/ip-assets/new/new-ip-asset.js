@@ -68,7 +68,6 @@ function RegisterRadio() {
   if (registerRadio) {
     const registerValue = registerRadio.value;
 
-  
     if (registerValue === "registered") {
       registerResult.style.display = "flex";
       regID.setAttribute("required", "");
@@ -81,10 +80,8 @@ function RegisterRadio() {
       regDate.value = "";
       regIpCert.value = "";
     }
-
   }
 }
-
 
 // Check if certificate file type is valid
 function checkFileType(fileInput) {
@@ -110,5 +107,43 @@ function checkFileType(fileInput) {
     // No file selected
     errorElement.style.display = "none";
     return false;
+  }
+}
+
+function toggleRequired() {
+  let ipTypeSelect = document.getElementById("ip-type");
+  let classOfWorkSelect = document.getElementById("class_of_work");
+  let campusSelect = document.getElementById("ipa-campus");
+  let programSelect = document.getElementById("program");
+  let collegeSelect = document.getElementById("college");
+  let authorSelect = document.getElementById("ipa-author");
+  let classofwork = document.querySelector(".class_of_work");
+  let college = document.querySelector(".college");
+  let campus = document.querySelector(".ipa-campus");
+  let program = document.querySelector(".program");
+  let authors = document.querySelector(".authors");
+
+  if (ipTypeSelect.value === "Trademark") {
+    classOfWorkSelect.removeAttribute("required");
+    campusSelect.removeAttribute("required");
+    programSelect.removeAttribute("required");
+    collegeSelect.removeAttribute("required");
+    authorSelect.removeAttribute("required");
+    classofwork.style.color = "white";
+    college.style.color = "white";
+    program.style.color = "white";
+    campus.style.color = "white";
+    authors.style.color = "white";
+  } else {
+    classOfWorkSelect.setAttribute("required", "required");
+    campusSelect.setAttribute("required", "required");
+    programSelect.setAttribute("required", "required");
+    collegeSelect.setAttribute("required", "required");
+    authorSelect.setAttribute("required", "required");
+    classofwork.style.color = "red";
+    college.style.color = "red";
+    program.style.color = "red";
+    authors.style.color = "red";
+    campus.style.color = "red";
   }
 }

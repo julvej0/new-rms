@@ -1,13 +1,13 @@
 <?php
-function get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_number)
+function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number)
 {
-    return api_get_data($additionalQuery, $search, $type, $class, $year, $page_number);
+    return api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number);
 }
 
 // retrieves the data from the api route
-function api_get_data($additionalQuery, $search, $type, $class, $year, $page_number)
+function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number)
 {
-    $encodedJsonResponse = getReq('http://localhost:5000/table_ipassets');
+    $encodedJsonResponse = getReq($ipassetsurl);
     if (isset($encodedJsonResponse->error)) {
 
         return null;
@@ -15,7 +15,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
     $tableData = $encodedJsonResponse->table_ipassets;
 
     // retrieve all the authors registered from the api
-    $authorObj = getReq("http://localhost:5000/table_authors");
+    $authorObj = getReq($authorurl);
     if (!isset($authorObj->error)) {
         $authorObj = $authorObj->table_authors;
     } else {
@@ -46,7 +46,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
                 'registration_number' => $content->registration_number,
                 'title_of_work' => $content->title_of_work,
                 'type_of_document' => $content->type_of_document,
-                'class_of_work' => $content->class_of_work,
+                'class_of_work' => $content->class_of_work ?? "Not Available",
                 'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
                 'date_registered' => "Not Available",
                 'campus' => $content->campus ?? "Not Available",
@@ -62,7 +62,7 @@ function api_get_data($additionalQuery, $search, $type, $class, $year, $page_num
                 'registration_number' => $content->registration_number,
                 'title_of_work' => $content->title_of_work,
                 'type_of_document' => $content->type_of_document,
-                'class_of_work' => $content->class_of_work,
+                'class_of_work' => $content->class_of_work ?? "Not Available",
                 'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
                 'date_registered' => date_format(date_create($content->date_registered), "m/d/Y"),
                 'campus' => $content->campus ?? "Not Available",
@@ -150,34 +150,6 @@ function getReq($url)
     return json_decode($response);
 }
 
-function authorSearch($authorurl, $search)
-{
-    if ($search != 'empty_search' || $search != ' ') {
-        $authors = @file_get_contents($authorurl);
 
-        if ($authors !== false) {
-            $authors = json_decode($authors, true);
-            $authorIDs = array_column($authors['table_authors'], 'author_id');
-
-            if (!empty($authorIDs)) {
-                $additionalQuery = "OR ( ";
-                foreach ($authorIDs as $index => $authorID) {
-                    if ($index == 0) {
-                        $additionalQuery .= " authors ILIKE '%$authorID%' ";
-                    } else {
-                        $additionalQuery .= " OR authors ILIKE '%$authorID%' ";
-                    }
-                }
-                $additionalQuery .= " ) ";
-                return $additionalQuery;
-            }
-        } else {
-            return "";
-        }
-    } else {
-        return "empty_search";
-    }
-    return '';
-}
 
 ?>

@@ -1,11 +1,11 @@
 <?php
-require_once('functionalities/ipa-get-info.php');
-require_once('functionalities/ipa_include/ipa_count.php');
+require_once ('functionalities/ipa-get-info.php');
+require_once ('functionalities/ipa_include/ipa_count.php');
+include_once dirname(__FILE__, 6) . "/helpers/db.php";
 
-$additionalQuery = authorSearch($authorurl, $search);
-$table_rows = get_data($conn, $additionalQuery, $search, $type, $class, $year, $page_number); // $table_rows is included from a ipa-get-info.php
+$table_rows = get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number); // $table_rows is included from a ipa-get-info.php
 
-$total_records = countIPA($conn, $additionalQuery, $search, $type, $class, $year);
+$total_records = countIPA($ipassetsurl, $authorurl, $search, $type, $class, $year);
 ?>
 
 <table>

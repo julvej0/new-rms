@@ -58,8 +58,8 @@ if (isset($_POST['edit'])) {
                                         <div class="form-control">
                                             <label class="ipa-label" for="class_of_work">Class of Work</label>
                                             <select class="ipa-input-field" id="class_of_work" name="class_of_work">
-                                                <option value="<?= $row['class_of_work'] ?>" hidden>
-                                                    <?= $row['class_of_work'] ?>
+                                                <option value="<?= isset($row['class_of_work']) ? $row['class_of_work'] : null ?>" hidden>
+                                                    <?= isset($row['class_of_work']) ? $row['class_of_work'] : "" ?>
                                                 </option>
                                                 <option value="A">Class A</option>
                                                 <option value="G">Class G</option>
@@ -120,7 +120,7 @@ if (isset($_POST['edit'])) {
                                         <div class="form-control">
                                             <label class="ipa-label" for="date-of-creation">Date of Creation</label>
                                             <input type="date" max="<?= date('Y-m-d'); ?>" id="date-of-creation"
-                                                name="date_of_creation" value="<?= $row['date_of_creation'] ?>">
+                                                name="date_of_creation" value="<?= isset($row['date_of_creation']) ? date_format(new DateTime($row['date_of_creation']), "Y-m-d") : '' ?>">
                                         </div>
                                         <div class="form-control">
                                             <label class="ipa-label" for="hyperlink">Hyperlink</label>
@@ -227,7 +227,8 @@ if (isset($_POST['edit'])) {
                                         <div class="form-control">
                                             <label class="ip-label" for="reg-date">Date of Registration</label>
                                             <input type="date" max="<?= date('Y-m-d'); ?>" name="date_registered" id="reg-date"
-                                                value="<?= $row['date_registered'] ?>">
+                                                        value="<?= isset($row['date_registered']) ? date_format(new DateTime($row['date_registered']), "Y-m-d") : '' ?>">
+
                                         </div>
                                         <div class="form-control">
                                             <label class="ip-label" for="ip-certificate">Upload Certificate: <span

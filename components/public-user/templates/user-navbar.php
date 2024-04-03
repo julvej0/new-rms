@@ -42,15 +42,15 @@
                             <ul class="nav-links">
                                 <?php if (isset($_SESSION['account_type'])): ?>
                                     <?php if ($_SESSION['account_type'] == "Admin"): ?>
-                                        <li><a href="../../admin/dashboard/dashboard.php" id='home-link'
+                                        <li><a href="../../dashboard/dashboard.php" id='home-link'
                                                 onclick="showLoadingScreen()">DASHBOARD</a></li>
-                                        <li><a href="../../admin/publications/publications.php" id='pb-link'
+                                        <li><a href="../../publications/publications.php" id='pb-link'
                                                 onclick="showLoadingScreen()">PUBLICATIONS</a></li>
-                                        <li><a href="../../admin/ip-assets/ip-assets.php" id='ip-assets-link'
+                                        <li><a href="../../ip-assets/ip-assets.php" id='ip-assets-link'
                                                 onclick="showLoadingScreen()">IP ASSETS</a></li>
-                                        <li><a href="../../admin/authors/authors.php" id='author-link'
+                                        <li><a href="../../authors/authors.php" id='author-link'
                                                 onclick="showLoadingScreen()">AUTHORS</a></li>
-                                        <!-- <li><a href="/new-rms-webdev/views/admin/about/about.php" id='abt-link' onclick="showLoadingScreen()">ABOUT</a></li> -->
+                                        <!-- <li><a href="/new-rms-webdev/views/about/about.php" id='abt-link' onclick="showLoadingScreen()">ABOUT</a></li> -->
                                     <?php else: ?>
                                         <li><a href="../../../views/public-user/home/home.php" id='home-link'
                                                 onclick="showLoadingScreen()">HOME</a></li>

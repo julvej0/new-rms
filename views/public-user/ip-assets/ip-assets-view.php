@@ -15,9 +15,9 @@
         <div class="content-container animate__animated animate__fadeIn">
             <?php
                 if (isset($_GET['ipID']) && !empty($_GET['ipID'])) {
-                    $row = getPublicationData($_GET['ipID'], $ipassetsurl, $authorurl);
+                    $row = getIpassetsData($_GET['ipID'], $ipassetsurl, $authorurl);
                     if ($row) {
-                        displayPublicationData($row, $authorurl);
+                        displayIpassetsData($row, $authorurl);
                     }
                 }
             ?>

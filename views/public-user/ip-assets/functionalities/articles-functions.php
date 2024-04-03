@@ -3,7 +3,7 @@ require_once "config.php";
 include_once dirname(__FILE__, 4) . "/helpers/utils/utils-author.php";
 include_once dirname(__FILE__, 4) . "/helpers/utils/utils-ipasset.php";
 
-function getPublicationData($pubID, $ipassetsurl, $authorurl)
+function getIpassetsData($pubID, $ipassetsurl, $authorurl)
 {
     $decrypted_ID = encryptor('decrypt', $pubID);
     $data = getIpAssetById($ipassetsurl, $decrypted_ID);
@@ -24,7 +24,7 @@ function getPublicationData($pubID, $ipassetsurl, $authorurl)
     return $data;
 }
 
-function displayPublicationData($row, $authorurl)
+function displayIpassetsData($row, $authorurl)
 {
     echo '<div class="article-container">';
     echo '<div class="article-title">';

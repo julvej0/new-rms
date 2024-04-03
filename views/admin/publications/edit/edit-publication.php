@@ -121,7 +121,7 @@ if (isset ($_POST['edit'])) {
                                         <label class="pb-label" for="pb-date-published">Date Published</label>
                                         <input type="date" max="<?= date('Y-m-d'); ?>" id="pb-date-published"
                                             name="date_published" placeholder="Date Published"
-                                            value="<?= $row['date_published'] ?>">
+                                            value="<?= isset($row['date_published']) ? date_format(new DateTime($row['date_published']), "Y-m-d") : '' ?>">
                                     </div>
                                 </div>
                                 <div class="form-container">

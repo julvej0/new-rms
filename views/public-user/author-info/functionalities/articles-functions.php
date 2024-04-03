@@ -1,17 +1,27 @@
 <?php
 require_once "config.php";
 include_once dirname(__FILE__, 4) . "/helpers/utils/utils-author.php";
+include_once dirname(__FILE__, 4) . "/helpers/utils/utils-publication.php";
 
-function getPublicationData($pubID, $conn)
+function getPublicationData($pubID, $publicationurl, $authorurl)
 {
     $decrypted_ID = encryptor('decrypt', $pubID);
-    $sql_data = "SELECT tp.*, ta.author_name FROM table_publications tp
-                 JOIN table_authors ta ON ta.author_id = ta.author_id
-                 WHERE tp.publication_id = $1;";
-    $params = array($decrypted_ID);
-    $sql_result = pg_query_params($conn, $sql_data, $params);
-
-    return pg_fetch_assoc($sql_result);
+    $data = getPublicationById($publicationurl, $decrypted_ID);
+    $authors = getAuthors($authorurl);
+    $authorList = "";
+    if ($data['authors']) {
+        $authorData = explode(",", $data['authors']);
+        foreach ($authorData as $index => $rowData) {
+            foreach ($authors as $index => $author) {
+                if ($rowData == $author['author_id']) {
+                    $authorList .= (strlen($authorList) > 1 ? ", " : "") . $author['author_name'];
+                    break;
+                }
+            }
+        }
+    }
+    $data[0]['authors'] = $authorList;
+    return $data;
 }
 
 function displayPublicationData($row, $authorurl)
