@@ -7,14 +7,14 @@ function get_data($conn, $search, $type, $class, $year, $page_number)
 
     // retrieve all the authors registered from the api
     $authorObj = getReq("http://localhost:5000/table_authors");
-    $authorObj = !isset ($authorObj->error) ? $authorObj->table_authors : [];
+    $authorObj = !isset($authorObj->error) ? $authorObj->table_authors : [];
 
     // $count = $page_number * 10;
     // retrieve all the values from json response
     foreach ($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper
         $authorList = "";
-        if (isset ($content->authors)) {
+        if (isset($content->authors)) {
             $authors = explode(',', $content->authors);
 
             // retrieve the author names from the api response
@@ -33,41 +33,41 @@ function get_data($conn, $search, $type, $class, $year, $page_number)
             $table_rows[] = array(
                 'publication_id' => $content->publication_id,
                 'date_published' => "Not Available",
-                'quartile' => $content->quartile,
-                'authors' => $authorList,
-                'department' => $content->department,
-                'college' => $content->college,
-                'campus' => $content->campus,
-                'title_of_paper' => $content->title_of_paper,
-                'type_of_publication' => $content->type_of_publication,
+                'quartile' => $content->quartile ?? "Not Available",
+                'authors' => $authorList ?? "Not Available",
+                'department' => $content->department ?? "Not Available",
+                'college' => $content->college ?? "Not Available",
+                'campus' => $content->campus ?? "Not Available",
+                'title_of_paper' => $content->title_of_paper ?? "Not Available",
+                'type_of_publication' => $content->type_of_publication ?? "Not Available",
                 'funding_source' => $content->funding_source ?? "Not Available",
                 'number_of_citation' => $content->number_of_citation ?? "Not Available",
-                'google_scholar_details' => $content->google_scholar_details,
-                'sdg_no' => $content->sdg_no,
+                'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
+                'sdg_no' => $content->sdg_no ?? "Not Available",
                 'funding_type' => $content->funding_type ?? "Not Available",
-                'nature_of_funding' => $content->nature_of_funding,
-                'publisher' => $content->publisher,
-                'abstract' => $content->abstract,
+                'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
+                'publisher' => $content->publisher ?? "Not Available",
+                'abstract' => $content->abstract ?? "Not Available",
             );
         } else {
             $table_rows[] = array(
                 'publication_id' => $content->publication_id,
                 'date_published' => date_format(date_create($content->date_published), "m/d/Y"),
-                'quartile' => $content->quartile,
-                'authors' => $authorList,
-                'department' => $content->department,
-                'college' => $content->college,
-                'campus' => $content->campus,
-                'title_of_paper' => $content->title_of_paper,
-                'type_of_publication' => $content->type_of_publication,
+                'quartile' => $content->quartile ?? "Not Available",
+                'authors' => $authorList ?? "Not Available",
+                'department' => $content->department ?? "Not Available",
+                'college' => $content->college ?? "Not Available",
+                'campus' => $content->campus ?? "Not Available",
+                'title_of_paper' => $content->title_of_paper ?? "Not Available",
+                'type_of_publication' => $content->type_of_publication ?? "Not Available",
                 'funding_source' => $content->funding_source ?? "Not Available",
                 'number_of_citation' => $content->number_of_citation ?? "Not Available",
-                'google_scholar_details' => $content->google_scholar_details,
-                'sdg_no' => $content->sdg_no,
+                'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
+                'sdg_no' => $content->sdg_no ?? "Not Available",
                 'funding_type' => $content->funding_type ?? "Not Available",
-                'nature_of_funding' => $content->nature_of_funding,
-                'publisher' => $content->publisher,
-                'abstract' => $content->abstract,
+                'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
+                'publisher' => $content->publisher ?? "Not Available",
+                'abstract' => $content->abstract ?? "Not Available",
             );
         }
     }
@@ -92,7 +92,7 @@ function getReq($url)
     $response = curl_exec($curlRequest);
 
     $decodedResponse = json_decode($response);
-    if (isset ($decodedResponse->error)) {
+    if (isset($decodedResponse->error)) {
 
         return null;
     }
@@ -137,7 +137,7 @@ function searchAPI($tableRows, $strmatch, $key)
     // pop the values that isn't like the authorname
     foreach ($tableRows as $index => $rowData) {
         if ($key == "date_published") {
-            if (isset ($rowData[$key])) {
+            if (isset($rowData[$key])) {
                 $isMatched = date('Y', strtotime($rowData[$key])) == $strmatch;
             }
         } else {
