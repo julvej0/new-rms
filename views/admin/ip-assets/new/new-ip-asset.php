@@ -47,8 +47,8 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                 </div>
                                 <div class="form-control">
                                     <label class="ipa-label" for="class_of_work">Class of Work <span
-                                            style="color: red;" class="class_of_work">*</span></label>
-                                    <select class="ipa-input-field" id="class_of_work" name="class_of_work" required>
+                                            style="color: white;" class="class_of_work">*</span></label>
+                                    <select class="ipa-input-field" id="class_of_work" name="class_of_work">
                                         <option value="" hidden>--Choose from the options--</option>
                                         <option value="A">Class A</option>
                                         <option value="G">Class G</option>
