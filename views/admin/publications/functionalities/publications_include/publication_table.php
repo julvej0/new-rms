@@ -87,9 +87,10 @@ $total_records = countPublications($search, $type, $fund, $year);
                         }
                         ?>
                         <!--If the $google_link == null, the value will be no_url which is needed to trigger SweetAlert2-->
-                        <a onclick="redirect('<?= $google_link != null ? $google_link : '../../../../../components/error-not-found/error-not-found.php'; ?>')"
-                            class="gdrive-btn" title="Click to Redirect">
+                        <a href="<?= trim($google_link) != "" ? $google_link : '../../../components/error-not-found/error-not-found.php';?>"
+                            class="gdrive-btn" title="Click to Redirect" >
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            
                         </a>
                         <form action="../publications/edit/edit-publication.php" method="POST">
                             <input type="hidden" name="row_id" value="<?= $row['publication_id'] ?>">
