@@ -1,5 +1,5 @@
 <?php
-include_once("../../../account-management/functionalities/user-session.php");
+include_once ("../../../account-management/functionalities/user-session.php");
 
 if (isset($_POST['updatePB'])) {
     $date_published = $_POST["date_published"];
@@ -42,10 +42,11 @@ if (isset($_POST['updatePB'])) {
     }
 
 
-    $sdg = $_POST["sdg_no"];
+    $sdg = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
     $sdg_no = isset($_POST['sdg_no']) ? $_POST['sdg_no'] : null;
     if (!$sdg_no) {
         $sdg_no = null;
+        $sdg_string = null;
     } else {
         $sdg_no = $_POST["sdg_no"];
         $sdg_string = implode(", ", $sdg);
@@ -86,14 +87,13 @@ if (isset($_POST['updatePB'])) {
         'title_of_paper' => $title,
         'type_of_publication' => $type,
         'funding_source' => $if_external,
-        'google_scholar_details' => $url,
+        'google_scholar_details' => $url == "" ? " " : $url,
         'sdg_no' => $sdg_string,
         'funding_type' => $if_funded,
         'nature_of_funding' => $funding_nature,
         'publisher' => $publisher,
         'abstract' => $abstract
     );
-
     $jsonData = json_encode($publication_data);
 
     $update_url = 'http://localhost:5000/table_publications/' . $pubID;
@@ -105,6 +105,8 @@ if (isset($_POST['updatePB'])) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
     $response = curl_exec($ch);
+    // var_dump($response);
+    // throw new Exception("Haha");
 
     if ($response === false) {
         header("Location: ../../publications.php?update=failed");

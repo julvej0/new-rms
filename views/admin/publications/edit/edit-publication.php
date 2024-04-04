@@ -4,7 +4,7 @@ include dirname(__FILE__, 5) . '/components/header/header.php';
 include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php';
 include_once dirname(__FILE__, 4) . '/helpers/utils/utils-publication.php';
 include_once dirname(__FILE__, 4) . '/helpers/utils/utils-author.php';
-if (isset ($_POST['edit'])) {
+if (isset($_POST['edit'])) {
     ?>
     <link rel="stylesheet" href="../../../../css/index.css">
     <link rel="stylesheet" href="../../publications/new/new-publication.css">
@@ -42,8 +42,10 @@ if (isset ($_POST['edit'])) {
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-type">Type of Document</label>
                                         <select name="type_of_publication" id="pb-type">
-                                            <option value="<?= $row['type_of_publication'] ?>" hidden>
-                                                <?= $row['type_of_publication'] ?>
+                                            <option
+                                                value="<?= isset($row['type_of_publication']) ? $row['type_of_publication'] : "" ?>"
+                                                hidden>
+                                                <?= isset($row['type_of_publication']) ? $row['type_of_publication'] : "" ?>
                                             </option>
                                             <option value="Original Article">Original Article</option>
                                             <option value="Review">Review</option>
@@ -55,7 +57,8 @@ if (isset ($_POST['edit'])) {
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-publisher">Publisher</label>
                                         <input type="text" id="pb-publisher" name="publisher" list="pb-type-list"
-                                            placeholder="Publisher" value="<?= $row['publisher'] ?>">
+                                            placeholder="Publisher"
+                                            value="<?= isset($row['publisher']) ? $row['publisher'] : "" ?>">
                                         <datalist id="pb-type-list">
                                             <option value="Clarivate">Clarivate</option>
                                             <option value="Silpakorn University">Silpakorn University</option>
@@ -64,15 +67,16 @@ if (isset ($_POST['edit'])) {
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-research-area">Research Area</label>
                                         <input type="text" id="pb-research-area" name="research_area"
-                                            placeholder="Research Area" value="<?= $row['department'] ?>">
+                                            placeholder="Research Area"
+                                            value="<?= isset($row['department']) ? $row['department'] : "" ?>">
                                     </div>
                                 </div>
                                 <div class="form-container">
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-college">College</label>
                                         <select name="college" class="pb-input-field" id="pb-college">
-                                            <option value="<?= $row['college'] ?>" hidden>
-                                                <?= $row['college'] ?>
+                                            <option value="<?= isset($row['college']) ? $row['college'] : "" ?>" hidden>
+                                                <?= isset($row['college']) ? $row['college'] : "" ?>
                                             </option>
                                             <option value="Accountancy, Business, and International Hospitality">
                                                 Accountancy, Business, and International Hospitality</option>
@@ -93,9 +97,10 @@ if (isset ($_POST['edit'])) {
                                         </select>
                                     </div>
                                     <div class="form-control">
-                                        <label class="pb-label" for="pb-campus" value="<?= $row['campus'] ?>">Campus</label>
+                                        <label class="pb-label" for="pb-campus"
+                                            value="<?= isset($row['campus']) ? $row['campus'] : "" ?>">Campus</label>
                                         <select name="campus" id="pb-campus">
-                                            <option value="<?= $row['campus'] ?>" hidden>
+                                            <option value="<?= isset($row['campus']) ? $row['campus'] : "" ?>" hidden>
                                                 <?= $row['campus'] ?>
                                             </option>
                                             <option value="Alangilan (Main II)">Alangilan (Main II)</option>
@@ -115,7 +120,7 @@ if (isset ($_POST['edit'])) {
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-quarter">Quarter (e.g. Q1_2023)</label>
                                         <input type="text" name="pb-quartile" class="pb-select-field" id="pb-quarter"
-                                            value="<?= $row['quartile'] ?>"></input>
+                                            value="<?= isset($row['quartile']) ? $row['quartile'] : "" ?>"></input>
                                     </div>
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-date-published">Date Published</label>
@@ -129,7 +134,7 @@ if (isset ($_POST['edit'])) {
                                         <label class="pb-label" for="sdg_no">SDG (Choose at a maximum of 5):</label>
                                         <div class="checkbox-container">
                                             <?php
-                                            $sdg_array = explode(",", $row['sdg_no']);
+                                            $sdg_array = explode(",", isset($row['sdg_no']) ? $row['sdg_no'] : "");
                                             ?>
                                             <div class="checkbox-col">
                                                 <input type="checkbox" name="sdg_no[]" value="1" id="sdg1"
@@ -268,14 +273,15 @@ if (isset ($_POST['edit'])) {
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-url">Document Url</label>
                                         <input type="url" id="pb-url" name="google_scholar_details"
-                                            placeholder="Document Url" value="<?= $row['google_scholar_details'] ?>">
+                                            placeholder="Document Url"
+                                            value="<?= isset($row['google_scholar_details']) ? $row['google_scholar_details'] : "" ?>">
                                     </div>
                                 </div>
                                 <div class="form-container">
                                     <div class="form-control"></div>
                                     <label class="pb-label" for="pb-abstract">Abstract</label>
                                     <textarea cols="30" rows="10" type textarea id="pb-abstract" name="abstract"
-                                        placeholder="Abstract..."><?= $row['abstract'] ?></textarea>
+                                        placeholder="Abstract..."><?= isset($row['abstract']) ? $row['abstract'] : "" ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -295,12 +301,12 @@ if (isset ($_POST['edit'])) {
                                         </thead>
                                         <tbody id="author-tbl-body">
                                             <?php
-                                            $author_list = isset ($row["authors"]) ? $row["authors"] : "";
+                                            $author_list = isset($row["authors"]) ? $row["authors"] : "";
                                             $authors = explode(",", $author_list);
                                             foreach ($authors as $author) {
                                                 $authorData = getAuthorById($authorurl, $author);
-                                                $author_list_row = isset ($authorData) ? $authorData : "";
-                                                if($author_list_row != ""){
+                                                $author_list_row = isset($authorData) ? $authorData : "";
+                                                if ($author_list_row != "") {
                                                     echo '
                                                     <tr>
                                                         <td class="ipa-author-field">
@@ -355,12 +361,12 @@ if (isset ($_POST['edit'])) {
                                     <div class="form-control">
                                         <div class="choices">
                                             <input type="radio" name="nature_of_funding" id="funded" value="funded"
-                                                <?= ($row['nature_of_funding'] == 'funded') ? 'checked="checked"' : ''; ?>>
+                                                <?= (isset($row['nature_of_funding']) ? $row['nature_of_funding'] : "" == 'funded') ? 'checked="checked"' : ''; ?>>
                                             <label for="funded" class="funding-choices">Funded</label>
                                         </div>
                                         <div class="choices">
                                             <input type="radio" name="nature_of_funding" id="non-funded" value="non-funded"
-                                                <?= ($row['nature_of_funding'] == 'non-funded') ? 'checked="checked"' : ''; ?>>
+                                                <?= (isset($row['nature_of_funding']) ? $row['nature_of_funding'] : "" != 'funded') ? 'checked="checked"' : ''; ?>>
                                             <label for="non-funded" class="funding-choices">Non-funded</label>
                                         </div>
                                     </div>
@@ -388,7 +394,8 @@ if (isset ($_POST['edit'])) {
                                             Agency</label>
                                         <input type="text" name="funding_source" class="pb-input-field"
                                             id="pb-funding-agency" placeholder="Funding Agency"
-                                            value="<?= isset($row['funding_source']) ? $row['funding_source'] : "" ?>" required>
+                                            value="<?= isset($row['funding_source']) ? $row['funding_source'] : "" ?>"
+                                            required>
                                     </div>
                                 </div>
                             </div>
