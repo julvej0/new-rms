@@ -40,13 +40,12 @@ include_once dirname(__FILE__, 3) . "/views/admin/account-management/functionali
                 <i class='bx bxs-group icon'></i>Authors</a>
         </li>
         <li>
-            <a href="../../../views/admin/user-accounts/user-accounts.php" id='user-accounts-link'
-                onclick="showLoadingScreen()">
+            <a href="../../../views/admin/user-accounts/user-accounts.php" id='user-accounts-link' onclick="showLoadingScreen()">
                 <i class='bx bxs-user icon'></i></i>User Accounts</a>
         </li>
         <li class="divider" data-text="Account">Account</li>
         <li>
-            <a href="../../../views/admin/logs/logs.php" id='log-link' onclick="showLoadingScreen()">
+            <a href="../../../views/admin/logs/logs.php" id='logs-link' onclick="showLoadingScreen()">
                 <i class='bx bxs-log-in icon'></i>Logs</a>
         </li>
         <li id="account-settings">
