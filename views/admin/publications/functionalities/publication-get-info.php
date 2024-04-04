@@ -48,6 +48,7 @@ function get_data($search, $type, $class, $year, $page_number)
                 'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
                 'publisher' => $content->publisher ?? "Not Available",
                 'abstract' => $content->abstract ?? "Not Available",
+                'status' => $content->status ?? "Not Available",
             );
         } else {
             $table_rows[] = array(
@@ -68,6 +69,7 @@ function get_data($search, $type, $class, $year, $page_number)
                 'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
                 'publisher' => $content->publisher ?? "Not Available",
                 'abstract' => $content->abstract ?? "Not Available",
+                'status' => $content->status ?? "Not Available",
             );
         }
     }
