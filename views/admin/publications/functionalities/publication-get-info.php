@@ -1,6 +1,6 @@
 <?php
 
-function get_data($conn, $search, $type, $class, $year, $page_number)
+function get_data($search, $type, $class, $year, $page_number)
 {
     $encodedJsonResponse = getReq('http://localhost:5000/table_publications');
     $tableData = $encodedJsonResponse->table_publications;

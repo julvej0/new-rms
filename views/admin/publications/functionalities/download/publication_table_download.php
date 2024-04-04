@@ -1,8 +1,8 @@
 <?php
     require_once('../download/pub-get-info-download.php');
-
-    $additionalQuery = authorSearch($authorurl, $search);
-    $table_rows = get_data($conn, $additionalQuery, $search);
+    include_once dirname(__FILE__, 6) . "/helpers/db.php";
+    
+    $table_rows = get_data($publicationurl, $authorurl, $search);
 ?>
 
 <table id="mytablepub">

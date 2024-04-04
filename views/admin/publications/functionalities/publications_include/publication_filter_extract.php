@@ -1,7 +1,4 @@
 <?php
-
-
-
 function getDistinctYear($url)
 {
     $response = @file_get_contents($url);

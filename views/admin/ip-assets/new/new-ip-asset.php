@@ -72,7 +72,7 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                         <option value="Padre Garcia">Padre Garcia</option>
                                         <option value="Rosario">Rosario</option>
                                         <option value="San Juan">San Juan</option>
-                                        <option value="CENTRAL">CENTRAL</option>
+                                        <option value="Central">Central</option>
                                     </select>
                                 </div>
                             </div>

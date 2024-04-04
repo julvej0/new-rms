@@ -1,49 +1,84 @@
 <?php
-function get_data($ipassetsurl, $authorurl, $additionalQuery, $search, $type, $class, $year)
+function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
 {
     $search_query = $search != 'empty_search' ? $search : '';
     $no_of_records_per_page = 10;
 
-    include_once dirname(__FILE__, 5) . '/helpers/utils/utils-ipasset.php';
-    include_once dirname(__FILE__, 5) . '/helpers/utils/utils-author.php';
-    $response = getIpassets($ipassetsurl);
-    if ($response != false) {
-        foreach ($response as $key => $row) {
-            $authorIds = explode(',', $row['authors']);
-            $authorNames = array();
+    $encodedJsonResponse = getReq($ipassetsurl);
+    if (isset($encodedJsonResponse->error)) {
 
-            foreach ($authorIds as $authorId) {
-                $authorResult = getAuthorById($authorurl, $authorId);
-                if ($authorResult != false) {
-                    foreach ($authorResult as $key => $author) {
-                        $authorNames[] = $author;
+        return null;
+    }
+    $tableData = $encodedJsonResponse->table_ipassets;
+
+    // retrieve all the authors registered from the api
+    $authorObj = getReq($authorurl);
+    if (!isset($authorObj->error)) {
+        $authorObj = $authorObj->table_authors;
+    } else {
+        $authorObj = [];
+    }
+    // retrieve all the values from json response
+    foreach ($tableData as $index => $content) {
+        // retrieve the names for each authors that are registered for this paper
+        // if (($count - 10) < $index && $index < $count) {
+        $authorList = "";
+        if (isset($content->authors)) {
+            $authors = explode(',', $content->authors);
+
+            // retrieve the author names from the api response
+            foreach ($authors as $aid) {
+                foreach ($authorObj as $registeredAuthor) {
+                    if ($aid == $registeredAuthor->author_id) {
+                        $authorList .= $registeredAuthor->author_name . "<br/>";
+                        break;
                     }
                 }
             }
+        }
 
-            $authorNamesString = implode(', ', $authorNames);
-
+        if ($content->status == "not-registered") {
             $table_rows[] = array(
-                'registration_number' => $row['registration_number'],
-                'title_of_work' => $row['title_of_work'],
-                'type_of_document' => $row['type_of_document'],
-                'class_of_work' => $row['class_of_work'],
-                'date_of_creation' => $row['date_of_creation'],
-                'date_registered' => $row['date_registered'],
-                'campus' => isset($row['campus']) ? $row['campus'] : null,
-                'college' => isset($row['college']) ? $row['college'] : null,
-                'program' => isset($row['program']) ? $row['program'] : null,
-                'authors' => $authorNamesString,
-                'hyperlink' => $row['hyperlink'],
-                'status' => $row['status']
+                'registration_number' => $content->registration_number,
+                'title_of_work' => $content->title_of_work ?? "Not Available",
+                'type_of_document' => $content->type_of_document ?? "Not Available",
+                'class_of_work' => $content->class_of_work ?? "Not Available",
+                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
+                'date_registered' => "Not Available",
+                'campus' => $content->campus ?? "Not Available",
+                'college' => $content->college ?? "Not Available",
+                'program' => $content->program ?? "Not Available",
+                'authors' => $authorList ?? "Not Available",
+                'hyperlink' => 'Not Available',
+                'status' => $content->status ?? "Not Available",
+                'certificate' => 'Not Available',
+            );
+        } else {
+            $table_rows[] = array(
+                'registration_number' => $content->registration_number,
+                'title_of_work' => $content->title_of_work ?? "Not Available",
+                'type_of_document' => $content->type_of_document ?? "Not Available",
+                'class_of_work' => $content->class_of_work ?? "Not Available",
+                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
+                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
+                'campus' => $content->campus ?? "Not Available",
+                'college' => $content->college ?? "Not Available",
+                'program' => $content->program ?? "Not Available",
+                'authors' => $authorList ?? "Not Available",
+                'hyperlink' => 'Not Available',
+                'status' => $content->status ?? "Not Available",
+                'certificate' => 'Not Available',
             );
         }
-        $table_rows = keywordsearchAPI($table_rows, $search);
-
-        return $table_rows;
-    } else {
-        return null;
+        // }
     }
+
+    // perform a searching operation for all keywords
+    $table_rows = keywordsearchAPI($table_rows, $search);
+    // $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
+    // $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
+    // $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
+    return $table_rows;
 
 }
 
@@ -69,31 +104,16 @@ function keywordsearchAPI($tableRows, $strmatch)
     }
     return $tableRows;
 }
-
-function authorSearch($conn, $search_query)
+function getReq($url)
 {
-    $additionalQuery = "";
-    if (isset($_GET['search'])) {
-        //Select Author Ids that matches the search
-        $select_authors = "SELECT author_id as author FROM table_authors WHERE author_name ILIKE '%$search_query%'";
-        $result = pg_query($conn, $select_authors);
+    // retrieve all the data from the api
+    $curlRequest = curl_init($url);
+    curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, "GET");
+    curl_setopt($curlRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
 
-        if (pg_num_rows($result) > 0) {
-            while ($row = pg_fetch_assoc($result)) {
-                $author_id[] = $row['author'];
-            }//Additional query for search
-            foreach ($author_id as $a_id) {
-                $additionalQuery .= " OR authors ILIKE '%$a_id%' ";
-            }
+    $response = curl_exec($curlRequest);
 
-        }
-
-
-        return $additionalQuery;
-    } else {
-        return null;
-    }
-
-
+    return json_decode($response);
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-    $total_records = countPublications($conn, authorSearch($conn, $search_query), $search_query, $campus_query, $dateStart_query, $dateEnd_query );
+    $total_records = countPublications($search_query, $campus_query, $dateStart_query, $dateEnd_query );
     $count_text = $search_query != "empty_search" ? "Total Publications for \"". $search_query. "\" : " : "Total Publications :";
 ?>
 

@@ -24,7 +24,6 @@
 
 <?php
 include dirname(__FILE__, 5) . '/helpers/db.php';
-include_once "articles-search-author.php";
 require_once "config.php";
 include_once "articles-get-info.php";
 
@@ -35,63 +34,6 @@ $no_of_records_per_page = 10;
 $offset = ($page_number - 1) * $no_of_records_per_page;
 
 $search = $search_query != 'empty_search' ? $search_query : '';
-
-//Search Query
-// $sqlSearchQuery = "SELECT * 
-//                     FROM (
-//                         SELECT * 
-//                         FROM table_publications 
-//                         WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%" . trim($search) . "%' ";
-
-// if (authorSearch($conn, $search_query) !== "empty_search") {
-//   $sqlSearchQuery .= authorSearch($conn, $search_query);
-// }
-
-// $sqlSearchQuery .= " )AS searched_pub WHERE 1=1 ";
-
-// if ($campus_query !== 'empty_campus') {
-
-//   $sqlSearchQuery .= "AND (";
-//   if (is_array($campus_query)) {
-//     foreach ($campus_query as $campus) {
-//       if ($campus == $campus_query[0]) {
-//         $sqlSearchQuery .= "  searched_pub.campus = '$campus' ";
-//       } else {
-//         $sqlSearchQuery .= " OR  searched_pub.campus = '$campus' ";
-//       }
-
-//     }
-
-//   } else {
-//     $sqlSearchQuery .= "  searched_pub.campus = '$campus_query' ";
-//   }
-
-//   $sqlSearchQuery .= ") ";
-// }
-// if ($dateStart_query !== 'empty_dStart' && $dateEnd_query !== 'empty_dEnd') {
-//   $sqlSearchQuery .= " AND EXTRACT(YEAR FROM searched_pub.date_published) BETWEEN $dateStart_query AND $dateEnd_query";
-// }
-
-// if ($sort_query !== 'empty_sort') {
-//   if ($sort_query === 'title') {
-//     $sort_order = 'ASC'; // Sort by title 
-//     $sort_column = 'title_of_paper';
-//   } elseif ($sort_query === 'campus') {
-//     $sort_order = 'ASC'; // Sort by campus in ascending order
-//     $sort_column = 'campus';
-//   } else {
-
-//     $sort_column = 'date_published';
-//     $sort_order = 'DESC'; // Sort by date in descending order (default)
-//   }
-//   $sqlSearchQuery .= " ORDER BY $sort_column $sort_order ";
-// }
-
-
-
-// $sqlSearchQuery .= " OFFSET $offset LIMIT $no_of_records_per_page";
-
-// $sql_result = pg_query($conn, $sqlSearchQuery);
 
 $searchQuery = get_data($search, $sort_query, $dateStart_query, $dateEnd_query, $campus_query);
 if ($searchQuery != null && count($searchQuery) > 0) {

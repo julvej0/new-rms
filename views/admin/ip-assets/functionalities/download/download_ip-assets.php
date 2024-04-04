@@ -1,15 +1,15 @@
 <?php
 include dirname(__FILE__, 6) . '/helpers/db.php';
-require_once('../download/ipa-get-info-download.php');
+require_once ('../download/ipa-get-info-download.php');
 
 $search_query = (isset($_GET['search']) && strpos($_GET['search'], "'") === false) ? $_GET['search'] : 'empty_search';
 $type = (isset($_GET['type']) && strpos($_GET['type'], "'") === false) ? $_GET['type'] : 'empty_type';
 $class = (isset($_GET['class']) && strpos($_GET['class'], "'") === false) ? $_GET['class'] : 'empty_class';
 $year = (isset($_GET['year']) && strpos($_GET['year'], "'") === false) ? $_GET['year'] : 'empty_year';
-$additionalQuery = authorSearch($conn, $search_query);
+
 
 include_once dirname(__FILE__, 6) . '\helpers\db.php';
-$table_rows = get_data($ipassetsurl, $authorurl, $additionalQuery, $search_query, $type, $class, $year);
+$table_rows = get_data($ipassetsurl, $authorurl, $search_query, $type, $class, $year);
 ?>
 
 <!-- <link rel="stylesheet" href="../../ip-assets.css"> -->
@@ -58,8 +58,7 @@ $table_rows = get_data($ipassetsurl, $authorurl, $additionalQuery, $search_query
         </thead>
         <tbody>
             <?php
-            $result_count = pg_query($conn, "SELECT COUNT(*) FROM table_ipassets WHERE CONCAT(registration_number, title_of_work, type_of_document, class_of_work, date_of_creation, campus, college, program, authors) ILIKE '%$search_query%'" . $additionalQuery . ";");
-            $total_records = pg_fetch_result($result_count, 0, 0);
+            $total_records = count($table_rows);
 
             if ($table_rows !== null) {
                 foreach ($table_rows as $row) {

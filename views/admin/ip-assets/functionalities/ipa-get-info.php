@@ -1,12 +1,6 @@
 <?php
 function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number)
 {
-    return api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number);
-}
-
-// retrieves the data from the api route
-function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number)
-{
     $encodedJsonResponse = getReq($ipassetsurl);
     if (isset($encodedJsonResponse->error)) {
 
@@ -23,8 +17,9 @@ function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $
     }
     $count = $page_number * 10;
     // retrieve all the values from json response
-    foreach ($tableData as $content) {
+    foreach ($tableData as $index => $content) {
         // retrieve the names for each authors that are registered for this paper
+        // if (($count - 10) < $index && $index < $count) {
         $authorList = "";
         if (isset($content->authors)) {
             $authors = explode(',', $content->authors);
@@ -39,7 +34,6 @@ function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $
                 }
             }
         }
-
 
         if ($content->status == "not-registered") {
             $table_rows[] = array(
@@ -74,6 +68,7 @@ function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $
                 'certificate' => 'Not Available',
             );
         }
+        // }
     }
 
     // perform a searching operation for all keywords
@@ -81,7 +76,6 @@ function api_get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $
     $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
     $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
     $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
-
     return $table_rows;
 }
 
@@ -150,6 +144,10 @@ function getReq($url)
 
     return json_decode($response);
 }
+
+// retrieves the data from the api route
+
+
 
 
 

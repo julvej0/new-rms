@@ -84,6 +84,7 @@ if (isset($_POST['edit'])) {
                                                 <option value="Padre Garcia">Padre Garcia</option>
                                                 <option value="Rosario">Rosario</option>
                                                 <option value="San Juan">San Juan</option>
+                                                <option value="Central">Central</option>
                                             </select>
                                         </div>
                                     </div>

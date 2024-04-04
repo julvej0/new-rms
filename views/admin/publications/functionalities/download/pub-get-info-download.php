@@ -1,97 +1,101 @@
 <?php
-function get_data($conn, $additionalQuery, $search ) {
-    $search_query = $search == 'empty_search' ? '' : $search ;
-    //Search Query
-    $sqlSearchQuery = "SELECT * 
-                        FROM (
-                            SELECT * 
-                            FROM table_publications 
-                            WHERE CONCAT(publication_id, date_published, quartile, authors, department, college, campus, title_of_paper, type_of_publication, funding_source, number_of_citation, google_scholar_details, sdg_no, funding_type, nature_of_funding, publisher) ILIKE '%$search_query%' ";
-    
-    
-    if ($additionalQuery !== "empty_search") {
-        $sqlSearchQuery .= $additionalQuery;
-    }
+function get_data($publicationurl, $authorurl, $search)
+{
+    $search_query = $search == 'empty_search' ? '' : $search;
 
-    $sqlSearchQuery .= " )AS searched_pub WHERE 1=1 ";
-
-    
-    $sqlSearchQuery .= "ORDER BY publication_id DESC";
-   
-    $result = pg_query($conn, $sqlSearchQuery);
-    $resultCheck = pg_num_rows($result);
-
-    if ($resultCheck > 0) {
-        while ($row = pg_fetch_assoc($result)) {
-
-            $authorIds = explode(',', $row['authors']);
-            $authorNames = array();
-
-            foreach ($authorIds as $id) {
-                $authorResult = pg_query($conn, "SELECT author_name FROM table_authors WHERE author_id = '$id' ");
-                $authorRow = pg_fetch_assoc($authorResult);
-                if ($authorRow) {
-                    $authorNames[] = $authorRow['author_name'];
-                }
-            }
-            $authorNamesString = implode(', ', $authorNames);
-
-            $table_rows[] = array(
-                'publication_id' => $row['publication_id'],
-                'date_published' => $row['date_published'],
-                'quartile' => $row['quartile'],
-                'department' => $row['department'],
-                'title_of_paper' => $row['title_of_paper'],
-                'type_of_publication' => $row['type_of_publication'],
-                'funding_source' => $row['funding_source'],
-                'number_of_citation' => $row['number_of_citation'],
-                'google_scholar_details' => $row['google_scholar_details'],
-                'sdg_no' => $row['sdg_no'],
-                'authors' => $authorNamesString,
-                'funding_type' => $row['funding_type'],
-                'nature_of_funding' => $row['nature_of_funding'],
-                'publisher' => $row['publisher'],
-                'campus' => $row['campus'],
-                'college' => $row['college'],
-            );
-        }
-        return $table_rows;
-    } else {
+    $encodedJsonResponse = getReq($publicationurl);
+    if ($encodedJsonResponse == null) {
         return null;
     }
-}
+    $tableData = $encodedJsonResponse->table_publications;
 
+    // retrieve all the authors registered from the api
+    $authorObj = getReq($authorurl);
+    $authorObj = !isset($authorObj->error) ? $authorObj->table_authors : [];
 
-function authorSearch($authorurl, $search) {
-    if ($search != 'empty_search' || $search != ' ') {
-        $authors = file_get_contents($authorurl);
-        
-        if ($authors !== false) {
-            $authors = json_decode($authors, true);
-            $authorIDs = array_column($authors['table_authors'], 'author_id');
-            
-            if (!empty($authorIDs)) {
-                $additionalQuery = "OR ( ";
-                foreach ($authorIDs as $index => $authorID) {
-                    if ($index == 0) {
-                        $additionalQuery .= " authors ILIKE '%$authorID%' ";
-                    } else {
-                        $additionalQuery .= " OR authors ILIKE '%$authorID%' ";
+    // $count = $page_number * 10;
+    // retrieve all the values from json response
+    foreach ($tableData as $content) {
+        // retrieve the names for each authors that are registered for this paper
+        $authorList = "";
+        if (isset($content->authors)) {
+            $authors = explode(',', $content->authors);
+
+            // retrieve the author names from the api response
+            foreach ($authors as $aid) {
+                foreach ($authorObj as $registeredAuthor) {
+                    if ($aid == $registeredAuthor->author_id) {
+                        $authorList .= (strlen($authorList) > 0 ? ", " : "") . $registeredAuthor->author_name;
+                        break;
                     }
                 }
-                $additionalQuery .= " ) ";
-                return $additionalQuery;
             }
         }
-    } else {
-        return "empty_search";
+
+        $table_rows[] = array(
+            'publication_id' => $content->publication_id,
+            'date_published' => isset($content->date_published) ? date_format(date_create($content->date_published), "m/d/Y") : "Not Available",
+            'quartile' => $content->quartile ?? "Not Available",
+            'department' => $content->department ?? "Not Available",
+            'title_of_paper' => $content->title_of_paper ?? "Not Available",
+            'type_of_publication' => $content->type_of_publication ?? "Not Available",
+            'funding_source' => $content->funding_source ?? "Not Available",
+            'number_of_citation' => $content->number_of_citation ?? "Not Available",
+            'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
+            'sdg_no' => $content->sdg_no ?? "Not Available",
+            'authors' => $authorList ?? "Not Available",
+            'funding_type' => $content->funding_type ?? "Not Available",
+            'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
+            'publisher' => $content->publisher ?? "Not Available",
+            'campus' => $content->campus ?? "Not Available",
+            'college' => $content->college ?? "Not Available",
+        );
     }
-    return '';
+
+    $table_rows = keywordsearchAPI($table_rows, $search);
+
+    return $table_rows;
 }
 
+function keywordsearchAPI($tableRows, $strmatch)
+{
+    if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '') {
+        return $tableRows;
+    }
 
+    // pop the values that isn't like the authorname
+    foreach ($tableRows as $index => $rowData) {
+        $isMatched = strpos(strtolower($rowData['title_of_paper']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['authors']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['publication_id']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['campus']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['college']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['department']), strtolower($strmatch)) !== false
+            || strpos(strtolower($rowData['quartile']), strtolower($strmatch)) !== false;
 
+        if (!$isMatched) {
+            unset($tableRows[$index]);
+        }
+    }
+    return $tableRows;
+}
 
+function getReq($url)
+{
+    // retrieve all the data from the api
+    $curlRequest = curl_init($url);
+    curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, "GET");
+    curl_setopt($curlRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($curlRequest);
+
+    $decodedResponse = json_decode($response);
+    if (isset($decodedResponse->error)) {
+
+        return null;
+    }
+    return $decodedResponse;
+}
 
 ?>
-
