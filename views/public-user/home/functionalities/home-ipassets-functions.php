@@ -53,7 +53,7 @@ function getIpAssetsContributors($ipassetsurl, $authorurl)
     foreach ($top9Authors as $authorId => $count) {
         if (isset($authorMapping[$authorId])) {
             $contributors[] = array(
-                'author_name' => $authorId,
+                'author_name' => $authorMapping[$authorId],
                 'total_publications' => $count
             );
         }

@@ -11,7 +11,7 @@ function getPublicationsContributors($authorurl, $publicationurl)
     }
 
     $dataPublications = json_decode($responsePublications, true);
-    if (isset($dataPublications["table_publications"])) {
+    if (!isset($dataPublications["table_publications"])) {
         echo "<p style='text-align: center;'>No publication data found.</p>";
         return;
     }
@@ -34,7 +34,6 @@ function getPublicationsContributors($authorurl, $publicationurl)
         }
     }
     arsort($authorCounts);
-
     $top9Authors = array_slice($authorCounts, 0, 9, true);
 
     $responseAuthors = @file_get_contents($authorurl);
@@ -51,7 +50,7 @@ function getPublicationsContributors($authorurl, $publicationurl)
     foreach ($top9Authors as $authorId => $count) {
         if (isset($authorMapping[$authorId])) {
             $contributors[] = array(
-                'author_name' => $authorId,
+                'author_name' => $authorMapping[$authorId],
                 'total_publications' => $count
             );
         }
@@ -109,6 +108,7 @@ function getMostViewedPapers($publicationurl)
         echo "<p style='text-align: center;>No publication data found.</p>";
         return;
     }
+
     $citationData = array_column($data['table_publications'], 'number_of_citation', 'title_of_paper');
     if (empty($citationData)) {
         echo "<p style='text-align: center;'>No publication data found.</p>";
