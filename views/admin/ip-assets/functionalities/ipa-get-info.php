@@ -1,7 +1,7 @@
 <?php
-function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number)
+function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
 {
-    $encodedJsonResponse = getReq($ipassetsurl);
+    $encodedJsonResponse = getReq($ipassetsurl . "/10");
     if (isset($encodedJsonResponse->error)) {
 
         return null;
@@ -15,7 +15,7 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page
     } else {
         $authorObj = [];
     }
-    $count = $page_number * 10;
+    $authorcolumn = array_column($authorObj, "author_name", "author_id");
     // retrieve all the values from json response
     foreach ($tableData as $index => $content) {
         // retrieve the names for each authors that are registered for this paper
@@ -26,48 +26,29 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page
 
             // retrieve the author names from the api response
             foreach ($authors as $aid) {
-                foreach ($authorObj as $registeredAuthor) {
-                    if ($aid == $registeredAuthor->author_id) {
-                        $authorList .= $registeredAuthor->author_name . "<br/>";
-                        break;
-                    }
+                if (isset($authorcolumn[$aid])) {
+                    $authorList .= $authorcolumn[$aid] . "<br/>";
                 }
             }
         }
 
-        if ($content->status == "not-registered") {
-            $table_rows[] = array(
-                'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work ?? "Not Available",
-                'type_of_document' => $content->type_of_document ?? "Not Available",
-                'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
-                'date_registered' => "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'program' => $content->program ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'hyperlink' => 'Not Available',
-                'status' => $content->status ?? "Not Available",
-                'certificate' => 'Not Available',
-            );
-        } else {
-            $table_rows[] = array(
-                'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work ?? "Not Available",
-                'type_of_document' => $content->type_of_document ?? "Not Available",
-                'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
-                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'program' => $content->program ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'hyperlink' => 'Not Available',
-                'status' => $content->status ?? "Not Available",
-                'certificate' => 'Not Available',
-            );
-        }
+        $rowData = [
+            'registration_number' => $content->registration_number,
+            'title_of_work' => $content->title_of_work ?? "Not Available",
+            'type_of_document' => $content->type_of_document ?? "Not Available",
+            'class_of_work' => $content->class_of_work ?? "Not Available",
+            'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
+            'date_registered' => $content->status == "not-registered" ? "Not Available" : date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
+            'campus' => $content->campus ?? "Not Available",
+            'college' => $content->college ?? "Not Available",
+            'program' => $content->program ?? "Not Available",
+            'authors' => $authorList ?? "Not Available",
+            'hyperlink' => 'Not Available',
+            'status' => $content->status ?? "Not Available",
+            'certificate' => 'Not Available',
+        ];
+
+        $table_rows[] = $rowData;
         // }
     }
 
@@ -82,8 +63,7 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page
 // keyword searching operation for all the string matches in the table
 function keywordsearchAPI($tableRows, $strmatch)
 {
-    if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '') {
-
+    if ($strmatch == 'empty_search' || trim($strmatch) == '') {
         return $tableRows;
     }
 
@@ -106,7 +86,7 @@ function keywordsearchAPI($tableRows, $strmatch)
 // searches for the type of document
 function searchTypeAPI($tableRows, $strmatch, $tableColumn)
 {
-    if ($strmatch == 'empty_type' || $strmatch == '' || $strmatch == ' ' || $strmatch == 'empty_class' || $strmatch == 'empty_year')
+    if ($strmatch == 'empty_type' || trim($strmatch) == '' || $strmatch == 'empty_class' || $strmatch == 'empty_year')
         return $tableRows;
     return searchAPI($tableRows, $strmatch, $tableColumn);
 }
@@ -141,7 +121,7 @@ function getReq($url)
     curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($curlRequest);
-
+    curl_close($curlRequest);
     return json_decode($response);
 }
 
