@@ -138,7 +138,8 @@ if (isset($_POST['edit'])) {
                                             ?>
                                             <div class="checkbox-col">
                                                 <input type="checkbox" name="sdg_no[]" value="1" id="sdg1"
-                                                    onclick="limitSelection()" <?php if (in_array('1', $sdg_array))
+                                                    onclick="limitSelection()" 
+                                                    <?php if (in_array('1', $sdg_array))
                                                         echo 'checked="checked"'; ?>>
                                                 <label class="sdg-checkbox" for="sdg1" title="SDG 1: No Poverty">SDG
                                                     1</label>
