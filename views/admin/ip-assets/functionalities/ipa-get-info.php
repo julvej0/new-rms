@@ -1,9 +1,14 @@
 <?php
-function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
+function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page)
 {
-    $encodedJsonResponse = getReq($ipassetsurl . "/10");
-    if (isset($encodedJsonResponse->error)) {
-
+    if($search == "empty_search") $search = "";
+    if($type == "empty_type") $type = "";
+    if($class == "empty_class") $class = "";
+    if($year == "empty_year") $year = "";
+    $encodedType = urlencode($type);
+    $encodedSearch = urlencode($search);
+    $encodedJsonResponse = getReq($ipassetsurl . "?page=$page&search=$encodedSearch&type=$encodedType&class=$class&year=$year&limit=10&author=$encodedSearch");
+    if (isset($encodedJsonResponse->error) || $encodedJsonResponse === null) {
         return null;
     }
     $tableData = $encodedJsonResponse->table_ipassets;
@@ -15,6 +20,7 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
     } else {
         $authorObj = [];
     }
+
     $authorcolumn = array_column($authorObj, "author_name", "author_id");
     // retrieve all the values from json response
     foreach ($tableData as $index => $content) {
@@ -49,14 +55,13 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
         ];
 
         $table_rows[] = $rowData;
-        // }
     }
 
     // perform a searching operation for all keywords
-    $table_rows = keywordsearchAPI($table_rows, $search);
-    $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
-    $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
-    $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
+    // $table_rows = keywordsearchAPI($table_rows, $search);
+    // $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
+    // $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
+    // $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
     return $table_rows;
 }
 

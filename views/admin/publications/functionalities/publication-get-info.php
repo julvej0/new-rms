@@ -1,8 +1,21 @@
 <?php
 
-function get_data($search, $type, $class, $year, $page_number)
+function get_data($search, $type, $fund, $year, $page_number)
 {
-    $encodedJsonResponse = getReq('http://localhost:5000/table_publications');
+    if ($search == "empty_search")
+        $search = "";
+    if ($type == "empty_type")
+        $type = "";
+    if ($fund == "empty_fund")
+        $fund = "";
+    if ($year == "empty_year")
+        $year = "";
+    $encodedType = urlencode($type);
+    $encodedSearch = urlencode($search);
+    $encodedJsonResponse = getReq('http://localhost:5000/table_publications' . "?page=$page_number&search=$encodedSearch&type=$encodedType&fund=$fund&year=$year&limit=10&author=$encodedSearch");
+    if (isset($encodedJsonResponse->error) || $encodedJsonResponse === null) {
+        return null;
+    }
     $tableData = $encodedJsonResponse->table_publications;
 
     // retrieve all the authors registered from the api
@@ -29,56 +42,36 @@ function get_data($search, $type, $class, $year, $page_number)
         }
 
 
-        if (!isset($content->date_published)) {
-            $table_rows[] = array(
-                'publication_id' => $content->publication_id,
-                'date_published' => "Not Available",
-                'quartile' => $content->quartile ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'department' => $content->department ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'title_of_paper' => $content->title_of_paper ?? "Not Available",
-                'type_of_publication' => $content->type_of_publication ?? "Not Available",
-                'funding_source' => $content->funding_source ?? "Not Available",
-                'number_of_citation' => $content->number_of_citation ?? "Not Available",
-                'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
-                'sdg_no' => $content->sdg_no ?? "Not Available",
-                'funding_type' => $content->funding_type ?? "Not Available",
-                'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
-                'publisher' => $content->publisher ?? "Not Available",
-                'abstract' => $content->abstract ?? "Not Available",
-                'status' => $content->status ?? "Not Available",
-            );
-        } else {
-            $table_rows[] = array(
-                'publication_id' => $content->publication_id,
-                'date_published' => date_format(date_create($content->date_published), "m/d/Y") ?? "Not Available",
-                'quartile' => $content->quartile ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'department' => $content->department ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'title_of_paper' => $content->title_of_paper ?? "Not Available",
-                'type_of_publication' => $content->type_of_publication ?? "Not Available",
-                'funding_source' => $content->funding_source ?? "Not Available",
-                'number_of_citation' => $content->number_of_citation ?? "Not Available",
-                'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
-                'sdg_no' => $content->sdg_no ?? "Not Available",
-                'funding_type' => $content->funding_type ?? "Not Available",
-                'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
-                'publisher' => $content->publisher ?? "Not Available",
-                'abstract' => $content->abstract ?? "Not Available",
-                'status' => $content->status ?? "Not Available",
-            );
-        }
+        $date_published = isset($content->date_published) ? date_format(date_create($content->date_published), "m/d/Y") : "Not Available";
+
+        $table_rows[] = array(
+            'publication_id' => $content->publication_id,
+            'date_published' => $date_published,
+            'quartile' => $content->quartile ?? "Not Available",
+            'authors' => $authorList ?? "Not Available",
+            'department' => $content->department ?? "Not Available",
+            'college' => $content->college ?? "Not Available",
+            'campus' => $content->campus ?? "Not Available",
+            'title_of_paper' => $content->title_of_paper ?? "Not Available",
+            'type_of_publication' => $content->type_of_publication ?? "Not Available",
+            'funding_source' => $content->funding_source ?? "Not Available",
+            'number_of_citation' => $content->number_of_citation ?? "Not Available",
+            'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
+            'sdg_no' => $content->sdg_no ?? "Not Available",
+            'funding_type' => $content->funding_type ?? "Not Available",
+            'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
+            'publisher' => $content->publisher ?? "Not Available",
+            'abstract' => $content->abstract ?? "Not Available",
+            'status' => $content->status ?? "Not Available",
+        );
+
     }
 
     // perform a searching operation for all keywords
-    $table_rows = keywordsearchAPI($table_rows, $search);
-    $table_rows = searchTypeAPI($table_rows, $type, 'type_of_publication');
-    $table_rows = searchTypeAPI($table_rows, $class, "nature_of_funding");
-    $table_rows = searchTypeAPI($table_rows, $year, "date_published");
+    // $table_rows = keywordsearchAPI($table_rows, $search);
+    // $table_rows = searchTypeAPI($table_rows, $type, 'type_of_publication');
+    // $table_rows = searchTypeAPI($table_rows, $class, "nature_of_funding");
+    // $table_rows = searchTypeAPI($table_rows, $year, "date_published");
 
     return $table_rows;
 }

@@ -73,10 +73,17 @@ message ReadIP_AssetResponse{
    IP_Asset ip_asset = 1;
 }
 message ReadIP_AssetsRequest{
- 
+   int32 page = 1;
+   string search = 2;
+   string type = 3;
+   string class = 4;
+   string year = 5;
+   int32 limit = 6;
+   string author = 7;
 }
 message ReadIP_AssetsResponse{
    repeated IP_Asset ip_assets =1;
+   int32 total_count = 2;
 }
 message UpdateIP_AssetRequest{
    IP_Asset ip_asset = 1;
@@ -124,10 +131,17 @@ message ReadPublicationResponse {
    Publication publication = 1;
 }
 message ReadPublicationsRequest {
-
+   int32 page = 1;
+   string search = 2;
+   string type = 3;
+   string fund = 4;
+   string year = 5;
+   int32 limit = 6;
+   string author = 7;
 }
 message ReadPublicationsResponse {
    repeated Publication publications = 1;
+   int32 total_count = 2;
 }
 message UpdatePublicationRequest {
    Publication publication = 1;

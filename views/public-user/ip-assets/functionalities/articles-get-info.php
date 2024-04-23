@@ -31,39 +31,23 @@ function get_data($search, $sort_query, $dateStart_query, $dateEnd_query, $campu
             }
         }
 
-        if ($content->status == "not-registered") {
-            $table_rows[] = array(
-                'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work,
-                'type_of_document' => $content->type_of_document,
-                'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
-                'date_registered' => "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'program' => $content->program ?? "Not Available",
-                'authors' => $authorList == "" ? "Not Available" : $authorList,
-                'hyperlink' => 'Not Available',
-                'status' => $content->status,
-                'certificate' => 'Not Available',
-            );
-        } else {
-            $table_rows[] = array(
-                'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work,
-                'type_of_document' => $content->type_of_document,
-                'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y"),
-                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y"),
-                'campus' => $content->campus ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'program' => $content->program ?? "Not Available",
-                'authors' => $authorList == "" ? "Not Available" : $authorList,
-                'hyperlink' => 'Not Available',
-                'status' => $content->status,
-                'certificate' => 'Not Available',
-            );
-        }
+        $rowData = [
+            'registration_number' => $content->registration_number,
+            'title_of_work' => $content->title_of_work ?? "Not Available",
+            'type_of_document' => $content->type_of_document ?? "Not Available",
+            'class_of_work' => $content->class_of_work ?? "Not Available",
+            'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
+            'date_registered' => $content->status == "not-registered" ? "Not Available" : date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
+            'campus' => $content->campus ?? "Not Available",
+            'college' => $content->college ?? "Not Available",
+            'program' => $content->program ?? "Not Available",
+            'authors' => $authorList ?? "Not Available",
+            'hyperlink' => 'Not Available',
+            'status' => $content->status ?? "Not Available",
+            'certificate' => 'Not Available',
+        ];
+
+        $table_rows[] = $rowData;
     }
     // perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);

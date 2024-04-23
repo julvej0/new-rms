@@ -38,7 +38,7 @@ $table_rows = get_data($ipassetsurl, $authorurl, $search_query, $type, $class, $
                     <i class='bx bx-search search-icon'></i>
                 </div>
             </form>
-            <button>Off</button>
+            <!-- <button>Off</button> -->
         </div>
     </div>
     <table id="tbl_download_ip-assets">
@@ -59,21 +59,20 @@ $table_rows = get_data($ipassetsurl, $authorurl, $search_query, $type, $class, $
         <tbody>
             <?php
             $total_records = count($table_rows);
-
             if ($table_rows !== null) {
                 foreach ($table_rows as $row) {
-                    echo '<tr>
-                            <td class="reg-num-col col-registration">' . $row['registration_number'] . '</td>
-                            <td class="title-col col-title">' . $row['title_of_work'] . '</td>
-                            <td class="type-col col-type">' . ($row['type_of_document'] != null ? $row['type_of_document'] : "N/A") . '</td>
-                            <td class="cow-col col-cow">' . $row['class_of_work'] . '</td>
-                            <td class="tbl-col">' . ($row['date_of_creation'] != null ? $row['date_of_creation'] : "N/A") . '</td>
-                            <td class="date-reg-col col-date-reg">' . $row['date_registered'] . '</td>
-                            <td class="campus-col col-campus">' . ($row['campus'] != null ? $row['campus'] : "N/A") . '</td>
-                            <td class="college-col col-college">' . ($row['college'] != null ? $row['college'] : "N/A") . '</td>
-                            <td class="program-col col-program">' . ($row['program'] != null ? $row['program'] : "N/A") . '</td>
-                            <td class="authors-col col-authors">' . ($row['authors'] != null ? $row['authors'] : "N/A") . '</td>
-                        </tr>';
+                        echo '<tr>
+                                <td class="reg-num-col col-registration">' . $row['registration_number'] . '</td>
+                                <td class="title-col col-title">' . $row['title_of_work'] . '</td>
+                                <td class="type-col col-type">' . ($row['type_of_document'] != null ? $row['type_of_document'] : "N/A") . '</td>
+                                <td class="cow-col col-cow">' . $row['class_of_work'] . '</td>
+                                <td class="tbl-col">' . ($row['date_of_creation'] != null ? $row['date_of_creation'] : "N/A") . '</td>
+                                <td class="date-reg-col col-date-reg">' . $row['date_registered'] . '</td>
+                                <td class="campus-col col-campus">' . ($row['campus'] != null ? $row['campus'] : "N/A") . '</td>
+                                <td class="college-col col-college">' . ($row['college'] != null ? $row['college'] : "N/A") . '</td>
+                                <td class="program-col col-program">' . ($row['program'] != null ? $row['program'] : "N/A") . '</td>
+                                <td class="authors-col col-authors">' . ($row['authors'] != null ? $row['authors'] : "N/A") . '</td>
+                            </tr>';
                 }
             } else {
                 echo '<tr>

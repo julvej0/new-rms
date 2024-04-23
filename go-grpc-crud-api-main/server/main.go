@@ -308,12 +308,45 @@ func (*server) GetIP_Asset(ctx context.Context, req *pb.ReadIP_AssetRequest) (*p
 func (*server) GetIP_Assets(ctx context.Context, req *pb.ReadIP_AssetsRequest) (*pb.ReadIP_AssetsResponse, error) {
 	fmt.Println("Read IP_assets")
 	ipAssets := []*pb.IP_Asset{}
-	res := DB.Table(table_ipassets).Find(&ipAssets)
+	page := req.GetPage()
+	search := req.GetSearch()
+	typeofwork := req.GetType()
+	class := req.GetClass()
+	year := req.GetYear()
+	limit := req.GetLimit()
+	offset := (int(page) - 1) * 10
+	res := DB.Table(table_ipassets)
+
+	if search != "" {
+		res = res.Joins("INNER JOIN table_authors a ON table_ipassets.authors LIKE CONCAT('%', a.author_id, '%')").
+    	Where("a.author_name ILIKE ? OR title_of_work ILIKE ? OR campus ILIKE ? OR college ILIKE ? OR registration_number ILIKE ? OR status ILIKE ?",
+        "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%")
+	}
+
+	if typeofwork != ""{
+		res = res.Where("type_of_document ILIKE ?","%"+typeofwork+"%")
+	}
+
+	if class != ""{
+		res = res.Where("class_of_work ILIKE ?","%"+class+"%")
+	}
+
+	if year != ""{
+		res = res.Where("EXTRACT(year FROM date_registered)::TEXT = ?", year)
+	}
+
+	var totalCount int64
+	res.Model(&pb.IP_Asset{}).Count(&totalCount)
+	if(limit > 0){
+		res = res.Limit(int(limit))
+	}
+	res.Offset(offset).Find(&ipAssets)
 	if res.RowsAffected == 0 {
 		return nil, errors.New("IP_asset not found")
 	}
 	return &pb.ReadIP_AssetsResponse{
 		IpAssets: ipAssets,
+		TotalCount: int32(totalCount),
 	}, nil
 }
 
@@ -462,7 +495,39 @@ func (*server) GetPublication(ctx context.Context, req *pb.ReadPublicationReques
 func (*server) GetPublications(ctx context.Context, req *pb.ReadPublicationsRequest) (*pb.ReadPublicationsResponse, error) {
 	fmt.Println("Read Publications")
 	publications := []*pb.Publication{}
-	res := DB.Table(table_publications).Find(&publications)
+	page := req.GetPage()
+	search := req.GetSearch()
+	typeofpublication := req.GetType()
+	fund := req.GetFund()
+	year := req.GetYear()
+	limit := req.GetLimit()
+	offset := (int(page) - 1) * 10
+	res := DB.Table(table_publications)
+	if search != "" {
+		res = res.Joins("INNER JOIN table_authors a ON table_publications.authors LIKE CONCAT('%', a.author_id, '%')").Select("*").
+		Where("a.author_name ILIKE ? OR title_of_paper ILIKE ? OR publication_id ILIKE ? OR campus ILIKE ? OR department ILIKE ? OR status ILIKE ? OR quartile ILIKE ? OR college ILIKE ?",
+        "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%", "%"+search+"%")
+	}
+
+	if typeofpublication != ""{
+		fmt.Println(typeofpublication)
+		res = res.Where("type_of_publication ILIKE ?","%"+typeofpublication+"%")
+	}
+
+	if fund != ""{
+		res = res.Where("nature_of_funding ILIKE ?","%"+fund+"%")
+	}
+
+	if year != ""{
+		res = res.Where("EXTRACT(year FROM date_published)::TEXT = ?", year)
+	}
+
+	var totalCount int64
+	res.Model(&pb.Publication{}).Count(&totalCount)
+	if(limit > 0){
+		res = res.Limit(int(limit))
+	}
+	res.Offset(offset).Find(&publications)
 	if res.Error != nil {
 		return nil, res.Error
 	}
@@ -472,6 +537,7 @@ func (*server) GetPublications(ctx context.Context, req *pb.ReadPublicationsRequ
 
 	return &pb.ReadPublicationsResponse{
 		Publications: publications,
+		TotalCount: int32(totalCount),
 	}, nil
 }
 

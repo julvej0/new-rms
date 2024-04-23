@@ -18,6 +18,7 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
     } else {
         $authorObj = [];
     }
+    $authorcolumn = array_column($authorObj, "author_name", "author_id");
     // retrieve all the values from json response
     foreach ($tableData as $index => $content) {
         // retrieve the names for each authors that are registered for this paper
@@ -28,48 +29,29 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
 
             // retrieve the author names from the api response
             foreach ($authors as $aid) {
-                foreach ($authorObj as $registeredAuthor) {
-                    if ($aid == $registeredAuthor->author_id) {
-                        $authorList .= $registeredAuthor->author_name . "<br/>";
-                        break;
-                    }
+                if (isset($authorcolumn[$aid])) {
+                    $authorList .= $authorcolumn[$aid] . "<br/>";
                 }
             }
         }
 
-        if ($content->status == "not-registered") {
-            $table_rows[] = array(
-                'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work ?? "Not Available",
-                'type_of_document' => $content->type_of_document ?? "Not Available",
-                'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
-                'date_registered' => "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'program' => $content->program ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'hyperlink' => 'Not Available',
-                'status' => $content->status ?? "Not Available",
-                'certificate' => 'Not Available',
-            );
-        } else {
-            $table_rows[] = array(
-                'registration_number' => $content->registration_number,
-                'title_of_work' => $content->title_of_work ?? "Not Available",
-                'type_of_document' => $content->type_of_document ?? "Not Available",
-                'class_of_work' => $content->class_of_work ?? "Not Available",
-                'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
-                'date_registered' => date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'program' => $content->program ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'hyperlink' => 'Not Available',
-                'status' => $content->status ?? "Not Available",
-                'certificate' => 'Not Available',
-            );
-        }
+        $rowData = [
+            'registration_number' => $content->registration_number,
+            'title_of_work' => $content->title_of_work ?? "Not Available",
+            'type_of_document' => $content->type_of_document ?? "Not Available",
+            'class_of_work' => $content->class_of_work ?? "Not Available",
+            'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
+            'date_registered' => $content->status == "not-registered" ? "Not Available" : date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
+            'campus' => $content->campus ?? "Not Available",
+            'college' => $content->college ?? "Not Available",
+            'program' => $content->program ?? "Not Available",
+            'authors' => $authorList ?? "Not Available",
+            'hyperlink' => 'Not Available',
+            'status' => $content->status ?? "Not Available",
+            'certificate' => 'Not Available',
+        ];
+
+        $table_rows[] = $rowData;
         // }
     }
 

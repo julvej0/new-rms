@@ -392,7 +392,8 @@ function getIpAssetsCampus($ipassetsurl)
     $SanJuan = 0;
 
     foreach ($campusColumn as $campus) {
-        if ($campus === 'Alangilan (Main II)') {
+        if($campus == null) continue;
+        if (strpos('Alangilan (Main II)', $campus) !== false) {
             $Alangilan++;
         } elseif ($campus === 'Balayan') {
             $Balayan++;
@@ -408,7 +409,7 @@ function getIpAssetsCampus($ipassetsurl)
             $Malvar++;
         } elseif ($campus === 'Nasugbu') {
             $Nasugbu++;
-        } elseif ($campus === 'Pablo Borbon (Main I)') {
+        } elseif (strpos("Pablo Borbon (Main I)", $campus) !== false) {
             $PabloBorbon++;
         } elseif ($campus === 'Padre Garcia') {
             $PadreGarcia++;
@@ -555,11 +556,11 @@ function getPublicationsPerYear($publicationurl)
 {
     $dataPublication = @file_get_contents($publicationurl);
     $datadate = json_decode($dataPublication, true);
-    if (!$dataPublication) {
+    if (!$datadate) {
         return null;
     }
     $datesColumn = array_column($datadate['table_publications'], 'date_published');
-
+    $year = null;
     foreach ($datesColumn as $date) {
         $yearValue = date("Y", strtotime($date)); // Extract year (yyyy) from date
         if (isset($year[$yearValue])) {
@@ -567,6 +568,10 @@ function getPublicationsPerYear($publicationurl)
         } else {
             $year[$yearValue] = 1;
         }
+    }
+
+    if($year === null){
+        return null;
     }
 
     ksort($year);

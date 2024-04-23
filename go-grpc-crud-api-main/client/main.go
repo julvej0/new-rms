@@ -210,7 +210,20 @@ func main() {
 
 	//table_ipassets
 	r.GET("/table_ipassets", func(ctx *gin.Context) {
-		res, err := client.GetIP_Assets(ctx, &pb.ReadIP_AssetsRequest{})
+		page, _ := strconv.Atoi(ctx.Query("page")) 
+		limit, _ := strconv.Atoi(ctx.Query("limit")) 
+		search := ctx.Query("search") 
+		type_of_work := ctx.Query("type") 
+		class := ctx.Query("class") 
+		year := ctx.Query("year") 
+		res, err := client.GetIP_Assets(ctx, &pb.ReadIP_AssetsRequest{
+			Page:      int32(page),
+			Search:     search,
+			Type: type_of_work,
+			Class:      class,
+			Year:       year,
+			Limit: int32(limit),
+		})
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{
 				"error": err.Error(),
@@ -219,6 +232,7 @@ func main() {
 		}
 		ctx.JSON(http.StatusOK, gin.H{
 			"table_ipassets": res.IpAssets,
+			"total_count": res.TotalCount,
 		})
 	})
 	r.GET("/table_ipassets/:registration_number", func(ctx *gin.Context) {
@@ -335,7 +349,22 @@ func main() {
 
 	//table_publications
 	r.GET("/table_publications", func(ctx *gin.Context) {
-		res, err := client.GetPublications(ctx, &pb.ReadPublicationsRequest{})
+		page, _ := strconv.Atoi(ctx.Query("page")) 
+		limit, _ := strconv.Atoi(ctx.Query("limit")) 
+		search := ctx.Query("search") 
+		typeofpublication := ctx.Query("type") 
+		fund := ctx.Query("fund") 
+		year := ctx.Query("year") 
+		author := ctx.Query("author")
+		res, err := client.GetPublications(ctx, &pb.ReadPublicationsRequest{
+			Page: int32(page),
+			Search: search,
+			Type: typeofpublication,
+			Fund: fund,
+			Year:       year,
+			Limit: int32(limit),
+			Author: author,
+		})
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{
 				"error": err.Error(),
@@ -344,6 +373,7 @@ func main() {
 		}
 		ctx.JSON(http.StatusOK, gin.H{
 			"table_publications": res.Publications,
+			"total_count": res.TotalCount,
 		})
 	})
 	r.GET("/table_publications/:publication_id", func(ctx *gin.Context) {
