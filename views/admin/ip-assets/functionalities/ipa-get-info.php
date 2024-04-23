@@ -1,7 +1,7 @@
 <?php
 function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
 {
-    $encodedJsonResponse = getReq($ipassetsurl . "/10");
+    $encodedJsonResponse = getReq($ipassetsurl);
     if (isset($encodedJsonResponse->error)) {
 
         return null;
