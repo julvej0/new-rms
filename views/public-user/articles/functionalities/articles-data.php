@@ -50,6 +50,7 @@ if ($searchQuery != null && count($searchQuery) > 0) {
 
     <?php
     $previous_row = null;
+    $searchQuery = array_slice($searchQuery, $offset, $no_of_records_per_page);
     foreach ($searchQuery as $row) {
       if ($previous_row && $row['publication_id'] === $previous_row['publication_id']) {
         // Skip this row since it belongs to the same publication as the previous row

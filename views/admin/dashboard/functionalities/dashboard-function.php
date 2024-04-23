@@ -390,9 +390,10 @@ function getIpAssetsCampus($ipassetsurl)
     $PadreGarcia = 0;
     $Rosario = 0;
     $SanJuan = 0;
+    $Central = 0;
 
     foreach ($campusColumn as $campus) {
-        if ($campus === 'Alangilan (Main II)') {
+        if ($campus === 'Alangilan (Main II)' || $campus === 'Alangilan') {
             $Alangilan++;
         } elseif ($campus === 'Balayan') {
             $Balayan++;
@@ -408,7 +409,7 @@ function getIpAssetsCampus($ipassetsurl)
             $Malvar++;
         } elseif ($campus === 'Nasugbu') {
             $Nasugbu++;
-        } elseif ($campus === 'Pablo Borbon (Main I)') {
+        } elseif ($campus === 'Pablo Borbon (Main I)' || $campus === 'Pablo Borbon') {
             $PabloBorbon++;
         } elseif ($campus === 'Padre Garcia') {
             $PadreGarcia++;
@@ -416,13 +417,15 @@ function getIpAssetsCampus($ipassetsurl)
             $Rosario++;
         } elseif ($campus === 'San Juan') {
             $SanJuan++;
+        } elseif ($campus === 'Central') {
+            $Central++;
         } 
     }
 
     $data = array($Alangilan, $Balayan, $Lemery, $Lipa, $Lobo, $Mabini, $Malvar,
-     $Nasugbu, $PabloBorbon, $PadreGarcia, $Rosario, $SanJuan);
+     $Nasugbu, $PabloBorbon, $PadreGarcia, $Rosario, $SanJuan, $Central);
     $labels = array('Alangilan (Main II)', 'Balayan', 'Lemery', 'Lipa', 'Lobo', 
-    'Mabini','Malvar','Nasugbu','Pablo Borbon (Main I)','Padre Garcia', 'Rosario', 'San Juan');
+    'Mabini','Malvar','Nasugbu','Pablo Borbon (Main I)','Padre Garcia', 'Rosario', 'San Juan', 'Central');
 
     return array(
         "data" => json_encode($data),
@@ -503,7 +506,7 @@ function getPublicationType($publicationurl)
         }
     }
 
-    $data = array($Review, $International, $OriginalArticle);
+    $data = array($OriginalArticle, $Review, $Proceedings, $Communications, $International);
     $labels = array('Original Article', 'Review', 'Proceedings', 'Communications', 'International');
 
     return array(
