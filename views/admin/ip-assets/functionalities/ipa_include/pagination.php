@@ -12,7 +12,6 @@
     
     <div class="pagination">
         <?php
-            $items_per_page = 10; //total records per page
             $total_pages = ceil($total_records / $items_per_page); // total pages for paging
             
             //if result consists of more then one pages

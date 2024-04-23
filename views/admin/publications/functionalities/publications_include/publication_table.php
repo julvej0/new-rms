@@ -4,6 +4,8 @@ require_once ('functionalities/publications_include/publication_count.php');
 
 
 $table_rows = get_data($search, $type, $fund, $year, $page_number); // $table_rows is included from a ipa-get-info.php
+$items_per_page = 10;
+$offset = ($page_number - 1) * $items_per_page;
 $total_records = countPublications($search, $type, $fund, $year);
 ?>
 
@@ -30,6 +32,7 @@ $total_records = countPublications($search, $type, $fund, $year);
     <tbody>
         <tr>
             <?php
+            $table_rows = array_slice($table_rows, $offset, $items_per_page);
             if ($table_rows !== null && !empty($table_rows)) { // Check if $table_rows is not null
                 foreach ($table_rows as $row) { // Loop through each row in $table_rows
                     ?>

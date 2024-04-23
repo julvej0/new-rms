@@ -11,11 +11,8 @@ $count_text = $search != "empty_search" ? "Total Publications for \"" . $search 
     </div>
     <div class="pagination">
         <?php
-        $items_per_page = 10; //total records per page
         $total_pages = ceil($total_records / $items_per_page); // total pages for paging
         
-
-
         if ($total_pages > 1) {
 
             $params = []; //initialize

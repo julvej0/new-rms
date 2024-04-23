@@ -4,7 +4,8 @@ require_once ('functionalities/ipa_include/ipa_count.php');
 include_once dirname(__FILE__, 6) . "/helpers/db.php";
 
 $table_rows = get_data($ipassetsurl, $authorurl, $search, $type, $class, $year, $page_number); // $table_rows is included from a ipa-get-info.php
-
+$items_per_page = 10;
+$offset = ($page_number - 1) * $items_per_page;
 $total_records = countIPA($ipassetsurl, $authorurl, $search, $type, $class, $year);
 ?>
 
@@ -27,6 +28,7 @@ $total_records = countIPA($ipassetsurl, $authorurl, $search, $type, $class, $yea
     </thead>
     <tbody>
         <?php
+        $table_rows = array_slice($table_rows, $offset, $items_per_page);
         if ($table_rows !== null && !empty($table_rows)) { // Check if $table_rows is not null
             foreach ($table_rows as $row) { // Loop through each row in $table_rows
                 ?>
