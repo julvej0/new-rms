@@ -1,5 +1,6 @@
 <title>RMS | ACCOUNTS</title>
 <?php 
+    include dirname(__FILE__, 4) . '/components/header/header.php'; 
     include dirname(__FILE__, 4) . '/helpers/db.php';
 ?>
     <link rel="stylesheet" href="../../../css/index.css">

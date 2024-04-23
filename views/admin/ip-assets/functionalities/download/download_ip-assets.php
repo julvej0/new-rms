@@ -38,7 +38,6 @@ $table_rows = get_data($ipassetsurl, $authorurl, $search_query, $type, $class, $
                     <i class='bx bx-search search-icon'></i>
                 </div>
             </form>
-            <button>Off</button>
         </div>
     </div>
     <table id="tbl_download_ip-assets">
