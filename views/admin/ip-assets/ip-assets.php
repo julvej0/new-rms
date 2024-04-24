@@ -63,6 +63,9 @@ $page_number = isset($_GET['page']) ? intval($_GET['page']) : 1;
                     </div>
                     <form action='' method='get'>
                         <div class="form-group">
+                            <input type="hidden" name="type" value="<?= isset($_GET['type']) ? $_GET['type'] : '' ?>">
+                            <input type="hidden" name="class" value="<?= isset($_GET['class']) ? $_GET['class'] : '' ?>">
+                            <input type="hidden" name="year" value="<?= isset($_GET['year']) ? $_GET['year'] : '' ?>">
                             <input type='text' placeholder="Search" name='search'
                                 value='<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>'
                                 placeholder="Search...">

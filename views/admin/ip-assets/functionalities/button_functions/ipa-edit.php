@@ -4,7 +4,6 @@ if (isset ($_POST['updateIPA'])) {
     $date_of_creation = isset ($_POST['date_of_creation']) ? $_POST['date_of_creation'] : null;
 
     $date_registered = isset ($_POST['date_registered']) ? $_POST['date_registered'] : null;
-
     $authors_name = isset ($_POST['author_name']) ? $_POST['author_name'] : null;
     if (!$authors_name) {
         $authors_name = "";
@@ -186,6 +185,7 @@ if (isset ($_POST['updateIPA'])) {
             'status' => $status
         );
         
+
         $jsonData = json_encode($postData);
         $update_url = 'http://localhost:5000/table_ipassets/' . $registration_number;
         
@@ -197,7 +197,7 @@ if (isset ($_POST['updateIPA'])) {
         
         $response = curl_exec($ch);
         
-        if ($response === false) {
+        if ($response === false || strpos($response, '"error":') != false) {
             header("Location: ../../ip-assets.php?update=failed");
         } else {
             $logurl = 'http://localhost:5000/table_log';
