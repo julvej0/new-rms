@@ -10,10 +10,10 @@ if (isset ($_GET['id'])) {
         $author_info_arr[] = array(
             'author_id' => $row['author_id'],
             'author_name' => $row['author_name'],
-            'gender' => $row['gender'],
-            'type_of_author' => $row['type_of_author'],
+            'gender' => $row['gender'] ?? null,
+            'type_of_author' => $row['type_of_author'] ?? null,
             'affiliation' => isset ($row['affiliation']) ? $row['affiliation'] : null,
-            'email' => $row['email']
+            'email' => $row['email'] ?? null
         );
     }
 } else {
