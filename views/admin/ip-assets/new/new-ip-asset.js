@@ -135,14 +135,14 @@ function toggleRequired() {
     campus.style.color = "white";
     authors.style.color = "white";
   } else if (ipTypeSelect.value === "Copyright") {
+    programSelect.removeAttribute("required");
     classOfWorkSelect.setAttribute("required", "required");
-    classofwork.style.color = "red";
     campusSelect.setAttribute("required", "required");
-    programSelect.setAttribute("required", "required");
     collegeSelect.setAttribute("required", "required");
     authorSelect.setAttribute("required", "required");
+    program.style.color = "white";
+    classofwork.style.color = "red";
     college.style.color = "red";
-    program.style.color = "red";
     authors.style.color = "red";
     campus.style.color = "red";
   } else {
