@@ -138,21 +138,21 @@ function toggleRequired() {
     programSelect.removeAttribute("required");
     classOfWorkSelect.setAttribute("required", "required");
     campusSelect.setAttribute("required", "required");
-    collegeSelect.setAttribute("required", "required");
+    // collegeSelect.setAttribute("required", "required");
     authorSelect.setAttribute("required", "required");
     program.style.color = "white";
     classofwork.style.color = "red";
-    college.style.color = "red";
+    // college.style.color = "red";
     authors.style.color = "red";
     campus.style.color = "red";
   } else {
     classOfWorkSelect.removeAttribute("required");
     campusSelect.setAttribute("required", "required");
     programSelect.setAttribute("required", "required");
-    collegeSelect.setAttribute("required", "required");
+    // collegeSelect.setAttribute("required", "required");
     authorSelect.setAttribute("required", "required");
     classofwork.style.color = "white";
-    college.style.color = "red";
+    // college.style.color = "red";
     program.style.color = "red";
     authors.style.color = "red";
     campus.style.color = "red";
