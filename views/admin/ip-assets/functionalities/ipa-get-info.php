@@ -40,7 +40,7 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
             'date_of_creation' => date_format(date_create($content->date_of_creation), "m/d/Y") ?? "Not Available",
             'date_registered' => $content->status == "not-registered" ? "Not Available" : date_format(date_create($content->date_registered), "m/d/Y") ?? "Not Available",
             'campus' => $content->campus ?? "Not Available",
-            'college' => $content->college ?? "Not Available",
+            'college' => $content->college ?? "Not available",
             'program' => $content->program ?? "Not Available",
             'authors' => $authorList ?? "Not Available",
             'hyperlink' => 'Not Available',
