@@ -7,7 +7,8 @@ function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $em
     if ($json_response != false) {
         $total_length = 9;
         $count = count($json_response['table_authors']);
-        $formatted_id = 'AID' . str_pad($count, $total_length - 3, '0', STR_PAD_LEFT);
+        $id = substr($json_response['table_authors'][$count-1]['author_id'], 3, 6) + 1;
+        $formatted_id = 'AID' . str_pad($id, $total_length - 3, '0', STR_PAD_LEFT);
     }
     
     $postData = array(
