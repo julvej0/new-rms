@@ -1,7 +1,9 @@
 <title>RMS | AUTHORS</title>
 <?php 
     include dirname(__FILE__, 4) . '/helpers/db.php'; //db connection
+    include dirname(__FILE__, 4) . '/components/header/header.php';
 ?>
+
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="authors.css">
     
