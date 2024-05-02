@@ -11,22 +11,20 @@ if (isset ($_POST['id'])) {
     $id = $_POST['id'];//initialize
     //check if the author was removed from publication and ipasset
 
-    if (updateIpassetsByAuthor($ipassetsurl, $id) == "Task Completed" && updatePublicationsByAuthor($publicationurl, $id) == "Task Completed") {
+    // if (updateIpassetsByAuthor($ipassetsurl, $id) == "Task Completed" && updatePublicationsByAuthor($publicationurl, $id) == "Task Completed") {
         //deleting the author
-        $delete_result = deleteAuthorById($authorurl, $id);
-
-        if ($delete_result) {
-            echo "Success";
-            exit();
-        } else {
-            echo "Error";
-            exit();
-        }
+    $delete_result = deleteAuthorById($authorurl, $id);
+    if ($delete_result) {
+        echo "Success";
+        exit();
     } else {
         echo "Error";
         exit();
-
     }
+    // } else {
+    //     echo "Error";
+    //     exit();
+    // }
 } else {
     header("Location: ../../authors.php"); //if id does not exists
 }
