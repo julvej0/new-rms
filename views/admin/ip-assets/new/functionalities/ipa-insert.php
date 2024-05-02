@@ -16,7 +16,7 @@ if (isset($_POST['submitIPA'])) {
     $status = $_POST['registerInfo'];
 
     $authors_name = isset($_POST['author_name']) ? $_POST['author_name'] : null;
-    $none_existent_authors = "";
+    
     if (!$authors_name) {
         $authors_name = "";
         $authors_string = "";
@@ -48,11 +48,6 @@ if (isset($_POST['submitIPA'])) {
         }
 
         $authors_string = implode(",", $author_ids);
-    }
-
-    if(strlen($none_existent_authors) > 0) {
-        header("Location: ../../ip-assets.php?upload=nonexistent");
-        return "Author does not exist.";
     }
 
     if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {

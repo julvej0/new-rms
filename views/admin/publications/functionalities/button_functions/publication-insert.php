@@ -39,7 +39,6 @@ if (isset ($_POST['submitPB'])) {
     $publisher = $_POST["publisher"];
     $abstract = $_POST["abstract"];
 
-    $none_existent_authors = "";
     $authors_name = isset ($_POST['author_name']) ? $_POST['author_name'] : null;
 
     if (!$authors_name) {
@@ -74,11 +73,6 @@ if (isset ($_POST['submitPB'])) {
         }
 
         $authors_string = implode(",", $author_ids);
-    }
-
-    if(strlen($none_existent_authors) > 0) {
-        header("Location: ../../ip-assets.php?upload=nonexistent");
-        return "Author does not exist.";
     }
 
     $quartileJoin = array();
