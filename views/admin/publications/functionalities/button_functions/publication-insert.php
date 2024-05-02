@@ -39,6 +39,7 @@ if (isset ($_POST['submitPB'])) {
     $publisher = $_POST["publisher"];
     $abstract = $_POST["abstract"];
 
+    $none_existent_authors = "";
     $authors_name = isset ($_POST['author_name']) ? $_POST['author_name'] : null;
 
     if (!$authors_name) {
@@ -64,6 +65,8 @@ if (isset ($_POST['submitPB'])) {
                     foreach ($authorMapping as $author_id => $author_name) {
                         if ($author_name == $name) { // Check if author_name matches the desired name
                             $author_ids[] = $author_id;
+                        }else{
+                            $none_existent_authors .= strlen($none_existent_authors) > 0 ? ", $name" : "$name";
                         }
                     }
                 }
@@ -71,6 +74,11 @@ if (isset ($_POST['submitPB'])) {
         }
 
         $authors_string = implode(",", $author_ids);
+    }
+
+    if(strlen($none_existent_authors) > 0) {
+        header("Location: ../../ip-assets.php?upload=nonexistent");
+        return "Author does not exist.";
     }
 
     $quartileJoin = array();
