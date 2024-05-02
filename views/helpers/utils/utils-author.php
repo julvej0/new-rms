@@ -1,8 +1,17 @@
 <?php
 function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $email)
 {
+    $response = @file_get_contents($authorurl);
+    $json_response = json_decode($response, true);
+
+    if ($json_response != false) {
+        $total_length = 9;
+        $count = count($json_response['table_authors']);
+        $formatted_id = 'AID' . str_pad($count, $total_length - 3, '0', STR_PAD_LEFT);
+    }
+    
     $postData = array(
-        'author_id' => bin2hex(random_bytes(5)),
+        'author_id' => $formatted_id,
         'author_name' => $authorName,
         'gender' => $gender,
         'type_of_author' => $type,
