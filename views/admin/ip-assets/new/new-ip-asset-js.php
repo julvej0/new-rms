@@ -25,11 +25,9 @@
                     })
             }else{
               Swal.fire({
-                      title: 'Error',
-                      text: 'There is an Error',
+                      title: 'Error Adding Author',
+                      text: 'An error occurred while adding the author to the database.',
                       icon: 'error',
-                      showCancelButton: false,
-                      confirmButtonColor: '#d33',
                       confirmButtonText: 'Ok'
                     })
             }
@@ -37,10 +35,8 @@
         error: function() {
             Swal.fire({
                       title: 'Error',
-                      text: 'There is an Error',
+                      text: 'Failed to add author. Please try again.',
                       icon: 'error',
-                      showCancelButton: false,
-                      confirmButtonColor: '#d33',
                       confirmButtonText: 'Ok'
                     })
         }

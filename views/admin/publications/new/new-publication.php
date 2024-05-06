@@ -3,10 +3,11 @@
 include dirname(__FILE__, 5) . '/helpers/db.php';
 include dirname(__FILE__, 5) . '/components/header/header.php';
 include dirname(__FILE__, 5) . '/components/public-user/templates/user-navbar.php';
-include_once dirname(__FILE__, 4) .'/helpers/utils/utils-author.php';
+include_once dirname(__FILE__, 4) . '/helpers/utils/utils-author.php';
 ?>
 <!-- <link rel="stylesheet" href="../../../css/index.css"> -->
 <link rel="stylesheet" href="new-publication.css">
+<link rel="stylesheet" href="./modal.css">
 
 <body>
     <main>
@@ -310,11 +311,12 @@ include_once dirname(__FILE__, 4) .'/helpers/utils/utils-author.php';
                                                     height: 50px;
                                                     padding: 10px 36px 10px 16px;
                                                     border-radius: 5px;
-                                                    border: 1px solid var(--dark-grey);" placeholder="Author Name..." required>
+                                                    border: 1px solid var(--dark-grey);" placeholder="Author Name..."
+                                                    id="pub-author" required>
                                                 <datalist id="authors">
                                                     <?php
-                                                    foreach($result as $key => $row){
-                                                        echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                                    foreach ($result as $key => $row) {
+                                                        echo '<option value="' . $row['author_name'] . '" id="option">' . $row['author_id'] . '</option>';
                                                     }
                                                     echo '</datalist>';
                                                     ?>
@@ -345,7 +347,8 @@ include_once dirname(__FILE__, 4) .'/helpers/utils/utils-author.php';
                                         <label for="funded" class="funding-choices">Funded</label>
                                     </div>
                                     <div class="choices">
-                                        <input type="radio" name="nature_of_funding" id="non-funded" value="Non-Funded" checked="checked">
+                                        <input type="radio" name="nature_of_funding" id="non-funded" value="Non-Funded"
+                                            checked="checked">
                                         <label for="non-funded" class="funding-choices">Non-funded</label>
                                     </div>
                                 </div>
@@ -355,7 +358,8 @@ include_once dirname(__FILE__, 4) .'/helpers/utils/utils-author.php';
                                 <label class="funding-titles" id="fund-type-label">Fund type </label>
                                 <div class="form-control">
                                     <div class="choices">
-                                        <input type="radio" name="funding_type" id="internal" value="internal" checked="checked">
+                                        <input type="radio" name="funding_type" id="internal" value="internal"
+                                            checked="checked">
                                         <label for="internal" class="funding-choices">Internal</label>
                                     </div>
                                     <div class="choices">
@@ -367,8 +371,10 @@ include_once dirname(__FILE__, 4) .'/helpers/utils/utils-author.php';
                             <h4 class="if-external">If external : </h4>
                             <div class="funding-form-container2">
                                 <div class="form-control">
-                                    <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding Agency</label>
-                                    <input type="text" name="funding_source" class="pb-input-field" id="pb-funding-agency" placeholder="Funding Agency">
+                                    <label class="pb-label" for="pb-funding-agency" id="pb-funding-label">Funding
+                                        Agency</label>
+                                    <input type="text" name="funding_source" class="pb-input-field"
+                                        id="pb-funding-agency" placeholder="Funding Agency">
                                 </div>
                             </div>
                         </div>
@@ -383,8 +389,20 @@ include_once dirname(__FILE__, 4) .'/helpers/utils/utils-author.php';
             </div>
         </section>
     </main>
-    </section>
+    <div id="myModal" class="modal">
+        <div class="modal-container">
+            <span class="close">&times;</span>
+            <h2 id="h2pass">Author not found.</h2>
+            <div class="modal-content">
+                 <div class="modal-body" id="modalBody">
+
+                </div>
+                <button type="button" id="submit-password" class="exit">Close</button>
+            </div>
+        </div>
+    </div>
     <script src="new-publication.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <?php
     include 'new-publication-js.php';

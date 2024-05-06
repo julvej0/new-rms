@@ -1,5 +1,46 @@
 <script>
+  let all_authors = [...document.querySelectorAll('#option')].map(option => option.value)
+
+  function AddAuthor(author) {
+    $.ajax({
+        url: "../functionalities/add-author.php",
+        type: 'POST',
+        data: { author: author },
+        dataType: 'json',
+        success: function(response) {
+            // Handle success response
+            if(response.message == 'Author created successfully.'){
+              all_authors.push(response.author)
+              let authorNoString = response.author.replace(/\s/g, "")
+              document.querySelector(`.${authorNoString}`).innerHTML = "&#x1F5F9"
+              document.querySelector(`.${authorNoString}`).disabled = true
+              Swal.fire({
+                      title: 'Author Successfully Added.',
+                      text: 'The author has been successfully added to the database.',
+                      icon: 'success',
+                      confirmButtonText: 'Ok'
+                    })
+            }else{
+              Swal.fire({
+                      title: 'Error Adding Author',
+                      text: 'An error occurred while adding the author to the database.',
+                      icon: 'error',
+                      confirmButtonText: 'Ok'
+                    })
+            }
+        },
+        error: function() {
+            Swal.fire({
+                      title: 'Error',
+                      text: 'Failed to add author. Please try again.',
+                      icon: 'error',
+                      confirmButtonText: 'Ok'
+                    })
+        }
+    });
+}
   $(document).ready(function () {
+
     // Listen for changes to the select fields
     $(document).on('change', 'input[name="author_name[]"]', function () {
       checkDuplicateAuthors(); // Call the comparison function
@@ -9,6 +50,44 @@
     $('#form-pb').submit(function (event) {
       // Prevent the default form submission
       event.preventDefault();
+      const authors = [...document.querySelectorAll('#pub-author')].map( option => option.value)
+
+      let exist = []
+      for (const index in authors){
+        if(!all_authors.includes(authors[index])){
+          exist.push(authors[index])
+        }
+      }
+
+      if(exist.length > 0){
+      $.ajax({
+        url: "../functionalities/get-authors.php",
+        type: 'POST',
+        data: { author: exist },
+        dataType: 'json',
+        success: function(response) {
+            if (response != "") {
+              $('#modalBody').empty();
+              response.forEach(function(author) {
+              let authorNoSpace = author.replace(/\s/g, "")
+              let inputHtml = '<div class="authorGroup"><p>' + author + '</p><button onclick="AddAuthor(\'' + author + '\')" class="' + authorNoSpace + '">Add</button></div>';
+        $('#modalBody').append(inputHtml);
+      });
+                      showModal()
+                    } 
+                },
+                error: function() {
+                  Swal.fire({
+                      title: 'Error',
+                      text: 'There is an Error',
+                      icon: 'error',
+                      showCancelButton: false,
+                      confirmButtonColor: '#d33',
+                      confirmButtonText: 'Ok'
+                    })
+                }
+            });
+    }else{
 
       // Check for empty fields
       var emptyFields = $('input, select, radio, checkbox').filter(function () {
@@ -35,10 +114,17 @@
         // All fields are filled, submit the form
         this.submit();
       }
+    }
     });
   });
 
-
+  function showModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    setTimeout(function () {
+        modal.querySelector(".modal-container").style.transform = "translate(-50%, -50%)";
+    }, 10);
+  }
 
   var max = 15; // Maximum number of Authors
   var x = 1; // Represents the 1st author field
