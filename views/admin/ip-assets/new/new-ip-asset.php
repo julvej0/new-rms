@@ -7,6 +7,7 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
 ?>
 <link rel="stylesheet" href="../../../../css/index.css">
 <link rel="stylesheet" href="./new-ip-asset.css">
+<link rel="stylesheet" href="./modal.css">
 
 <body>
     <?php
@@ -150,7 +151,7 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
                                                 <datalist id="authors">
                                                     <?php
                                                     foreach ($result as $key => $row) {
-                                                        echo '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';
+                                                        echo '<option value="' . $row['author_name'] . '" id="option">' . $row['author_id'] . '</option>';
                                                     }
                                                     echo '</datalist>';
                                                     ?>
@@ -234,8 +235,20 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
             </div>
         </section>
     </main>
-
+    <div id="myModal" class="modal">
+        <div class="modal-container">
+            <span class="close">&times;</span>
+            <h2 id="h2pass">Author not found.</h2>
+            <div class="modal-content">
+                 <div class="modal-body" id="modalBody">
+                                                    
+                </div>
+                <button type="button" id="submit-password" class="exit">Close</button>
+            </div>
+        </div>
+    </div>
     <script src="./new-ip-asset.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 <?php
 include './new-ip-asset-js.php';

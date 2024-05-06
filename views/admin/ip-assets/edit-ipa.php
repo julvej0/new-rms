@@ -23,8 +23,8 @@ if (isset($_POST['edit'])) {
                     <?php
                     $ipaID = $_POST['row_id'];
                     include_once dirname(__FILE__, 4) .'../helpers/db.php';
-                    include_once dirname(__FILE__, 3) .'./helpers/utils/utils-ipasset.php';
-                    include_once dirname(__FILE__, 3) .'./helpers/utils/utils-author.php';
+                    include_once dirname(__FILE__, 3) .'/helpers/utils/utils-ipasset.php';
+                    include_once dirname(__FILE__, 3) .'/helpers/utils/utils-author.php';
                     $row = getIpAssetById($ipassetsurl, $ipaID);
                         ?>
                         <form name="form-ipa" id="form-ipa" action="functionalities/button_functions/ipa-edit.php" method="POST"
