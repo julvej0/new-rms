@@ -1,10 +1,14 @@
 <!--Javascript syntax inside a separated php file to avoid JS and PHP conflicts if put in a js file-->
 <script>
   let all_authors = [...document.querySelectorAll('#option')].map(option => option.value)
+  let currentPath = window.location.pathname
+  let pathSegments = currentPath.split('/');
+  let foldersToIpAssets = pathSegments.length - (pathSegments.indexOf('ip-assets') + 2);
+  let relativePath = "../".repeat(foldersToIpAssets);
 
   function AddAuthor(author) {
     $.ajax({
-        url: "./functionalities/add-author.php",
+        url: `${relativePath}new/functionalities/add-author.php`,
         type: 'POST',
         data: { author: author },
         dataType: 'json',
@@ -53,7 +57,6 @@
     // Prevent the default form submission
     event.preventDefault();
     const authors = [...document.querySelectorAll('#ipa-author')].map( option => option.value)
-
     let exist = []
     for (const index in authors){
       if(!all_authors.includes(authors[index])){
@@ -62,8 +65,12 @@
     }
     
     if(exist.length > 0){
+      let currentPath = window.location.pathname
+      let pathSegments = currentPath.split('/');
+      let foldersToIpAssets = pathSegments.length - (pathSegments.indexOf('ip-assets') + 2);
+      let relativePath = "../".repeat(foldersToIpAssets);
       $.ajax({
-        url: "./functionalities/get-authors.php",
+        url: `${relativePath}new/functionalities/get-authors.php`,
         type: 'POST',
         data: { author: exist },
         dataType: 'json',

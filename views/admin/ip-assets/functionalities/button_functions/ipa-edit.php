@@ -35,7 +35,7 @@ if (isset ($_POST['updateIPA'])) {
 
         $authors_string = implode(",", $author_ids);
     }
-
+    
     $registration_number = trim($_POST['registration_number']);
     $title_of_work = trim($_POST['title_of_work']);
     $type_of_document = $_POST['type_of_ipa'];
@@ -196,8 +196,8 @@ if (isset ($_POST['updateIPA'])) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         
         $response = curl_exec($ch);
-        
-        if ($response === false || strpos($response, '"error":') != false) {
+       
+        if ($response === false || strpos($response, '"error":') != false || strpos($response, '"table_ipassets"') == false) {
             header("Location: ../../ip-assets.php?update=failed");
         } else {
             $logurl = 'http://localhost:5000/table_log';

@@ -39,8 +39,6 @@ if (isset($_POST['submitIPA'])) {
                     foreach ($authorMapping as $author_id => $author_name) {
                         if ($author_name == $name) {
                             $author_ids[] = $author_id;
-                        }else{
-                            $none_existent_authors .= strlen($none_existent_authors) > 0 ? ", $name" : "$name";
                         }
                     }
                 }
@@ -185,7 +183,7 @@ if (isset($_POST['submitIPA'])) {
 
         $response = curl_exec($ch);
 
-        if (str_contains($response, 'error')) {
+        if (str_contains($response, 'error') || strpos($response, '"table_ipassets"') == false) {
             header("Location: ../../ip-assets.php?upload=failed");
         } else {
             $logurl = 'http://localhost:5000/table_log';

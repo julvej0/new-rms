@@ -9,6 +9,7 @@ if (isset($_POST['edit'])) {
     ?>
     <link rel="stylesheet" href="../../../css/index.css">
     <link rel="stylesheet" href="../ip-assets/new/new-ip-asset.css">
+    <link rel="stylesheet" href="./new/modal.css">
 
     <body>
         <!-- <?php
@@ -166,6 +167,7 @@ if (isset($_POST['edit'])) {
                                         border-radius: 5px;
                                         border: 1px solid var(--dark-grey);"                                                                                        
                                         placeholder="Author Name..."
+                                        id="ipa-author"
                                         value="' . $author_list_row['author_name'] . '">';
                                         echo '<datalist id="authors">';
                                                     $author_data = getAuthors($authorurl);
@@ -173,7 +175,7 @@ if (isset($_POST['edit'])) {
                                                     
                                                     if($author_data != null) {
                                                         foreach ($author_data as $key => $value) { // Iterate through each author in the result set and display them as options
-                                                            echo '<option value="' . $value['author_name'] . '">' . $value['author_id'] . '</option>';
+                                                            echo '<option value="' . $value['author_name'] . '" id="option">' . $value['author_id'] . '</option>';
                                                         }
                                                     }
                                                     echo '</datalist>';
@@ -263,8 +265,21 @@ if (isset($_POST['edit'])) {
                 </div>
             </section>
         </main>
-        <script src="new/new-ip-asset.js"></script>
+        <div id="myModal" class="modal">
+        <div class="modal-container">
+            <span class="close">&times;</span>
+            <h2>Author not found.</h2>
+            <div class="modal-content">
+                 <div class="modal-body" id="modalBody">
+
+                </div>
+                <button type="button" id="close-btn" class="exit">Close</button>
+            </div>
+        </div>
+    </div>
     </body>
+    <script src="./new/new-ip-asset.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <?php
     include 'new/new-ip-asset-js.php';
 } else {
