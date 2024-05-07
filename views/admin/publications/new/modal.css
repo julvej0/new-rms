@@ -79,7 +79,7 @@ display: block;
   padding: 20px
 }
 
-.modal-container #submit-password {
+.modal-container #close-btn {
   display: block;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -93,7 +93,7 @@ display: block;
   transition: all 0.3s ease;
 }
 
-.modal-container #submit-password:hover {
+.modal-container #close-btn:hover {
   display: block;
   margin-top: 20px;
   margin-bottom: 20px;

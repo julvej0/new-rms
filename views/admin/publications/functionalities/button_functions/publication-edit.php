@@ -108,7 +108,7 @@ if (isset($_POST['updatePB'])) {
     // var_dump($response);
     // throw new Exception("Haha");
 
-    if ($response === false) {
+    if ($response === false || strpos($response, '"table_publications"') == false) {
         header("Location: ../../publications.php?update=failed");
     } else {
         $logurl = 'http://localhost:5000/table_log';

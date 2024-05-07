@@ -20,7 +20,7 @@
               document.querySelector(`.${authorNoString}`).innerHTML = "&#x1F5F9"
               document.querySelector(`.${authorNoString}`).disabled = true
               Swal.fire({
-                      title: 'Author "<b><i>' + author + '</i></b>" successfully added.',
+                      title: 'Author "<i>' + author + '</i>" successfully added.',
                       text: 'The author has been successfully added to the database.',
                       icon: 'success',
                       showCancelButton: false,
@@ -65,10 +65,6 @@
     }
     
     if(exist.length > 0){
-      let currentPath = window.location.pathname
-      let pathSegments = currentPath.split('/');
-      let foldersToIpAssets = pathSegments.length - (pathSegments.indexOf('ip-assets') + 2);
-      let relativePath = "../".repeat(foldersToIpAssets);
       $.ajax({
         url: `${relativePath}new/functionalities/get-authors.php`,
         type: 'POST',

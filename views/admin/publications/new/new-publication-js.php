@@ -1,9 +1,13 @@
 <script>
   let all_authors = [...document.querySelectorAll('#option')].map(option => option.value)
+  let currentPath = window.location.pathname
+  let pathSegments = currentPath.split('/');
+  let foldersToIpAssets = pathSegments.length - (pathSegments.indexOf('publications') + 2);
+  let relativePath = "../".repeat(foldersToIpAssets);
 
   function AddAuthor(author) {
     $.ajax({
-        url: "../functionalities/add-author.php",
+        url: `${relativePath}functionalities/add-author.php`,
         type: 'POST',
         data: { author: author },
         dataType: 'json',
@@ -15,7 +19,7 @@
               document.querySelector(`.${authorNoString}`).innerHTML = "&#x1F5F9"
               document.querySelector(`.${authorNoString}`).disabled = true
               Swal.fire({
-                      title: 'Author Successfully Added.',
+                      title: 'Author "<i>' + author + '</i>" successfully added.',
                       text: 'The author has been successfully added to the database.',
                       icon: 'success',
                       confirmButtonText: 'Ok'
@@ -51,17 +55,16 @@
       // Prevent the default form submission
       event.preventDefault();
       const authors = [...document.querySelectorAll('#pub-author')].map( option => option.value)
-
       let exist = []
       for (const index in authors){
         if(!all_authors.includes(authors[index])){
           exist.push(authors[index])
         }
       }
-
+      
       if(exist.length > 0){
       $.ajax({
-        url: "../functionalities/get-authors.php",
+        url: `${relativePath}functionalities/get-authors.php`,
         type: 'POST',
         data: { author: exist },
         dataType: 'json',
@@ -133,7 +136,7 @@
   require_once dirname(__FILE__, 4) . "../helpers/utils/utils-author.php";
   require_once dirname(__FILE__, 5) . "../helpers/db.php";
   $result = getAuthors($authorurl);
-  $datalistHtml = '<input list="authors" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name..." onchange="showAuthorId(this)">';
+  $datalistHtml = '<input list="authors" id="pub-author" name="author_name[]" style="width: 100%; height: 50px; padding: 10px 36px 10px 16px; border-radius: 5px; border: 1px solid var(--dark-grey);" placeholder="Author Name...">';
   $datalistHtml .= '<datalist id="authors">';
   foreach ($result as $key => $row) {
     $datalistHtml .= '<option value="' . $row['author_name'] . '">' . $row['author_id'] . '</option>';

@@ -8,6 +8,7 @@ if (isset($_POST['edit'])) {
     ?>
     <link rel="stylesheet" href="../../../../css/index.css">
     <link rel="stylesheet" href="../../publications/new/new-publication.css">
+    <link rel="stylesheet" href="../new/modal.css">
 
     <body>
         <!-- <?php
@@ -319,12 +320,12 @@ if (isset($_POST['edit'])) {
                                                             border-radius: 5px;
                                                             border: 1px solid var(--dark-grey);"
                                                             placeholder="Author Name..."
-                                                            value="' . $author_list_row['author_name'] . '">';
+                                                            value="' . $author_list_row['author_name'] . '" id="pub-author">';
                                                     echo '<datalist id="authors">';
                                                     $params = array();
                                                     $result = getAuthors($authorurl);
                                                     foreach ($result as $key => $author_row) {
-                                                        echo '<option value="' . $author_row['author_name'] . '">' . $author_row['author_id'] . '</option>';
+                                                        echo '<option value="' . $author_row['author_name'] . '" id="option">' . $author_row['author_id'] . '</option>';
                                                     }
                                                     echo '</datalist>';
                                                     echo '
@@ -413,14 +414,24 @@ if (isset($_POST['edit'])) {
             </section>
         </main>
         </section>
+        <div id="myModal" class="modal">
+        <div class="modal-container">
+            <span class="close">&times;</span>
+            <h2>Author not found.</h2>
+            <div class="modal-content">
+                 <div class="modal-body" id="modalBody">
 
-        <script src="edit-publication.js"></script>
-
-        <?php
-        include '../new/new-publication-js.php';
-        ?>
+                </div>
+                <button type="button" id="close-btn" class="exit">Close</button>
+            </div>
+        </div>
+    </div>
+    
     </body>
+    <script src="edit-publication.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <?php
+    include '../new/new-publication-js.php';
 } else {
     header("Location: ../../publications.php");
 }

@@ -64,8 +64,6 @@ if (isset ($_POST['submitPB'])) {
                     foreach ($authorMapping as $author_id => $author_name) {
                         if ($author_name == $name) { // Check if author_name matches the desired name
                             $author_ids[] = $author_id;
-                        }else{
-                            $none_existent_authors .= strlen($none_existent_authors) > 0 ? ", $name" : "$name";
                         }
                     }
                 }
@@ -151,7 +149,7 @@ if (isset ($_POST['submitPB'])) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
     $response = curl_exec($ch);
-    if (str_contains($response, 'error')) {
+    if (str_contains($response, 'error') || strpos($response, '"table_publications"') == false) {
         header("Location: ../../publications.php?upload=failed");
     } else {
         $logurl = 'http://localhost:5000/table_log';
