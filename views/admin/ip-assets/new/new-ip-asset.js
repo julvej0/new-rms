@@ -5,9 +5,10 @@ const modal = document.getElementById("myModal");
 //made by john michael
 // Get the close button element within the modal
 const closeBtn = modal.querySelector(".exit");
-
+console.log("mounted")
 // Add a click event listener to the close button
 closeBtn.addEventListener("click", function () {
+  console.log("click")
     // Find the modal container element and add the "fade-out" class
     modal.querySelector(".modal-container").classList.add("fade-out");
 
