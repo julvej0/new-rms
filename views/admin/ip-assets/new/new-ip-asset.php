@@ -238,12 +238,12 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-ipasset.php';
     <div id="myModal" class="modal">
         <div class="modal-container">
             <span class="close">&times;</span>
-            <h2 id="h2pass">Author not found.</h2>
+            <h2>Author not found.</h2>
             <div class="modal-content">
                  <div class="modal-body" id="modalBody">
                                                     
                 </div>
-                <button type="button" id="submit-password" class="exit">Close</button>
+                <button type="button" id="close-btn" class="exit">Close</button>
             </div>
         </div>
     </div>

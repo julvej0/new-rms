@@ -17,11 +17,11 @@ function createAuthor($authorurl, $authorName, $gender, $type, $affiliation, $em
     
     $postData = array(
         'author_id' => $formatted_id,
-        'author_name' => $authorName,
+        'author_name' => trim($authorName),
         'gender' => $gender,
         'type_of_author' => $type,
         'affiliation' => $affiliation,
-        'email' => $email
+        'email' => trim($email)
     );
 
     $jsonData = json_encode($postData);

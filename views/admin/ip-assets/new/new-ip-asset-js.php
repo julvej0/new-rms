@@ -16,7 +16,7 @@
               document.querySelector(`.${authorNoString}`).innerHTML = "&#x1F5F9"
               document.querySelector(`.${authorNoString}`).disabled = true
               Swal.fire({
-                      title: 'Author Successfully Added.',
+                      title: 'Author "<b><i>' + author + '</i></b>" successfully added.',
                       text: 'The author has been successfully added to the database.',
                       icon: 'success',
                       showCancelButton: false,
