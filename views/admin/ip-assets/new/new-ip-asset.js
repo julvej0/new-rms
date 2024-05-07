@@ -2,7 +2,7 @@
 //Javascript code that doesn't required PHP specific functinality
 
 const modal = document.getElementById("myModal");
-
+//made by john michael
 // Get the close button element within the modal
 const closeBtn = modal.querySelector(".exit");
 
