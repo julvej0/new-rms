@@ -45,8 +45,7 @@ function checkData(event) {
     event.preventDefault(); // prevent form submission
 
     var name = document.getElementById("a-name").value;
-    var gender = document.getElementById("a-gender").value;
-    var affi = document.getElementById("a-affiliation").value;
+    var gender = document.getElementById("a-gender").value
     var role = document.getElementById("a-role").value;
     var id = document.getElementById("a-id").value;
     var email = document.getElementById("a-email").value;
@@ -68,7 +67,6 @@ function checkData(event) {
             external_aff == 0) ||
         gender == "" ||
         role == "" ||
-        affi == "" ||
         email == ""
     ) {
         Swal.fire({

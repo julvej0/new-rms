@@ -50,6 +50,7 @@ if (isset ($_POST['a-name'], $_POST['a-gender'], $_POST['a-role'], $_POST['a-ema
     } else {
         $affiliation = null; //if no affilition inputs
     }
+    
     $response = @file_get_contents($authorurl);
     $json_response = json_decode($response, true);
 

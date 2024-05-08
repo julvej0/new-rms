@@ -11,7 +11,8 @@
     'Pablo Borbon (Main I)',
    'Padre Garcia',
     'Rosario',
-    'San Juan');
+    'San Juan',
+    'Central');
     
     //options for internal affiliation, program
     $program_options = array(

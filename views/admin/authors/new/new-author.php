@@ -20,8 +20,7 @@
             <section>
                 <div class="container">
                     <form name="form-author" onsubmit="return checkData(event)"
-                        action="<?php echo isset($_GET['id']) ? '../functionalities\authors_query\edit_author.php' : '../functionalities\authors_query\insert_author.php' ?>"
-                        method="POST">
+                        action="<?php echo isset($_GET['id']) ? '../functionalities\authors_query\edit_author.php' : '../functionalities\authors_query\insert_author.php' ?>" method="POST">
                         <div class="sub-container">
                             <div class="title">
                                 <h3>Author Details</h3>
@@ -84,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="sub-container">
+                        <div class="sub-container">
                             <div class="title">
                                 <h3>Affiliations</h3>
                                 <hr>
@@ -117,27 +116,6 @@
                                     </table>
                                 </div>
                             </div>
-                        </div> -->
-                        <div class="sub-container">
-                            <div class="title">
-                                <h3>Affiliations</h3>
-                                <hr>
-                            </div>
-                            <div class="form-col">
-                            <div class="form-container">
-                                    <div class="form-control">
-                                        <select name="a-affiliation" class="a-input-field" id="a-affiliation">
-                                            <option value="" hidden>--Choose from the options--</option>
-                                            <option value="internal"
-                                                <?php echo $author_info_arr[0]['affiliation']== 'internal' ? 'selected' : ''?>>Internal
-                                            </option>
-                                            <option value="external"
-                                                <?php echo $author_info_arr[0]['affiliation']== 'external' ? 'selected' : ''?>>External
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <br>
                         <div class="form-footer">
@@ -152,7 +130,7 @@
     </section>
 
     <script src="./new-author.js"></script>
-    <!-- <?php
-        include  '../functionalities/new-author_includes/affiliations.php'; //script for affiliation table functions
-    ?> -->
+    <?php
+        require_once  '../functionalities/new-author_includes/affiliations.php'; //script for affiliation table functions
+    ?>
 </body>
