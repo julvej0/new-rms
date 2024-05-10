@@ -111,14 +111,6 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="filter_dd">
-                    <button class="dropbtn">Dropdown</button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div> -->
                     <div class="filter">
                         <button class="btn">
                             <?= $year != "empty_year" ? $year : 'Year' ?><i class='bx bx-chevron-down icon'></i>
@@ -153,7 +145,7 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
             <div class="modal-content1">
                 <h3 style="float: left; position: relative; margin-top: -35px;">Download</h3>
                 <span class="close" onclick="closeModal()">&times;</span>
-                <iframe src="../publications/functionalities/download/download_pub.php"></iframe>
+                <iframe src="../publications/functionalities/download/download_pub.php?search=<?php echo $search; ?>&type=<?php echo $type; ?>&fund=<?php echo $fund; ?>&year=<?php echo $year; ?>"></iframe>
             </div>
         </div>
 

@@ -75,11 +75,39 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
 
     // perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
-    // $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
-    // $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
-    // $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
+    $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
+    $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
+    $table_rows = searchTypeAPI($table_rows, $year, "date_registered");
     return $table_rows;
 
+}
+
+// searches for the type of document
+function searchTypeAPI($tableRows, $strmatch, $tableColumn)
+{
+    if ($strmatch == 'empty_type' || trim($strmatch) == '' || $strmatch == 'empty_class' || $strmatch == 'empty_year')
+        return $tableRows;
+    return searchAPI($tableRows, $strmatch, $tableColumn);
+}
+
+// removes the authors from the table that doesn' match or isn't like the authorName
+function searchAPI($tableRows, $strmatch, $key)
+{
+    // pop the values that isn't like the authorname
+    foreach ($tableRows as $index => $rowData) {
+        if ($key == "date_registered") {
+            if (isset($rowData[$key])) {
+                $isMatched = date('Y', strtotime($rowData[$key])) == $strmatch;
+            }
+        } else {
+            $isMatched = $rowData[$key] == $strmatch;
+        }
+
+        if (!$isMatched) {
+            unset($tableRows[$index]);
+        }
+    }
+    return $tableRows;
 }
 
 function keywordsearchAPI($tableRows, $strmatch)

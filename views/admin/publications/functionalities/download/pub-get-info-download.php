@@ -1,5 +1,5 @@
 <?php
-function get_data($publicationurl, $authorurl, $search)
+function get_data($publicationurl, $authorurl, $search, $type, $fund, $year)
 {
     $search_query = $search == 'empty_search' ? '' : $search;
 
@@ -53,6 +53,9 @@ function get_data($publicationurl, $authorurl, $search)
     }
 
     $table_rows = keywordsearchAPI($table_rows, $search);
+    $table_rows = searchTypeAPI($table_rows, $type, 'type_of_publication');
+    $table_rows = searchTypeAPI($table_rows, $fund, 'nature_of_funding');
+    $table_rows = searchTypeAPI($table_rows, $year, 'date_published');
 
     return $table_rows;
 }
@@ -96,6 +99,34 @@ function getReq($url)
         return null;
     }
     return $decodedResponse;
+}
+
+// searches for the type of document
+function searchTypeAPI($tableRows, $strmatch, $tableColumn)
+{
+    if ($strmatch == 'empty_type' || $strmatch == '' || $strmatch == ' ' || $strmatch == 'empty_fund' || $strmatch == 'empty_year')
+        return $tableRows;
+    return searchAPI($tableRows, $strmatch, $tableColumn);
+}
+
+// removes the authors from the table that doesn' match or isn't like the authorName
+function searchAPI($tableRows, $strmatch, $key)
+{
+    // pop the values that isn't like the authorname
+    foreach ($tableRows as $index => $rowData) {
+        if ($key == "date_published") {
+            if (isset($rowData[$key])) {
+                $isMatched = date('Y', strtotime($rowData[$key])) == $strmatch;
+            }
+        } else {
+            $isMatched = $rowData[$key] == $strmatch;
+        }
+
+        if (!$isMatched) {
+            unset($tableRows[$index]);
+        }
+    }
+    return $tableRows;
 }
 
 ?>

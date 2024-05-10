@@ -1,8 +1,8 @@
 <?php
     require_once('../download/pub-get-info-download.php');
     include_once dirname(__FILE__, 6) . "/helpers/db.php";
-    
-    $table_rows = get_data($publicationurl, $authorurl, $search);
+
+    $table_rows = get_data($publicationurl, $authorurl, $search, $type, $fund, $year);
 ?>
 
 <table id="mytablepub">
@@ -27,9 +27,8 @@
     <tbody>
         <tr>
         <?php
-        
-        if ($table_rows !== null) {
-        foreach ($table_rows as $row) {
+            if ($table_rows !== null) {
+            foreach ($table_rows as $row) {
         ?>
         <tr>
             <td class="publication-col col-title" style="min-width: 15.625rem"><?=$row['title_of_paper'];?></td>
@@ -48,14 +47,14 @@
             <td class="publication-col col-citations"><?=$row['number_of_citation']!= null ? $row['number_of_citation'] : "N/A";?></td>
     </tr>
     <?php
-    }
-}else{
+        }
+    }else{
     ?>
     <tr>
         <td colspan='15' style="text-align:center">No Records Found!</td>
     </tr>
-<?php
-}
-?>
+    <?php
+    }
+    ?>
     </tbody>
 </table>

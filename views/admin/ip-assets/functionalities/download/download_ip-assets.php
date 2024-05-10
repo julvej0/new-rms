@@ -7,8 +7,6 @@ $type = (isset($_GET['type']) && strpos($_GET['type'], "'") === false) ? $_GET['
 $class = (isset($_GET['class']) && strpos($_GET['class'], "'") === false) ? $_GET['class'] : 'empty_class';
 $year = (isset($_GET['year']) && strpos($_GET['year'], "'") === false) ? $_GET['year'] : 'empty_year';
 
-
-include_once dirname(__FILE__, 6) . '\helpers\db.php';
 $table_rows = get_data($ipassetsurl, $authorurl, $search_query, $type, $class, $year);
 ?>
 

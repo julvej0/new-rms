@@ -1,6 +1,6 @@
 <?php
 
-function get_data($search, $type, $class, $year, $page_number)
+function get_data($search, $type, $fund, $year, $page_number)
 {
     $encodedJsonResponse = getReq('http://localhost:5000/table_publications');
     $tableData = $encodedJsonResponse->table_publications;
@@ -77,7 +77,7 @@ function get_data($search, $type, $class, $year, $page_number)
     // perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
     $table_rows = searchTypeAPI($table_rows, $type, 'type_of_publication');
-    $table_rows = searchTypeAPI($table_rows, $class, "nature_of_funding");
+    $table_rows = searchTypeAPI($table_rows, $fund, "nature_of_funding");
     $table_rows = searchTypeAPI($table_rows, $year, "date_published");
 
     return $table_rows;
