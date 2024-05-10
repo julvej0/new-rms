@@ -2,6 +2,11 @@
 
 // NOTE: Using @ to suppress errors hides the notice about another session_start.
 @session_start();
+$currentPath = $_SERVER['REQUEST_URI'];
+$pathSegments = explode('/', $currentPath);
+$indexOfAdmin = array_search('admin', $pathSegments);
+$folderToDestination = count($pathSegments) - ($indexOfAdmin + 2);
+$relativePath = str_repeat('../', $folderToDestination);
 ?>
 
 <!-- css -->
@@ -42,13 +47,13 @@
                             <ul class="nav-links">
                                 <?php if (isset($_SESSION['account_type'])): ?>
                                     <?php if ($_SESSION['account_type'] == "Admin"): ?>
-                                        <li><a href="../../dashboard/dashboard.php" id='home-link'
+                                        <li><a href="<?php echo $relativePath; ?>dashboard/dashboard.php" id='home-link'
                                                 onclick="showLoadingScreen()">DASHBOARD</a></li>
-                                        <li><a href="../../publications/publications.php" id='pb-link'
+                                        <li><a href="<?php echo $relativePath; ?>publications/publications.php" id='pb-link'
                                                 onclick="showLoadingScreen()">PUBLICATIONS</a></li>
-                                        <li><a href="../../ip-assets/ip-assets.php" id='ip-assets-link'
+                                        <li><a href="<?php echo $relativePath; ?>ip-assets/ip-assets.php" id='ip-assets-link'
                                                 onclick="showLoadingScreen()">IP ASSETS</a></li>
-                                        <li><a href="../../authors/authors.php" id='author-link'
+                                        <li><a href="<?php echo $relativePath; ?>authors/authors.php" id='author-link'
                                                 onclick="showLoadingScreen()">AUTHORS</a></li>
                                         <!-- <li><a href="/new-rms-webdev/views/about/about.php" id='abt-link' onclick="showLoadingScreen()">ABOUT</a></li> -->
                                     <?php else: ?>

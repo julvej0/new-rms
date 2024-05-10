@@ -46,7 +46,7 @@ if (isset($_POST['edit'])) {
                                             <option
                                                 value="<?= isset($row['type_of_publication']) ? $row['type_of_publication'] : "" ?>"
                                                 hidden>
-                                                <?= isset($row['type_of_publication']) ? $row['type_of_publication'] : "" ?>
+                                                <?= isset($row['type_of_publication']) ? $row['type_of_publication'] : "--Choose from the options--" ?>
                                             </option>
                                             <option value="Original Article">Original Article</option>
                                             <option value="Review">Review</option>
@@ -77,7 +77,7 @@ if (isset($_POST['edit'])) {
                                         <label class="pb-label" for="pb-college">College</label>
                                         <select name="college" class="pb-input-field" id="pb-college">
                                             <option value="<?= isset($row['college']) ? $row['college'] : "" ?>" hidden>
-                                                <?= isset($row['college']) ? $row['college'] : "" ?>
+                                                <?= isset($row['college']) ? $row['college'] : "--Choose from the options--" ?>
                                             </option>
                                             <option value="Accountancy, Business, and International Hospitality">
                                                 Accountancy, Business, and International Hospitality</option>
@@ -99,10 +99,10 @@ if (isset($_POST['edit'])) {
                                     </div>
                                     <div class="form-control">
                                         <label class="pb-label" for="pb-campus"
-                                            value="<?= isset($row['campus']) ? $row['campus'] : "" ?>">Campus</label>
+                                            >Campus</label>
                                         <select name="campus" id="pb-campus">
                                             <option value="<?= isset($row['campus']) ? $row['campus'] : "" ?>" hidden>
-                                                <?= $row['campus'] ?>
+                                                <?= isset($row['campus']) ? $row['campus'] : "--Choose from the options--"  ?>
                                             </option>
                                             <option value="Alangilan (Main II)">Alangilan (Main II)</option>
                                             <option value="Balayan">Balayan</option>
