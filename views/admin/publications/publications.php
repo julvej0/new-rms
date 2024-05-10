@@ -68,10 +68,13 @@ include dirname(__FILE__, 4) . '/components/navbar/navbar.php';
                     </div>
                     <form action='' method='get'>
                         <div class="form-group">
+                            <input type="hidden" name="type" value="<?= isset($_GET['type']) ? $_GET['type'] : 'empty_type' ?>">
+                            <input type="hidden" name="fund" value="<?= isset($_GET['fund']) ? $_GET['fund'] : 'empty_fund' ?>">
+                            <input type="hidden" name="year" value="<?= isset($_GET['year']) ? $_GET['year'] : 'empty_year' ?>">
                             <input type='text' name='search'
                                 value='<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>'
                                 placeholder="Search...">
-                            <i class='bx bx-search icon'></i>
+                            <i fund='bx bx-search icon'></i>
                         </div>
                     </form>
                     <div class="filter">
