@@ -56,71 +56,54 @@
   $('#form-ipa').submit(function(event) {
     // Prevent the default form submission
     event.preventDefault();
-    const authors = [...document.querySelectorAll('#ipa-author')].map( option => option.value)
-    let exist = []
-    for (const index in authors){
-      if(!all_authors.includes(authors[index])){
-        exist.push(authors[index])
+    const ipaAuthor = document.querySelectorAll("#ipa-author")
+    if(ipaAuthor[0].value != ''){
+      const authors = [...ipaAuthor].map( option => option.value)
+      let exist = []
+      for (const index in authors){
+        if(!all_authors.includes(authors[index]) && authors[index].trim() != ''){
+          exist.push(authors[index])
+        }
       }
-    }
-    
-    if(exist.length > 0){
-      $.ajax({
-        url: `${relativePath}new/functionalities/get-authors.php`,
-        type: 'POST',
-        data: { author: exist },
-        dataType: 'json',
-        success: function(response) {
-            if (response != "") {
-              $('#modalBody').empty();
-              response.forEach(function(author) {
-              let authorNoSpace = author.replace(/\s/g, "")
-              let inputHtml = '<div class="authorGroup"><p>' + author + '</p><button onclick="AddAuthor(\'' + author + '\')" class="' + authorNoSpace + '">Add</button></div>';
-        $('#modalBody').append(inputHtml);
-      });
-                      showModal()
-                    } 
-                },
-                error: function() {
-                  Swal.fire({
-                      title: 'Error',
-                      text: 'There is an Error',
-                      icon: 'error',
-                      showCancelButton: false,
-                      confirmButtonColor: '#d33',
-                      confirmButtonText: 'Ok'
-                    })
-                }
-            });
-    }else{
 
-      var emptyFields = $('input, select, radio').filter(function() {
-        return $(this).val().trim() === '';
-      });
-  
-      if (emptyFields.length > 2) {
-        // Display Swal.fire confirmation dialog for incomplete IP Asset information
-        Swal.fire({
-          title: 'Are you sure?',
-          text: 'The IP Asset information you provided is incomplete. Save anyways?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Programmatically trigger the form submission
-            this.submit();
-          }
+      if(exist.length > 0){
+        $.ajax({
+          url: `${relativePath}new/functionalities/get-authors.php`,
+          type: 'POST',
+          data: { author: exist },
+          dataType: 'json',
+          success: function(response) {
+              if (response != "") {
+                $('#modalBody').empty();
+                response.forEach(function(author) {
+                let authorNoSpace = author.replace(/\s/g, "")
+                if(authorNoSpace != ''){
+                  let inputHtml = '<div class="authorGroup"><p>' + author + '</p><button onclick="AddAuthor(\'' + author + '\')" class="' + authorNoSpace + '">Add</button></div>';
+                  $('#modalBody').append(inputHtml);
+                }
         });
-      } else {
-        // All fields are filled, submit the form
+                        showModal()
+                      } 
+                  },
+                  error: function() {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'There is an Error',
+                        icon: 'error',
+                        showCancelButton: false,
+                        confirmButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                      })
+                  }
+              });
+      }else{
         this.submit();
       }
+    }else{
+      this.submit();
     }
-    // Check for empty fields 
-  });
+ });
+
 });
 
 function showModal() {
