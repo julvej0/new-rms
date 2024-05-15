@@ -260,28 +260,6 @@ if (isset($_GET['upload'])) {
         </script>
         
         ';
-    }elseif ($uploadStatus == 'nonexistent') {
-        echo
-            '
-        <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            }
-            })
-            
-            Toast.fire({
-                icon: "error",
-                title: "Failed to upload IP Asset, Author name not found!"
-            })
-    
-        </script>
-        
-        ';
     }
 }
 ?>

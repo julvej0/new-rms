@@ -49,9 +49,10 @@ if (isset($_POST['submitIPA'])) {
     }
 
     if (isset($_FILES["ip-certificate"]) && $_FILES["ip-certificate"]["error"] == 0) {
-        $target_dir = "uploads/";
+        $target_dir = "../uploads/";
         $certificate_file = $target_dir . $registration_number . "_certificate.png";
-
+        $file_name = $registration_number . "_certificate.png";
+        
         if (file_exists($certificate_file)) {
             echo "
             <script>
@@ -61,7 +62,7 @@ if (isset($_POST['submitIPA'])) {
         } else {
             $allowed_types = array('image/png', 'image/jpg', 'image/jpeg');
             $file_type = $_FILES["ip-certificate"]["type"];
-
+            
             if (in_array($file_type, $allowed_types)) {
                 if (move_uploaded_file($_FILES["ip-certificate"]["tmp_name"], $certificate_file)) {
                     echo "The file " . htmlspecialchars(basename($_FILES["ip-certificate"]["name"])) . " has been uploaded.";
@@ -79,24 +80,23 @@ if (isset($_POST['submitIPA'])) {
                         'authors' => $authors_string,
                         'hyperlink' => $hyperlink,
                         'status' => $status,
-                        'certificate' => $certificate_file
+                        'certificate' => $file_name
                     );
-
                     $jsonData = json_encode($postData);
-
+                    
                     $ch = curl_init('http://localhost:5000/table_ipassets');
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
+                    
                     $response = curl_exec($ch);
-                    if ($response === false) {
+                    if (str_contains($response, 'error') || strpos($response, '"table_ipassets"') == false) {
                         header("Location: ../../ip-assets.php?upload=failed");
                     } else {
                         $logurl = 'http://localhost:5000/table_log';
 
-                        $response_id = file_get_contents($logurl);
+                        $response_id = @file_get_contents($logurl);
 
                         if ($response_id !== false) {
                             $data = json_decode($response_id, true);
@@ -145,8 +145,13 @@ if (isset($_POST['submitIPA'])) {
 
                         $response = curl_exec($ch);
 
-                        echo "Insert successful.";
-                        header("Location: ../../ip-assets.php?upload=success");
+                        if (!str_contains($response, 'error')) {
+                            echo "Insert successful.";
+                            header("Location: ../../ip-assets.php?upload=success");
+                        } else {
+                            echo "Insert unsuccessful.";
+                            header("Location: ../../ip-assets.php?upload=failedd");
+                        }
                     }
 
                     curl_close($ch);

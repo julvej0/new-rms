@@ -43,9 +43,9 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
             'college' => $content->college ?? "Not available",
             'program' => $content->program ?? "Not Available",
             'authors' => $authorList ?? "Not Available",
-            'hyperlink' => 'Not Available',
+            'hyperlink' => $content->hyperlink ?? '',
             'status' => $content->status ?? "Not Available",
-            'certificate' => 'Not Available',
+            'certificate' => $content->certificate ?? '',
         ];
 
         $table_rows[] = $rowData;

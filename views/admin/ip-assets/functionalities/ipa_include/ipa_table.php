@@ -70,7 +70,7 @@ $total_records = countIPA($ipassetsurl, $authorurl, $search, $type, $class, $yea
                     <td class='pb-action-btns stickey-col'>
 
                         <?php
-                        $dir = "functionalities/button_functions/";
+                        $dir = "./new/uploads/";
                         $certificate = $row['certificate'];
                         $hyperlink = $row['hyperlink'];
 
@@ -80,14 +80,18 @@ $total_records = countIPA($ipassetsurl, $authorurl, $search, $type, $class, $yea
                             if (empty($certificate)) {
                                 $hyperlink = null;
                             } else {
-                                // Set the hyperlink to the certificate file path
-                                $hyperlink = $dir . $certificate;
+                                if($certificate != ''){
+                                    // Set the hyperlink to the certificate file path
+                                    $hyperlink = $dir . $certificate;
+                                }else{
+                                    $hyperlink = null;
+                                }
                             }
                         }
                         ?>
 
                         <!--If the $hyperlink == null, the value will be no_url which is needed to trigger SweetAlert2-->
-                        <a onclick="redirect('<?= $hyperlink != null ? $hyperlink : 'localhost:8080/new-rms-webdev/components/error-not-found/error-not-found.php'; ?>')" class="gdrive-btn"
+                        <a onclick="redirect('<?= $hyperlink != null ? $hyperlink : 'no_url'; ?>')" class="gdrive-btn"
                             title="Click to Redirect">
                             <i class="fas fa-arrow-up-right-from-square icon"></i>
                         </a>

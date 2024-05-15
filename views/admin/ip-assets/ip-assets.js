@@ -136,23 +136,23 @@ window.addEventListener('click', (e) => {
 
 // Redirect Certificate
 function redirect(url) {
-    if (url == 'no_url') {
-        // If the URL is 'no_url', display a toast notification indicating that the certificate is not set
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
+  if (url == 'no_url' || url == 'Not Available') {
+      // If the URL is 'no_url', display a toast notification indicating that the certificate is not set
+      const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+      });
+      Toast.fire({
+          icon: 'info',
+          title: 'Certificate not set!',
         });
-        Toast.fire({
-            icon: 'info',
-            title: 'Certificate not set!',
-        });
-    } else {
+      } else {
         // If the URL is valid, open it in a new tab
         window.open(url, "_blank");
-    }
+      }
 }
 
 // // Submit Delete

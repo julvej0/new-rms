@@ -7,7 +7,7 @@ if (isset ($_POST['updateIPA'])) {
     $authors_name = isset ($_POST['author_name']) ? $_POST['author_name'] : null;
     if (!$authors_name) {
         $authors_name = "";
-        $authors_string = " ";
+        $authors_string = "";
     } else {
         $author_ids = array();
 

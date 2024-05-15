@@ -149,7 +149,7 @@ if (isset($_POST['edit'])) {
                                             <tbody id="author-tbl-body">
                                                 <?php
                                                 $author = isset($row["authors"]) ? $row["authors"] : "";
-                                                if(!$author){
+                                                if(trim($author) == ''){
                                                     echo '<p style="color: red;">No author found!</p>';
                                                 }
                                                 $authors = explode(",", $author);
@@ -241,7 +241,7 @@ if (isset($_POST['edit'])) {
                                                 onchange="checkFileType(this)" accept=".png, .jpg, .jpeg, .pdf">
 
                                             <?php if (!empty($row['certificate'])):
-                                                $dir = "functionalities/button_functions/" ?>
+                                                $dir = "./new/uploads/" ?>
                                                 <!-- Check if a certificate file is not empty -->
                                                 <div>File uploaded: <a href="<?= $dir . $row['certificate'] ?>" target="_blank">
                                                         <?= basename($row['certificate']) ?>
