@@ -57,7 +57,7 @@
     // Prevent the default form submission
     event.preventDefault();
     const ipaAuthor = document.querySelectorAll("#ipa-author")
-    if(ipaAuthor[0].value != ''){
+    if(ipaAuthor.length != 0 && ipaAuthor[0].value != ''){
       const authors = [...ipaAuthor].map( option => option.value)
       let exist = []
       for (const index in authors){
