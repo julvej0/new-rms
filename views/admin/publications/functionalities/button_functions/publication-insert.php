@@ -43,7 +43,7 @@ if (isset ($_POST['submitPB'])) {
 
     if (!$authors_name) {
         $authors_name = "";
-        $authors_string = "";
+        $authors_string = " ";
     } else {
         $author_ids = array();
 

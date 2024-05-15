@@ -19,7 +19,7 @@ if (isset($_POST['submitIPA'])) {
     
     if (!$authors_name) {
         $authors_name = "";
-        $authors_string = "";
+        $authors_string = " ";
     } else {
         $author_ids = array();
 
