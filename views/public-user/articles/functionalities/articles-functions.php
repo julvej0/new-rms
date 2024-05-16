@@ -30,7 +30,6 @@ function displayPublicationData($row, $authorurl)
     echo "<h1 id='header-title'>" . $row['title_of_paper'] . "</h1>";
     echo '</div>';
 
-
     echo '<div class="author-list-cont">';
     $author_ids = explode(',', $row['authors']);
     $author_names = array();
@@ -47,7 +46,7 @@ function displayPublicationData($row, $authorurl)
         echo '</div>';
     } else {
         // Display only the label "Authors:"
-        echo '<label>Authors:</label>';
+        echo '<label class="article-authors">No authors found.</label>';
     }
     echo '</div>';
 
@@ -60,7 +59,7 @@ function displayPublicationData($row, $authorurl)
     }
     echo '</div>';
     echo '<div class="content-title">';
-    echo '<label class="abstract">Abstract</label>';
+    echo '<label class="abstract">Abstract:</label>';
     echo '</div>';
     echo '<div class="abstract-cont">';
     echo '<div>';
@@ -72,7 +71,8 @@ function displayPublicationData($row, $authorurl)
     }
 
     echo '</div>';
-    echo '<button onclick="window.open(\'' . $row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
+
+    echo '<button onclick="window.open(\'' . @$row['google_scholar_details'] . '\', \'_blank\')" class="download-cert-btn">GOOGLE SCHOLAR DETAILS</button>';
     echo '</div>';
     echo '</div>';
 }

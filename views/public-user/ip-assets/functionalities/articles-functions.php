@@ -48,41 +48,37 @@ function displayIpassetsData($row, $authorurl)
 
         $author_data = getAuthorById($authorurl, $author_id);
         if ($author_data != null) {
-            $author_names[] = $author_data['author_name'];
-            $author_emails[] = $author_data['email'];
+            $author_names[] = $author_data['author_name'] ?? "Not Avaiable";
+            $author_emails[] = $author_data['email'] ?? "Not Availble";
         }
     }
     if (count($author_names) > 0) {
         // Join the author names and display them
-        echo '<div class="article-authors">';
+        echo '<div class="article-authors">Authors: ';
         echo implode(', ', $author_names);
         echo '</div>';
     } else {
         // Display only the label "Authors:"
-        echo '<label>Authors:</label>';
+        echo '<div class="article-authors">No authors found.</div>';
     }
     echo '</div>';
     echo '<div class="content-title">';
-    echo '<label class="abstract">Campus</label>';
+    echo '<label class="abstract">Campus: ';
+    echo  $row['campus'] ?? "Not Available";
+    echo '</label>';
     echo '</div>';
     echo '<div class="abstract-cont">';
     echo '<div>';
-    echo '<label>Status:</label>';
+    echo '<label>Status: '; 
     if (!empty($row['status'])) {
         $abstract = $row['status'];
-        echo '<p>' . $abstract . '</p>';
+        echo $abstract ;
     } else {
-        echo '<p> Not Yet Set </p>';
+        echo 'Not Yet Set';
     }
+    echo '</label>';
     echo '</div>';
-    if (isset($_SESSION['user_email'])) {
-        foreach ($author_emails as $email) {
-            if ($email === $_SESSION['user_email']) {
-                echo '<button onclick="window.open(\'' . $row['hyperlink'] . '\', \'_blank\')" class="download-cert-btn">CERTIFICATION</button>';
-            }
-        }
-    }
-
+    echo '<button onclick="window.open(\'' . $row['hyperlink'] . '\', \'_blank\')" class="download-cert-btn">CERTIFICATION</button>';
     echo '</div>';
     echo '</div>';
 }

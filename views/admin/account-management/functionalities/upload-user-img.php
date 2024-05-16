@@ -5,6 +5,8 @@ if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
     $target_dir = "../uploads/";
     $user_email = $_POST['email'];
     $user_img_name = $target_dir . $user_email . "_userimage.png";
+    //uncomment to save the filename only instead of directory
+    // $user_img_name = $user_email . "_userimage.png";
 
     // Check if file already exists
     // if (file_exists($user_img_name)) {
@@ -19,9 +21,13 @@ if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
     if (in_array($file_type, $allowed_types)) {
         // Upload file to server
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $user_img_name)) {
+    //uncomment to save the filename only instead of directory
+        // if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir . $user_img_name)) {
             echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
             $userId = getUserIdByEmail($userurl, $user_email);
             $httpCode = updateUserImageById($userurl, $userId, substr($user_img_name, 1), "user_img");
+    //uncomment to save the filename only instead of directory
+            // $httpCode = updateUserImageById($userurl, $userId, $user_img_name, "user_img");
             if ($httpCode === 200) {
                 // Update the user's image URL in the $user array
                 $user['user_img'] = $user_img_name;

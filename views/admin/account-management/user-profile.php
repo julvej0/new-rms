@@ -19,6 +19,7 @@ include_once "functionalities/user-session.php";
                         <!-- TODO: make image upload work -->
                         <img id="user-image"
                             src="<?php echo isset($user['user_img']) ? $user['user_img'] : "./uploads/user.png"; ?>"
+                            <!-- src="<?php echo isset($user['user_img']) ? "./uploads/" . $user['user_img'] : "./uploads/user.png"; ?>" -->
                             alt="User Image">
                     </label>
                     <input type="file" id="photo-upload" name="file" style="display:none">

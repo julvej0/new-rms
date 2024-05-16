@@ -58,7 +58,7 @@ function getAuthorByEmail($url, $email)
 
     $authorsData = json_decode($response, true)['table_authors'];
     foreach ($authorsData as $author) {
-        if ($author['email'] === $email) {
+        if ($author['email'] ?? '' === $email) {
             return $author;
         }
     }

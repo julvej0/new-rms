@@ -48,7 +48,7 @@ function display_ipassets($ipassetsurl, $id)
     $ipassetsData = getIpassets($ipassetsurl);
     $authorsIP = [];
     foreach ($ipassetsData as $index => $rowData) {
-        $authors = $rowData['authors'];
+        $authors = $rowData['authors'] ?? '';
         if (strpos($authors, $id) !== false) {
             array_push($authorsIP, $rowData);
         }
