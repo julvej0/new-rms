@@ -18,8 +18,12 @@ include_once "functionalities/user-session.php";
             <div class="profile-photo">
                 <label for="photo-upload">
                     <img id="user-image"
-                        src="<?php echo isset($user['user_img']) ? $user['user_img'] : "../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png"; ?>"
+                        src="<?php echo isset($user['user_img']) ? $user['user_img'] : "../../../../views/admin/account-management/uploads/user.png"; ?>"
                         alt="User Image">
+                        <!-- Uncomment this to use the filename only not directory -->
+                         <!-- <img id="user-image"
+                            src="<?php echo isset($user['user_img']) ? "../../../../views/admin/account-management/uploads/" . $user['user_img'] : "../../../../../new-rms-webdev/views/admin/account-management/uploads/user.png"; ?>" 
+                            alt="User Image"> -->
                 </label>
                 <input type="file" id="photo-upload" name="file" style="display:none">
             </div>
@@ -64,8 +68,8 @@ include_once "functionalities/user-session.php";
             </div>
         </div>
     </div>
-    <script src='show-hide-password.js'></script>
     <script src='edit-info.js'></script>
+    <script src='show-hide-password.js'></script>
 
     <script>
 

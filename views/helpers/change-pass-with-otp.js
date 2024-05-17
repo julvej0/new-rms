@@ -1,5 +1,4 @@
 function submitPss() {
-    console.log("working")
     // Get input values from the HTML elements
     var emailAddress = document.getElementById("userEmailAddressInput").value;
     var passwordInput = document.getElementsByClassName('passwordInput')[1].value;
@@ -44,9 +43,7 @@ function submitPss() {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log(xhr)
                 if (xhr.responseText === "successful") {
-                    console.log("niceeee")
                     // Display a success message using Swal (SweetAlert)
                     const Toast = Swal.mixin({
                         toast: true,

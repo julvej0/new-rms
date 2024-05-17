@@ -41,6 +41,6 @@
         </section>
     </main>
     </section>
-    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="../../../css/sweetalert2.min.css">
     <script src="../download/download_pub.js"></script>
 </body>

@@ -50,8 +50,6 @@ function checkData(event) {
     var id = document.getElementById("a-id").value;
     var email = document.getElementById("a-email").value;
 
-    console.log(id);
-
     //Internal Affiliation
     var internal_dept = document.getElementsByClassName("a-aff-dept").length;
     var internal_prog = document.getElementsByClassName("a-aff-prog").length;

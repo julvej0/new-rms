@@ -38,8 +38,6 @@ include_once "functionalities/user-session.php";
     </div>
 </section>
 
-<script src='change-pass-and-email.js'></script>
-<script src='show-hide-password.js'></script>
 <script src='edit-info.js'></script>
 <script src='close-modal.js'></script>
 
@@ -78,7 +76,6 @@ include_once "functionalities/user-session.php";
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                console.log(xhr.responseText)
                 if (xhr.responseText === 'successful') {
                     disableSubmitPassword.disabled = false;
                     const Toast = Swal.mixin({

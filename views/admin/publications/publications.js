@@ -133,7 +133,6 @@ window.addEventListener("click", (e) => {
 });
 
 //Redirect Certificate
-
 function redirect(url) {
   // Check if the URL is 'no_url'
   if (url == "no_url") {
@@ -191,8 +190,6 @@ function submitDelete(id) {
             var paddedNumericID = nextNumericID.toString().padStart(6, "0");
 
             var log_id = "AL" + paddedNumericID;
-
-            console.log(log_id);
 
             var date_time = new Date().toISOString();
             var user_id = 18;

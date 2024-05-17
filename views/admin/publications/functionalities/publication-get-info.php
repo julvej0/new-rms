@@ -2,22 +2,20 @@
 
 function get_data($search, $type, $fund, $year, $page_number)
 {
+    // Retrieve data from the Publication API
     $encodedJsonResponse = getReq('http://localhost:5000/table_publications');
     $tableData = $encodedJsonResponse->table_publications;
 
-    // retrieve all the authors registered from the api
+    // Retrieve all the authors registered from the api
     $authorObj = getReq("http://localhost:5000/table_authors");
     $authorObj = !isset($authorObj->error) ? $authorObj->table_authors : [];
 
-    // $count = $page_number * 10;
-    // retrieve all the values from json response
     foreach ($tableData as $content) {
-        // retrieve the names for each authors that are registered for this paper
+        // Retrieve the names for each authors that are registered for this paper
         $authorList = "";
         if (isset($content->authors)) {
             $authors = explode(',', $content->authors);
 
-            // retrieve the author names from the api response
             foreach ($authors as $aid) {
                 foreach ($authorObj as $registeredAuthor) {
                     if ($aid == $registeredAuthor->author_id) {
@@ -28,53 +26,30 @@ function get_data($search, $type, $fund, $year, $page_number)
             }
         }
 
-
-        if (!isset($content->date_published)) {
-            $table_rows[] = array(
-                'publication_id' => $content->publication_id,
-                'date_published' => "Not Available",
-                'quartile' => $content->quartile ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'department' => $content->department ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'title_of_paper' => $content->title_of_paper ?? "Not Available",
-                'type_of_publication' => $content->type_of_publication ?? "Not Available",
-                'funding_source' => $content->funding_source ?? "Not Available",
-                'number_of_citation' => $content->number_of_citation ?? "Not Available",
-                'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
-                'sdg_no' => $content->sdg_no ?? "Not Available",
-                'funding_type' => $content->funding_type ?? "Not Available",
-                'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
-                'publisher' => $content->publisher ?? "Not Available",
-                'abstract' => $content->abstract ?? "Not Available",
-                'status' => $content->status ?? "Not Available",
-            );
-        } else {
-            $table_rows[] = array(
-                'publication_id' => $content->publication_id,
-                'date_published' => date_format(date_create($content->date_published), "m/d/Y") ?? "Not Available",
-                'quartile' => $content->quartile ?? "Not Available",
-                'authors' => $authorList ?? "Not Available",
-                'department' => $content->department ?? "Not Available",
-                'college' => $content->college ?? "Not Available",
-                'campus' => $content->campus ?? "Not Available",
-                'title_of_paper' => $content->title_of_paper ?? "Not Available",
-                'type_of_publication' => $content->type_of_publication ?? "Not Available",
-                'funding_source' => $content->funding_source ?? "Not Available",
-                'number_of_citation' => $content->number_of_citation ?? "Not Available",
-                'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
-                'sdg_no' => $content->sdg_no ?? "Not Available",
-                'funding_type' => $content->funding_type ?? "Not Available",
-                'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
-                'publisher' => $content->publisher ?? "Not Available",
-                'abstract' => $content->abstract ?? "Not Available",
-                'status' => $content->status ?? "Not Available",
-            );
-        }
+        // Add the processed Publication entry to the table rows
+        $table_rows[] = array(
+            'publication_id' => $content->publication_id,
+            'date_published' => !isset($content->date_published) ? "Not Available" : date_format(date_create($content->date_published), "m/d/Y"),
+            'quartile' => $content->quartile ?? "Not Available",
+            'authors' => $authorList ?? "Not Available",
+            'department' => $content->department ?? "Not Available",
+            'college' => $content->college ?? "Not Available",
+            'campus' => $content->campus ?? "Not Available",
+            'title_of_paper' => $content->title_of_paper ?? "Not Available",
+            'type_of_publication' => $content->type_of_publication ?? "Not Available",
+            'funding_source' => $content->funding_source ?? "Not Available",
+            'number_of_citation' => $content->number_of_citation ?? "Not Available",
+            'google_scholar_details' => $content->google_scholar_details ?? "Not Available",
+            'sdg_no' => $content->sdg_no ?? "Not Available",
+            'funding_type' => $content->funding_type ?? "Not Available",
+            'nature_of_funding' => $content->nature_of_funding ?? "Not Available",
+            'publisher' => $content->publisher ?? "Not Available",
+            'abstract' => $content->abstract ?? "Not Available",
+            'status' => $content->status ?? "Not Available",
+        );
     }
 
-    // perform a searching operation for all keywords
+    // Perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
     $table_rows = searchTypeAPI($table_rows, $type, 'type_of_publication');
     $table_rows = searchTypeAPI($table_rows, $fund, "nature_of_funding");
@@ -85,7 +60,7 @@ function get_data($search, $type, $fund, $year, $page_number)
 
 function getReq($url)
 {
-    // retrieve all the data from the api
+    // Retrieve all the data from the api
     $curlRequest = curl_init($url);
     curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, "GET");
     curl_setopt($curlRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
@@ -101,22 +76,22 @@ function getReq($url)
     return $decodedResponse;
 }
 
-function keywordsearchAPI($tableRows, $strmatch)
+function keywordsearchAPI($tableRows, $search)
 {
-    if ($strmatch == 'empty_search' || $strmatch == ' ' || $strmatch == '') {
+    if ($search == 'empty_search' || trim($search) == '') {
         return $tableRows;
     }
 
-    // pop the values that isn't like the authorname
+    // Pop the values that isn't like rowdata column values
     foreach ($tableRows as $index => $rowData) {
-        $isMatched = strpos(strtolower($rowData['title_of_paper']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['authors']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['publication_id']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['campus']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['college']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['department']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['quartile']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['status']), strtolower($strmatch)) !== false;
+        $isMatched = strpos(strtolower($rowData['title_of_paper']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['authors']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['publication_id']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['campus']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['college']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['department']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['quartile']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['status']), strtolower($search)) !== false;
 
         if (!$isMatched) {
             unset($tableRows[$index]);
@@ -125,28 +100,29 @@ function keywordsearchAPI($tableRows, $strmatch)
     return $tableRows;
 }
 
-// searches for the type of document
-function searchTypeAPI($tableRows, $strmatch, $tableColumn)
+// Searches for the type of document
+function searchTypeAPI($tableRows, $filter, $tableColumn)
 {
-    if ($strmatch == 'empty_type' || $strmatch == '' || $strmatch == ' ' || $strmatch == 'empty_fund' || $strmatch == 'empty_year')
+    if ($filter == 'empty_type' || $filter == '' || $filter == ' ' || $filter == 'empty_fund' || $filter == 'empty_year')
         return $tableRows;
-    return searchAPI($tableRows, $strmatch, $tableColumn);
+    return searchAPI($tableRows, $filter, $tableColumn);
 }
 
-// removes the authors from the table that doesn' match or isn't like the authorName
-function searchAPI($tableRows, $strmatch, $key)
+function searchAPI($tableRows, $filter, $tableColumn)
 {
-    // pop the values that isn't like the authorname
+    // Pop the values that isn't like the string value
     foreach ($tableRows as $index => $rowData) {
-        if ($key == "date_published") {
-            if (isset($rowData[$key])) {
-                $isMatched = date('Y', strtotime($rowData[$key])) == $strmatch;
+        if ($tableColumn == "date_published") {
+            if (isset($rowData[$tableColumn])) {
+                // Compare the year part of the date with the filter match string
+                $isMatched = date('Y', strtotime($rowData[$tableColumn])) == $filter;
             }
         } else {
-            $isMatched = $rowData[$key] == $strmatch;
+            // Compare the value of the current row's column with the filter match string
+            $isMatched = $rowData[$tableColumn] == $filter;
         }
 
-        if (!$isMatched) {
+        if(!$isMatched) {
             unset($tableRows[$index]);
         }
     }

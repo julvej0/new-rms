@@ -1,5 +1,4 @@
-// CANCEL MODAL
-
+//CLOST BUTTON
 const modal = document.getElementById("myModal");
 
 // Get the close button element within the modal
@@ -7,19 +6,20 @@ const closeBtn = modal.querySelector(".exit");
 
 // Add a click event listener to the close button
 closeBtn.addEventListener("click", function () {
-    // Find the modal container element and add the "fade-out" class
-    modal.querySelector(".modal-container").classList.add("fade-out");
-
-    // Set a timeout to remove the modal from display after the fade-out animation
-    setTimeout(function () {
-        // Hide the modal by setting its display property to "none"
-        modal.style.display = "none";
-
-        // Remove the "fade-out" class from the modal container element
-        modal.querySelector(".modal-container").classList.remove("fade-out");
-    }, 300); // Match the duration of the slide-out animation
+  // Find the modal container element and add the "fade-out" class
+  modal.querySelector(".modal-container").classList.add("fade-out");
+  
+  // Set a timeout to remove the modal from display after the fade-out animation
+  setTimeout(function () {
+    // Hide the modal by setting its display property to "none"
+    modal.style.display = "none";
+    
+    // Remove the "fade-out" class from the modal container element
+    modal.querySelector(".modal-container").classList.remove("fade-out");
+  }, 300); // Match the duration of the slide-out animation
 });
 
+// CANCEL BUTTON 
 const cancelBtn = document.querySelector('.cancel-btn');
 
 // Add event listener to the cancel button
@@ -103,29 +103,6 @@ function disableFields() {
     fundingAgencyField.value = "";
   }
 }
-
-// to hide the funding section
-
-// function FundingRadio() {
-//   const fundingRadio = document.querySelector(
-//     'input[mame="funding_type"]:checked'
-//   );
-//   const fundingResult = document.getElementById("show-funded");
-//   const external = document.getElementById("show-external");
-
-//   if (fundingRadio){
-//     const fundValue = fundValue.value;
-
-//     if (fundValue === "funded") {
-//       fundingResult.style.display = "flex";
-
-//     } else if (fundValue === "non-funded"){
-//       fundingResult.style.display = "none";
-//       external.value = "";
-//     }
-//   }
-// }
-// Function to handle click on non-funded radio button
 
 function nonFundedClick() {
   typeOfFundingLabel.style.color = "gray";

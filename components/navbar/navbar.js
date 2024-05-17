@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// NAVLINKS
 	var path = window.location.pathname;
-	console.log("path: " + path);
 
 	if(path.includes("dashboard.php")){
 		document.getElementById('dashboard-link').classList.add('active');
@@ -76,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	if(path.includes("ip-assets.php") || path.includes("new-ip-asset.php")){
-		console.log("inside ip-assets");
 		document.getElementById('ip-assets-link').classList.add('active');
 	}
 

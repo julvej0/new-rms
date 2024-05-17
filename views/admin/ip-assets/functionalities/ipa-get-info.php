@@ -1,37 +1,37 @@
 <?php
 function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
 {
+    // Retrieve data from the IP assets API
     $encodedJsonResponse = getReq($ipassetsurl);
     if (isset($encodedJsonResponse->error)) {
-
         return null;
     }
     $tableData = $encodedJsonResponse->table_ipassets;
 
-    // retrieve all the authors registered from the api
+    // Retrieve all the authors registered from the api
     $authorObj = getReq($authorurl);
-    if (!isset($authorObj->error)) {
+    if (!isset($authorObj->error)) { //if there is no error
         $authorObj = $authorObj->table_authors;
     } else {
         $authorObj = [];
     }
     $authorcolumn = array_column($authorObj, "author_name", "author_id");
-    // retrieve all the values from json response
+    
+    // Process each IP asset entry
     foreach ($tableData as $index => $content) {
-        // retrieve the names for each authors that are registered for this paper
-        // if (($count - 10) < $index && $index < $count) {
+        // Get author names for the current IP asset
         $authorList = "";
         if (isset($content->authors)) {
             $authors = explode(',', $content->authors);
 
-            // retrieve the author names from the api response
             foreach ($authors as $aid) {
-                if (isset($authorcolumn[$aid])) {
+                if(isset($authorcolumn[$aid])) {
                     $authorList .= $authorcolumn[$aid] . "<br/>";
                 }
             }
         }
 
+        // Add the processed IP asset entry to the table rows
         $rowData = [
             'registration_number' => $content->registration_number,
             'title_of_work' => $content->title_of_work ?? "Not Available",
@@ -49,10 +49,9 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
         ];
 
         $table_rows[] = $rowData;
-        // }
     }
 
-    // perform a searching operation for all keywords
+    // Perform a searching operation for all keywords
     $table_rows = keywordsearchAPI($table_rows, $search);
     $table_rows = searchTypeAPI($table_rows, $type, 'type_of_document');
     $table_rows = searchTypeAPI($table_rows, $class, "class_of_work");
@@ -60,22 +59,23 @@ function get_data($ipassetsurl, $authorurl, $search, $type, $class, $year)
     return $table_rows;
 }
 
-// keyword searching operation for all the string matches in the table
-function keywordsearchAPI($tableRows, $strmatch)
+// Keyword searching operation for all the string matches in the table
+function keywordsearchAPI($tableRows, $search)
 {
-    if ($strmatch == 'empty_search' || trim($strmatch) == '') {
+    if ($search == 'empty_search' || trim($search) == '') {
         return $tableRows;
     }
 
-    // pop the values that isn't like the authorname
     foreach ($tableRows as $index => $rowData) {
-        $isMatched = strpos(strtolower($rowData['title_of_work']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['authors']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['registration_number']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['campus']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['college']), strtolower($strmatch)) !== false
-            || strpos(strtolower($rowData['status']), strtolower($strmatch)) !== false;
+        $isMatched = strpos(strtolower($rowData['title_of_work']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['authors']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['registration_number']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['campus']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['college']), strtolower($search)) !== false
+            || strpos(strtolower($rowData['status']), strtolower($search)) !== false;
 
+        
+        // If there's no match, remove the current row from the table
         if (!$isMatched) {
             unset($tableRows[$index]);
         }
@@ -83,27 +83,30 @@ function keywordsearchAPI($tableRows, $strmatch)
     return $tableRows;
 }
 
-// searches for the type of document
-function searchTypeAPI($tableRows, $strmatch, $tableColumn)
+// Searches for the type of document
+function searchTypeAPI($tableRows, $filter, $tableColumn)
 {
-    if ($strmatch == 'empty_type' || trim($strmatch) == '' || $strmatch == 'empty_class' || $strmatch == 'empty_year')
+    if ($filter == 'empty_type' || trim($filter) == '' || $filter == 'empty_class' || $filter == 'empty_year'){
         return $tableRows;
-    return searchAPI($tableRows, $strmatch, $tableColumn);
+    }
+    return searchAPI($tableRows, $filter, $tableColumn);
 }
 
-// removes the authors from the table that doesn' match or isn't like the authorName
-function searchAPI($tableRows, $strmatch, $key)
+// Removes out rows that don't match the specified key and value.
+function searchAPI($tableRows, $filter, $tableColumn)
 {
-    // pop the values that isn't like the authorname
     foreach ($tableRows as $index => $rowData) {
-        if ($key == "date_registered") {
-            if (isset($rowData[$key])) {
-                $isMatched = date('Y', strtotime($rowData[$key])) == $strmatch;
+        if ($tableColumn == "date_registered") {
+            if (isset($rowData[$tableColumn])) {
+                // Compare the year part of the date with the filter match string
+                $isMatched = date('Y', strtotime($rowData[$tableColumn])) == $filter;
             }
         } else {
-            $isMatched = $rowData[$key] == $strmatch;
+            // Compare the value of the current row's column with the filter match string
+            $isMatched = $rowData[$tableColumn] == $filter;
         }
 
+        // If there's no match, remove the current row from the table
         if (!$isMatched) {
             unset($tableRows[$index]);
         }
@@ -111,10 +114,10 @@ function searchAPI($tableRows, $strmatch, $key)
     return $tableRows;
 }
 
-// for making a curl get request
+// Sends a GET request to the specified URL and decodes the JSON response
 function getReq($url)
 {
-    // retrieve all the data from the api
+    // Retrieve all the data from the api
     $curlRequest = curl_init($url);
     curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, "GET");
     curl_setopt($curlRequest, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
@@ -124,11 +127,5 @@ function getReq($url)
     curl_close($curlRequest);
     return json_decode($response);
 }
-
-// retrieves the data from the api route
-
-
-
-
 
 ?>

@@ -7,8 +7,6 @@ window.addEventListener("load", function() {
 let isRotated = false;
 const checkboxContainer = document.getElementById("checkbox-container");
 
-
-
 function rotateButton() {
     const buttonIcon = document.getElementById("button-icon");
     if (isRotated) {
@@ -35,6 +33,7 @@ function rotateButton() {
         isRotated = true;
     }
 }
+
 // get all the checkboxes
 var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
@@ -155,46 +154,6 @@ function redirect(url) {
       }
 }
 
-// // Submit Delete
-// function submitDelete(id) {
-//     // Create an XMLHttpRequest object
-//     var xhr = new XMLHttpRequest();
-    
-//     // Open a POST request to the IPA delete PHP script
-//     xhr.open("POST", "functionalities/button_functions/ipa-delete.php", true);
-    
-//     // Set the request header
-//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    
-//     // Define the callback function to handle the response
-//     xhr.onreadystatechange = function() {
-//         if (xhr.readyState === 4 && xhr.status === 200) {
-//             if (xhr.responseText === "Success") {
-//                 // If the delete operation is successful, update the URL parameters and refresh the page
-//                 let queryString = window.location.search;
-//                 const searchParams = new URLSearchParams(queryString);
-//                 if (searchParams.has('delete')) {
-//                     searchParams.delete('delete');
-//                 }
-//                 window.location.href = "?" + searchParams + "&delete=success";
-//             } else {
-//                 // If the delete operation fails, display an error message using SweetAlert
-//                 Swal.fire({
-//                     icon: 'error',
-//                     title: 'Delete was Unsuccessful',
-//                     text: 'Something went wrong! Please try again later!',
-//                     confirmButtonColor: '#3085d6',
-//                     confirmButtonText: 'OK'
-//                 });
-//                 console.log(xhr.responseText);
-//             }
-//         }
-//     };
-    
-//     // Send the request with the ID parameter
-//     xhr.send("id=" + id);
-// }
-
 
 function submitDelete(id) {
     // Create a new XMLHttpRequest object
@@ -233,8 +192,6 @@ function submitDelete(id) {
               var paddedNumericID = nextNumericID.toString().padStart(6, '0');
               
               var log_id = 'AL' + paddedNumericID;
-              
-              console.log(log_id);
               
               var date_time = new Date().toISOString();
               var user_id = 18;
@@ -286,7 +243,6 @@ function submitDelete(id) {
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'OK'
           });
-          console.log(xhr.responseText);
         }
       }
     };

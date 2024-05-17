@@ -12,7 +12,6 @@ function get_data($search, $sort_query, $dateStart_query, $dateEnd_query, $campu
     $authorObj = getReq("http://localhost:5000/table_authors");
     $authorObj = !isset($authorObj->error) ? $authorObj->table_authors : [];
 
-    // $count = $page_number * 10;
     // retrieve all the values from json response
     foreach ($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper

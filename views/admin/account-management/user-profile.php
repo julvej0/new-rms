@@ -16,11 +16,13 @@ include_once "functionalities/user-session.php";
                 <div class="profile-photo">
                     <label for="photo-upload">
                         <!-- TODO: add a caption saying that you need to click the image box to add/edit it -->
-                        <!-- TODO: make image upload work -->
                         <img id="user-image"
                             src="<?php echo isset($user['user_img']) ? $user['user_img'] : "./uploads/user.png"; ?>"
-                            <!-- src="<?php echo isset($user['user_img']) ? "./uploads/" . $user['user_img'] : "./uploads/user.png"; ?>" -->
                             alt="User Image">
+                        <!-- Uncomment this to use the filename only not directory -->
+                        <!-- <img id="user-image"
+                            src="<?php echo isset($user['user_img']) ? "./uploads/" . $user['user_img'] : "./uploads/user.png"; ?>" 
+                            alt="User Image"> -->
                     </label>
                     <input type="file" id="photo-upload" name="file" style="display:none">
                 </div>
@@ -66,7 +68,7 @@ include_once "functionalities/user-session.php";
         </div>
     </div>
 </section>
-<script src='show-hide-password.js'></script>
+<script src='../../helpers/show-hide-password.js'></script>
 <script src='edit-info.js'></script>
 
 <script>

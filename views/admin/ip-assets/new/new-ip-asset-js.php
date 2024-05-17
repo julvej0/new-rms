@@ -20,29 +20,29 @@
               document.querySelector(`.${authorNoString}`).innerHTML = "&#x1F5F9"
               document.querySelector(`.${authorNoString}`).disabled = true
               Swal.fire({
-                      title: 'Author "<i>' + author + '</i>" successfully added.',
-                      text: 'The author has been successfully added to the database.',
-                      icon: 'success',
-                      showCancelButton: false,
-                      confirmButtonColor: '#3085d6',
-                      confirmButtonText: 'Ok'
-                    })
+                title: 'Author "<i>' + author + '</i>" successfully added.',
+                text: 'The author has been successfully added to the database.',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+              })
             }else{
               Swal.fire({
-                      title: 'Error Adding Author',
-                      text: 'An error occurred while adding the author to the database.',
-                      icon: 'error',
-                      confirmButtonText: 'Ok'
-                    })
+                title: 'Error Adding Author',
+                text: 'An error occurred while adding the author to the database.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
             }
         },
         error: function() {
             Swal.fire({
-                      title: 'Error',
-                      text: 'Failed to add author. Please try again.',
-                      icon: 'error',
-                      confirmButtonText: 'Ok'
-                    })
+              title: 'Error',
+              text: 'Failed to add author. Please try again.',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
         }
     });
 }
@@ -58,7 +58,7 @@
     event.preventDefault();
     const ipaAuthor = document.querySelectorAll("#ipa-author")
 
-     var emptyFields = $('input, select, radio').filter(function() {
+    var emptyFields = $('input, select, radio').filter(function() {
       return $(this).val().trim() === '';
     });
 
@@ -125,9 +125,7 @@
         this.submit();
       }
     }
-
  });
-
 });
 
 function showModal() {

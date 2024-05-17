@@ -6,7 +6,6 @@ include_once dirname(__FILE__, 5) . '/helpers/utils/utils-ipasset.php';
 include_once dirname(__FILE__, 5) . '/helpers/utils/utils-publication.php';
 
 //determine if id parameter is existing
-// throw new Exception('haha');
 if (isset ($_POST['id'])) {
     $id = $_POST['id'];//initialize
     //check if the author was removed from publication and ipasset

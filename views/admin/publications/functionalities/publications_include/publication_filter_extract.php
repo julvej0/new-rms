@@ -13,7 +13,6 @@ function getDistinctYear($url)
 
     foreach ($userData as $asset) {
         $year = isset($asset['date_published']) ? date('Y', strtotime($asset['date_published'])) : null;
-        // print_r($year . "haha");
         if (!in_array($year, $distinctYears) && $year != null) {
             $distinctYears[] = $year;
         }

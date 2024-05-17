@@ -105,8 +105,6 @@ if (isset($_POST['updatePB'])) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
     $response = curl_exec($ch);
-    // var_dump($response);
-    // throw new Exception("Haha");
 
     if ($response === false || strpos($response, '"table_publications"') == false) {
         header("Location: ../../publications.php?update=failed");

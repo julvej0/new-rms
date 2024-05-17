@@ -1,8 +1,6 @@
 <?php
 function get_data($publicationurl, $authorurl, $search, $type, $fund, $year)
 {
-    $search_query = $search == 'empty_search' ? '' : $search;
-
     $encodedJsonResponse = getReq($publicationurl);
     if ($encodedJsonResponse == null) {
         return null;
@@ -13,15 +11,12 @@ function get_data($publicationurl, $authorurl, $search, $type, $fund, $year)
     $authorObj = getReq($authorurl);
     $authorObj = !isset($authorObj->error) ? $authorObj->table_authors : [];
 
-    // $count = $page_number * 10;
-    // retrieve all the values from json response
     foreach ($tableData as $content) {
         // retrieve the names for each authors that are registered for this paper
         $authorList = "";
         if (isset($content->authors)) {
             $authors = explode(',', $content->authors);
 
-            // retrieve the author names from the api response
             foreach ($authors as $aid) {
                 foreach ($authorObj as $registeredAuthor) {
                     if ($aid == $registeredAuthor->author_id) {
@@ -95,7 +90,6 @@ function getReq($url)
 
     $decodedResponse = json_decode($response);
     if (isset($decodedResponse->error)) {
-
         return null;
     }
     return $decodedResponse;
@@ -104,7 +98,7 @@ function getReq($url)
 // searches for the type of document
 function searchTypeAPI($tableRows, $strmatch, $tableColumn)
 {
-    if ($strmatch == 'empty_type' || $strmatch == '' || $strmatch == ' ' || $strmatch == 'empty_fund' || $strmatch == 'empty_year')
+    if ($strmatch == 'empty_type' || trim($strmatch) == ''  || $strmatch == 'empty_fund' || $strmatch == 'empty_year')
         return $tableRows;
     return searchAPI($tableRows, $strmatch, $tableColumn);
 }

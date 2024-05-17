@@ -8,7 +8,6 @@
       if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         var response = request.responseText;
 
-        console.log(response);
         if (response == "true") {
           window.location = './article_view.php?pubID=' + encrypted_ID;
         } else {

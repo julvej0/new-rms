@@ -1,9 +1,9 @@
-// CANCEL MODAL
 //Javascript code that doesn't required PHP specific functinality
 
+//CLOSE AUTHOR DETAILS MODAL
 const modal = document.getElementById("myModal");
 
-// Get the close button element within the modal
+// Get the exit button element within the modal
 const closeBtn = modal.querySelector(".exit");
 
 // Add a click event listener to the close button
@@ -21,10 +21,10 @@ closeBtn.addEventListener("click", function () {
   }, 300); // Match the duration of the slide-out animation
 });
 
+
 const cancelBtn = document.querySelector(".cancel-btn");
 // Add click event listener to the cancel button
 cancelBtn.addEventListener("click", (e) => {
-  console.log("haha")
   e.preventDefault();
 
   // Show a confirmation dialog using Swal (SweetAlert) library
@@ -129,6 +129,7 @@ function checkFileType(fileInput) {
     return false;
   }
 }
+
 
 function toggleRequired() {
   let ipTypeSelect = document.getElementById("ip-type");

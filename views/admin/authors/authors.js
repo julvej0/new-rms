@@ -25,7 +25,6 @@ function submitDelete(id) {
           confirmButtonColor: "#3085d6",
           confirmButtonText: "OK",
         });
-        console.log(xhr.responseText);
       }
     }
   };

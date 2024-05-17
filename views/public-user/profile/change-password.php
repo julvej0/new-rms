@@ -42,7 +42,6 @@ include dirname(__FILE__, 4) . '/components/public-user/templates/user-navbar.ph
         </div>
     </div>
 </div>
-<!-- <script src='change-pass-and-email.js'></script> -->
 <script src='show-hide-password.js'></script>
 <script src='edit-info.js'></script>
 <script src='close-modal.js'></script>

@@ -105,7 +105,6 @@ function dateTypeAPI($tableRows, $start, $end)
             unset($tableRows[$index]);
         }
         if ($start != "empty_dStart" && $start > $date) {
-            print_r($start);
             unset($tableRows[$index]);
         }
     }

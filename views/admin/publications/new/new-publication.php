@@ -394,10 +394,10 @@ include_once dirname(__FILE__, 4) . '/helpers/utils/utils-author.php';
             <span class="close">&times;</span>
             <h2>Author not found.</h2>
             <div class="modal-content">
-                 <div class="modal-body" id="modalBody">
-
-                </div>
-                <button type="button" id="close-btn" class="exit">Close</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Fill the content from the new-publication-js.php -->
+            </div>
+            <button type="button" id="close-btn" class="exit">Close</button>
             </div>
         </div>
     </div>
